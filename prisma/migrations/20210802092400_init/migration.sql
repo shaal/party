@@ -22,7 +22,7 @@ CREATE TABLE "Session" (
 );
 
 -- CreateTable
-CREATE TABLE "Note" (
+CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "text" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -39,4 +39,4 @@ CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Note" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
