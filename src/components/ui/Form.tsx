@@ -27,17 +27,17 @@ export const useZodForm = <T extends ZodSchema<any>>({
 }
 
 interface FieldErrorProps {
-  username?: string
+  name?: string
 }
 
-export function FieldError({ username }: FieldErrorProps) {
+export function FieldError({ name }: FieldErrorProps) {
   const {
     formState: { errors }
   } = useFormContext()
 
-  if (!username) return null
+  if (!name) return null
 
-  const error = errors[username]
+  const error = errors[name]
 
   if (!error) return null
 

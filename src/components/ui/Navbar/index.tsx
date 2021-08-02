@@ -57,7 +57,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
 }
 
 interface NavbarProps {
-  currentUser: any
+  currentUser?: any
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {

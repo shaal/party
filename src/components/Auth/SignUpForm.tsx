@@ -11,6 +11,9 @@ import {
 import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
 import Link from 'next/link'
+import { Fragment } from 'react'
+import Navbar from '../ui/Navbar'
+import { Card, CardBody } from '../ui/Card'
 
 const signUpSchema = object({
   username: string().min(2).max(30),
@@ -43,47 +46,64 @@ export function SignUpForm() {
   })
 
   return (
-    <GridLayout>
-      <div className="mb-4">
-        <Link href="/login">Already have an account? Log in.</Link>
+    <Fragment>
+      <Navbar />
+      <div className="flex flex-grow items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <h2 className="mt-6 text-center text-3xl font-extrabold">
+              Sign in to your account
+            </h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              or{' '}
+              <span className="text-blue-500">
+                <Link href="/signup" passHref>
+                  sign up now
+                </Link>
+              </span>
+            </p>
+          </div>
+          <Card>
+            <CardBody>
+              <Form
+                form={form}
+                onSubmit={({ username, email, password }) =>
+                  signUp({
+                    variables: {
+                      input: { username, email, password }
+                    }
+                  })
+                }
+              >
+                <ErrorMessage
+                  title="Error creating account"
+                  error={signUpResult.error}
+                />
+                <Input
+                  label="Username"
+                  type="text"
+                  autoComplete="username"
+                  autoFocus
+                  {...form.register('username')}
+                />
+                <Input
+                  label="Email"
+                  type="email"
+                  autoComplete="email"
+                  {...form.register('email')}
+                />
+                <Input
+                  label="Password"
+                  type="password"
+                  autoComplete="new-password"
+                  {...form.register('password')}
+                />
+                <Button type="submit">Sign Up</Button>
+              </Form>
+            </CardBody>
+          </Card>
+        </div>
       </div>
-
-      <Form
-        form={form}
-        onSubmit={({ username, email, password }) =>
-          signUp({
-            variables: {
-              input: { username, email, password }
-            }
-          })
-        }
-      >
-        <ErrorMessage
-          title="Error creating account"
-          error={signUpResult.error}
-        />
-
-        <Input
-          label="Username"
-          type="text"
-          autoComplete="username"
-          autoFocus
-          {...form.register('username')}
-        />
-        <Input
-          label="Email"
-          type="email"
-          autoComplete="email"
-          {...form.register('email')}
-        />
-        <Input
-          label="Password"
-          type="password"
-          autoComplete="new-password"
-          {...form.register('password')}
-        />
-        <Button type="submit">Sign Up</Button>
-      </Form>
-    </GridLayout>
+    </Fragment>
   )
 }

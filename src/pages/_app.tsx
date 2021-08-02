@@ -14,7 +14,9 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider defaultTheme="light" attribute="class">
         <DefaultSeo defaultTitle="Devparty" titleTemplate="%s | Devparty" />
         <NProgress />
-        <Component {...pageProps} />
+        <div className="flex flex-col min-h-screen">
+          <Component {...pageProps} />
+        </div>
       </ThemeProvider>
     </ApolloProvider>
   )
