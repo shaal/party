@@ -52,12 +52,7 @@ export const builder = new SchemaBuilder<{
 })
 
 // This initializes the query and mutation types so that we can add fields to them dynamically:
-builder.queryType({
-  // Set the default auth scope to be authenticated users:
-  authScopes: {
-    user: true
-  }
-})
+builder.queryType({})
 
 builder.mutationType({
   // Set the default auth scope to be authenticated users:
