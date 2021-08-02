@@ -1,0 +1,37 @@
+image: node:latest
+
+services:
+  - postgres:latest
+
+stages:
+  - test
+  - build
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - yarn install --frozen-lockfile --silent
+  - cp .env.example .env
+
+Generate:
+  stage: test
+  script:
+    - yarn generate
+
+Typecheck:
+  stage: test
+  script:
+    - yarn generate
+    - yarn typecheck
+
+Lint:
+  stage: test
+  script:
+    - yarn lint
+
+Build:
+  stage: build
+  script:
+    - yarn build
