@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import React from 'react'
 import { object, string } from 'zod'
 import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -20,7 +21,7 @@ const changePasswordSchema = object({
   path: ['confirmNewPassword']
 })
 
-export function ChangePassword() {
+export const ChangePassword: React.FC = () => {
   const [changePassword, changePasswordResult] = useMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables
