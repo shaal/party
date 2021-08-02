@@ -69,11 +69,11 @@ export function LoginForm() {
                 }
               >
                 <ErrorMessage title="Login failed." error={loginResult.error} />
-
                 <Input
                   label="Email"
                   type="email"
                   autoComplete="email"
+                  placeholder="me@example.com"
                   autoFocus
                   {...form.register('email')}
                 />
@@ -81,6 +81,7 @@ export function LoginForm() {
                   label="Password"
                   type="password"
                   autoComplete="current-password"
+                  placeholder="••••••••••"
                   {...form.register('password')}
                 />
                 <Button type="submit">Login</Button>

@@ -81,6 +81,7 @@ export function SignUpForm() {
                   label="Username"
                   type="text"
                   autoComplete="username"
+                  placeholder="johndoe"
                   autoFocus
                   {...form.register('username')}
                 />
@@ -88,12 +89,14 @@ export function SignUpForm() {
                   label="Email"
                   type="email"
                   autoComplete="email"
+                  placeholder="me@example.com"
                   {...form.register('email')}
                 />
                 <Input
                   label="Password"
                   type="password"
                   autoComplete="new-password"
+                  placeholder="••••••••••"
                   {...form.register('password')}
                 />
                 <Button type="submit">Sign Up</Button>
