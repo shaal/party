@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment, useContext } from 'react'
 import { User } from '~/__generated__/schema.generated'
+import Button from '../Button'
 import MenuItems from './MenuItems'
 
 interface NavItemProps {
@@ -102,10 +103,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                 ) : (
                   <div className="space-x-4">
                     <Link href="/signup" passHref>
-                      <button>Signup</button>
+                      <Button size="lg" variant="primary">
+                        Signup
+                      </Button>
                     </Link>
                     <Link href="/login" passHref>
-                      <button>Login</button>
+                      <Button size="lg" variant="success">
+                        Login
+                      </Button>
                     </Link>
                   </div>
                 )}

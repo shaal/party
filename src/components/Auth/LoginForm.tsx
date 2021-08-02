@@ -1,6 +1,5 @@
 import { object, string } from 'zod'
 import { Input } from '../ui/Input'
-import { SubmitButton } from '../ui/SubmitButton'
 import { Form, useZodForm } from '../ui/Form'
 import { gql, useMutation } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -11,6 +10,7 @@ import {
   LoginFormMutationVariables
 } from './__generated__/LoginForm.generated'
 import { GridLayout } from '../ui/GridLayout'
+import Button from '../ui/Button'
 
 const loginSchema = object({
   email: string().email(),
@@ -70,8 +70,8 @@ export function LoginForm() {
           autoComplete="current-password"
           {...form.register('password')}
         />
-        <SubmitButton>Login</SubmitButton>
+        <Button type="submit">Login</Button>
       </Form>
-    </GridL>
+    </GridLayout>
   )
 }

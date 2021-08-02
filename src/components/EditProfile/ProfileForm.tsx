@@ -1,10 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import { object, string } from 'zod'
+import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
 import { Input } from '../ui/Input'
 import { Link } from '../ui/Link'
-import { SubmitButton } from '../ui/SubmitButton'
 import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ProfileFormMutation,
@@ -69,7 +69,7 @@ export function ProfileForm({ user }: Props) {
         {...form.register('name')}
       />
 
-      <SubmitButton>Save Profile</SubmitButton>
+      <Button type="submit">Save Profile</Button>
 
       <Link href="/settings/change-password">
         Looking to change your password?

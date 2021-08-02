@@ -1,6 +1,5 @@
 import { object, string } from 'zod'
 import { Input } from '../ui/Input'
-import { SubmitButton } from '../ui/SubmitButton'
 import { Form, useZodForm } from '../ui/Form'
 import { useMutation, gql } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -11,6 +10,7 @@ import {
   SignUpFormMutationVariables
 } from './__generated__/SignUpForm.generated'
 import { GridLayout } from '../ui/GridLayout'
+import Button from '../ui/Button'
 
 const signUpSchema = object({
   name: string().min(1),
@@ -94,7 +94,7 @@ export function SignUpForm() {
           autoComplete="new-password"
           {...form.register('confirmPassword')}
         />
-        <SubmitButton>Sign Up</SubmitButton>
+        <Button type="submit">Sign Up</Button>
       </Form>
     </GridLayout>
   )

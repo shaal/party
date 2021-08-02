@@ -1,10 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import { object, string } from 'zod'
+import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
 import { GridLayout } from '../ui/GridLayout'
 import { Input } from '../ui/Input'
-import { SubmitButton } from '../ui/SubmitButton'
 import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ChangePasswordMutation,
@@ -69,7 +69,7 @@ export function ChangePassword() {
           autoComplete="new-password"
           {...form.register('confirmNewPassword')}
         />
-        <SubmitButton>Change Password</SubmitButton>
+        <Button type="submit">Change Password</Button>
       </Form>
     </GridLayout>
   )
