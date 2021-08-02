@@ -13,6 +13,7 @@ import Button from '../ui/Button'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import Navbar from '../ui/Navbar'
+import { Card, CardBody } from '../ui/Card'
 
 const loginSchema = object({
   email: string().email(),
@@ -46,35 +47,50 @@ export function LoginForm() {
   return (
     <Fragment>
       <Navbar />
-      <GridLayout>
-        <div className="mb-4">
-          <Link href="/signup">Don&rsquo;t have an account? Sign up.</Link>
+      <div className="flex flex-grow items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <h2 className="mt-6 text-center text-3xl font-extrabold">
+              Sign in to your account
+            </h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              or{' '}
+              <span className="text-blue-500">
+                <Link href="/signup" passHref>
+                  sign up now
+                </Link>
+              </span>
+            </p>
+          </div>
+          <Card>
+            <CardBody>
+              <Form
+                form={form}
+                onSubmit={({ email, password }) =>
+                  login({ variables: { input: { email, password } } })
+                }
+              >
+                <ErrorMessage title="Login failed." error={loginResult.error} />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  autoComplete="email"
+                  autoFocus
+                  {...form.register('email')}
+                />
+                <Input
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  {...form.register('password')}
+                />
+                <Button type="submit">Login</Button>
+              </Form>
+            </CardBody>
+          </Card>
         </div>
-
-        <Form
-          form={form}
-          onSubmit={({ email, password }) =>
-            login({ variables: { input: { email, password } } })
-          }
-        >
-          <ErrorMessage title="Login failed." error={loginResult.error} />
-
-          <Input
-            label="Email"
-            type="email"
-            autoComplete="email"
-            autoFocus
-            {...form.register('email')}
-          />
-          <Input
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            {...form.register('password')}
-          />
-          <Button type="submit">Login</Button>
-        </Form>
-      </GridLayout>
+      </div>
     </Fragment>
   )
 }
