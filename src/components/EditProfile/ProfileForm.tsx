@@ -13,13 +13,13 @@ import {
 } from './__generated__/ProfileForm.generated'
 
 const editProfileSchema = object({
-  name: string().min(1)
+  username: string().min(1)
 })
 
 export const ProfileFormFragment = gql`
   fragment ProfileForm_user on User {
     id
-    name
+    username
   }
 `
 
@@ -35,7 +35,7 @@ export function ProfileForm({ user }: Props) {
     mutation ProfileFormMutation($input: EditUserInput!) {
       editUser(input: $input) {
         id
-        name
+        username
       }
     }
   `)
@@ -43,14 +43,16 @@ export function ProfileForm({ user }: Props) {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      name: user.name
+      username: user.username
     }
   })
 
   return (
     <Form
       form={form}
-      onSubmit={({ name }) => editUser({ variables: { input: { name } } })}
+      onSubmit={({ username }) =>
+        editUser({ variables: { input: { username } } })
+      }
     >
       <ErrorMessage
         title="Error creating account"
@@ -62,11 +64,11 @@ export function ProfileForm({ user }: Props) {
       )}
 
       <Input
-        label="Name"
+        label="Username"
         type="text"
-        autoComplete="name"
+        autoComplete="username"
         autoFocus
-        {...form.register('name')}
+        {...form.register('username')}
       />
 
       <Button type="submit">Save Profile</Button>

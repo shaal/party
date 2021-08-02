@@ -19,7 +19,7 @@ input EditPostInput {
 }
 
 input EditUserInput {
-  name: String
+  username: String
 }
 
 input LoginInput {
@@ -57,11 +57,11 @@ enum Result {
 
 input SignUpInput {
   email: String!
-  name: String!
   password: String!
+  username: String!
 }
 
 type User {
   id: ID!
-  name: String!
+  username: String!
 }

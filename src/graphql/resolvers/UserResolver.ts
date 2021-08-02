@@ -7,17 +7,17 @@ export const UserObject = builder.objectRef<User>('User')
 UserObject.implement({
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    name: t.exposeString('name', {})
+    username: t.exposeString('username', {})
   })
 })
 
 const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
-    name: t.string({
+    username: t.string({
       required: false,
       validate: {
         minLength: 1,
-        maxLength: 100
+        maxLength: 20
       }
     })
   })
@@ -35,10 +35,10 @@ builder.mutationField('editUser', (t) =>
           id: user!.id
         },
         data: {
-          // NOTE: Because `name` may be `null`, we use `?? undefined` to ensure that
+          // NOTE: Because `username` may be `null`, we use `?? undefined` to ensure that
           // it is either a value, or undefined.
           // https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
-          name: input.name ?? undefined
+          username: input.username ?? undefined
         }
       })
     }

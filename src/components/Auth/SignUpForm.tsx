@@ -13,13 +13,9 @@ import Button from '../ui/Button'
 import Link from 'next/link'
 
 const signUpSchema = object({
-  name: string().min(1),
+  username: string().min(2).max(30),
   email: string().email(),
-  password: string().min(6),
-  confirmPassword: string().min(6)
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Passwords do not match',
-  path: ['confirmPassword']
+  password: string().min(6)
 })
 
 export function SignUpForm() {
@@ -54,10 +50,10 @@ export function SignUpForm() {
 
       <Form
         form={form}
-        onSubmit={({ name, email, password }) =>
+        onSubmit={({ username, email, password }) =>
           signUp({
             variables: {
-              input: { name, email, password }
+              input: { username, email, password }
             }
           })
         }
@@ -68,11 +64,11 @@ export function SignUpForm() {
         />
 
         <Input
-          label="Name"
+          label="Username"
           type="text"
-          autoComplete="name"
+          autoComplete="username"
           autoFocus
-          {...form.register('name')}
+          {...form.register('username')}
         />
         <Input
           label="Email"
@@ -85,12 +81,6 @@ export function SignUpForm() {
           type="password"
           autoComplete="new-password"
           {...form.register('password')}
-        />
-        <Input
-          label="Confirm Password"
-          type="password"
-          autoComplete="new-password"
-          {...form.register('confirmPassword')}
         />
         <Button type="submit">Sign Up</Button>
       </Form>

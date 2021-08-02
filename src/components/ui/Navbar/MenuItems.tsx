@@ -45,7 +45,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               width="35"
               className="rounded-full bg-gray-200"
               src="https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9"
-              alt={`@${currentUser?.name}'s avatar`}
+              alt={`@${currentUser?.username}'s avatar`}
             />
           </Menu.Button>
           <Transition
@@ -64,7 +64,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
             >
               <Menu.Item
                 as={NextLink}
-                href={`/${currentUser?.name}`}
+                href={`/${currentUser?.username}`}
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -74,13 +74,13 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               >
                 <div>
                   <div className="font-bold">Signed in as</div>
-                  <Username username={currentUser?.name} />
+                  <Username username={currentUser?.username} />
                 </div>
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>
               <Menu.Item
                 as={NextLink}
-                href={`/${currentUser?.name}`}
+                href={`/${currentUser?.username}`}
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },

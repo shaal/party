@@ -11,7 +11,7 @@ export const query = gql`
   query HomeQuery {
     me {
       id
-      name
+      username
       ...UserInfo_user
     }
   }

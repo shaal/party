@@ -67,10 +67,10 @@ builder.mutationField('login', (t) =>
 
 const SignUpInput = builder.inputType('SignUpInput', {
   fields: (t) => ({
-    name: t.string({
+    username: t.string({
       validate: {
         minLength: 1,
-        maxLength: 100
+        maxLength: 30
       }
     }),
     email: t.string({
@@ -101,7 +101,7 @@ builder.mutationField('signUp', (t) =>
     resolve: async (_root, { input }, { req }) => {
       const user = await db.user.create({
         data: {
-          name: input.name,
+          username: input.username,
           email: input.email,
           hashedPassword: await hashPassword(input.password)
         }
