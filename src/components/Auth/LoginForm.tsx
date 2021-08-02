@@ -11,7 +11,7 @@ import {
 import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Navbar from '../ui/Navbar'
 import { Card, CardBody } from '../ui/Card'
 
@@ -20,7 +20,7 @@ const loginSchema = object({
   password: string().min(6)
 })
 
-export function LoginForm() {
+export const LoginForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
     LoginFormMutation,

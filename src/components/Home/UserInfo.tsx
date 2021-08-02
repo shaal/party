@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import React from 'react'
 import { User } from '~/__generated__/schema.generated'
 
 interface Props {
   user: User
 }
 
-export function UserInfo({ user }: Props) {
+export const UserInfo: React.FC<Props> = ({ user }) => {
   return (
     <>
       <h3 className="text-center font-bold text-xl">

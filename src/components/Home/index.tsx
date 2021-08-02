@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
@@ -16,7 +16,7 @@ export const query = gql`
   }
 `
 
-export function Home() {
+export const Home: React.FC = () => {
   const { data, loading, error } = useQuery<HomeQuery>(query)
 
   return (
