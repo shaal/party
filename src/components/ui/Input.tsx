@@ -22,7 +22,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           {
             'border-red-500 placeholder-red-500': error
           },
-          'border dark:border-gray-700 outline-none rounded-lg shadow-sm w-full',
+          'border border-gray-300 dark:border-gray-700 outline-none rounded-lg shadow-sm w-full',
           className
         )}
         type={type}
