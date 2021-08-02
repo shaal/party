@@ -4,7 +4,7 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
 import { Shimmer } from '../ui/Shimmer'
-import { UserInfo, UserInfoFragment } from './UserInfo'
+import { UserInfo } from './UserInfo'
 import { HomeQuery } from './__generated__/index.generated'
 
 export const query = gql`
@@ -12,11 +12,8 @@ export const query = gql`
     me {
       id
       username
-      ...UserInfo_user
     }
   }
-
-  ${UserInfoFragment}
 `
 
 export function Home() {
