@@ -1,10 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
+import Link from 'next/link'
 import { object, string } from 'zod'
 import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
 import { Input } from '../ui/Input'
-import { Link } from '../ui/Link'
 import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ProfileFormMutation,

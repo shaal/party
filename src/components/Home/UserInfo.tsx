@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
+import Link from 'next/link'
 import { User } from '~/__generated__/schema.generated'
-import { Link } from '../ui/Link'
 
 export const UserInfoFragment = gql`
   fragment UserInfo_user on User {

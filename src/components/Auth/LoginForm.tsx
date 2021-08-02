@@ -3,7 +3,6 @@ import { Input } from '../ui/Input'
 import { Form, useZodForm } from '../ui/Form'
 import { gql, useMutation } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { Link } from '../ui/Link'
 import { useAuthRedirect } from '../utils/useAuthRedirect'
 import {
   LoginFormMutation,
@@ -11,6 +10,7 @@ import {
 } from './__generated__/LoginForm.generated'
 import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
+import Link from 'next/link'
 
 const loginSchema = object({
   email: string().email(),
@@ -44,9 +44,7 @@ export function LoginForm() {
   return (
     <GridLayout>
       <div className="mb-4">
-        <Link href="/signup" preserveRedirect>
-          Don&rsquo;t have an account? Sign up.
-        </Link>
+        <Link href="/signup">Don&rsquo;t have an account? Sign up.</Link>
       </div>
 
       <Form
