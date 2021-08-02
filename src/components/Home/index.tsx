@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { Fragment } from 'react'
-import { Container } from '../ui/Container'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { GridLayout } from '../ui/GridLayout'
 import { Link } from '../ui/Link'
 import Navbar from '../ui/Navbar'
 import { Shimmer } from '../ui/Shimmer'
@@ -27,7 +27,7 @@ export function Home() {
   return (
     <Fragment>
       <Navbar currentUser={data?.me} />
-      <Container>
+      <GridLayout>
         <div className="space-y-6">
           {loading && <Shimmer />}
 
@@ -38,7 +38,7 @@ export function Home() {
 
           {data && (data.me ? <UserInfo user={data?.me} /> : <SignedOut />)}
         </div>
-      </Container>
+      </GridLayout>
     </Fragment>
   )
 }

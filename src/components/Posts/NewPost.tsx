@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import { object, string } from 'zod'
-import { Container } from '../ui/Container'
 import { Form, useZodForm } from '../ui/Form'
 import { SubmitButton } from '../ui/SubmitButton'
 import { TextArea } from '../ui/TextArea'
@@ -10,6 +9,7 @@ import {
   NewPostMutationVariables
 } from './__generated__/NewPost.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { GridLayout } from '../ui/GridLayout'
 
 const newPostSchema = object({
   text: string().min(1)
@@ -53,7 +53,7 @@ export function NewPost() {
   })
 
   return (
-    <Container title="New Post">
+    <GridLayout>
       <Form
         form={form}
         onSubmit={({ text }) => createPost({ variables: { input: { text } } })}
@@ -65,6 +65,6 @@ export function NewPost() {
         <TextArea label="Text" {...form.register('text')} />
         <SubmitButton>Create Post</SubmitButton>
       </Form>
-    </Container>
+    </GridLayout>
   )
 }

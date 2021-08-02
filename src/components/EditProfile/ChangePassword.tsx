@@ -1,9 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
-import { NextSeo } from 'next-seo'
 import { object, string } from 'zod'
-import { Container } from '../ui/Container'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
+import { GridLayout } from '../ui/GridLayout'
 import { Input } from '../ui/Input'
 import { SubmitButton } from '../ui/SubmitButton'
 import { SuccessMessage } from '../ui/SuccessMessage'
@@ -34,7 +33,7 @@ export function ChangePassword() {
   const form = useZodForm({ schema: changePasswordSchema })
 
   return (
-    <Container title="Change Password">
+    <GridLayout>
       <Form
         form={form}
         onSubmit={({ currentPassword, newPassword }) =>
@@ -72,6 +71,6 @@ export function ChangePassword() {
         />
         <SubmitButton>Change Password</SubmitButton>
       </Form>
-    </Container>
+    </GridLayout>
   )
 }

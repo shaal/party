@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { gql, Reference, useMutation, useQuery } from '@apollo/client'
-import { Button } from '../ui/Button'
-import { Container } from '../ui/Container'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Shimmer } from '../ui/Shimmer'
 import {
@@ -9,6 +7,7 @@ import {
   ViewPostDeleteMutation,
   ViewPostDeleteMutationVariables
 } from './__generated__/ViewPost.generated'
+import { GridLayout } from '../ui/GridLayout'
 
 export const query = gql`
   query PostQuery($id: ID!) {
@@ -61,22 +60,7 @@ export function ViewPost() {
   )
 
   return (
-    <Container
-      title="Post"
-      action={
-        data && (
-          <Button
-            variant="danger"
-            disabled={deletePostResult.loading}
-            onClick={() =>
-              deletePost({ variables: { input: { id: data.post.id } } })
-            }
-          >
-            Delete Post
-          </Button>
-        )
-      }
-    >
+    <GridLayout>
       {loading && <Shimmer />}
 
       <ErrorMessage title="Failed to load post" error={error} />
@@ -87,6 +71,6 @@ export function ViewPost() {
       />
 
       {data && <div className="prose-xl">{data?.post.text}</div>}
-    </Container>
+    </GridLayout>
   )
 }

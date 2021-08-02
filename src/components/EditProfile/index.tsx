@@ -1,7 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import { NextSeo } from 'next-seo'
-import { Container } from '../ui/Container'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { GridLayout } from '../ui/GridLayout'
 import { Shimmer } from '../ui/Shimmer'
 import { ProfileForm, ProfileFormFragment } from './ProfileForm'
 import { EditProfileQuery } from './__generated__/index.generated'
@@ -18,7 +17,7 @@ export function EditProfile() {
   `)
 
   return (
-    <Container title="Edit Profile">
+    <GridLayout>
       {loading && <Shimmer />}
 
       {error && (
@@ -26,6 +25,6 @@ export function EditProfile() {
       )}
 
       {data && data.me && <ProfileForm user={data.me} />}
-    </Container>
+    </GridLayout>
   )
 }

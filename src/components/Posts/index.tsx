@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
-import { Container } from '../ui/Container'
-import { Button } from '../ui/Button'
 import { PostsQuery } from './__generated__/index.generated'
 import { Shimmer } from '../ui/Shimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Empty } from '../ui/Empty'
+import { GridLayout } from '../ui/GridLayout'
 
 export const query = gql`
   query PostsQuery {
@@ -20,10 +19,7 @@ export function Posts() {
   const { data, loading, error } = useQuery<PostsQuery>(query)
 
   return (
-    <Container
-      title="Posts"
-      action={<Button href="/posts/new">New Post</Button>}
-    >
+    <GridLayout>
       <div className="space-y-2 mt-2">
         {loading && <Shimmer />}
 
@@ -55,6 +51,6 @@ export function Posts() {
           ))
         )}
       </div>
-    </Container>
+    </GridLayout>
   )
 }

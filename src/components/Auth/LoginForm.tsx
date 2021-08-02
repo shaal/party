@@ -1,5 +1,4 @@
 import { object, string } from 'zod'
-import { Container } from '../ui/Container'
 import { Input } from '../ui/Input'
 import { SubmitButton } from '../ui/SubmitButton'
 import { Form, useZodForm } from '../ui/Form'
@@ -11,6 +10,7 @@ import {
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/LoginForm.generated'
+import { GridLayout } from '../ui/GridLayout'
 
 const loginSchema = object({
   email: string().email(),
@@ -42,7 +42,7 @@ export function LoginForm() {
   })
 
   return (
-    <Container title="Login">
+    <GridLayout>
       <div className="mb-4">
         <Link href="/signup" preserveRedirect>
           Don&rsquo;t have an account? Sign up.
@@ -72,6 +72,6 @@ export function LoginForm() {
         />
         <SubmitButton>Login</SubmitButton>
       </Form>
-    </Container>
+    </GridL>
   )
 }
