@@ -20,7 +20,7 @@ export function UserInfo({ user }: Props) {
       <h3 className="text-center font-bold text-xl">Welcome, {user.name}!</h3>
       <Button href="/posts">View Your Posts</Button>
       <div className="grid grid-cols-2 gap-2 text-center">
-        <Link href="/profile">Edit Profile</Link>
+        <Link href="/settings">Edit Profile</Link>
       </div>
     </>
   )

@@ -71,7 +71,7 @@ export function ProfileForm({ user }: Props) {
 
       <SubmitButton>Save Profile</SubmitButton>
 
-      <Link href="/profile/change-password">
+      <Link href="/settings/change-password">
         Looking to change your password?
       </Link>
     </Form>
