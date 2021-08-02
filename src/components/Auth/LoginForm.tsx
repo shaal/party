@@ -8,7 +8,6 @@ import {
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/LoginForm.generated'
-import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
