@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.cdnfonts.com/css/circular-std');
 
 /* Apply basic global styles to the body: */
 body {
-  @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased;
+  font-family: 'Circular Std', Helvetica, Arial, sans-serif;
+  @apply bg-gray-50;
+  @apply dark:bg-black;
 }
 
 /* Remove trailing margin from forms for some browsers: */

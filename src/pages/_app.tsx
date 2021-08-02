@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider storageKey="preferred-theme" attribute="class">
+      <ThemeProvider defaultTheme="light" attribute="class">
         <DefaultSeo defaultTitle="Devparty" titleTemplate="%s | Devparty" />
         <NProgress />
         <Component {...pageProps} />

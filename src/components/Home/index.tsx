@@ -1,7 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
+import { Fragment } from 'react'
 import { Container } from '../ui/Container'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Link } from '../ui/Link'
+import Navbar from '../ui/Navbar'
 import { Shimmer } from '../ui/Shimmer'
 import { SignedOut } from './SignedOut'
 import { UserInfo, UserInfoFragment } from './UserInfo'
@@ -23,18 +25,24 @@ export function Home() {
   const { data, loading, error } = useQuery<HomeQuery>(query)
 
   return (
-    <Container>
-      <div className="space-y-6">
-        <div className="text-8xl font-bold italic text-center">
-          <span className="bg-clip-text">Devparty</span>
+    <Fragment>
+      <Navbar />
+      <Container>
+        <div className="space-y-6">
+          <div className="text-8xl font-bold italic text-center">
+            <span className="bg-clip-text">Devparty</span>
+          </div>
+
+          {loading && <Shimmer />}
+
+          <ErrorMessage
+            title="Failed to load the current user."
+            error={error}
+          />
+
+          {data && (data.me ? <UserInfo user={data?.me} /> : <SignedOut />)}
         </div>
-
-        {loading && <Shimmer />}
-
-        <ErrorMessage title="Failed to load the current user." error={error} />
-
-        {data && (data.me ? <UserInfo user={data?.me} /> : <SignedOut />)}
-      </div>
-    </Container>
+      </Container>
+    </Fragment>
   )
 }
