@@ -49,7 +49,7 @@ export function SignUpForm() {
   return (
     <Container title="Sign Up">
       <div className="mb-4">
-        <Link href="/auth/login" preserveRedirect>
+        <Link href="/login" preserveRedirect>
           Already have an account? Log in.
         </Link>
       </div>

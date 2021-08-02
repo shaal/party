@@ -44,7 +44,7 @@ export function LoginForm() {
   return (
     <Container title="Login">
       <div className="mb-4">
-        <Link href="/auth/signup" preserveRedirect>
+        <Link href="/signup" preserveRedirect>
           Don&rsquo;t have an account? Sign up.
         </Link>
       </div>

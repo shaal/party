@@ -26,7 +26,7 @@ export function Home() {
 
   return (
     <Fragment>
-      <Navbar />
+      <Navbar currentUser={data?.me} />
       <Container>
         <div className="space-y-6">
           <div className="text-8xl font-bold italic text-center">

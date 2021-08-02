@@ -23,7 +23,7 @@ export async function unauthenticatedRoute(
 
 export async function authenticatedRoute(
   ctx: GetServerSidePropsContext,
-  redirect = '/auth/signup'
+  redirect = '/signup'
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(ctx)
 
