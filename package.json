@@ -3,7 +3,7 @@
   "version": "0.0.1-alpha",
   "private": true,
   "scripts": {
-    "dev": "yarn codegen && yarn generate && next dev",
+    "dev": "yarn generate && next dev",
     "build": "yarn generate && next build",
     "start": "next start -p ${PORT-3000}",
     "lint": "next lint",
@@ -11,7 +11,7 @@
     "prettier": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "prettier:check": "prettier --check \"./src/**/*.{ts,tsx}\"",
     "clean:codegen": "trash \"./src/**/__generated__/**\"",
-    "generate": "prisma generate",
+    "generate": "yarn codegen && prisma generate",
     "migrate": "prisma migrate dev",
     "codegen": "run-s -l \"codegen:*\"",
     "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
