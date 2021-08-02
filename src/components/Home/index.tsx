@@ -29,10 +29,6 @@ export function Home() {
       <Navbar currentUser={data?.me} />
       <Container>
         <div className="space-y-6">
-          <div className="text-8xl font-bold italic text-center">
-            <span className="bg-clip-text">Devparty</span>
-          </div>
-
           {loading && <Shimmer />}
 
           <ErrorMessage
