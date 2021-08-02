@@ -7,6 +7,7 @@ import { User } from '~/__generated__/schema.generated'
 import Username from '../Username'
 import { gql, useMutation } from '@apollo/client'
 import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
+import Image from 'next/image'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>
@@ -39,9 +40,12 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
       {({ open }) => (
         <Fragment>
           <Menu.Button className="flex items-center gap-2">
-            <img
-              className="h-9 w-9 rounded-full bg-gray-200"
-              src="https://secure.gravatar.com/avatar/bc815a810fdc554786a4ab0f6d507b12"
+            <Image
+              height="35"
+              width="35"
+              className="rounded-full bg-gray-200"
+              src="https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9"
+              alt={`@${currentUser?.name}'s avatar`}
             />
           </Menu.Button>
           <Transition
