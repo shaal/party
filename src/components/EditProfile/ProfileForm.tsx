@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
+import React from 'react'
 import { object, string } from 'zod'
 import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -27,7 +28,7 @@ interface Props {
   user: ProfileForm_User
 }
 
-export function ProfileForm({ user }: Props) {
+export const ProfileForm: React.FC<Props> = ({ user }) => {
   const [editUser, editUserResult] = useMutation<
     ProfileFormMutation,
     ProfileFormMutationVariables
