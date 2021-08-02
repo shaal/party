@@ -51,14 +51,12 @@ export function LoginForm() {
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold">
-              Sign in to your account
+              Login to your account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               or{' '}
               <span className="text-blue-500">
-                <Link href="/signup" passHref>
-                  sign up now
-                </Link>
+                <Link href="/signup">sign up now</Link>
               </span>
             </p>
           </div>
