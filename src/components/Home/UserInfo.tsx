@@ -1,8 +1,7 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql } from '@apollo/client'
+import { User } from '~/__generated__/schema.generated'
 import { Button } from '../ui/Button'
 import { Link } from '../ui/Link'
-import { useAuthRedirect } from '../utils/useAuthRedirect'
-import { UserInfo_User } from './__generated__/UserInfo.generated'
 
 export const UserInfoFragment = gql`
   fragment UserInfo_user on User {
@@ -12,7 +11,7 @@ export const UserInfoFragment = gql`
 `
 
 interface Props {
-  user: UserInfo_User
+  user: User
 }
 
 export function UserInfo({ user }: Props) {
