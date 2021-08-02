@@ -1,0 +1,67 @@
+input ChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}
+
+input CreatePostInput {
+  text: String!
+}
+
+scalar DateTime
+
+input DeletePostInput {
+  id: ID!
+}
+
+input EditPostInput {
+  id: ID!
+  text: String!
+}
+
+input EditUserInput {
+  name: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  changePassword(input: ChangePasswordInput!): Result!
+  createPost(input: CreatePostInput!): Post!
+  deletePost(input: DeletePostInput!): Post!
+  editPost(input: EditPostInput!): Post!
+  editUser(input: EditUserInput!): User!
+  login(input: LoginInput!): User!
+  logout: Result!
+  signUp(input: SignUpInput!): User!
+}
+
+type Post {
+  createdAt: DateTime!
+  id: ID!
+  text: String!
+  updatedAt: DateTime!
+}
+
+type Query {
+  me: User
+  post(id: ID!): Post!
+  posts: [Post!]!
+}
+
+enum Result {
+  SUCCESS
+}
+
+input SignUpInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
