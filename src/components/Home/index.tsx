@@ -5,7 +5,6 @@ import { GridLayout } from '../ui/GridLayout'
 import { Link } from '../ui/Link'
 import Navbar from '../ui/Navbar'
 import { Shimmer } from '../ui/Shimmer'
-import { SignedOut } from './SignedOut'
 import { UserInfo, UserInfoFragment } from './UserInfo'
 import { HomeQuery } from './__generated__/index.generated'
 
@@ -36,7 +35,7 @@ export function Home() {
             error={error}
           />
 
-          {data && (data.me ? <UserInfo user={data?.me} /> : <SignedOut />)}
+          {data && data.me && <UserInfo user={data?.me} />}
         </div>
       </GridLayout>
     </Fragment>
