@@ -3,7 +3,6 @@ import React from 'react'
 import { Post, User } from '@__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
 import UserProfileLarge from '../ui/UserProfileLarge'
-import { formatDistanceToNowStrict } from 'date-fns'
 import Linkify from 'linkifyjs/react'
 
 interface Props {
@@ -17,15 +16,11 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
         <div className="flex justify-between items-center">
           <UserProfileLarge user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
-            <div className="text-sm cursor-pointer">
-              {formatDistanceToNowStrict(new Date(post?.createdAt), {
-                addSuffix: true
-              })}
-            </div>
+            <div className="text-sm cursor-pointer">{post?.createdAt}</div>
           </Link>
         </div>
         <div className="text-lg post">
-          <Linkify>{post.text}</Linkify>
+          <Linkify>{post?.text}</Linkify>
         </div>
       </CardBody>
     </Card>
