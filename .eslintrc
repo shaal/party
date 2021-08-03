@@ -1,3 +1,8 @@
 {
-  "extends": "next"
+  "plugins": ["unused-imports"],
+  "extends": "next",
+  "rules": {
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error"
+  }
 }

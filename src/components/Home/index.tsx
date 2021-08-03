@@ -6,7 +6,6 @@ import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
-import { Shimmer } from '../ui/Shimmer'
 import { HomeQuery } from './__generated__/index.generated'
 
 export const query = gql`

@@ -8,7 +8,6 @@ import {
   SignUpFormMutation,
   SignUpFormMutationVariables
 } from './__generated__/SignUpForm.generated'
-import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
