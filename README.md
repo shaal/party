@@ -10,6 +10,9 @@
     <a href="https://gitlab.com/yo/devparty/-/commits/main">
         <img src="https://img.shields.io/gitlab/pipeline/yo/devparty/main?label=build" alt="Build CI">
     </a>
+    <a href="https://depfu.com/repos/gitlab/yo/devparty?project_id=28236">
+        <img src="https://badges.depfu.com/badges/ea0b460984730071d18b91db93aadaa6/overview.svg" alt="Depfu Status">
+    </a>
 </div>
 <div align="center">
     <br>
