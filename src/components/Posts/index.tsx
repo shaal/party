@@ -11,6 +11,7 @@ export const query = gql`
       text
       createdAt
       user {
+        id
         username
         profile {
           name
