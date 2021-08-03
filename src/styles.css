@@ -9,9 +9,21 @@ body {
   @apply dark:bg-black;
 }
 
-#nprogress {
-  @apply pointer-events-none z-50;
+.shimmer {
+  @apply animate-pulse;
+  @apply bg-gray-300;
+  @apply dark:bg-gray-600;
 }
-#nprogress .bar {
-  @apply bg-blue-500 fixed z-50 top-0 left-0 w-full h-0.5;
+
+.post a {
+  @apply text-blue-600;
+  @apply hover:text-blue-500;
+}
+
+.tooltip {
+  @apply bg-gray-800 dark:bg-gray-600;
+  @apply px-2 py-1;
+  @apply text-xs;
+  @apply text-white;
+  @apply rounded-lg;
 }
