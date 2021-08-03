@@ -33,7 +33,6 @@ export function NewPost() {
       update(cache, { data }) {
         if (!data?.createPost) return
 
-        // Insert post to the front of the posts list:
         cache.modify({
           fields: {
             posts(existingPosts = []) {
@@ -41,9 +40,6 @@ export function NewPost() {
             }
           }
         })
-      },
-      onCompleted() {
-        router.push('/posts')
       }
     }
   )
@@ -53,18 +49,16 @@ export function NewPost() {
   })
 
   return (
-    <GridLayout>
-      <Form
-        form={form}
-        onSubmit={({ text }) => createPost({ variables: { input: { text } } })}
-      >
-        <ErrorMessage
-          title="Failed to create post"
-          error={createPostResult.error}
-        />
-        <TextArea label="Text" {...form.register('text')} />
-        <Button type="submit">Create Post</Button>
-      </Form>
-    </GridLayout>
+    <Form
+      form={form}
+      onSubmit={({ text }) => createPost({ variables: { input: { text } } })}
+    >
+      <ErrorMessage
+        title="Failed to create post"
+        error={createPostResult.error}
+      />
+      <TextArea label="Text" {...form.register('text')} />
+      <Button type="submit">Create Post</Button>
+    </Form>
   )
 }
