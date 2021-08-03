@@ -1,10 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
+import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { GridLayout } from '../ui/GridLayout'
+import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
 import { Shimmer } from '../ui/Shimmer'
-import { UserInfo } from './UserInfo'
 import { HomeQuery } from './__generated__/index.generated'
 
 export const query = gql`
@@ -23,16 +23,25 @@ export const Home: React.FC = () => {
     <Fragment>
       <Navbar currentUser={data?.me} />
       <GridLayout>
-        <div className="space-y-6">
-          {loading && <Shimmer />}
+        <GridItemEight>
+          <Card>
+            <CardBody>
+              <div className="space-y-6">
+                {loading && <Shimmer />}
 
-          <ErrorMessage
-            title="Failed to load the current user."
-            error={error}
-          />
-
-          {data && data.me && <UserInfo user={data?.me} />}
-        </div>
+                <ErrorMessage
+                  title="Failed to load the current user."
+                  error={error}
+                />
+              </div>
+            </CardBody>
+          </Card>
+        </GridItemEight>
+        <GridItemFour>
+          <Card>
+            <CardBody>WIP</CardBody>
+          </Card>
+        </GridItemFour>
       </GridLayout>
     </Fragment>
   )
