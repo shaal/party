@@ -558,10 +558,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@giraphql/core@^2.9.1":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.11.0.tgz#c2446c8f782d3a9a919536934da02dc257ed81ec"
-  integrity sha512-V3g4zzQDEzxtjn3xmrNpS8sTP4nyUrA74fOs76qgGb3meUkF49GpWN2+Qf3U7yVYunYqrZc7rnM/aStUMJYCOg==
+"@giraphql/core@^2.12.0":
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.12.0.tgz#8e35e9cab8b84d6f2afb0ffa86c4d2ff8000be28"
+  integrity sha512-E9Em3vBpdOeQJI44ZMrP3JGzLyB0cHCBmGDQcZsUPcTV2NHtmtH3rIzhgPTvVZRdDlyJ+IrryibNBIbewhyEBg==
 
 "@giraphql/plugin-scope-auth@^2.4.1":
   version "2.7.0"

@@ -14,7 +14,7 @@ PostObject.implement({
     user: t.field({
       type: UserObject,
       nullable: true,
-      resolve: ({ userId }, _args) => {
+      resolve: ({ userId }) => {
         return db.user.findUnique({
           where: {
             id: userId
