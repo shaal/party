@@ -5,7 +5,7 @@ import { PostQuery } from './__generated__/ViewPost.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import { SinglePost } from './SinglePost'
 import { Post, User } from '~/__generated__/schema.generated'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Navbar from '../ui/Navbar'
 import { Card, CardBody } from '../ui/Card'
 import UserProfileLarge from '../ui/UserProfileLarge'
@@ -30,7 +30,7 @@ export const query = gql`
   }
 `
 
-export function ViewPost() {
+export const ViewPost: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<PostQuery>(query, {
     variables: {

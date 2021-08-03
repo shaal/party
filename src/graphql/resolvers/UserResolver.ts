@@ -27,12 +27,12 @@ builder.queryField('user', (t) =>
   t.field({
     type: UserObject,
     args: {
-      id: t.arg.id({})
+      username: t.arg.string({})
     },
-    resolve: (_root, { id }) => {
+    resolve: (_root, { username }) => {
       return db.user.findUnique({
         where: {
-          id
+          username
         },
         rejectOnNotFound: true
       })

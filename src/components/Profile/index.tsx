@@ -2,18 +2,18 @@ import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Navbar from '../ui/Navbar'
 import { Card, CardBody } from '../ui/Card'
 import { ProfileQuery } from './__generated__/index.generated'
 
 export const query = gql`
-  query ProfileQuery($id: ID!) {
+  query ProfileQuery($username: String!) {
     me {
       id
       username
     }
-    user(id: $id) {
+    user(username: $username) {
       id
       username
       profile {
@@ -23,11 +23,11 @@ export const query = gql`
   }
 `
 
-export function Profile() {
+export const Profile: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProfileQuery>(query, {
     variables: {
-      id: router.query.postId
+      username: router.query.username
     },
     skip: !router.isReady
   })

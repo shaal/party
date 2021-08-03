@@ -57,7 +57,7 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts: [Post!]!
-  user(id: ID!): User!
+  user(username: String!): User!
   users(take: Int!): [User!]!
 }
 
