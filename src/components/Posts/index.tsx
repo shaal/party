@@ -1,8 +1,6 @@
-import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
 import { PostsQuery } from './__generated__/index.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { Empty } from '../ui/Empty'
 import { SinglePost } from './SinglePost'
 
 export const query = gql`
