@@ -1,7 +1,9 @@
+import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { Fragment } from 'react'
 import Button from '../Button'
 import MenuItems from './MenuItems'
@@ -55,11 +57,9 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
   )
 }
 
-interface NavbarProps {
-  currentUser?: any
-}
+const Navbar: React.FC = () => {
+  const { currentUser } = useContext(AppContext)
 
-const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <Disclosure
       as="nav"

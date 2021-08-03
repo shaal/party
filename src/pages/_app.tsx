@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client'
 import { NProgress } from '@components/NProgress'
 import { useApollo } from '@utils/apollo'
 import '../styles.css'
+import DefaultLayout from '@components/DefaultLayout'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialClientState)
@@ -14,9 +15,9 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider defaultTheme="light" attribute="class">
         <DefaultSeo defaultTitle="Devparty" titleTemplate="%s | Devparty" />
         <NProgress />
-        <div className="flex flex-col min-h-screen">
+        <DefaultLayout>
           <Component {...pageProps} />
-        </div>
+        </DefaultLayout>
       </ThemeProvider>
     </ApolloProvider>
   )

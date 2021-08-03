@@ -10,16 +10,13 @@ import {
 } from '@components/ui/GridLayout'
 import Navbar from '@components/ui/Navbar'
 import UserProfileLarge from '@components/ui/UserProfileLarge'
+import AppContext from '@components/utils/AppContext'
 import { Post, User } from '@__generated__/schema.generated'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 
 export const query = gql`
   query PostQuery($id: ID!) {
-    me {
-      id
-      username
-    }
     post(id: $id) {
       id
       text
@@ -36,6 +33,7 @@ export const query = gql`
 
 const PostPage: React.FC = () => {
   const router = useRouter()
+  const { currentUser } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(query, {
     variables: {
       id: router.query.postId
@@ -45,7 +43,6 @@ const PostPage: React.FC = () => {
 
   return (
     <Fragment>
-      <Navbar currentUser={data?.me} />
       <GridLayout>
         <GridItemEight>
           <ErrorMessage title="Failed to load post" error={error} />
