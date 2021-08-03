@@ -45,7 +45,7 @@ builder.queryField('post', (t) =>
       id: t.arg.id({})
     },
     resolve: (_root, { id }, { user }) => {
-      return db.post.findFirst({
+      return db.post.findUnique({
         where: {
           id
         },

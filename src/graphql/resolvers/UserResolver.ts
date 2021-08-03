@@ -11,6 +11,19 @@ UserObject.implement({
   })
 })
 
+builder.queryField('users', (t) =>
+  t.field({
+    type: [UserObject],
+    resolve: () => {
+      return db.user.findMany({
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+    }
+  })
+)
+
 const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
     username: t.string({
