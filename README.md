@@ -53,7 +53,7 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 #### Setup
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgitlab.com%2Fyo%2Fdevhue&env=DATABASE_URL,API_TOKEN_SECRET,INVITATION_TOKEN_SECRET,COOKIE_SECRET,MAGIC_LINK_SECRET&project-name=devparty&repo-name=devparty&demo-title=Devparty&demo-description=The%20party%20hub%20for%20developers%20%F0%9F%A5%B3&demo-url=https%3A%2F%devparty.vercel.app&demo-image=https%3A%2F%2Fgitlab.com%2Fuploads%2F-%2Fsystem%2Fproject%2Favatar%2F27943314%2Fdevhue.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgitlab.com%2Fyo%2Fdevparty&env=COOKIE_SECRET,DATABASE_URL&project-name=devparty&repo-name=main&demo-title=Devparty&demo-description=The%20party%20hub%20for%20developers%20%F0%9F%A5%B3&demo-url=https%3A%2F%2Fdevparty.io&demo-image=https%3A%2F%2Fi.ibb.co%2FjJDnkVy%2Fvercel.png)
 
 🚧 WIP
 
