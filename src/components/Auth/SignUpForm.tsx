@@ -102,7 +102,9 @@ export const SignUpForm: React.FC = () => {
                     {...form.register('password')}
                   />
                 </div>
-                <Button type="submit">Sign Up</Button>
+                <Button className="w-full" type="submit">
+                  Sign Up
+                </Button>
               </div>
             </Form>
           </CardBody>
