@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import { SinglePost } from '@components/Posts/SinglePost'
-import { PostQuery } from '@components/Posts/__generated__/ViewPost.generated'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import {
@@ -8,12 +7,12 @@ import {
   GridItemFour,
   GridLayout
 } from '@components/ui/GridLayout'
-import Navbar from '@components/ui/Navbar'
 import UserProfileLarge from '@components/ui/UserProfileLarge'
 import AppContext from '@components/utils/AppContext'
 import { Post, User } from '@__generated__/schema.generated'
 import { useRouter } from 'next/router'
 import React, { Fragment, useContext } from 'react'
+import { PostQuery } from './__generated__/[postId].generated'
 
 export const query = gql`
   query PostQuery($id: ID!) {
