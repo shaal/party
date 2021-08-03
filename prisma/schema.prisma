@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -8,8 +5,6 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  // Include binary targets for whatever platform the user is on, ubuntu (dev), and alpine (prod).
-  binaryTargets   = ["native", "debian-openssl-1.1.x", "linux-musl"]
   previewFeatures = ["orderByRelation", "selectRelationCount"]
 }
 
@@ -33,8 +28,6 @@ model Session {
   userId    String
 }
 
-// Feel free to remove this when you get started, it's here to demonstrate what your models may look
-// like, and give an end-to-end example of the product.
 model Post {
   id        String   @id @default(cuid())
   text      String
