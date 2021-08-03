@@ -23,6 +23,23 @@ UserObject.implement({
   })
 })
 
+builder.queryField('user', (t) =>
+  t.field({
+    type: UserObject,
+    args: {
+      id: t.arg.id({})
+    },
+    resolve: (_root, { id }) => {
+      return db.user.findUnique({
+        where: {
+          id
+        },
+        rejectOnNotFound: true
+      })
+    }
+  })
+)
+
 builder.queryField('users', (t) =>
   t.field({
     type: [UserObject],

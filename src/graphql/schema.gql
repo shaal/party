@@ -57,6 +57,7 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts: [Post!]!
+  user(id: ID!): User!
   users(take: Int!): [User!]!
 }
 
