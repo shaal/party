@@ -11,6 +11,9 @@ export const query = gql`
       createdAt
       user {
         username
+        profile {
+          name
+        }
       }
     }
   }

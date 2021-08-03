@@ -12,6 +12,9 @@ export const query = gql`
     users(take: 5) {
       id
       username
+      profile {
+        name
+      }
     }
   }
 `

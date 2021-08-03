@@ -23,7 +23,9 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
         <div>
           <div className="flex items-center gap-1.5">
             <Link href={`/${user?.username}`} passHref>
-              <div className="font-bold cursor-pointer">{user?.username}</div>
+              <div className="font-bold cursor-pointer">
+                {user?.profile?.name}
+              </div>
             </Link>
           </div>
           <Username username={user?.username} />
