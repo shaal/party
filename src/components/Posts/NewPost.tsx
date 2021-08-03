@@ -13,7 +13,7 @@ import { Card, CardBody } from '../ui/Card'
 import { PencilAltIcon } from '@heroicons/react/outline'
 
 const newPostSchema = object({
-  text: string().min(1)
+  body: string().min(1)
 })
 
 export function NewPost() {
@@ -26,7 +26,7 @@ export function NewPost() {
       mutation NewPostMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
-          text
+          body
         }
       }
     `,
@@ -58,8 +58,8 @@ export function NewPost() {
         <Form
           form={form}
           className="space-y-1"
-          onSubmit={({ text }) =>
-            createPost({ variables: { input: { text } } })
+          onSubmit={({ body }) =>
+            createPost({ variables: { input: { body } } })
           }
         >
           <ErrorMessage
@@ -67,7 +67,7 @@ export function NewPost() {
             error={createPostResult.error}
           />
           <TextArea
-            {...form.register('text')}
+            {...form.register('body')}
             placeholder="What's on your mind?"
           />
           <div className="ml-auto">

@@ -8,7 +8,7 @@ export const query = gql`
   query PostsQuery {
     posts {
       id
-      text
+      body
       createdAt
       user {
         id

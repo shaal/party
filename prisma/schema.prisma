@@ -63,7 +63,7 @@ model Profile {
 
 model Post {
   id   String @id @default(cuid())
-  text String
+  body String
 
   // Timestamps
   createdAt DateTime @default(now())
