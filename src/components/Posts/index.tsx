@@ -26,7 +26,7 @@ export function Posts() {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data && data.posts.length === 0 ? (
-          <Empty />
+          <div>Nothing here</div>
         ) : (
           data?.posts.map((post: any) => (
             <SinglePost key={post?.id} post={post} />
