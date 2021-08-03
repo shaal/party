@@ -30,7 +30,7 @@ export const RecentUsers: React.FC = () => {
           <ErrorMessage title="Failed to load posts" error={error} />
           <div className="space-y-3">
             {data?.users.map((user: any) => (
-              <UserProfileLarge user={user as User} />
+              <UserProfileLarge key={user?.id} user={user as User} />
             ))}
           </div>
         </CardBody>

@@ -1,13 +1,25 @@
 import { User } from '@prisma/client'
 import { db } from '~/utils/prisma'
 import { builder } from '../builder'
+import { ProfileObject } from './ProfileResolver'
 
 export const UserObject = builder.objectRef<User>('User')
 
 UserObject.implement({
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    username: t.exposeString('username', {})
+    username: t.exposeString('username', {}),
+    profile: t.field({
+      type: ProfileObject,
+      nullable: true,
+      resolve: ({ id }) => {
+        return db.profile.findFirst({
+          where: {
+            userId: id
+          }
+        })
+      }
+    })
   })
 })
 

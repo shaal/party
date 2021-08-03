@@ -46,6 +46,13 @@ type Post {
   user: User
 }
 
+type Profile {
+  avatar: String
+  bio: String
+  id: ID!
+  name: String!
+}
+
 type Query {
   me: User
   post(id: ID!): Post!
@@ -65,5 +72,6 @@ input SignUpInput {
 
 type User {
   id: ID!
+  profile: Profile
   username: String!
 }

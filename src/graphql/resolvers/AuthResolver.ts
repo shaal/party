@@ -103,7 +103,12 @@ builder.mutationField('signUp', (t) =>
         data: {
           username: input.username,
           email: input.email,
-          hashedPassword: await hashPassword(input.password)
+          hashedPassword: await hashPassword(input.password),
+          profile: {
+            create: {
+              name: input.username
+            }
+          }
         }
       })
 
