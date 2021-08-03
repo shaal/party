@@ -1,19 +1,28 @@
 import { useRouter } from 'next/router'
-import { gql, Reference, useMutation, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { Shimmer } from '../ui/Shimmer'
-import {
-  PostQuery,
-  ViewPostDeleteMutation,
-  ViewPostDeleteMutationVariables
-} from './__generated__/ViewPost.generated'
-import { GridLayout } from '../ui/GridLayout'
+import { PostQuery } from './__generated__/ViewPost.generated'
+import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
+import { SinglePost } from './SinglePost'
+import { Post, User } from '~/__generated__/schema.generated'
+import { Fragment } from 'react'
+import Navbar from '../ui/Navbar'
+import { Card, CardBody } from '../ui/Card'
+import UserProfileLarge from '../ui/UserProfileLarge'
 
 export const query = gql`
   query PostQuery($id: ID!) {
+    me {
+      id
+      username
+    }
     post(id: $id) {
       id
       text
+      createdAt
+      user {
+        username
+      }
     }
   }
 `
@@ -24,53 +33,25 @@ export function ViewPost() {
     variables: {
       id: router.query.postId
     },
-    // NOTE: In the event that the router is not currently ready, we need to
-    // pause the request to avoid it making requests with incorrect variables.
     skip: !router.isReady
   })
 
-  const [deletePost, deletePostResult] = useMutation<
-    ViewPostDeleteMutation,
-    ViewPostDeleteMutationVariables
-  >(
-    gql`
-      mutation ViewPostDeleteMutation($input: DeletePostInput!) {
-        deletePost(input: $input) {
-          id
-        }
-      }
-    `,
-    {
-      update(cache) {
-        cache.modify({
-          fields: {
-            posts(existingPosts, { readField }) {
-              return existingPosts.filter(
-                (postRef: Reference) =>
-                  data!.post.id !== readField('id', postRef)
-              )
-            }
-          }
-        })
-      },
-      onCompleted() {
-        router.push('/posts')
-      }
-    }
-  )
-
   return (
-    <GridLayout>
-      {loading && <Shimmer />}
-
-      <ErrorMessage title="Failed to load post" error={error} />
-
-      <ErrorMessage
-        title="Failed to delete post"
-        error={deletePostResult.error}
-      />
-
-      {data && <div className="prose-xl">{data?.post.text}</div>}
-    </GridLayout>
+    <Fragment>
+      <Navbar currentUser={data?.me} />
+      <GridLayout>
+        <GridItemEight>
+          <ErrorMessage title="Failed to load post" error={error} />
+          <SinglePost post={data?.post as Post} />
+        </GridItemEight>
+        <GridItemFour>
+          <Card>
+            <CardBody>
+              <UserProfileLarge user={data?.post?.user as User} />
+            </CardBody>
+          </Card>
+        </GridItemFour>
+      </GridLayout>
+    </Fragment>
   )
 }
