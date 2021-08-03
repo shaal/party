@@ -43,7 +43,7 @@ export function NewPost() {
         })
       },
       onCompleted() {
-        router.push('/notes')
+        // TODO: Clear Textarea
       }
     }
   )

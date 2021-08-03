@@ -14,8 +14,12 @@ PostObject.implement({
     user: t.field({
       type: UserObject,
       nullable: true,
-      resolve: (_root, _args, { user }) => {
-        return user
+      resolve: ({ userId }, _args) => {
+        return db.user.findUnique({
+          where: {
+            id: userId
+          }
+        })
       }
     })
   })
@@ -26,9 +30,6 @@ builder.queryField('posts', (t) =>
     type: [PostObject],
     resolve: (_root, _args, { user }) => {
       return db.post.findMany({
-        where: {
-          userId: user!.id
-        },
         orderBy: {
           createdAt: 'desc'
         }
@@ -46,8 +47,7 @@ builder.queryField('post', (t) =>
     resolve: (_root, { id }, { user }) => {
       return db.post.findFirst({
         where: {
-          id,
-          userId: user!.id
+          id
         },
         rejectOnNotFound: true
       })

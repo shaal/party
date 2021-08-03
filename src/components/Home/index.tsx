@@ -27,7 +27,7 @@ export const Home: React.FC = () => {
       <GridLayout>
         <GridItemEight>
           <div className="space-y-6">
-            <NewPost />
+            {data?.me && <NewPost />}
             <Posts />
             <ErrorMessage
               title="Failed to load the current user."
