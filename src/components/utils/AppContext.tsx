@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 export interface ContextType {
   currentUser: any
-  currentUserFetching: boolean
+  currentUserLoading: boolean
   currentUserError: any
   staffMode: any
   setStaffMode: any
@@ -10,7 +10,7 @@ export interface ContextType {
 
 const AppContext = createContext<ContextType>({
   currentUser: null,
-  currentUserFetching: false,
+  currentUserLoading: false,
   currentUserError: null,
   staffMode: false,
   setStaffMode: null

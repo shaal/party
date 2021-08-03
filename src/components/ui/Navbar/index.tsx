@@ -58,7 +58,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
 }
 
 const Navbar: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
+  const { currentUser, currentUserLoading } = useContext(AppContext)
 
   return (
     <Disclosure
@@ -95,7 +95,9 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {currentUser ? (
+                {currentUserLoading ? (
+                  <div className="shimmer rounded-full h-9 w-9"></div>
+                ) : currentUser ? (
                   <div className="flex items-center gap-5">
                     <MenuItems currentUser={currentUser} />
                   </div>

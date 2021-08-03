@@ -34,7 +34,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={injectedGlobalContext as any}>
+    <AppContext.Provider value={injectedGlobalContext}>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
