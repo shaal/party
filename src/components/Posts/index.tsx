@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { PostsQuery } from './__generated__/index.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { SinglePost } from './SinglePost'
+import PostShimmer from '@components/ui/Shimmer/PostShimmer'
 
 export const query = gql`
   query PostsQuery {
@@ -21,6 +22,15 @@ export const query = gql`
 
 export function Posts() {
   const { data, loading, error } = useQuery<PostsQuery>(query)
+
+  if (loading)
+    return (
+      <div className="space-y-3">
+        <PostShimmer />
+        <PostShimmer />
+        <PostShimmer />
+      </div>
+    )
 
   return (
     <div>
