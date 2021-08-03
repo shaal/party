@@ -25,7 +25,7 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
           </Link>
         </div>
         <div className="text-lg post">
-          <Linkify>{post?.text}</Linkify>
+          <Linkify>{post?.body}</Linkify>
         </div>
       </CardBody>
       <div className="flex p-3 gap-7 border-t dark:border-gray-800">

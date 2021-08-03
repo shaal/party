@@ -4,7 +4,7 @@ input ChangePasswordInput {
 }
 
 input CreatePostInput {
-  text: String!
+  body: String!
 }
 
 scalar DateTime
@@ -14,8 +14,8 @@ input DeletePostInput {
 }
 
 input EditPostInput {
+  body: String!
   id: ID!
-  text: String!
 }
 
 input EditUserInput {
@@ -39,9 +39,9 @@ type Mutation {
 }
 
 type Post {
+  body: String!
   createdAt: DateTime!
   id: ID!
-  text: String!
   updatedAt: DateTime!
   user: User
 }

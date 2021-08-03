@@ -17,7 +17,7 @@ const query = gql`
   query PostQuery($id: ID!) {
     post(id: $id) {
       id
-      text
+      body
       createdAt
       user {
         username

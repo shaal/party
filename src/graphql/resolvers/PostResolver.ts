@@ -8,7 +8,7 @@ export const PostObject = builder.objectRef<Post>('Post')
 PostObject.implement({
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    text: t.exposeString('text', {}),
+    body: t.exposeString('body', {}),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.field({
@@ -57,7 +57,7 @@ builder.queryField('post', (t) =>
 
 const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
-    text: t.string({ validate: { minLength: 1 } })
+    body: t.string({ validate: { minLength: 1 } })
   })
 })
 
@@ -71,7 +71,7 @@ builder.mutationField('createPost', (t) =>
       return db.post.create({
         data: {
           userId: user!.id,
-          text: input.text
+          body: input.body
         }
       })
     }
@@ -81,7 +81,7 @@ builder.mutationField('createPost', (t) =>
 const EditPostInput = builder.inputType('EditPostInput', {
   fields: (t) => ({
     id: t.id({}),
-    text: t.string({})
+    body: t.string({})
   })
 })
 
@@ -106,7 +106,7 @@ builder.mutationField('editPost', (t) =>
 
       return db.post.update({
         where: { id: post.id },
-        data: { text: input.text }
+        data: { body: input.body }
       })
     }
   })
