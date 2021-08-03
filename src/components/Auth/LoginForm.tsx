@@ -4,14 +4,14 @@ import { Form, useZodForm } from '../ui/Form'
 import { gql, useMutation } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { useAuthRedirect } from '../utils/useAuthRedirect'
-import {
-  LoginFormMutation,
-  LoginFormMutationVariables
-} from './__generated__/LoginForm.generated'
 import Button from '../ui/Button'
 import Link from 'next/link'
 import React from 'react'
 import { Card, CardBody } from '../ui/Card'
+import {
+  LoginFormMutation,
+  LoginFormMutationVariables
+} from './__generated__/LoginForm.generated'
 
 const loginSchema = object({
   email: string().email(),
