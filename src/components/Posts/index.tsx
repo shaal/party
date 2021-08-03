@@ -1,12 +1,9 @@
 import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
 import { PostsQuery } from './__generated__/index.generated'
-import { Shimmer } from '../ui/Shimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Empty } from '../ui/Empty'
-import { GridLayout } from '../ui/GridLayout'
 import { SinglePost } from './SinglePost'
-import NewPost from '~/pages/posts/new'
 
 export const query = gql`
   query PostsQuery {
@@ -26,7 +23,6 @@ export function Posts() {
 
   return (
     <div>
-      <NewPost />
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data && data.posts.length === 0 ? (

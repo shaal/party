@@ -48,19 +48,20 @@ interface Props<T extends FieldValues = any>
   extends Omit<ComponentProps<'form'>, 'onSubmit'> {
   form: UseFormReturn<T>
   onSubmit: SubmitHandler<T>
+  className: string
 }
 
 export const Form = <T extends FieldValues>({
   form,
   onSubmit,
   children,
-  ...props
+  className = ''
 }: Props<T>) => {
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} {...props}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <fieldset
-          className="flex flex-col space-y-4"
+          className={`flex flex-col ${className}`}
           disabled={form.formState.isSubmitting}
         >
           {children}

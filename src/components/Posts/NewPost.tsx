@@ -8,8 +8,9 @@ import {
   NewPostMutationVariables
 } from './__generated__/NewPost.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { GridLayout } from '../ui/GridLayout'
 import Button from '../ui/Button'
+import { Card, CardBody } from '../ui/Card'
+import { PencilAltIcon } from '@heroicons/react/outline'
 
 const newPostSchema = object({
   text: string().min(1)
@@ -49,16 +50,31 @@ export function NewPost() {
   })
 
   return (
-    <Form
-      form={form}
-      onSubmit={({ text }) => createPost({ variables: { input: { text } } })}
-    >
-      <ErrorMessage
-        title="Failed to create post"
-        error={createPostResult.error}
-      />
-      <TextArea label="Text" {...form.register('text')} />
-      <Button type="submit">Create Post</Button>
-    </Form>
+    <Card>
+      <CardBody>
+        <Form
+          form={form}
+          className="space-y-1"
+          onSubmit={({ text }) =>
+            createPost({ variables: { input: { text } } })
+          }
+        >
+          <ErrorMessage
+            title="Failed to create post"
+            error={createPostResult.error}
+          />
+          <TextArea
+            {...form.register('text')}
+            placeholder="What's on your mind?"
+          />
+          <div className="ml-auto">
+            <Button type="submit" className="flex items-center gap-1.5">
+              <PencilAltIcon className="h-4 w-4" />
+              <div>Post</div>
+            </Button>
+          </div>
+        </Form>
+      </CardBody>
+    </Card>
   )
 }
