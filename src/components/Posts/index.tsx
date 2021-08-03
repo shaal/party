@@ -13,6 +13,10 @@ export const query = gql`
     posts {
       id
       text
+      createdAt
+      user {
+        username
+      }
     }
   }
 `

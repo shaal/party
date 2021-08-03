@@ -1,6 +1,7 @@
 import { Post } from '@prisma/client'
 import { db } from '~/utils/prisma'
 import { builder } from '../builder'
+import { UserObject } from './UserResolver'
 
 export const PostObject = builder.objectRef<Post>('Post')
 
@@ -9,7 +10,14 @@ PostObject.implement({
     id: t.exposeID('id', {}),
     text: t.exposeString('text', {}),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' })
+    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    user: t.field({
+      type: UserObject,
+      nullable: true,
+      resolve: (_root, _args, { user }) => {
+        return user
+      }
+    })
   })
 })
 

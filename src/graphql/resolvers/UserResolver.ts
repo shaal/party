@@ -35,9 +35,6 @@ builder.mutationField('editUser', (t) =>
           id: user!.id
         },
         data: {
-          // NOTE: Because `username` may be `null`, we use `?? undefined` to ensure that
-          // it is either a value, or undefined.
-          // https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
           username: input.username ?? undefined
         }
       })
