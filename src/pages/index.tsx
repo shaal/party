@@ -1,8 +1,3 @@
-import { preloadQuery } from '@utils/apollo'
-import { Home, query } from '@components/Home'
-import { GetServerSideProps } from 'next'
-
-export const getServerSideProps: GetServerSideProps = async (ctx) =>
-  preloadQuery(ctx, { query })
+import { Home } from '@components/Home'
 
 export default Home

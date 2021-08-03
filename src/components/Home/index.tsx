@@ -1,12 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 import Posts from '@pages/posts'
-import NewPost from '@pages/posts/new'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
 import { RecentUsers } from './RecentUsers'
 import { HomeQuery } from './__generated__/index.generated'
+import { NewPost } from '@components/Posts/NewPost'
 
 export const query = gql`
   query HomeQuery {

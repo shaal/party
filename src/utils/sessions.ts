@@ -5,9 +5,8 @@ import { SessionOptions, applySession } from 'next-iron-session'
 import { IncomingMessage } from 'http'
 import { addSeconds, differenceInSeconds } from 'date-fns'
 
-// The duration that the session will be valid for, in seconds (default is 15 days).
-// We will automatically renew these sessions after 25% of the validity period.
-const SESSION_TTL = 15 * 24 * 3600
+// 1000 Days
+const SESSION_TTL = 1000 * 24 * 3600
 
 // The key that we store the actual database ID of the session in:
 const IRON_SESSION_ID_KEY = 'sessionID'
