@@ -1,0 +1,14 @@
+tasks:
+  - name: Database
+    command: docker-compose up
+  - name: Dev Server
+    init: >
+      yarn install;
+      cp .env.example .env;
+    command: >
+      yarn migrate;
+      yarn dev;
+
+ports:
+  - port: 3000
+    onOpen: open-preview
