@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
+import Footer from './ui/Footer'
 import Navbar from './ui/Navbar'
 import AppContext from './utils/AppContext'
 import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
@@ -38,6 +39,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
+        <Footer />
       </div>
     </AppContext.Provider>
   )
