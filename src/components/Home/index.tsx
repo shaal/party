@@ -6,6 +6,7 @@ import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import Navbar from '../ui/Navbar'
+import { RecentUsers } from './RecentUsers'
 import { HomeQuery } from './__generated__/index.generated'
 
 export const query = gql`
@@ -35,9 +36,7 @@ export const Home: React.FC = () => {
           </div>
         </GridItemEight>
         <GridItemFour>
-          <Card>
-            <CardBody>WIP</CardBody>
-          </Card>
+          <RecentUsers />
         </GridItemFour>
       </GridLayout>
     </Fragment>
