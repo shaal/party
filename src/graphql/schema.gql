@@ -50,7 +50,7 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts: [Post!]!
-  users: [User!]!
+  users(take: Int!): [User!]!
 }
 
 enum Result {

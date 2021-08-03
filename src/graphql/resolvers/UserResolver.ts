@@ -14,8 +14,12 @@ UserObject.implement({
 builder.queryField('users', (t) =>
   t.field({
     type: [UserObject],
-    resolve: () => {
+    args: {
+      take: t.arg({ type: 'Int' })
+    },
+    resolve: (_root, { take }, { user }) => {
       return db.user.findMany({
+        take: take as number,
         orderBy: {
           createdAt: 'desc'
         }
