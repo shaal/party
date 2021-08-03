@@ -6,7 +6,7 @@ tasks:
       yarn install;
       cp .env.example .env;
     command: >
-      yarn prisma:migrate;
+      yarn migrate;
       yarn dev;
 
 ports:
