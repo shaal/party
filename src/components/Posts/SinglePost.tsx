@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { Post, User } from '~/__generated__/schema.generated'
+import { Post, User } from '@__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
 import UserProfileLarge from '../ui/UserProfileLarge'
 import { formatDistanceToNowStrict } from 'date-fns'

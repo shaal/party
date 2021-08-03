@@ -1,4 +1,4 @@
-import { ValidationError } from '~/graphql/errors'
+import { ValidationError } from '@graphql/errors'
 import SecurePassword from 'secure-password'
 import { db } from './prisma'
 

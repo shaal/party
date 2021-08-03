@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
-import { Profile, query } from '~/components/Profile'
-import { preloadQuery } from '~/utils/apollo'
+import { Profile, query } from '@components/Profile'
+import { preloadQuery } from '@utils/apollo'
 
 export const getServerSideProps: GetServerSideProps<
   {},

@@ -1,1 +1,1 @@
-export { NewPost as default } from '~/components/Posts/NewPost'
+export { NewPost as default } from '@components/Posts/NewPost'

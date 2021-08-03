@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
 import React, { Fragment } from 'react'
-import { User } from '~/__generated__/schema.generated'
+import { User } from '@__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import UserProfileLarge from '../ui/UserProfileLarge'

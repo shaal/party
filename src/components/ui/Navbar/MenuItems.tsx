@@ -3,10 +3,10 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment } from 'react'
-import { User } from '~/__generated__/schema.generated'
+import { User } from '@__generated__/schema.generated'
 import Username from '../Username'
 import { gql, useMutation } from '@apollo/client'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
+import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import Image from 'next/image'
 
 const NextLink = ({ href, children, ...rest }: any) => (

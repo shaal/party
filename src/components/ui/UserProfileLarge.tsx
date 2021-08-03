@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { User } from '~/__generated__/schema.generated'
+import { User } from '@__generated__/schema.generated'
 import Username from './Username'
 
 interface Props {

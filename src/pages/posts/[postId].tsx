@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
-import { ViewPost, query } from '~/components/Posts/ViewPost'
-import { authenticatedRoute } from '~/utils/redirects'
-import { preloadQuery } from '~/utils/apollo'
+import { ViewPost, query } from '@components/Posts/ViewPost'
+import { authenticatedRoute } from '@utils/redirects'
+import { preloadQuery } from '@utils/apollo'
 
 export const getServerSideProps: GetServerSideProps<
   {},
