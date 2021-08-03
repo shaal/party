@@ -65,22 +65,28 @@ export const LoginForm: React.FC = () => {
               }
             >
               <ErrorMessage title="Login failed." error={loginResult.error} />
-              <Input
-                label="Email"
-                type="email"
-                autoComplete="email"
-                placeholder="me@example.com"
-                autoFocus
-                {...form.register('email')}
-              />
-              <Input
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="••••••••••"
-                {...form.register('password')}
-              />
-              <Button type="submit">Login</Button>
+              <div className="space-y-4">
+                <div>
+                  <Input
+                    label="Email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="me@example.com"
+                    autoFocus
+                    {...form.register('email')}
+                  />
+                </div>
+                <div>
+                  <Input
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="••••••••••"
+                    {...form.register('password')}
+                  />
+                </div>
+                <Button type="submit">Login</Button>
+              </div>
             </Form>
           </CardBody>
         </Card>

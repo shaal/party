@@ -73,29 +73,37 @@ export const SignUpForm: React.FC = () => {
                 title="Error creating account"
                 error={signUpResult.error}
               />
-              <Input
-                label="Username"
-                type="text"
-                autoComplete="username"
-                placeholder="johndoe"
-                autoFocus
-                {...form.register('username')}
-              />
-              <Input
-                label="Email"
-                type="email"
-                autoComplete="email"
-                placeholder="me@example.com"
-                {...form.register('email')}
-              />
-              <Input
-                label="Password"
-                type="password"
-                autoComplete="new-password"
-                placeholder="••••••••••"
-                {...form.register('password')}
-              />
-              <Button type="submit">Sign Up</Button>
+              <div className="space-y-4">
+                <div>
+                  <Input
+                    label="Username"
+                    type="text"
+                    autoComplete="username"
+                    placeholder="johndoe"
+                    autoFocus
+                    {...form.register('username')}
+                  />
+                </div>
+                <div>
+                  <Input
+                    label="Email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="me@example.com"
+                    {...form.register('email')}
+                  />
+                </div>
+                <div>
+                  <Input
+                    label="Password"
+                    type="password"
+                    autoComplete="new-password"
+                    placeholder="••••••••••"
+                    {...form.register('password')}
+                  />
+                </div>
+                <Button type="submit">Sign Up</Button>
+              </div>
             </Form>
           </CardBody>
         </Card>
