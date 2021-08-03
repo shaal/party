@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface Props {
   username: string | undefined
   showAt?: boolean
