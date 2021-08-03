@@ -1,5 +1,9 @@
 import clsx from 'clsx'
-import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from 'react'
+import React, {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  forwardRef
+} from 'react'
 
 interface Props
   extends DetailedHTMLProps<
