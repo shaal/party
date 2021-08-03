@@ -1,9 +1,15 @@
+-- CreateEnum
+CREATE TYPE "PostType" AS ENUM ('POST', 'TASK', 'QUESTION');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "hashedPassword" BYTEA NOT NULL,
+    "spammy" BOOLEAN NOT NULL DEFAULT false,
+    "isVerified" BOOLEAN NOT NULL DEFAULT false,
+    "isStaff" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -41,12 +47,22 @@ CREATE TABLE "Profile" (
 -- CreateTable
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
-    "text" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "title" TEXT,
+    "body" TEXT NOT NULL,
+    "done" BOOLEAN NOT NULL DEFAULT false,
+    "type" "PostType" NOT NULL DEFAULT E'POST',
+    "attachments" JSONB,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_follows" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
 );
 
 -- CreateIndex
@@ -58,6 +74,12 @@ CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_follows_B_index" ON "_follows"("B");
+
 -- AddForeignKey
 ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -66,3 +88,9 @@ ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELE
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_follows" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
