@@ -1,6 +1,11 @@
 {
-  "plugins": ["unused-imports"],
-  "extends": "next",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "unused-imports"],
+  "extends": [
+    "next",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error"

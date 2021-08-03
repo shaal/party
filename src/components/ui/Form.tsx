@@ -48,7 +48,7 @@ interface Props<T extends FieldValues = any>
   extends Omit<ComponentProps<'form'>, 'onSubmit'> {
   form: UseFormReturn<T>
   onSubmit: SubmitHandler<T>
-  className: string
+  className?: string
 }
 
 export const Form = <T extends FieldValues>({
