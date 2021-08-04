@@ -57,8 +57,11 @@ builder.queryField('post', (t) =>
 
 const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
-    title: t.string({ required: false, validate: { minLength: 1 } }),
-    body: t.string({ validate: { minLength: 1 } }),
+    title: t.string({
+      required: false,
+      validate: { minLength: 1, maxLength: 255 }
+    }),
+    body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
     type: t.string({ defaultValue: 'POST' })
   })
 })
