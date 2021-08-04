@@ -5,14 +5,14 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["orderByRelation", "selectRelationCount"]
+  previewFeatures = ["orderByRelation", "selectRelationCount", "nApi", "referentialActions", "orderByAggregateGroup", "filterJson"]
 }
 
 model User {
   id             String @id @default(cuid())
   username       String @unique @default(cuid())
   email          String @unique
-  hashedPassword Bytes
+  hashedPassword String
 
   // Flags
   spammy     Boolean @default(false)

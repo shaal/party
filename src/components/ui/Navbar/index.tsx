@@ -1,4 +1,4 @@
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'

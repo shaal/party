@@ -1,14 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
-import { SinglePost } from '@components/Posts/SinglePost'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { SinglePost } from '~/components/Posts/SinglePost'
+import { Card, CardBody } from '~/components/ui/Card'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import {
   GridItemEight,
   GridItemFour,
   GridLayout
-} from '@components/ui/GridLayout'
-import UserProfileLarge from '@components/ui/UserProfileLarge'
-import { Post, User } from '@__generated__/schema.generated'
+} from '~/components/ui/GridLayout'
+import UserProfileLarge from '~/components/ui/UserProfileLarge'
+import { Post, User } from '~/__generated__/schema.generated'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 import { PostQuery } from './__generated__/ViewPost.generated'

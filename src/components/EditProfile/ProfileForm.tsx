@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
 import React from 'react'
 import { object, string } from 'zod'
+import { User } from '~/__generated__/schema.generated'
 import Button from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
@@ -9,23 +10,15 @@ import { Input } from '../ui/Input'
 import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ProfileFormMutation,
-  ProfileFormMutationVariables,
-  ProfileForm_User
+  ProfileFormMutationVariables
 } from './__generated__/ProfileForm.generated'
 
 const editProfileSchema = object({
   username: string().min(1)
 })
 
-export const ProfileFormFragment = gql`
-  fragment ProfileForm_user on User {
-    id
-    username
-  }
-`
-
 interface Props {
-  user: ProfileForm_User
+  user: User
 }
 
 export const ProfileForm: React.FC<Props> = ({ user }) => {

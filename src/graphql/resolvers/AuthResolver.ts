@@ -1,11 +1,6 @@
-import {
-  authenticateUser,
-  hashPassword,
-  passwordIsValid,
-  verifyPassword
-} from '@utils/auth'
-import { db } from '@utils/prisma'
-import { createSession, removeSession } from '@utils/sessions'
+import { authenticateUser, hashPassword, verifyPassword } from '~/utils/auth'
+import { db } from '~/utils/prisma'
+import { createSession, removeSession } from '~/utils/sessions'
 import { builder } from '../builder'
 import { Result } from './ResultResolver'
 import { UserObject } from './UserResolver'
@@ -14,6 +9,7 @@ builder.queryField('me', (t) =>
   t.field({
     type: UserObject,
     nullable: true,
+    skipTypeScopes: true,
     resolve: (_root, _args, { user }) => {
       return user
     }
@@ -143,7 +139,7 @@ builder.mutationField('changePassword', (t) =>
         input.currentPassword
       )
 
-      if (!passwordIsValid(passwordValid)) {
+      if (!passwordValid) {
         throw new Error('Current password was not correct.')
       }
 

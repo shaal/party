@@ -21,6 +21,8 @@ node_modules/
 .next/
 build/
 .vercel/
+.eslintcache
+tsconfig.tsbuildinfo
 
 # Environment Variables
 .env

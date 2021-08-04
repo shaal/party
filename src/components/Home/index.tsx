@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
-import Posts from '@pages/posts'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
 import { RecentUsers } from './RecentUsers'
-import { NewPost } from '@components/Posts/NewPost'
+import { NewPost } from '~/components/Posts/NewPost'
 import { useContext } from 'react'
-import AppContext from '@components/utils/AppContext'
-import Banner from '@components/ui/Banner'
+import AppContext from '~/components/utils/AppContext'
+import Banner from '~/components/ui/Banner'
+import Posts from '~/pages/posts'
 
 export const Home: React.FC = () => {
   const { currentUser, currentUserLoading, currentUserError } =
