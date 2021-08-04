@@ -14,7 +14,7 @@ services:
 
   compiler:
     restart: unless-stopped
-    image: node:16.6.0
+    image: node:16.6.1
     command: yarn codegen:graphql -- --watch
     volumes:
       - .:/srv/compiler:rw
