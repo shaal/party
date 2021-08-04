@@ -3,6 +3,7 @@ import { PostsQuery } from './__generated__/index.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { SinglePost } from './SinglePost'
 import PostShimmer from '~/components/ui/Shimmer/PostShimmer'
+import React from 'react'
 
 export const query = gql`
   query PostsQuery {
@@ -21,7 +22,7 @@ export const query = gql`
   }
 `
 
-export function Posts() {
+export const Posts: React.FC = () => {
   const { data, loading, error } = useQuery<PostsQuery>(query)
 
   if (loading)
