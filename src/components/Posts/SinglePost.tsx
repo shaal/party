@@ -7,6 +7,7 @@ import Linkify from 'linkifyjs/react'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import { useContext } from 'react'
 import AppContext from '~/components/utils/AppContext'
+import * as timeago from 'timeago.js'
 
 interface Props {
   post: Post
@@ -21,7 +22,9 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
         <div className="flex justify-between items-center">
           <UserProfileLarge user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
-            <div className="text-sm cursor-pointer">{post?.createdAt}</div>
+            <div className="text-sm cursor-pointer">
+              {timeago.format(post?.createdAt)}
+            </div>
           </Link>
         </div>
         <div className="text-lg post">
