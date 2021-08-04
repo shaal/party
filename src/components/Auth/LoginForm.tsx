@@ -31,7 +31,6 @@ export const LoginForm: React.FC = () => {
         }
       }
     `,
-
     {
       onCompleted() {
         authRedirect()
