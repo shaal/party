@@ -1,9 +1,4 @@
-import {
-  authenticateUser,
-  hashPassword,
-  passwordIsValid,
-  verifyPassword
-} from '@utils/auth'
+import { authenticateUser, hashPassword, verifyPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession, removeSession } from '@utils/sessions'
 import { builder } from '../builder'
@@ -143,7 +138,7 @@ builder.mutationField('changePassword', (t) =>
         input.currentPassword
       )
 
-      if (!passwordIsValid(passwordValid)) {
+      if (!passwordValid) {
         throw new Error('Current password was not correct.')
       }
 
