@@ -1,5 +1,5 @@
-import { schema } from '@graphql/index'
-import { Context, createGraphQLContext } from '@graphql/builder'
+import { schema } from '~/graphql/index'
+import { Context, createGraphQLContext } from '~/graphql/builder'
 import {
   getGraphQLParameters,
   processRequest,
@@ -9,7 +9,7 @@ import {
 import { NextApiHandler } from 'next'
 import { ExecutionResult, GraphQLError } from 'graphql'
 import { IncomingHttpHeaders } from 'http'
-import { resolveSession } from '@utils/sessions'
+import { resolveSession } from '~/utils/sessions'
 
 function getGraphQLCode(error: Error & { code?: number }) {
   return error.code ?? error.name === 'NotFoundError' ? 404 : null

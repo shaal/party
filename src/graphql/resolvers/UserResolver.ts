@@ -1,5 +1,5 @@
 import { User } from '@prisma/client'
-import { db } from '@utils/prisma'
+import { db } from '~/utils/prisma'
 import { builder } from '../builder'
 import { ProfileObject } from './ProfileResolver'
 

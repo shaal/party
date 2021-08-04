@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import React from 'react'
-import { Post, User } from '@__generated__/schema.generated'
+import { Post, User } from '~/__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
 import UserProfileLarge from '../ui/UserProfileLarge'
 import Linkify from 'linkifyjs/react'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import { useContext } from 'react'
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 
 interface Props {
   post: Post
