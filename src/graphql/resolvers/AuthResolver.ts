@@ -9,6 +9,7 @@ builder.queryField('me', (t) =>
   t.field({
     type: UserObject,
     nullable: true,
+    skipTypeScopes: true,
     resolve: (_root, _args, { user }) => {
       return user
     }
