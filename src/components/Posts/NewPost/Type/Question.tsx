@@ -69,9 +69,12 @@ export const QuestionType: React.FC = () => {
       <Input
         {...form.register('title')}
         className="mb-2"
-        placeholder="What have you achieved?"
+        placeholder="What's the thing?"
       />
-      <TextArea {...form.register('body')} placeholder="What's on your mind?" />
+      <TextArea
+        {...form.register('body')}
+        placeholder="Ask anything about code"
+      />
       <div className="ml-auto">
         <Button type="submit" className="flex items-center gap-1.5">
           <QuestionMarkCircleIcon className="h-4 w-4" />
