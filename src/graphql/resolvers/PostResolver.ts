@@ -57,6 +57,7 @@ builder.queryField('post', (t) =>
 
 const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
+    title: t.string({ required: false, validate: { minLength: 1 } }),
     body: t.string({ validate: { minLength: 1 } }),
     type: t.string({ defaultValue: 'POST' })
   })
@@ -72,6 +73,7 @@ builder.mutationField('createPost', (t) =>
       return db.post.create({
         data: {
           userId: user!.id,
+          title: input.title,
           body: input.body,
           type: input.type as PostType
         }

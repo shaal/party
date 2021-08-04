@@ -5,6 +5,7 @@ input ChangePasswordInput {
 
 input CreatePostInput {
   body: String!
+  title: String
   type: String! = "POST"
 }
 

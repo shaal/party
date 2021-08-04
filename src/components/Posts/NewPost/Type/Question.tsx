@@ -58,8 +58,8 @@ export const QuestionType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) =>
-        createPost({ variables: { input: { body, type: 'QUESTION' } } })
+      onSubmit={({ title, body }) =>
+        createPost({ variables: { input: { title, body, type: 'QUESTION' } } })
       }
     >
       <ErrorMessage
