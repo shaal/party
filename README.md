@@ -1,6 +1,6 @@
 <div align="center">
     <p>
-        <img src="https://i.ibb.co/QvxNSHY/purple.png" height="70" alt="Devparty Logo">
+        <img src="https://cloudflare-ipfs.com/ipfs/QmfSYPQKUDb4Za2PoquGSpdSu5GBy3kptuzY81La9wQjVT" height="70" alt="Devparty Logo">
     </p>
     <h1>Devparty</h1>
     <strong>🥳 Social media for developers</strong>
