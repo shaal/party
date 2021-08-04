@@ -18,7 +18,7 @@ const newPostSchema = object({
   body: string().min(1).max(10000)
 })
 
-export const QuestionType: React.FC = () => {
+const QuestionType: React.FC = () => {
   const router = useRouter()
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -84,3 +84,5 @@ export const QuestionType: React.FC = () => {
     </Form>
   )
 }
+
+export default QuestionType

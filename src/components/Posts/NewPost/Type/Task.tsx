@@ -16,7 +16,7 @@ const newPostSchema = object({
   body: string().min(1).max(1000)
 })
 
-export const TaskType: React.FC = () => {
+const TaskType: React.FC = () => {
   const router = useRouter()
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -78,3 +78,5 @@ export const TaskType: React.FC = () => {
     </Form>
   )
 }
+
+export default TaskType

@@ -6,10 +6,20 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import { Tab } from '@headlessui/react'
-import { PostType } from './Type/Post'
+import PostType from './Type/Post'
 import React from 'react'
-import { TaskType } from './Type/Task'
-import { QuestionType } from './Type/Question'
+import dynamic from 'next/dynamic'
+
+const QuestionType = dynamic(() => import('./Type/Question'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
+const TaskType = dynamic(() => import('./Type/Task'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
+
+const Loading = () => <div className="shimmer rounded-lg h-10"></div>
 
 export const NewPost: React.FC = () => {
   return (

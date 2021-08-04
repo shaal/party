@@ -16,7 +16,7 @@ const newPostSchema = object({
   body: string().min(1).max(1000)
 })
 
-export const PostType: React.FC = () => {
+const PostType: React.FC = () => {
   const router = useRouter()
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -74,3 +74,5 @@ export const PostType: React.FC = () => {
     </Form>
   )
 }
+
+export default PostType
