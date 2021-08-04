@@ -62,22 +62,40 @@ export function NewPost() {
         <Tab.Group>
           <Tab.List className="space-x-2">
             <Tab>
-              <Button size="sm" className="flex items-center gap-1.5">
-                <CollectionIcon className="h-4 w-4" />
-                <div>Post</div>
-              </Button>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5"
+                  outline={!selected}
+                >
+                  <CollectionIcon className="h-4 w-4" />
+                  <div>Post</div>
+                </Button>
+              )}
             </Tab>
             <Tab>
-              <Button size="sm" className="flex items-center gap-1.5">
-                <CheckCircleIcon className="h-4 w-4" />
-                <div>Task</div>
-              </Button>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5"
+                  outline={!selected}
+                >
+                  <CheckCircleIcon className="h-4 w-4" />
+                  <div>Task</div>
+                </Button>
+              )}
             </Tab>
             <Tab>
-              <Button size="sm" className="flex items-center gap-1.5">
-                <QuestionMarkCircleIcon className="h-4 w-4" />
-                <div>Question</div>
-              </Button>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5"
+                  outline={!selected}
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4" />
+                  <div>Question</div>
+                </Button>
+              )}
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-3">
