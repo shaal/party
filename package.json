@@ -53,7 +53,7 @@
     "@tailwindcss/typography": "^0.4.1",
     "@types/linkifyjs": "^2.1.4",
     "@types/nprogress": "^0.2.0",
-    "@types/react": "^17.0.13",
+    "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.8",
     "autoprefixer": "^10.2.6",
     "eslint": "^7.29.0",
