@@ -15,11 +15,6 @@ before_script:
   - yarn install --frozen-lockfile --silent
   - cp .env.example .env
 
-Generate:
-  stage: test
-  script:
-    - yarn generate
-
 Typecheck:
   stage: test
   script:
