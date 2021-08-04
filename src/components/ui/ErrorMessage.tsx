@@ -1,9 +1,11 @@
+import React from 'react'
+
 interface Props {
   title: string
   error?: Error
 }
 
-export function ErrorMessage({ title, error }: Props) {
+export const ErrorMessage: React.FC<Props> = ({ title, error }) => {
   if (!error) return null
 
   return (
