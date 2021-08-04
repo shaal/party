@@ -68,7 +68,7 @@
     "tailwindcss": "^2.2.7",
     "trash-cli": "^4.0.0",
     "ts-node": "^10.1.0",
-    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   },
   "lint-staged": {
