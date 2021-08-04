@@ -63,7 +63,7 @@ export const QuestionType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create post"
+        title="Failed to create question"
         error={createPostResult.error}
       />
       <Input

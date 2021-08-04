@@ -61,7 +61,7 @@ export const TaskType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create post"
+        title="Failed to create task"
         error={createPostResult.error}
       />
       <Input
