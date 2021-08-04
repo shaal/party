@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ComponentProps } from 'react'
+import React, { ComponentProps } from 'react'
 import {
   useForm,
   UseFormProps,
@@ -30,7 +30,7 @@ interface FieldErrorProps {
   name?: string
 }
 
-export function FieldError({ name }: FieldErrorProps) {
+export const FieldError: React.FC<FieldErrorProps> = ({ name }) => {
   const {
     formState: { errors }
   } = useFormContext()
