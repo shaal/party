@@ -6,7 +6,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "hashedPassword" BYTEA NOT NULL,
+    "hashedPassword" TEXT NOT NULL,
     "spammy" BOOLEAN NOT NULL DEFAULT false,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
     "isStaff" BOOLEAN NOT NULL DEFAULT false,
