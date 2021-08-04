@@ -47,7 +47,7 @@
     "@graphql-codegen/cli": "^2.0.1",
     "@graphql-codegen/near-operation-file-preset": "^2.0.0",
     "@graphql-codegen/typescript": "^2.0.0",
-    "@graphql-codegen/typescript-operations": "^1.18.3",
+    "@graphql-codegen/typescript-operations": "^2.0.1",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
