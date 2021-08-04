@@ -13,7 +13,7 @@ import React from 'react'
 import { Input } from '~/components/ui/Input'
 
 const newPostSchema = object({
-  body: string().min(1)
+  body: string().min(1).max(1000)
 })
 
 export const TaskType: React.FC = () => {

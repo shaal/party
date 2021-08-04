@@ -15,7 +15,7 @@ import { TextArea } from '~/components/ui/TextArea'
 
 const newPostSchema = object({
   title: string().min(1).max(255),
-  body: string().min(1).max(1000)
+  body: string().min(1).max(10000)
 })
 
 export const QuestionType: React.FC = () => {
