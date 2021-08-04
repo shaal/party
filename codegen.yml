@@ -1,6 +1,6 @@
 overwrite: true
 errorsOnly: true
-schema: src/graphql/schema.gql
+schema: src/graphql/schema.graphql
 documents: 'src/**/!(*.d).{ts,tsx}'
 generates:
   src/__generated__/schema.generated.ts:
