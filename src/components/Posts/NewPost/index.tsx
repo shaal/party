@@ -9,6 +9,7 @@ import { Tab } from '@headlessui/react'
 import { PostType } from './Type/Post'
 import React from 'react'
 import { TaskType } from './Type/Task'
+import { QuestionType } from './Type/Question'
 
 export const NewPost: React.FC = () => {
   return (
@@ -60,7 +61,9 @@ export const NewPost: React.FC = () => {
             <Tab.Panel>
               <TaskType />
             </Tab.Panel>
-            <Tab.Panel>Content 3</Tab.Panel>
+            <Tab.Panel>
+              <QuestionType />
+            </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </CardBody>
