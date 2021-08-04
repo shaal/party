@@ -15,12 +15,13 @@ import {
 } from './__generated__/index.generated'
 import { Tab } from '@headlessui/react'
 import { PostType } from './Type/Post'
+import React from 'react'
 
 const newPostSchema = object({
   body: string().min(1)
 })
 
-export function NewPost() {
+export const NewPost: React.FC = () => {
   const router = useRouter()
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
