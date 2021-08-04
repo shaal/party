@@ -15,8 +15,7 @@
     "migrate": "prisma migrate dev",
     "codegen": "yarn clean:codegen && run-s -l \"codegen:*\"",
     "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
-    "codegen:graphql": "graphql-codegen",
-    "prepare": "husky install"
+    "codegen:graphql": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.3.20",
