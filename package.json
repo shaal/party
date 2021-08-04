@@ -55,7 +55,6 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
-    "@types/secure-password": "^3.1.0",
     "autoprefixer": "^10.2.6",
     "eslint": "^7.29.0",
     "eslint-config-next": "^11.0.1",
