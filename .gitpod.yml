@@ -1,6 +1,6 @@
 tasks:
   - name: Database
-    command: docker-compose up
+    before: docker-compose up
   - name: Dev Server
     init: >
       yarn install;
