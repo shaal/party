@@ -1,7 +1,3 @@
-import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
-import { object, string } from 'zod'
-import { useZodForm } from '../../ui/Form'
 import Button from '../../ui/Button'
 import { Card, CardBody } from '../../ui/Card'
 import {
@@ -9,54 +5,12 @@ import {
   CollectionIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
-import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/index.generated'
 import { Tab } from '@headlessui/react'
 import { PostType } from './Type/Post'
 import React from 'react'
-
-const newPostSchema = object({
-  body: string().min(1)
-})
+import { TaskType } from './Type/Task'
 
 export const NewPost: React.FC = () => {
-  const router = useRouter()
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
-  >(
-    gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
-        createPost(input: $input) {
-          id
-          body
-        }
-      }
-    `,
-    {
-      update(cache, { data }) {
-        if (!data?.createPost) return
-
-        cache.modify({
-          fields: {
-            posts(existingPosts = []) {
-              return [data.createPost, ...existingPosts]
-            }
-          }
-        })
-      },
-      onCompleted() {
-        // TODO: Clear Textarea
-      }
-    }
-  )
-
-  const form = useZodForm({
-    schema: newPostSchema
-  })
-
   return (
     <Card>
       <CardBody>
@@ -99,11 +53,13 @@ export const NewPost: React.FC = () => {
               )}
             </Tab>
           </Tab.List>
-          <Tab.Panels className="mt-3">
+          <Tab.Panels className="mt-4">
             <Tab.Panel>
               <PostType />
             </Tab.Panel>
-            <Tab.Panel>Content 2</Tab.Panel>
+            <Tab.Panel>
+              <TaskType />
+            </Tab.Panel>
             <Tab.Panel>Content 3</Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

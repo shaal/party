@@ -1,4 +1,4 @@
-import { Post } from '@prisma/client'
+import { Post, PostType } from '@prisma/client'
 import { db } from '~/utils/prisma'
 import { builder } from '../builder'
 import { UserObject } from './UserResolver'
@@ -57,7 +57,8 @@ builder.queryField('post', (t) =>
 
 const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
-    body: t.string({ validate: { minLength: 1 } })
+    body: t.string({ validate: { minLength: 1 } }),
+    type: t.string({ defaultValue: 'POST' })
   })
 })
 
@@ -71,7 +72,8 @@ builder.mutationField('createPost', (t) =>
       return db.post.create({
         data: {
           userId: user!.id,
-          body: input.body
+          body: input.body,
+          type: input.type as PostType
         }
       })
     }

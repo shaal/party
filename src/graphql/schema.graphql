@@ -5,6 +5,7 @@ input ChangePasswordInput {
 
 input CreatePostInput {
   body: String!
+  type: String! = "POST"
 }
 
 scalar DateTime

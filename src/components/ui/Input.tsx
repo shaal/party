@@ -3,7 +3,7 @@ import { ComponentProps, forwardRef } from 'react'
 import { FieldError } from './Form'
 
 interface Props extends ComponentProps<'input'> {
-  label: string
+  label?: string
   className?: string
   error?: boolean
 }
@@ -14,9 +14,11 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 ) {
   return (
     <label>
-      <div className="font-medium text-gray-800 dark:text-gray-200 mb-1">
-        {label}
-      </div>
+      {label && (
+        <div className="font-medium text-gray-800 dark:text-gray-200 mb-1">
+          {label}
+        </div>
+      )}
       <input
         className={clsx(
           {
