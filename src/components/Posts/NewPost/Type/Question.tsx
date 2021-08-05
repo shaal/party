@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import { object, string } from 'zod'
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline'
@@ -19,7 +18,6 @@ const newPostSchema = object({
 })
 
 const QuestionType: React.FC = () => {
-  const router = useRouter()
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
     NewPostMutationVariables
