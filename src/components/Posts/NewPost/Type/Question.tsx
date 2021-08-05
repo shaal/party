@@ -18,6 +18,7 @@ import { TextArea } from '~/components/ui/TextArea'
 import { useState } from 'react'
 import Markdown from 'markdown-to-jsx'
 import Attachment from '../Attachment'
+import Attachments from '../../SinglePost/Attachments'
 
 const newPostSchema = object({
   title: string().min(1).max(255),
@@ -120,6 +121,11 @@ const QuestionType: React.FC = () => {
           <div>Ask</div>
         </Button>
       </div>
+      <Attachments
+        attachments={attachments}
+        setAttachments={setAttachments}
+        isNew
+      />
     </Form>
   )
 }

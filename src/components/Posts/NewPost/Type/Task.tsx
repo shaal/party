@@ -12,6 +12,7 @@ import React, { useState } from 'react'
 import { Input } from '~/components/ui/Input'
 import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
 import Attachment from '../Attachment'
+import Attachments from '../../SinglePost/Attachments'
 
 const newPostSchema = object({
   body: string().min(1).max(1000),
@@ -80,6 +81,11 @@ const TaskType: React.FC = () => {
           <div>Create Task</div>
         </Button>
       </div>
+      <Attachments
+        attachments={attachments}
+        setAttachments={setAttachments}
+        isNew
+      />
     </Form>
   )
 }
