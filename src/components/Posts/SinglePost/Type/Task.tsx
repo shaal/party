@@ -34,9 +34,11 @@ const TaskType: React.FC<Props> = ({ task }) => {
   }
 
   return (
-    <div className="text-lg post flex items-center gap-2.5">
-      <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
-      <Linkify>{task?.body}</Linkify>
+    <div className="text-lg post space-y-3">
+      <div className="flex items-center gap-2.5">
+        <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
+        <Linkify>{task?.body}</Linkify>
+      </div>
       {task?.attachments && <Attachments attachments={task?.attachments} />}
     </div>
   )
