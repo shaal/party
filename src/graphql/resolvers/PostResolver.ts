@@ -11,6 +11,7 @@ PostObject.implement({
     title: t.exposeString('title', { nullable: true }),
     body: t.exposeString('body', {}),
     type: t.exposeString('type', {}),
+    done: t.exposeBoolean('done', {}),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.field({
@@ -64,6 +65,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       validate: { minLength: 1, maxLength: 255 }
     }),
     body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
+    done: t.boolean({ defaultValue: true }),
     type: t.string({ defaultValue: 'POST' })
   })
 })
@@ -80,6 +82,7 @@ builder.mutationField('createPost', (t) =>
           userId: user!.id,
           title: input.title,
           body: input.body,
+          done: input.done,
           type: input.type as PostType
         }
       })

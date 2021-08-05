@@ -5,6 +5,7 @@ input ChangePasswordInput {
 
 input CreatePostInput {
   body: String!
+  done: Boolean! = true
   title: String
   type: String! = "POST"
 }
@@ -43,6 +44,7 @@ type Mutation {
 type Post {
   body: String!
   createdAt: DateTime!
+  done: Boolean!
   id: ID!
   title: String
   type: String!

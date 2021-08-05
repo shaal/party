@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { object, string } from 'zod'
+import { boolean, object, string } from 'zod'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import {
   NewPostMutation,
@@ -13,7 +13,8 @@ import { Input } from '~/components/ui/Input'
 import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
 
 const newPostSchema = object({
-  body: string().min(1).max(1000)
+  body: string().min(1).max(1000),
+  done: boolean().default(true)
 })
 
 const TaskType: React.FC = () => {
@@ -55,8 +56,8 @@ const TaskType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) =>
-        createPost({ variables: { input: { body, type: 'TASK' } } })
+      onSubmit={({ body, done }) =>
+        createPost({ variables: { input: { body, done, type: 'TASK' } } })
       }
     >
       <ErrorMessage
@@ -64,7 +65,7 @@ const TaskType: React.FC = () => {
         error={createPostResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
-        <TaskCheckbox />
+        <TaskCheckbox {...form.register('done')} />
         <Input
           {...form.register('body')}
           placeholder="What have you achieved?"
