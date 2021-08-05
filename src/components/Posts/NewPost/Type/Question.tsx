@@ -12,10 +12,11 @@ import {
 import { Form, useZodForm } from '~/components/ui/Form'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import Button from '~/components/ui/Button'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Input } from '~/components/ui/Input'
 import { TextArea } from '~/components/ui/TextArea'
 import { useState } from 'react'
+import Markdown from 'markdown-to-jsx'
 
 const newPostSchema = object({
   title: string().min(1).max(255),
@@ -70,15 +71,24 @@ const QuestionType: React.FC = () => {
         title="Failed to create question"
         error={createPostResult.error}
       />
-      <Input
-        {...form.register('title')}
-        className="mb-2"
-        placeholder="What's the thing?"
-      />
-      <TextArea
-        {...form.register('body')}
-        placeholder="Ask anything about code"
-      />
+      {preview ? (
+        <div className="text-lg post">
+          <div className="font-bold mb-1">Hello, World!</div>
+          <Markdown options={{ wrapper: 'article' }}>Hello, World!</Markdown>
+        </div>
+      ) : (
+        <Fragment>
+          <Input
+            {...form.register('title')}
+            className="mb-2"
+            placeholder="What's the thing?"
+          />
+          <TextArea
+            {...form.register('body')}
+            placeholder="Ask anything about code"
+          />
+        </Fragment>
+      )}
       <div className="flex items-center justify-between">
         <Button
           type="button"
