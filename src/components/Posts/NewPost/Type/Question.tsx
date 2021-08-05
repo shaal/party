@@ -1,6 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import { object, string } from 'zod'
-import { QuestionMarkCircleIcon } from '@heroicons/react/outline'
+import {
+  EyeIcon,
+  EyeOffIcon,
+  QuestionMarkCircleIcon
+} from '@heroicons/react/outline'
 import {
   NewPostMutation,
   NewPostMutationVariables
@@ -11,6 +15,7 @@ import Button from '~/components/ui/Button'
 import React from 'react'
 import { Input } from '~/components/ui/Input'
 import { TextArea } from '~/components/ui/TextArea'
+import { useState } from 'react'
 
 const newPostSchema = object({
   title: string().min(1).max(255),
@@ -18,6 +23,7 @@ const newPostSchema = object({
 })
 
 const QuestionType: React.FC = () => {
+  const [preview, setPreview] = useState<boolean>(false)
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
     NewPostMutationVariables
@@ -73,7 +79,19 @@ const QuestionType: React.FC = () => {
         {...form.register('body')}
         placeholder="Ask anything about code"
       />
-      <div className="ml-auto">
+      <div className="flex items-center justify-between">
+        <Button
+          type="button"
+          variant="success"
+          outline
+          onClick={() => setPreview(!preview)}
+        >
+          {preview ? (
+            <EyeOffIcon className="h-5 w-5" />
+          ) : (
+            <EyeIcon className="h-5 w-5" />
+          )}
+        </Button>
         <Button type="submit" className="flex items-center gap-1.5">
           <QuestionMarkCircleIcon className="h-4 w-4" />
           <div>Ask</div>
