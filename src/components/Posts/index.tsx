@@ -11,6 +11,7 @@ export const query = gql`
       id
       title
       body
+      done
       type
       createdAt
       user {

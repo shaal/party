@@ -10,7 +10,7 @@ interface Props {
 const TaskType: React.FC<Props> = ({ task }) => {
   return (
     <div className="text-lg post flex items-center gap-2.5">
-      <TaskCheckbox />
+      <TaskCheckbox checked={task?.done} />
       <Linkify>{task?.body}</Linkify>
     </div>
   )
