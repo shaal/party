@@ -17,7 +17,8 @@ input DeletePostInput {
 }
 
 input EditPostInput {
-  body: String!
+  body: String
+  done: Boolean
   id: ID!
 }
 

@@ -93,7 +93,8 @@ builder.mutationField('createPost', (t) =>
 const EditPostInput = builder.inputType('EditPostInput', {
   fields: (t) => ({
     id: t.id({}),
-    body: t.string({})
+    body: t.string({ required: false }),
+    done: t.boolean({ required: false })
   })
 })
 
@@ -107,18 +108,15 @@ builder.mutationField('editPost', (t) =>
       const post = await db.post.findFirst({
         where: {
           id: input.id,
-          // NOTE: We add the user ID here to ensure that users can only
-          // edit their own posts.
           userId: user!.id
         },
 
-        // Just reject if the record is not found:
         rejectOnNotFound: true
       })
 
       return db.post.update({
         where: { id: post.id },
-        data: { body: input.body }
+        data: { body: input.body as string, done: input.done as boolean }
       })
     }
   })
