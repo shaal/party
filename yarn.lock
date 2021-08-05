@@ -550,10 +550,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@giraphql/core@^2.12.0":
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.12.0.tgz#8e35e9cab8b84d6f2afb0ffa86c4d2ff8000be28"
-  integrity sha512-E9Em3vBpdOeQJI44ZMrP3JGzLyB0cHCBmGDQcZsUPcTV2NHtmtH3rIzhgPTvVZRdDlyJ+IrryibNBIbewhyEBg==
+"@giraphql/core@2.13.1":
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.13.1.tgz#e4e3cf3e443acde3fa746606bb4852d5c43d4225"
+  integrity sha512-bGXQNXtwvD59zTwnct9iiM/T5UUbuRbZlYMIFJhF42Y9jMtusAE2dpkUMnVqfNVcgFrTKnNJ0FMBjaJkk9n39A==
 
 "@giraphql/plugin-scope-auth@2.8.1":
   version "2.8.1"
