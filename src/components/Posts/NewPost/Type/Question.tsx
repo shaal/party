@@ -17,6 +17,7 @@ import { Input } from '~/components/ui/Input'
 import { TextArea } from '~/components/ui/TextArea'
 import { useState } from 'react'
 import Markdown from 'markdown-to-jsx'
+import Attachment from '../Attachment'
 
 const newPostSchema = object({
   title: string().min(1).max(255),
@@ -24,6 +25,7 @@ const newPostSchema = object({
 })
 
 const QuestionType: React.FC = () => {
+  const [attachments, setAttachments] = useState<string[]>([])
   const [preview, setPreview] = useState<boolean>(false)
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -94,18 +96,25 @@ const QuestionType: React.FC = () => {
         </Fragment>
       )}
       <div className="flex items-center justify-between">
-        <Button
-          type="button"
-          variant="success"
-          outline
-          onClick={() => setPreview(!preview)}
-        >
-          {preview ? (
-            <EyeOffIcon className="h-5 w-5" />
-          ) : (
-            <EyeIcon className="h-5 w-5" />
-          )}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Attachment
+            attachments={attachments}
+            setAttachments={setAttachments}
+          />
+          <Button
+            type="button"
+            variant="success"
+            size="sm"
+            outline
+            onClick={() => setPreview(!preview)}
+          >
+            {preview ? (
+              <EyeOffIcon className="h-5 w-5" />
+            ) : (
+              <EyeIcon className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
         <Button type="submit" className="flex items-center gap-1.5">
           <QuestionMarkCircleIcon className="h-4 w-4" />
           <div>Ask</div>
