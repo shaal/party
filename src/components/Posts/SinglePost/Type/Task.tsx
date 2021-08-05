@@ -7,6 +7,7 @@ import {
   EditPostMutation,
   EditPostMutationVariables
 } from './__generated__/Task.generated'
+import Attachments from '../Attachments'
 
 interface Props {
   task: Post
@@ -36,6 +37,7 @@ const TaskType: React.FC<Props> = ({ task }) => {
     <div className="text-lg post flex items-center gap-2.5">
       <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
       <Linkify>{task?.body}</Linkify>
+      <Attachments attachments={task?.attachments} />
     </div>
   )
 }
