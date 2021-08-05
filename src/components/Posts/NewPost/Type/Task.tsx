@@ -60,7 +60,16 @@ const TaskType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ body, done }) =>
-        createPost({ variables: { input: { body, done, type: 'TASK' } } })
+        createPost({
+          variables: {
+            input: {
+              body,
+              done,
+              type: 'TASK',
+              attachments: JSON.stringify(attachments)
+            }
+          }
+        })
       }
     >
       <ErrorMessage

@@ -67,7 +67,16 @@ const QuestionType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ title, body }) =>
-        createPost({ variables: { input: { title, body, type: 'QUESTION' } } })
+        createPost({
+          variables: {
+            input: {
+              title,
+              body,
+              type: 'QUESTION',
+              attachments: JSON.stringify(attachments)
+            }
+          }
+        })
       }
     >
       <ErrorMessage
