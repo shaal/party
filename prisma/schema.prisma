@@ -69,7 +69,6 @@ model Post {
   type        PostType @default(POST)
   attachments Json?
 
-
   // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
