@@ -8,9 +8,10 @@ import {
 import { Form, useZodForm } from '~/components/ui/Form'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import Button from '~/components/ui/Button'
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from '~/components/ui/Input'
 import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
+import Attachment from '../Attachment'
 
 const newPostSchema = object({
   body: string().min(1).max(1000),
@@ -18,6 +19,7 @@ const newPostSchema = object({
 })
 
 const TaskType: React.FC = () => {
+  const [attachments, setAttachments] = useState<string[]>([])
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
     NewPostMutationVariables
@@ -71,7 +73,8 @@ const TaskType: React.FC = () => {
           placeholder="What have you achieved?"
         />
       </div>
-      <div className="ml-auto">
+      <div className="flex items-center justify-between">
+        <Attachment attachments={attachments} setAttachments={setAttachments} />
         <Button type="submit" className="flex items-center gap-1.5">
           <CheckCircleIcon className="h-4 w-4" />
           <div>Create Task</div>

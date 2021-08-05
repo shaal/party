@@ -76,7 +76,6 @@ const PostType: React.FC = () => {
       <TextArea {...form.register('body')} placeholder="What's on your mind?" />
       <div className="flex items-center justify-between">
         <Attachment attachments={attachments} setAttachments={setAttachments} />
-
         <Button type="submit" className="flex items-center gap-1.5">
           <PencilAltIcon className="h-4 w-4" />
           <div>Post</div>
