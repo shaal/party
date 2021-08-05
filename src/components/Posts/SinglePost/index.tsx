@@ -15,6 +15,7 @@ import {
   DeletePostMutation,
   DeletePostMutationVariables
 } from './__generated__/index.generated'
+import { useRouter } from 'next/router'
 
 interface Props {
   post: Post
@@ -22,6 +23,7 @@ interface Props {
 
 export const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [deletePost, deletePostResult] = useMutation<
     DeletePostMutation,
     DeletePostMutationVariables
@@ -44,6 +46,9 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
             }
           }
         })
+      },
+      onCompleted() {
+        router.reload()
       }
     }
   )
