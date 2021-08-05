@@ -1,9 +1,12 @@
+scalar Attachments
+
 input ChangePasswordInput {
   currentPassword: String!
   newPassword: String!
 }
 
 input CreatePostInput {
+  attachments: String
   body: String!
   done: Boolean! = true
   title: String
@@ -43,6 +46,7 @@ type Mutation {
 }
 
 type Post {
+  attachments: Attachments
   body: String!
   createdAt: DateTime!
   done: Boolean!

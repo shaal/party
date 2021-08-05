@@ -9,13 +9,16 @@ import { Form, useZodForm } from '~/components/ui/Form'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { TextArea } from '~/components/ui/TextArea'
 import Button from '~/components/ui/Button'
-import React from 'react'
+import React, { useState } from 'react'
+import Attachment from '../Attachment'
+import Attachments from '../../SinglePost/Attachments'
 
 const newPostSchema = object({
   body: string().min(1).max(1000)
 })
 
 const PostType: React.FC = () => {
+  const [attachments, setAttachments] = useState<string[]>([])
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
     NewPostMutationVariables
@@ -55,7 +58,15 @@ const PostType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ body }) =>
-        createPost({ variables: { input: { body, type: 'POST' } } })
+        createPost({
+          variables: {
+            input: {
+              body,
+              type: 'POST',
+              attachments: JSON.stringify(attachments)
+            }
+          }
+        })
       }
     >
       <ErrorMessage
@@ -63,12 +74,19 @@ const PostType: React.FC = () => {
         error={createPostResult.error}
       />
       <TextArea {...form.register('body')} placeholder="What's on your mind?" />
-      <div className="ml-auto">
+      <div className="flex items-center justify-between">
+        <Attachment attachments={attachments} setAttachments={setAttachments} />
+
         <Button type="submit" className="flex items-center gap-1.5">
           <PencilAltIcon className="h-4 w-4" />
           <div>Post</div>
         </Button>
       </div>
+      <Attachments
+        attachments={attachments}
+        setAttachments={setAttachments}
+        isNew
+      />
     </Form>
   )
 }

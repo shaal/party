@@ -3,7 +3,7 @@ import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { IncomingMessage, OutgoingMessage } from 'http'
-import { User, Session } from '@prisma/client'
+import { User, Session, Prisma } from '@prisma/client'
 
 export interface Context {
   req: IncomingMessage
@@ -34,6 +34,7 @@ export const builder = new SchemaBuilder<{
     // We modify the types for the `ID` type to denote that it's always a string when it comes in.
     ID: { Input: string; Output: string | number }
     DateTime: { Input: Date; Output: Date }
+    Attachments: { Input: String; Output: Prisma.JsonValue }
   }
   // Define the shape of the auth scopes that we'll be using:
   AuthScopes: {
@@ -66,5 +67,13 @@ builder.scalarType('DateTime', {
   serialize: (date) => date.toISOString(),
   parseValue: (date) => {
     return new Date(date)
+  }
+})
+
+// Provide the custom DateTime scalar that allows dates to be transmitted over GraphQL:
+builder.scalarType('Attachments', {
+  serialize: (attachments) => JSON.parse(attachments),
+  parseValue: (attachments) => {
+    return attachments
   }
 })

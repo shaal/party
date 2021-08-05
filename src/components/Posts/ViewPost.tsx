@@ -20,6 +20,7 @@ const query = gql`
       title
       body
       done
+      attachments
       type
       createdAt
       user {
