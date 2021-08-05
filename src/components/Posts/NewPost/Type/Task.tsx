@@ -42,7 +42,7 @@ const TaskType: React.FC = () => {
         })
       },
       onCompleted() {
-        // TODO: Clear Textarea
+        form.reset()
       }
     }
   )
