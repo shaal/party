@@ -9,12 +9,16 @@ interface Props {
 
 const QuestionType: React.FC<Props> = ({ question }) => {
   return (
-    <div className="text-xl post">
-      <div className="font-bold mb-1">{question?.title}</div>
-      <div className="prose">
-        <Markdown options={{ wrapper: 'article' }}>{question?.body}</Markdown>
+    <div className="text-xl post space-y-3">
+      <div>
+        <div className="font-bold mb-1">{question?.title}</div>
+        <div className="prose">
+          <Markdown options={{ wrapper: 'article' }}>{question?.body}</Markdown>
+        </div>
       </div>
-      <Attachments attachments={question?.attachments} />
+      {question?.attachments && (
+        <Attachments attachments={question?.attachments} />
+      )}
     </div>
   )
 }

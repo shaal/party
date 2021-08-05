@@ -11,7 +11,7 @@ const PostType: React.FC<Props> = ({ post }) => {
   return (
     <div className="text-lg post space-y-3">
       <Linkify>{post?.body}</Linkify>
-      <Attachments attachments={post?.attachments} />
+      {post?.attachments && <Attachments attachments={post?.attachments} />}
     </div>
   )
 }
