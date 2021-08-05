@@ -8,6 +8,8 @@ import { useContext } from 'react'
 import AppContext from '~/components/utils/AppContext'
 import * as timeago from 'timeago.js'
 import PostType from './Type/Post'
+import TaskType from './Type/Task'
+import QuestionType from './Type/Question'
 
 interface Props {
   post: Post
@@ -28,6 +30,8 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
           </Link>
         </div>
         {post?.type === 'POST' && <PostType post={post} />}
+        {post?.type === 'TASK' && <TaskType task={post} />}
+        {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>
       <div className="flex p-3 gap-7 border-t dark:border-gray-800">
         <Link href={`/posts/${post?.id}`} passHref>
