@@ -18,7 +18,7 @@
     "codegen:graphql": "graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.4",
+    "@apollo/client": "3.4.5",
     "@giraphql/core": "^2.12.0",
     "@giraphql/plugin-scope-auth": "^2.7.1",
     "@giraphql/plugin-simple-objects": "^2.5.1",
