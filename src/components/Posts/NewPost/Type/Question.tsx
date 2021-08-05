@@ -72,9 +72,13 @@ const QuestionType: React.FC = () => {
         error={createPostResult.error}
       />
       {preview ? (
-        <div className="text-lg post">
-          <div className="font-bold mb-1">Hello, World!</div>
-          <Markdown options={{ wrapper: 'article' }}>Hello, World!</Markdown>
+        <div className="text-xl post">
+          <div className="font-bold mb-1">{form.getValues('title')}</div>
+          <div className="prose">
+            <Markdown options={{ wrapper: 'article' }}>
+              {form.getValues('body')}
+            </Markdown>
+          </div>
         </div>
       ) : (
         <Fragment>
