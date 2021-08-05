@@ -64,7 +64,7 @@ export const NewPost: React.FC = () => {
               )}
             </Tab>
           </Tab.List>
-          <Tab.Panels className="mt-4">
+          <Tab.Panels className="mt-5">
             <Tab.Panel>
               <PostType />
             </Tab.Panel>
