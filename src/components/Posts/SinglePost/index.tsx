@@ -10,6 +10,11 @@ import * as timeago from 'timeago.js'
 import PostType from './Type/Post'
 import TaskType from './Type/Task'
 import QuestionType from './Type/Question'
+import { gql, Reference, useMutation } from '@apollo/client'
+import {
+  DeletePostMutation,
+  DeletePostMutationVariables
+} from './__generated__/index.generated'
 
 interface Props {
   post: Post
@@ -17,6 +22,31 @@ interface Props {
 
 export const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
+  const [deletePost, deletePostResult] = useMutation<
+    DeletePostMutation,
+    DeletePostMutationVariables
+  >(
+    gql`
+      mutation DeletePostMutation($input: DeletePostInput!) {
+        deletePost(input: $input) {
+          id
+        }
+      }
+    `,
+    {
+      update(cache) {
+        cache.modify({
+          fields: {
+            notes(existingPosts, { readField }) {
+              return existingPosts.filter(
+                (postRef: Reference) => post?.id !== readField('id', postRef)
+              )
+            }
+          }
+        })
+      }
+    }
+  )
 
   return (
     <Card>
@@ -40,7 +70,12 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
           </button>
         </Link>
         {post?.user?.id === currentUser?.id && (
-          <button className="text-red-500 hover:text-red-400 flex items-center space-x-2">
+          <button
+            className="text-red-500 hover:text-red-400 flex items-center space-x-2"
+            onClick={() =>
+              deletePost({ variables: { input: { id: post?.id } } })
+            }
+          >
             <TrashIcon className="h-5 w-5" />
           </button>
         )}

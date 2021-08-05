@@ -144,12 +144,9 @@ builder.mutationField('deletePost', (t) =>
       const post = await db.post.findFirst({
         where: {
           id: input.id,
-          // NOTE: We add the user ID here to ensure that users can only
-          // edit their own posts.
           userId: user!.id
         },
 
-        // Just reject if the record is not found:
         rejectOnNotFound: true
       })
 
