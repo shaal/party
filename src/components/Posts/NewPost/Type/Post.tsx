@@ -41,7 +41,7 @@ const PostType: React.FC = () => {
         })
       },
       onCompleted() {
-        // TODO: Clear Textarea
+        form.reset()
       }
     }
   )
