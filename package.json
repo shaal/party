@@ -22,7 +22,7 @@
     "@giraphql/core": "^2.12.0",
     "@giraphql/plugin-scope-auth": "^2.7.1",
     "@giraphql/plugin-simple-objects": "^2.5.1",
-    "@giraphql/plugin-validation": "^2.7.1",
+    "@giraphql/plugin-validation": "2.8.1",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
     "@hookform/resolvers": "2.7.1",
