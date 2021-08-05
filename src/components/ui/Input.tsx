@@ -13,7 +13,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   ref
 ) {
   return (
-    <label>
+    <label className="w-full">
       {label && (
         <div className="font-medium text-gray-800 dark:text-gray-200 mb-1">
           {label}
@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           {
             'border-red-500 placeholder-red-500': error
           },
-          'border border-gray-300 dark:border-gray-700 outline-none rounded-lg shadow-sm w-full',
+          'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 outline-none rounded-lg shadow-sm w-full',
           className
         )}
         type={type}

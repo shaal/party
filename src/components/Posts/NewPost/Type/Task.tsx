@@ -11,6 +11,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import Button from '~/components/ui/Button'
 import React from 'react'
 import { Input } from '~/components/ui/Input'
+import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
 
 const newPostSchema = object({
   body: string().min(1).max(1000)
@@ -64,11 +65,13 @@ const TaskType: React.FC = () => {
         title="Failed to create task"
         error={createPostResult.error}
       />
-      <Input
-        {...form.register('body')}
-        className="mb-1.5"
-        placeholder="What have you achieved?"
-      />
+      <div className="flex items-center mb-1.5 gap-2.5">
+        <TaskCheckbox />
+        <Input
+          {...form.register('body')}
+          placeholder="What have you achieved?"
+        />
+      </div>
       <div className="ml-auto">
         <Button type="submit" className="flex items-center gap-1.5">
           <CheckCircleIcon className="h-4 w-4" />
