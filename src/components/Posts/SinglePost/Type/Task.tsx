@@ -1,6 +1,7 @@
 import React from 'react'
 import { Post } from '~/__generated__/schema.generated'
 import Linkify from 'linkifyjs/react'
+import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
 
 interface Props {
   task: Post
@@ -8,7 +9,8 @@ interface Props {
 
 const TaskType: React.FC<Props> = ({ task }) => {
   return (
-    <div className="text-lg post">
+    <div className="text-lg post flex items-center gap-2.5">
+      <TaskCheckbox />
       <Linkify>{task?.body}</Linkify>
     </div>
   )
