@@ -3,11 +3,11 @@ import React from 'react'
 import { Post, User } from '~/__generated__/schema.generated'
 import { Card, CardBody } from '../../ui/Card'
 import UserProfileLarge from '../../ui/UserProfileLarge'
-import Linkify from 'linkifyjs/react'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import { useContext } from 'react'
 import AppContext from '~/components/utils/AppContext'
 import * as timeago from 'timeago.js'
+import PostType from './Type/Post'
 
 interface Props {
   post: Post
@@ -27,10 +27,7 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
             </div>
           </Link>
         </div>
-        <div className="text-lg post">
-          <Linkify>{post?.body}</Linkify>
-          {post?.type}
-        </div>
+        {post?.type === 'POST' && <PostType post={post} />}
       </CardBody>
       <div className="flex p-3 gap-7 border-t dark:border-gray-800">
         <Link href={`/posts/${post?.id}`} passHref>
