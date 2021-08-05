@@ -17,7 +17,9 @@ const query = gql`
   query PostQuery($id: ID!) {
     post(id: $id) {
       id
+      title
       body
+      type
       createdAt
       user {
         username

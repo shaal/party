@@ -44,6 +44,8 @@ type Post {
   body: String!
   createdAt: DateTime!
   id: ID!
+  title: String
+  type: String!
   updatedAt: DateTime!
   user: User
 }

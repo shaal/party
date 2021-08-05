@@ -8,7 +8,9 @@ export const PostObject = builder.objectRef<Post>('Post')
 PostObject.implement({
   fields: (t) => ({
     id: t.exposeID('id', {}),
+    title: t.exposeString('title', { nullable: true }),
     body: t.exposeString('body', {}),
+    type: t.exposeString('type', {}),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.field({

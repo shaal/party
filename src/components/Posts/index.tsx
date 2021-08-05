@@ -9,7 +9,9 @@ export const query = gql`
   query PostsQuery {
     posts {
       id
+      title
       body
+      type
       createdAt
       user {
         id
