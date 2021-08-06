@@ -1,9 +1,9 @@
 import SchemaBuilder from '@giraphql/core'
-import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
+import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
+import { Prisma, Session, User } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
-import { User, Session, Prisma } from '@prisma/client'
 
 export interface Context {
   req: IncomingMessage
