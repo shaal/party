@@ -1,11 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "unused-imports",
-    "simple-import-sort",
-    "import"
-  ],
+  "plugins": ["@typescript-eslint", "unused-imports", "simple-import-sort"],
   "extends": ["next"],
   "rules": {
     "react/prop-types": 0,
@@ -15,22 +10,7 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@next/next/no-img-element": "off",
-    "import/extensions": 2,
-    "import/no-amd": 2,
-    "import/no-commonjs": 2,
-    "import/no-dynamic-require": 2,
-    "import/no-extraneous-dependencies": [0, { "devDependencies": false }],
-    "import/no-unresolved": 2,
-    "import/no-webpack-loader-syntax": 2,
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
-  },
-  "overrides": [
-    {
-      "files": ["*.config.js"],
-      "rules": {
-        "import/no-commonjs": "off"
-      }
-    }
-  ]
+  }
 }
