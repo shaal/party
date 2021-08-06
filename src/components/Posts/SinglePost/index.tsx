@@ -75,7 +75,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>
-      <div className="flex p-3 gap-7 border-t dark:border-gray-800">
+      <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
