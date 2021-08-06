@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
-import { authenticatedRoute } from '~/utils/redirects'
+
 import EditProfile from '~/components/EditProfile'
+import { authenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
