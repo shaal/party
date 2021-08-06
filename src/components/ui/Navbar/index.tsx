@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
   return (
     <Disclosure
       as="nav"
-      className="bg-white dark:bg-gray-900 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50"
+      className="bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50"
     >
       {({ open }) => (
         <Fragment>
