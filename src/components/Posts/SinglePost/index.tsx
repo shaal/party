@@ -21,7 +21,7 @@ interface Props {
   post: Post
 }
 
-export const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [deletePost, deletePostResult] = useMutation<
@@ -88,3 +88,5 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
     </Card>
   )
 }
+
+export default SinglePost

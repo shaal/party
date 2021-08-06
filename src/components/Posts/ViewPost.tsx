@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { SinglePost } from '~/components/Posts/SinglePost'
+import SinglePost from '~/components/Posts/SinglePost'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import {
