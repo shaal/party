@@ -26,7 +26,7 @@ export const query = gql`
   }
 `
 
-export const Posts: React.FC = () => {
+const Posts: React.FC = () => {
   const { data, loading, error } = useQuery<PostsQuery>(query)
 
   if (loading)
@@ -53,3 +53,5 @@ export const Posts: React.FC = () => {
     </div>
   )
 }
+
+export default Posts
