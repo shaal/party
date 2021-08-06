@@ -1,17 +1,18 @@
+import { gql, useMutation } from '@apollo/client'
+import Link from 'next/link'
+import React from 'react'
 import { object, string } from 'zod'
-import { Input } from '../ui/Input'
-import { Form, useZodForm } from '../ui/Form'
-import { useMutation, gql } from '@apollo/client'
+
+import { Button } from '../ui/Button'
+import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { Form, useZodForm } from '../ui/Form'
+import { Input } from '../ui/Input'
 import { useAuthRedirect } from '../utils/useAuthRedirect'
 import {
   SignUpFormMutation,
   SignUpFormMutationVariables
 } from './__generated__/SignUpForm.generated'
-import { Button } from '../ui/Button'
-import Link from 'next/link'
-import React from 'react'
-import { Card, CardBody } from '../ui/Card'
 
 const signUpSchema = object({
   username: string().min(2).max(30),
