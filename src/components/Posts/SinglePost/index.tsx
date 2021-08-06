@@ -18,6 +18,7 @@ import {
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
+import LikeButton from '../LikeButton'
 
 interface Props {
   post: Post
@@ -55,6 +56,10 @@ const SinglePost: React.FC<Props> = ({ post }) => {
     }
   )
 
+  const handleLike = (post: any) => {
+    alert('Liked')
+  }
+
   return (
     <Card>
       <CardBody className="space-y-4">
@@ -71,6 +76,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>
       <div className="flex p-3 gap-7 border-t dark:border-gray-800">
+        <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
