@@ -21,7 +21,7 @@ const changePasswordSchema = object({
   path: ['confirmNewPassword']
 })
 
-export const ChangePassword: React.FC = () => {
+const ChangePassword: React.FC = () => {
   const [changePassword, changePasswordResult] = useMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables
@@ -75,3 +75,5 @@ export const ChangePassword: React.FC = () => {
     </GridLayout>
   )
 }
+
+export default ChangePassword
