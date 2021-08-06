@@ -30,7 +30,7 @@ const RecentUsersCard = ({ children }: any) => {
   )
 }
 
-export const RecentUsers: React.FC = () => {
+const RecentUsers: React.FC = () => {
   const { data, loading, error } = useQuery<RecentUsersQuery>(query)
 
   if (loading)
@@ -57,3 +57,5 @@ export const RecentUsers: React.FC = () => {
     </RecentUsersCard>
   )
 }
+
+export default RecentUsers

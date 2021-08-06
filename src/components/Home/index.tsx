@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { RecentUsers } from './RecentUsers'
+import RecentUsers from './RecentUsers'
 import NewPost from '~/components/Posts/NewPost'
 import { useContext } from 'react'
 import AppContext from '~/components/utils/AppContext'
