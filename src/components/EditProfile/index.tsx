@@ -1,9 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
-import { ErrorMessage } from '../ui/ErrorMessage'
+
 import { GridLayout } from '../GridLayout'
-import ProfileForm from './ProfileForm'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import { EditProfileQuery } from './__generated__/index.generated'
+import ProfileForm from './ProfileForm'
 
 const EditProfile: React.FC = () => {
   const { data, error } = useQuery<EditProfileQuery>(gql`
