@@ -18,7 +18,7 @@ const loginSchema = object({
   password: string().min(6)
 })
 
-export const LoginForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
     LoginFormMutation,
@@ -96,3 +96,5 @@ export const LoginForm: React.FC = () => {
     </div>
   )
 }
+
+export default LoginForm

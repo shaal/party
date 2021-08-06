@@ -19,7 +19,7 @@ const signUpSchema = object({
   password: string().min(6)
 })
 
-export const SignUpForm: React.FC = () => {
+const SignUpForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
   const [signUp, signUpResult] = useMutation<
     SignUpFormMutation,
@@ -113,3 +113,5 @@ export const SignUpForm: React.FC = () => {
     </div>
   )
 }
+
+export default SignUpForm
