@@ -33,7 +33,7 @@ const query = gql`
   }
 `
 
-export const ViewPost: React.FC = () => {
+const ViewPost: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<PostQuery>(query, {
     variables: {
@@ -60,3 +60,5 @@ export const ViewPost: React.FC = () => {
     </Fragment>
   )
 }
+
+export default ViewPost
