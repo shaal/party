@@ -21,7 +21,7 @@ interface Props {
   user: User
 }
 
-export const ProfileForm: React.FC<Props> = ({ user }) => {
+const ProfileForm: React.FC<Props> = ({ user }) => {
   const [editUser, editUserResult] = useMutation<
     ProfileFormMutation,
     ProfileFormMutationVariables
@@ -73,3 +73,5 @@ export const ProfileForm: React.FC<Props> = ({ user }) => {
     </Form>
   )
 }
+
+export default ProfileForm
