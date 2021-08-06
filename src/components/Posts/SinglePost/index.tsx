@@ -1,21 +1,23 @@
-import Link from 'next/link'
-import React from 'react'
-import { Post, User } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '../../ui/Card'
-import UserProfileLarge from '../../shared/UserProfileLarge'
-import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
-import { useContext } from 'react'
-import AppContext from '~/components/utils/AppContext'
-import * as timeago from 'timeago.js'
-import PostType from './Type/Post'
-import TaskType from './Type/Task'
-import QuestionType from './Type/Question'
 import { gql, Reference, useMutation } from '@apollo/client'
+import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { useContext } from 'react'
+import * as timeago from 'timeago.js'
+
+import { Post, User } from '~/__generated__/schema.generated'
+import AppContext from '~/components/utils/AppContext'
+
+import UserProfileLarge from '../../shared/UserProfileLarge'
+import { Card, CardBody } from '../../ui/Card'
 import {
   DeletePostMutation,
   DeletePostMutationVariables
 } from './__generated__/index.generated'
-import { useRouter } from 'next/router'
+import PostType from './Type/Post'
+import QuestionType from './Type/Question'
+import TaskType from './Type/Task'
 
 interface Props {
   post: Post
