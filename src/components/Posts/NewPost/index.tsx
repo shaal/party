@@ -21,7 +21,7 @@ const TaskType = dynamic(() => import('./Type/Task'), {
 
 const Loading = () => <div className="shimmer rounded-lg h-10"></div>
 
-export const NewPost: React.FC = () => {
+const NewPost: React.FC = () => {
   return (
     <Card>
       <CardBody>
@@ -80,3 +80,5 @@ export const NewPost: React.FC = () => {
     </Card>
   )
 }
+
+export default NewPost
