@@ -6,7 +6,7 @@
 body {
   font-family: 'Circular Std', Helvetica, Arial, sans-serif;
   @apply bg-gray-50;
-  @apply dark:bg-black;
+  @apply dark:bg-gray-900;
 }
 
 .shimmer {
