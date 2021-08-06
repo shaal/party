@@ -8,7 +8,7 @@ import AppContext from '~/components/utils/AppContext'
 import Banner from '~/components/shared/Banner'
 import Posts from '~/pages/posts'
 
-export const Home: React.FC = () => {
+const Home: React.FC = () => {
   const { currentUser, currentUserLoading, currentUserError } =
     useContext(AppContext)
 
@@ -33,3 +33,5 @@ export const Home: React.FC = () => {
     </Fragment>
   )
 }
+
+export default Home
