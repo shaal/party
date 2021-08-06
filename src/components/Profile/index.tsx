@@ -18,7 +18,7 @@ export const query = gql`
   }
 `
 
-export const Profile: React.FC = () => {
+const Profile: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProfileQuery>(query, {
     variables: {
@@ -41,3 +41,5 @@ export const Profile: React.FC = () => {
     </GridLayout>
   )
 }
+
+export default Profile
