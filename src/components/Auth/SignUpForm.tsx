@@ -8,7 +8,7 @@ import {
   SignUpFormMutation,
   SignUpFormMutationVariables
 } from './__generated__/SignUpForm.generated'
-import Button from '../ui/Button'
+import { Button } from '../ui/Button'
 import Link from 'next/link'
 import React from 'react'
 import { Card, CardBody } from '../ui/Card'

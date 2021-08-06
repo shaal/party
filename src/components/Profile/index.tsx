@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
+import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import React from 'react'
 import { Card, CardBody } from '../ui/Card'
 import { ProfileQuery } from './__generated__/index.generated'

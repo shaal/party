@@ -8,7 +8,7 @@ import {
 import { Form, useZodForm } from '~/components/ui/Form'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { TextArea } from '~/components/ui/TextArea'
-import Button from '~/components/ui/Button'
+import { Button } from '~/components/ui/Button'
 import React, { useState } from 'react'
 import Attachment from '../Attachment'
 import Attachments from '../../SinglePost/Attachments'

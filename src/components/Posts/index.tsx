@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { PostsQuery } from './__generated__/index.generated'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { SinglePost } from './SinglePost'
-import PostShimmer from '~/components/ui/Shimmer/PostShimmer'
+import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import React from 'react'
 
 export const query = gql`

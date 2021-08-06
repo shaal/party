@@ -6,8 +6,8 @@ import {
   GridItemEight,
   GridItemFour,
   GridLayout
-} from '~/components/ui/GridLayout'
-import UserProfileLarge from '~/components/ui/UserProfileLarge'
+} from '~/components/GridLayout'
+import UserProfileLarge from '~/components/shared/UserProfileLarge'
 import { Post, User } from '~/__generated__/schema.generated'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'

@@ -12,7 +12,7 @@ interface Props {
   className?: string
 }
 
-const Dropdown: React.FC<Props> = ({
+export const Dropdown: React.FC<Props> = ({
   options,
   value,
   onChange,
@@ -62,5 +62,3 @@ const Dropdown: React.FC<Props> = ({
     </Listbox>
   )
 }
-
-export default Dropdown

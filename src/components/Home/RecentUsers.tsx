@@ -3,9 +3,9 @@ import React from 'react'
 import { User } from '~/__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import UserProfileLarge from '../ui/UserProfileLarge'
+import UserProfileLarge from '../shared/UserProfileLarge'
 import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
-import UserProfileLargeShimmer from '~/components/ui/Shimmer/UserProfileLargeShimmer'
+import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
 
 export const query = gql`
   query RecentUsersQuery {

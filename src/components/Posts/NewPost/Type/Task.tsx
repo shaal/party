@@ -7,7 +7,7 @@ import {
 } from './__generated__/Post.generated'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import Button from '~/components/ui/Button'
+import { Button } from '~/components/ui/Button'
 import React, { useState } from 'react'
 import { Input } from '~/components/ui/Input'
 import { TaskCheckbox } from '~/components/ui/TaskCheckbox'

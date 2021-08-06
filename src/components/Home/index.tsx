@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
+import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { RecentUsers } from './RecentUsers'
 import { NewPost } from '~/components/Posts/NewPost'
 import { useContext } from 'react'
 import AppContext from '~/components/utils/AppContext'
-import Banner from '~/components/ui/Banner'
+import Banner from '~/components/shared/Banner'
 import Posts from '~/pages/posts'
 
 export const Home: React.FC = () => {

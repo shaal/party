@@ -8,7 +8,7 @@ import Username from '../Username'
 import { gql, useMutation } from '@apollo/client'
 import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
 import Image from 'next/image'
-import Dropdown from '../Dropdown'
+import { Dropdown } from '../../ui/Dropdown'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>
