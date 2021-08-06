@@ -2,8 +2,10 @@ import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
 import React from 'react'
 import { object, string } from 'zod'
+
 import { User } from '~/__generated__/schema.generated'
-import Button from '../ui/Button'
+
+import { Button } from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
 import { Input } from '../ui/Input'
@@ -21,7 +23,7 @@ interface Props {
   user: User
 }
 
-export const ProfileForm: React.FC<Props> = ({ user }) => {
+const ProfileForm: React.FC<Props> = ({ user }) => {
   const [editUser, editUserResult] = useMutation<
     ProfileFormMutation,
     ProfileFormMutationVariables
@@ -73,3 +75,5 @@ export const ProfileForm: React.FC<Props> = ({ user }) => {
     </Form>
   )
 }
+
+export default ProfileForm

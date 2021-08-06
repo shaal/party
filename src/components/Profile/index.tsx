@@ -1,9 +1,10 @@
-import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { GridItemEight, GridItemFour, GridLayout } from '../ui/GridLayout'
+import { useRouter } from 'next/router'
 import React from 'react'
+
+import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { Card, CardBody } from '../ui/Card'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
 
 export const query = gql`
@@ -18,7 +19,7 @@ export const query = gql`
   }
 `
 
-export const Profile: React.FC = () => {
+const Profile: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProfileQuery>(query, {
     variables: {
@@ -41,3 +42,5 @@ export const Profile: React.FC = () => {
     </GridLayout>
   )
 }
+
+export default Profile

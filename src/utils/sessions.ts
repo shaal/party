@@ -1,9 +1,10 @@
 import { Session, User } from '@prisma/client'
-import { db } from './prisma'
-import { GetServerSidePropsContext } from 'next'
-import { SessionOptions, applySession } from 'next-iron-session'
-import { IncomingMessage } from 'http'
 import { addSeconds, differenceInSeconds } from 'date-fns'
+import { IncomingMessage } from 'http'
+import { GetServerSidePropsContext } from 'next'
+import { applySession, SessionOptions } from 'next-iron-session'
+
+import { db } from './prisma'
 
 // 1000 Days
 const SESSION_TTL = 1000 * 24 * 3600

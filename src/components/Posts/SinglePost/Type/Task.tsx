@@ -1,13 +1,15 @@
-import React from 'react'
-import { Post } from '~/__generated__/schema.generated'
-import Linkify from 'linkifyjs/react'
-import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
 import { gql, useMutation } from '@apollo/client'
+import Linkify from 'linkifyjs/react'
+import React from 'react'
+
+import { Post } from '~/__generated__/schema.generated'
+import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
+
+import Attachments from '../Attachments'
 import {
   EditPostMutation,
   EditPostMutationVariables
 } from './__generated__/Task.generated'
-import Attachments from '../Attachments'
 
 interface Props {
   task: Post

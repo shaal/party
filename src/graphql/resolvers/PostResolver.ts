@@ -1,5 +1,7 @@
 import { Post, PostType } from '@prisma/client'
+
 import { db } from '~/utils/prisma'
+
 import { builder } from '../builder'
 import { UserObject } from './UserResolver'
 

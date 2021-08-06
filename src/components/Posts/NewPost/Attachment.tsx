@@ -1,6 +1,7 @@
 import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
-import Button from '~/components/ui/Button'
+
+import { Button } from '~/components/ui/Button'
 import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 
 interface Props {

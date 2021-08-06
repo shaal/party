@@ -1,18 +1,20 @@
 import { gql, useMutation } from '@apollo/client'
-import { boolean, object, string } from 'zod'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import React, { useState } from 'react'
+import { boolean, object, string } from 'zod'
+
+import { Button } from '~/components/ui/Button'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { Form, useZodForm } from '~/components/ui/Form'
+import { Input } from '~/components/ui/Input'
+import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
+
+import Attachments from '../../SinglePost/Attachments'
+import Attachment from '../Attachment'
 import {
   NewPostMutation,
   NewPostMutationVariables
 } from './__generated__/Post.generated'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import Button from '~/components/ui/Button'
-import React, { useState } from 'react'
-import { Input } from '~/components/ui/Input'
-import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
-import Attachment from '../Attachment'
-import Attachments from '../../SinglePost/Attachments'
 
 const newPostSchema = object({
   body: string().min(1).max(1000),

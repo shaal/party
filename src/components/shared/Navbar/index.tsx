@@ -1,11 +1,13 @@
-import AppContext from '~/components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Fragment } from 'react'
-import Button from '../Button'
+
+import AppContext from '~/components/utils/AppContext'
+
+import { Button } from '../../ui/Button'
 import MenuItems from './MenuItems'
 
 interface NavItemProps {
@@ -63,7 +65,7 @@ const Navbar: React.FC = () => {
   return (
     <Disclosure
       as="nav"
-      className="bg-white dark:bg-gray-900 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50"
+      className="bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50"
     >
       {({ open }) => (
         <Fragment>

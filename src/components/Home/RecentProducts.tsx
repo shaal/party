@@ -1,11 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
-import { UsersIcon } from '@heroicons/react/outline'
+import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-import { User } from '~/__generated__/schema.generated'
-import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
-
-import UserProfileLarge from '../shared/UserProfileLarge'
+import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
@@ -26,8 +23,8 @@ const RecentUsersCard = ({ children }: any) => {
   return (
     <div className="mb-4">
       <div className="mb-2 flex items-center gap-2">
-        <UsersIcon className="h-4 w-4" />
-        <div>Recent users</div>
+        <CubeIcon className="h-4 w-4" />
+        <div>Recent products</div>
       </div>
       <Card>
         <CardBody>{children}</CardBody>
@@ -36,18 +33,18 @@ const RecentUsersCard = ({ children }: any) => {
   )
 }
 
-const RecentUsers: React.FC = () => {
+const RecentProducts: React.FC = () => {
   const { data, loading, error } = useQuery<RecentUsersQuery>(query)
 
   if (loading)
     return (
       <RecentUsersCard>
         <div className="space-y-3">
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
+          <ProductProfileLargeShimmer />
+          <ProductProfileLargeShimmer />
+          <ProductProfileLargeShimmer />
+          <ProductProfileLargeShimmer />
+          <ProductProfileLargeShimmer />
         </div>
       </RecentUsersCard>
     )
@@ -55,13 +52,9 @@ const RecentUsers: React.FC = () => {
   return (
     <RecentUsersCard>
       <ErrorMessage title="Failed to load posts" error={error} />
-      <div className="space-y-3">
-        {data?.users.map((user: any) => (
-          <UserProfileLarge key={user?.id} user={user as User} />
-        ))}
-      </div>
+      <div className="space-y-3">🚧 WIP</div>
     </RecentUsersCard>
   )
 }
 
-export default RecentUsers
+export default RecentProducts

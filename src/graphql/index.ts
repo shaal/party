@@ -1,8 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-import { printSchema, lexicographicSortSchema, GraphQLSchema } from 'graphql'
-import { builder } from './builder'
 import './resolvers'
+
+import fs from 'fs'
+import { GraphQLSchema, lexicographicSortSchema, printSchema } from 'graphql'
+import path from 'path'
+
+import { builder } from './builder'
 
 export const schema = builder.toSchema({})
 

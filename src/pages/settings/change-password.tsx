@@ -1,6 +1,8 @@
 import { GetServerSideProps } from 'next'
+
+import ChangePassword from '~/components/EditProfile/ChangePassword'
 import { authenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
-export { ChangePassword as default } from '~/components/EditProfile/ChangePassword'
+export default ChangePassword

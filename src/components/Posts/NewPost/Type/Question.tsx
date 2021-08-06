@@ -1,24 +1,26 @@
 import { gql, useMutation } from '@apollo/client'
-import { object, string } from 'zod'
 import {
   EyeIcon,
   EyeOffIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
+import Markdown from 'markdown-to-jsx'
+import React, { Fragment } from 'react'
+import { useState } from 'react'
+import { object, string } from 'zod'
+
+import { Button } from '~/components/ui/Button'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { Form, useZodForm } from '~/components/ui/Form'
+import { Input } from '~/components/ui/Input'
+import { TextArea } from '~/components/ui/TextArea'
+
+import Attachments from '../../SinglePost/Attachments'
+import Attachment from '../Attachment'
 import {
   NewPostMutation,
   NewPostMutationVariables
 } from './__generated__/Post.generated'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import Button from '~/components/ui/Button'
-import React, { Fragment } from 'react'
-import { Input } from '~/components/ui/Input'
-import { TextArea } from '~/components/ui/TextArea'
-import { useState } from 'react'
-import Markdown from 'markdown-to-jsx'
-import Attachment from '../Attachment'
-import Attachments from '../../SinglePost/Attachments'
 
 const newPostSchema = object({
   title: string().min(1).max(255),

@@ -1,9 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
-import { PostsQuery } from './__generated__/index.generated'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { SinglePost } from './SinglePost'
-import PostShimmer from '~/components/ui/Shimmer/PostShimmer'
 import React from 'react'
+
+import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
+
+import { ErrorMessage } from '../ui/ErrorMessage'
+import { PostsQuery } from './__generated__/index.generated'
+import SinglePost from './SinglePost'
 
 export const query = gql`
   query PostsQuery {
@@ -26,7 +28,7 @@ export const query = gql`
   }
 `
 
-export const Posts: React.FC = () => {
+const Posts: React.FC = () => {
   const { data, loading, error } = useQuery<PostsQuery>(query)
 
   if (loading)
@@ -53,3 +55,5 @@ export const Posts: React.FC = () => {
     </div>
   )
 }
+
+export default Posts

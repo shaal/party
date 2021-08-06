@@ -1,10 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
 import React from 'react'
 import { object, string } from 'zod'
-import Button from '../ui/Button'
+
+import { GridLayout } from '../GridLayout'
+import { Button } from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
-import { GridLayout } from '../ui/GridLayout'
 import { Input } from '../ui/Input'
 import { SuccessMessage } from '../ui/SuccessMessage'
 import {
@@ -21,7 +22,7 @@ const changePasswordSchema = object({
   path: ['confirmNewPassword']
 })
 
-export const ChangePassword: React.FC = () => {
+const ChangePassword: React.FC = () => {
   const [changePassword, changePasswordResult] = useMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables
@@ -75,3 +76,5 @@ export const ChangePassword: React.FC = () => {
     </GridLayout>
   )
 }
+
+export default ChangePassword

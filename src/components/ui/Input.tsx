@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ComponentProps, forwardRef } from 'react'
+
 import { FieldError } from './Form'
 
 interface Props extends ComponentProps<'input'> {
@@ -24,7 +25,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           {
             'border-red-500 placeholder-red-500': error
           },
-          'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 outline-none rounded-lg shadow-sm w-full',
+          'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-400 outline-none rounded-lg shadow-sm w-full',
           className
         )}
         type={type}

@@ -1,6 +1,8 @@
-import React from 'react'
-import { Post } from '~/__generated__/schema.generated'
 import Linkify from 'linkifyjs/react'
+import React from 'react'
+
+import { Post } from '~/__generated__/schema.generated'
+
 import Attachments from '../Attachments'
 
 interface Props {

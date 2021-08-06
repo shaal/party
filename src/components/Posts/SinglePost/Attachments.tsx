@@ -2,7 +2,8 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
 import Image from 'next/image'
 import React, { Fragment } from 'react'
-import Button from '~/components/ui/Button'
+
+import { Button } from '~/components/ui/Button'
 
 interface Props {
   attachments: Prisma.JsonArray

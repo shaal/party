@@ -1,6 +1,7 @@
-import { NextSeo } from 'next-seo'
 import Link from 'next/link'
-import { GridLayout } from '~/components/ui/GridLayout'
+import { NextSeo } from 'next-seo'
+
+import { GridLayout } from '~/components/GridLayout'
 
 export default function Custom404() {
   return (

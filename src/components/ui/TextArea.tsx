@@ -1,4 +1,5 @@
 import { ComponentProps, forwardRef } from 'react'
+
 import { FieldError } from './Form'
 
 interface Props extends ComponentProps<'textarea'> {
@@ -15,7 +16,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           </div>
         )}
         <textarea
-          className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 w-full shadow-sm rounded-lg px-4 py-2 border border-gray-300 focus:border-blue-600 focus:ring-blue-500 disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20"
+          className="bg-white dark:bg-gray-800 w-full shadow-sm rounded-lg px-4 py-2 border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-400 disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20"
           ref={ref}
           {...props}
         />

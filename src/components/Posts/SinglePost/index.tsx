@@ -1,27 +1,30 @@
-import Link from 'next/link'
-import React from 'react'
-import { Post, User } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '../../ui/Card'
-import UserProfileLarge from '../../ui/UserProfileLarge'
-import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
-import { useContext } from 'react'
-import AppContext from '~/components/utils/AppContext'
-import * as timeago from 'timeago.js'
-import PostType from './Type/Post'
-import TaskType from './Type/Task'
-import QuestionType from './Type/Question'
 import { gql, Reference, useMutation } from '@apollo/client'
+import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { useContext } from 'react'
+import * as timeago from 'timeago.js'
+
+import { Post, User } from '~/__generated__/schema.generated'
+import AppContext from '~/components/utils/AppContext'
+
+import UserProfileLarge from '../../shared/UserProfileLarge'
+import { Card, CardBody } from '../../ui/Card'
+import LikeButton from '../LikeButton'
 import {
   DeletePostMutation,
   DeletePostMutationVariables
 } from './__generated__/index.generated'
-import { useRouter } from 'next/router'
+import PostType from './Type/Post'
+import QuestionType from './Type/Question'
+import TaskType from './Type/Task'
 
 interface Props {
   post: Post
 }
 
-export const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [deletePost, deletePostResult] = useMutation<
@@ -53,6 +56,10 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
     }
   )
 
+  const handleLike = (post: any) => {
+    console.log('Liked')
+  }
+
   return (
     <Card>
       <CardBody className="space-y-4">
@@ -68,7 +75,8 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>
-      <div className="flex p-3 gap-7 border-t dark:border-gray-800">
+      <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
+        <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
@@ -88,3 +96,5 @@ export const SinglePost: React.FC<Props> = ({ post }) => {
     </Card>
   )
 }
+
+export default SinglePost

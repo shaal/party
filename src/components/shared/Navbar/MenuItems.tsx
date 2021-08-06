@@ -1,13 +1,16 @@
+import { gql, useMutation } from '@apollo/client'
 import { Menu, Transition } from '@headlessui/react'
 import clsx from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment } from 'react'
+
 import { User } from '~/__generated__/schema.generated'
-import Username from '../Username'
-import { gql, useMutation } from '@apollo/client'
 import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
-import Image from 'next/image'
+
+import { Dropdown } from '../../ui/Dropdown'
+import Username from '../Username'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>
@@ -114,6 +117,18 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               >
                 Logout
               </Menu.Item>
+              <div className="border-b dark:border-gray-800"></div>
+              <div className="px-5 py-3 text-sm flex items-center gap-2">
+                <Dropdown
+                  className="w-full block"
+                  options={themes.map((t) => ({
+                    value: t,
+                    label: t.charAt(0).toUpperCase() + t.slice(1)
+                  }))}
+                  value={theme}
+                  onChange={setTheme}
+                />
+              </div>
             </Menu.Items>
           </Transition>
         </Fragment>

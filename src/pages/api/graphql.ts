@@ -1,14 +1,15 @@
-import { schema } from '~/graphql/index'
-import { Context, createGraphQLContext } from '~/graphql/builder'
+import { ExecutionResult, GraphQLError } from 'graphql'
 import {
   getGraphQLParameters,
   processRequest,
   renderGraphiQL,
   shouldRenderGraphiQL
 } from 'graphql-helix'
-import { NextApiHandler } from 'next'
-import { ExecutionResult, GraphQLError } from 'graphql'
 import { IncomingHttpHeaders } from 'http'
+import { NextApiHandler } from 'next'
+
+import { Context, createGraphQLContext } from '~/graphql/builder'
+import { schema } from '~/graphql/index'
 import { resolveSession } from '~/utils/sessions'
 
 function getGraphQLCode(error: Error & { code?: number }) {
