@@ -1,14 +1,15 @@
-import { Button } from '../../ui/Button'
-import { Card, CardBody } from '../../ui/Card'
+import { Tab } from '@headlessui/react'
 import {
   CheckCircleIcon,
   CollectionIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
-import { Tab } from '@headlessui/react'
-import PostType from './Type/Post'
-import React from 'react'
 import dynamic from 'next/dynamic'
+import React from 'react'
+
+import { Button } from '../../ui/Button'
+import { Card, CardBody } from '../../ui/Card'
+import PostType from './Type/Post'
 
 const QuestionType = dynamic(() => import('./Type/Question'), {
   // eslint-disable-next-line react/display-name
