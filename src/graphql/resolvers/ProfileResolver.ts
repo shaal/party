@@ -1,4 +1,5 @@
 import { Profile } from '@prisma/client'
+
 import { builder } from '../builder'
 
 export const ProfileObject = builder.objectRef<Profile>('Profile')
