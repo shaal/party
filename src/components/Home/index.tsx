@@ -8,6 +8,7 @@ import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
 
 const Home: React.FC = () => {
@@ -30,6 +31,7 @@ const Home: React.FC = () => {
         </GridItemEight>
         <GridItemFour>
           <RecentUsers />
+          <RecentProducts />
         </GridItemFour>
       </GridLayout>
     </Fragment>

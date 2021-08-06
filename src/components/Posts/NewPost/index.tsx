@@ -5,7 +5,7 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import { Button } from '../../ui/Button'
 import { Card, CardBody } from '../../ui/Card'
