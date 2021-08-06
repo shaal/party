@@ -2,7 +2,7 @@ import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
 import React, { useState } from 'react'
-import { useEffect } from 'react'
+
 import { Post } from '~/__generated__/schema.generated'
 
 type Props = {

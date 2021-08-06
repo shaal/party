@@ -1,15 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-import { User } from '~/__generated__/schema.generated'
-import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
-
-import UserProfileLarge from '../shared/UserProfileLarge'
+import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
-import { CubeIcon, UsersIcon } from '@heroicons/react/outline'
-import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 
 export const query = gql`
   query RecentUsersQuery {
