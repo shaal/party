@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
+
 import { resolveSession } from './sessions'
 
 export async function unauthenticatedRoute(
