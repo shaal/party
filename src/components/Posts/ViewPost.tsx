@@ -1,16 +1,18 @@
 import { gql, useQuery } from '@apollo/client'
-import SinglePost from '~/components/Posts/SinglePost'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { useRouter } from 'next/router'
+import React, { Fragment } from 'react'
+
+import { Post, User } from '~/__generated__/schema.generated'
 import {
   GridItemEight,
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
+import SinglePost from '~/components/Posts/SinglePost'
 import UserProfileLarge from '~/components/shared/UserProfileLarge'
-import { Post, User } from '~/__generated__/schema.generated'
-import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import { Card, CardBody } from '~/components/ui/Card'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+
 import { PostQuery } from './__generated__/ViewPost.generated'
 
 const query = gql`
