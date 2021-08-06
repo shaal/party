@@ -1,9 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
+
+import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
 import Footer from './shared/Footer'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
-import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
 
 const query = gql`
   query CurrentUserQuery {
