@@ -57,7 +57,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
   )
 
   const handleLike = (post: any) => {
-    alert('Liked')
+    console.log('Liked')
   }
 
   return (
