@@ -5,7 +5,7 @@ import { GridLayout } from '../GridLayout'
 import { ProfileForm } from './ProfileForm'
 import { EditProfileQuery } from './__generated__/index.generated'
 
-export const EditProfile: React.FC = () => {
+const EditProfile: React.FC = () => {
   const { data, error } = useQuery<EditProfileQuery>(gql`
     query EditProfileQuery {
       me {
@@ -25,3 +25,5 @@ export const EditProfile: React.FC = () => {
     </GridLayout>
   )
 }
+
+export default EditProfile
