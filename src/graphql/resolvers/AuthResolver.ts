@@ -4,15 +4,22 @@ import { createSession, removeSession } from '~/utils/sessions'
 
 import { builder } from '../builder'
 import { Result } from './ResultResolver'
-import { UserObject } from './UserResolver'
 
 builder.queryField('me', (t) =>
-  t.field({
-    type: UserObject,
+  t.prismaField({
+    type: 'User',
     nullable: true,
     skipTypeScopes: true,
-    resolve: (_root, _args, { user }) => {
-      return user
+    resolve: (query, _root, _args, { session }) => {
+      if (!session?.userId) {
+        return null
+      }
+
+      return db.user.findUnique({
+        ...query,
+        where: { id: session.userId },
+        rejectOnNotFound: true
+      })
     }
   })
 )
@@ -43,10 +50,8 @@ const LoginInput = builder.inputType('LoginInput', {
 })
 
 builder.mutationField('login', (t) =>
-  t.field({
-    type: UserObject,
-    // The parent auth scope (for the Mutation type) is for authenticated users,
-    // so we will need to skip it.
+  t.prismaField({
+    type: 'User',
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true
@@ -54,7 +59,7 @@ builder.mutationField('login', (t) =>
     args: {
       input: t.arg({ type: LoginInput })
     },
-    resolve: async (_root, { input }, { req }) => {
+    resolve: async (_query, _root, { input }, { req }) => {
       const user = await authenticateUser(input.email, input.password)
       await createSession(req, user)
       return user
@@ -84,10 +89,8 @@ const SignUpInput = builder.inputType('SignUpInput', {
 })
 
 builder.mutationField('signUp', (t) =>
-  t.field({
-    type: UserObject,
-    // The parent auth scope (for the Mutation type) is for authenticated users,
-    // so we will need to skip it.
+  t.prismaField({
+    type: 'User',
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true
@@ -95,8 +98,9 @@ builder.mutationField('signUp', (t) =>
     args: {
       input: t.arg({ type: SignUpInput })
     },
-    resolve: async (_root, { input }, { req }) => {
+    resolve: async (query, _root, { input }, { req }) => {
       const user = await db.user.create({
+        ...query,
         data: {
           username: input.username,
           email: input.email,
@@ -133,7 +137,9 @@ builder.mutationField('changePassword', (t) =>
     args: {
       input: t.arg({ type: ChangePasswordInput })
     },
-    resolve: async (_root, { input }, { user, session }) => {
+    resolve: async (_root, { input }, { session }) => {
+      const user = await db.user.findUnique({ where: { id: session!.userId } })
+
       // First, we make sure that your current password is currect:
       const passwordValid = await verifyPassword(
         user!.hashedPassword,

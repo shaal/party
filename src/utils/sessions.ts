@@ -6,8 +6,9 @@ import { applySession, SessionOptions } from 'next-iron-session'
 
 import { db } from './prisma'
 
-// 1000 Days
-const SESSION_TTL = 1000 * 24 * 3600
+// The duration that the session will be valid for, in seconds (default is 15 days).
+// We will automatically renew these sessions after 25% of the validity period.
+const SESSION_TTL = 15 * 24 * 3600
 
 // The key that we store the actual database ID of the session in:
 const IRON_SESSION_ID_KEY = 'sessionID'
@@ -65,11 +66,7 @@ export async function removeSession(req: IncomingMessage, session: Session) {
   await db.session.delete({ where: { id: session!.id } })
 }
 
-interface PrismaSession extends Session {
-  user: User
-}
-
-const sessionCache = new WeakMap<IncomingMessage, PrismaSession | null>()
+const sessionCache = new WeakMap<IncomingMessage, Session | null>()
 export async function resolveSession({
   req,
   res
@@ -80,7 +77,7 @@ export async function resolveSession({
 
   await applySession(req, res, sessionOptions)
 
-  let session: PrismaSession | null = null
+  let session: Session | null = null
 
   // NOTE: We refine the type here, as next-iron-session will add the session to the request:
   const reqWithSession = req as unknown as ReqWithSession
@@ -93,9 +90,6 @@ export async function resolveSession({
         expiresAt: {
           gte: new Date()
         }
-      },
-      include: {
-        user: true
       }
     })
 

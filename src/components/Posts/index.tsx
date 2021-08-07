@@ -10,18 +10,22 @@ import SinglePost from './SinglePost'
 export const query = gql`
   query PostsQuery {
     posts {
-      id
-      title
-      body
-      done
-      attachments
-      type
-      createdAt
-      user {
-        id
-        username
-        profile {
-          name
+      edges {
+        node {
+          id
+          title
+          body
+          done
+          attachments
+          type
+          createdAt
+          user {
+            id
+            username
+            profile {
+              name
+            }
+          }
         }
       }
     }
@@ -44,11 +48,11 @@ const Posts: React.FC = () => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data && data.posts.length === 0 ? (
+        {data?.posts?.edges?.length === 0 ? (
           <div>Nothing here</div>
         ) : (
-          data?.posts.map((post: any) => (
-            <SinglePost key={post?.id} post={post} />
+          data?.posts?.edges?.map((post: any) => (
+            <SinglePost key={post?.node?.id} post={post?.node} />
           ))
         )}
       </div>
