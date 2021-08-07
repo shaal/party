@@ -1,10 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
+import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
-import { Button } from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PostsQuery } from './__generated__/index.generated'
 import SinglePost from './SinglePost'
@@ -14,6 +14,7 @@ export const query = gql`
     posts(first: 5, after: $after) {
       pageInfo {
         endCursor
+        hasNextPage
       }
       edges {
         node {
@@ -38,19 +39,20 @@ export const query = gql`
 `
 
 const Posts: React.FC = () => {
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
     variables: {
       after: null
     }
   })
 
-  const { observe, unobserve, inView, scrollDirection, entry } = useInView({
+  const { observe } = useInView({
     threshold: 0.25,
-    onChange: ({ inView, scrollDirection, entry, observe, unobserve }) => {
+    onChange: ({ observe, unobserve }) => {
       unobserve()
       observe()
     },
-    onEnter: ({ scrollDirection, entry, observe, unobserve }) => {
+    onEnter: () => {
       const endCursor = data?.posts?.pageInfo?.endCursor
 
       fetchMore({
@@ -64,6 +66,7 @@ const Posts: React.FC = () => {
         ) => {
           const newPosts = fetchMoreResult?.posts?.edges
           const pageInfo = fetchMoreResult?.posts?.pageInfo
+          setHasNextPage(pageInfo?.hasNextPage)
 
           return newPosts.length
             ? {
@@ -98,7 +101,7 @@ const Posts: React.FC = () => {
             <SinglePost key={post?.node?.id} post={post?.node} />
           ))
         )}
-        <Button ref={observe}>Load more</Button>
+        {hasNextPage && <div ref={observe}></div>}
       </div>
     </div>
   )
