@@ -13,11 +13,12 @@ cache:
 
 before_script:
   - npm install
-  - cp .env.example .env
 
 Typecheck:
   stage: test
   script:
+    - cp .env.example .env
+    - npm run generate
     - npm run typecheck
 
 Lint:
