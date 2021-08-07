@@ -1,5 +1,6 @@
 import SchemaBuilder from '@giraphql/core'
 import PrismaPlugin from '@giraphql/plugin-prisma'
+import RelayPlugin from '@giraphql/plugin-relay'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
@@ -50,14 +51,19 @@ export const builder = new SchemaBuilder<{
     SimpleObjectsPlugin,
     ScopeAuthPlugin,
     ValidationPlugin,
-    PrismaPlugin
+    PrismaPlugin,
+    RelayPlugin
   ],
   prisma: { client: db },
   authScopes: async ({ session }) => ({
     public: true,
     user: !!session,
     unauthenticated: !session
-  })
+  }),
+  relayOptions: {
+    clientMutationId: 'omit',
+    cursorType: 'String'
+  }
 })
 
 // This initializes the query and mutation types so that we can add fields to them dynamically:
