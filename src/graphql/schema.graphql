@@ -67,9 +67,11 @@ type Post {
 type Profile {
   avatar: String
   bio: String
+  cover: String
   discord: String
   github: String
   id: ID!
+  location: String
   name: String!
   twitter: String
   website: String
@@ -78,7 +80,7 @@ type Profile {
 type Query {
   me: User
   post(id: ID!): Post!
-  posts(after: String, before: String, first: Int, last: Int): QueryPostsConnection!
+  posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   user(username: String!): User!
   users: [User!]!
 }
@@ -110,4 +112,8 @@ type User {
   profile: Profile!
   spammy: Boolean!
   username: String!
+}
+
+input WherePostsInput {
+  username: String
 }

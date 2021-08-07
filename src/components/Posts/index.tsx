@@ -3,15 +3,20 @@ import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
+import { User } from '~/__generated__/schema.generated'
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PostsQuery } from './__generated__/index.generated'
 import SinglePost from './SinglePost'
 
+interface Props {
+  user?: User
+}
+
 export const query = gql`
-  query PostsQuery($after: String) {
-    posts(first: 5, after: $after) {
+  query PostsQuery($after: String, $where: WherePostsInput) {
+    posts(first: 5, after: $after, where: $where) {
       pageInfo {
         endCursor
         hasNextPage
@@ -38,11 +43,14 @@ export const query = gql`
   }
 `
 
-const Posts: React.FC = () => {
+const Posts: React.FC<Props> = ({ user }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
     variables: {
-      after: null
+      after: null,
+      where: {
+        username: user?.username
+      }
     }
   })
 

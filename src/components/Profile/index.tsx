@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
+import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
@@ -40,9 +40,7 @@ const Profile: React.FC = () => {
           <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
-          <Card>
-            <CardBody>WIP</CardBody>
-          </Card>
+          <Posts user={data?.user as User} />
         </GridItemEight>
       </GridLayout>
     </Fragment>

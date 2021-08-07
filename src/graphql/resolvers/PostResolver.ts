@@ -22,13 +22,29 @@ builder.prismaObject('Post', {
   })
 })
 
+const WherePostsInput = builder.inputType('WherePostsInput', {
+  fields: (t) => ({
+    username: t.string({
+      required: false
+    })
+  })
+})
+
 builder.queryField('posts', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
-    resolve: (query) =>
+    args: {
+      where: t.arg({ type: WherePostsInput, required: false })
+    },
+    resolve: (query, _root, { where }) =>
       db.post.findMany({
         ...query,
+        where: {
+          user: {
+            username: where?.username as string
+          }
+        },
         orderBy: {
           createdAt: 'desc'
         }
