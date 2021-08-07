@@ -115,5 +115,5 @@ type User {
 }
 
 input WherePostsInput {
-  username: String
+  userId: String
 }

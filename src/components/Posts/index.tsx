@@ -49,7 +49,7 @@ const Posts: React.FC<Props> = ({ user }) => {
     variables: {
       after: null,
       where: {
-        username: user?.username
+        userId: user?.id
       }
     }
   })

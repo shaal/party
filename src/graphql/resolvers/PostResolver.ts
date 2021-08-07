@@ -24,7 +24,7 @@ builder.prismaObject('Post', {
 
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
-    username: t.string({
+    userId: t.string({
       required: false
     })
   })
@@ -42,7 +42,7 @@ builder.queryField('posts', (t) =>
         ...query,
         where: {
           user: {
-            username: where?.username as string
+            id: where?.userId as string
           }
         },
         orderBy: {
