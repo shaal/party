@@ -6,8 +6,9 @@ builder.prismaObject('Profile', {
     id: t.exposeID('id', {}),
     name: t.exposeString('name', {}),
     bio: t.exposeString('bio', { nullable: true }),
+    location: t.exposeString('location', { nullable: true }),
     avatar: t.exposeString('avatar', { nullable: true }),
-    cover: t.exposeString('avatar', { nullable: true }),
+    cover: t.exposeString('cover', { nullable: true }),
 
     // Social
     website: t.exposeString('website', { nullable: true }),
