@@ -7,6 +7,9 @@ builder.prismaObject('User', {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     username: t.exposeString('username', {}),
+    spammy: t.exposeBoolean('spammy', {}),
+    isVerified: t.exposeBoolean('isVerified', {}),
+    isStaff: t.exposeBoolean('isStaff', {}),
     profile: t.relation('profile')
   })
 })
