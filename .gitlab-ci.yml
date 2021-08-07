@@ -5,7 +5,6 @@ services:
 
 stages:
   - test
-  - build
 
 cache:
   paths:
@@ -19,12 +18,5 @@ Lint:
   stage: test
   script:
     - npm run lint
-  artifacts:
-    expire_in: 1 day
-
-Build:
-  stage: build
-  script:
-    - npm run build
   artifacts:
     expire_in: 1 day
