@@ -3,13 +3,17 @@ import React from 'react'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
+import { Button } from '../ui/Button'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PostsQuery } from './__generated__/index.generated'
 import SinglePost from './SinglePost'
 
 export const query = gql`
-  query PostsQuery {
-    posts {
+  query PostsQuery($after: String) {
+    posts(first: 5, after: $after) {
+      pageInfo {
+        endCursor
+      }
       edges {
         node {
           id
@@ -33,7 +37,11 @@ export const query = gql`
 `
 
 const Posts: React.FC = () => {
-  const { data, loading, error } = useQuery<PostsQuery>(query)
+  const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
+    variables: {
+      after: null
+    }
+  })
 
   if (loading)
     return (
@@ -55,6 +63,36 @@ const Posts: React.FC = () => {
             <SinglePost key={post?.node?.id} post={post?.node} />
           ))
         )}
+        <Button
+          onClick={() => {
+            const endCursor = data?.posts?.pageInfo?.endCursor
+
+            fetchMore({
+              variables: {
+                after: endCursor
+              },
+              // @ts-ignore
+              updateQuery: (
+                previousResult,
+                { fetchMoreResult }: { fetchMoreResult: any }
+              ) => {
+                const newPosts = fetchMoreResult?.posts?.edges
+                const pageInfo = fetchMoreResult?.posts?.pageInfo
+
+                return newPosts.length
+                  ? {
+                      posts: {
+                        edges: [...previousResult?.posts?.edges, ...newPosts],
+                        pageInfo
+                      }
+                    }
+                  : previousResult
+              }
+            })
+          }}
+        >
+          Load more
+        </Button>
       </div>
     </div>
   )
