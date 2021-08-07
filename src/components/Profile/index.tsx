@@ -2,10 +2,13 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+import { User } from '~/__generated__/schema.generated'
+
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
+import Details from './Details'
 
 export const query = gql`
   query ProfileQuery($username: String!) {
@@ -32,7 +35,7 @@ const Profile: React.FC = () => {
     <GridLayout>
       <GridItemFour>
         <ErrorMessage title="Failed to load post" error={error} />
-        {data?.user?.username}
+        <Details user={data?.user as User} />
       </GridItemFour>
       <GridItemEight>
         <Card>
