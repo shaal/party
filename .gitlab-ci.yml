@@ -14,7 +14,7 @@ before_script:
   - npm install
   - cp .env.example .env
 
-Lint:
+Lint 🌟:
   stage: test
   script:
     - npm run lint
