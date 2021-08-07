@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
+import useInView from 'react-cool-inview'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
@@ -43,6 +44,40 @@ const Posts: React.FC = () => {
     }
   })
 
+  const { observe, unobserve, inView, scrollDirection, entry } = useInView({
+    threshold: 0.25,
+    onChange: ({ inView, scrollDirection, entry, observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: ({ scrollDirection, entry, observe, unobserve }) => {
+      const endCursor = data?.posts?.pageInfo?.endCursor
+
+      fetchMore({
+        variables: {
+          after: endCursor
+        },
+        // @ts-ignore
+        updateQuery: (
+          previousResult,
+          { fetchMoreResult }: { fetchMoreResult: any }
+        ) => {
+          const newPosts = fetchMoreResult?.posts?.edges
+          const pageInfo = fetchMoreResult?.posts?.pageInfo
+
+          return newPosts.length
+            ? {
+                posts: {
+                  edges: [...previousResult?.posts?.edges, ...newPosts],
+                  pageInfo
+                }
+              }
+            : previousResult
+        }
+      })
+    }
+  })
+
   if (loading)
     return (
       <div className="space-y-3">
@@ -63,36 +98,7 @@ const Posts: React.FC = () => {
             <SinglePost key={post?.node?.id} post={post?.node} />
           ))
         )}
-        <Button
-          onClick={() => {
-            const endCursor = data?.posts?.pageInfo?.endCursor
-
-            fetchMore({
-              variables: {
-                after: endCursor
-              },
-              // @ts-ignore
-              updateQuery: (
-                previousResult,
-                { fetchMoreResult }: { fetchMoreResult: any }
-              ) => {
-                const newPosts = fetchMoreResult?.posts?.edges
-                const pageInfo = fetchMoreResult?.posts?.pageInfo
-
-                return newPosts.length
-                  ? {
-                      posts: {
-                        edges: [...previousResult?.posts?.edges, ...newPosts],
-                        pageInfo
-                      }
-                    }
-                  : previousResult
-              }
-            })
-          }}
-        >
-          Load more
-        </Button>
+        <Button ref={observe}>Load more</Button>
       </div>
     </div>
   )
