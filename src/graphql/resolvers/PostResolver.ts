@@ -1,13 +1,11 @@
-import { Post, PostType } from '@prisma/client'
+import { PostType } from '@prisma/client'
 
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
-import { UserObject } from './UserResolver'
 
-export const PostObject = builder.objectRef<Post>('Post')
-
-PostObject.implement({
+builder.prismaObject('Post', {
+  findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
     title: t.exposeString('title', { nullable: true }),
@@ -20,41 +18,27 @@ PostObject.implement({
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
-    user: t.field({
-      type: UserObject,
-      nullable: true,
-      resolve: ({ userId }) => {
-        return db.user.findUnique({
-          where: {
-            id: userId
-          }
-        })
-      }
-    })
+    user: t.relation('user')
   })
 })
 
 builder.queryField('posts', (t) =>
-  t.field({
-    type: [PostObject],
-    resolve: (_root, _args, { user }) => {
-      return db.post.findMany({
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
-    }
+  t.prismaConnection({
+    type: 'Post',
+    cursor: 'id',
+    resolve: (query) => db.post.findMany(query)
   })
 )
 
 builder.queryField('post', (t) =>
-  t.field({
-    type: PostObject,
+  t.prismaField({
+    type: 'Post',
     args: {
       id: t.arg.id({})
     },
-    resolve: (_root, { id }, { user }) => {
-      return db.post.findUnique({
+    resolve: (query, _root, { id }) => {
+      return db.post.findFirst({
+        ...query,
         where: {
           id
         },
@@ -78,15 +62,15 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 })
 
 builder.mutationField('createPost', (t) =>
-  t.field({
-    type: PostObject,
+  t.prismaField({
+    type: 'Post',
     args: {
       input: t.arg({ type: CreatePostInput })
     },
-    resolve: (_root, { input }, { user }) => {
+    resolve: (query, _root, { input }, { session }) => {
       return db.post.create({
         data: {
-          userId: user!.id,
+          userId: session!.userId,
           title: input.title,
           body: input.body,
           done: input.done,
@@ -107,16 +91,17 @@ const EditPostInput = builder.inputType('EditPostInput', {
 })
 
 builder.mutationField('editPost', (t) =>
-  t.field({
-    type: PostObject,
+  t.prismaField({
+    type: 'Post',
     args: {
       input: t.arg({ type: EditPostInput })
     },
-    resolve: async (_root, { input }, { user }) => {
+    resolve: async (query, _root, { input }, { session }) => {
       const post = await db.post.findFirst({
+        ...query,
         where: {
           id: input.id,
-          userId: user!.id
+          userId: session!.userId
         },
 
         rejectOnNotFound: true
@@ -137,16 +122,17 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 })
 
 builder.mutationField('deletePost', (t) =>
-  t.field({
-    type: PostObject,
+  t.prismaField({
+    type: 'Post',
     args: {
       input: t.arg({ type: DeletePostInput })
     },
-    resolve: async (_root, { input }, { user }) => {
+    resolve: async (query, _root, { input }, { session }) => {
       const post = await db.post.findFirst({
+        ...query,
         where: {
           id: input.id,
-          userId: user!.id
+          userId: session!.userId
         },
 
         rejectOnNotFound: true

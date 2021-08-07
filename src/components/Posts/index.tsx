@@ -1,5 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
+import { useState } from 'react'
+import useInView from 'react-cool-inview'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
@@ -8,20 +10,28 @@ import { PostsQuery } from './__generated__/index.generated'
 import SinglePost from './SinglePost'
 
 export const query = gql`
-  query PostsQuery {
-    posts {
-      id
-      title
-      body
-      done
-      attachments
-      type
-      createdAt
-      user {
-        id
-        username
-        profile {
-          name
+  query PostsQuery($after: String) {
+    posts(first: 5, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          id
+          title
+          body
+          done
+          attachments
+          type
+          createdAt
+          user {
+            id
+            username
+            profile {
+              name
+            }
+          }
         }
       }
     }
@@ -29,7 +39,47 @@ export const query = gql`
 `
 
 const Posts: React.FC = () => {
-  const { data, loading, error } = useQuery<PostsQuery>(query)
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
+  const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
+    variables: {
+      after: null
+    }
+  })
+
+  const { observe } = useInView({
+    threshold: 0.25,
+    onChange: ({ observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: () => {
+      const endCursor = data?.posts?.pageInfo?.endCursor
+
+      fetchMore({
+        variables: {
+          after: endCursor
+        },
+        // @ts-ignore
+        updateQuery: (
+          previousResult,
+          { fetchMoreResult }: { fetchMoreResult: any }
+        ) => {
+          const newPosts = fetchMoreResult?.posts?.edges
+          const pageInfo = fetchMoreResult?.posts?.pageInfo
+          setHasNextPage(pageInfo?.hasNextPage)
+
+          return newPosts.length
+            ? {
+                posts: {
+                  edges: [...previousResult?.posts?.edges, ...newPosts],
+                  pageInfo
+                }
+              }
+            : previousResult
+        }
+      })
+    }
+  })
 
   if (loading)
     return (
@@ -44,13 +94,14 @@ const Posts: React.FC = () => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data && data.posts.length === 0 ? (
+        {data?.posts?.edges?.length === 0 ? (
           <div>Nothing here</div>
         ) : (
-          data?.posts.map((post: any) => (
-            <SinglePost key={post?.id} post={post} />
+          data?.posts?.edges?.map((post: any) => (
+            <SinglePost key={post?.node?.id} post={post?.node} />
           ))
         )}
+        {hasNextPage && <div ref={observe}></div>}
       </div>
     </div>
   )

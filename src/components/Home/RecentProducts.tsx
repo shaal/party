@@ -5,11 +5,11 @@ import React from 'react'
 import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
+import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
 export const query = gql`
-  query RecentUsersQuery {
-    users(take: 5) {
+  query RecentProductsQuery {
+    users {
       id
       username
       profile {
@@ -34,7 +34,7 @@ const RecentUsersCard = ({ children }: any) => {
 }
 
 const RecentProducts: React.FC = () => {
-  const { data, loading, error } = useQuery<RecentUsersQuery>(query)
+  const { data, loading, error } = useQuery<RecentProductsQuery>(query)
 
   if (loading)
     return (

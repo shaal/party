@@ -1,10 +1,7 @@
-import { Profile } from '@prisma/client'
-
 import { builder } from '../builder'
 
-export const ProfileObject = builder.objectRef<Profile>('Profile')
-
-ProfileObject.implement({
+builder.prismaObject('Profile', {
+  findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
     name: t.exposeString('name', {}),

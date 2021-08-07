@@ -22,6 +22,8 @@
   "dependencies": {
     "@apollo/client": "3.4.5",
     "@giraphql/core": "2.13.2",
+    "@giraphql/plugin-prisma": "^0.4.0",
+    "@giraphql/plugin-relay": "^2.13.2",
     "@giraphql/plugin-scope-auth": "2.8.2",
     "@giraphql/plugin-simple-objects": "2.6.2",
     "@giraphql/plugin-validation": "2.8.2",
@@ -43,6 +45,7 @@
     "next-themes": "^0.0.15",
     "preact": "^10.5.14",
     "react": "^17.0.2",
+    "react-cool-inview": "^2.0.7",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.2",
     "timeago.js": "^4.0.2",
