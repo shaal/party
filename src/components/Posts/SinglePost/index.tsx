@@ -42,7 +42,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
       update(cache) {
         cache.modify({
           fields: {
-            notes(existingPosts, { readField }) {
+            posts(existingPosts, { readField }) {
               return existingPosts.filter(
                 (postRef: Reference) => post?.id !== readField('id', postRef)
               )

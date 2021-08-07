@@ -26,7 +26,13 @@ builder.queryField('posts', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
-    resolve: (query) => db.post.findMany(query)
+    resolve: (query) =>
+      db.post.findMany({
+        ...query,
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
   })
 )
 

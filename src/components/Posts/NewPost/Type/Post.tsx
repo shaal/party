@@ -40,7 +40,7 @@ const PostType: React.FC = () => {
         cache.modify({
           fields: {
             posts(existingPosts = []) {
-              return [data.createPost, ...existingPosts]
+              return [data.createPost, ...existingPosts.edges]
             }
           }
         })
