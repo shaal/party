@@ -18,7 +18,6 @@ before_script:
 Typecheck:
   stage: test
   script:
-    - npm run generate
     - npm run typecheck
 
 Lint:
