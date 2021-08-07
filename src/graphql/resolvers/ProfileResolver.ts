@@ -5,8 +5,9 @@ builder.prismaObject('Profile', {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     name: t.exposeString('name', {}),
-    avatar: t.exposeString('avatar', { nullable: true }),
     bio: t.exposeString('bio', { nullable: true }),
+    avatar: t.exposeString('avatar', { nullable: true }),
+    cover: t.exposeString('avatar', { nullable: true }),
 
     // Social
     website: t.exposeString('website', { nullable: true }),
