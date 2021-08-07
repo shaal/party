@@ -69,7 +69,7 @@ type Query {
   post(id: ID!): Post!
   posts: [Post!]!
   user(username: String!): User!
-  users(take: Int!): [User!]!
+  users: [User!]!
 }
 
 enum Result {

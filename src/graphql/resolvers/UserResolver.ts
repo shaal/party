@@ -1,21 +1,18 @@
-import { User } from '@prisma/client'
-
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
-import { ProfileObject } from './ProfileResolver'
 
-export const UserObject = builder.objectRef<User>('User')
-
-UserObject.implement({
+builder.prismaObject('User', {
+  findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
     username: t.exposeString('username', {}),
-    profile: t.field({
-      type: ProfileObject,
+    profile: t.prismaField({
+      type: 'Profile',
       nullable: true,
-      resolve: ({ id }) => {
+      resolve: (query, { id }) => {
         return db.profile.findFirst({
+          ...query,
           where: {
             userId: id
           }
@@ -26,13 +23,14 @@ UserObject.implement({
 })
 
 builder.queryField('user', (t) =>
-  t.field({
-    type: UserObject,
+  t.prismaField({
+    type: 'User',
     args: {
       username: t.arg.string({})
     },
-    resolve: (_root, { username }) => {
-      return db.user.findUnique({
+    resolve: (query, _root, { username }, { session }) => {
+      return db.user.findFirst({
+        ...query,
         where: {
           username
         },
@@ -43,14 +41,11 @@ builder.queryField('user', (t) =>
 )
 
 builder.queryField('users', (t) =>
-  t.field({
-    type: [UserObject],
-    args: {
-      take: t.arg({ type: 'Int' })
-    },
-    resolve: (_root, { take }, { user }) => {
+  t.prismaField({
+    type: ['User'],
+    resolve: (query, _root, { session }) => {
       return db.user.findMany({
-        take: take as number,
+        ...query,
         orderBy: {
           createdAt: 'desc'
         }
@@ -72,15 +67,16 @@ const EditUserInput = builder.inputType('EditUserInput', {
 })
 
 builder.mutationField('editUser', (t) =>
-  t.field({
-    type: UserObject,
+  t.prismaField({
+    type: 'User',
     args: {
       input: t.arg({ type: EditUserInput })
     },
-    resolve: (_root, { input }, { user }) => {
+    resolve: (query, _root, { input }, { session }) => {
       return db.user.update({
+        ...query,
         where: {
-          id: user!.id
+          id: session!.userId
         },
         data: {
           username: input.username ?? undefined

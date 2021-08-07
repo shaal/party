@@ -1,26 +1,27 @@
 import SchemaBuilder from '@giraphql/core'
+import PrismaPlugin from '@giraphql/plugin-prisma'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
-import { Prisma, Session, User } from '@prisma/client'
+import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
+
+import { db } from '~/utils/prisma'
 
 export interface Context {
   req: IncomingMessage
   res: OutgoingMessage
-  user?: User | null
   session?: Session | null
 }
 
 export function createGraphQLContext(
   req: IncomingMessage,
   res: OutgoingMessage,
-  session?: (Session & { user: User }) | null
+  session?: Session | null
 ): Context {
   return {
     req,
     res,
-    user: session?.user,
     session
   }
 }
@@ -42,13 +43,20 @@ export const builder = new SchemaBuilder<{
     user: boolean
     unauthenticated: boolean
   }
+  PrismaClient: typeof db
 }>({
   defaultInputFieldRequiredness: true,
-  plugins: [SimpleObjectsPlugin, ScopeAuthPlugin, ValidationPlugin],
-  authScopes: async ({ user }) => ({
+  plugins: [
+    SimpleObjectsPlugin,
+    ScopeAuthPlugin,
+    ValidationPlugin,
+    PrismaPlugin
+  ],
+  prisma: { client: db },
+  authScopes: async ({ session }) => ({
     public: true,
-    user: !!user,
-    unauthenticated: !user
+    user: !!session,
+    unauthenticated: !session
   })
 })
 

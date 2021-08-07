@@ -12,7 +12,7 @@ import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
 
 export const query = gql`
   query RecentUsersQuery {
-    users(take: 5) {
+    users {
       id
       username
       profile {
