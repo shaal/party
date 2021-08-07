@@ -12,7 +12,7 @@ cache:
     - node_modules/
 
 before_script:
-  - npm ci
+  - npm install
   - cp .env.example .env
 
 Typecheck:
