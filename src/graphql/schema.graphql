@@ -67,8 +67,12 @@ type Post {
 type Profile {
   avatar: String
   bio: String
+  discord: String
+  github: String
   id: ID!
   name: String!
+  twitter: String
+  website: String
 }
 
 type Query {
