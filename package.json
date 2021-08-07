@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.4.5",
-    "@giraphql/core": "2.13.1",
+    "@giraphql/core": "2.13.2",
     "@giraphql/plugin-scope-auth": "2.8.1",
     "@giraphql/plugin-simple-objects": "2.6.1",
     "@giraphql/plugin-validation": "2.8.1",
