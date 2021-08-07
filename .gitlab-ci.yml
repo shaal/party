@@ -12,21 +12,21 @@ cache:
     - node_modules/
 
 before_script:
-  - yarn install --frozen-lockfile --silent
+  - npm ci
   - cp .env.example .env
 
 Typecheck:
   stage: test
   script:
-    - yarn generate
-    - yarn typecheck
+    - npm run generate
+    - npm run typecheck
 
 Lint:
   stage: test
   script:
-    - yarn lint
+    - npm run lint
 
 Build:
   stage: build
   script:
-    - yarn build
+    - npm run build

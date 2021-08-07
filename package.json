@@ -3,20 +3,21 @@
   "version": "0.0.1-alpha",
   "private": true,
   "scripts": {
-    "dev": "yarn generate && next dev",
-    "build": "yarn generate && next build",
+    "dev": "npm run generate && next dev",
+    "build": "npm run generate && next build",
     "start": "next start -p ${PORT-3000}",
-    "lint": "yarn eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "npm run eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "prettier:check": "prettier --check \"./src/**/*.{ts,tsx}\"",
     "clean:codegen": "trash \"./src/**/__generated__/**\"",
-    "generate": "yarn codegen && prisma generate",
+    "generate": "npm run codegen && prisma generate",
     "migrate": "prisma migrate deploy --preview-feature",
-    "codegen": "yarn clean:codegen && run-s -l \"codegen:*\"",
+    "codegen": "npm run clean:codegen && run-s -l \"codegen:*\"",
     "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
-    "codegen:graphql": "graphql-codegen"
+    "codegen:graphql": "graphql-codegen",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "3.4.5",
