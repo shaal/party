@@ -7,18 +7,7 @@ builder.prismaObject('User', {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     username: t.exposeString('username', {}),
-    profile: t.prismaField({
-      type: 'Profile',
-      nullable: true,
-      resolve: (query, { id }) => {
-        return db.profile.findFirst({
-          ...query,
-          where: {
-            userId: id
-          }
-        })
-      }
-    })
+    profile: t.relation('profile')
   })
 })
 

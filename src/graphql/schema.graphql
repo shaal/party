@@ -84,6 +84,6 @@ input SignUpInput {
 
 type User {
   id: ID!
-  profile: Profile
+  profile: Profile!
   username: String!
 }
