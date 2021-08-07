@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { NextSeo } from 'next-seo'
 import { useEffect, useState } from 'react'
 
 import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
@@ -37,6 +38,14 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <AppContext.Provider value={injectedGlobalContext}>
+      <NextSeo
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: 'favicon.svg'
+          }
+        ]}
+      />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
