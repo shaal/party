@@ -15,12 +15,6 @@ before_script:
   - npm install
   - cp .env.example .env
 
-Typecheck:
-  stage: test
-  script:
-    - npm run generate
-    - npm run typecheck
-
 Lint:
   stage: test
   script:
