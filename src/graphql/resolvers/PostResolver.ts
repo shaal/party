@@ -23,16 +23,10 @@ builder.prismaObject('Post', {
 })
 
 builder.queryField('posts', (t) =>
-  t.prismaField({
-    type: ['Post'],
-    resolve: (query, _root, _args) => {
-      return db.post.findMany({
-        ...query,
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
-    }
+  t.prismaConnection({
+    type: 'Post',
+    cursor: 'id',
+    resolve: (query) => db.post.findMany(query)
   })
 )
 

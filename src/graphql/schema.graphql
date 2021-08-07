@@ -45,6 +45,13 @@ type Mutation {
   signUp(input: SignUpInput!): User!
 }
 
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
 type Post {
   attachments: Attachments
   body: String!
@@ -67,9 +74,19 @@ type Profile {
 type Query {
   me: User
   post(id: ID!): Post!
-  posts: [Post!]!
+  posts(after: String, before: String, first: Int, last: Int): QueryPostsConnection!
   user(username: String!): User!
   users: [User!]!
+}
+
+type QueryPostsConnection {
+  edges: [QueryPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryPostsConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 enum Result {
