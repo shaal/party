@@ -18,18 +18,7 @@ builder.prismaObject('Post', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
-    user: t.prismaField({
-      type: 'User',
-      nullable: true,
-      resolve: (query, { userId }) => {
-        return db.user.findUnique({
-          ...query,
-          where: {
-            id: userId
-          }
-        })
-      }
-    })
+    user: t.relation('user')
   })
 })
 
