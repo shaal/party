@@ -140,7 +140,6 @@ builder.mutationField('changePassword', (t) =>
     resolve: async (_root, { input }, { session }) => {
       const user = await db.user.findUnique({ where: { id: session!.userId } })
 
-      // First, we make sure that your current password is currect:
       const passwordValid = await verifyPassword(
         user!.hashedPassword,
         input.currentPassword
@@ -154,8 +153,6 @@ builder.mutationField('changePassword', (t) =>
         where: { id: user!.id },
         data: {
           hashedPassword: await hashPassword(input.newPassword),
-          // When changing the password, we also delete any sessions that
-          // are not our current active session.
           sessions: {
             deleteMany: {
               id: {
