@@ -1,9 +1,14 @@
 import { db } from '~/utils/prisma'
 
 export const hasLiked = async (userId: string, postId: string) => {
-  const count: number = await db.like.count({
-    where: { userId, postId }
+  const post = await db.post.findUnique({
+    where: { id: postId },
+    include: {
+      likes: {
+        where: { userId }
+      }
+    }
   })
 
-  return count === 0 ? false : true
+  return post?.likes?.length === 0 ? false : true
 }
