@@ -32,6 +32,13 @@ builder.prismaObject('Post', {
           where: { postId: root.id }
         })
     }),
+    likesCount: t.field({
+      type: 'Int',
+      resolve: (root) =>
+        db.like.count({
+          where: { postId: root.id }
+        })
+    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user')

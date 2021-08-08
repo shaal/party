@@ -69,6 +69,7 @@ type Post {
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
+  likesCount: Int!
   title: String
   type: String!
   updatedAt: DateTime!
