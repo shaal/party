@@ -1,4 +1,4 @@
-import { gql, Reference, useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -13,8 +13,8 @@ import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
 import LikeButton from '../LikeButton'
 import {
-  DeletePostMutation,
-  DeletePostMutationVariables
+  ToggleLikeMutation,
+  ToggleLikeMutationVariables
 } from './__generated__/index.generated'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
@@ -27,37 +27,27 @@ interface Props {
 const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
-  const [deletePost, deletePostResult] = useMutation<
-    DeletePostMutation,
-    DeletePostMutationVariables
+  const [toggleLike, toggleLikeResult] = useMutation<
+    ToggleLikeMutation,
+    ToggleLikeMutationVariables
   >(
     gql`
-      mutation DeletePostMutation($input: DeletePostInput!) {
-        deletePost(input: $input) {
+      mutation ToggleLikeMutation($input: ToggleLikeInput!) {
+        toggleLike(input: $input) {
           id
         }
       }
-    `,
-    {
-      update(cache) {
-        cache.modify({
-          fields: {
-            posts(existingPosts, { readField }) {
-              return existingPosts.filter(
-                (postRef: Reference) => post?.id !== readField('id', postRef)
-              )
-            }
-          }
-        })
-      },
-      onCompleted() {
-        router.reload()
-      }
-    }
+    `
   )
 
   const handleLike = (post: any) => {
-    console.log('Liked')
+    toggleLike({
+      variables: {
+        input: {
+          postId: post?.id
+        }
+      }
+    })
   }
 
   return (
@@ -85,9 +75,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.user?.id === currentUser?.id && (
           <button
             className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-            onClick={() =>
-              deletePost({ variables: { input: { id: post?.id } } })
-            }
+            onClick={() => console.log('WIP')}
           >
             <TrashIcon className="h-5 w-5" />
           </button>

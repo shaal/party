@@ -29,6 +29,12 @@ input EditUserInput {
   username: String
 }
 
+type Like {
+  id: ID!
+  post: Post!
+  user: User!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -43,6 +49,7 @@ type Mutation {
   login(input: LoginInput!): User!
   logout: Result!
   signUp(input: SignUpInput!): User!
+  toggleLike(input: ToggleLikeInput!): Like!
 }
 
 type PageInfo {
@@ -103,6 +110,10 @@ input SignUpInput {
   email: String!
   password: String!
   username: String!
+}
+
+input ToggleLikeInput {
+  postId: ID!
 }
 
 type User {
