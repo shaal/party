@@ -35,11 +35,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       ref={ref}
       className={clsx(
         {
-          'bg-blue-500 hover:bg-blue-400 border border-blue-700 text-white':
+          'bg-blue-500 hover:bg-blue-600 border border-blue-600 text-white':
             !outline && variant === 'primary',
-          'bg-green-500 hover:bg-green-400 border border-green-700 text-white':
+          'bg-green-500 hover:bg-green-400 border border-green-600 text-white':
             !outline && variant === 'success',
-          'bg-red-500 hover:bg-red-400 border border-red-700 text-white':
+          'bg-red-500 hover:bg-red-400 border border-red-600 text-white':
             !outline && variant === 'danger',
           'border border-blue-500 text-blue-500 hover:bg-blue-100':
             outline && variant === 'primary',
