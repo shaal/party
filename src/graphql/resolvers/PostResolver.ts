@@ -3,6 +3,7 @@ import { PostType } from '@prisma/client'
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
+import { hasLiked } from '../utils/hasLiked'
 
 builder.prismaObject('Post', {
   findUnique: (post) => ({ id: post.id }),
@@ -16,6 +17,29 @@ builder.prismaObject('Post', {
       type: 'Attachments',
       nullable: true
     }),
+    hasLiked: t.field({
+      type: 'Boolean',
+      resolve: async (root, args, ctx, info) => {
+        if (!ctx.session) return false
+        return await hasLiked(ctx.session?.userId as string, root.id)
+      }
+    }),
+    likes: t.prismaConnection({
+      type: 'Like',
+      cursor: 'id',
+      resolve: (query, root) =>
+        db.like.findMany({
+          ...query,
+          where: { postId: root.id }
+        })
+    }),
+    likesCount: t.field({
+      type: 'Int',
+      resolve: (root) =>
+        db.like.count({
+          where: { postId: root.id }
+        })
+    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user')
@@ -26,7 +50,8 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.string({
       required: false
-    })
+    }),
+    type: t.string({ required: false })
   })
 })
 
@@ -37,10 +62,11 @@ builder.queryField('posts', (t) =>
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
-    resolve: (query, _root, { where }) =>
+    resolve: (query, root, { where }) =>
       db.post.findMany({
         ...query,
         where: {
+          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
           user: {
             id: where?.userId as string
           }
@@ -58,7 +84,7 @@ builder.queryField('post', (t) =>
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, _root, { id }) => {
+    resolve: (query, root, { id }) => {
       return db.post.findFirst({
         ...query,
         where: {
@@ -89,7 +115,7 @@ builder.mutationField('createPost', (t) =>
     args: {
       input: t.arg({ type: CreatePostInput })
     },
-    resolve: (query, _root, { input }, { session }) => {
+    resolve: (query, root, { input }, { session }) => {
       return db.post.create({
         data: {
           userId: session!.userId,
@@ -118,7 +144,7 @@ builder.mutationField('editPost', (t) =>
     args: {
       input: t.arg({ type: EditPostInput })
     },
-    resolve: async (query, _root, { input }, { session }) => {
+    resolve: async (query, root, { input }, { session }) => {
       const post = await db.post.findFirst({
         ...query,
         where: {
@@ -149,7 +175,7 @@ builder.mutationField('deletePost', (t) =>
     args: {
       input: t.arg({ type: DeletePostInput })
     },
-    resolve: async (query, _root, { input }, { session }) => {
+    resolve: async (query, root, { input }, { session }) => {
       const post = await db.post.findFirst({
         ...query,
         where: {

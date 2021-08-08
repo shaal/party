@@ -8,10 +8,11 @@ import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PostsQuery } from './__generated__/index.generated'
-import SinglePost from './SinglePost'
+import SinglePost, { PostFragment } from './SinglePost'
 
 interface Props {
   user?: User
+  feedType?: string
 }
 
 export const query = gql`
@@ -23,33 +24,22 @@ export const query = gql`
       }
       edges {
         node {
-          id
-          title
-          body
-          done
-          attachments
-          type
-          createdAt
-          user {
-            id
-            username
-            profile {
-              name
-            }
-          }
+          ...PostFragment
         }
       }
     }
   }
+  ${PostFragment}
 `
 
-const Posts: React.FC<Props> = ({ user }) => {
+const Posts: React.FC<Props> = ({ user, feedType }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
     variables: {
       after: null,
       where: {
-        userId: user?.id
+        userId: user?.id,
+        type: feedType === 'ALL' ? 'ALL' : feedType
       }
     }
   })
@@ -72,15 +62,13 @@ const Posts: React.FC<Props> = ({ user }) => {
           previousResult,
           { fetchMoreResult }: { fetchMoreResult: any }
         ) => {
-          const newPosts = fetchMoreResult?.posts?.edges
+          const previousEdges = previousResult?.posts?.edges
+          const newEdges = fetchMoreResult?.posts?.edges
           const pageInfo = fetchMoreResult?.posts?.pageInfo
           setHasNextPage(pageInfo?.hasNextPage)
           if (!fetchMoreResult) return previousResult
           return {
-            posts: {
-              edges: [...previousResult?.posts?.edges, ...newPosts],
-              pageInfo
-            }
+            posts: { edges: [...previousEdges, ...newEdges], pageInfo }
           }
         }
       })

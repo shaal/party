@@ -1,7 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Menu, Transition } from '@headlessui/react'
 import clsx from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment } from 'react'
@@ -43,11 +42,9 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
       {({ open }) => (
         <Fragment>
           <Menu.Button className="flex items-center gap-2">
-            <Image
-              height="35"
-              width="35"
-              className="rounded-full bg-gray-200"
-              src="https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9"
+            <img
+              className="h-10 w-10 rounded-full bg-gray-200"
+              src={currentUser?.profile?.avatar as string}
               alt={`@${currentUser?.username}'s avatar`}
             />
           </Menu.Button>

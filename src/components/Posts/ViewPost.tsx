@@ -8,7 +8,7 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
-import SinglePost from '~/components/Posts/SinglePost'
+import SinglePost, { PostFragment } from '~/components/Posts/SinglePost'
 import UserProfileLarge from '~/components/shared/UserProfileLarge'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -18,21 +18,10 @@ import { PostQuery } from './__generated__/ViewPost.generated'
 const query = gql`
   query PostQuery($id: ID!) {
     post(id: $id) {
-      id
-      title
-      body
-      done
-      attachments
-      type
-      createdAt
-      user {
-        username
-        profile {
-          name
-        }
-      }
+      ...PostFragment
     }
   }
+  ${PostFragment}
 `
 
 const ViewPost: React.FC = () => {

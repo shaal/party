@@ -1,4 +1,4 @@
-import { gql, Reference, useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -13,12 +13,47 @@ import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
 import LikeButton from '../LikeButton'
 import {
-  DeletePostMutation,
-  DeletePostMutationVariables
+  ToggleLikeMutation,
+  ToggleLikeMutationVariables
 } from './__generated__/index.generated'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
+
+export const PostFragment = gql`
+  fragment PostFragment on Post {
+    id
+    title
+    body
+    done
+    attachments
+    type
+    hasLiked
+    likesCount
+    likes(first: 5) {
+      edges {
+        node {
+          user {
+            id
+            username
+            profile {
+              avatar
+            }
+          }
+        }
+      }
+    }
+    createdAt
+    user {
+      id
+      username
+      profile {
+        name
+        avatar
+      }
+    }
+  }
+`
 
 interface Props {
   post: Post
@@ -27,37 +62,28 @@ interface Props {
 const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
-  const [deletePost, deletePostResult] = useMutation<
-    DeletePostMutation,
-    DeletePostMutationVariables
+  const [toggleLike, toggleLikeResult] = useMutation<
+    ToggleLikeMutation,
+    ToggleLikeMutationVariables
   >(
     gql`
-      mutation DeletePostMutation($input: DeletePostInput!) {
-        deletePost(input: $input) {
-          id
+      mutation ToggleLikeMutation($input: ToggleLikeInput!) {
+        toggleLike(input: $input) {
+          ...PostFragment
         }
       }
-    `,
-    {
-      update(cache) {
-        cache.modify({
-          fields: {
-            posts(existingPosts, { readField }) {
-              return existingPosts.filter(
-                (postRef: Reference) => post?.id !== readField('id', postRef)
-              )
-            }
-          }
-        })
-      },
-      onCompleted() {
-        router.reload()
-      }
-    }
+      ${PostFragment}
+    `
   )
 
   const handleLike = (post: any) => {
-    console.log('Liked')
+    toggleLike({
+      variables: {
+        input: {
+          postId: post?.id
+        }
+      }
+    })
   }
 
   return (
@@ -85,12 +111,28 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.user?.id === currentUser?.id && (
           <button
             className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-            onClick={() =>
-              deletePost({ variables: { input: { id: post?.id } } })
-            }
+            onClick={() => console.log('WIP')}
           >
             <TrashIcon className="h-5 w-5" />
           </button>
+        )}
+        {(post?.likesCount as number) > 0 && (
+          <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
+            <div>Liked by</div>
+            <div className="flex -space-x-1.5 overflow-hidden">
+              {post?.likes?.edges?.map((like) => (
+                <img
+                  key={like?.node?.user?.id}
+                  className="rounded-full border h-5 w-5"
+                  src={like?.node?.user?.profile?.avatar as string}
+                  alt={`@${like?.node?.user?.username}'s avatar`}
+                />
+              ))}
+            </div>
+            {(post?.likesCount as number) > 5 && (
+              <div>and {(post?.likesCount as number) - 5} others...</div>
+            )}
+          </div>
         )}
       </div>
     </Card>

@@ -62,6 +62,8 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "Like" (
     "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "postId" TEXT,
 
@@ -82,6 +84,9 @@ CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "postLikeIdentifier" ON "Like"("userId", "postId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");

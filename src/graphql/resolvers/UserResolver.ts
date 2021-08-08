@@ -20,7 +20,7 @@ builder.queryField('user', (t) =>
     args: {
       username: t.arg.string({})
     },
-    resolve: (query, _root, { username }, { session }) => {
+    resolve: (query, root, { username }, { session }) => {
       return db.user.findFirst({
         ...query,
         where: {
@@ -35,7 +35,7 @@ builder.queryField('user', (t) =>
 builder.queryField('users', (t) =>
   t.prismaField({
     type: ['User'],
-    resolve: (query, _root, { session }) => {
+    resolve: (query, root, { session }) => {
       return db.user.findMany({
         ...query,
         orderBy: {
@@ -64,7 +64,7 @@ builder.mutationField('editUser', (t) =>
     args: {
       input: t.arg({ type: EditUserInput })
     },
-    resolve: (query, _root, { input }, { session }) => {
+    resolve: (query, root, { input }, { session }) => {
       return db.user.update({
         ...query,
         where: {

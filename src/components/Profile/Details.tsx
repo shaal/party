@@ -21,7 +21,7 @@ const Details: React.FC<Props> = ({ user }) => {
   return (
     <div className="space-y-5 w-96">
       <img
-        src={`https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9`}
+        src={user?.profile?.avatar as string}
         className="rounded-full h-40 w-40 -mt-24 ring-8 ring-gray-50 dark:ring-black"
         alt={`@${user?.username}'s avatar`}
       />
