@@ -53,7 +53,7 @@ const SignUpForm: React.FC = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             or{' '}
-            <span className="text-blue-500">
+            <span className="text-indigo-500">
               <Link href="/login">login now</Link>
             </span>
           </p>
