@@ -6,14 +6,9 @@ import { applySession, SessionOptions } from 'next-iron-session'
 
 import { db } from './prisma'
 
-// The duration that the session will be valid for, in seconds (default is 15 days).
-// We will automatically renew these sessions after 25% of the validity period.
 const SESSION_TTL = 15 * 24 * 3600
-
-// The key that we store the actual database ID of the session in:
 const IRON_SESSION_ID_KEY = 'sessionID'
 
-// Use a custom IncomingMessage type:
 interface ReqWithSession extends IncomingMessage {
   session: import('next-iron-session').Session
 }
@@ -48,7 +43,6 @@ export async function createSession(req: IncomingMessage, user: User) {
     }
   })
 
-  // NOTE: We refine the type here, as next-iron-session will add the session to the request:
   const reqWithSession = req as unknown as ReqWithSession
 
   reqWithSession.session.set(IRON_SESSION_ID_KEY, session.id)
@@ -58,7 +52,6 @@ export async function createSession(req: IncomingMessage, user: User) {
 }
 
 export async function removeSession(req: IncomingMessage, session: Session) {
-  // NOTE: We refine the type here, as next-iron-session will add the session to the request:
   const reqWithSession = req as unknown as ReqWithSession
 
   reqWithSession.session.destroy()
@@ -79,7 +72,6 @@ export async function resolveSession({
 
   let session: Session | null = null
 
-  // NOTE: We refine the type here, as next-iron-session will add the session to the request:
   const reqWithSession = req as unknown as ReqWithSession
   const sessionID = reqWithSession.session.get(IRON_SESSION_ID_KEY)
 
@@ -94,7 +86,6 @@ export async function resolveSession({
     })
 
     if (session) {
-      // If we resolve a session in the request, we'll automatically renew it 25% of the session has elapsed:
       const shouldRefreshSession =
         differenceInSeconds(session.expiresAt, new Date()) < 0.75 * SESSION_TTL
 
