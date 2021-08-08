@@ -18,7 +18,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
         <Image
           height="45"
           width="45"
-          src="https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9"
+          src={user?.profile?.avatar as string}
           className="rounded-full"
           alt={`@${user?.username}'s avatar`}
         />

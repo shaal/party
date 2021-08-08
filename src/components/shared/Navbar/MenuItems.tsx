@@ -47,7 +47,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               height="35"
               width="35"
               className="rounded-full bg-gray-200"
-              src="https://cloudflare-ipfs.com/ipfs/QmbzAr9sukMdj7F6apkEkQWn7s11tCYyDZpxTwUyd3opv9"
+              src={currentUser?.profile?.avatar as string}
               alt={`@${currentUser?.username}'s avatar`}
             />
           </Menu.Button>
