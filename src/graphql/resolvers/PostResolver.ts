@@ -26,6 +26,11 @@ builder.prismaObject('Post', {
         return count > 0 ? true : false
       }
     }),
+    likes: t.prismaConnection({
+      type: 'Like',
+      cursor: 'id',
+      resolve: (query) => db.like.findMany(query)
+    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user')

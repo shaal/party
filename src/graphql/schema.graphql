@@ -68,10 +68,21 @@ type Post {
   done: Boolean!
   hasLiked: Boolean!
   id: ID!
+  likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   title: String
   type: String!
   updatedAt: DateTime!
   user: User!
+}
+
+type PostLikesConnection {
+  edges: [PostLikesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type PostLikesConnectionEdge {
+  cursor: String!
+  node: Like!
 }
 
 type Profile {
