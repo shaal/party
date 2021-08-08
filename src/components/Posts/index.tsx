@@ -8,7 +8,7 @@ import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PostsQuery } from './__generated__/index.generated'
-import SinglePost from './SinglePost'
+import SinglePost, { PostFragment } from './SinglePost'
 
 interface Props {
   user?: User
@@ -23,39 +23,12 @@ export const query = gql`
       }
       edges {
         node {
-          id
-          title
-          body
-          done
-          attachments
-          type
-          hasLiked
-          likesCount
-          likes(first: 5) {
-            edges {
-              node {
-                user {
-                  id
-                  username
-                  profile {
-                    avatar
-                  }
-                }
-              }
-            }
-          }
-          createdAt
-          user {
-            id
-            username
-            profile {
-              name
-            }
-          }
+          ...PostFragment
         }
       }
     }
   }
+  ${PostFragment}
 `
 
 const Posts: React.FC<Props> = ({ user }) => {

@@ -20,6 +20,40 @@ import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
 
+export const PostFragment = gql`
+  fragment PostFragment on Post {
+    id
+    title
+    body
+    done
+    attachments
+    type
+    hasLiked
+    likesCount
+    likes(first: 5) {
+      edges {
+        node {
+          user {
+            id
+            username
+            profile {
+              avatar
+            }
+          }
+        }
+      }
+    }
+    createdAt
+    user {
+      id
+      username
+      profile {
+        name
+      }
+    }
+  }
+`
+
 interface Props {
   post: Post
 }
