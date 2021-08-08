@@ -30,8 +30,10 @@ input EditUserInput {
 }
 
 type Like {
+  createdAt: DateTime!
   id: ID!
   post: Post!
+  updatedAt: DateTime!
   user: User!
 }
 
