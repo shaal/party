@@ -56,7 +56,7 @@ builder.mutationField('login', (t) =>
     type: 'User',
     skipTypeScopes: true,
     authScopes: {
-      unauthenticated: true
+      unauthenticated: false
     },
     args: {
       input: t.arg({ type: LoginInput })
