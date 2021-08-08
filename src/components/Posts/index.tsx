@@ -73,13 +73,14 @@ const Posts: React.FC<Props> = ({ user }) => {
           previousResult,
           { fetchMoreResult }: { fetchMoreResult: any }
         ) => {
-          const newPosts = fetchMoreResult?.posts?.edges
+          const previousEdges = previousResult?.posts?.edges
+          const newEdges = fetchMoreResult?.posts?.edges
           const pageInfo = fetchMoreResult?.posts?.pageInfo
           setHasNextPage(pageInfo?.hasNextPage)
           if (!fetchMoreResult) return previousResult
           return {
             posts: {
-              edges: [...previousResult?.posts?.edges, ...newPosts],
+              edges: [...previousEdges, ...newEdges],
               pageInfo
             }
           }
