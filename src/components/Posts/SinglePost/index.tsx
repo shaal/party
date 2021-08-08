@@ -82,6 +82,24 @@ const SinglePost: React.FC<Props> = ({ post }) => {
             <TrashIcon className="h-5 w-5" />
           </button>
         )}
+        {(post?.likesCount as number) > 0 && (
+          <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
+            <div>Liked by</div>
+            <div className="flex -space-x-1.5 overflow-hidden">
+              {post?.likes?.edges?.map((like) => (
+                <img
+                  key={like?.node?.id}
+                  className="rounded-full border h-5 w-5"
+                  src={like?.node?.user?.profile?.avatar as string}
+                  alt={`@${like?.node?.user?.username}'s avatar`}
+                />
+              ))}
+            </div>
+            {(post?.likesCount as number) > 5 && (
+              <div>and {(post?.likesCount as number) - 5} others...</div>
+            )}
+          </div>
+        )}
       </div>
     </Card>
   )

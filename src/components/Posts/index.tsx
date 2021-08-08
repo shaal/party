@@ -35,6 +35,8 @@ export const query = gql`
             edges {
               node {
                 user {
+                  id
+                  username
                   profile {
                     avatar
                   }
