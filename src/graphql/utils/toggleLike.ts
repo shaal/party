@@ -9,12 +9,10 @@ export const toggleLike = async (
 ) => {
   if (await hasLiked(userId, postId)) {
     await db.like.deleteMany({
-      ...query,
       where: { userId, postId }
     })
   } else {
     await db.like.create({
-      ...query,
       data: {
         post: { connect: { id: postId } },
         user: { connect: { id: userId } }
