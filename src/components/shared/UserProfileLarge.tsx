@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -15,11 +14,9 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex space-x-3 items-center">
-        <Image
-          height="45"
-          width="45"
+        <img
           src={user?.profile?.avatar as string}
-          className="rounded-full"
+          className="h-11 w-11 rounded-full"
           alt={`@${user?.username}'s avatar`}
         />
         <div>
