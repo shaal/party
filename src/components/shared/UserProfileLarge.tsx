@@ -16,7 +16,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
       <div className="flex space-x-3 items-center">
         <img
           src={user?.profile?.avatar as string}
-          className="h-11 w-11 rounded-full"
+          className="h-11 w-11 rounded-full bg-gray-200"
           alt={`@${user?.username}'s avatar`}
         />
         <div>
