@@ -1,3 +1,5 @@
+import { md5 } from 'hash-wasm'
+
 import { authenticateUser, hashPassword, verifyPassword } from '~/utils/auth'
 import { db } from '~/utils/prisma'
 import { createSession, removeSession } from '~/utils/sessions'
@@ -107,7 +109,8 @@ builder.mutationField('signUp', (t) =>
           hashedPassword: await hashPassword(input.password),
           profile: {
             create: {
-              name: input.username
+              name: input.username,
+              avatar: `https://avatar.tobi.sh/${md5(input.email)}.svg`
             }
           }
         }
