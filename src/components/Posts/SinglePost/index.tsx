@@ -35,10 +35,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
       mutation ToggleLikeMutation($input: ToggleLikeInput!) {
         toggleLike(input: $input) {
           id
-          post {
-            id
-            hasLiked
-          }
+          hasLiked
         }
       }
     `

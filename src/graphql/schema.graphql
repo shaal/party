@@ -51,7 +51,7 @@ type Mutation {
   login(input: LoginInput!): User!
   logout: Result!
   signUp(input: SignUpInput!): User!
-  toggleLike(input: ToggleLikeInput!): Like!
+  toggleLike(input: ToggleLikeInput!): Post
 }
 
 type PageInfo {

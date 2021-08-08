@@ -5,5 +5,5 @@ export const hasLiked = async (userId: string, postId: string) => {
     where: { userId, postId }
   })
 
-  return count > 0 ? true : false
+  return count === 0 ? false : true
 }
