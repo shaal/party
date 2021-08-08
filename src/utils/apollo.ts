@@ -42,12 +42,6 @@ export async function preloadQuery(
     }
 
     return { props: {} }
-
-    // NOTE: By default, we treat errors to preloading as if we didn't attempt to
-    // preload the request at all. This allows the client to react to this, re-attempt
-    // the request, and react accordingly. If you'd rather the error trigger a failure
-    // in the server-side rendering itself, replace the return with the following line:
-    // throw e;
   }
 }
 
@@ -78,21 +72,11 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     })
   }
 
-  // If your page has Next.js data fetching methods that use Apollo Client,
-  // the initial state gets hydrated here
   if (initialState) {
-    // Get existing cache, loaded during client side data fetching
     const existingCache = nextClient.extract()
-
-    // Restore the cache using the data passed from
-    // getStaticProps/getServerSideProps combined with the existing cached data
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
-
-  // For SSG and SSR always create a new Apollo Client
   if (typeof window === 'undefined') return nextClient
-
-  // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = nextClient
 
   return nextClient
