@@ -28,17 +28,14 @@ export function createGraphQLContext(
 }
 
 export const builder = new SchemaBuilder<{
-  // We change the defaults for arguments to be `required`. Any non-required
-  // argument can be set to `required: false`.
+  // TODO: Set to false
   DefaultInputFieldRequiredness: true
   Context: Context
   Scalars: {
-    // We modify the types for the `ID` type to denote that it's always a string when it comes in.
     ID: { Input: string; Output: string | number }
     DateTime: { Input: Date; Output: Date }
     Attachments: { Input: String; Output: Prisma.JsonValue }
   }
-  // Define the shape of the auth scopes that we'll be using:
   AuthScopes: {
     public: boolean
     user: boolean
@@ -66,17 +63,14 @@ export const builder = new SchemaBuilder<{
   }
 })
 
-// This initializes the query and mutation types so that we can add fields to them dynamically:
 builder.queryType({})
-
 builder.mutationType({
-  // Set the default auth scope to be authenticated users:
   authScopes: {
     user: true
   }
 })
 
-// Provide the custom DateTime scalar that allows dates to be transmitted over GraphQL:
+// Cusrom Scalar Types
 builder.scalarType('DateTime', {
   serialize: (date) => date.toISOString(),
   parseValue: (date) => {
@@ -84,7 +78,6 @@ builder.scalarType('DateTime', {
   }
 })
 
-// Provide the custom DateTime scalar that allows dates to be transmitted over GraphQL:
 builder.scalarType('Attachments', {
   serialize: (attachments) => JSON.parse(attachments),
   parseValue: (attachments) => {

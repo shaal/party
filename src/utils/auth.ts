@@ -5,15 +5,8 @@ import { ValidationError } from '~/graphql/errors'
 
 import { db } from './prisma'
 
-/**
- * This is the cost factor of the bcrypt hash function. In general, this number
- * should be changed as CPUs get faster.
- */
 const COST_FACTOR = 11
 
-/**
- * Hash a plain text password and return the hashed password.
- */
 export async function hashPassword(password: string): Promise<string> {
   const salt = crypto.randomBytes(16)
 
@@ -27,9 +20,6 @@ export async function hashPassword(password: string): Promise<string> {
   return key
 }
 
-/**
- * Verify that a hashed password and a plain text password match.
- */
 export function verifyPassword(
   hashedPassword: string,
   password: string
@@ -40,9 +30,6 @@ export function verifyPassword(
   })
 }
 
-/**
- * Attempts to authenticate a user, given their username and password.
- */
 export async function authenticateUser(email: string, password: string) {
   const user = await db.user.findFirst({
     where: {
