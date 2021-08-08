@@ -52,7 +52,7 @@ builder.queryField('posts', (t) =>
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
-    resolve: (query, _root, { where }) =>
+    resolve: (query, root, { where }) =>
       db.post.findMany({
         ...query,
         where: {
@@ -73,7 +73,7 @@ builder.queryField('post', (t) =>
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, _root, { id }) => {
+    resolve: (query, root, { id }) => {
       return db.post.findFirst({
         ...query,
         where: {
@@ -104,7 +104,7 @@ builder.mutationField('createPost', (t) =>
     args: {
       input: t.arg({ type: CreatePostInput })
     },
-    resolve: (query, _root, { input }, { session }) => {
+    resolve: (query, root, { input }, { session }) => {
       return db.post.create({
         data: {
           userId: session!.userId,
@@ -133,7 +133,7 @@ builder.mutationField('editPost', (t) =>
     args: {
       input: t.arg({ type: EditPostInput })
     },
-    resolve: async (query, _root, { input }, { session }) => {
+    resolve: async (query, root, { input }, { session }) => {
       const post = await db.post.findFirst({
         ...query,
         where: {
@@ -164,7 +164,7 @@ builder.mutationField('deletePost', (t) =>
     args: {
       input: t.arg({ type: DeletePostInput })
     },
-    resolve: async (query, _root, { input }, { session }) => {
+    resolve: async (query, root, { input }, { session }) => {
       const post = await db.post.findFirst({
         ...query,
         where: {

@@ -10,7 +10,7 @@ builder.queryField('me', (t) =>
     type: 'User',
     nullable: true,
     skipTypeScopes: true,
-    resolve: (query, _root, _args, { session }) => {
+    resolve: (query, root, args, { session }) => {
       if (!session?.userId) {
         return null
       }
@@ -27,7 +27,7 @@ builder.queryField('me', (t) =>
 builder.mutationField('logout', (t) =>
   t.field({
     type: Result,
-    resolve: async (_root, _args, { req, session }) => {
+    resolve: async (root, args, { req, session }) => {
       await removeSession(req, session!)
       return Result.SUCCESS
     }
@@ -59,7 +59,7 @@ builder.mutationField('login', (t) =>
     args: {
       input: t.arg({ type: LoginInput })
     },
-    resolve: async (_query, _root, { input }, { req }) => {
+    resolve: async (_query, root, { input }, { req }) => {
       const user = await authenticateUser(input.email, input.password)
       await createSession(req, user)
       return user
@@ -98,7 +98,7 @@ builder.mutationField('signUp', (t) =>
     args: {
       input: t.arg({ type: SignUpInput })
     },
-    resolve: async (query, _root, { input }, { req }) => {
+    resolve: async (query, root, { input }, { req }) => {
       const user = await db.user.create({
         ...query,
         data: {
@@ -137,7 +137,7 @@ builder.mutationField('changePassword', (t) =>
     args: {
       input: t.arg({ type: ChangePasswordInput })
     },
-    resolve: async (_root, { input }, { session }) => {
+    resolve: async (root, { input }, { session }) => {
       const user = await db.user.findUnique({ where: { id: session!.userId } })
 
       const passwordValid = await verifyPassword(

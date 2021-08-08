@@ -25,7 +25,7 @@ builder.mutationField('toggleLike', (t) =>
     args: {
       input: t.arg({ type: ToggleLikeInput })
     },
-    resolve: async (query, _root, { input }, { session }) => {
+    resolve: async (query, root, { input }, { session }) => {
       return db.like.create({
         ...query,
         data: {
