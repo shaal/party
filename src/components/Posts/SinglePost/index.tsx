@@ -36,6 +36,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         toggleLike(input: $input) {
           id
           hasLiked
+          likesCount
         }
       }
     `

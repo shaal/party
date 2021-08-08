@@ -30,6 +30,18 @@ export const query = gql`
           attachments
           type
           hasLiked
+          likesCount
+          likes(first: 5) {
+            edges {
+              node {
+                user {
+                  profile {
+                    avatar
+                  }
+                }
+              }
+            }
+          }
           createdAt
           user {
             id

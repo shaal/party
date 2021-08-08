@@ -25,13 +25,16 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
         setIsLiked(!isLiked)
         handleLike(entity)
       }}
-      className="text-pink-500 hover:text-pink-400 flex items-center space-x-2"
+      className="text-pink-500 hover:text-pink-400 flex items-center gap-2"
       disabled={loading}
     >
       {isLiked ? (
         <HeartIconSolid className="h-5 w-5" />
       ) : (
         <HeartIcon className="h-5 w-5" />
+      )}
+      {(entity?.likesCount as number) > 0 && (
+        <div className="text-xs">{entity?.likesCount}</div>
       )}
     </Switch>
   )
