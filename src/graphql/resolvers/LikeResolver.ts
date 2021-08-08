@@ -1,7 +1,5 @@
-import { db } from '~/utils/prisma'
-
 import { builder } from '../builder'
-import { hasLiked } from '../utils/hasLiked'
+import { toggleLike } from '../utils/toggleLike'
 
 builder.prismaObject('Like', {
   findUnique: (like) => ({ id: like.id }),
@@ -28,38 +26,7 @@ builder.mutationField('toggleLike', (t) =>
     },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      if (await hasLiked(session?.userId as string, input.postId)) {
-        await db.like.deleteMany({
-          ...query,
-          where: {
-            userId: session?.userId,
-            postId: input.postId
-          }
-        })
-      } else {
-        await db.like.create({
-          ...query,
-          data: {
-            post: {
-              connect: {
-                id: input.postId
-              }
-            },
-            user: {
-              connect: {
-                id: session?.userId
-              }
-            }
-          }
-        })
-      }
-
-      return await db.post.findUnique({
-        ...query,
-        where: {
-          id: input.postId
-        }
-      })
+      return await toggleLike(query, session?.userId as string, input?.postId)
     }
   })
 )
