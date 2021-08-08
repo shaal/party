@@ -23,10 +23,6 @@ function formatResult(result: ExecutionResult) {
 
   if (result.errors) {
     formattedResult.errors = result.errors.map((error) => {
-      // NOTE: If you need to debug a specific server-side GraphQL error, you may want to uncomment this log:
-      // console.log(error.originalError);
-
-      // Return a generic error message instead
       return new GraphQLError(
         error.message,
         error.nodes,
