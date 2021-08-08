@@ -16,6 +16,7 @@ export const query = gql`
       id
       username
       profile {
+        avatar
         name
       }
     }
