@@ -1,7 +1,7 @@
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Post } from '~/__generated__/schema.generated'
 
@@ -12,19 +12,16 @@ type Props = {
 }
 
 const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false)
-
   return (
     <Switch
-      checked={isLiked}
+      checked={entity?.hasLiked}
       onChange={() => {
-        setIsLiked(!isLiked)
         handleLike(entity)
       }}
       className="text-pink-500 hover:text-pink-400 flex items-center space-x-2"
       disabled={loading}
     >
-      {isLiked ? (
+      {entity?.hasLiked ? (
         <HeartIconSolid className="h-5 w-5" />
       ) : (
         <HeartIcon className="h-5 w-5" />

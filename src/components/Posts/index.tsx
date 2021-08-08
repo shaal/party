@@ -29,6 +29,7 @@ export const query = gql`
           done
           attachments
           type
+          hasLiked
           createdAt
           user {
             id
