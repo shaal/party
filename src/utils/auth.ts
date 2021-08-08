@@ -46,23 +46,18 @@ export async function authenticateUser(email: string, password: string) {
     })
   }
 
-  // If the password is invalid, reject the authenticate request:
   if (!(await verifyPassword(user.hashedPassword, password))) {
     throw new ValidationError('Invalid password.', {
       password: 'Password is incorrect.'
     })
   }
 
-  // Hash should be in the form of $2b$costFactor$hash
   const [, _algo, costFactorString] = user.hashedPassword.split('$')
 
-  // NOTE: This never practically should happen, but we want to error out in the event that it does:
   if (!costFactorString) {
     throw new Error('Unknown password format.')
   }
 
-  // If the password was hashed with a work factor that is not the same as the current work factor,
-  // we will seamlessly upgrade it to the updated work factor:
   const costFactor = parseInt(costFactorString, 10)
   if (costFactor !== COST_FACTOR) {
     const improvedHash = await hashPassword(password)
