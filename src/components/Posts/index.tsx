@@ -12,6 +12,7 @@ import SinglePost, { PostFragment } from './SinglePost'
 
 interface Props {
   user?: User
+  feedType?: string
 }
 
 export const query = gql`
@@ -31,13 +32,14 @@ export const query = gql`
   ${PostFragment}
 `
 
-const Posts: React.FC<Props> = ({ user }) => {
+const Posts: React.FC<Props> = ({ user, feedType }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
     variables: {
       after: null,
       where: {
-        userId: user?.id
+        userId: user?.id,
+        type: feedType === 'ALL' ? 'ALL' : feedType
       }
     }
   })

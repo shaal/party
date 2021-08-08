@@ -49,7 +49,8 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.string({
       required: false
-    })
+    }),
+    type: t.string({ required: false })
   })
 })
 
@@ -64,6 +65,7 @@ builder.queryField('posts', (t) =>
       db.post.findMany({
         ...query,
         where: {
+          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
           user: {
             id: where?.userId as string
           }
