@@ -55,7 +55,7 @@ const Posts: React.FC<Props> = ({ user }) => {
   })
 
   const { observe } = useInView({
-    threshold: 0.25,
+    threshold: 1,
     onChange: ({ observe, unobserve }) => {
       unobserve()
       observe()
