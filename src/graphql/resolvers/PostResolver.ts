@@ -3,6 +3,7 @@ import { PostType } from '@prisma/client'
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
+import { hasLiked } from '../utils/hasLiked'
 
 builder.prismaObject('Post', {
   findUnique: (post) => ({ id: post.id }),
@@ -19,11 +20,7 @@ builder.prismaObject('Post', {
     hasLiked: t.field({
       type: 'Boolean',
       resolve: async (root, session) => {
-        const count: number = await db.like.count({
-          where: { userId: session.userId as string, postId: root.id }
-        })
-
-        return count > 0 ? true : false
+        return await hasLiked(session.userId as string, root.id)
       }
     }),
     likes: t.prismaConnection({
