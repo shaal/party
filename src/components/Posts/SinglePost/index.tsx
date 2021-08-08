@@ -122,7 +122,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
             <div className="flex -space-x-1.5 overflow-hidden">
               {post?.likes?.edges?.map((like) => (
                 <img
-                  key={like?.node?.id}
+                  key={like?.node?.user?.id}
                   className="rounded-full border h-5 w-5"
                   src={like?.node?.user?.profile?.avatar as string}
                   alt={`@${like?.node?.user?.username}'s avatar`}
