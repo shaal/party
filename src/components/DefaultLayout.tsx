@@ -12,6 +12,9 @@ const query = gql`
     me {
       id
       username
+      profile {
+        avatar
+      }
     }
   }
 `
