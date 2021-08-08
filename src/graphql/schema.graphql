@@ -66,6 +66,7 @@ type Post {
   body: String!
   createdAt: DateTime!
   done: Boolean!
+  hasLiked: Boolean!
   id: ID!
   title: String
   type: String!

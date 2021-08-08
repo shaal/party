@@ -16,6 +16,16 @@ builder.prismaObject('Post', {
       type: 'Attachments',
       nullable: true
     }),
+    hasLiked: t.field({
+      type: 'Boolean',
+      resolve: async (root, session) => {
+        const count: number = await db.like.count({
+          where: { userId: session.userId as string, postId: root.id }
+        })
+
+        return count > 0 ? true : false
+      }
+    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user')
