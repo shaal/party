@@ -16,7 +16,7 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
 
   useEffect(() => {
     if (entity?.hasLiked) setIsLiked(entity?.hasLiked)
-  }, [])
+  }, [entity])
 
   return (
     <Switch
