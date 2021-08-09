@@ -70,10 +70,29 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         <SuccessMessage>Profile successfully updated!</SuccessMessage>
       )}
       <Input label="ID" type="text" value={user?.id} disabled />
-      <Input label="Username" type="text" {...form.register('username')} />
-      <Input label="Email" type="email" {...form.register('email')} />
-      <Input label="Name" type="text" {...form.register('name')} />
-      <TextArea label="Bio" {...form.register('bio')} />
+      <Input
+        label="Username"
+        type="text"
+        placeholder="johndoe"
+        {...form.register('username')}
+      />
+      <Input
+        label="Email"
+        type="email"
+        placeholder="johndoe@example.com"
+        {...form.register('email')}
+      />
+      <Input
+        label="Name"
+        type="text"
+        placeholder="John Doe"
+        {...form.register('name')}
+      />
+      <TextArea
+        label="Bio"
+        placeholder="Tell us about yourself!"
+        {...form.register('bio')}
+      />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
         <Button type="submit">Save</Button>
