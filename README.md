@@ -11,9 +11,6 @@
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
     </a>
-    <a href="https://depfu.com/repos/gitlab/yo/devparty?project_id=28236">
-        <img src="https://badges.depfu.com/badges/ea0b460984730071d18b91db93aadaa6/overview.svg" alt="Depfu">
-    </a>
 </div>
 <div align="center">
     <br>
