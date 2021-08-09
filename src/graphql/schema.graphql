@@ -26,7 +26,8 @@ input EditPostInput {
 }
 
 input EditUserInput {
-  username: String
+  email: String!
+  username: String!
 }
 
 type Like {

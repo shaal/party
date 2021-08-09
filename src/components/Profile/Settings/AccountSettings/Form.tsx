@@ -16,7 +16,8 @@ import {
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
-  username: string().min(1)
+  username: string().min(1),
+  email: string().email().min(1)
 })
 
 interface Props {
@@ -32,6 +33,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       editUser(input: $input) {
         id
         username
+        email
       }
     }
   `)
@@ -39,7 +41,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      username: user.username
+      username: user.username,
+      email: user.email as string
     }
   })
 
@@ -47,8 +50,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username }) =>
-        editUser({ variables: { input: { username } } })
+      onSubmit={({ username, email }) =>
+        editUser({ variables: { input: { username, email } } })
       }
     >
       <ErrorMessage
@@ -65,6 +68,12 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         autoComplete="username"
         autoFocus
         {...form.register('username')}
+      />
+      <Input
+        label="Email"
+        type="email"
+        autoComplete="email"
+        {...form.register('email')}
       />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>

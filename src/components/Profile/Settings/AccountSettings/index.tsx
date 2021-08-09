@@ -18,7 +18,7 @@ export const query = gql`
     me {
       id
       username
-      id
+      email
       profile {
         name
       }
