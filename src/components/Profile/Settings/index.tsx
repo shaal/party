@@ -6,6 +6,7 @@ import AppContext from '~/components/utils/AppContext'
 
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
+import SocialSettings from './SocialSettings'
 
 export const query = gql`
   query SettingsQuery {
@@ -18,6 +19,10 @@ export const query = gql`
         bio
         location
         avatar
+        website
+        twitter
+        github
+        discord
       }
     }
   }
@@ -34,6 +39,7 @@ const Settings: React.FC = () => {
   return (
     <Fragment>
       <AccountSettings currentUser={data?.me as User} />
+      <SocialSettings currentUser={data?.me as User} />
     </Fragment>
   )
 }
