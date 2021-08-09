@@ -17,6 +17,8 @@ export const query = gql`
       id
       username
       hasFollowed
+      followersCount
+      followingCount
       profile {
         avatar
         name

@@ -8,11 +8,11 @@ const Followerings: React.FC<Props> = ({ user }) => {
   return (
     <div className="flex gap-5">
       <div>
-        <div className="text-xl">10</div>
+        <div className="text-xl">{user?.followingCount}</div>
         <div className="text-gray-500">Following</div>
       </div>
       <div>
-        <div className="text-xl">120</div>
+        <div className="text-xl">{user?.followersCount}</div>
         <div className="text-gray-500">Followers</div>
       </div>
     </div>
