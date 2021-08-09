@@ -13,6 +13,7 @@ import SinglePost, { PostFragment } from './SinglePost'
 interface Props {
   user?: User
   feedType?: string
+  onlyFollowing?: boolean
 }
 
 export const query = gql`
@@ -32,13 +33,13 @@ export const query = gql`
   ${PostFragment}
 `
 
-const Posts: React.FC<Props> = ({ user, feedType }) => {
+const Posts: React.FC<Props> = ({ user, feedType, onlyFollowing = false }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
     variables: {
       after: null,
       where: {
-        onlyFollowing: user?.id ? false : true,
+        onlyFollowing,
         userId: user?.id,
         type: feedType === 'ALL' ? 'ALL' : feedType
       }

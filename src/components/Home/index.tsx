@@ -14,6 +14,7 @@ import RecentUsers from './RecentUsers'
 
 const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
+  const [onlyFollowing, setOnlyFollowing] = useState<boolean>(true)
   const { currentUser, currentUserLoading, currentUserError } =
     useContext(AppContext)
 
@@ -26,12 +27,20 @@ const Home: React.FC = () => {
             {currentUser && <NewPost />}
             <div className="flex items-center justify-between">
               <FeedType setFeedType={setFeedType} />
-              <div className="flex items-center gap-1.5">
-                <input id="onlyFollowing" type="checkbox" className="rounded" />
-                <label htmlFor="onlyFollowing">Only following</label>
-              </div>
+              {currentUser && (
+                <div className="flex items-center gap-1.5">
+                  <input
+                    id="onlyFollowing"
+                    type="checkbox"
+                    className="rounded"
+                    checked={onlyFollowing}
+                    onChange={() => setOnlyFollowing(!onlyFollowing)}
+                  />
+                  <label htmlFor="onlyFollowing">Only following</label>
+                </div>
+              )}
             </div>
-            <Posts feedType={feedType} />
+            <Posts feedType={feedType} onlyFollowing={onlyFollowing} />
             <ErrorMessage
               title="Failed to load the current user."
               error={currentUserError}
