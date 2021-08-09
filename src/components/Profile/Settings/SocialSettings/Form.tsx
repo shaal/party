@@ -1,5 +1,4 @@
 import { gql, useMutation } from '@apollo/client'
-import Link from 'next/link'
 import React from 'react'
 import { object, string } from 'zod'
 
@@ -75,7 +74,7 @@ const SocialSettingsForm: React.FC<Props> = ({ user }) => {
         error={editSocialResult.error}
       />
       {editSocialResult.data && (
-        <SuccessMessage>Profile successfully updated!</SuccessMessage>
+        <SuccessMessage>Social successfully updated!</SuccessMessage>
       )}
       <Input
         label="Website"
@@ -101,8 +100,7 @@ const SocialSettingsForm: React.FC<Props> = ({ user }) => {
         placeholder="Johndoe#1998"
         {...form.register('discord')}
       />
-      <div className="flex items-center justify-between pt-3">
-        <Link href="/settings/change-password">Change password?</Link>
+      <div className="ml-auto pt-3">
         <Button type="submit">Save</Button>
       </div>
     </Form>
