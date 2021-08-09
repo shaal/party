@@ -9,6 +9,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
 import { SuccessMessage } from '~/components/ui/SuccessMessage'
+import { TextArea } from '~/components/ui/TextArea'
 
 import {
   AccountSettingsMutation,
@@ -18,7 +19,8 @@ import {
 const editProfileSchema = object({
   username: string().min(1),
   email: string().email().min(1),
-  name: string().min(1)
+  name: string().min(1),
+  bio: string().min(1)
 })
 
 interface Props {
@@ -47,7 +49,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     defaultValues: {
       username: user.username,
       email: user.email as string,
-      name: user.profile.name
+      name: user.profile.name,
+      bio: user.profile.bio as string
     }
   })
 
@@ -55,8 +58,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username, email, name }) =>
-        editUser({ variables: { input: { username, email, name } } })
+      onSubmit={({ username, email, name, bio }) =>
+        editUser({ variables: { input: { username, email, name, bio } } })
       }
     >
       <ErrorMessage
@@ -70,6 +73,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       <Input label="Username" type="text" {...form.register('username')} />
       <Input label="Email" type="email" {...form.register('email')} />
       <Input label="Name" type="text" {...form.register('name')} />
+      <TextArea label="Bio" {...form.register('bio')} />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
         <Button type="submit">Save</Button>

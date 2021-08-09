@@ -15,6 +15,8 @@ export const query = gql`
       email
       profile {
         name
+        location
+        bio
       }
     }
   }
