@@ -64,6 +64,7 @@ type Mutation {
   login(input: LoginInput!): User!
   logout: Result!
   signUp(input: SignUpInput!): User!
+  toggleFollow(input: ToggleFollowInput!): User
   toggleLike(input: ToggleLikeInput!): Post
 }
 
@@ -138,6 +139,10 @@ input SignUpInput {
   email: String!
   password: String!
   username: String!
+}
+
+input ToggleFollowInput {
+  userId: ID!
 }
 
 input ToggleLikeInput {
