@@ -1,8 +1,5 @@
 image: node:latest
 
-services:
-  - postgres:latest
-
 stages:
   - test
 
@@ -14,8 +11,8 @@ cache:
     - node_modules/
 
 before_script:
-  - yarn install --frozen-lockfile --silent
   - cp .env.example .env
+  - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
   stage: test
@@ -27,7 +24,7 @@ Prettier 📚:
   script:
     - yarn prettier:check
 
-Build 👷‍♂️:
+Generate 👷‍♂️:
   stage: test
   script:
     - yarn generate
