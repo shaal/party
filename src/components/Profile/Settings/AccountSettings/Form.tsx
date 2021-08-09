@@ -20,7 +20,7 @@ const editProfileSchema = object({
   username: string().min(1),
   email: string().email().min(1),
   name: string().min(1),
-  bio: string().min(1)
+  bio: string().nullable()
 })
 
 interface Props {
@@ -59,7 +59,9 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       form={form}
       className="space-y-4"
       onSubmit={({ username, email, name, bio }) =>
-        editUser({ variables: { input: { username, email, name, bio } } })
+        editUser({
+          variables: { input: { username, email, name, bio: bio as string } }
+        })
       }
     >
       <ErrorMessage

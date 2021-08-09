@@ -70,9 +70,8 @@ const EditUserInput = builder.inputType('EditUserInput', {
       required: true,
       validate: { minLength: 1, maxLength: 50 }
     }),
-    bio: t.string({
-      validate: { minLength: 1, maxLength: 255 }
-    })
+    bio: t.string({ validate: { maxLength: 255 } }),
+    location: t.string({ validate: { maxLength: 50 } })
   })
 })
 
