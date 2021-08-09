@@ -1,8 +1,10 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 
+import Follow from '../Profile/Follow'
+import AppContext from '../utils/AppContext'
 import Username from './Username'
 
 interface Props {
@@ -11,6 +13,8 @@ interface Props {
 }
 
 const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
+  const { currentUser } = useContext(AppContext)
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex space-x-3 items-center">
@@ -30,6 +34,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
           <Username username={user?.username} />
         </div>
       </div>
+      {currentUser && showFollow && <Follow user={user} showText={false} />}
     </div>
   )
 }
