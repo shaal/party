@@ -6,7 +6,6 @@ import AppContext from '~/components/utils/AppContext'
 
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
-import ProfileSettings from './ProfileSettings'
 
 export const query = gql`
   query SettingsQuery {
@@ -32,7 +31,6 @@ const Settings: React.FC = () => {
   return (
     <Fragment>
       <AccountSettings currentUser={data?.me as User} />
-      <ProfileSettings currentUser={data?.me as User} />
     </Fragment>
   )
 }
