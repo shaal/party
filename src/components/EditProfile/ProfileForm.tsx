@@ -39,7 +39,7 @@ const ProfileForm: React.FC<Props> = ({ user }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      username: user.username
+      username: user?.username
     }
   })
 
@@ -69,9 +69,7 @@ const ProfileForm: React.FC<Props> = ({ user }) => {
 
       <Button type="submit">Save Profile</Button>
 
-      <Link href="/settings/change-password">
-        Looking to change your password?
-      </Link>
+      <Link href="/settings/change-password">Change password?</Link>
     </Form>
   )
 }
