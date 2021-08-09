@@ -64,12 +64,12 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, ctx) => {
-      const following = await db.user.findUnique({
-        where: { id: ctx.session?.userId },
-        select: { following: { select: { id: true } } }
-      })
+      if (where?.onlyFollowing && ctx.session) {
+        const following = await db.user.findUnique({
+          where: { id: ctx.session?.userId },
+          select: { following: { select: { id: true } } }
+        })
 
-      if (where?.onlyFollowing) {
         return await db.post.findMany({
           ...query,
           where: {
