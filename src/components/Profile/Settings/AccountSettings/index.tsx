@@ -18,6 +18,7 @@ export const query = gql`
     me {
       id
       username
+      email
       profile {
         name
       }

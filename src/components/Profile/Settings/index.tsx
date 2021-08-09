@@ -1,12 +1,8 @@
-import React, { Fragment, useContext } from 'react'
-
-import AppContext from '~/components/utils/AppContext'
+import React, { Fragment } from 'react'
 
 import AccountSettings from './AccountSettings'
 
 const Settings: React.FC = () => {
-  const { currentUser, currentUserLoading } = useContext(AppContext)
-
   return (
     <Fragment>
       <AccountSettings />
