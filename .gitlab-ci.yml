@@ -26,3 +26,8 @@ Prettier 📚:
   stage: test
   script:
     - npm run prettier:check
+
+Build 👷‍♂️:
+  stage: test
+  script:
+    - npm run build
