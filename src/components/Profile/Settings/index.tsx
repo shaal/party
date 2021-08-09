@@ -1,11 +1,36 @@
-import React, { Fragment } from 'react'
+import { gql, useQuery } from '@apollo/client'
+import React, { Fragment, useContext } from 'react'
 
+import { User } from '~/__generated__/schema.generated'
+import AppContext from '~/components/utils/AppContext'
+
+import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
 
+export const query = gql`
+  query SettingsQuery {
+    me {
+      id
+      username
+      email
+      profile {
+        name
+      }
+    }
+  }
+`
+
 const Settings: React.FC = () => {
+  const { currentUser } = useContext(AppContext)
+  const { data, loading } = useQuery<SettingsQuery>(query)
+
+  if (loading) return <div>Loading...</div>
+
+  if (!currentUser) return <div>Forbidden...</div>
+
   return (
     <Fragment>
-      <AccountSettings />
+      <AccountSettings currentUser={data?.me as User} />
     </Fragment>
   )
 }
