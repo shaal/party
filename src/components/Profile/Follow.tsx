@@ -1,11 +1,16 @@
+import { gql, useMutation } from '@apollo/client'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 
 import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
+import {
+  ToggleFollowMutation,
+  ToggleFollowMutationVariables
+} from './__generated__/Follow.generated'
 
 interface Props {
   user: User
@@ -14,9 +19,33 @@ interface Props {
 
 const Follow: React.FC<Props> = ({ user, showText }) => {
   const { currentUser } = useContext(AppContext)
+  const [isFollowed, setIsFollowed] = useState<boolean>(false)
+  const [toggleFollow, toggleFollowResult] = useMutation<
+    ToggleFollowMutation,
+    ToggleFollowMutationVariables
+  >(
+    gql`
+      mutation ToggleFollowMutation($input: ToggleFollowInput!) {
+        toggleFollow(input: $input) {
+          id
+          hasFollowed
+        }
+      }
+    `
+  )
+
+  useEffect(() => {
+    if (user?.hasFollowed) setIsFollowed(user?.hasFollowed)
+  }, [user])
 
   const handleToggleFollow = () => {
-    console.log('WIP')
+    toggleFollow({
+      variables: {
+        input: {
+          userId: user?.id
+        }
+      }
+    })
   }
 
   return (
@@ -24,14 +53,17 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
       {currentUser?.id !== user?.id && (
         <Switch
           as={Button}
-          checked={true}
-          onChange={handleToggleFollow}
+          checked={isFollowed}
+          onChange={() => {
+            setIsFollowed(!isFollowed)
+            handleToggleFollow()
+          }}
           size="md"
           className="py-2"
-          variant={true ? 'danger' : 'success'}
+          variant={isFollowed ? 'danger' : 'success'}
           outline
         >
-          {true ? (
+          {isFollowed ? (
             <div className="flex items-center gap-1">
               <MinusIcon className="h-4 w-4" />
               {showText && <div>Unfollow</div>}

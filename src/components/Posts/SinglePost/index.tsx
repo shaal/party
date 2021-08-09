@@ -1,7 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
@@ -61,7 +60,6 @@ interface Props {
 
 const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
-  const router = useRouter()
   const [toggleLike, toggleLikeResult] = useMutation<
     ToggleLikeMutation,
     ToggleLikeMutationVariables

@@ -16,6 +16,7 @@ export const query = gql`
     user(username: $username) {
       id
       username
+      hasFollowed
       profile {
         avatar
         name
