@@ -20,7 +20,8 @@ const editProfileSchema = object({
   username: string().min(1),
   email: string().email().min(1),
   name: string().min(1),
-  bio: string().nullable()
+  bio: string().max(255),
+  location: string().max(50)
 })
 
 interface Props {
@@ -39,6 +40,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         email
         profile {
           name
+          bio
+          location
         }
       }
     }
@@ -58,9 +61,11 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username, email, name, bio }) =>
+      onSubmit={({ username, email, name, bio, location }) =>
         editUser({
-          variables: { input: { username, email, name, bio: bio as string } }
+          variables: {
+            input: { username, email, name, bio: bio as string, location }
+          }
         })
       }
     >
@@ -94,6 +99,12 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         label="Bio"
         placeholder="Tell us about yourself!"
         {...form.register('bio')}
+      />
+      <Input
+        label="Location"
+        type="text"
+        placeholder="Czech Republic"
+        {...form.register('location')}
       />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>

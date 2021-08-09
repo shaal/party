@@ -93,7 +93,8 @@ builder.mutationField('editUser', (t) =>
           profile: {
             update: {
               name: input.name,
-              bio: input.bio
+              bio: input.bio,
+              location: input.location
             }
           }
         }
