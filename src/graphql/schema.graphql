@@ -27,9 +27,9 @@ input EditPostInput {
 
 input EditUserInput {
   avatar: String!
-  bio: String!
+  bio: String
   email: String!
-  location: String!
+  location: String
   name: String!
   username: String!
 }

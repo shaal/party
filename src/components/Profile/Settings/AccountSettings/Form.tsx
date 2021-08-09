@@ -20,8 +20,8 @@ const editProfileSchema = object({
   username: string().min(1),
   email: string().email().min(1),
   name: string().min(1),
-  bio: string().max(255),
-  location: string().max(50),
+  bio: string().max(255).nullable(),
+  location: string().max(50).nullable(),
   avatar: string()
 })
 
@@ -68,7 +68,14 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       onSubmit={({ username, email, name, bio, location, avatar }) =>
         editUser({
           variables: {
-            input: { username, email, name, bio, location, avatar }
+            input: {
+              username,
+              email,
+              name,
+              bio: bio as string,
+              location: location as string,
+              avatar
+            }
           }
         })
       }
