@@ -10,6 +10,16 @@ builder.prismaObject('User', {
     spammy: t.exposeBoolean('spammy', {}),
     isVerified: t.exposeBoolean('isVerified', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
+    email: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (root, args, ctx, info) => {
+        if (!ctx.session) return null
+        return root.email
+      }
+    }),
+
+    // Relations
     profile: t.relation('profile')
   })
 })
@@ -49,12 +59,20 @@ builder.queryField('users', (t) =>
 const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
     username: t.string({
-      required: false,
-      validate: {
-        minLength: 1,
-        maxLength: 20
-      }
-    })
+      required: true,
+      validate: { minLength: 1, maxLength: 20 }
+    }),
+    email: t.string({
+      required: true,
+      validate: { email: true }
+    }),
+    name: t.string({
+      required: true,
+      validate: { minLength: 1, maxLength: 50 }
+    }),
+    bio: t.string({ required: false, validate: { maxLength: 255 } }),
+    location: t.string({ required: false, validate: { maxLength: 50 } }),
+    avatar: t.string({})
   })
 })
 
@@ -71,7 +89,16 @@ builder.mutationField('editUser', (t) =>
           id: session!.userId
         },
         data: {
-          username: input.username ?? undefined
+          username: input.username,
+          email: input.email,
+          profile: {
+            update: {
+              name: input.name,
+              bio: input.bio,
+              location: input.location,
+              avatar: input.avatar
+            }
+          }
         }
       })
     }

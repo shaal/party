@@ -7,6 +7,7 @@ import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { PageLoading } from '../ui/PageLoading'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
 
@@ -18,6 +19,12 @@ export const query = gql`
       profile {
         avatar
         name
+        bio
+        location
+        website
+        twitter
+        github
+        discord
       }
     }
   }
@@ -31,6 +38,8 @@ const Profile: React.FC = () => {
     },
     skip: !router.isReady
   })
+
+  if (loading) return <PageLoading message="Loading profile..." />
 
   return (
     <Fragment>

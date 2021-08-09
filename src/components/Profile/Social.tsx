@@ -7,38 +7,46 @@ interface Props {
 const Social: React.FC<Props> = ({ profile }) => {
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
-        <img
-          src={`https://favicon.splitbee.io/?url=yogi.codes`}
-          className="h-4 w-4"
-          alt="Website"
-        />
-        <div>WIP</div>
-      </div>
-      <div className="flex items-center gap-2">
-        <img
-          src="https://i.ibb.co/DWjp4wY/twitter.png"
-          className="h-4 w-4"
-          alt="Twitter Logo"
-        />
-        <div>WIP</div>
-      </div>
-      <div className="flex items-center gap-2">
-        <img
-          src="https://i.ibb.co/R7QpLdD/github.png"
-          className="h-4 w-4"
-          alt="GitHub Logo"
-        />
-        <div>WIP</div>
-      </div>
-      <div className="flex items-center gap-2">
-        <img
-          src="https://i.ibb.co/Br3jcRJ/discord.png"
-          className="h-4 w-4"
-          alt="Discord Logo"
-        />
-        <div>WIP</div>
-      </div>
+      {profile?.website && (
+        <div className="flex items-center gap-2">
+          <img
+            src={`https://favicon.splitbee.io/?url=${profile?.website}`}
+            className="h-4 w-4"
+            alt="Website"
+          />
+          <div>{profile?.website}</div>
+        </div>
+      )}
+      {profile?.twitter && (
+        <div className="flex items-center gap-2">
+          <img
+            src="https://i.ibb.co/DWjp4wY/twitter.png"
+            className="h-4 w-4"
+            alt="Twitter Logo"
+          />
+          <div>{profile?.twitter}</div>
+        </div>
+      )}
+      {profile?.github && (
+        <div className="flex items-center gap-2">
+          <img
+            src="https://i.ibb.co/R7QpLdD/github.png"
+            className="h-4 w-4"
+            alt="GitHub Logo"
+          />
+          <div>{profile?.github}</div>
+        </div>
+      )}
+      {profile?.discord && (
+        <div className="flex items-center gap-2">
+          <img
+            src="https://i.ibb.co/Br3jcRJ/discord.png"
+            className="h-4 w-4"
+            alt="Discord Logo"
+          />
+          <div>{profile?.discord}</div>
+        </div>
+      )}
     </div>
   )
 }

@@ -110,7 +110,7 @@ builder.mutationField('signUp', (t) =>
           profile: {
             create: {
               name: input.username,
-              avatar: `https://avatar.tobi.sh/${md5(input.email)}.svg`
+              avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
             }
           }
         }

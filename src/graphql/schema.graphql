@@ -25,8 +25,20 @@ input EditPostInput {
   id: ID!
 }
 
+input EditSocialInput {
+  discord: String
+  github: String
+  twitter: String
+  website: String
+}
+
 input EditUserInput {
-  username: String
+  avatar: String!
+  bio: String
+  email: String!
+  location: String
+  name: String!
+  username: String!
 }
 
 type Like {
@@ -47,6 +59,7 @@ type Mutation {
   createPost(input: CreatePostInput!): Post!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
+  editSocial(input: EditSocialInput!): User!
   editUser(input: EditUserInput!): User!
   login(input: LoginInput!): User!
   logout: Result!
@@ -132,6 +145,7 @@ input ToggleLikeInput {
 }
 
 type User {
+  email: String
   id: ID!
   isStaff: Boolean!
   isVerified: Boolean!

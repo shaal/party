@@ -1,3 +1,5 @@
+import { db } from '~/utils/prisma'
+
 import { builder } from '../builder'
 
 builder.prismaObject('Profile', {
@@ -17,3 +19,39 @@ builder.prismaObject('Profile', {
     discord: t.exposeString('discord', { nullable: true })
   })
 })
+
+const EditSocialInput = builder.inputType('EditSocialInput', {
+  fields: (t) => ({
+    website: t.string({ required: false, validate: { maxLength: 100 } }),
+    twitter: t.string({ required: false, validate: { maxLength: 50 } }),
+    github: t.string({ required: false, validate: { maxLength: 50 } }),
+    discord: t.string({ required: false, validate: { maxLength: 50 } })
+  })
+})
+
+builder.mutationField('editSocial', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: {
+      input: t.arg({ type: EditSocialInput })
+    },
+    resolve: (query, root, { input }, { session }) => {
+      return db.user.update({
+        ...query,
+        where: {
+          id: session!.userId
+        },
+        data: {
+          profile: {
+            update: {
+              website: input.website,
+              twitter: input.twitter,
+              github: input.github,
+              discord: input.discord
+            }
+          }
+        }
+      })
+    }
+  })
+)

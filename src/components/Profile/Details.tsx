@@ -43,11 +43,13 @@ const Details: React.FC<Props> = ({ user }) => {
           </Button>
         </Link>
       )}
-      <div>{user?.profile?.bio}</div>
-      <div className="flex items-center gap-2">
-        <LocationMarkerIcon className="h-4 w-4" />
-        <div>India</div>
-      </div>
+      {user?.profile?.bio && <div>{user?.profile?.bio}</div>}
+      {user?.profile?.location && (
+        <div className="flex items-center gap-2">
+          <LocationMarkerIcon className="h-4 w-4" />
+          <div>{user?.profile?.location}</div>
+        </div>
+      )}
       <Social profile={user?.profile as Profile} />
     </div>
   )
