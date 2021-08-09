@@ -35,33 +35,21 @@ const ViewPost: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading)
-    return (
-      <GridLayout>
-        <GridItemEight>
-          <PostShimmer />
-        </GridItemEight>
-        <GridItemFour>
-          <Card>
-            <CardBody>
-              <UserProfileLargeShimmer showFollow />
-            </CardBody>
-          </Card>
-        </GridItemFour>
-      </GridLayout>
-    )
-
   return (
     <Fragment>
       <GridLayout>
         <GridItemEight>
           <ErrorMessage title="Failed to load post" error={error} />
-          <SinglePost post={data?.post as Post} />
+          {loading ? <PostShimmer /> : <SinglePost post={data?.post as Post} />}
         </GridItemEight>
         <GridItemFour>
           <Card>
             <CardBody>
-              <UserProfileLarge user={data?.post?.user as User} showFollow />
+              {loading ? (
+                <UserProfileLargeShimmer showFollow />
+              ) : (
+                <UserProfileLarge user={data?.post?.user as User} showFollow />
+              )}
             </CardBody>
           </Card>
         </GridItemFour>
