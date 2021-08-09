@@ -30,4 +30,4 @@ Prettier 📚:
 Build 👷‍♂️:
   stage: test
   script:
-    - npm run build
+    - npm run typecheck
