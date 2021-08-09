@@ -64,7 +64,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       onSubmit={({ username, email, name, bio, location }) =>
         editUser({
           variables: {
-            input: { username, email, name, bio: bio as string, location }
+            input: { username, email, name, bio, location }
           }
         })
       }
