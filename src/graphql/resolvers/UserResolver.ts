@@ -1,6 +1,7 @@
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
+import { followersCount } from '../utils/count/followersCount'
 import { hasFollowed } from '../utils/hasFollowed'
 import { toggleFollow } from '../utils/toggleFollow'
 
@@ -19,6 +20,10 @@ builder.prismaObject('User', {
         if (!ctx.session) return null
         return root.email
       }
+    }),
+    followersCount: t.field({
+      type: 'Int',
+      resolve: async (root) => await followersCount(root.id)
     }),
     hasFollowed: t.field({
       type: 'Boolean',
