@@ -59,6 +59,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         <SuccessMessage>Profile successfully updated!</SuccessMessage>
       )}
 
+      <Input label="ID" type="text" value={user?.id} disabled />
       <Input
         label="Username"
         type="text"
