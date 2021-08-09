@@ -20,6 +20,10 @@ export const query = gql`
         name
         bio
         location
+        website
+        twitter
+        github
+        discord
       }
     }
   }
