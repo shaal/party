@@ -75,6 +75,12 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         autoComplete="email"
         {...form.register('email')}
       />
+      <Input
+        label="Email"
+        type="email"
+        autoComplete="email"
+        {...form.register('email')}
+      />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
         <Button type="submit">Save</Button>
