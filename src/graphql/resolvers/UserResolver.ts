@@ -71,7 +71,8 @@ const EditUserInput = builder.inputType('EditUserInput', {
       validate: { minLength: 1, maxLength: 50 }
     }),
     bio: t.string({ validate: { maxLength: 255 } }),
-    location: t.string({ validate: { maxLength: 50 } })
+    location: t.string({ validate: { maxLength: 50 } }),
+    avatar: t.string({})
   })
 })
 
@@ -94,7 +95,8 @@ builder.mutationField('editUser', (t) =>
             update: {
               name: input.name,
               bio: input.bio,
-              location: input.location
+              location: input.location,
+              avatar: input.avatar
             }
           }
         }
