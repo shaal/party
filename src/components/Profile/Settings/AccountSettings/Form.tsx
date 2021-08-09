@@ -110,6 +110,17 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         placeholder="Czech Republic"
         {...form.register('location')}
       />
+      <div className="space-y-1.5">
+        <label>Avatar</label>
+        <div className="flex items-center gap-3">
+          <img
+            className="rounded-full h-24 w-24"
+            src={form.getValues('avatar')}
+            alt={form.getValues('avatar')}
+          />
+        </div>
+      </div>
+
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
         <Button type="submit">Save</Button>
