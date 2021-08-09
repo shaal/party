@@ -17,7 +17,8 @@ import {
 
 const editProfileSchema = object({
   username: string().min(1),
-  email: string().email().min(1)
+  email: string().email().min(1),
+  name: string().min(1)
 })
 
 interface Props {
@@ -34,6 +35,9 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         id
         username
         email
+        profile {
+          name
+        }
       }
     }
   `)
@@ -42,7 +46,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     schema: editProfileSchema,
     defaultValues: {
       username: user.username,
-      email: user.email as string
+      email: user.email as string,
+      name: user.profile.name
     }
   })
 
@@ -50,8 +55,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username, email }) =>
-        editUser({ variables: { input: { username, email } } })
+      onSubmit={({ username, email, name }) =>
+        editUser({ variables: { input: { username, email, name } } })
       }
     >
       <ErrorMessage
@@ -62,25 +67,9 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         <SuccessMessage>Profile successfully updated!</SuccessMessage>
       )}
       <Input label="ID" type="text" value={user?.id} disabled />
-      <Input
-        label="Username"
-        type="text"
-        autoComplete="username"
-        autoFocus
-        {...form.register('username')}
-      />
-      <Input
-        label="Email"
-        type="email"
-        autoComplete="email"
-        {...form.register('email')}
-      />
-      <Input
-        label="Email"
-        type="email"
-        autoComplete="email"
-        {...form.register('email')}
-      />
+      <Input label="Username" type="text" {...form.register('username')} />
+      <Input label="Email" type="email" {...form.register('email')} />
+      <Input label="Name" type="text" {...form.register('name')} />
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
         <Button type="submit">Save</Button>

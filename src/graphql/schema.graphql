@@ -25,12 +25,9 @@ input EditPostInput {
   id: ID!
 }
 
-input EditProfileInput {
-  name: String!
-}
-
 input EditUserInput {
   email: String!
+  name: String!
   username: String!
 }
 
@@ -52,7 +49,6 @@ type Mutation {
   createPost(input: CreatePostInput!): Post!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
-  editProfile(input: EditProfileInput!): User!
   editUser(input: EditUserInput!): User!
   login(input: LoginInput!): User!
   logout: Result!
