@@ -2,7 +2,13 @@ import React, { useContext } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import ProfileForm from '~/components/EditProfile/ProfileForm'
-import { GridLayout } from '~/components/GridLayout'
+import {
+  GridItemEight,
+  GridItemFour,
+  GridLayout
+} from '~/components/GridLayout'
+import SettingsHelper from '~/components/shared/SettingsHelper'
+import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
 
 const AccountSettings: React.FC = () => {
@@ -12,7 +18,21 @@ const AccountSettings: React.FC = () => {
 
   return (
     <GridLayout>
-      <ProfileForm user={currentUser as User} />
+      <GridItemFour>
+        <SettingsHelper
+          heading="Account settings"
+          description={
+            "Update your account's contact information and email address."
+          }
+        />
+      </GridItemFour>
+      <GridItemEight>
+        <Card>
+          <CardBody>
+            <ProfileForm user={currentUser as User} />
+          </CardBody>
+        </Card>
+      </GridItemEight>
     </GridLayout>
   )
 }
