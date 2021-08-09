@@ -3,9 +3,6 @@ image: node:latest
 stages:
   - test
 
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-
 cache:
   paths:
     - node_modules/
@@ -24,7 +21,18 @@ Prettier 📚:
   script:
     - yarn prettier:check
 
-Generate 👷‍♂️:
+Generate 🧞‍♂️:
   stage: test
   script:
     - yarn generate
+
+Typecheck 🧐:
+  stage: test
+  script:
+    - yarn generate
+    - yarn typecheck
+
+Build 👷‍♂️:
+  stage: test
+  script:
+    - yarn build
