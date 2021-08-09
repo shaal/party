@@ -2,6 +2,7 @@ import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
 import { hasFollowed } from '../utils/hasFollowed'
+import { toggleFollow } from '../utils/toggleFollow'
 
 builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
@@ -109,6 +110,25 @@ builder.mutationField('editUser', (t) =>
           }
         }
       })
+    }
+  })
+)
+
+const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
+  fields: (t) => ({
+    userId: t.id({})
+  })
+})
+
+builder.mutationField('toggleFollow', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: {
+      input: t.arg({ type: ToggleFollowInput })
+    },
+    nullable: true,
+    resolve: async (query, root, { input }, { session }) => {
+      return await toggleFollow(session?.userId as string, input?.userId)
     }
   })
 )
