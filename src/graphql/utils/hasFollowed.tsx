@@ -1,6 +1,6 @@
 import { db } from '~/utils/prisma'
 
-export const hasFollowed = async (userId: string, currentUserId: string) => {
+export const hasFollowed = async (currentUserId: string, userId: string) => {
   const user = await db.user.findUnique({
     where: { id: userId },
     include: {

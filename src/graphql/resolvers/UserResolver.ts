@@ -1,6 +1,7 @@
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
+import { hasFollowed } from '../utils/hasFollowed'
 
 builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
@@ -16,6 +17,13 @@ builder.prismaObject('User', {
       resolve: async (root, args, ctx, info) => {
         if (!ctx.session) return null
         return root.email
+      }
+    }),
+    hasFollowed: t.field({
+      type: 'Boolean',
+      resolve: async (root, args, ctx, info) => {
+        if (!ctx.session) return false
+        return await hasFollowed(ctx.session?.userId as string, root.id)
       }
     }),
 
