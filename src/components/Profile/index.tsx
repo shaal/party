@@ -7,6 +7,7 @@ import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import { PageLoading } from '../ui/PageLoading'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
 
@@ -38,7 +39,7 @@ const Profile: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <PageLoading message="Loading profile..." />
 
   return (
     <Fragment>
