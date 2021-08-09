@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import ProfileForm from '~/components/EditProfile/ProfileForm'
 import {
   GridItemEight,
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
+import ProfileForm from '~/components/Profile/Settings/ProfileForm'
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
