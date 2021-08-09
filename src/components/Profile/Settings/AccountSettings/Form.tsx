@@ -66,8 +66,10 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         autoFocus
         {...form.register('username')}
       />
-      <Button type="submit">Save Profile</Button>
-      <Link href="/settings/change-password">Change password?</Link>
+      <div className="flex items-center justify-between pt-3">
+        <Link href="/settings/change-password">Change password?</Link>
+        <Button type="submit">Save</Button>
+      </div>
     </Form>
   )
 }
