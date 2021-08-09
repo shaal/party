@@ -25,7 +25,7 @@ const Settings: React.FC = () => {
   const { data, loading } = useQuery<SettingsQuery>(query)
 
   if (loading) return <div>Loading...</div>
-
+  // TODO: Redirect to 404
   if (!currentUser) return <div>Forbidden...</div>
 
   return (
