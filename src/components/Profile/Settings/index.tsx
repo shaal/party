@@ -8,6 +8,7 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
+import { PageLoading } from '~/components/ui/PageLoading'
 import AppContext from '~/components/utils/AppContext'
 
 import { SettingsQuery } from './__generated__/index.generated'
@@ -17,10 +18,7 @@ const AccountSettings = dynamic(() => import('./AccountSettings'), {
   loading: () => <Loading />
 })
 
-const SocialSettings = dynamic(() => import('./SocialSettings'), {
-  // eslint-disable-next-line react/display-name
-  loading: () => <Loading />
-})
+const SocialSettings = dynamic(() => import('./SocialSettings'))
 
 const Loading = () => (
   <GridLayout>
@@ -57,7 +55,7 @@ const Settings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
   const { data, loading } = useQuery<SettingsQuery>(query)
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <PageLoading message="Loading settings..." />
   // TODO: Redirect to 404
   if (!currentUser) return <div>Forbidden...</div>
 
