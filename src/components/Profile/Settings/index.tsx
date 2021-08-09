@@ -17,6 +17,7 @@ export const query = gql`
         name
         bio
         location
+        avatar
       }
     }
   }
