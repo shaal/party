@@ -60,7 +60,7 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
           }}
           size="md"
           className="py-2"
-          variant={true ? 'danger' : 'success'}
+          variant={isFollowed ? 'danger' : 'success'}
           outline
         >
           {isFollowed ? (
