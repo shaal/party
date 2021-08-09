@@ -46,6 +46,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
   return (
     <Form
       form={form}
+      className="space-y-4"
       onSubmit={({ username }) =>
         editUser({ variables: { input: { username } } })
       }
@@ -54,11 +55,9 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         title="Error creating account"
         error={editUserResult.error}
       />
-
       {editUserResult.data && (
         <SuccessMessage>Profile successfully updated!</SuccessMessage>
       )}
-
       <Input label="ID" type="text" value={user?.id} disabled />
       <Input
         label="Username"
@@ -67,9 +66,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         autoFocus
         {...form.register('username')}
       />
-
       <Button type="submit">Save Profile</Button>
-
       <Link href="/settings/change-password">Change password?</Link>
     </Form>
   )
