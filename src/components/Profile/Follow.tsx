@@ -29,6 +29,8 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
         toggleFollow(input: $input) {
           id
           hasFollowed
+          followersCount
+          followingCount
         }
       }
     `
