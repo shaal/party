@@ -18,6 +18,8 @@ export const query = gql`
       profile {
         avatar
         name
+        bio
+        location
       }
     }
   }
