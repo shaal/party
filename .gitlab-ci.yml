@@ -21,5 +21,8 @@ Lint 🌟:
   stage: test
   script:
     - npm run lint
-  artifacts:
-    expire_in: 1 day
+
+Prettier 📚:
+  stage: test
+  script:
+    - npm run prettier:check
