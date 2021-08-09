@@ -2,6 +2,7 @@ image: node:latest
 
 stages:
   - test
+  - clean
 
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
@@ -39,3 +40,17 @@ Build 👷‍♂️:
   stage: test
   script:
     - yarn build
+
+Housekeeping ✨:
+  stage: clean
+  script:
+    - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
+  only:
+    - main
+
+Merged Branches 🗑:
+  stage: clean
+  script:
+    - curl --request DELETE --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/repository/merged_branches
+  only:
+    - main
