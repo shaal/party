@@ -15,7 +15,7 @@ services:
   compiler:
     restart: unless-stopped
     image: node:latest
-    command: yarn codegen:graphql -- --watch
+    command: yarn codegen:graphql --watch
     volumes:
       - .:/srv/compiler:rw
     working_dir: /srv/compiler
