@@ -14,20 +14,20 @@ cache:
     - node_modules/
 
 before_script:
-  - npm install
+  - yarn install
   - cp .env.example .env
 
 Lint 🌟:
   stage: test
   script:
-    - npm run lint
+    - yarn lint
 
 Prettier 📚:
   stage: test
   script:
-    - npm run prettier:check
+    - yarn prettier:check
 
 Build 👷‍♂️:
   stage: test
   script:
-    - npm run generate
+    - yarn generate

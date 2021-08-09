@@ -3,11 +3,11 @@ tasks:
     before: docker-compose up
   - name: Dev Server
     init: >
-      npm install;
+      yarn install;
       cp .env.example .env;
     command: >
-      npm run migrate;
-      npm run dev;
+      yarn migrate;
+      yarn dev;
 
 ports:
   - port: 3000
