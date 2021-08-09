@@ -6,8 +6,8 @@ import { User } from '~/__generated__/schema.generated'
 import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { PageLoading } from '../ui/PageLoading'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
 
@@ -42,15 +42,13 @@ const Profile: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading profile..." />
-
   return (
     <Fragment>
       <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          <Details user={data?.user as User} />
+          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
         <GridItemEight>
           <Posts user={data?.user as User} />
