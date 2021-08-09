@@ -89,6 +89,9 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "node": ">=14"
+  },
   "browserslist": [
     "defaults",
     "not IE 11",
