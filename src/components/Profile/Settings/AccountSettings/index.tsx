@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import { gql, useQuery } from '@apollo/client'
+import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import {
@@ -8,14 +9,26 @@ import {
 } from '~/components/GridLayout'
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
-import AppContext from '~/components/utils/AppContext'
 
 import AccountSettingsForm from '../AccountSettings/Form'
+import { SettingsQuery } from './__generated__/index.generated'
+
+export const query = gql`
+  query SettingsQuery {
+    me {
+      id
+      username
+      profile {
+        name
+      }
+    }
+  }
+`
 
 const AccountSettings: React.FC = () => {
-  const { currentUser, currentUserLoading } = useContext(AppContext)
+  const { data, loading } = useQuery<SettingsQuery>(query)
 
-  if (currentUserLoading) return <div>Loading...</div>
+  if (loading) return <div>Loading...</div>
 
   return (
     <GridLayout>
@@ -30,7 +43,7 @@ const AccountSettings: React.FC = () => {
       <GridItemEight>
         <Card>
           <CardBody>
-            <AccountSettingsForm user={currentUser as User} />
+            <AccountSettingsForm user={data?.me as User} />
           </CardBody>
         </Card>
       </GridItemEight>
