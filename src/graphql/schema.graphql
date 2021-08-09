@@ -132,6 +132,7 @@ input ToggleLikeInput {
 }
 
 type User {
+  email: String
   id: ID!
   isStaff: Boolean!
   isVerified: Boolean!

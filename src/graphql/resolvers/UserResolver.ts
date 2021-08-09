@@ -10,6 +10,16 @@ builder.prismaObject('User', {
     spammy: t.exposeBoolean('spammy', {}),
     isVerified: t.exposeBoolean('isVerified', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
+    email: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (root, args, ctx, info) => {
+        if (!ctx.session) return null
+        return root.email
+      }
+    }),
+
+    // Relations
     profile: t.relation('profile')
   })
 })
