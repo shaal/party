@@ -11,7 +11,7 @@ interface FeedTypeProps {
 
 const FeedType: React.FC<FeedTypeProps> = ({ setFeedType }) => {
   return (
-    <div className="flex mb-4 gap-3">
+    <div className="flex gap-3">
       <button
         className="flex items-center space-x-2 rounded-lg px-3 py-1 text-blue-500 hover:bg-blue-100 hover:text-blue-500 dark:hover:bg-opacity-20 hover:bg-opacity-100"
         onClick={() => setFeedType('ALL')}

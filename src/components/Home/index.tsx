@@ -24,7 +24,13 @@ const Home: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             {currentUser && <NewPost />}
-            <FeedType setFeedType={setFeedType} />
+            <div className="flex items-center justify-between">
+              <FeedType setFeedType={setFeedType} />
+              <div className="flex items-center gap-1.5">
+                <input id="onlyFollowing" type="checkbox" className="rounded" />
+                <label htmlFor="onlyFollowing">Only following</label>
+              </div>
+            </div>
             <Posts feedType={feedType} />
             <ErrorMessage
               title="Failed to load the current user."
