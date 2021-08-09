@@ -13,6 +13,8 @@ import UserProfileLarge from '~/components/shared/UserProfileLarge'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
+import PostShimmer from '../shared/Shimmer/PostShimmer'
+import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
 import { PostQuery } from './__generated__/ViewPost.generated'
 
 const query = gql`
@@ -32,6 +34,22 @@ const ViewPost: React.FC = () => {
     },
     skip: !router.isReady
   })
+
+  if (loading)
+    return (
+      <GridLayout>
+        <GridItemEight>
+          <PostShimmer />
+        </GridItemEight>
+        <GridItemFour>
+          <Card>
+            <CardBody>
+              <UserProfileLargeShimmer />
+            </CardBody>
+          </Card>
+        </GridItemFour>
+      </GridLayout>
+    )
 
   return (
     <Fragment>
