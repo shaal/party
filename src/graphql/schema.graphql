@@ -152,6 +152,7 @@ input ToggleLikeInput {
 type User {
   email: String
   followersCount: Int!
+  followingCount: Int!
   hasFollowed: Boolean!
   id: ID!
   isStaff: Boolean!
