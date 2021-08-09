@@ -53,7 +53,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       username: user.username,
       email: user.email as string,
       name: user.profile.name,
-      bio: user.profile.bio as string
+      bio: user.profile.bio as string,
+      location: user.profile.location as string
     }
   })
 
