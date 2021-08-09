@@ -44,7 +44,7 @@ const ViewPost: React.FC = () => {
         <GridItemFour>
           <Card>
             <CardBody>
-              <UserProfileLargeShimmer />
+              <UserProfileLargeShimmer showFollow />
             </CardBody>
           </Card>
         </GridItemFour>
@@ -61,7 +61,7 @@ const ViewPost: React.FC = () => {
         <GridItemFour>
           <Card>
             <CardBody>
-              <UserProfileLarge user={data?.post?.user as User} />
+              <UserProfileLarge user={data?.post?.user as User} showFollow />
             </CardBody>
           </Card>
         </GridItemFour>
