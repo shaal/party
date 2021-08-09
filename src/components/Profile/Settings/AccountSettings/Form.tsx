@@ -21,7 +21,8 @@ const editProfileSchema = object({
   email: string().email().min(1),
   name: string().min(1),
   bio: string().max(255),
-  location: string().max(50)
+  location: string().max(50),
+  avatar: string()
 })
 
 interface Props {
@@ -42,6 +43,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
           name
           bio
           location
+          avatar
         }
       }
     }
@@ -54,7 +56,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       email: user.email as string,
       name: user.profile.name,
       bio: user.profile.bio as string,
-      location: user.profile.location as string
+      location: user.profile.location as string,
+      avatar: user.profile.avatar as string
     }
   })
 
@@ -62,10 +65,10 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username, email, name, bio, location }) =>
+      onSubmit={({ username, email, name, bio, location, avatar }) =>
         editUser({
           variables: {
-            input: { username, email, name, bio, location }
+            input: { username, email, name, bio, location, avatar }
           }
         })
       }
