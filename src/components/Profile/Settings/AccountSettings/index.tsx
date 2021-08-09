@@ -6,10 +6,11 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
-import ProfileForm from '~/components/Profile/Settings/ProfileForm'
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
+
+import AccountSettingsForm from '../AccountSettings/Form'
 
 const AccountSettings: React.FC = () => {
   const { currentUser, currentUserLoading } = useContext(AppContext)
@@ -29,7 +30,7 @@ const AccountSettings: React.FC = () => {
       <GridItemEight>
         <Card>
           <CardBody>
-            <ProfileForm user={currentUser as User} />
+            <AccountSettingsForm user={currentUser as User} />
           </CardBody>
         </Card>
       </GridItemEight>
