@@ -38,6 +38,7 @@ const Posts: React.FC<Props> = ({ user, feedType }) => {
     variables: {
       after: null,
       where: {
+        onlyFollowing: user?.id ? false : true,
         userId: user?.id,
         type: feedType === 'ALL' ? 'ALL' : feedType
       }
