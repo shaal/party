@@ -99,8 +99,6 @@ enum PostType {
 
 model Reply {
   id     String @id @default(cuid())
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
   body   String
 
   // Timestamps
@@ -111,6 +109,8 @@ model Reply {
   likes  Like[]
   post   Post?   @relation(fields: [postId], references: [id])
   postId String?
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model Like {
