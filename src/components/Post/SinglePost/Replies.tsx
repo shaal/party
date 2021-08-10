@@ -55,20 +55,20 @@ const PostReplies: React.FC<Props> = ({ post }) => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-4">
         {data?.replies?.edges?.map((reply: any) => (
-          <div key={reply?.node?.id} className="flex space-x-3 items-center">
-            <img
-              src={reply?.node?.user?.profile?.avatar}
-              className="h-7 w-7 rounded-full"
-              alt={`@${reply?.node?.user?.username}'s avatar`}
-            />
-            <div className="space-y-1">
+          <div key={reply?.node?.id}>
+            <div className="flex items-center space-x-1.5 mb-2">
+              <img
+                src={reply?.node?.user?.profile?.avatar}
+                className="h-5 w-5 rounded-full"
+                alt={`@${reply?.node?.user?.username}'s avatar`}
+              />
               <div className="text-sm flex items-center space-x-1">
                 <div>{reply?.node?.user?.profile?.name}</div>
                 <Username username={reply?.node?.user?.username} />
               </div>
-              <div className="bg-gray-300 dark:bg-gray-700 px-2.5 py-1 rounded-lg">
-                {reply?.node?.body}
-              </div>
+            </div>
+            <div className="bg-gray-300 dark:bg-gray-700 px-2.5 py-1 rounded-lg inline-flex">
+              {reply?.node?.body}
             </div>
           </div>
         ))}
