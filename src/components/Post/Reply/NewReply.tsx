@@ -83,7 +83,17 @@ const NewReply: React.FC<Props> = ({ post }) => {
             {...form.register('body')}
             placeholder="What's on your mind?"
           />
-          <div className="ml-auto">
+          <div className="flex ml-auto space-x-2">
+            <Button
+              type="button"
+              outline
+              className="flex items-center gap-1.5"
+              onClick={() => {
+                form.reset()
+              }}
+            >
+              <div>Cancel</div>
+            </Button>
             <Button type="submit" className="flex items-center gap-1.5">
               <ReplyIcon className="h-4 w-4" />
               <div>Reply</div>
