@@ -3,6 +3,7 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { boolean, object, string } from 'zod'
 
+import { HOME_FEED_QUERY } from '~/components/Home/Feed'
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
@@ -36,17 +37,7 @@ const TaskType: React.FC = () => {
       }
     `,
     {
-      update(cache, { data }) {
-        if (!data?.createPost) return
-
-        cache.modify({
-          fields: {
-            posts(existingPosts = []) {
-              return [data.createPost, ...existingPosts.edges]
-            }
-          }
-        })
-      },
+      refetchQueries: [{ query: HOME_FEED_QUERY }],
       onCompleted() {
         form.reset()
       }
