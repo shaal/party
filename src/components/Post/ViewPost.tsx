@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React, { useContext } from 'react'
 
 import { Post, User } from '~/__generated__/schema.generated'
 import {
@@ -15,7 +15,9 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
+import AppContext from '../utils/AppContext'
 import { PostQuery } from './__generated__/ViewPost.generated'
+import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 
 const query = gql`
@@ -29,6 +31,7 @@ const query = gql`
 
 const ViewPost: React.FC = () => {
   const router = useRouter()
+  const { currentUser } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(query, {
     variables: {
       id: router.query.postId
@@ -36,35 +39,46 @@ const ViewPost: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (!data) return <div>404</div>
-
-  return (
-    <Fragment>
+  if (loading)
+    return (
       <GridLayout>
         <GridItemEight>
-          <div className="space-y-5">
-            <ErrorMessage title="Failed to load post" error={error} />
-            {loading ? (
-              <PostShimmer />
-            ) : (
-              <SinglePost post={data?.post as Post} />
-            )}
-            {loading ? 'Loading' : <Replies post={data?.post as Post} />}
-          </div>
+          <PostShimmer />
         </GridItemEight>
         <GridItemFour>
           <Card>
             <CardBody>
-              {loading ? (
-                <UserProfileLargeShimmer showFollow />
-              ) : (
-                <UserProfileLarge user={data?.post?.user as User} showFollow />
-              )}
+              <UserProfileLargeShimmer showFollow />
             </CardBody>
           </Card>
         </GridItemFour>
       </GridLayout>
-    </Fragment>
+    )
+
+  if (!data) return <div>404</div>
+
+  return (
+    <GridLayout>
+      <GridItemEight>
+        <div className="space-y-5">
+          <ErrorMessage title="Failed to load post" error={error} />
+          {loading ? <PostShimmer /> : <SinglePost post={data?.post as Post} />}
+          {!loading && currentUser && <NewReply post={data?.post as Post} />}
+          {loading ? 'Loading' : <Replies post={data?.post as Post} />}
+        </div>
+      </GridItemEight>
+      <GridItemFour>
+        <Card>
+          <CardBody>
+            {loading ? (
+              <UserProfileLargeShimmer showFollow />
+            ) : (
+              <UserProfileLarge user={data?.post?.user as User} showFollow />
+            )}
+          </CardBody>
+        </Card>
+      </GridItemFour>
+    </GridLayout>
   )
 }
 
