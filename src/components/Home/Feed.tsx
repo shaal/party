@@ -42,7 +42,7 @@ const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
       }
     }
   })
-  const nodes = data?.posts?.edges?.map((edge) => edge?.node)
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
@@ -75,10 +75,10 @@ const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {nodes?.length === 0 ? (
+        {posts?.length === 0 ? (
           <div>Nothing here</div>
         ) : (
-          nodes?.map((post: any) => (
+          posts?.map((post: any) => (
             <SinglePost key={post?.id} post={post} showReplies />
           ))
         )}
