@@ -30,7 +30,7 @@ const query = gql`
 `
 
 const RepliesCard: React.FC<React.ReactNode> = ({ children }) => (
-  <div className="bg-gray-100 dark:bg-gray-800 border dark:border-gray-700 p-5 rounded-lg">
+  <div className="bg-gray-100 dark:bg-gray-800 border dark:border-gray-700 p-5 rounded-lg shadow-sm">
     {children}
   </div>
 )
