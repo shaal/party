@@ -11,7 +11,7 @@ import { HomeFeedQuery } from './__generated__/Feed.generated'
 
 const query = gql`
   query HomeFeedQuery($after: String, $where: WherePostsInput) {
-    posts(first: 5, after: $after, where: $where) {
+    posts(first: 10, after: $after, where: $where) {
       pageInfo {
         endCursor
         hasNextPage
