@@ -16,6 +16,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
 import { PostQuery } from './__generated__/ViewPost.generated'
+import Replies from './Reply/Replies'
 
 const query = gql`
   query PostQuery($id: ID!) {
@@ -41,8 +42,15 @@ const ViewPost: React.FC = () => {
     <Fragment>
       <GridLayout>
         <GridItemEight>
-          <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <PostShimmer /> : <SinglePost post={data?.post as Post} />}
+          <div className="space-y-5">
+            <ErrorMessage title="Failed to load post" error={error} />
+            {loading ? (
+              <PostShimmer />
+            ) : (
+              <SinglePost post={data?.post as Post} />
+            )}
+            {loading ? 'Loading' : <Replies post={data?.post as Post} />}
+          </div>
         </GridItemEight>
         <GridItemFour>
           <Card>
