@@ -29,6 +29,7 @@ export const PostFragment = gql`
     type
     hasLiked
     likesCount
+    repliesCount
     likes(first: 5) {
       edges {
         node {
@@ -106,6 +107,9 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
+            {(post?.repliesCount as number) > 0 && (
+              <div className="text-xs">{post?.repliesCount}</div>
+            )}
           </button>
         </Link>
         {post?.user?.id === currentUser?.id && (
