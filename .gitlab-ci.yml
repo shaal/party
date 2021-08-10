@@ -10,6 +10,7 @@ include:
 cache:
   paths:
     - node_modules/
+    - .next/cache/
 
 before_script:
   - cp .env.example .env
