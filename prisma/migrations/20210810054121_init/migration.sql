@@ -60,12 +60,25 @@ CREATE TABLE "Post" (
 );
 
 -- CreateTable
+CREATE TABLE "Reply" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "body" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "postId" TEXT,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Like" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "postId" TEXT,
+    "replyId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -83,10 +96,19 @@ CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
+CREATE INDEX "User.username_email_index" ON "User"("username", "email");
+
+-- CreateIndex
+CREATE INDEX "Profile.userId_index" ON "Profile"("userId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "postLikeIdentifier" ON "Like"("userId", "postId");
+CREATE INDEX "Post.userId_index" ON "Post"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId", "replyId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
@@ -104,10 +126,19 @@ ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELE
 ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Reply" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Reply" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Like" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Like" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Like" ADD FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
