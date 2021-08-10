@@ -4,11 +4,11 @@ import { useContext } from 'react'
 import NewPost from '~/components/Posts/NewPost'
 import Banner from '~/components/shared/Banner'
 import AppContext from '~/components/utils/AppContext'
-import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import FeedType from '../Posts/FeedType'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
 
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
                 </div>
               )}
             </div>
-            <Posts feedType={feedType} onlyFollowing={onlyFollowing} />
+            <HomeFeed feedType={feedType} onlyFollowing={onlyFollowing} />
             <ErrorMessage
               title="Failed to load the current user."
               error={currentUserError}

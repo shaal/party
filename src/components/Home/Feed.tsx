@@ -3,22 +3,15 @@ import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '~/__generated__/schema.generated'
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
+import SinglePost, { PostFragment } from '../Posts/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { PostsQuery } from './__generated__/index.generated'
-import SinglePost, { PostFragment } from './SinglePost'
+import { HomeFeedQuery } from './__generated__/Feed.generated'
 
-interface Props {
-  user?: User
-  feedType?: string
-  onlyFollowing?: boolean
-}
-
-export const query = gql`
-  query PostsQuery($after: String, $where: WherePostsInput) {
-    posts(first: 5, after: $after, where: $where) {
+const query = gql`
+  query HomeFeedQuery($after: String, $where: WherePostsInput) {
+    posts(first: 10, after: $after, where: $where) {
       pageInfo {
         endCursor
         hasNextPage
@@ -33,14 +26,18 @@ export const query = gql`
   ${PostFragment}
 `
 
-const Posts: React.FC<Props> = ({ user, feedType, onlyFollowing = false }) => {
+interface Props {
+  feedType?: string
+  onlyFollowing?: boolean
+}
+
+const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
-  const { data, loading, error, fetchMore } = useQuery<PostsQuery>(query, {
+  const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(query, {
     variables: {
       after: null,
       where: {
         onlyFollowing,
-        userId: user?.id,
         type: feedType === 'ALL' ? 'ALL' : feedType
       }
     }
@@ -103,4 +100,4 @@ const Posts: React.FC<Props> = ({ user, feedType, onlyFollowing = false }) => {
   )
 }
 
-export default Posts
+export default HomeFeed
