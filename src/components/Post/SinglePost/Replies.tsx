@@ -67,7 +67,7 @@ const PostReplies: React.FC<Props> = ({ post }) => {
                 <Username username={reply?.node?.user?.username} />
               </div>
             </div>
-            <div className="bg-gray-200 dark:bg-gray-700 border border-gray-300 px-2.5 py-1 rounded-lg inline-flex shadow-sm">
+            <div className="bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-2.5 py-1 rounded-lg inline-flex shadow-sm">
               {reply?.node?.body}
             </div>
           </div>
