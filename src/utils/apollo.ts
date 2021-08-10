@@ -4,6 +4,7 @@ import {
   InMemoryCache,
   QueryOptions
 } from '@apollo/client'
+import { relayStylePagination } from '@apollo/client/utilities'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { useMemo } from 'react'
 
@@ -30,7 +31,7 @@ export async function preloadQuery(
         initialClientState: client.cache.extract()
       }
     }
-  } catch (e) {
+  } catch (e: any) {
     const notFoundError = e.graphQLErrors.find((error: Error) => {
       return (error as any)?.extensions.code === 404
     })
@@ -68,7 +69,16 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
             : '/api/graphql',
         headers: headers
       }),
-      cache: new InMemoryCache()
+      cache: new InMemoryCache({
+        typePolicies: {
+          Query: {
+            fields: {
+              posts: relayStylePagination(),
+              replies: relayStylePagination()
+            }
+          }
+        }
+      })
     })
   }
 

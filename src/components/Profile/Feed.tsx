@@ -44,6 +44,9 @@ const UserFeed: React.FC<Props> = ({ feedType, user }) => {
     }
   })
 
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
+
   const { observe } = useInView({
     threshold: 1,
     onChange: ({ observe, unobserve }) => {
@@ -51,27 +54,13 @@ const UserFeed: React.FC<Props> = ({ feedType, user }) => {
       observe()
     },
     onEnter: () => {
-      const endCursor = data?.posts?.pageInfo?.endCursor
-
-      fetchMore({
-        variables: {
-          after: endCursor
-        },
-        // @ts-ignore
-        updateQuery: (
-          previousResult,
-          { fetchMoreResult }: { fetchMoreResult: any }
-        ) => {
-          const previousEdges = previousResult?.posts?.edges
-          const newEdges = fetchMoreResult?.posts?.edges
-          const pageInfo = fetchMoreResult?.posts?.pageInfo
-          setHasNextPage(pageInfo?.hasNextPage)
-          if (!fetchMoreResult) return previousResult
-          return {
-            posts: { edges: [...previousEdges, ...newEdges], pageInfo }
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor
           }
-        }
-      })
+        })
+      }
     }
   })
 
@@ -88,11 +77,11 @@ const UserFeed: React.FC<Props> = ({ feedType, user }) => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data?.posts?.edges?.length === 0 ? (
+        {posts?.length === 0 ? (
           <div>Nothing here</div>
         ) : (
-          data?.posts?.edges?.map((post: any) => (
-            <SinglePost key={post?.node?.id} post={post?.node} showReplies />
+          posts?.map((post: any) => (
+            <SinglePost key={post?.id} post={post} showReplies />
           ))
         )}
         {hasNextPage && <div ref={observe}></div>}
