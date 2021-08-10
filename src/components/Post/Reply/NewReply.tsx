@@ -38,7 +38,16 @@ const NewReply: React.FC<Props> = ({ post }) => {
       }
     `,
     {
-      refetchQueries: [{ query: REPLIES_QUERY }],
+      refetchQueries: [
+        {
+          query: REPLIES_QUERY,
+          variables: {
+            where: {
+              postId: post?.id
+            }
+          }
+        }
+      ],
       onCompleted() {
         form.reset()
       }
