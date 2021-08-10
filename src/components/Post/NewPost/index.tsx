@@ -32,7 +32,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <Button
                   size="sm"
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-1.5 text-sm"
                   outline={!selected}
                 >
                   <CollectionIcon className="h-4 w-4" />
@@ -44,7 +44,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <Button
                   size="sm"
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-1.5 text-sm"
                   outline={!selected}
                 >
                   <CheckCircleIcon className="h-4 w-4" />
@@ -56,7 +56,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <Button
                   size="sm"
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-1.5 text-sm"
                   outline={!selected}
                 >
                   <QuestionMarkCircleIcon className="h-4 w-4" />
@@ -65,7 +65,7 @@ const NewPost: React.FC = () => {
               )}
             </Tab>
           </Tab.List>
-          <Tab.Panels className="mt-5">
+          <Tab.Panels className="mt-4">
             <Tab.Panel>
               <PostType />
             </Tab.Panel>

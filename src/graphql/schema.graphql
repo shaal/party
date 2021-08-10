@@ -13,6 +13,11 @@ input CreatePostInput {
   type: String! = "POST"
 }
 
+input CreateReplyInput {
+  body: String!
+  postId: String!
+}
+
 scalar DateTime
 
 input DeletePostInput {
@@ -57,6 +62,7 @@ input LoginInput {
 type Mutation {
   changePassword(input: ChangePasswordInput!): Result!
   createPost(input: CreatePostInput!): Post!
+  createReply(input: CreateReplyInput!): Reply!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
   editSocial(input: EditSocialInput!): User!
@@ -84,6 +90,7 @@ type Post {
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
+  repliesCount: Int!
   title: String
   type: String!
   updatedAt: DateTime!
@@ -117,6 +124,8 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
+  replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
+  reply(id: ID!): Reply!
   user(username: String!): User!
   users: [User!]!
 }
@@ -129,6 +138,25 @@ type QueryPostsConnection {
 type QueryPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryRepliesConnection {
+  edges: [QueryRepliesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryRepliesConnectionEdge {
+  cursor: String!
+  node: Reply!
+}
+
+type Reply {
+  body: String!
+  createdAt: DateTime!
+  id: ID!
+  post: Post!
+  updatedAt: DateTime!
+  user: User!
 }
 
 enum Result {
@@ -166,4 +194,8 @@ input WherePostsInput {
   onlyFollowing: Boolean
   type: String
   userId: String
+}
+
+input WhereRepliesInput {
+  postId: String
 }

@@ -15,6 +15,7 @@ import {
   ToggleLikeMutation,
   ToggleLikeMutationVariables
 } from './__generated__/index.generated'
+import PostReplies from './Replies'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
@@ -29,6 +30,7 @@ export const PostFragment = gql`
     type
     hasLiked
     likesCount
+    repliesCount
     likes(first: 5) {
       edges {
         node {
@@ -36,6 +38,7 @@ export const PostFragment = gql`
             id
             username
             profile {
+              name
               avatar
             }
           }
@@ -57,9 +60,10 @@ export const PostFragment = gql`
 
 interface Props {
   post: Post
+  showReplies?: boolean
 }
 
-const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
   const { currentUser } = useContext(AppContext)
   const [toggleLike, toggleLikeResult] = useMutation<
     ToggleLikeMutation,
@@ -99,12 +103,16 @@ const SinglePost: React.FC<Props> = ({ post }) => {
         {post?.type === 'POST' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
+        {showReplies && post?.repliesCount !== 0 && <PostReplies post={post} />}
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
+            {(post?.repliesCount as number) > 0 && (
+              <div className="text-xs">{post?.repliesCount}</div>
+            )}
           </button>
         </Link>
         {post?.user?.id === currentUser?.id && (

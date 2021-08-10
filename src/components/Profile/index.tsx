@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
+import UserFeed from './Feed'
 
 export const query = gql`
   query ProfileQuery($username: String!) {
@@ -42,6 +42,8 @@ const Profile: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (!data) return <div>404</div>
+
   return (
     <Fragment>
       <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
@@ -51,7 +53,7 @@ const Profile: React.FC = () => {
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
         <GridItemEight>
-          <Posts user={data?.user as User} />
+          <UserFeed user={data?.user as User} />
         </GridItemEight>
       </GridLayout>
     </Fragment>
