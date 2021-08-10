@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { useContext } from 'react'
 
-import NewPost from '~/components/Posts/NewPost'
+import NewPost from '~/components/Post/NewPost'
 import Banner from '~/components/shared/Banner'
 import AppContext from '~/components/utils/AppContext'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import FeedType from '../Posts/FeedType'
+import FeedType from '../Post/FeedType'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'

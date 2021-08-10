@@ -5,7 +5,7 @@ import useInView from 'react-cool-inview'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
-import SinglePost, { PostFragment } from '../Posts/SinglePost'
+import SinglePost, { PostFragment } from '../Post/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
