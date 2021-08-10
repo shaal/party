@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import Posts from '~/pages/posts'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
@@ -52,9 +51,7 @@ const Profile: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
-        <GridItemEight>
-          <Posts user={data?.user as User} />
-        </GridItemEight>
+        <GridItemEight>WIP</GridItemEight>
       </GridLayout>
     </Fragment>
   )

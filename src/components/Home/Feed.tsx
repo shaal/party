@@ -5,9 +5,9 @@ import useInView from 'react-cool-inview'
 
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 
+import { HomeFeedQuery } from '../Home/__generated__/index.generated'
 import SinglePost from '../Posts/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { HomeFeedQuery } from './__generated__/index.generated'
 
 interface Props {
   feedType?: string
@@ -42,7 +42,6 @@ const HomeFeed: React.FC<Props> = ({
 
       fetchMore({
         variables: {
-          onlyFollowing,
           after: endCursor
         },
         // @ts-ignore
