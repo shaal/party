@@ -15,6 +15,7 @@ input CreatePostInput {
 
 input CreateReplyInput {
   body: String!
+  postId: String!
 }
 
 scalar DateTime

@@ -67,7 +67,8 @@ builder.queryField('reply', (t) =>
 
 const CreateReplyInput = builder.inputType('CreateReplyInput', {
   fields: (t) => ({
-    body: t.string({ validate: { minLength: 1, maxLength: 1000 } })
+    body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
+    postId: t.string({})
   })
 })
 
@@ -81,6 +82,7 @@ builder.mutationField('createReply', (t) =>
       return db.reply.create({
         data: {
           userId: session!.userId,
+          postId: input.postId,
           body: input.body
         }
       })
