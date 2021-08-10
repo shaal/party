@@ -52,11 +52,13 @@ const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
       observe()
     },
     onEnter: () => {
-      fetchMore({
-        variables: {
-          after: pageInfo?.endCursor
-        }
-      })
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor
+          }
+        })
+      }
     }
   })
 
