@@ -92,7 +92,7 @@ const UserFeed: React.FC<Props> = ({ feedType, user }) => {
           <div>Nothing here</div>
         ) : (
           data?.posts?.edges?.map((post: any) => (
-            <SinglePost key={post?.node?.id} post={post?.node} />
+            <SinglePost key={post?.node?.id} post={post?.node} showReplies />
           ))
         )}
         {hasNextPage && <div ref={observe}></div>}
