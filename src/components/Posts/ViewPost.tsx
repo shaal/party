@@ -35,6 +35,8 @@ const ViewPost: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (!data) return <div>404</div>
+
   return (
     <Fragment>
       <GridLayout>
