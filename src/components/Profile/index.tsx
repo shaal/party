@@ -42,6 +42,8 @@ const Profile: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (!data) return <div>404</div>
+
   return (
     <Fragment>
       <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
