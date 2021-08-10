@@ -107,8 +107,8 @@ model Reply {
 
   // Relations
   likes  Like[]
-  post   Post?   @relation(fields: [postId], references: [id])
-  postId String?
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
   user   User   @relation(fields: [userId], references: [id])
   userId String
 }
