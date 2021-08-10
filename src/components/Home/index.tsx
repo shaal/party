@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
 import { useContext } from 'react'
 
@@ -8,28 +7,10 @@ import AppContext from '~/components/utils/AppContext'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import FeedType from '../Posts/FeedType'
-import { PostFragment } from '../Posts/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
-
-const query = gql`
-  query HomeFeedQuery($after: String, $where: WherePostsInput) {
-    posts(first: 5, after: $after, where: $where) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        node {
-          ...PostFragment
-        }
-      }
-    }
-  }
-  ${PostFragment}
-`
 
 const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
@@ -59,11 +40,7 @@ const Home: React.FC = () => {
                 </div>
               )}
             </div>
-            <HomeFeed
-              feedType={feedType}
-              onlyFollowing={onlyFollowing}
-              query={query}
-            />
+            <HomeFeed feedType={feedType} onlyFollowing={onlyFollowing} />
             <ErrorMessage
               title="Failed to load the current user."
               error={currentUserError}

@@ -9,6 +9,7 @@ import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
+import UserFeed from './Feed'
 
 export const query = gql`
   query ProfileQuery($username: String!) {
@@ -51,7 +52,9 @@ const Profile: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
-        <GridItemEight>WIP</GridItemEight>
+        <GridItemEight>
+          <UserFeed user={data?.user as User} />
+        </GridItemEight>
       </GridLayout>
     </Fragment>
   )
