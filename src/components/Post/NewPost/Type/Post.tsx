@@ -3,6 +3,7 @@ import { PencilAltIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { object, string } from 'zod'
 
+import { HOME_FEED_QUERY } from '~/components/Home/Feed'
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
@@ -34,17 +35,7 @@ const PostType: React.FC = () => {
       }
     `,
     {
-      update(cache, { data }) {
-        if (!data?.createPost) return
-
-        cache.modify({
-          fields: {
-            posts: (previousPosts, { toReference }) => {
-              return [...previousPosts.edges, toReference(data?.createPost)]
-            }
-          }
-        })
-      },
+      refetchQueries: [{ query: HOME_FEED_QUERY }],
       onCompleted() {
         form.reset()
       }
