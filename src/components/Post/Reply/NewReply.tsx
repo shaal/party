@@ -14,6 +14,7 @@ import {
   NewReplyMutation,
   NewReplyMutationVariables
 } from './__generated__/NewReply.generated'
+import { REPLIES_QUERY } from './Replies'
 
 const newReplySchema = object({
   body: string().min(1).max(1000)
@@ -37,17 +38,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
       }
     `,
     {
-      update(cache, { data }) {
-        if (!data?.createReply) return
-
-        cache.modify({
-          fields: {
-            replies(existingReplies = []) {
-              return [data.createReply, ...existingReplies.edges]
-            }
-          }
-        })
-      },
+      refetchQueries: [{ query: REPLIES_QUERY }],
       onCompleted() {
         form.reset()
       }

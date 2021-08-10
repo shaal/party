@@ -10,7 +10,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { RepliesQuery } from './__generated__/Replies.generated'
 import SingleReply from './SingleReply'
 
-const query = gql`
+export const REPLIES_QUERY = gql`
   query RepliesQuery($after: String, $where: WhereRepliesInput) {
     replies(first: 10, after: $after, where: $where) {
       pageInfo {
@@ -42,14 +42,17 @@ interface Props {
 
 const Replies: React.FC<Props> = ({ post }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
-  const { data, loading, error, fetchMore } = useQuery<RepliesQuery>(query, {
-    variables: {
-      after: null,
-      where: {
-        postId: post?.id
+  const { data, loading, error, fetchMore } = useQuery<RepliesQuery>(
+    REPLIES_QUERY,
+    {
+      variables: {
+        after: null,
+        where: {
+          postId: post?.id
+        }
       }
     }
-  })
+  )
   const replies = data?.replies?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.replies?.pageInfo
 
