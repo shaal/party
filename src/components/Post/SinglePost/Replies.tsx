@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import React from 'react'
 
 import { Post } from '~/__generated__/schema.generated'
+import Username from '~/components/shared/Username'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { PostRepliesQuery } from './__generated__/Replies.generated'
@@ -52,16 +53,22 @@ const PostReplies: React.FC<Props> = ({ post }) => {
   return (
     <RepliesCard>
       <ErrorMessage title="Failed to load posts" error={error} />
-      <div className="space-y-3">
+      <div className="space-y-4">
         {data?.replies?.edges?.map((reply: any) => (
-          <div key={reply?.node?.id} className="flex space-x-3">
+          <div key={reply?.node?.id} className="flex space-x-3 items-center">
             <img
               src={reply?.node?.user?.profile?.avatar}
               className="h-7 w-7 rounded-full"
               alt={`@${reply?.node?.user?.username}'s avatar`}
             />
-            <div className="bg-gray-300 dark:bg-gray-700 px-2.5 py-1 rounded-lg">
-              {reply?.node?.body}
+            <div className="space-y-1">
+              <div className="text-sm flex items-center space-x-1">
+                <div>{reply?.node?.user?.profile?.name}</div>
+                <Username username={reply?.node?.user?.username} />
+              </div>
+              <div className="bg-gray-300 dark:bg-gray-700 px-2.5 py-1 rounded-lg">
+                {reply?.node?.body}
+              </div>
             </div>
           </div>
         ))}
