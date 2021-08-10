@@ -39,8 +39,8 @@ const PostType: React.FC = () => {
 
         cache.modify({
           fields: {
-            posts(existingPosts = []) {
-              return [data.createPost, ...existingPosts.edges]
+            posts: (previousPosts, { toReference }) => {
+              return [...previousPosts.edges, toReference(data?.createPost)]
             }
           }
         })
