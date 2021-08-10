@@ -50,6 +50,8 @@ const Replies: React.FC<Props> = ({ post }) => {
       }
     }
   })
+  const replies = data?.replies?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.replies?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -58,27 +60,13 @@ const Replies: React.FC<Props> = ({ post }) => {
       observe()
     },
     onEnter: () => {
-      const endCursor = data?.replies?.pageInfo?.endCursor
-
-      fetchMore({
-        variables: {
-          after: endCursor
-        },
-        // @ts-ignore
-        updateQuery: (
-          previousResult,
-          { fetchMoreResult }: { fetchMoreResult: any }
-        ) => {
-          const previousEdges = previousResult?.replies?.edges
-          const newEdges = fetchMoreResult?.replies?.edges
-          const pageInfo = fetchMoreResult?.replies?.pageInfo
-          setHasNextPage(pageInfo?.hasNextPage)
-          if (!fetchMoreResult) return previousResult
-          return {
-            replies: { edges: [...previousEdges, ...newEdges], pageInfo }
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor
           }
-        }
-      })
+        })
+      }
     }
   })
 
@@ -95,11 +83,11 @@ const Replies: React.FC<Props> = ({ post }) => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data?.replies?.edges?.length === 0 ? (
+        {replies?.length === 0 ? (
           <div>Nothing here</div>
         ) : (
-          data?.replies?.edges?.map((reply: any) => (
-            <SingleReply key={reply?.node?.id} reply={reply?.node as Reply} />
+          replies?.map((reply: any) => (
+            <SingleReply key={reply?.id} reply={reply as Reply} />
           ))
         )}
         {hasNextPage && <div ref={observe}></div>}
