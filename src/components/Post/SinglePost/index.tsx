@@ -6,12 +6,12 @@ import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
 import { Post, User } from '~/__generated__/schema.generated'
-import { HOME_FEED_QUERY } from '~/components/Home/Feed'
+// import { HOME_FEED_QUERY } from '~/components/Home/Feed'
 import AppContext from '~/components/utils/AppContext'
 
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
-import DeleteButton from '../DeleteButton'
+// import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
 import {
   TogglePostLikeMutation,
@@ -117,9 +117,9 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
             )}
           </button>
         </Link>
-        {post?.user?.id === currentUser?.id && (
+        {/* {post?.user?.id === currentUser?.id && (
           <DeleteButton entity={post} refreshQuery={HOME_FEED_QUERY} />
-        )}
+        )} */}
         {(post?.likesCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>
