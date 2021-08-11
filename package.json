@@ -21,7 +21,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@apollo/client": "3.4.5",
+    "@apollo/client": "3.4.7",
     "@giraphql/core": "2.14.0",
     "@giraphql/plugin-prisma": "^0.5.0",
     "@giraphql/plugin-relay": "2.14.0",
