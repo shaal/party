@@ -71,7 +71,8 @@ type Mutation {
   logout: Result!
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
-  toggleLike(input: ToggleLikeInput!): Post
+  togglePostLike(input: TogglePostLikeInput!): Post
+  toggleReplyLike(input: ToggleReplyLikeInput!): Reply
 }
 
 type PageInfo {
@@ -185,8 +186,12 @@ input ToggleFollowInput {
   userId: ID!
 }
 
-input ToggleLikeInput {
+input TogglePostLikeInput {
   postId: ID!
+}
+
+input ToggleReplyLikeInput {
+  replyId: ID!
 }
 
 type User {

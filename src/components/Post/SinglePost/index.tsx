@@ -12,8 +12,8 @@ import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
 import LikeButton from '../LikeButton'
 import {
-  ToggleLikeMutation,
-  ToggleLikeMutationVariables
+  TogglePostLikeMutation,
+  TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
@@ -66,13 +66,13 @@ interface Props {
 
 const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
   const { currentUser } = useContext(AppContext)
-  const [toggleLike, toggleLikeResult] = useMutation<
-    ToggleLikeMutation,
-    ToggleLikeMutationVariables
+  const [togglePostLike, togglePostLikeResult] = useMutation<
+    TogglePostLikeMutation,
+    TogglePostLikeMutationVariables
   >(
     gql`
-      mutation ToggleLikeMutation($input: ToggleLikeInput!) {
-        toggleLike(input: $input) {
+      mutation TogglePostLikeMutation($input: TogglePostLikeInput!) {
+        togglePostLike(input: $input) {
           ...PostFragment
         }
       }
@@ -81,7 +81,7 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
   )
 
   const handleLike = (post: any) => {
-    toggleLike({
+    togglePostLike({
       variables: {
         input: {
           postId: post?.id

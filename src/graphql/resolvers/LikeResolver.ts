@@ -1,5 +1,6 @@
 import { builder } from '../builder'
-import { toggleLike } from '../utils/toggleLike'
+import { togglePostLike } from '../utils/togglePostLike'
+import { toggleReplyLike } from '../utils/toggleReplyLike'
 
 builder.prismaObject('Like', {
   findUnique: (like) => ({ id: like.id }),
@@ -12,21 +13,48 @@ builder.prismaObject('Like', {
   })
 })
 
-const ToggleLikeInput = builder.inputType('ToggleLikeInput', {
+const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
   fields: (t) => ({
     postId: t.id({})
   })
 })
 
-builder.mutationField('toggleLike', (t) =>
+builder.mutationField('togglePostLike', (t) =>
   t.prismaField({
     type: 'Post',
     args: {
-      input: t.arg({ type: ToggleLikeInput })
+      input: t.arg({ type: TogglePostLikeInput })
     },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return await toggleLike(query, session?.userId as string, input?.postId)
+      return await togglePostLike(
+        query,
+        session?.userId as string,
+        input?.postId
+      )
+    }
+  })
+)
+
+const ToggleReplyLikeInput = builder.inputType('ToggleReplyLikeInput', {
+  fields: (t) => ({
+    replyId: t.id({})
+  })
+})
+
+builder.mutationField('toggleReplyLike', (t) =>
+  t.prismaField({
+    type: 'Reply',
+    args: {
+      input: t.arg({ type: ToggleReplyLikeInput })
+    },
+    nullable: true,
+    resolve: async (query, root, { input }, { session }) => {
+      return await toggleReplyLike(
+        query,
+        session?.userId as string,
+        input?.replyId
+      )
     }
   })
 )

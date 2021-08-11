@@ -2,26 +2,26 @@ import { db } from '~/utils/prisma'
 
 import { hasLiked } from './hasLiked'
 
-export const toggleLike = async (
+export const toggleReplyLike = async (
   query: any,
   userId: string,
-  postId: string
+  replyId: string
 ) => {
-  if (await hasLiked(userId, postId, null)) {
+  if (await hasLiked(userId, null, replyId)) {
     await db.like.deleteMany({
-      where: { userId, postId }
+      where: { userId, replyId }
     })
   } else {
     await db.like.create({
       data: {
-        post: { connect: { id: postId } },
+        reply: { connect: { id: replyId } },
         user: { connect: { id: userId } }
       }
     })
   }
 
-  return await db.post.findUnique({
+  return await db.reply.findUnique({
     ...query,
-    where: { id: postId }
+    where: { id: replyId }
   })
 }

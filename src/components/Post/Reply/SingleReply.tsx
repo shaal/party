@@ -1,3 +1,4 @@
+import { gql, useMutation } from '@apollo/client'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
@@ -11,6 +12,10 @@ import AppContext from '~/components/utils/AppContext'
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
 import LikeButton from '../LikeButton'
+import {
+  ToggleReplyLikeMutation,
+  ToggleReplyLikeMutationVariables
+} from './__generated__/SingleReply.generated'
 
 interface Props {
   reply: Reply
@@ -18,9 +23,28 @@ interface Props {
 
 const SingleReply: React.FC<Props> = ({ reply }) => {
   const { currentUser } = useContext(AppContext)
+  const [toggleReplyLike, toggleReplyLikeResult] = useMutation<
+    ToggleReplyLikeMutation,
+    ToggleReplyLikeMutationVariables
+  >(
+    gql`
+      mutation ToggleReplyLikeMutation($input: ToggleReplyLikeInput!) {
+        toggleReplyLike(input: $input) {
+          likesCount
+          hasLiked
+        }
+      }
+    `
+  )
 
   const handleLike = (reply: any) => {
-    console.log('WIP')
+    toggleReplyLike({
+      variables: {
+        input: {
+          replyId: reply?.id
+        }
+      }
+    })
   }
 
   return (
