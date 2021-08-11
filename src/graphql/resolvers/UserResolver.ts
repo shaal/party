@@ -50,7 +50,7 @@ builder.queryField('user', (t) =>
       username: t.arg.string({})
     },
     resolve: (query, root, { username }) => {
-      return db.user.findFirst({
+      return db.user.findUnique({
         ...query,
         where: {
           username
