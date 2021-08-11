@@ -11,7 +11,7 @@ import AppContext from '~/components/utils/AppContext'
 
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
-import LikeButton from '../SinglePost/LikeButton'
+import LikeButton from '../LikeButton'
 import {
   ToggleReplyLikeMutation,
   ToggleReplyLikeMutationVariables

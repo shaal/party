@@ -10,11 +10,11 @@ import AppContext from '~/components/utils/AppContext'
 
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
+import LikeButton from '../LikeButton'
 import {
   TogglePostLikeMutation,
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
-import LikeButton from './LikeButton'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
