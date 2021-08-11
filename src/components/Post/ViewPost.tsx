@@ -55,16 +55,14 @@ const ViewPost: React.FC = () => {
       </GridLayout>
     )
 
-  if (!data) return <div>404</div>
-
   return (
     <GridLayout>
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <PostShimmer /> : <SinglePost post={data?.post as Post} />}
+          <SinglePost post={data?.post as Post} />
           {!loading && currentUser && <NewReply post={data?.post as Post} />}
-          {loading ? 'Loading' : <Replies post={data?.post as Post} />}
+          <Replies post={data?.post as Post} />
         </div>
       </GridItemEight>
       <GridItemFour>

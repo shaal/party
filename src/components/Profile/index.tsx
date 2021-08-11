@@ -43,7 +43,12 @@ const Profile: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (!data) return <div>404</div>
+  if (loading)
+    return (
+      <GridLayout>
+        <DetailsShimmer />
+      </GridLayout>
+    )
 
   return (
     <Fragment>
@@ -51,7 +56,7 @@ const Profile: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
+          <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
           <UserFeed user={data?.user as User} />

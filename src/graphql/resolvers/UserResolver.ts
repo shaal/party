@@ -49,7 +49,7 @@ builder.queryField('user', (t) =>
     args: {
       username: t.arg.string({})
     },
-    resolve: (query, root, { username }, { session }) => {
+    resolve: (query, root, { username }) => {
       return db.user.findFirst({
         ...query,
         where: {
