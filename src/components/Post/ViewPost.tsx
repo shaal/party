@@ -20,7 +20,7 @@ import { PostQuery } from './__generated__/ViewPost.generated'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 
-const POST_QUERY = gql`
+export const POST_QUERY = gql`
   query PostQuery($id: ID!) {
     post(id: $id) {
       ...PostFragment
