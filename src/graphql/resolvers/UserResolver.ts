@@ -62,9 +62,10 @@ builder.queryField('user', (t) =>
 )
 
 builder.queryField('users', (t) =>
-  t.prismaField({
-    type: ['User'],
-    resolve: (query, root, { session }) => {
+  t.prismaConnection({
+    type: 'User',
+    cursor: 'id',
+    resolve: (query, root) => {
       return db.user.findMany({
         ...query,
         orderBy: {

@@ -127,7 +127,7 @@ type Query {
   replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
   reply(id: ID!): Reply!
   user(username: String!): User!
-  users: [User!]!
+  users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
 }
 
 type QueryPostsConnection {
@@ -148,6 +148,16 @@ type QueryRepliesConnection {
 type QueryRepliesConnectionEdge {
   cursor: String!
   node: Reply!
+}
+
+type QueryUsersConnection {
+  edges: [QueryUsersConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type Reply {

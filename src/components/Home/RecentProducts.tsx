@@ -9,13 +9,18 @@ import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
 export const RECENT_PRODUCTS_QUERY = gql`
   query RecentProductsQuery {
-    users {
-      id
-      username
-      profile {
-        id
-        avatar
-        name
+    users(first: 5) {
+      edges {
+        node {
+          id
+          username
+          hasFollowed
+          profile {
+            id
+            avatar
+            name
+          }
+        }
       }
     }
   }

@@ -12,14 +12,18 @@ import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
 
 const RECENT_USERS_QUERY = gql`
   query RecentUsersQuery {
-    users {
-      id
-      username
-      hasFollowed
-      profile {
-        id
-        avatar
-        name
+    users(first: 5) {
+      edges {
+        node {
+          id
+          username
+          hasFollowed
+          profile {
+            id
+            avatar
+            name
+          }
+        }
       }
     }
   }
@@ -60,8 +64,12 @@ const RecentUsers: React.FC = () => {
     <RecentUsersCard>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data?.users.map((user: any) => (
-          <UserProfileLarge key={user?.id} user={user as User} showFollow />
+        {data?.users?.edges?.map((user: any) => (
+          <UserProfileLarge
+            key={user?.node?.id}
+            user={user?.node as User}
+            showFollow
+          />
         ))}
       </div>
     </RecentUsersCard>
