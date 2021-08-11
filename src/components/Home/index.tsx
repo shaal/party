@@ -1,10 +1,11 @@
+import { useQuery } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
-import { useContext } from 'react'
 
 import NewPost from '~/components/Post/NewPost'
 import Banner from '~/components/shared/Banner'
-import AppContext from '~/components/utils/AppContext'
 
+import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
+import { CURRENT_USER_QUERY } from '../DefaultLayout'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import FeedType from '../Post/FeedType'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -12,22 +13,23 @@ import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
 
+export const HOME_QUERY = CURRENT_USER_QUERY
+
 const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
   const [onlyFollowing, setOnlyFollowing] = useState<boolean>(true)
-  const { currentUser, currentUserLoading, currentUserError } =
-    useContext(AppContext)
+  const { data, loading, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
 
   return (
     <Fragment>
-      {!currentUser && !currentUserLoading && <Banner />}
+      {!data?.me && !loading && <Banner />}
       <GridLayout>
         <GridItemEight>
           <div className="space-y-3">
-            {currentUser && <NewPost />}
+            {data?.me && <NewPost />}
             <div className="flex items-center justify-between">
               <FeedType setFeedType={setFeedType} />
-              {currentUser && (
+              {data?.me && (
                 <div className="flex items-center gap-1.5">
                   <input
                     id="onlyFollowing"
@@ -43,7 +45,7 @@ const Home: React.FC = () => {
             <HomeFeed feedType={feedType} onlyFollowing={onlyFollowing} />
             <ErrorMessage
               title="Failed to load the current user."
-              error={currentUserError}
+              error={error}
             />
           </div>
         </GridItemEight>
