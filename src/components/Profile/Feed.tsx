@@ -10,7 +10,7 @@ import SinglePost, { PostFragment } from '../Post/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
-const query = gql`
+const USER_FEED_QUERY = gql`
   query UserFeedQuery($after: String, $where: WherePostsInput) {
     posts(first: 10, after: $after, where: $where) {
       pageInfo {
@@ -34,15 +34,18 @@ interface Props {
 
 const UserFeed: React.FC<Props> = ({ feedType, user }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
-  const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(query, {
-    variables: {
-      after: null,
-      where: {
-        userId: user?.id,
-        type: feedType === 'ALL' ? 'ALL' : feedType
+  const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
+    USER_FEED_QUERY,
+    {
+      variables: {
+        after: null,
+        where: {
+          userId: user?.id,
+          type: feedType === 'ALL' ? 'ALL' : feedType
+        }
       }
     }
-  })
+  )
 
   const posts = data?.posts?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.posts?.pageInfo
