@@ -33,6 +33,7 @@ const SocialSettingsForm: React.FC<Props> = ({ user }) => {
     mutation SocialSettingsMutation($input: EditSocialInput!) {
       editSocial(input: $input) {
         profile {
+          id
           website
           twitter
           github

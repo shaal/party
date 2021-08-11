@@ -36,6 +36,7 @@ export const SETTINGS_QUERY = gql`
       username
       email
       profile {
+        id
         name
         bio
         location

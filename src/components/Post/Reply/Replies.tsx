@@ -25,6 +25,7 @@ export const REPLIES_QUERY = gql`
             id
             username
             profile {
+              id
               name
               avatar
             }

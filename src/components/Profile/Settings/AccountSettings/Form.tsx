@@ -40,6 +40,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
         username
         email
         profile {
+          id
           name
           bio
           location

@@ -13,6 +13,7 @@ export const RECENT_PRODUCTS_QUERY = gql`
       id
       username
       profile {
+        id
         avatar
         name
       }
