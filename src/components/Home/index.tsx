@@ -17,7 +17,6 @@ export const HOME_QUERY = CURRENT_USER_QUERY
 
 const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
-  const [onlyFollowing, setOnlyFollowing] = useState<boolean>(true)
   const { data, loading, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
 
   return (
@@ -27,22 +26,8 @@ const Home: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             {data?.me && <NewPost />}
-            <div className="flex items-center justify-between">
-              <FeedType setFeedType={setFeedType} />
-              {data?.me && (
-                <div className="flex items-center gap-1.5">
-                  <input
-                    id="onlyFollowing"
-                    type="checkbox"
-                    className="rounded"
-                    checked={onlyFollowing}
-                    onChange={() => setOnlyFollowing(!onlyFollowing)}
-                  />
-                  <label htmlFor="onlyFollowing">Only following</label>
-                </div>
-              )}
-            </div>
-            <HomeFeed feedType={feedType} onlyFollowing={onlyFollowing} />
+            <FeedType setFeedType={setFeedType} />
+            <HomeFeed feedType={feedType} />
             <ErrorMessage
               title="Failed to load the current user."
               error={error}

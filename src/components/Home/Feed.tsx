@@ -28,10 +28,9 @@ export const HOME_FEED_QUERY = gql`
 
 interface Props {
   feedType?: string
-  onlyFollowing?: boolean
 }
 
-const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
+const HomeFeed: React.FC<Props> = ({ feedType }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(
     HOME_FEED_QUERY,
@@ -39,7 +38,6 @@ const HomeFeed: React.FC<Props> = ({ feedType, onlyFollowing = false }) => {
       variables: {
         after: null,
         where: {
-          onlyFollowing,
           type: feedType === 'ALL' ? 'ALL' : feedType
         }
       }

@@ -59,7 +59,7 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
     userId: t.string({
       required: false
     }),
-    onlyFollowing: t.boolean({ required: false }),
+    onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false })
   })
 })
