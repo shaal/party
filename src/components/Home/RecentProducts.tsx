@@ -7,7 +7,7 @@ import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
-export const query = gql`
+export const RECENT_PRODUCTS_QUERY = gql`
   query RecentProductsQuery {
     users {
       id
@@ -35,7 +35,9 @@ const RecentUsersCard = ({ children }: any) => {
 }
 
 const RecentProducts: React.FC = () => {
-  const { data, loading, error } = useQuery<RecentProductsQuery>(query)
+  const { data, loading, error } = useQuery<RecentProductsQuery>(
+    RECENT_PRODUCTS_QUERY
+  )
 
   if (loading)
     return (
