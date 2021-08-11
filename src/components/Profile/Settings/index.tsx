@@ -31,7 +31,7 @@ const Loading = () => (
   </GridLayout>
 )
 
-export const query = gql`
+export const SETTINGS_QUERY = gql`
   query SettingsQuery {
     me {
       id
@@ -53,7 +53,7 @@ export const query = gql`
 
 const Settings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
-  const { data, loading } = useQuery<SettingsQuery>(query)
+  const { data, loading } = useQuery<SettingsQuery>(SETTINGS_QUERY)
 
   if (loading) return <PageLoading message="Loading settings..." />
   // TODO: Redirect to 404
