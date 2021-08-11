@@ -10,9 +10,7 @@ export const getServerSideProps = async (ctx: any) => {
     return auth
   }
 
-  return preloadQuery(ctx, {
-    query
-  })
+  return preloadQuery(ctx, { query })
 }
 
 export default Settings
