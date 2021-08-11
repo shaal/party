@@ -7,7 +7,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { PostRepliesQuery } from './__generated__/Replies.generated'
 
-const query = gql`
+const POST_REPLIES_QUERY = gql`
   query PostRepliesQuery($where: WhereRepliesInput) {
     replies(first: 5, where: $where) {
       edges {
@@ -40,13 +40,16 @@ interface Props {
 }
 
 const PostReplies: React.FC<Props> = ({ post }) => {
-  const { data, loading, error } = useQuery<PostRepliesQuery>(query, {
-    variables: {
-      where: {
-        postId: post?.id
+  const { data, loading, error } = useQuery<PostRepliesQuery>(
+    POST_REPLIES_QUERY,
+    {
+      variables: {
+        where: {
+          postId: post?.id
+        }
       }
     }
-  })
+  )
 
   if (loading) return <div className="space-y-3">Loading</div>
 
