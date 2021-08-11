@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
+import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
@@ -10,6 +10,7 @@ import AppContext from '~/components/utils/AppContext'
 
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
+import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
 import {
   TogglePostLikeMutation,
@@ -115,14 +116,7 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
             )}
           </button>
         </Link>
-        {post?.user?.id === currentUser?.id && (
-          <button
-            className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-            onClick={() => console.log('WIP')}
-          >
-            <TrashIcon className="h-5 w-5" />
-          </button>
-        )}
+        {post?.user?.id === currentUser?.id && <DeleteButton entity={post} />}
         {(post?.likesCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>
