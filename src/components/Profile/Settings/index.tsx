@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import {
@@ -8,8 +8,6 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
-import { PageLoading } from '~/components/ui/PageLoading'
-import AppContext from '~/components/utils/AppContext'
 
 import { SettingsQuery } from './__generated__/index.generated'
 
@@ -31,7 +29,7 @@ const Loading = () => (
   </GridLayout>
 )
 
-export const query = gql`
+export const SETTINGS_QUERY = gql`
   query SettingsQuery {
     me {
       id
@@ -52,12 +50,7 @@ export const query = gql`
 `
 
 const Settings: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
-  const { data, loading } = useQuery<SettingsQuery>(query)
-
-  if (loading) return <PageLoading message="Loading settings..." />
-  // TODO: Redirect to 404
-  if (!currentUser) return <div>Forbidden...</div>
+  const { data } = useQuery<SettingsQuery>(SETTINGS_QUERY)
 
   return (
     <Fragment>

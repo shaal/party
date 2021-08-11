@@ -27,42 +27,30 @@ const NewPost: React.FC = () => {
     <Card>
       <CardBody>
         <Tab.Group>
-          <Tab.List className="space-x-2">
-            <Tab>
-              {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
-                >
-                  <CollectionIcon className="h-4 w-4" />
-                  <div>Post</div>
-                </Button>
-              )}
+          <Tab.List className="flex space-x-2">
+            <Tab
+              as={Button}
+              size="sm"
+              className="flex items-center gap-1.5 text-sm"
+            >
+              <CollectionIcon className="h-4 w-4" />
+              <div>Post</div>
             </Tab>
-            <Tab>
-              {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
-                >
-                  <CheckCircleIcon className="h-4 w-4" />
-                  <div>Task</div>
-                </Button>
-              )}
+            <Tab
+              as={Button}
+              size="sm"
+              className="flex items-center gap-1.5 text-sm"
+            >
+              <CheckCircleIcon className="h-4 w-4" />
+              <div>Task</div>
             </Tab>
-            <Tab>
-              {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
-                >
-                  <QuestionMarkCircleIcon className="h-4 w-4" />
-                  <div>Question</div>
-                </Button>
-              )}
+            <Tab
+              as={Button}
+              size="sm"
+              className="flex items-center gap-1.5 text-sm"
+            >
+              <QuestionMarkCircleIcon className="h-4 w-4" />
+              <div>Question</div>
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">

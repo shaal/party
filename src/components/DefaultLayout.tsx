@@ -7,7 +7,7 @@ import Footer from './shared/Footer'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
-const query = gql`
+export const CURRENT_USER_QUERY = gql`
   query CurrentUserQuery {
     me {
       id
@@ -24,7 +24,8 @@ interface Props {
 }
 
 const DefaultLayout: React.FC<Props> = ({ children }) => {
-  const { data, loading, error } = useQuery<CurrentUserQuery>(query)
+  const { data, loading, error } =
+    useQuery<CurrentUserQuery>(CURRENT_USER_QUERY)
   const [staffMode, setStaffMode] = useState<boolean>()
 
   useEffect(() => {

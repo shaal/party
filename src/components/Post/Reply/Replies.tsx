@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
-import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import { Post, Reply } from '~/__generated__/schema.generated'
@@ -41,7 +40,6 @@ interface Props {
 }
 
 const Replies: React.FC<Props> = ({ post }) => {
-  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<RepliesQuery>(
     REPLIES_QUERY,
     {
@@ -93,7 +91,7 @@ const Replies: React.FC<Props> = ({ post }) => {
             <SingleReply key={reply?.id} reply={reply as Reply} />
           ))
         )}
-        {hasNextPage && <div ref={observe}></div>}
+        <div ref={observe}></div>
       </div>
     </div>
   )

@@ -49,8 +49,8 @@ builder.queryField('user', (t) =>
     args: {
       username: t.arg.string({})
     },
-    resolve: (query, root, { username }, { session }) => {
-      return db.user.findFirst({
+    resolve: (query, root, { username }) => {
+      return db.user.findUnique({
         ...query,
         where: {
           username

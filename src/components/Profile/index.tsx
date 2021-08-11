@@ -11,7 +11,7 @@ import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
 import UserFeed from './Feed'
 
-export const query = gql`
+export const PROFILE_QUERY = gql`
   query ProfileQuery($username: String!) {
     user(username: $username) {
       id
@@ -36,14 +36,12 @@ export const query = gql`
 
 const Profile: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ProfileQuery>(query, {
+  const { data, loading, error } = useQuery<ProfileQuery>(PROFILE_QUERY, {
     variables: {
       username: router.query.username
     },
     skip: !router.isReady
   })
-
-  if (!data) return <div>404</div>
 
   return (
     <Fragment>

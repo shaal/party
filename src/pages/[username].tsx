@@ -1,13 +1,13 @@
-import ViewPost, { POST_QUERY as query } from '~/components/Post/ViewPost'
+import Profile, { PROFILE_QUERY as query } from '~/components/Profile'
 import { preloadQuery } from '~/utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
   return preloadQuery(ctx, {
     query,
     variables: {
-      id: ctx.params!.postId
+      username: ctx.params!.username
     }
   })
 }
 
-export default ViewPost
+export default Profile

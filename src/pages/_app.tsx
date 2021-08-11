@@ -6,6 +6,7 @@ import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 
 import DefaultLayout from '~/components/DefaultLayout'
+import { NProgress } from '~/components/ui/NProgress'
 import { useApollo } from '~/utils/apollo'
 
 function App({ Component, pageProps }: AppProps) {
@@ -15,6 +16,7 @@ function App({ Component, pageProps }: AppProps) {
     <ApolloProvider client={client}>
       <ThemeProvider defaultTheme="light" attribute="class">
         <DefaultSeo defaultTitle="Devparty" titleTemplate="%s | Devparty" />
+        <NProgress />
         <DefaultLayout>
           <Component {...pageProps} />
         </DefaultLayout>
