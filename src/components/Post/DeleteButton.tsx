@@ -10,11 +10,10 @@ import {
 } from './__generated__/DeleteButton.generated'
 
 type Props = {
-  refreshQuery: any
   entity: Post
 }
 
-const DeleteButton: React.FC<Props> = ({ entity, refreshQuery }) => {
+const DeleteButton: React.FC<Props> = ({ entity }) => {
   const [deleteNote, deleteNoteResult] = useMutation<
     DeletePostMutation,
     DeletePostMutationVariables
@@ -25,10 +24,7 @@ const DeleteButton: React.FC<Props> = ({ entity, refreshQuery }) => {
           id
         }
       }
-    `,
-    {
-      refetchQueries: [{ query: refreshQuery }]
-    }
+    `
   )
 
   return (
