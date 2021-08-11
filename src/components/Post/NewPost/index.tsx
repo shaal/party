@@ -5,7 +5,7 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import { Button } from '../../ui/Button'
 import { Card, CardBody } from '../../ui/Card'
@@ -28,29 +28,41 @@ const NewPost: React.FC = () => {
       <CardBody>
         <Tab.Group>
           <Tab.List className="flex space-x-2">
-            <Tab
-              as={Button}
-              size="sm"
-              className="flex items-center gap-1.5 text-sm"
-            >
-              <CollectionIcon className="h-4 w-4" />
-              <div>Post</div>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5 text-sm"
+                  outline={!selected}
+                >
+                  <CollectionIcon className="h-4 w-4" />
+                  <div>Post</div>
+                </Button>
+              )}
             </Tab>
-            <Tab
-              as={Button}
-              size="sm"
-              className="flex items-center gap-1.5 text-sm"
-            >
-              <CheckCircleIcon className="h-4 w-4" />
-              <div>Task</div>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5 text-sm"
+                  outline={!selected}
+                >
+                  <CheckCircleIcon className="h-4 w-4" />
+                  <div>Task</div>
+                </Button>
+              )}
             </Tab>
-            <Tab
-              as={Button}
-              size="sm"
-              className="flex items-center gap-1.5 text-sm"
-            >
-              <QuestionMarkCircleIcon className="h-4 w-4" />
-              <div>Question</div>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <Button
+                  size="sm"
+                  className="flex items-center gap-1.5 text-sm"
+                  outline={!selected}
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4" />
+                  <div>Question</div>
+                </Button>
+              )}
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
