@@ -30,6 +30,7 @@ const SingleReply: React.FC<Props> = ({ reply }) => {
     gql`
       mutation ToggleReplyLikeMutation($input: ToggleReplyLikeInput!) {
         toggleReplyLike(input: $input) {
+          id
           likesCount
           hasLiked
         }

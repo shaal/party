@@ -49,7 +49,8 @@ builder.prismaObject('Post', {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
-    user: t.relation('user')
+    user: t.relation('user'),
+    replies: t.relation('replies')
   })
 })
 

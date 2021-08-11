@@ -91,6 +91,7 @@ type Post {
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
+  replies: [Reply!]!
   repliesCount: Int!
   title: String
   type: String!

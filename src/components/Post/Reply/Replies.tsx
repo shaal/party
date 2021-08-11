@@ -21,6 +21,8 @@ export const REPLIES_QUERY = gql`
           id
           body
           createdAt
+          hasLiked
+          likesCount
           user {
             id
             username
