@@ -29,3 +29,10 @@ body {
   @apply text-white;
   @apply rounded-lg;
 }
+
+#nprogress {
+  @apply pointer-events-none z-50;
+}
+#nprogress .bar {
+  @apply bg-indigo-500 fixed z-50 top-0 left-0 w-full h-0.5;
+}
