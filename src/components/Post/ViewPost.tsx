@@ -20,7 +20,7 @@ import { PostQuery } from './__generated__/ViewPost.generated'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 
-const query = gql`
+const POST_QUERY = gql`
   query PostQuery($id: ID!) {
     post(id: $id) {
       ...PostFragment
@@ -32,7 +32,7 @@ const query = gql`
 const ViewPost: React.FC = () => {
   const router = useRouter()
   const { currentUser } = useContext(AppContext)
-  const { data, loading, error } = useQuery<PostQuery>(query, {
+  const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
     variables: {
       id: router.query.postId
     },
