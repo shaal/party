@@ -1,6 +1,7 @@
 import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
+import { hasLiked } from '../utils/hasLiked'
 
 builder.prismaObject('Reply', {
   findUnique: (reply) => ({ id: reply.id }),
@@ -9,6 +10,20 @@ builder.prismaObject('Reply', {
     body: t.exposeString('body', {}),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    hasLiked: t.field({
+      type: 'Boolean',
+      resolve: async (root, args, ctx, info) => {
+        if (!ctx.session) return false
+        return await hasLiked(ctx.session?.userId as string, null, root.id)
+      }
+    }),
+    likesCount: t.field({
+      type: 'Int',
+      resolve: (root) =>
+        db.like.count({
+          where: { replyId: root.id }
+        })
+    }),
 
     // Relations
     post: t.relation('post'),

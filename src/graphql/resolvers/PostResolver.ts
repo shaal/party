@@ -21,7 +21,7 @@ builder.prismaObject('Post', {
       type: 'Boolean',
       resolve: async (root, args, ctx, info) => {
         if (!ctx.session) return false
-        return await hasLiked(ctx.session?.userId as string, root.id)
+        return await hasLiked(ctx.session?.userId as string, root.id, null)
       }
     }),
     likes: t.prismaConnection({

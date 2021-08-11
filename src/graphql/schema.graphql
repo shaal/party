@@ -163,7 +163,9 @@ type QueryUsersConnectionEdge {
 type Reply {
   body: String!
   createdAt: DateTime!
+  hasLiked: Boolean!
   id: ID!
+  likesCount: Int!
   post: Post!
   updatedAt: DateTime!
   user: User!

@@ -7,7 +7,7 @@ export const toggleLike = async (
   userId: string,
   postId: string
 ) => {
-  if (await hasLiked(userId, postId)) {
+  if (await hasLiked(userId, postId, null)) {
     await db.like.deleteMany({
       where: { userId, postId }
     })
