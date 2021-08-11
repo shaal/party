@@ -15,7 +15,6 @@ import {
   ToggleLikeMutation,
   ToggleLikeMutationVariables
 } from './__generated__/index.generated'
-import PostReplies from './Replies'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
@@ -103,7 +102,6 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
         {post?.type === 'POST' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
-        {showReplies && post?.repliesCount !== 0 && <PostReplies post={post} />}
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
