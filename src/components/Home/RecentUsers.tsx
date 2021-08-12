@@ -4,7 +4,7 @@ import React from 'react'
 
 import { User } from '../../__generated__/schema.generated'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
-import UserProfileLarge from '../shared/UserProfileLarge'
+import UserProfile from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
@@ -64,7 +64,7 @@ const RecentUsers: React.FC = () => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data?.users?.edges?.map((user: any) => (
-          <UserProfileLarge
+          <UserProfile
             key={user?.node?.id}
             user={user?.node as User}
             showFollow

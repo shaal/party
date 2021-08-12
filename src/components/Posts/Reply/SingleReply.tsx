@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
 import { Reply, User } from '../../../__generated__/schema.generated'
-import UserProfileLarge from '../../shared/UserProfileLarge'
+import UserProfileLarge from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
 import AppContext from '../../utils/AppContext'
 import LikeButton from '../LikeButton'
