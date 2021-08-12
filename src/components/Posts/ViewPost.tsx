@@ -5,7 +5,7 @@ import React, { useContext } from 'react'
 import { Post, User } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
-import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileShimmer'
+import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
 import UserProfileLarge from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -43,7 +43,7 @@ const ViewPost: React.FC = () => {
         <GridItemFour>
           <Card>
             <CardBody>
-              <UserProfileLargeShimmer showFollow />
+              <UserProfileShimmer showFollow />
             </CardBody>
           </Card>
         </GridItemFour>
@@ -63,11 +63,7 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <Card>
           <CardBody>
-            {loading ? (
-              <UserProfileLargeShimmer showFollow />
-            ) : (
-              <UserProfileLarge user={data?.post?.user as User} showFollow />
-            )}
+            <UserProfileLarge user={data?.post?.user as User} showFollow />
           </CardBody>
         </Card>
       </GridItemFour>
