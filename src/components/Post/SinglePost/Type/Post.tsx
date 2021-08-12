@@ -10,7 +10,7 @@ interface Props {
 
 const PostType: React.FC<Props> = ({ post }) => {
   return (
-    <div className="text-lg post space-y-3">
+    <div className="text-lg post space-y-3 inline-flex">
       <Linkify>{post?.body}</Linkify>
       {post?.attachments && <Attachments attachments={post?.attachments} />}
     </div>

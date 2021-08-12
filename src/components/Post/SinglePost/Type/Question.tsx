@@ -10,7 +10,7 @@ interface Props {
 
 const QuestionType: React.FC<Props> = ({ question }) => {
   return (
-    <div className="text-xl post space-y-3">
+    <div className="text-xl post space-y-3 inline-flex">
       <div>
         <div className="font-bold mb-1">{question?.title}</div>
         <div className="prose">
