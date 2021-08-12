@@ -33,8 +33,7 @@ export async function authenticateUser(email: string, password: string) {
   const user = await db.user.findFirst({
     where: {
       email: {
-        equals: email,
-        mode: 'insensitive'
+        equals: email
       }
     }
   })
