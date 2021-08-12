@@ -162,7 +162,7 @@ builder.mutationField('createPost', (t) =>
           done: input.done,
           attachments: input.attachments,
           type: input.type as PostType,
-          productId: input.productId
+          productId: input.productId ? input.productId : null
         }
       })
     }
