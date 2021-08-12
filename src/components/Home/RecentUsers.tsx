@@ -3,7 +3,7 @@ import { UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { User } from '../../__generated__/schema.generated'
-import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileShimmer'
+import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
 import UserProfile from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -50,11 +50,11 @@ const RecentUsers: React.FC = () => {
     return (
       <RecentUsersCard>
         <div className="space-y-3">
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
-          <UserProfileLargeShimmer showFollow />
+          <UserProfileShimmer showFollow />
+          <UserProfileShimmer showFollow />
+          <UserProfileShimmer showFollow />
+          <UserProfileShimmer showFollow />
+          <UserProfileShimmer showFollow />
         </div>
       </RecentUsersCard>
     )
