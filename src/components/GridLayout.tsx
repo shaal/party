@@ -4,7 +4,7 @@ interface GridLayoutProps {
 
 export const GridLayout: React.FC<GridLayoutProps> = ({ children }) => {
   return (
-    <div className="container mx-auto max-w-screen-2xl flex-grow py-8 lg:px-16 md:px-10 sm:px-5 px-5">
+    <div className="container mx-auto max-w-screen-2xl flex-grow py-8 lg:px-16 md:px-10 sm:px-5 px-0">
       <div className="grid grid-cols-12 lg:gap-10">{children}</div>
     </div>
   )

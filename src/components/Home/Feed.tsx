@@ -35,7 +35,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       variables: {
         after: null,
         where: {
-          type: feedType === 'ALL' ? 'ALL' : feedType
+          type: feedType
         }
       }
     }
