@@ -1,4 +1,4 @@
-import Profile, { PROFILE_QUERY as query } from '../components/Profile'
+import Profile, { PROFILE_QUERY as query } from '../components/Users'
 import { preloadQuery } from '../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
