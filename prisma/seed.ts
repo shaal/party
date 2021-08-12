@@ -1,5 +1,3 @@
-import 'tsconfig-paths/register'
-
 import { PrismaClient } from '@prisma/client'
 
 const db = new PrismaClient()

@@ -2,8 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
-
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
+import PostShimmer from 'src/components/shared/Shimmer/PostShimmer'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'

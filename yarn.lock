@@ -6110,14 +6110,14 @@ react-cool-inview@^2.0.7:
   resolved "https://registry.yarnpkg.com/react-cool-inview/-/react-cool-inview-2.0.7.tgz#682d8c12bffe0484e1e7cf3fd5134f5eee711ad0"
   integrity sha512-rwOZ+A4MhJSBqC/WyO6epUjTqhfXnkrnqolW3UklQohIenEdfHhHBvzfQ3o0WDihQOVx61YCD4iwnBUFFZ5guA==
 
-react-dom@alpha:
-  version "18.0.0-alpha-64931821a-20210808"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-64931821a-20210808.tgz#03f7f55ea62a026947c059ac5d57728d591604bf"
-  integrity sha512-3Sbj3g4lkoU45XAI8SjZ6OM3HoOXiiI4aOj2rSfvtzUMTKNfTtDpdzuYMxd8dA+FsmTxZcHWBldbbq/iu1lvhw==
+react-dom@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
+  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.21.0-alpha-64931821a-20210808"
+    scheduler "^0.20.2"
 
 react-hook-form@^7.12.2:
   version "7.12.2"
@@ -6146,10 +6146,10 @@ react-refresh@0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react@alpha:
-  version "18.0.0-alpha-64931821a-20210808"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-64931821a-20210808.tgz#49d54d81937affd37955880aae4ec447b93909cf"
-  integrity sha512-lr1082PineVMBL24BUJHAo4Mlh7ViXis/aw7bDeZvlDUnCR0KmPTEwwjmczJQqnTSFLLWL1uCnSR7hy1TOcwwA==
+react@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -6456,10 +6456,10 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-scheduler@0.21.0-alpha-64931821a-20210808:
-  version "0.21.0-alpha-64931821a-20210808"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-64931821a-20210808.tgz#f2d53f1f173b095cea199d6c805b920d9259e3ed"
-  integrity sha512-zu4AoSsI+qzZTYV476m8a7qHJxQyJPvOp98tr6XSUKhLNznEiPHiDt8dKI0znTM2jAWdpbruoczblddmmlPjNA==
+scheduler@^0.20.2:
+  version "0.20.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
+  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -7200,7 +7200,7 @@ ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
 
-tsconfig-paths@^3.10.1, tsconfig-paths@^3.9.0:
+tsconfig-paths@^3.9.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.10.1.tgz#79ae67a68c15289fdf5c51cb74f397522d795ed7"
   integrity sha512-rETidPDgCpltxF7MjBZlAFPUHv5aHH2MymyPvh+vEyWAED4Eb/WeMbsnD/JDr4OKPOA1TssDHgIcpTN5Kh0p6Q==

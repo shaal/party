@@ -4,8 +4,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Fragment } from 'react'
-
-import AppContext from '~/components/utils/AppContext'
+import AppContext from 'src/components/utils/AppContext'
 
 import { Button } from '../../ui/Button'
 import MenuItems from './MenuItems'

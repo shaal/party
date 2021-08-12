@@ -1,10 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
 import useInView from 'react-cool-inview'
-
-import { Post, Reply } from '~/__generated__/schema.generated'
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { Post, Reply } from 'src/__generated__/schema.generated'
+import PostShimmer from 'src/components/shared/Shimmer/PostShimmer'
+import { ErrorMessage } from 'src/components/ui/ErrorMessage'
 
 import { RepliesQuery } from './__generated__/Replies.generated'
 import SingleReply from './SingleReply'

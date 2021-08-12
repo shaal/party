@@ -2,16 +2,16 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
-import { Post, User } from '~/__generated__/schema.generated'
+import { Post, User } from 'src/__generated__/schema.generated'
 import {
   GridItemEight,
   GridItemFour,
   GridLayout
-} from '~/components/GridLayout'
-import SinglePost, { PostFragment } from '~/components/Post/SinglePost'
-import UserProfileLarge from '~/components/shared/UserProfileLarge'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+} from 'src/components/GridLayout'
+import SinglePost, { PostFragment } from 'src/components/Post/SinglePost'
+import UserProfileLarge from 'src/components/shared/UserProfileLarge'
+import { Card, CardBody } from 'src/components/ui/Card'
+import { ErrorMessage } from 'src/components/ui/ErrorMessage'
 
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'

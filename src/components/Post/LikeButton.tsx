@@ -3,7 +3,7 @@ import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
 import React, { useEffect, useState } from 'react'
 
-import { Post, Reply } from '~/__generated__/schema.generated'
+import { Post, Reply } from 'src/__generated__/schema.generated'
 
 type Props = {
   entity: Post | Reply

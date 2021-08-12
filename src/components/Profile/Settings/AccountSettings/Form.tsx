@@ -3,13 +3,13 @@ import Link from 'next/link'
 import React from 'react'
 import { object, string } from 'zod'
 
-import { User } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { SuccessMessage } from '~/components/ui/SuccessMessage'
-import { TextArea } from '~/components/ui/TextArea'
+import { User } from 'src/__generated__/schema.generated'
+import { Button } from 'src/components/ui/Button'
+import { ErrorMessage } from 'src/components/ui/ErrorMessage'
+import { Form, useZodForm } from 'src/components/ui/Form'
+import { Input } from 'src/components/ui/Input'
+import { SuccessMessage } from 'src/components/ui/SuccessMessage'
+import { TextArea } from 'src/components/ui/TextArea'
 
 import {
   AccountSettingsMutation,

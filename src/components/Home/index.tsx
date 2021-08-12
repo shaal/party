@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
 
-import NewPost from '~/components/Post/NewPost'
-import Banner from '~/components/shared/Banner'
+import NewPost from 'src/components/Post/NewPost'
+import Banner from 'src/components/shared/Banner'
 
 import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
 import { CURRENT_USER_QUERY } from '../DefaultLayout'

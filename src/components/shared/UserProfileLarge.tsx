@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useContext } from 'react'
 
-import { User } from '~/__generated__/schema.generated'
+import { User } from 'src/__generated__/schema.generated'
 
 import Follow from '../Profile/Follow'
 import AppContext from '../utils/AppContext'

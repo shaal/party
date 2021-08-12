@@ -1,7 +1,6 @@
 import crypto from 'crypto'
 import { bcrypt, bcryptVerify } from 'hash-wasm'
-
-import { ValidationError } from '~/graphql/errors'
+import { ValidationError } from 'src/graphql/errors'
 
 import { db } from './prisma'
 
@@ -34,8 +33,7 @@ export async function authenticateUser(email: string, password: string) {
   const user = await db.user.findFirst({
     where: {
       email: {
-        equals: email,
-        mode: 'insensitive'
+        equals: email
       }
     }
   })

@@ -6,8 +6,7 @@ import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
-
-import { db } from '~/utils/prisma'
+import { db } from 'src/utils/prisma'
 
 export interface Context {
   req: IncomingMessage

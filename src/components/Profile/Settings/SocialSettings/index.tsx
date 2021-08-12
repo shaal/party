@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { User } from '~/__generated__/schema.generated'
+import { User } from 'src/__generated__/schema.generated'
 import {
   GridItemEight,
   GridItemFour,
   GridLayout
-} from '~/components/GridLayout'
-import SettingsHelper from '~/components/shared/SettingsHelper'
-import { Card, CardBody } from '~/components/ui/Card'
+} from 'src/components/GridLayout'
+import SettingsHelper from 'src/components/shared/SettingsHelper'
+import { Card, CardBody } from 'src/components/ui/Card'
 
 import SocialSettingsForm from './Form'
 

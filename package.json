@@ -16,7 +16,7 @@
     "migrate:dev": "prisma migrate dev --preview-feature",
     "migrate:deploy": "prisma migrate deploy --preview-feature",
     "codegen": "yarn clean:codegen && run-s -l \"codegen:*\"",
-    "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
+    "codegen:schema": "ts-node --transpile-only ./src/graphql/index.ts",
     "codegen:graphql": "graphql-codegen",
     "prepare": "husky install"
   },
@@ -45,9 +45,9 @@
     "next-seo": "^4.26.0",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
-    "react": "alpha",
+    "react": "^17.0.2",
     "react-cool-inview": "^2.0.7",
-    "react-dom": "alpha",
+    "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.2",
     "timeago.js": "^4.0.2",
     "zod": "^3.7.1"
@@ -79,7 +79,6 @@
     "tailwindcss": "^2.2.7",
     "trash-cli": "^4.0.0",
     "ts-node": "^10.2.0",
-    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   },
   "lint-staged": {
