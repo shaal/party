@@ -3,7 +3,7 @@ import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
-import ProductProfileLarge from '../shared/ProductProfileLarge'
+import ProductProfile from '../shared/ProductProfile'
 import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -61,7 +61,7 @@ const RecentProducts: React.FC = () => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data?.products?.edges?.map((product: any) => (
-          <ProductProfileLarge
+          <ProductProfile
             key={product?.node?.id}
             product={product?.node as Product}
           />

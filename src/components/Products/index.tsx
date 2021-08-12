@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import ProductProfileLarge from '../shared/ProductProfileLarge'
+import ProductProfile from '../shared/ProductProfile'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
 import { Button } from '../ui/Button'
@@ -56,7 +56,7 @@ const Products: React.FC = () => {
           <CardBody className="space-y-4">
             <ErrorMessage title="Failed to load post" error={error} />
             {data?.products?.edges?.map((product: any) => (
-              <ProductProfileLarge
+              <ProductProfile
                 key={product?.node?.id}
                 product={product?.node as Product}
               />
