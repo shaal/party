@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
 
@@ -22,17 +23,25 @@ const newProductSchema = object({
 })
 
 const NewProduct: React.FC = () => {
+  const router = useRouter()
   const [createProduct, createProductResult] = useMutation<
     CreateProductMutation,
     CreateProductMutationVariables
-  >(gql`
-    mutation CreateProductMutation($input: CreateProductInput!) {
-      createProduct(input: $input) {
-        id
-        slug
+  >(
+    gql`
+      mutation CreateProductMutation($input: CreateProductInput!) {
+        createProduct(input: $input) {
+          id
+          slug
+        }
+      }
+    `,
+    {
+      onCompleted(data) {
+        router.push(`/products/${data?.createProduct?.slug}`)
       }
     }
-  `)
+  )
 
   const form = useZodForm({
     schema: newProductSchema
@@ -75,7 +84,7 @@ const NewProduct: React.FC = () => {
               />
               <Input
                 label="Slug"
-                type="email"
+                type="text"
                 placeholder="minecraft"
                 {...form.register('slug')}
               />
