@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
@@ -67,7 +68,9 @@ const Products: React.FC = () => {
       <GridItemFour>
         <Card>
           <CardBody>
-            <Button>Create new Product</Button>
+            <Link href="/products/new">
+              <Button>Create new Product</Button>
+            </Link>
           </CardBody>
         </Card>
       </GridItemFour>
