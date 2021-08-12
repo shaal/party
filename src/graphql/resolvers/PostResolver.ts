@@ -120,8 +120,8 @@ builder.queryField('post', (t) =>
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, root, { id }) => {
-      return db.post.findUnique({
+    resolve: async (query, root, { id }) => {
+      return await db.post.findUnique({
         ...query,
         where: {
           id
@@ -151,8 +151,8 @@ builder.mutationField('createPost', (t) =>
     args: {
       input: t.arg({ type: CreatePostInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.post.create({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.post.create({
         data: {
           userId: session!.userId,
           title: input.title,
@@ -191,7 +191,7 @@ builder.mutationField('editPost', (t) =>
         rejectOnNotFound: true
       })
 
-      return db.post.update({
+      return await db.post.update({
         where: { id: post.id },
         data: { body: input.body as string, done: input.done as boolean }
       })
@@ -222,7 +222,7 @@ builder.mutationField('deletePost', (t) =>
         rejectOnNotFound: true
       })
 
-      return db.post.delete({
+      return await db.post.delete({
         where: { id: post.id }
       })
     }

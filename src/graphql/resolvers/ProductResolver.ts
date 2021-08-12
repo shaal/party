@@ -1,3 +1,5 @@
+import { md5 } from 'hash-wasm'
+
 import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 
@@ -58,8 +60,8 @@ builder.queryField('product', (t) =>
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, root, { id }) => {
-      return db.product.findUnique({
+    resolve: async (query, root, { id }) => {
+      return await db.product.findUnique({
         ...query,
         where: {
           id
@@ -87,12 +89,13 @@ builder.mutationField('createProduct', (t) =>
     args: {
       input: t.arg({ type: CreateProductInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.product.create({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.product.create({
         data: {
           userId: session!.userId,
           name: input.name,
-          slug: input.slug
+          slug: input.slug,
+          avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg`
         }
       })
     }

@@ -34,8 +34,8 @@ builder.mutationField('editSocial', (t) =>
     args: {
       input: t.arg({ type: EditSocialInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.user.update({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.user.update({
         ...query,
         where: {
           id: session!.userId

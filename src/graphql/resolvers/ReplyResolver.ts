@@ -67,8 +67,8 @@ builder.queryField('reply', (t) =>
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, root, { id }) => {
-      return db.reply.findFirst({
+    resolve: async (query, root, { id }) => {
+      return await db.reply.findFirst({
         ...query,
         where: {
           id
@@ -92,8 +92,8 @@ builder.mutationField('createReply', (t) =>
     args: {
       input: t.arg({ type: CreateReplyInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.reply.create({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.reply.create({
         data: {
           userId: session!.userId,
           postId: input.postId,

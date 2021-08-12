@@ -2,6 +2,8 @@ import { gql, useQuery } from '@apollo/client'
 import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
+import { Product } from '../../__generated__/schema.generated'
+import ProductProfileLarge from '../shared/ProductProfileLarge'
 import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
@@ -9,17 +11,13 @@ import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
 export const RECENT_PRODUCTS_QUERY = gql`
   query RecentProductsQuery {
-    users(first: 5) {
+    products(first: 5) {
       edges {
         node {
           id
-          username
-          hasFollowed
-          profile {
-            id
-            avatar
-            name
-          }
+          name
+          slug
+          avatar
         }
       }
     }
@@ -61,7 +59,12 @@ const RecentProducts: React.FC = () => {
   return (
     <RecentUsersCard>
       <ErrorMessage title="Failed to load posts" error={error} />
-      <div className="space-y-3">🚧 WIP</div>
+      {data?.products?.edges?.map((product: any) => (
+        <ProductProfileLarge
+          key={product?.node?.id}
+          product={product?.node as Product}
+        />
+      ))}
     </RecentUsersCard>
   )
 }

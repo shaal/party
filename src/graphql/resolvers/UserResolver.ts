@@ -48,8 +48,8 @@ builder.queryField('user', (t) =>
     args: {
       username: t.arg.string({})
     },
-    resolve: (query, root, { username }) => {
-      return db.user.findUnique({
+    resolve: async (query, root, { username }) => {
+      return await db.user.findUnique({
         ...query,
         where: {
           username
@@ -64,8 +64,8 @@ builder.queryField('users', (t) =>
   t.prismaConnection({
     type: db.user,
     cursor: 'id',
-    resolve: (query, root) => {
-      return db.user.findMany({
+    resolve: async (query, root) => {
+      return await db.user.findMany({
         ...query,
         orderBy: {
           createdAt: 'desc'
@@ -101,8 +101,8 @@ builder.mutationField('editUser', (t) =>
     args: {
       input: t.arg({ type: EditUserInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.user.update({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.user.update({
         ...query,
         where: {
           id: session!.userId
