@@ -1,12 +1,12 @@
 import { Card, CardBody } from '../../ui/Card'
-import UserProfileLargeShimmer from './UserProfileShimmer'
+import UserProfileShimmer from './UserProfileShimmer'
 
 const PostShimmer: React.FC = () => {
   return (
     <Card>
       <CardBody className="space-y-4">
         <div className="flex justify-between items-center">
-          <UserProfileLargeShimmer />
+          <UserProfileShimmer />
           <div className="shimmer h-3 w-20 rounded-md"></div>
         </div>
         <div className="space-y-2">
