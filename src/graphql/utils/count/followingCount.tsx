@@ -1,4 +1,4 @@
-import { db } from 'src/utils/prisma'
+import { db } from '../../../utils/prisma'
 
 export const followingCount = async (id: string) => {
   const user = await db.user.findUnique({

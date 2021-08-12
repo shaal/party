@@ -1,5 +1,4 @@
-import { db } from 'src/utils/prisma'
-
+import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 import { togglePostLike } from '../utils/togglePostLike'
 import { toggleReplyLike } from '../utils/toggleReplyLike'

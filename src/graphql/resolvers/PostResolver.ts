@@ -1,6 +1,6 @@
 import { PostType } from '@prisma/client'
-import { db } from 'src/utils/prisma'
 
+import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 import { hasLiked } from '../utils/hasLiked'
 

@@ -1,5 +1,4 @@
-import { db } from 'src/utils/prisma'
-
+import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 
 builder.prismaObject(db.profile, {
