@@ -98,14 +98,9 @@ CREATE TABLE "Product" (
     "twitter" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT,
 
     PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "_ProductToUser" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -137,12 +132,6 @@ CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId", "replyId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product.slug_unique" ON "Product"("slug");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_ProductToUser_AB_unique" ON "_ProductToUser"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_ProductToUser_B_index" ON "_ProductToUser"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
@@ -178,10 +167,7 @@ ALTER TABLE "Like" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE 
 ALTER TABLE "Like" ADD FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_ProductToUser" ADD FOREIGN KEY ("A") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_ProductToUser" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

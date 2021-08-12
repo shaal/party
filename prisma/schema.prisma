@@ -154,6 +154,7 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  users User[]
-  posts Post[]
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+  posts  Post[]
 }
