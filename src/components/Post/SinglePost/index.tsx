@@ -15,6 +15,7 @@ import {
   TogglePostLikeMutation,
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
+import SelectedProduct from './SelectedProduct'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
@@ -55,6 +56,12 @@ export const PostFragment = gql`
         name
         avatar
       }
+    }
+    product {
+      id
+      name
+      slug
+      avatar
     }
   }
 `
@@ -134,6 +141,7 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
             )}
           </div>
         )}
+        {post?.product && <SelectedProduct product={post?.product} />}
       </div>
     </Card>
   )
