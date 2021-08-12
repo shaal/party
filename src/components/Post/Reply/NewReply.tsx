@@ -3,11 +3,11 @@ import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { object, string } from 'zod'
 
-import { Post } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { TextArea } from '~/components/ui/TextArea'
+import { Post } from 'src/__generated__/schema.generated'
+import { Button } from 'src/components/ui/Button'
+import { ErrorMessage } from 'src/components/ui/ErrorMessage'
+import { Form, useZodForm } from 'src/components/ui/Form'
+import { TextArea } from 'src/components/ui/TextArea'
 
 import { Card, CardBody } from '../../ui/Card'
 import {

@@ -1,8 +1,7 @@
 import { md5 } from 'hash-wasm'
+import { authenticateUser, hashPassword, verifyPassword } from 'src/utils/auth'
 import { db } from 'src/utils/prisma'
-
-import { authenticateUser, hashPassword, verifyPassword } from '~/utils/auth'
-import { createSession, removeSession } from '~/utils/sessions'
+import { createSession, removeSession } from 'src/utils/sessions'
 
 import { builder } from '../builder'
 import { Result } from './ResultResolver'

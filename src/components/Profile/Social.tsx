@@ -1,4 +1,4 @@
-import { Profile } from '~/__generated__/schema.generated'
+import { Profile } from 'src/__generated__/schema.generated'
 
 interface Props {
   profile: Profile

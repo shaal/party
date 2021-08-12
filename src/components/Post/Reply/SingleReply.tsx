@@ -6,8 +6,8 @@ import React from 'react'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
-import { Reply, User } from '~/__generated__/schema.generated'
-import AppContext from '~/components/utils/AppContext'
+import { Reply, User } from 'src/__generated__/schema.generated'
+import AppContext from 'src/components/utils/AppContext'
 
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
