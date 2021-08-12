@@ -4,10 +4,9 @@ import { ApolloProvider } from '@apollo/client'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
-
-import DefaultLayout from '~/components/DefaultLayout'
-import { NProgress } from '~/components/ui/NProgress'
-import { useApollo } from '~/utils/apollo'
+import DefaultLayout from 'src/components/DefaultLayout'
+import { NProgress } from 'src/components/ui/NProgress'
+import { useApollo } from 'src/utils/apollo'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialClientState)
