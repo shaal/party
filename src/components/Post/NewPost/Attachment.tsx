@@ -1,6 +1,5 @@
 import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
-
 import { Button } from 'src/components/ui/Button'
 import { uploadToIPFS } from 'src/components/utils/uploadToIPFS'
 
