@@ -4,10 +4,10 @@ import {
   CollectionIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
+import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import { Button } from '../../ui/Button'
 import { Card, CardBody } from '../../ui/Card'
 import PostType from './Type/Post'
 
@@ -25,41 +25,44 @@ const NewPost: React.FC = () => {
     <Card>
       <CardBody>
         <Tab.Group>
-          <Tab.List className="flex space-x-2">
+          <Tab.List className="flex space-x-5">
             <Tab as={Fragment}>
               {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
+                <button
+                  className={clsx(
+                    { 'text-indigo-500': selected },
+                    { 'text-gray-500': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
                 >
-                  <CollectionIcon className="h-4 w-4" />
-                  <div>Post</div>
-                </Button>
+                  <CollectionIcon className="h-5 w-5" />
+                </button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
+                <button
+                  className={clsx(
+                    { 'text-indigo-500': selected },
+                    { 'text-gray-500': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
                 >
-                  <CheckCircleIcon className="h-4 w-4" />
-                  <div>Task</div>
-                </Button>
+                  <CheckCircleIcon className="h-5 w-5" />
+                </button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <Button
-                  size="sm"
-                  className="flex items-center gap-1.5 text-sm"
-                  outline={!selected}
+                <button
+                  className={clsx(
+                    { 'text-indigo-500': selected },
+                    { 'text-gray-500': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
                 >
-                  <QuestionMarkCircleIcon className="h-4 w-4" />
-                  <div>Question</div>
-                </Button>
+                  <QuestionMarkCircleIcon className="h-5 w-5" />
+                </button>
               )}
             </Tab>
           </Tab.List>
