@@ -10,7 +10,7 @@ const NewProduct: React.FC = () => {
       <GridItemFour>
         <SettingsHelper
           heading="New Product"
-          description={'Launch your dream product in Devparty'}
+          description="Launch your dream product in Devparty"
         />
       </GridItemFour>
       <GridItemEight>
