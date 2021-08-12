@@ -1,7 +1,7 @@
 import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 
-import { Button } from '../../ui/Button'
+import { Spinner } from '../../ui/Spinner'
 import { uploadToIPFS } from '../../utils/uploadToIPFS'
 
 interface Props {
@@ -26,10 +26,13 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
 
   return (
     <div className="flex items-center gap-2 text-sm">
-      <Button type="button" outline size="sm">
+      <button type="button">
         <label className="flex items-center gap-1 cursor-pointer">
-          <PhotographIcon className="h-4 w-4" />
-          <span>{loading ? 'Uploading...' : 'Upload'}</span>
+          {loading ? (
+            <Spinner color="text-indigo-500" />
+          ) : (
+            <PhotographIcon className="h-5 w-5 text-indigo-500" />
+          )}
           <input
             type="file"
             className="hidden"
@@ -37,7 +40,7 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
             disabled={attachments.length >= 4}
           />
         </label>
-      </Button>
+      </button>
     </div>
   )
 }
