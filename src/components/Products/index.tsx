@@ -2,7 +2,9 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
+import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import ProductProfileLarge from '../shared/ProductProfileLarge'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
 import { Button } from '../ui/Button'
@@ -50,9 +52,17 @@ const Products: React.FC = () => {
   return (
     <GridLayout>
       <GridItemEight>
-        <div className="space-y-5">
-          <ErrorMessage title="Failed to load post" error={error} />
-        </div>
+        <Card className="space-y-5">
+          <CardBody className="space-y-4">
+            <ErrorMessage title="Failed to load post" error={error} />
+            {data?.products?.edges?.map((product: any) => (
+              <ProductProfileLarge
+                key={product?.node?.id}
+                product={product?.node as Product}
+              />
+            ))}
+          </CardBody>
+        </Card>
       </GridItemEight>
       <GridItemFour>
         <Card>
