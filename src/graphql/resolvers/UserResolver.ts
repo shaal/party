@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from 'src/utils/prisma'
 
 import { builder } from '../builder'
 import { followersCount } from '../utils/count/followersCount'
