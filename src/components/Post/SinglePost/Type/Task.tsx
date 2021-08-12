@@ -2,9 +2,8 @@ import { gql, useMutation } from '@apollo/client'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
 
-import { Post } from 'src/__generated__/schema.generated'
-import { TaskCheckbox } from 'src/components/ui/TaskCheckbox'
-
+import { Post } from '../../../../__generated__/schema.generated'
+import { TaskCheckbox } from '../../../ui/TaskCheckbox'
 import Attachments from '../Attachments'
 import {
   EditPostMutation,

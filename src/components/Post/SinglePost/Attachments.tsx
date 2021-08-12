@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client'
 import Image from 'next/image'
 import React, { Fragment } from 'react'
 
-import { Button } from 'src/components/ui/Button'
+import { Button } from '../../ui/Button'
 
 interface Props {
   attachments: Prisma.JsonArray

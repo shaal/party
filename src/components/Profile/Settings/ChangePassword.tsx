@@ -1,13 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
 import React from 'react'
-import { GridLayout } from 'src/components/GridLayout'
-import { Button } from 'src/components/ui/Button'
-import { ErrorMessage } from 'src/components/ui/ErrorMessage'
-import { Form, useZodForm } from 'src/components/ui/Form'
-import { Input } from 'src/components/ui/Input'
-import { SuccessMessage } from 'src/components/ui/SuccessMessage'
 import { object, string } from 'zod'
 
+import { GridLayout } from '../../GridLayout'
+import { Button } from '../../ui/Button'
+import { ErrorMessage } from '../../ui/ErrorMessage'
+import { Form, useZodForm } from '../../ui/Form'
+import { Input } from '../../ui/Input'
+import { SuccessMessage } from '../../ui/SuccessMessage'
 import {
   ChangePasswordMutation,
   ChangePasswordMutationVariables

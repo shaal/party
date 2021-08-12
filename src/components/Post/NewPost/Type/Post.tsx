@@ -1,13 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
-import { HOME_FEED_QUERY } from 'src/components/Home/Feed'
-import { Button } from 'src/components/ui/Button'
-import { ErrorMessage } from 'src/components/ui/ErrorMessage'
-import { Form, useZodForm } from 'src/components/ui/Form'
-import { TextArea } from 'src/components/ui/TextArea'
 import { object, string } from 'zod'
 
+import { HOME_FEED_QUERY } from '../../../Home/Feed'
+import { Button } from '../../../ui/Button'
+import { ErrorMessage } from '../../../ui/ErrorMessage'
+import { Form, useZodForm } from '../../../ui/Form'
+import { TextArea } from '../../../ui/TextArea'
 import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
 import {

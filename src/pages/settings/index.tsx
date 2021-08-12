@@ -1,8 +1,8 @@
 import Settings, {
   SETTINGS_QUERY as query
-} from 'src/components/Profile/Settings'
-import { preloadQuery } from 'src/utils/apollo'
-import { authenticatedRoute } from 'src/utils/redirects'
+} from '../../components/Profile/Settings'
+import { preloadQuery } from '../../utils/apollo'
+import { authenticatedRoute } from '../../utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {
   const auth = await authenticatedRoute(ctx)

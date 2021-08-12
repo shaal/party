@@ -2,9 +2,8 @@ import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-import { User } from 'src/__generated__/schema.generated'
-import UserProfileLargeShimmer from 'src/components/shared/Shimmer/UserProfileLargeShimmer'
-
+import { User } from '../../__generated__/schema.generated'
+import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
 import UserProfileLarge from '../shared/UserProfileLarge'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'

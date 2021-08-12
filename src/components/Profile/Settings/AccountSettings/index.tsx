@@ -1,14 +1,9 @@
 import React from 'react'
 
-import { User } from 'src/__generated__/schema.generated'
-import {
-  GridItemEight,
-  GridItemFour,
-  GridLayout
-} from 'src/components/GridLayout'
-import SettingsHelper from 'src/components/shared/SettingsHelper'
-import { Card, CardBody } from 'src/components/ui/Card'
-
+import { User } from '../../../../__generated__/schema.generated'
+import { GridItemEight, GridItemFour, GridLayout } from '../../../GridLayout'
+import SettingsHelper from '../../../shared/SettingsHelper'
+import { Card, CardBody } from '../../../ui/Card'
 import AccountSettingsForm from '../AccountSettings/Form'
 
 interface Props {

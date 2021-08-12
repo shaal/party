@@ -1,13 +1,12 @@
 import { useQuery } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
 
-import NewPost from 'src/components/Post/NewPost'
-import Banner from 'src/components/shared/Banner'
-
 import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
 import { CURRENT_USER_QUERY } from '../DefaultLayout'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import FeedType from '../Post/FeedType'
+import NewPost from '../Post/NewPost'
+import Banner from '../shared/Banner'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'

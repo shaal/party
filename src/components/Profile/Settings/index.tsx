@@ -2,13 +2,8 @@ import { gql, useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import { User } from 'src/__generated__/schema.generated'
-import {
-  GridItemEight,
-  GridItemFour,
-  GridLayout
-} from 'src/components/GridLayout'
-
+import { User } from '../../../__generated__/schema.generated'
+import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { SettingsQuery } from './__generated__/index.generated'
 
 const AccountSettings = dynamic(() => import('./AccountSettings'), {

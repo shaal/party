@@ -5,11 +5,10 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment } from 'react'
 
-import { User } from 'src/__generated__/schema.generated'
-import { useAuthRedirect } from 'src/components/utils/useAuthRedirect'
-
 import { Dropdown } from '../../ui/Dropdown'
 import Username from '../Username'
+import { useAuthRedirect } from '../../utils/useAuthRedirect'
+import { User } from '../../../__generated__/schema.generated'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>

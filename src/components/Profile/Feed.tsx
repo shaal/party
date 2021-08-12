@@ -3,10 +3,9 @@ import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from 'src/__generated__/schema.generated'
-import PostShimmer from 'src/components/shared/Shimmer/PostShimmer'
-
+import { User } from '../../__generated__/schema.generated'
 import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostShimmer from '../shared/Shimmer/PostShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 

@@ -5,9 +5,6 @@ import React from 'react'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
-import { Post, User } from 'src/__generated__/schema.generated'
-import AppContext from 'src/components/utils/AppContext'
-
 import UserProfileLarge from '../../shared/UserProfileLarge'
 import { Card, CardBody } from '../../ui/Card'
 import DeleteButton from '../DeleteButton'
@@ -19,6 +16,8 @@ import {
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
+import { Post, User } from '../../../__generated__/schema.generated'
+import AppContext from '../../utils/AppContext'
 
 export const PostFragment = gql`
   fragment PostFragment on Post {

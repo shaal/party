@@ -2,23 +2,18 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
-import { Post, User } from 'src/__generated__/schema.generated'
-import {
-  GridItemEight,
-  GridItemFour,
-  GridLayout
-} from 'src/components/GridLayout'
-import SinglePost, { PostFragment } from 'src/components/Post/SinglePost'
-import UserProfileLarge from 'src/components/shared/UserProfileLarge'
-import { Card, CardBody } from 'src/components/ui/Card'
-import { ErrorMessage } from 'src/components/ui/ErrorMessage'
-
+import { Post, User } from '../../__generated__/schema.generated'
+import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileLargeShimmer from '../shared/Shimmer/UserProfileLargeShimmer'
+import UserProfileLarge from '../shared/UserProfileLarge'
+import { Card, CardBody } from '../ui/Card'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
+import SinglePost, { PostFragment } from './SinglePost'
 
 export const POST_QUERY = gql`
   query PostQuery($id: ID!) {
