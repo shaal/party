@@ -2,7 +2,7 @@ interface Props {
   showFollow?: boolean
 }
 
-const UserProfileLargeShimmer: React.FC<Props> = ({ showFollow = false }) => {
+const UserProfileShimmer: React.FC<Props> = ({ showFollow = false }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex space-x-3 items-center">
@@ -17,4 +17,4 @@ const UserProfileLargeShimmer: React.FC<Props> = ({ showFollow = false }) => {
   )
 }
 
-export default UserProfileLargeShimmer
+export default UserProfileShimmer

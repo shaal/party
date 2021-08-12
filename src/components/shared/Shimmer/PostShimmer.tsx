@@ -1,5 +1,5 @@
 import { Card, CardBody } from '../../ui/Card'
-import UserProfileLargeShimmer from './UserProfileLargeShimmer'
+import UserProfileLargeShimmer from './UserProfileShimmer'
 
 const PostShimmer: React.FC = () => {
   return (
