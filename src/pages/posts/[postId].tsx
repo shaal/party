@@ -1,5 +1,5 @@
-import ViewPost, { POST_QUERY as query } from '~/components/Post/ViewPost'
-import { preloadQuery } from '~/utils/apollo'
+import ViewPost, { POST_QUERY as query } from '../../components/Posts/ViewPost'
+import { preloadQuery } from '../../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
   return preloadQuery(ctx, {

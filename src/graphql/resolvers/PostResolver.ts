@@ -1,11 +1,10 @@
 import { PostType } from '@prisma/client'
 
-import { db } from '~/utils/prisma'
-
+import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 import { hasLiked } from '../utils/hasLiked'
 
-builder.prismaObject('Post', {
+builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -25,7 +24,7 @@ builder.prismaObject('Post', {
       }
     }),
     likes: t.prismaConnection({
-      type: 'Like',
+      type: db.like,
       cursor: 'id',
       resolve: (query, root) =>
         db.like.findMany({
@@ -50,6 +49,7 @@ builder.prismaObject('Post', {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
+    product: t.relation('product', { nullable: true }),
     replies: t.relation('replies')
   })
 })
@@ -66,7 +66,7 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
 
 builder.queryField('posts', (t) =>
   t.prismaConnection({
-    type: 'Post',
+    type: db.post,
     cursor: 'id',
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
@@ -117,12 +117,12 @@ builder.queryField('posts', (t) =>
 
 builder.queryField('post', (t) =>
   t.prismaField({
-    type: 'Post',
+    type: db.post,
     args: {
       id: t.arg.id({})
     },
-    resolve: (query, root, { id }) => {
-      return db.post.findUnique({
+    resolve: async (query, root, { id }) => {
+      return await db.post.findUnique({
         ...query,
         where: {
           id
@@ -139,6 +139,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 255 }
     }),
+    productId: t.id({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
@@ -148,19 +149,20 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 
 builder.mutationField('createPost', (t) =>
   t.prismaField({
-    type: 'Post',
+    type: db.post,
     args: {
       input: t.arg({ type: CreatePostInput })
     },
-    resolve: (query, root, { input }, { session }) => {
-      return db.post.create({
+    resolve: async (query, root, { input }, { session }) => {
+      return await db.post.create({
         data: {
           userId: session!.userId,
           title: input.title,
           body: input.body,
           done: input.done,
           attachments: input.attachments,
-          type: input.type as PostType
+          type: input.type as PostType,
+          productId: input.productId ? input.productId : null
         }
       })
     }
@@ -177,7 +179,7 @@ const EditPostInput = builder.inputType('EditPostInput', {
 
 builder.mutationField('editPost', (t) =>
   t.prismaField({
-    type: 'Post',
+    type: db.post,
     args: {
       input: t.arg({ type: EditPostInput })
     },
@@ -192,7 +194,7 @@ builder.mutationField('editPost', (t) =>
         rejectOnNotFound: true
       })
 
-      return db.post.update({
+      return await db.post.update({
         where: { id: post.id },
         data: { body: input.body as string, done: input.done as boolean }
       })
@@ -208,7 +210,7 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
-    type: 'Post',
+    type: db.post,
     args: {
       input: t.arg({ type: DeletePostInput })
     },
@@ -223,7 +225,7 @@ builder.mutationField('deletePost', (t) =>
         rejectOnNotFound: true
       })
 
-      return db.post.delete({
+      return await db.post.delete({
         where: { id: post.id }
       })
     }

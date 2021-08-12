@@ -1,11 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import React from 'react'
-import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
-
-import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostShimmer from '../../components/shared/Shimmer/PostShimmer'
+import SinglePost, { PostFragment } from '../Posts/SinglePost'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
@@ -31,14 +29,13 @@ interface Props {
 }
 
 const HomeFeed: React.FC<Props> = ({ feedType }) => {
-  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(
     HOME_FEED_QUERY,
     {
       variables: {
         after: null,
         where: {
-          type: feedType === 'ALL' ? 'ALL' : feedType
+          type: feedType
         }
       }
     }
@@ -83,7 +80,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
             <SinglePost key={post?.id} post={post} showReplies />
           ))
         )}
-        {hasNextPage && <div ref={observe}></div>}
+        <div ref={observe}></div>
       </div>
     </div>
   )

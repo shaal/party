@@ -7,7 +7,7 @@ import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
-import { db } from '~/utils/prisma'
+import { db } from '../utils/prisma'
 
 export interface Context {
   req: IncomingMessage
@@ -41,7 +41,6 @@ export const builder = new SchemaBuilder<{
     user: boolean
     unauthenticated: boolean
   }
-  PrismaClient: typeof db
 }>({
   defaultInputFieldRequiredness: true,
   plugins: [

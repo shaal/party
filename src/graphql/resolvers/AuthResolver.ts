@@ -1,23 +1,26 @@
 import { md5 } from 'hash-wasm'
 
-import { authenticateUser, hashPassword, verifyPassword } from '~/utils/auth'
-import { db } from '~/utils/prisma'
-import { createSession, removeSession } from '~/utils/sessions'
-
+import {
+  authenticateUser,
+  hashPassword,
+  verifyPassword
+} from '../../utils/auth'
+import { db } from '../../utils/prisma'
+import { createSession, removeSession } from '../../utils/sessions'
 import { builder } from '../builder'
 import { Result } from './ResultResolver'
 
 builder.queryField('me', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     nullable: true,
     skipTypeScopes: true,
-    resolve: (query, root, args, { session }) => {
+    resolve: async (query, root, args, { session }) => {
       if (!session?.userId) {
         return null
       }
 
-      return db.user.findUnique({
+      return await db.user.findUnique({
         ...query,
         where: { id: session.userId },
         rejectOnNotFound: true
@@ -53,7 +56,7 @@ const LoginInput = builder.inputType('LoginInput', {
 
 builder.mutationField('login', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: false
@@ -92,7 +95,7 @@ const SignUpInput = builder.inputType('SignUpInput', {
 
 builder.mutationField('signUp', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true

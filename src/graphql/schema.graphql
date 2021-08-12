@@ -9,8 +9,14 @@ input CreatePostInput {
   attachments: String
   body: String!
   done: Boolean! = true
+  productId: ID
   title: String
   type: String! = "POST"
+}
+
+input CreateProductInput {
+  name: String!
+  slug: String!
 }
 
 input CreateReplyInput {
@@ -62,6 +68,7 @@ input LoginInput {
 type Mutation {
   changePassword(input: ChangePasswordInput!): Result!
   createPost(input: CreatePostInput!): Post!
+  createProduct(input: CreateProductInput!): Product!
   createReply(input: CreateReplyInput!): Reply!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
@@ -91,6 +98,7 @@ type Post {
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
+  product: Product
   replies: [Reply!]!
   repliesCount: Int!
   title: String
@@ -107,6 +115,23 @@ type PostLikesConnection {
 type PostLikesConnectionEdge {
   cursor: String!
   node: Like!
+}
+
+type Product {
+  avatar: String
+  createdAt: DateTime!
+  description: String
+  discord: String
+  github: String
+  id: ID!
+  name: String!
+  posts: [Post!]!
+  producthunt: String
+  slug: String!
+  twitter: String
+  updatedAt: DateTime!
+  user: User!
+  website: String
 }
 
 type Profile {
@@ -126,6 +151,8 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
+  product(id: ID!): Product!
+  products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
   reply(id: ID!): Reply!
   user(username: String!): User!
@@ -140,6 +167,16 @@ type QueryPostsConnection {
 type QueryPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryProductsConnection {
+  edges: [QueryProductsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryProductsConnectionEdge {
+  cursor: String!
+  node: Product!
 }
 
 type QueryRepliesConnection {
@@ -211,6 +248,10 @@ type User {
 input WherePostsInput {
   onlyFollowing: Boolean = true
   type: String
+  userId: String
+}
+
+input WhereProductsInput {
   userId: String
 }
 

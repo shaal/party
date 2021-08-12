@@ -1,8 +1,9 @@
+import { db } from '../../utils/prisma'
 import { builder } from '../builder'
 import { togglePostLike } from '../utils/togglePostLike'
 import { toggleReplyLike } from '../utils/toggleReplyLike'
 
-builder.prismaObject('Like', {
+builder.prismaObject(db.like, {
   findUnique: (like) => ({ id: like.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -21,7 +22,7 @@ const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
 
 builder.mutationField('togglePostLike', (t) =>
   t.prismaField({
-    type: 'Post',
+    type: db.post,
     args: {
       input: t.arg({ type: TogglePostLikeInput })
     },
@@ -44,7 +45,7 @@ const ToggleReplyLikeInput = builder.inputType('ToggleReplyLikeInput', {
 
 builder.mutationField('toggleReplyLike', (t) =>
   t.prismaField({
-    type: 'Reply',
+    type: db.reply,
     args: {
       input: t.arg({ type: ToggleReplyLikeInput })
     },

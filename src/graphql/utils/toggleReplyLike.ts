@@ -1,5 +1,4 @@
-import { db } from '~/utils/prisma'
-
+import { db } from '../../utils/prisma'
 import { hasLiked } from './hasLiked'
 
 export const toggleReplyLike = async (
