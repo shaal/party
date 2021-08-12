@@ -6,7 +6,7 @@ import { Post, User } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
-import UserProfileLarge from '../shared/UserProfile'
+import UserProfile from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
@@ -63,7 +63,7 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <Card>
           <CardBody>
-            <UserProfileLarge user={data?.post?.user as User} showFollow />
+            <UserProfile user={data?.post?.user as User} showFollow />
           </CardBody>
         </Card>
       </GridItemFour>
