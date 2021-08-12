@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
 import { Post, User } from '../../../__generated__/schema.generated'
-import UserProfileLarge from '../../shared/UserProfile'
+import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
 import AppContext from '../../utils/AppContext'
 import DeleteButton from '../DeleteButton'
@@ -101,7 +101,7 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
     <Card>
       <CardBody className="space-y-4">
         <div className="flex justify-between items-center">
-          <UserProfileLarge user={post?.user as User} />
+          <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
             <div className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
