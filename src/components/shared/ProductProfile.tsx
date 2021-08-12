@@ -7,7 +7,7 @@ interface Props {
   product: Product
 }
 
-const ProductProfileLarge: React.FC<Props> = ({ product }) => {
+const ProductProfile: React.FC<Props> = ({ product }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex space-x-3 items-center">
@@ -29,4 +29,4 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default ProductProfileLarge
+export default ProductProfile

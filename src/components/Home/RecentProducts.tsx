@@ -4,7 +4,7 @@ import React from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import ProductProfile from '../shared/ProductProfile'
-import ProductProfileLargeShimmer from '../shared/Shimmer/ProductProfileLargeShimmer'
+import ProductProfileShimmer from '../shared/Shimmer/ProductProfileShimmer'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
@@ -47,11 +47,11 @@ const RecentProducts: React.FC = () => {
     return (
       <RecentUsersCard>
         <div className="space-y-3">
-          <ProductProfileLargeShimmer />
-          <ProductProfileLargeShimmer />
-          <ProductProfileLargeShimmer />
-          <ProductProfileLargeShimmer />
-          <ProductProfileLargeShimmer />
+          <ProductProfileShimmer />
+          <ProductProfileShimmer />
+          <ProductProfileShimmer />
+          <ProductProfileShimmer />
+          <ProductProfileShimmer />
         </div>
       </RecentUsersCard>
     )
