@@ -68,13 +68,13 @@ const NewProduct: React.FC = () => {
                 error={createProductResult.error}
               />
               <Input
-                label="Username"
+                label="Product name"
                 type="text"
                 placeholder="Minecraft"
                 {...form.register('name')}
               />
               <Input
-                label="Email"
+                label="Slug"
                 type="email"
                 placeholder="minecraft"
                 {...form.register('slug')}
@@ -84,7 +84,7 @@ const NewProduct: React.FC = () => {
                 placeholder="Tell us what you made!"
                 {...form.register('bio')}
               />
-              <div className="flex items-center justify-between pt-3">
+              <div className="ml-auto">
                 <Button type="submit">Create</Button>
               </div>
             </Form>
