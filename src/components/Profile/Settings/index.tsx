@@ -7,7 +7,6 @@ import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { SettingsQuery } from './__generated__/index.generated'
 
 const AccountSettings = dynamic(() => import('./AccountSettings'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 

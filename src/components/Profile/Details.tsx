@@ -1,8 +1,8 @@
 import { LocationMarkerIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
-import { Profile, User } from '../../__generated__/schema.generated'
 
+import { Profile, User } from '../../__generated__/schema.generated'
 import Username from '../shared/Username'
 import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'

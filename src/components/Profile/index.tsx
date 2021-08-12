@@ -2,13 +2,13 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
+import { User } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProfileQuery } from './__generated__/index.generated'
 import Details from './Details'
 import UserFeed from './Feed'
-import { User } from '../../__generated__/schema.generated'
 
 export const PROFILE_QUERY = gql`
   query ProfileQuery($username: String!) {
