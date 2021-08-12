@@ -2,7 +2,7 @@ import { db } from '~/utils/prisma'
 
 import { builder } from '../builder'
 
-builder.prismaObject('Profile', {
+builder.prismaObject(db.profile, {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -31,7 +31,7 @@ const EditSocialInput = builder.inputType('EditSocialInput', {
 
 builder.mutationField('editSocial', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     args: {
       input: t.arg({ type: EditSocialInput })
     },

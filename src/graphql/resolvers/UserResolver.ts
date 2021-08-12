@@ -6,7 +6,7 @@ import { followingCount } from '../utils/count/followingCount'
 import { hasFollowed } from '../utils/hasFollowed'
 import { toggleFollow } from '../utils/toggleFollow'
 
-builder.prismaObject('User', {
+builder.prismaObject(db.user, {
   findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -45,7 +45,7 @@ builder.prismaObject('User', {
 
 builder.queryField('user', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     args: {
       username: t.arg.string({})
     },
@@ -63,7 +63,7 @@ builder.queryField('user', (t) =>
 
 builder.queryField('users', (t) =>
   t.prismaConnection({
-    type: 'User',
+    type: db.user,
     cursor: 'id',
     resolve: (query, root) => {
       return db.user.findMany({
@@ -98,7 +98,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
 
 builder.mutationField('editUser', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     args: {
       input: t.arg({ type: EditUserInput })
     },
@@ -133,7 +133,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
 
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     args: {
       input: t.arg({ type: ToggleFollowInput })
     },

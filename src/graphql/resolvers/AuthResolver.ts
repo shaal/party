@@ -9,7 +9,7 @@ import { Result } from './ResultResolver'
 
 builder.queryField('me', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     nullable: true,
     skipTypeScopes: true,
     resolve: (query, root, args, { session }) => {
@@ -53,7 +53,7 @@ const LoginInput = builder.inputType('LoginInput', {
 
 builder.mutationField('login', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: false
@@ -92,7 +92,7 @@ const SignUpInput = builder.inputType('SignUpInput', {
 
 builder.mutationField('signUp', (t) =>
   t.prismaField({
-    type: 'User',
+    type: db.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true

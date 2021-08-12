@@ -41,7 +41,6 @@ export const builder = new SchemaBuilder<{
     user: boolean
     unauthenticated: boolean
   }
-  PrismaClient: typeof db
 }>({
   defaultInputFieldRequiredness: true,
   plugins: [
