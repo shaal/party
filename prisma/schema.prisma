@@ -9,8 +9,8 @@ generator client {
 }
 
 model User {
-  id             String @id @default(cuid())
-  username       String @unique @default(cuid())
+  id             String @id @default(uuid())
+  username       String @unique @default(uuid())
   email          String @unique
   hashedPassword String
 
@@ -38,7 +38,7 @@ model User {
 }
 
 model Session {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -51,7 +51,7 @@ model Session {
 }
 
 model Profile {
-  id       String  @id @default(cuid())
+  id       String  @id @default(uuid())
   name     String
   avatar   String?
   cover    String?
@@ -71,7 +71,7 @@ model Profile {
 }
 
 model Post {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   title       String?
   body        String
   done        Boolean  @default(false)
@@ -101,7 +101,7 @@ enum PostType {
 }
 
 model Reply {
-  id   String @id @default(cuid())
+  id   String @id @default(uuid())
   body String
 
   // Timestamps
@@ -117,7 +117,7 @@ model Reply {
 }
 
 model Like {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -136,7 +136,7 @@ model Like {
 }
 
 model Product {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String
   slug        String  @unique
   description String?
