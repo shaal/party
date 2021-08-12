@@ -49,6 +49,7 @@ builder.prismaObject(db.post, {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
+    product: t.relation('product', { nullable: true }),
     replies: t.relation('replies')
   })
 })
@@ -138,6 +139,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 255 }
     }),
+    productId: t.id({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
@@ -159,7 +161,8 @@ builder.mutationField('createPost', (t) =>
           body: input.body,
           done: input.done,
           attachments: input.attachments,
-          type: input.type as PostType
+          type: input.type as PostType,
+          productId: input.productId
         }
       })
     }

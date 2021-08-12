@@ -66,7 +66,8 @@ const PostType: React.FC = () => {
             input: {
               body,
               type: 'POST',
-              attachments: JSON.stringify(attachments)
+              attachments: JSON.stringify(attachments),
+              productId: selectedProduct as string
             }
           }
         })
