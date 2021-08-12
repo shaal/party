@@ -3,8 +3,8 @@
   "plugins": ["@typescript-eslint", "unused-imports", "simple-import-sort"],
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
-    "react/prop-types": 0,
-    "react/no-unescaped-entities": 0,
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "@typescript-eslint/ban-ts-comment": "off",
