@@ -68,7 +68,7 @@ const Products: React.FC = () => {
       <GridItemFour>
         <Card>
           <CardBody>
-            <Link href="/products/new">
+            <Link href="/products/new" passHref>
               <Button>Create new Product</Button>
             </Link>
           </CardBody>

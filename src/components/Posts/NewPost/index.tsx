@@ -12,9 +12,11 @@ import { Card, CardBody } from '../../ui/Card'
 import PostType from './Type/Post'
 
 const QuestionType = dynamic(() => import('./Type/Question'), {
+  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 const TaskType = dynamic(() => import('./Type/Task'), {
+  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
