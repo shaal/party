@@ -1,15 +1,16 @@
 version: '3'
 
 services:
-  mysql:
+  postgres:
     restart: unless-stopped
-    platform: linux/x86_64
-    image: mysql:latest
+    image: postgres:latest
     ports:
-      - '33306:3306'
+      - '35432:5432'
     environment:
-      MYSQL_ROOT_PASSWORD: devparty
-      MYSQL_DATABASE: devparty
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: devparty
+    tty: true
 
   compiler:
     restart: unless-stopped
