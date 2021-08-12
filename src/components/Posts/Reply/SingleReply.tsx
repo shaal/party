@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
 import { Reply, User } from '../../../__generated__/schema.generated'
-import UserProfileLarge from '../../shared/UserProfile'
+import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
 import AppContext from '../../utils/AppContext'
 import LikeButton from '../LikeButton'
@@ -51,7 +51,7 @@ const SingleReply: React.FC<Props> = ({ reply }) => {
     <Card>
       <CardBody className="space-y-4">
         <div className="flex justify-between items-center">
-          <UserProfileLarge user={reply?.user as User} />
+          <UserProfile user={reply?.user as User} />
           <Link href={`/replies/${reply?.id}`} passHref>
             <div className="text-sm cursor-pointer">
               {timeago.format(reply?.createdAt)}
