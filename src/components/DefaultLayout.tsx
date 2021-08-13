@@ -12,6 +12,7 @@ export const CURRENT_USER_QUERY = gql`
     me {
       id
       username
+      isStaff
       profile {
         id
         avatar
