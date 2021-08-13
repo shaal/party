@@ -10,6 +10,7 @@ async function main() {
     data: {
       email: 'yoginth@hey.com',
       username: 'yoginth',
+      isStaff: true,
       hashedPassword: await hashPassword('yoginth'),
       profile: {
         create: {
