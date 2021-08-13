@@ -3,12 +3,14 @@ image: gitpod/workspace-postgres
 tasks:
   - name: Setup
     init: >
-      yarn install
-      cp .env.example .env
+      yarn install;
+      cp .env.example .env;
     command: >
-      yarn migrate:dev
-      yarn codegen:graphql --watch
+      yarn migrate:dev;
+      yarn codegen:graphql --watch;
+      gp sync-done setup
   - name: Dev Server
+    init: gp sync-await setup
     command: yarn dev
 
 ports:
