@@ -1,7 +1,7 @@
 import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-import packageJson from '../../../package.json'
+import packageJson from '../../../../package.json'
 
 const StaffBar: React.FC = () => {
   return (
