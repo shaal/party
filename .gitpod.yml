@@ -7,8 +7,8 @@ tasks:
       cp .env.example .env;
     command: >
       yarn migrate:dev;
+      gp sync-done setup;
       yarn codegen:graphql --watch;
-      gp sync-done setup
   - name: Dev Server
     init: gp sync-await setup
     command: yarn dev
