@@ -4,7 +4,7 @@ export interface ContextType {
   currentUser: any
   currentUserLoading: boolean
   currentUserError: any
-  staffMode: boolean
+  staffMode: any
   setStaffMode: any
 }
 
