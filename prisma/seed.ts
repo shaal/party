@@ -18,7 +18,7 @@ async function main() {
         hashedPassword: await hashPassword(user.username),
         profile: {
           create: {
-            name: user.username,
+            name: user.name,
             avatar: `https://avatar.tobi.sh/${await md5(user.email)}.svg`
           }
         }
