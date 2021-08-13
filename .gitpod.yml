@@ -17,3 +17,17 @@ tasks:
 ports:
   - port: 3000
     onOpen: notify
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - mikestead.dotenv
+    - graphql.vscode-graphql
+    - christian-kohler.npm-intellisense
+    - esbenp.prettier-vscode
+    - prisma.prisma
+    - eamodio.gitlens
+    - pflannery.vscode-versionlens
+    - wix.vscode-import-cost
+    - formulahendry.auto-rename-tag
+    - github.github-vscode-theme
