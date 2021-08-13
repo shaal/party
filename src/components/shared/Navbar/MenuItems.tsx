@@ -3,10 +3,11 @@ import { Menu, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 
 import { User } from '../../../__generated__/schema.generated'
 import { Dropdown } from '../../ui/Dropdown'
+import AppContext from '../../utils/AppContext'
 import { useAuthRedirect } from '../../utils/useAuthRedirect'
 import Username from '../Username'
 
@@ -22,6 +23,7 @@ interface Props {
 
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
   const { theme, themes, setTheme } = useTheme()
+  const { staffMode, setStaffMode } = useContext(AppContext)
   const authRedirect = useAuthRedirect()
   const [logout] = useMutation(
     gql`
@@ -35,6 +37,11 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
       }
     }
   )
+
+  const toggleStaffMode = () => {
+    localStorage.setItem('staffMode', String(!staffMode))
+    setStaffMode(!staffMode)
+  }
 
   return (
     <Menu as="div">
@@ -125,6 +132,23 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   onChange={setTheme}
                 />
               </div>
+              {currentUser?.isStaff && (
+                <Fragment>
+                  <div className="border-b dark:border-gray-800"></div>
+                  <Menu.Item
+                    as="div"
+                    onClick={toggleStaffMode}
+                    className={({ active }: any) =>
+                      clsx(
+                        { 'bg-yellow-100 dark:bg-yellow-800': active },
+                        'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                      )
+                    }
+                  >
+                    {staffMode ? 'Disable staff mode' : 'Enable staff mode'}
+                  </Menu.Item>
+                </Fragment>
+              )}
             </Menu.Items>
           </Transition>
         </Fragment>

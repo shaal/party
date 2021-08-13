@@ -9,7 +9,7 @@
     "eamodio.gitlens",
     "pflannery.vscode-versionlens",
     "wix.vscode-import-cost",
-    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
     "github.github-vscode-theme"
   ]
 }

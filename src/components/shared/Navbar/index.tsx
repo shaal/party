@@ -8,6 +8,7 @@ import { Fragment } from 'react'
 import { Button } from '../../ui/Button'
 import AppContext from '../../utils/AppContext'
 import MenuItems from './MenuItems'
+import StaffBar from './StaffBar'
 
 interface NavItemProps {
   url: string
@@ -59,7 +60,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
 }
 
 const Navbar: React.FC = () => {
-  const { currentUser, currentUserLoading } = useContext(AppContext)
+  const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
 
   return (
     <Disclosure
@@ -68,6 +69,7 @@ const Navbar: React.FC = () => {
     >
       {({ open }) => (
         <Fragment>
+          {currentUser?.isStaff && staffMode && <StaffBar />}
           <div className="container mx-auto max-w-screen-2xl lg:px-16 md:px-10 sm:px-5 px-5">
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">

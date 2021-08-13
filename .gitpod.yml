@@ -1,14 +1,39 @@
+image: gitpod/workspace-postgres
+
 tasks:
-  - name: Database
-    before: docker-compose up
-  - name: Dev Server
+  - name: Setup
     init: >
       yarn install;
       cp .env.example .env;
     command: >
-      yarn migrate;
-      yarn dev;
+      yarn migrate:dev;
+      yarn prisma db seed --preview-feature;
+      yarn prepare;
+      gp sync-done setup;
+      yarn codegen:graphql --watch;
+  - name: Prisma Studio
+    init: gp sync-await setup
+    command: yarn prisma studio
+  - name: Dev Server
+    init: gp sync-await setup
+    command: yarn dev
 
 ports:
   - port: 3000
-    onOpen: open-preview
+    onOpen: open-browser
+  - port: 5555
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - mikestead.dotenv
+    - graphql.vscode-graphql
+    - christian-kohler.npm-intellisense
+    - esbenp.prettier-vscode
+    - prisma.prisma
+    - eamodio.gitlens
+    - pflannery.vscode-versionlens
+    - wix.vscode-import-cost
+    - formulahendry.auto-close-tag
+    - github.github-vscode-theme
