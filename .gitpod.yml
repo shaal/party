@@ -7,6 +7,7 @@ tasks:
       cp .env.example .env;
     command: >
       yarn migrate:dev;
+      yarn prisma db seed --preview-feature;
       yarn prepare;
       gp sync-done setup;
       yarn codegen:graphql --watch;
@@ -21,7 +22,7 @@ ports:
   - port: 3000
     onOpen: open-browser
   - port: 5555
-    onOpen: notify
+    onOpen: open-browser
 
 vscode:
   extensions:
