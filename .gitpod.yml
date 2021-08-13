@@ -37,3 +37,4 @@ vscode:
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
     - github.github-vscode-theme
+    - gitlab.gitlab-workflow
