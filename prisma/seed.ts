@@ -3,6 +3,7 @@ import { md5 } from 'hash-wasm'
 
 import { hashPassword } from '../src/utils/auth'
 import { postData } from './seeds/posts'
+import { productData } from './seeds/products'
 import { userData } from './seeds/user'
 
 const db = new PrismaClient()
@@ -23,6 +24,18 @@ async function main() {
             avatar: `https://avatar.tobi.sh/${await md5(user.email)}.svg`
           }
         }
+      }
+    })
+  }
+
+  // Product
+  for (const product of productData) {
+    console.log(`Seeding Product - #${product.slug} ✅`)
+    await db.product.create({
+      data: {
+        name: product.name,
+        slug: product.slug,
+        avatar: `https://avatar.tobi.sh/${await md5(product.slug)}.svg`
       }
     })
   }
