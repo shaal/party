@@ -8,8 +8,8 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProductQuery } from './__generated__/Product.generated'
 
 export const PRODUCT_QUERY = gql`
-  query ProductQuery($id: ID!) {
-    product(id: $id) {
+  query ProductQuery($slug: String!) {
+    product(slug: $slug) {
       id
       name
       slug
@@ -34,13 +34,13 @@ const Product: React.FC = () => {
     <GridLayout>
       <GridItemFour>
         <Card>
-          <CardBody>WIP</CardBody>
+          <CardBody>{data?.product?.name}</CardBody>
         </Card>
       </GridItemFour>
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
-          {data?.product?.name}
+          WIP
         </div>
       </GridItemEight>
     </GridLayout>

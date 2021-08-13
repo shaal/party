@@ -1,4 +1,6 @@
-import ViewPost, { POST_QUERY as query } from '../../components/Posts/ViewPost'
+import Product, {
+  PRODUCT_QUERY as query
+} from '../../components/Products/Product'
 import { preloadQuery } from '../../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
@@ -10,4 +12,4 @@ export const getServerSideProps = async (ctx: any) => {
   })
 }
 
-export default ViewPost
+export default Product

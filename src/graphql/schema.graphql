@@ -151,7 +151,7 @@ type Query {
   me: User
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
-  product(id: ID!): Product!
+  product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
   reply(id: ID!): Reply!

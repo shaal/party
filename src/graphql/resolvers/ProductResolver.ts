@@ -58,14 +58,12 @@ builder.queryField('product', (t) =>
   t.prismaField({
     type: db.product,
     args: {
-      id: t.arg.id({})
+      slug: t.arg.string({})
     },
-    resolve: async (query, root, { id }) => {
+    resolve: async (query, root, { slug }) => {
       return await db.product.findUnique({
         ...query,
-        where: {
-          id
-        },
+        where: { slug },
         rejectOnNotFound: true
       })
     }
