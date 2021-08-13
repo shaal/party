@@ -2,24 +2,29 @@ import { PrismaClient } from '@prisma/client'
 import { md5 } from 'hash-wasm'
 
 import { hashPassword } from '../src/utils/auth'
+import { userData } from './seeds/user'
 
 const db = new PrismaClient()
 
 async function main() {
-  await db.user.create({
-    data: {
-      email: 'yoginth@hey.com',
-      username: 'yoginth',
-      isStaff: true,
-      hashedPassword: await hashPassword('yoginth'),
-      profile: {
-        create: {
-          name: 'Yoginth',
-          avatar: `https://avatar.tobi.sh/${await md5('yoginth@hey.com')}.svg`
+  console.log('Start seeding...')
+  for (const user of userData) {
+    console.log(`Seeding User - @${user.username} ✅`)
+    await db.user.create({
+      data: {
+        email: user.email,
+        username: user.username,
+        isStaff: user.isStaff,
+        hashedPassword: await hashPassword(user.username),
+        profile: {
+          create: {
+            name: user.username,
+            avatar: `https://avatar.tobi.sh/${await md5(user.email)}.svg`
+          }
         }
       }
-    }
-  })
+    })
+  }
 }
 
 main()
