@@ -10,13 +10,18 @@ tasks:
       yarn prepare;
       gp sync-done setup;
       yarn codegen:graphql --watch;
+  - name: Prisma Studio
+    init: gp sync-await setup
+    command: yarn prisma studio
   - name: Dev Server
     init: gp sync-await setup
     command: yarn dev
 
 ports:
   - port: 3000
-    onOpen: open-preview
+    onOpen: open-browser
+  - port: 5555
+    onOpen: notify
 
 vscode:
   extensions:
