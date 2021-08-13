@@ -1,15 +1,15 @@
 image: gitpod/workspace-postgres
 
 tasks:
-  - name: Database
-    before: docker-compose up
-  - name: Dev Server
+  - name: Setup
     init: >
-      yarn install;
-      cp .env.example .env;
+      yarn install
+      cp .env.example .env
     command: >
-      yarn migrate;
-      yarn dev;
+      yarn migrate:dev
+      yarn codegen:graphql --watch
+  - name: Dev Server
+    command: yarn dev
 
 ports:
   - port: 3000
