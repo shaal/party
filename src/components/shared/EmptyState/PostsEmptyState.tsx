@@ -1,11 +1,9 @@
-import { Card, CardBody } from "../../ui/Card"
+import { Card, CardBody } from '../../ui/Card'
 
 const PostsEmptyState: React.FC = () => {
   return (
     <Card>
-      <CardBody>
-        WIP
-        </CardBody>
+      <CardBody>WIP</CardBody>
     </Card>
   )
 }
