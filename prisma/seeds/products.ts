@@ -15,6 +15,6 @@ export const productData = [
     name: 'Interclip',
     slug: 'interclip',
     username: 'filip',
-    avatar: 'https://i.ibb.co/GpPz1BG/devparty.png'
+    avatar: 'https://i.ibb.co/WVDc1j7/iclip.png'
   }
 ]
