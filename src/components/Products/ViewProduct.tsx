@@ -2,10 +2,11 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { ProductQuery } from './__generated__/Product.generated'
+import { ProductQuery } from './__generated__/ViewProduct.generated'
+import Details from './Details'
 
 export const PRODUCT_QUERY = gql`
   query ProductQuery($slug: String!) {
@@ -19,7 +20,7 @@ export const PRODUCT_QUERY = gql`
   }
 `
 
-const Product: React.FC = () => {
+const ViewProduct: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
     variables: {
@@ -33,9 +34,7 @@ const Product: React.FC = () => {
   return (
     <GridLayout>
       <GridItemFour>
-        <Card>
-          <CardBody>{data?.product?.name}</CardBody>
-        </Card>
+        <Details product={data?.product as Product} />
       </GridItemFour>
       <GridItemEight>
         <div className="space-y-5">
@@ -47,4 +46,4 @@ const Product: React.FC = () => {
   )
 }
 
-export default Product
+export default ViewProduct
