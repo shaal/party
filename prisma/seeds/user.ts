@@ -19,5 +19,12 @@ export const userData = [
     name: 'Vláďa Svoboda',
     isStaff: false,
     avatar: 'https://i.ibb.co/TkDmJ5V/avatar.jpg'
+  },
+  {
+    email: 'aellopos@hey.com',
+    username: 'aellopos',
+    name: 'Michal Kučera',
+    isStaff: false,
+    avatar: 'https://i.ibb.co/fvcsL0Z/avatar.jpg'
   }
 ]
