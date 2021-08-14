@@ -70,7 +70,7 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      if (where?.onlyFollowing && session) {
+      if (where?.onlyFollowing && session && !where?.userId) {
         const following = await db.user.findUnique({
           where: { id: session?.userId },
           select: { following: { select: { id: true } } }
