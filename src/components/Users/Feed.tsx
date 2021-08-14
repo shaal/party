@@ -27,11 +27,10 @@ const USER_FEED_QUERY = gql`
 `
 
 interface Props {
-  feedType?: string
   user: User
 }
 
-const UserFeed: React.FC<Props> = ({ feedType, user }) => {
+const UserFeed: React.FC<Props> = ({ user }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
@@ -39,8 +38,7 @@ const UserFeed: React.FC<Props> = ({ feedType, user }) => {
       variables: {
         after: null,
         where: {
-          userId: user?.id,
-          type: feedType === 'ALL' ? 'ALL' : feedType
+          userId: user?.id
         }
       }
     }
