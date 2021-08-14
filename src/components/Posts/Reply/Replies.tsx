@@ -1,9 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { Post, Reply } from '../../../__generated__/schema.generated'
 import PostShimmer from '../../shared/Shimmer/PostShimmer'
+import { EmptyState } from '../../ui/EmptyState'
 import { ErrorMessage } from '../../ui/ErrorMessage'
 import { RepliesQuery } from './__generated__/Replies.generated'
 import SingleReply from './SingleReply'
@@ -87,7 +89,10 @@ const Replies: React.FC<Props> = ({ post }) => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {replies?.length === 0 ? (
-          <div>Nothing here</div>
+          <EmptyState
+            message="Be the first one to reply!"
+            icon={<ReplyIcon className="h-8 w-8" />}
+          />
         ) : (
           replies?.map((reply: any) => (
             <SingleReply key={reply?.id} reply={reply as Reply} />
