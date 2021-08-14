@@ -44,7 +44,7 @@ const Details: React.FC<Props> = ({ user }) => {
         </Link>
       )}
       {user?.profile?.bio && (
-        <div>
+        <div className="linkify">
           <Linkify>{user?.profile?.bio}</Linkify>
         </div>
       )}

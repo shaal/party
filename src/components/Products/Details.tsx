@@ -21,7 +21,7 @@ const Details: React.FC<Props> = ({ product }) => {
         <div className="text-xl">{product?.slug}</div>
       </div>
       {product?.description && (
-        <div>
+        <div className="linkify">
           <Linkify>{product?.description}</Linkify>
         </div>
       )}
