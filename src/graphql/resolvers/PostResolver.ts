@@ -56,9 +56,7 @@ builder.prismaObject(db.post, {
 
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
-    userId: t.string({
-      required: false
-    }),
+    userId: t.string({ required: false }),
     onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false })
   })
