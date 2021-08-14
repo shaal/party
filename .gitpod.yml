@@ -24,6 +24,8 @@ ports:
   - port: 5555
     onOpen: notify
     visibility: public
+  - port: 5432
+    onOpen: ignore
 
 vscode:
   extensions:
