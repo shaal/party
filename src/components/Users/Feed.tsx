@@ -83,7 +83,7 @@ const UserFeed: React.FC<Props> = ({ user }) => {
           <EmptyState
             message={
               <div>
-                <span className="font-bold">@{user?.username}</span>
+                <span className="font-bold mr-1">@{user?.username}</span>
                 <span>seems like not posted yet!</span>
               </div>
             }
