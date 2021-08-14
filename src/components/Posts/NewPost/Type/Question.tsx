@@ -43,7 +43,16 @@ const QuestionType: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: HOME_FEED_QUERY }],
+      refetchQueries: [
+        {
+          query: HOME_FEED_QUERY,
+          variables: {
+            where: {
+              onlyFollowing: true
+            }
+          }
+        }
+      ],
       onCompleted() {
         form.reset()
       }
