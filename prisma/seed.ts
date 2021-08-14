@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import { md5 } from 'hash-wasm'
 
 import { hashPassword } from '../src/utils/auth'
 import { postData } from './seeds/posts'
@@ -21,7 +20,7 @@ async function main() {
         profile: {
           create: {
             name: user.name,
-            avatar: `https://avatar.tobi.sh/${await md5(user.email)}.svg`
+            avatar: user.avatar
           }
         }
       }
