@@ -38,7 +38,8 @@ builder.prismaObject(db.user, {
     }),
 
     // Relations
-    profile: t.relation('profile')
+    profile: t.relation('profile'),
+    products: t.relation('products')
   })
 })
 
