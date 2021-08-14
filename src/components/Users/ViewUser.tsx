@@ -29,11 +29,6 @@ export const USER_QUERY = gql`
         github
         discord
       }
-      products {
-        id
-        slug
-        avatar
-      }
     }
   }
 `

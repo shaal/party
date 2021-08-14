@@ -9,6 +9,7 @@ import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import Follow from './Follow'
 import Followerings from './Followerings'
+import OwnedProducts from './OwnedProducts'
 import Social from './Social'
 
 interface Props {
@@ -55,6 +56,7 @@ const Details: React.FC<Props> = ({ user }) => {
         </div>
       )}
       <Social profile={user?.profile as Profile} />
+      <OwnedProducts user={user} />
     </div>
   )
 }
