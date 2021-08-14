@@ -77,7 +77,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       <div className="space-y-3">
         {posts?.length === 0 ? (
           <EmptyState
-            message="No posts found"
+            message="No posts found, follow some users!"
             icon={<CollectionIcon className="h-8 w-8" />}
           />
         ) : (

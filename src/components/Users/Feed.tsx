@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
@@ -6,6 +7,7 @@ import useInView from 'react-cool-inview'
 import { User } from '../../__generated__/schema.generated'
 import SinglePost, { PostFragment } from '../Posts/SinglePost'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
+import { EmptyState } from '../ui/EmptyState'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
@@ -78,7 +80,15 @@ const UserFeed: React.FC<Props> = ({ user }) => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {posts?.length === 0 ? (
-          <div>Nothing here</div>
+          <EmptyState
+            message={
+              <div>
+                <span className="font-bold">@{user?.username}</span>
+                <span>seems like not posted yet!</span>
+              </div>
+            }
+            icon={<CollectionIcon className="h-8 w-8" />}
+          />
         ) : (
           posts?.map((post: any) => (
             <SinglePost key={post?.id} post={post} showReplies />
