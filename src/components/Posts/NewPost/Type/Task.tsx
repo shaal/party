@@ -69,7 +69,9 @@ const TaskType: React.FC = () => {
               body,
               done,
               type: 'TASK',
-              attachments: JSON.stringify(attachments)
+              attachments:
+                attachments.length > 0 ? JSON.stringify(attachments) : null,
+              productId: selectedProduct as string
             }
           }
         })
