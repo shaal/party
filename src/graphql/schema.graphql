@@ -15,6 +15,7 @@ input CreatePostInput {
 }
 
 input CreateProductInput {
+  description: String
   name: String!
   slug: String!
 }

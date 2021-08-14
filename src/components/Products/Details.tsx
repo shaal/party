@@ -18,6 +18,7 @@ const Details: React.FC<Props> = ({ product }) => {
         </div>
         <div className="text-xl">{product?.slug}</div>
       </div>
+      {product?.description}
 
       {product?.description && <div>{product?.description}</div>}
     </div>
