@@ -14,8 +14,8 @@ export const userData = [
     avatar: 'https://i.ibb.co/1nyH58W/avatar.jpg'
   },
   {
-    email: 'vladja@hey.com',
-    username: 'vladja',
+    email: 'svobodavl@hey.com',
+    username: 'svobodavl',
     name: 'Vláďa Svoboda',
     isStaff: false,
     avatar: 'https://i.ibb.co/TkDmJ5V/avatar.jpg'
