@@ -54,6 +54,42 @@ builder.prismaObject(db.post, {
   })
 })
 
+builder.queryField('homeFeed', (t) =>
+  t.prismaConnection({
+    type: db.post,
+    cursor: 'id',
+    args: {
+      type: t.arg.string({ required: false })
+    },
+    resolve: async (query, root, { type }, ctx) => {
+      const following = await db.user.findUnique({
+        where: { id: ctx.session?.userId },
+        select: { following: { select: { id: true } } }
+      })
+
+      return await db.post.findMany({
+        ...query,
+        where: {
+          type: type === 'ALL' ? undefined : (type as PostType),
+          user: {
+            // @ts-ignore
+            id: {
+              in: [
+                // @ts-ignore
+                ...following.following.map((user) => user.id),
+                ctx.session?.userId
+              ]
+            }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+    }
+  })
+)
+
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.string({ required: false }),
