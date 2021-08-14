@@ -3,7 +3,7 @@ image: gitpod/workspace-postgres
 tasks:
   - name: Setup
     init: >
-      yarn install;
+      yarn --network-timeout 100000;
       cp .env.example .env;
     command: >
       yarn migrate:dev;
