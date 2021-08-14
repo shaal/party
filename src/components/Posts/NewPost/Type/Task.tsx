@@ -36,16 +36,7 @@ const TaskType: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [
-        {
-          query: HOME_FEED_QUERY,
-          variables: {
-            where: {
-              onlyFollowing: true
-            }
-          }
-        }
-      ],
+      refetchQueries: [{ query: HOME_FEED_QUERY }],
       onCompleted() {
         form.reset()
       }
