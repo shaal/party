@@ -54,45 +54,10 @@ builder.prismaObject(db.post, {
   })
 })
 
-builder.queryField('homeFeed', (t) =>
-  t.prismaConnection({
-    type: db.post,
-    cursor: 'id',
-    args: {
-      type: t.arg.string({ required: false })
-    },
-    resolve: async (query, root, { type }, ctx) => {
-      const following = await db.user.findUnique({
-        where: { id: ctx.session?.userId },
-        select: { following: { select: { id: true } } }
-      })
-
-      return await db.post.findMany({
-        ...query,
-        where: {
-          type: type === 'ALL' ? undefined : (type as PostType),
-          user: {
-            // @ts-ignore
-            id: {
-              in: [
-                // @ts-ignore
-                ...following.following.map((user) => user.id),
-                ctx.session?.userId
-              ]
-            }
-          }
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
-    }
-  })
-)
-
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.string({ required: false }),
+    onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false })
   })
 })
@@ -105,18 +70,45 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, ctx) => {
-      return await db.post.findMany({
-        ...query,
-        where: {
-          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-          user: {
-            id: where?.userId as string
+      if (where?.onlyFollowing && ctx.session) {
+        const following = await db.user.findUnique({
+          where: { id: ctx.session?.userId },
+          select: { following: { select: { id: true } } }
+        })
+
+        return await db.post.findMany({
+          ...query,
+          where: {
+            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+            user: {
+              // @ts-ignore
+              id: {
+                in: [
+                  // @ts-ignore
+                  ...following.following.map((user) => user.id),
+                  ctx.session?.userId
+                ]
+              }
+            }
+          },
+          orderBy: {
+            createdAt: 'desc'
           }
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
+        })
+      } else {
+        return await db.post.findMany({
+          ...query,
+          where: {
+            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+            user: {
+              id: where?.userId as string
+            }
+          },
+          orderBy: {
+            createdAt: 'desc'
+          }
+        })
+      }
     }
   })
 )

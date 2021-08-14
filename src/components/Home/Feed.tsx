@@ -8,8 +8,8 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
 export const HOME_FEED_QUERY = gql`
-  query HomeFeedQuery($after: String, $type: String) {
-    homeFeed(first: 10, after: $after, type: $type) {
+  query HomeFeedQuery($after: String, $where: WherePostsInput) {
+    posts(first: 10, after: $after, where: $where) {
       pageInfo {
         endCursor
         hasNextPage
@@ -34,12 +34,14 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
     {
       variables: {
         after: null,
-        type: feedType
+        where: {
+          type: feedType
+        }
       }
     }
   )
-  const posts = data?.homeFeed?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.homeFeed?.pageInfo
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
