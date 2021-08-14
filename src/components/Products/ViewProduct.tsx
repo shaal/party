@@ -7,6 +7,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProductQuery } from './__generated__/ViewProduct.generated'
 import Details from './Details'
+import ProductFeed from './Feed'
 
 export const PRODUCT_QUERY = gql`
   query ProductQuery($slug: String!) {
@@ -39,7 +40,7 @@ const ViewProduct: React.FC = () => {
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
-          WIP
+          <ProductFeed product={data?.product as Product} />
         </div>
       </GridItemEight>
     </GridLayout>

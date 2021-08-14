@@ -38,7 +38,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
       variables: {
         after: null,
         where: {
-          userId: product?.id
+          productId: product?.id
         }
       }
     }
