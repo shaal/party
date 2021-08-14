@@ -1,3 +1,5 @@
+import Linkify from 'linkifyjs/react'
+
 import { Product } from '../../__generated__/schema.generated'
 
 interface Props {
@@ -18,9 +20,11 @@ const Details: React.FC<Props> = ({ product }) => {
         </div>
         <div className="text-xl">{product?.slug}</div>
       </div>
-      {product?.description}
-
-      {product?.description && <div>{product?.description}</div>}
+      {product?.description && (
+        <div>
+          <Linkify>{product?.description}</Linkify>
+        </div>
+      )}
     </div>
   )
 }

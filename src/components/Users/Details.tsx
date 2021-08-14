@@ -1,4 +1,5 @@
 import { LocationMarkerIcon } from '@heroicons/react/outline'
+import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'
 
@@ -42,7 +43,11 @@ const Details: React.FC<Props> = ({ user }) => {
           </Button>
         </Link>
       )}
-      {user?.profile?.bio && <div>{user?.profile?.bio}</div>}
+      {user?.profile?.bio && (
+        <div>
+          <Linkify>{user?.profile?.bio}</Linkify>
+        </div>
+      )}
       {user?.profile?.location && (
         <div className="flex items-center gap-2">
           <LocationMarkerIcon className="h-4 w-4" />
