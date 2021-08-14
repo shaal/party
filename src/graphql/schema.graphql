@@ -247,8 +247,9 @@ type User {
 
 input WherePostsInput {
   onlyFollowing: Boolean = true
+  productId: ID
   type: String
-  userId: String
+  userId: ID
 }
 
 input WhereProductsInput {
