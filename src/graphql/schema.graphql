@@ -257,7 +257,6 @@ type User {
 }
 
 input WherePostsInput {
-  onlyFollowing: Boolean = true
   type: String
   userId: String
 }

@@ -93,7 +93,6 @@ builder.queryField('homeFeed', (t) =>
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.string({ required: false }),
-    onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false })
   })
 })
@@ -106,45 +105,18 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, ctx) => {
-      if (where?.onlyFollowing && ctx.session) {
-        const following = await db.user.findUnique({
-          where: { id: ctx.session?.userId },
-          select: { following: { select: { id: true } } }
-        })
-
-        return await db.post.findMany({
-          ...query,
-          where: {
-            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-            user: {
-              // @ts-ignore
-              id: {
-                in: [
-                  // @ts-ignore
-                  ...following.following.map((user) => user.id),
-                  ctx.session?.userId
-                ]
-              }
-            }
-          },
-          orderBy: {
-            createdAt: 'desc'
+      return await db.post.findMany({
+        ...query,
+        where: {
+          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+          user: {
+            id: where?.userId as string
           }
-        })
-      } else {
-        return await db.post.findMany({
-          ...query,
-          where: {
-            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-            user: {
-              id: where?.userId as string
-            }
-          },
-          orderBy: {
-            createdAt: 'desc'
-          }
-        })
-      }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
     }
   })
 )
