@@ -38,3 +38,4 @@ vscode:
     - formulahendry.auto-close-tag
     - github.github-vscode-theme
     - gitlab.gitlab-workflow
+    - bradlc.vscode-tailwindcss
