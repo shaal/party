@@ -1,4 +1,4 @@
-import Profile, { PROFILE_QUERY as query } from '../components/Users'
+import ViewUser, { USER_QUERY as query } from '../components/Users/ViewUser'
 import { preloadQuery } from '../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
@@ -10,4 +10,4 @@ export const getServerSideProps = async (ctx: any) => {
   })
 }
 
-export default Profile
+export default ViewUser
