@@ -5,12 +5,11 @@ tasks:
     init: >
       yarn --network-timeout 100000;
       cp .env.example .env;
-    command: >
       yarn migrate:dev;
       yarn prisma db seed --preview-feature;
       yarn prepare;
       gp sync-done setup;
-      yarn codegen:graphql --watch;
+    command: yarn codegen:graphql --watch
   - name: Prisma Studio
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
