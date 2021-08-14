@@ -4,15 +4,15 @@ import React from 'react'
 import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '../../__generated__/schema.generated'
+import { Product } from '../../__generated__/schema.generated'
 import SinglePost, { PostFragment } from '../Posts/SinglePost'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import { EmptyState } from '../ui/EmptyState'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { UserFeedQuery } from './__generated__/Feed.generated'
+import { ProductFeedQuery } from './__generated__/Feed.generated'
 
-const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $where: WherePostsInput) {
+const PRODUCT_FEED_QUERY = gql`
+  query ProductFeedQuery($after: String, $where: WherePostsInput) {
     posts(first: 10, after: $after, where: $where) {
       pageInfo {
         endCursor
@@ -29,18 +29,18 @@ const USER_FEED_QUERY = gql`
 `
 
 interface Props {
-  user: User
+  product: Product
 }
 
-const UserFeed: React.FC<Props> = ({ user }) => {
+const ProductFeed: React.FC<Props> = ({ product }) => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true)
-  const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
-    USER_FEED_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<ProductFeedQuery>(
+    PRODUCT_FEED_QUERY,
     {
       variables: {
         after: null,
         where: {
-          userId: user?.id
+          productId: product?.id
         }
       }
     }
@@ -83,8 +83,8 @@ const UserFeed: React.FC<Props> = ({ user }) => {
           <EmptyState
             message={
               <div>
-                <span className="font-bold mr-1">@{user?.username}</span>
-                <span>seems like not posted yet!</span>
+                <span>No posts found in</span>
+                <span className="font-bold ml-1">{product?.name}</span>
               </div>
             }
             icon={<CollectionIcon className="h-8 w-8" />}
@@ -100,4 +100,4 @@ const UserFeed: React.FC<Props> = ({ user }) => {
   )
 }
 
-export default UserFeed
+export default ProductFeed

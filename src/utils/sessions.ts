@@ -26,7 +26,7 @@ export const sessionOptions: SessionOptions = {
       password: process.env.COOKIE_SECRET as string
     }
   ],
-  cookieName: 'session.info',
+  cookieName: 'devparty_session',
   ttl: SESSION_TTL,
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',

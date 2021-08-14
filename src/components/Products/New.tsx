@@ -19,7 +19,7 @@ import {
 const newProductSchema = object({
   name: string().min(1),
   slug: string().min(1),
-  bio: string().min(1)
+  description: string().max(255)
 })
 
 const NewProduct: React.FC = () => {
@@ -33,6 +33,7 @@ const NewProduct: React.FC = () => {
         createProduct(input: $input) {
           id
           slug
+          description
         }
       }
     `,
@@ -61,12 +62,13 @@ const NewProduct: React.FC = () => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ name, slug }) =>
+              onSubmit={({ name, slug, description }) =>
                 createProduct({
                   variables: {
                     input: {
                       name,
-                      slug
+                      slug,
+                      description
                     }
                   }
                 })
@@ -91,7 +93,7 @@ const NewProduct: React.FC = () => {
               <TextArea
                 label="Bio"
                 placeholder="Tell us what you made!"
-                {...form.register('bio')}
+                {...form.register('description')}
               />
               <div className="ml-auto">
                 <Button type="submit">Create</Button>

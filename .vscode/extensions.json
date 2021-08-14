@@ -10,6 +10,8 @@
     "pflannery.vscode-versionlens",
     "wix.vscode-import-cost",
     "formulahendry.auto-close-tag",
-    "github.github-vscode-theme"
+    "github.github-vscode-theme",
+    "gitlab.gitlab-workflow",
+    "bradlc.vscode-tailwindcss"
   ]
 }

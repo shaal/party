@@ -3,7 +3,7 @@ image: gitpod/workspace-postgres
 tasks:
   - name: Setup
     init: >
-      yarn install;
+      yarn --network-timeout 100000;
       cp .env.example .env;
     command: >
       yarn migrate:dev;
@@ -21,8 +21,6 @@ tasks:
 ports:
   - port: 3000
     onOpen: open-browser
-  - port: 5555
-    onOpen: ignore
 
 vscode:
   extensions:
@@ -37,3 +35,5 @@ vscode:
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
     - github.github-vscode-theme
+    - gitlab.gitlab-workflow
+    - bradlc.vscode-tailwindcss

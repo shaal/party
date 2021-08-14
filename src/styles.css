@@ -17,9 +17,11 @@ body {
   @apply dark:bg-gray-600;
 }
 
-.post a {
+.linkify a,
+.prose a {
   @apply text-indigo-500;
-  @apply hover:text-indigo-400;
+  @apply hover:text-indigo-600;
+  @apply underline;
 }
 
 .tooltip {

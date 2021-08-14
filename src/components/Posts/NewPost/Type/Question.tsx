@@ -17,6 +17,7 @@ import { Input } from '../../../ui/Input'
 import { TextArea } from '../../../ui/TextArea'
 import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
+import SelectProduct from '../SelectProduct'
 import {
   NewPostMutation,
   NewPostMutationVariables
@@ -29,6 +30,7 @@ const newPostSchema = object({
 
 const QuestionType: React.FC = () => {
   const [attachments, setAttachments] = useState<string[]>([])
+  const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [preview, setPreview] = useState<boolean>(false)
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -112,6 +114,7 @@ const QuestionType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
+          <SelectProduct setSelectedProduct={setSelectedProduct} />
           <Button
             type="button"
             variant="success"

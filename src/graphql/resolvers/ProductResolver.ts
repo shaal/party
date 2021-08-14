@@ -72,12 +72,9 @@ builder.queryField('product', (t) =>
 
 const CreateProductInput = builder.inputType('CreateProductInput', {
   fields: (t) => ({
-    name: t.string({
-      validate: { minLength: 1, maxLength: 50 }
-    }),
-    slug: t.string({
-      validate: { minLength: 1, maxLength: 50 }
-    })
+    name: t.string({ validate: { minLength: 1, maxLength: 50 } }),
+    slug: t.string({ validate: { minLength: 1, maxLength: 50 } }),
+    description: t.string({ required: false, validate: { maxLength: 255 } })
   })
 })
 
@@ -93,6 +90,7 @@ builder.mutationField('createProduct', (t) =>
           userId: session!.userId,
           name: input.name,
           slug: input.slug,
+          description: input.description,
           avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg`
         }
       })

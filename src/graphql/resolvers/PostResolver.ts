@@ -18,9 +18,9 @@ builder.prismaObject(db.post, {
     }),
     hasLiked: t.field({
       type: 'Boolean',
-      resolve: async (root, args, ctx, info) => {
-        if (!ctx.session) return false
-        return await hasLiked(ctx.session?.userId as string, root.id, null)
+      resolve: async (root, args, { session }, info) => {
+        if (!session) return false
+        return await hasLiked(session?.userId as string, root.id, null)
       }
     }),
     likes: t.prismaConnection({
@@ -56,9 +56,8 @@ builder.prismaObject(db.post, {
 
 const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
-    userId: t.string({
-      required: false
-    }),
+    userId: t.id({ required: false }),
+    productId: t.id({ required: false }),
     onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false })
   })
@@ -71,10 +70,15 @@ builder.queryField('posts', (t) =>
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
-    resolve: async (query, root, { where }, ctx) => {
-      if (where?.onlyFollowing && ctx.session) {
+    resolve: async (query, root, { where }, { session }) => {
+      if (
+        where?.onlyFollowing &&
+        session &&
+        !where?.userId &&
+        !where?.productId
+      ) {
         const following = await db.user.findUnique({
-          where: { id: ctx.session?.userId },
+          where: { id: session?.userId },
           select: { following: { select: { id: true } } }
         })
 
@@ -88,7 +92,7 @@ builder.queryField('posts', (t) =>
                 in: [
                   // @ts-ignore
                   ...following.following.map((user) => user.id),
-                  ctx.session?.userId
+                  session?.userId
                 ]
               }
             }
@@ -104,6 +108,9 @@ builder.queryField('posts', (t) =>
             type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
             user: {
               id: where?.userId as string
+            },
+            product: {
+              id: where?.productId as string
             }
           },
           orderBy: {

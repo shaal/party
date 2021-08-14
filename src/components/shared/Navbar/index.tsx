@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { Fragment } from 'react'
 
@@ -40,13 +41,20 @@ interface NavItemsProps {
 }
 
 const NavItems = ({ isMobile = false }: NavItemsProps) => {
+  const router = useRouter()
+
   return (
     <Fragment>
-      <NavItem url="/" name="Home" current isMobile={isMobile} />
+      <NavItem
+        url="/"
+        name="Home"
+        current={router.pathname == '/' && true}
+        isMobile={isMobile}
+      />
       <NavItem
         url="/products"
         name="Products"
-        current={false}
+        current={router.pathname == '/products' && true}
         isMobile={isMobile}
       />
       <NavItem

@@ -6,12 +6,12 @@ import { User } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { ProfileQuery } from './__generated__/index.generated'
+import { UserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
 
-export const PROFILE_QUERY = gql`
-  query ProfileQuery($username: String!) {
+export const USER_QUERY = gql`
+  query UserQuery($username: String!) {
     user(username: $username) {
       id
       username
@@ -33,9 +33,9 @@ export const PROFILE_QUERY = gql`
   }
 `
 
-const Profile: React.FC = () => {
+const ViewUser: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ProfileQuery>(PROFILE_QUERY, {
+  const { data, loading, error } = useQuery<UserQuery>(USER_QUERY, {
     variables: {
       username: router.query.username
     },
@@ -58,4 +58,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default ViewUser
