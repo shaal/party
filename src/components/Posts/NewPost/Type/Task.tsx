@@ -11,6 +11,7 @@ import { Input } from '../../../ui/Input'
 import { TaskCheckbox } from '../../../ui/TaskCheckbox'
 import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
+import SelectProduct from '../SelectProduct'
 import {
   NewPostMutation,
   NewPostMutationVariables
@@ -23,6 +24,7 @@ const newPostSchema = object({
 
 const TaskType: React.FC = () => {
   const [attachments, setAttachments] = useState<string[]>([])
+  const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
     NewPostMutationVariables
@@ -85,7 +87,13 @@ const TaskType: React.FC = () => {
         />
       </div>
       <div className="flex items-center justify-between">
-        <Attachment attachments={attachments} setAttachments={setAttachments} />
+        <div className="flex space-x-2">
+          <Attachment
+            attachments={attachments}
+            setAttachments={setAttachments}
+          />
+          <SelectProduct setSelectedProduct={setSelectedProduct} />
+        </div>
         <Button type="submit" className="flex items-center gap-1.5">
           <CheckCircleIcon className="h-4 w-4" />
           <div>Create Task</div>
