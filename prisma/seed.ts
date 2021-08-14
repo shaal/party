@@ -35,7 +35,7 @@ async function main() {
       data: {
         name: product.name,
         slug: product.slug,
-        avatar: `https://avatar.tobi.sh/${await md5(product.slug)}.svg`,
+        avatar: `https://avatar.tobi.sh/${await md5(product.slug)}.svg?text=📦`,
         user: {
           connect: {
             username: product.username
