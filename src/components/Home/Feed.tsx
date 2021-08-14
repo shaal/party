@@ -4,6 +4,7 @@ import useInView from 'react-cool-inview'
 
 import PostShimmer from '../../components/shared/Shimmer/PostShimmer'
 import SinglePost, { PostFragment } from '../Posts/SinglePost'
+import PostsEmptyState from '../shared/EmptyState/PostsEmptyState'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
@@ -74,7 +75,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {posts?.length === 0 ? (
-          <div>Nothing here</div>
+          <PostsEmptyState />
         ) : (
           posts?.map((post: any) => (
             <SinglePost key={post?.id} post={post} showReplies />
