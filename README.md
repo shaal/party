@@ -17,6 +17,9 @@
     <a href="https://discord.gg/zxHM7uwDmk">
         <img src="https://img.shields.io/discord/873418656405651487.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord">
     </a>
+    <a href="https://twitter.com/yogicodes">
+        <img src="https://img.shields.io/twitter/follow/yogicodes?label=yogicodes&style=flat&logo=twitter&color=1DA1F2" alt="Devparty Twitter">
+    </a>
 </div>
 <div align="center">
     <br>
