@@ -13,7 +13,7 @@ const Username: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 ${className}`}
+      className={`text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 dark:from-indigo-400 to-pink-600 dark:to-pink-400 ${className}`}
     >
       {showAt && '@'}
       {username}
