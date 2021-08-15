@@ -14,6 +14,9 @@
     <a href="https://gitpod.io/#https://gitlab.com/yo/devparty/-/tree/main/">
         <img src="https://img.shields.io/badge/setup-automated-blue?logo=gitpod" alt="Gitpod">
     </a>
+    <a href="https://discord.gg/zxHM7uwDmk">
+        <img src="https://img.shields.io/discord/873418656405651487.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord">
+    </a>
 </div>
 <div align="center">
     <br>
