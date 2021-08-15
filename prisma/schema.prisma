@@ -109,6 +109,12 @@ model Topic {
 
 model TopicOnPosts {
   id    String         @id @default(uuid())
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
   post    Post   @relation(fields: [postId], references: [id])
   postId  String
   topic   Topic  @relation(fields: [topicId], references: [id])
