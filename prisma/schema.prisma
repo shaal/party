@@ -83,13 +83,13 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  product   Product?        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
   replies   Reply[]
-  topics    TopicsOnPosts[]
+  topics    Topic[]
 
   // Attributes
   @@index([userId])
@@ -102,18 +102,9 @@ enum PostType {
 }
 
 model Topic {
-  id    String          @id @default(uuid())
+  id    String @id @default(uuid())
   name  String
-  posts TopicsOnPosts[]
-}
-
-model TopicsOnPosts {
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  String
-  topic   Topic  @relation(fields: [topicId], references: [id])
-  topicId String
-
-  @@id([postId, topicId])
+  posts Post[]
 }
 
 model Reply {
