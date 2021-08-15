@@ -71,6 +71,8 @@ CREATE TABLE "Topic" (
 -- CreateTable
 CREATE TABLE "TopicOnPosts" (
     "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "postId" TEXT NOT NULL,
     "topicId" TEXT NOT NULL,
 
