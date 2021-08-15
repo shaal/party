@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
+import Slug from './Slug'
 
 interface Props {
   product: Product
@@ -22,7 +23,7 @@ const ProductProfile: React.FC<Props> = ({ product }) => {
               <div className="font-bold cursor-pointer">{product?.name}</div>
             </Link>
           </div>
-          <div>#{product?.slug}</div>
+          <Slug slug={product?.slug} />
         </div>
       </div>
     </div>
