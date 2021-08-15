@@ -6,7 +6,7 @@
 <br>
 <div align="center">
     <a href="https://gitlab.com/yo/devparty/-/commits/main">
-        <img src="https://img.shields.io/gitlab/pipeline/yo/devparty/main?label=build" alt="CI">
+        <img src="https://gitlab.com/yo/devparty/badges/main/pipeline.svg" alt="CI">
     </a>
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
