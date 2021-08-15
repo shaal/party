@@ -61,20 +61,19 @@ CREATE TABLE "Post" (
 );
 
 -- CreateTable
-CREATE TABLE "TopicOnPosts" (
-    "id" TEXT NOT NULL,
-    "postId" TEXT,
-    "topicId" TEXT,
-
-    PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Topic" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "TopicsOnPosts" (
+    "postId" TEXT NOT NULL,
+    "topicId" TEXT NOT NULL,
+
+    PRIMARY KEY ("postId","topicId")
 );
 
 -- CreateTable
@@ -145,9 +144,6 @@ CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 CREATE INDEX "Post.userId_index" ON "Post"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Topic.name_unique" ON "Topic"("name");
-
--- CreateIndex
 CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId", "replyId");
 
 -- CreateIndex
@@ -172,10 +168,10 @@ ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE 
 ALTER TABLE "Post" ADD FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TopicOnPosts" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "TopicsOnPosts" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TopicOnPosts" ADD FOREIGN KEY ("topicId") REFERENCES "Topic"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "TopicsOnPosts" ADD FOREIGN KEY ("topicId") REFERENCES "Topic"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Reply" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;

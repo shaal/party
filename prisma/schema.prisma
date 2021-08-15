@@ -83,13 +83,13 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  product   Product?       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product?        @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
   replies   Reply[]
-  topics    TopicOnPosts[]
+  topics    TopicsOnPosts[]
 
   // Attributes
   @@index([userId])
@@ -101,18 +101,19 @@ enum PostType {
   QUESTION
 }
 
-model TopicOnPosts {
-  id      String  @id @default(uuid())
-  post    Post?   @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  postId  String?
-  topic   Topic?  @relation(fields: [topicId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  topicId String?
+model Topic {
+  id    String          @id @default(uuid())
+  name  String
+  posts TopicsOnPosts[]
 }
 
-model Topic {
-  id    String         @id @default(uuid())
-  name  String         @unique
-  posts TopicOnPosts[]
+model TopicsOnPosts {
+  post    Post   @relation(fields: [postId], references: [id])
+  postId  String
+  topic   Topic  @relation(fields: [topicId], references: [id])
+  topicId String
+
+  @@id([postId, topicId])
 }
 
 model Reply {
