@@ -30,7 +30,10 @@
 
 ## ✨ Feature Highlights
 
-🚧 WIP
+- 👤 **User:** TBD
+- 📦 **Product:** TBD
+- 💌 **Post:** TBD
+- 🍔 **Topic:** TBD
 
 ## 🤝 Contributing
 
