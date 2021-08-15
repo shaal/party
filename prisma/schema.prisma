@@ -89,7 +89,7 @@ model Post {
   productId String?
   likes     Like[]
   replies   Reply[]
-  topic     TopicOnPosts[]
+  topics    TopicOnPosts[]
 
   // Attributes
   @@index([userId])
