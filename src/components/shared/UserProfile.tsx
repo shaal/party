@@ -30,7 +30,7 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
               </div>
             </Link>
           </div>
-          <Username username={user?.username} />
+          <Username username={user?.username} prefix="@" />
         </div>
       </div>
       {currentUser && showFollow && <Follow user={user} showText={false} />}

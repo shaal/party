@@ -80,7 +80,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               >
                 <div>
                   <div className="font-bold">Signed in as</div>
-                  <Username username={currentUser?.username} />
+                  <Username username={currentUser?.username} prefix="@" />
                 </div>
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>

@@ -30,7 +30,7 @@ const Details: React.FC<Props> = ({ user }) => {
         <div className="text-2xl font-bold flex items-center gap-1.5">
           {user?.profile?.name}
         </div>
-        <Username username={user?.username} className="text-xl" />
+        <Username username={user?.username} prefix="@" className="text-xl" />
       </div>
       <div>
         <Followerings user={user} />
