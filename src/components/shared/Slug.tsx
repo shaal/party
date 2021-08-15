@@ -1,20 +1,20 @@
 import React from 'react'
 
 interface Props {
-  username: string | undefined
+  slug: string | undefined
   prefix?: string
   className?: string
 }
 
-const Username: React.FC<Props> = ({ username, prefix, className = '' }) => {
+const Slug: React.FC<Props> = ({ slug, prefix, className = '' }) => {
   return (
     <div
       className={`text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 dark:from-indigo-400 to-pink-600 dark:to-pink-400 ${className}`}
     >
       {prefix}
-      {username}
+      {slug}
     </div>
   )
 }
 
-export default Username
+export default Slug

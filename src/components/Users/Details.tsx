@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useContext } from 'react'
 
 import { Profile, User } from '../../__generated__/schema.generated'
-import Username from '../shared/Username'
+import Slug from '../shared/Slug'
 import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import Follow from './Follow'
@@ -30,7 +30,7 @@ const Details: React.FC<Props> = ({ user }) => {
         <div className="text-2xl font-bold flex items-center gap-1.5">
           {user?.profile?.name}
         </div>
-        <Username username={user?.username} prefix="@" className="text-xl" />
+        <Slug slug={user?.username} prefix="@" className="text-xl" />
       </div>
       <div>
         <Followerings user={user} />

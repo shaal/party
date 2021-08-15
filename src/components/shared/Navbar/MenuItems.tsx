@@ -9,7 +9,7 @@ import { User } from '../../../__generated__/schema.generated'
 import { Dropdown } from '../../ui/Dropdown'
 import AppContext from '../../utils/AppContext'
 import { useAuthRedirect } from '../../utils/useAuthRedirect'
-import Username from '../Username'
+import Slug from '../Slug'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>
@@ -80,7 +80,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               >
                 <div>
                   <div className="font-bold">Signed in as</div>
-                  <Username username={currentUser?.username} prefix="@" />
+                  <Slug slug={currentUser?.username} prefix="@" />
                 </div>
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>

@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import { User } from '../../__generated__/schema.generated'
 import Follow from '../Users/Follow'
 import AppContext from '../utils/AppContext'
-import Username from './Username'
+import Slug from './Slug'
 
 interface Props {
   user: User
@@ -30,7 +30,7 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
               </div>
             </Link>
           </div>
-          <Username username={user?.username} prefix="@" />
+          <Slug slug={user?.username} prefix="@" />
         </div>
       </div>
       {currentUser && showFollow && <Follow user={user} showText={false} />}
