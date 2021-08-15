@@ -32,7 +32,7 @@
 
 ## 🍭 About Devparty
 
-🚧 WIP
+The party hub for developers
 
 ## ✨ Feature Highlights
 
