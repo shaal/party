@@ -2,7 +2,7 @@ import { PostType } from '@prisma/client'
 
 import { db } from '../../utils/prisma'
 import { builder } from '../builder'
-import { getTopics } from '../utils/getTopics'
+import { getTopics } from '../utils/functions/getTopics'
 import { hasLiked } from '../utils/hasLiked'
 
 builder.prismaObject(db.post, {
@@ -162,7 +162,8 @@ builder.mutationField('createPost', (t) =>
       input: t.arg({ type: CreatePostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      console.log('topics: ', getTopics(input.body))
+      console.log('topics', getTopics(input.body))
+
       return await db.post.create({
         data: {
           userId: session!.userId,
