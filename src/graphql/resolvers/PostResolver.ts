@@ -173,10 +173,10 @@ builder.mutationField('createPost', (t) =>
           attachments: input.attachments,
           type: input.type as PostType,
           productId: input.productId ? input.productId : null,
-          tags: {
+          topics: {
             create: [
               {
-                tag: {
+                topic: {
                   connectOrCreate: {
                     create: { name: 'dev' },
                     where: { name: 'dev' }
