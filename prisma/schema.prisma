@@ -63,7 +63,7 @@ model Profile {
   twitter  String?
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
@@ -83,9 +83,9 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  product   Product? @relation(fields: [productId], references: [id])
+  product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
   replies   Reply[]
@@ -110,9 +110,9 @@ model Reply {
 
   // Relations
   likes  Like[]
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 }
 
@@ -124,11 +124,11 @@ model Like {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user    User    @relation(fields: [userId], references: [id])
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
-  post    Post?   @relation(fields: [postId], references: [id])
+  post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  String?
-  reply   Reply?  @relation(fields: [replyId], references: [id])
+  reply   Reply?  @relation(fields: [replyId], references: [id], onDelete: Cascade)
   replyId String?
 
   // Attributes
@@ -154,7 +154,7 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user   User?   @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String?
   posts  Post[]
 }
