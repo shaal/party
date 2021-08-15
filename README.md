@@ -11,6 +11,9 @@
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
     </a>
+    <a href="https://gitpod.io/from-referrer/">
+        <img src="https://img.shields.io/badge/setup-automated-blue?logo=gitpod" alt="GitPod badge">
+    </a>
 </div>
 <div align="center">
     <br>
