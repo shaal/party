@@ -9,7 +9,7 @@ interface Props {
 
 const TopicMod: React.FC<Props> = ({ topic }) => {
   return (
-    <Card className="mt-5 border-yellow-400 bg-yellow-50">
+    <Card className="mt-5 border-yellow-400 bg-yellow-100">
       <CardBody>
         <div className="font-bold text-lg">Details</div>
         <div className="space-y-1 mt-3 text-sm">
