@@ -251,6 +251,7 @@ type Topic {
   image: String
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
+  postsCount: Int!
 }
 
 type TopicPostsConnection {
