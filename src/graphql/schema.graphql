@@ -259,7 +259,7 @@ type User {
 }
 
 input WhereHomeFeedInput {
-  type: String
+  type: String = "ALL"
 }
 
 input WherePostsInput {

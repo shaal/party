@@ -101,7 +101,7 @@ builder.queryField('posts', (t) =>
 
 const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
   fields: (t) => ({
-    type: t.string({ required: false })
+    type: t.string({ required: false, defaultValue: 'ALL' })
   })
 })
 
