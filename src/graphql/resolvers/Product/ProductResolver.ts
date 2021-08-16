@@ -1,7 +1,7 @@
 import { md5 } from 'hash-wasm'
 
-import { db } from '../../utils/prisma'
-import { builder } from '../builder'
+import { db } from '../../../utils/prisma'
+import { builder } from '../../builder'
 
 builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),
