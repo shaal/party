@@ -1,7 +1,7 @@
 import './AuthResolver'
 import './PostResolver'
 import './ResultResolver'
-import './UserResolver'
+import './User/UserResolver'
 import './ProfileResolver'
 import './LikeResolver'
 import './ReplyResolver'
