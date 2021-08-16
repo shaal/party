@@ -4,7 +4,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { getTopics } from '../../utils/getTopics'
 import { parseTopics } from '../../utils/parseTopics'
-import { hasLiked } from './hasLiked'
+import { hasLiked } from '../Common/hasLiked'
 
 builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),

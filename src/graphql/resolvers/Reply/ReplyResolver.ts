@@ -1,6 +1,6 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { hasLiked } from './hasLiked'
+import { hasLiked } from '../Common/hasLiked'
 
 builder.prismaObject(db.reply, {
   findUnique: (reply) => ({ id: reply.id }),

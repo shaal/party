@@ -1,7 +1,7 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { togglePostLike } from './togglePostLike'
-import { toggleReplyLike } from './toggleReplyLike'
+import { togglePostLike } from '../Post/togglePostLike'
+import { toggleReplyLike } from '../Reply/toggleReplyLike'
 
 builder.prismaObject(db.like, {
   findUnique: (like) => ({ id: like.id }),
