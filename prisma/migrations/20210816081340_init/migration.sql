@@ -167,7 +167,7 @@ CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
 CREATE INDEX "_follows_B_index" ON "_follows"("B");
 
 -- AddForeignKey
-ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

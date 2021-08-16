@@ -8,6 +8,11 @@ import { userData } from './seeds/user'
 const db = new PrismaClient()
 
 async function main() {
+  await db.user.deleteMany()
+  console.log('All users and related data are deleted 🗑️')
+  await db.topic.deleteMany()
+  console.log('All topics are deleted 🗑️')
+
   // User
   for (const user of userData) {
     console.log(`Seeding User - @${user.username} ✅`)
