@@ -21,7 +21,6 @@ body {
 .prose a {
   @apply text-indigo-500;
   @apply hover:text-indigo-600;
-  @apply underline;
 }
 
 .tooltip {
