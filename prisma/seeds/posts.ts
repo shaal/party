@@ -53,6 +53,6 @@ export const postData = [
   },
   {
     body: "Cryptocurrency is like the end of 2001: A Space Odyssey; lots of people talk about it, but no-one really knows how to explain what they've seen.",
-    username: 'yoginth'
+    username: 'filip'
   }
 ]
