@@ -6,7 +6,7 @@ tasks:
       yarn --network-timeout 100000;
       cp .env.example .env;
       yarn migrate:dev;
-      yarn prisma db seed --preview-feature;
+      yarn migrate:seed;
       yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
