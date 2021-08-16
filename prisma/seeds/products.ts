@@ -22,5 +22,35 @@ export const productData = [
     slug: 'minecraft',
     username: 'svobodavl',
     avatar: 'https://i.ibb.co/0m8qyj8/avatar.jpg'
+  },
+  {
+    name: 'Prisma',
+    slug: 'prisma',
+    username: 'kahy',
+    avatar: 'https://avatars.githubusercontent.com/u/17219288'
+  },
+  {
+    name: 'Gitpod',
+    slug: 'gitpod',
+    username: 'aellopos',
+    avatar: 'https://avatars.githubusercontent.com/u/37021919'
+  },
+  {
+    name: 'IPFS',
+    slug: 'ipfs',
+    username: 'yoginth',
+    avatar: 'https://avatars.githubusercontent.com/u/10536621'
+  },
+  {
+    name: 'PlanetScale',
+    slug: 'planetscale',
+    username: 'filip',
+    avatar: 'https://avatars.githubusercontent.com/u/35612527'
+  },
+  {
+    name: 'Danger',
+    slug: 'danger',
+    username: 'yoginth',
+    avatar: 'https://avatars.githubusercontent.com/u/17147106'
   }
 ]
