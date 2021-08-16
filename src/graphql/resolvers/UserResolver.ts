@@ -39,16 +39,7 @@ builder.prismaObject(db.user, {
 
     // Relations
     profile: t.relation('profile'),
-    products: t.relation('products'),
-    posts: t.prismaConnection({
-      type: db.post,
-      cursor: 'id',
-      resolve: (query, root) =>
-        db.post.findMany({
-          ...query,
-          where: { userId: root.id }
-        })
-    })
+    products: t.relation('products')
   })
 })
 
@@ -56,15 +47,13 @@ builder.queryField('user', (t) =>
   t.prismaField({
     type: db.user,
     args: {
-      id: t.arg.id({ required: false }),
-      username: t.arg.string({ required: false })
+      username: t.arg.string({})
     },
-    resolve: async (query, root, { id, username }) => {
+    resolve: async (query, root, { username }) => {
       return await db.user.findUnique({
         ...query,
         where: {
-          id: id as string,
-          username: username as string
+          username
         },
         rejectOnNotFound: true
       })
