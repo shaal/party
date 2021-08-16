@@ -1,27 +1,26 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
+import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import PostShimmer from '../../components/shared/Shimmer/PostShimmer'
-import SinglePost, { PostFragment } from '../Posts/SinglePost'
+import { User } from '../../__generated__/schema.generated'
+import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostShimmer from '../shared/Shimmer/PostShimmer'
 import { EmptyState } from '../ui/EmptyState'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import { TopicFeedQuery } from './__generated__/Feed.generated'
+import { UserFeedQuery } from './__generated__/Feed.generated'
 
-export const TOPIC_FEED_QUERY = gql`
-  query TopicFeedQuery($after: String, $name: String!) {
-    topic(name: $name) {
-      id
-      posts(first: 10, after: $after) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        edges {
-          node {
-            ...PostFragment
-          }
+const USER_FEED_QUERY = gql`
+  query UserFeedQuery($after: String, $where: WherePostsInput) {
+    posts(first: 10, after: $after, where: $where) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          ...PostFragment
         }
       }
     }
@@ -30,21 +29,25 @@ export const TOPIC_FEED_QUERY = gql`
 `
 
 interface Props {
-  topic: string
+  user: User
 }
 
-const TopicFeed: React.FC<Props> = ({ topic }) => {
-  const { data, loading, error, fetchMore } = useQuery<TopicFeedQuery>(
-    TOPIC_FEED_QUERY,
+const UserFeed: React.FC<Props> = ({ user }) => {
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
+  const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
+    USER_FEED_QUERY,
     {
       variables: {
-        name: topic,
-        after: null
+        after: null,
+        where: {
+          userId: user?.id
+        }
       }
     }
   )
-  const posts = data?.topic?.posts?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.topic?.posts?.pageInfo
+
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -78,7 +81,12 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
       <div className="space-y-3">
         {posts?.length === 0 ? (
           <EmptyState
-            message="No posts found, follow some users!"
+            message={
+              <div>
+                <span className="font-bold mr-1">@{user?.username}</span>
+                <span>seems like not posted yet!</span>
+              </div>
+            }
             icon={<CollectionIcon className="h-8 w-8" />}
           />
         ) : (
@@ -86,10 +94,10 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
             <SinglePost key={post?.id} post={post} showReplies />
           ))
         )}
-        <div ref={observe}></div>
+        {hasNextPage && <div ref={observe}></div>}
       </div>
     </div>
   )
 }
 
-export default TopicFeed
+export default UserFeed

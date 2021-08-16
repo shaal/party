@@ -73,6 +73,10 @@ CREATE TABLE "PostTopics" (
 CREATE TABLE "Topic" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "image" TEXT,
+    "description" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -143,6 +147,9 @@ CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
 CREATE INDEX "Post.userId_index" ON "Post"("userId");
+
+-- CreateIndex
+CREATE INDEX "PostTopics.postId_topicId_index" ON "PostTopics"("postId", "topicId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Topic.name_unique" ON "Topic"("name");

@@ -1,12 +1,17 @@
 import Linkify from 'linkifyjs/react'
+import { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
+import AppContext from '../utils/AppContext'
+import ProductMod from './Mod'
 
 interface Props {
   product: Product
 }
 
 const Details: React.FC<Props> = ({ product }) => {
+  const { currentUser, staffMode } = useContext(AppContext)
+
   return (
     <div className="space-y-5 w-96">
       <img
@@ -25,6 +30,7 @@ const Details: React.FC<Props> = ({ product }) => {
           <Linkify>{product?.description}</Linkify>
         </div>
       )}
+      {currentUser?.isStaff && staffMode && <ProductMod product={product} />}
     </div>
   )
 }

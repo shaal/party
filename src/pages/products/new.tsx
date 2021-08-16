@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 
-import NewProduct from '../../components/Products/New'
+import NewProduct from '../../components/Product/New'
 import { authenticatedRoute } from '../../utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute
