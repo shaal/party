@@ -1,9 +1,11 @@
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
-import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Post, Reply } from '../../__generated__/schema.generated'
+import AppContext from '../utils/AppContext'
 
 type Props = {
   entity: Post | Reply
@@ -12,19 +14,24 @@ type Props = {
 }
 
 const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
+  const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [isLiked, setIsLiked] = useState<boolean>(false)
 
   useEffect(() => {
     if (entity?.hasLiked) setIsLiked(entity?.hasLiked)
   }, [entity])
 
+  const toggleLike = () => {
+    if (!currentUser) return router.push('/login')
+    setIsLiked(!isLiked)
+    handleLike(entity)
+  }
+
   return (
     <Switch
       checked={entity?.hasLiked}
-      onChange={() => {
-        setIsLiked(!isLiked)
-        handleLike(entity)
-      }}
+      onChange={toggleLike}
       className="text-pink-500 hover:text-pink-400 flex items-center gap-2"
       disabled={loading}
     >
