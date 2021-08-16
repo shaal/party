@@ -6,6 +6,8 @@ builder.prismaObject(db.topic, {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     name: t.exposeString('name'),
+    image: t.exposeString('image', { nullable: true }),
+    description: t.exposeString('description', { nullable: true }),
     posts: t.prismaConnection({
       type: db.post,
       cursor: 'id',

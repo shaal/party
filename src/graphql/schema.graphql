@@ -246,7 +246,9 @@ input ToggleReplyLikeInput {
 }
 
 type Topic {
+  description: String
   id: ID!
+  image: String
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
 }

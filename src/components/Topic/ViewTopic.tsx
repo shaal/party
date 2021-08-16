@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 
 import { Topic } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import Slug from '../shared/Slug'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
@@ -16,6 +17,8 @@ export const TOPIC_QUERY = gql`
     topic(name: $name) {
       id
       name
+      image
+      description
     }
   }
 `
@@ -38,8 +41,20 @@ const ViewTopic: React.FC = () => {
       <GridItemFour>
         <Card>
           <CardBody>
-            <ErrorMessage title="Failed to load post" error={error} />
-            {data?.topic?.name}
+            <div className="space-y-3">
+              <ErrorMessage title="Failed to load post" error={error} />
+              {data?.topic?.image && (
+                <img
+                  src={data?.topic?.image}
+                  alt={data?.topic?.name}
+                  className="h-20 w-20 rounded-lg"
+                />
+              )}
+              <Slug slug={data?.topic?.name} prefix="#" className="text-xl" />
+              {data?.topic?.description && (
+                <div>{data?.topic?.description}</div>
+              )}
+            </div>
           </CardBody>
         </Card>
         {currentUser?.isStaff && staffMode && (
