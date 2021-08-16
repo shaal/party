@@ -61,7 +61,8 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
     userId: t.id({ required: false }),
     productId: t.id({ required: false }),
     onlyFollowing: t.boolean({ required: false, defaultValue: true }),
-    type: t.string({ required: false })
+    type: t.string({ required: false }),
+    topic: t.string({ required: false })
   })
 })
 
@@ -88,6 +89,13 @@ builder.queryField('posts', (t) =>
           ...query,
           where: {
             type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+            topics: {
+              some: {
+                topic: {
+                  name: where.topic as string
+                }
+              }
+            },
             user: {
               // @ts-ignore
               id: {

@@ -250,6 +250,7 @@ type User {
 input WherePostsInput {
   onlyFollowing: Boolean = true
   productId: ID
+  topic: String
   type: String
   userId: ID
 }

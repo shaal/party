@@ -10,9 +10,7 @@ export const getTopics = (postBody: string) => {
       return item.replace('#', '')
     })
 
-    console.log(processedArr)
-
-    return arr
+    return processedArr
   } else {
     return null
   }
