@@ -163,8 +163,6 @@ builder.mutationField('createPost', (t) =>
       input: t.arg({ type: CreatePostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      console.log('topics', getTopics(input.body))
-
       return await db.post.create({
         data: {
           userId: session!.userId,
