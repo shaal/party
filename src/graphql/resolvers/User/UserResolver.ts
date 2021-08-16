@@ -1,9 +1,9 @@
-import { db } from '../../utils/prisma'
-import { builder } from '../builder'
-import { followersCount } from '../utils/count/followersCount'
-import { followingCount } from '../utils/count/followingCount'
-import { hasFollowed } from '../utils/hasFollowed'
-import { toggleFollow } from '../utils/toggleFollow'
+import { db } from '../../../utils/prisma'
+import { builder } from '../../builder'
+import { followersCount } from './followersCount'
+import { followingCount } from './followingCount'
+import { hasFollowed } from './hasFollowed'
+import { toggleFollow } from './toggleFollow'
 
 builder.prismaObject(db.user, {
   findUnique: (user) => ({ id: user.id }),

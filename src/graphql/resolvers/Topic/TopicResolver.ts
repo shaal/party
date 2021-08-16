@@ -1,5 +1,5 @@
-import { db } from '../../utils/prisma'
-import { builder } from '../builder'
+import { db } from '../../../utils/prisma'
+import { builder } from '../../builder'
 
 builder.prismaObject(db.topic, {
   findUnique: (topic) => ({ id: topic.id }),

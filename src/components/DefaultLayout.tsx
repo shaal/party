@@ -48,7 +48,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
         additionalLinkTags={[
           {
             rel: 'icon',
-            href: 'favicon.svg'
+            href: '/favicon.svg'
           }
         ]}
       />

@@ -1,9 +1,12 @@
 import { gql, useMutation } from '@apollo/client'
+import * as linkify from 'linkifyjs'
+import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
 
 import { Post } from '../../../../__generated__/schema.generated'
 import { TaskCheckbox } from '../../../ui/TaskCheckbox'
+import { linkifyOptions } from '../../../utils/linkifyOptions'
 import Attachments from '../Attachments'
 import {
   EditPostMutation,
@@ -13,6 +16,8 @@ import {
 interface Props {
   task: Post
 }
+
+hashtag(linkify)
 
 const TaskType: React.FC<Props> = ({ task }) => {
   const [editPost, editPostResult] = useMutation<
@@ -38,7 +43,7 @@ const TaskType: React.FC<Props> = ({ task }) => {
     <div className="text-lg linkify space-y-3 inline-flex">
       <div className="flex items-center gap-2.5">
         <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
-        <Linkify>{task?.body}</Linkify>
+        <Linkify options={linkifyOptions}>{task?.body}</Linkify>
       </div>
       {task?.attachments && <Attachments attachments={task?.attachments} />}
     </div>
