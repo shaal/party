@@ -19,6 +19,7 @@ export const TOPIC_QUERY = gql`
       name
       image
       description
+      postsCount
     }
   }
 `
@@ -50,7 +51,12 @@ const ViewTopic: React.FC = () => {
                   className="h-20 w-20 rounded-lg"
                 />
               )}
-              <Slug slug={data?.topic?.name} prefix="#" className="text-xl" />
+              <div>
+                <Slug slug={data?.topic?.name} prefix="#" className="text-xl" />
+                <div className="text-gray-600 dark:text-gray-300">
+                  {data?.topic?.postsCount} Posts
+                </div>
+              </div>
               {data?.topic?.description && (
                 <div>{data?.topic?.description}</div>
               )}
