@@ -269,10 +269,21 @@ type User {
   id: ID!
   isStaff: Boolean!
   isVerified: Boolean!
+  posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   products: [Product!]!
   profile: Profile!
   spammy: Boolean!
   username: String!
+}
+
+type UserPostsConnection {
+  edges: [UserPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type UserPostsConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 input WhereHomeFeedInput {
