@@ -1,5 +1,5 @@
 import './AuthResolver'
-import './PostResolver'
+import './Post/PostResolver'
 import './ResultResolver'
 import './User/UserResolver'
 import './ProfileResolver'
