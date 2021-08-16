@@ -12,6 +12,7 @@ import { TopicFeedQuery } from './__generated__/Feed.generated'
 export const TOPIC_FEED_QUERY = gql`
   query TopicFeedQuery($after: String, $name: String!) {
     topic(name: $name) {
+      id
       posts(first: 10, after: $after) {
         pageInfo {
           endCursor
