@@ -149,6 +149,7 @@ type Profile {
 }
 
 type Query {
+  homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   me: User
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
@@ -158,6 +159,16 @@ type Query {
   reply(id: ID!): Reply!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
+}
+
+type QueryHomeFeedConnection {
+  edges: [QueryHomeFeedConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryHomeFeedConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type QueryPostsConnection {
@@ -247,8 +258,11 @@ type User {
   username: String!
 }
 
+input WhereHomeFeedInput {
+  type: String
+}
+
 input WherePostsInput {
-  onlyFollowing: Boolean = true
   productId: ID
   topic: String
   type: String

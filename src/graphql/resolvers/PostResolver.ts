@@ -60,7 +60,6 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.id({ required: false }),
     productId: t.id({ required: false }),
-    onlyFollowing: t.boolean({ required: false, defaultValue: true }),
     type: t.string({ required: false }),
     topic: t.string({ required: false })
   })
@@ -74,12 +73,47 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      if (
-        where?.onlyFollowing &&
-        session &&
-        !where?.userId &&
-        !where?.productId
-      ) {
+      return await db.post.findMany({
+        ...query,
+        where: {
+          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+          topics: {
+            some: {
+              topic: {
+                name: where?.topic as string
+              }
+            }
+          },
+          user: {
+            id: where?.userId as string
+          },
+          product: {
+            id: where?.productId as string
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+    }
+  })
+)
+
+const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
+  fields: (t) => ({
+    type: t.string({ required: false })
+  })
+})
+
+builder.queryField('homeFeed', (t) =>
+  t.prismaConnection({
+    type: db.post,
+    cursor: 'id',
+    args: {
+      where: t.arg({ type: WhereHomeFeedInput, required: false })
+    },
+    resolve: async (query, root, { where }, { session }) => {
+      if (session) {
         const following = await db.user.findUnique({
           where: { id: session?.userId },
           select: { following: { select: { id: true } } }
@@ -89,13 +123,6 @@ builder.queryField('posts', (t) =>
           ...query,
           where: {
             type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-            topics: {
-              some: {
-                topic: {
-                  name: where.topic as string
-                }
-              }
-            },
             user: {
               // @ts-ignore
               id: {
@@ -115,13 +142,7 @@ builder.queryField('posts', (t) =>
         return await db.post.findMany({
           ...query,
           where: {
-            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-            user: {
-              id: where?.userId as string
-            },
-            product: {
-              id: where?.productId as string
-            }
+            type: where?.type === 'ALL' ? undefined : (where?.type as PostType)
           },
           orderBy: {
             createdAt: 'desc'
