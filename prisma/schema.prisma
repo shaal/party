@@ -103,9 +103,9 @@ enum PostType {
 
 model PostTopics {
   id      String  @id @default(uuid())
-  post    Post?   @relation(fields: [postId], references: [id])
+  post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  String?
-  topic   Topic?  @relation(fields: [topicId], references: [id])
+  topic   Topic?  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId String?
 }
 
