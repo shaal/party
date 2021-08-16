@@ -264,7 +264,6 @@ input WhereHomeFeedInput {
 
 input WherePostsInput {
   productId: ID
-  topic: String
   type: String
   userId: ID
 }

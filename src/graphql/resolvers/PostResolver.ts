@@ -60,8 +60,7 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
   fields: (t) => ({
     userId: t.id({ required: false }),
     productId: t.id({ required: false }),
-    type: t.string({ required: false }),
-    topic: t.string({ required: false })
+    type: t.string({ required: false })
   })
 })
 
@@ -73,17 +72,10 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      return await db.post.findMany({
+      const yo = await db.post.findMany({
         ...query,
         where: {
           type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-          topics: {
-            some: {
-              topic: {
-                name: where?.topic as string
-              }
-            }
-          },
           user: {
             id: where?.userId as string
           },
@@ -95,6 +87,8 @@ builder.queryField('posts', (t) =>
           createdAt: 'desc'
         }
       })
+
+      return yo
     }
   })
 )
