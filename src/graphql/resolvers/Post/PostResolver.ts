@@ -2,8 +2,8 @@ import { PostType } from '@prisma/client'
 
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { getTopics } from '../../utils/functions/getTopics'
-import { parseTopics } from '../../utils/functions/parseTopics'
+import { getTopics } from '../../utils/getTopics'
+import { parseTopics } from '../../utils/parseTopics'
 import { hasLiked } from './hasLiked'
 
 builder.prismaObject(db.post, {

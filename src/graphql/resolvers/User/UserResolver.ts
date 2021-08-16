@@ -1,7 +1,7 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { followersCount } from '../../utils/count/followersCount'
-import { followingCount } from '../../utils/count/followingCount'
+import { followersCount } from './followersCount'
+import { followingCount } from './followingCount'
 import { hasFollowed } from './hasFollowed'
 import { toggleFollow } from './toggleFollow'
 
