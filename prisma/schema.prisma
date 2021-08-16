@@ -102,16 +102,29 @@ enum PostType {
 }
 
 model PostTopics {
-  id      String  @id @default(uuid())
+  id String @id @default(uuid())
+
+  // Relations
   post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  String?
   topic   Topic?  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId String?
+
+  // Attributes
+  @@index([postId, topicId])
 }
 
 model Topic {
-  id    String       @id @default(uuid())
-  name  String       @unique
+  id          String  @id @default(uuid())
+  name        String  @unique
+  image       String?
+  description String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
   posts PostTopics[]
 }
 
