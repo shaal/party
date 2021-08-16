@@ -11,6 +11,7 @@ import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
 import { PostQuery } from './__generated__/ViewPost.generated'
+import PostMod from './Mod'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
@@ -26,7 +27,7 @@ export const POST_QUERY = gql`
 
 const ViewPost: React.FC = () => {
   const router = useRouter()
-  const { currentUser } = useContext(AppContext)
+  const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
     variables: {
       id: router.query.postId
@@ -66,6 +67,9 @@ const ViewPost: React.FC = () => {
             <UserProfile user={data?.post?.user as User} showFollow />
           </CardBody>
         </Card>
+        {currentUser?.isStaff && staffMode && (
+          <PostMod post={data?.post as Post} />
+        )}
       </GridItemFour>
     </GridLayout>
   )
