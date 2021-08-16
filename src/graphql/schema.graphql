@@ -157,6 +157,7 @@ type Query {
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
   reply(id: ID!): Reply!
+  topic(name: String!): Topic!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
 }
@@ -242,6 +243,22 @@ input TogglePostLikeInput {
 
 input ToggleReplyLikeInput {
   replyId: ID!
+}
+
+type Topic {
+  id: ID!
+  name: String!
+  posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
+}
+
+type TopicPostsConnection {
+  edges: [TopicPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type TopicPostsConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type User {

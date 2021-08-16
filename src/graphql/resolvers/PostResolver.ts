@@ -72,7 +72,7 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      const yo = await db.post.findMany({
+      return await db.post.findMany({
         ...query,
         where: {
           type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
@@ -87,8 +87,6 @@ builder.queryField('posts', (t) =>
           createdAt: 'desc'
         }
       })
-
-      return yo
     }
   })
 )
