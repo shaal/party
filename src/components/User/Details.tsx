@@ -9,6 +9,7 @@ import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import Follow from './Follow'
 import Followerings from './Followerings'
+import UserMod from './Mod'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
 
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ user }) => {
-  const { currentUser } = useContext(AppContext)
+  const { currentUser, staffMode } = useContext(AppContext)
 
   return (
     <div className="space-y-5 w-96">
@@ -57,6 +58,7 @@ const Details: React.FC<Props> = ({ user }) => {
       )}
       <Social profile={user?.profile as Profile} />
       <OwnedProducts user={user} />
+      {currentUser?.isStaff && staffMode && <UserMod user={user} />}
     </div>
   )
 }
