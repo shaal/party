@@ -14,7 +14,10 @@ builder.prismaObject(db.topic, {
       resolve: (query, root) =>
         db.post.findMany({
           ...query,
-          where: { topics: { some: { topic: { name: root.name } } } }
+          where: { topics: { some: { topic: { name: root.name } } } },
+          orderBy: {
+            createdAt: 'desc'
+          }
         })
     })
   })
