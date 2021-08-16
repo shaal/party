@@ -1,12 +1,15 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useContext } from 'react'
 
+import { Topic } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
+import AppContext from '../utils/AppContext'
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
+import TopicMod from './Mod'
 
 export const TOPIC_QUERY = gql`
   query TopicQuery($name: String!) {
@@ -18,6 +21,7 @@ export const TOPIC_QUERY = gql`
 `
 
 const ViewTopic: React.FC = () => {
+  const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
   const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
     variables: {
@@ -38,6 +42,9 @@ const ViewTopic: React.FC = () => {
             {data?.topic?.name}
           </CardBody>
         </Card>
+        {currentUser?.isStaff && staffMode && (
+          <TopicMod topic={data?.topic as Topic} />
+        )}
       </GridItemFour>
     </GridLayout>
   )
