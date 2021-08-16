@@ -1,4 +1,4 @@
-import './AuthResolver'
+import './User/AuthResolver'
 import './Post/PostResolver'
 import './ResultResolver'
 import './User/UserResolver'
