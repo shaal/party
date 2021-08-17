@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { object, string } from 'zod'
 
 import { User } from '../../../../__generated__/schema.generated'
@@ -10,6 +10,7 @@ import { Form, useZodForm } from '../../../ui/Form'
 import { Input } from '../../../ui/Input'
 import { SuccessMessage } from '../../../ui/SuccessMessage'
 import { TextArea } from '../../../ui/TextArea'
+import { uploadToIPFS } from '../../../utils/uploadToIPFS'
 import {
   AccountSettingsMutation,
   AccountSettingsMutationVariables
@@ -29,6 +30,8 @@ interface Props {
 }
 
 const AccountSettingsForm: React.FC<Props> = ({ user }) => {
+  const [avatar, setAvatar] = useState<string>()
+  const [cover, setCover] = useState<string>()
   const [editUser, editUserResult] = useMutation<
     AccountSettingsMutation,
     AccountSettingsMutationVariables
@@ -44,10 +47,28 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
           bio
           location
           avatar
+          cover
         }
       }
     }
   `)
+
+  useEffect(() => {
+    if (user?.profile?.avatar) setAvatar(user?.profile?.avatar)
+    if (user?.profile?.cover) setCover(user?.profile?.cover)
+  }, [])
+
+  const handleUpload = async (evt: any, type: string) => {
+    evt.preventDefault()
+    // setLoading({ type, status: true })
+
+    try {
+      const cdnURL = await uploadToIPFS(evt.target.files)
+      type === 'avatar' ? setAvatar(cdnURL) : setCover(cdnURL)
+    } finally {
+      // setLoading({ type, status: false })
+    }
+  }
 
   const form = useZodForm({
     schema: editProfileSchema,
@@ -65,7 +86,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ username, email, name, bio, location, avatar }) =>
+      onSubmit={({ username, email, name, bio, location }) =>
         editUser({
           variables: {
             input: {
@@ -74,7 +95,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
               name,
               bio: bio as string,
               location: location as string,
-              avatar
+              avatar: avatar as string,
+              cover: cover as string
             }
           }
         })
@@ -120,11 +142,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       <div className="space-y-1.5">
         <label>Avatar</label>
         <div className="flex items-center gap-3">
-          <img
-            className="rounded-full h-24 w-24"
-            src={form.getValues('avatar')}
-            alt={form.getValues('avatar')}
-          />
+          <img className="rounded-full h-24 w-24" src={avatar} alt={avatar} />
+          <input type="file" onChange={(evt) => handleUpload(evt, 'avatar')} />
         </div>
       </div>
 

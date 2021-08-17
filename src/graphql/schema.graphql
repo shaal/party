@@ -45,8 +45,9 @@ input EditSocialInput {
 }
 
 input EditUserInput {
-  avatar: String!
+  avatar: String
   bio: String
+  cover: String
   email: String!
   location: String
   name: String!

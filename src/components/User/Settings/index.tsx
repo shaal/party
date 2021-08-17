@@ -36,6 +36,7 @@ export const SETTINGS_QUERY = gql`
         bio
         location
         avatar
+        cover
         website
         twitter
         github
