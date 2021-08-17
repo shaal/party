@@ -3,11 +3,12 @@ import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Linkify from 'linkifyjs/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useContext } from 'react'
+import { Fragment, useContext } from 'react'
 
 import { Profile, User } from '../../__generated__/schema.generated'
 import Slug from '../shared/Slug'
 import { Button } from '../ui/Button'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
 import Follow from './Follow'
 import Followerings from './Followerings'
@@ -65,7 +66,17 @@ const Details: React.FC<Props> = ({ user }) => {
       )}
       <Social profile={user?.profile as Profile} />
       <OwnedProducts user={user} />
-      {currentUser?.isStaff && staffMode && <UserMod user={user} />}
+      {currentUser?.isStaff && staffMode && (
+        <Fragment>
+          {user?.spammy && (
+            <ErrorMessage
+              title="Oops!"
+              error={new Error('This user is marked as spammy!')}
+            />
+          )}
+          <UserMod user={user} />
+        </Fragment>
+      )}
     </div>
   )
 }

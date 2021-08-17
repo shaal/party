@@ -20,6 +20,7 @@ export const USER_QUERY = gql`
       followingCount
       isVerified
       isStaff
+      spammy
       profile {
         id
         avatar
