@@ -146,6 +146,21 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
           <input type="file" onChange={(evt) => handleUpload(evt, 'avatar')} />
         </div>
       </div>
+      <div className="space-y-1.5">
+        <label>Cover</label>
+        <div className="space-y-3">
+          {cover && (
+            <div>
+              <img
+                className="rounded-lg object-cover bg-gradient-to-r from-blue-500 to-purple-500 h-60 w-full"
+                src={cover}
+                alt={cover}
+              />
+            </div>
+          )}
+          <input type="file" onChange={(evt) => handleUpload(evt, 'cover')} />
+        </div>
+      </div>
 
       <div className="flex items-center justify-between pt-3">
         <Link href="/settings/change-password">Change password?</Link>
