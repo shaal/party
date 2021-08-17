@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import { useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 import { User } from '../../__generated__/schema.generated'
 import { Button } from '../ui/Button'
@@ -27,12 +28,29 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
       mutation ToggleFollowMutation($input: ToggleFollowInput!) {
         toggleFollow(input: $input) {
           id
+          username
           hasFollowed
           followersCount
           followingCount
         }
       }
-    `
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted(data) {
+        if (data?.toggleFollow?.hasFollowed) {
+          toast.success(
+            `Successfully followed @${data?.toggleFollow?.username}`
+          )
+        } else {
+          toast.success(
+            `Successfully unfollowed @${data?.toggleFollow?.username}`
+          )
+        }
+      }
+    }
   )
 
   useEffect(() => {
