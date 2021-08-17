@@ -77,7 +77,8 @@ builder.queryField('posts', (t) =>
         where: {
           type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
           user: {
-            id: where?.userId as string
+            id: where?.userId as string,
+            spammy: false
           },
           product: {
             id: where?.productId as string
