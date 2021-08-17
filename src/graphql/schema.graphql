@@ -76,7 +76,7 @@ input ModUserInput {
 
 type Mutation {
   changePassword(input: ChangePasswordInput!): Result!
-  createPost(input: CreatePostInput!): Post
+  createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
   createReply(input: CreateReplyInput!): Reply!
   deletePost(input: DeletePostInput!): Post!
