@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { HashtagIcon } from '@heroicons/react/outline'
+import toast from 'react-hot-toast'
 import { boolean, object } from 'zod'
 
 import { User } from '../../__generated__/schema.generated'
@@ -23,14 +24,24 @@ const UserMod: React.FC<Props> = ({ user }) => {
   const [modUser, modUserResult] = useMutation<
     ModUserMutation,
     ModUserMutationVariables
-  >(gql`
-    mutation ModUserMutation($input: ModUserInput!) {
-      modUser(input: $input) {
-        id
-        isVerified
+  >(
+    gql`
+      mutation ModUserMutation($input: ModUserInput!) {
+        modUser(input: $input) {
+          id
+          isVerified
+        }
+      }
+    `,
+    {
+      onError() {
+        return toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        return toast.success('User staff settings updated!')
       }
     }
-  `)
+  )
 
   const form = useZodForm({
     schema: modUserSchema,
