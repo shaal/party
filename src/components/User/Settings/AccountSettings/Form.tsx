@@ -163,7 +163,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       </div>
 
       <div className="flex items-center justify-between pt-3">
-        <Link href="/settings/change-password">Change password?</Link>
+        <Link href="/settings/password">Change password?</Link>
         <Button type="submit">Save</Button>
       </div>
     </Form>
