@@ -18,7 +18,7 @@ import {
 
 const newProductSchema = object({
   name: string().min(1),
-  slug: string().min(1),
+  slug: string().min(1), // TODO: Don't allow space
   description: string().max(255)
 })
 
