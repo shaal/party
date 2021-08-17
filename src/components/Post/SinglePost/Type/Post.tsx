@@ -18,8 +18,8 @@ const PostType: React.FC<Props> = ({ post }) => {
     <div className="space-y-3">
       <div className="text-lg linkify space-y-3 inline-flex">
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
-        {post?.attachments && <Attachments attachments={post?.attachments} />}
       </div>
+      {post?.attachments && <Attachments attachments={post?.attachments} />}
     </div>
   )
 }
