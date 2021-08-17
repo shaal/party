@@ -51,6 +51,7 @@ export const PostFragment = gql`
       id
       username
       hasFollowed
+      isVerified
       profile {
         id
         name

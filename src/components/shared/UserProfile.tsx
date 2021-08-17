@@ -1,3 +1,4 @@
+import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React, { useContext } from 'react'
 
@@ -25,8 +26,11 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
         <div>
           <div className="flex items-center gap-1.5">
             <Link href={`/${user?.username}`} passHref>
-              <div className="font-bold cursor-pointer">
-                {user?.profile?.name}
+              <div className="font-bold cursor-pointer flex items-center space-x-1">
+                <div>{user?.profile?.name}</div>
+                {user?.isVerified && (
+                  <BadgeCheckIcon className="h-4 w-4 text-indigo-500" />
+                )}
               </div>
             </Link>
           </div>
