@@ -1,14 +1,11 @@
 import { md5 } from 'hash-wasm'
 
-import {
-  authenticateUser,
-  hashPassword,
-  verifyPassword
-} from '../../../utils/auth'
+import { authenticateUser, hashPassword } from '../../../utils/auth'
 import { db } from '../../../utils/prisma'
 import { createSession, removeSession } from '../../../utils/sessions'
 import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
+import { changePassword } from './changePassword'
 
 builder.queryField('me', (t) =>
   t.prismaField({
@@ -144,37 +141,7 @@ builder.mutationField('changePassword', (t) =>
       input: t.arg({ type: ChangePasswordInput })
     },
     resolve: async (root, { input }, { session }) => {
-      const user = await db.user.findUnique({ where: { id: session!.userId } })
-
-      const passwordValid = await verifyPassword(
-        user!.hashedPassword,
-        input.currentPassword
-      )
-
-      if (!passwordValid) {
-        throw new Error('Current password was not correct.')
-      }
-
-      await db.user.update({
-        where: { id: user!.id },
-        data: {
-          hashedPassword: await hashPassword(input.newPassword),
-          sessions: {
-            deleteMany: {
-              id: {
-                not: session!.id
-              }
-            }
-          }
-        }
-      })
-
-      // Logout everywhere
-      await db.session.deleteMany({
-        where: { userId: user!.id }
-      })
-
-      return Result.SUCCESS
+      return changePassword(input, session)
     }
   })
 )
