@@ -3,10 +3,9 @@ import { HashtagIcon } from '@heroicons/react/outline'
 import { boolean, object } from 'zod'
 
 import { User } from '../../__generated__/schema.generated'
+import { Button } from '../ui/Button'
 import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
-import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ModUserMutation,
   ModUserMutationVariables
@@ -66,16 +65,12 @@ const UserMod: React.FC<Props> = ({ user }) => {
             })
           }
         >
-          <ErrorMessage
-            title="Error creating account"
-            error={modUserResult.error}
-          />
-          {modUserResult.data && <SuccessMessage>Updated!</SuccessMessage>}
           <div className="flex items-center gap-2">
             <input
               id="verifyUser"
               type="checkbox"
               {...form.register('isVerified')}
+              checked={form.getValues('isVerified')}
             />
             <label htmlFor="verifyUser">Verify the user</label>
           </div>
@@ -84,6 +79,9 @@ const UserMod: React.FC<Props> = ({ user }) => {
             <label htmlFor="flagUser" className="text-red-500">
               Flag this user
             </label>
+          </div>
+          <div className="pt-2">
+            <Button type="submit">Update</Button>
           </div>
         </Form>
       </CardBody>
