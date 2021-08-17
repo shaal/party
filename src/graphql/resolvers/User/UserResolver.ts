@@ -69,9 +69,8 @@ builder.queryField('users', (t) =>
     resolve: async (query, root) => {
       return await db.user.findMany({
         ...query,
-        orderBy: {
-          createdAt: 'desc'
-        }
+        where: { spammy: false },
+        orderBy: { createdAt: 'desc' }
       })
     }
   })
