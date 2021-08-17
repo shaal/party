@@ -90,11 +90,11 @@ const UserMod: React.FC<Props> = ({ user }) => {
           </div>
           <div className="flex items-center gap-2">
             <input
-              id="verifyUser"
+              id="staffUser"
               type="checkbox"
               {...form.register('isStaff')}
             />
-            <label htmlFor="verifyUser">Make as staff</label>
+            <label htmlFor="staffUser">Make as staff</label>
           </div>
           <div className="flex items-center gap-2">
             <input id="flagUser" type="checkbox" />
