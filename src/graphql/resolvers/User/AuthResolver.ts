@@ -1,11 +1,10 @@
-import { md5 } from 'hash-wasm'
-
-import { authenticateUser, hashPassword } from '../../../utils/auth'
+import { authenticateUser } from '../../../utils/auth'
 import { db } from '../../../utils/prisma'
 import { createSession, removeSession } from '../../../utils/sessions'
 import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
 import { changePassword } from './changePassword'
+import { signUp } from './signUp'
 
 builder.queryField('me', (t) =>
   t.prismaField({
@@ -101,24 +100,7 @@ builder.mutationField('signUp', (t) =>
       input: t.arg({ type: SignUpInput })
     },
     resolve: async (query, root, { input }, { req }) => {
-      const user = await db.user.create({
-        ...query,
-        data: {
-          username: input.username,
-          email: input.email,
-          hashedPassword: await hashPassword(input.password),
-          profile: {
-            create: {
-              name: input.username,
-              avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
-            }
-          }
-        }
-      })
-
-      await createSession(req, user)
-
-      return user
+      return signUp(query, input, req)
     }
   })
 )
