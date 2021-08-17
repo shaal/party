@@ -14,7 +14,8 @@ import {
 
 const modUserSchema = object({
   isVerified: boolean(),
-  isStaff: boolean()
+  isStaff: boolean(),
+  spammy: boolean()
 })
 
 interface Props {
@@ -32,6 +33,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
           id
           isVerified
           isStaff
+          spammy
         }
       }
     `,
@@ -49,7 +51,8 @@ const UserMod: React.FC<Props> = ({ user }) => {
     schema: modUserSchema,
     defaultValues: {
       isVerified: user?.isVerified as boolean,
-      isStaff: user?.isStaff as boolean
+      isStaff: user?.isStaff as boolean,
+      spammy: user?.isStaff as boolean
     }
   })
 
@@ -68,13 +71,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
         <Form
           form={form}
           className="space-y-1.5 mt-3 text-sm font-bold"
-          onSubmit={({ isVerified, isStaff }) =>
+          onSubmit={({ isVerified, isStaff, spammy }) =>
             modUser({
               variables: {
                 input: {
                   userId: user?.id,
                   isVerified: isVerified as boolean,
-                  isStaff: isStaff as boolean
+                  isStaff: isStaff as boolean,
+                  spammy: spammy as boolean
                 }
               }
             })
@@ -97,9 +101,13 @@ const UserMod: React.FC<Props> = ({ user }) => {
             <label htmlFor="staffUser">Make as staff</label>
           </div>
           <div className="flex items-center gap-2">
-            <input id="flagUser" type="checkbox" />
-            <label htmlFor="flagUser" className="text-red-500">
-              Flag this user
+            <input
+              id="spammyUser"
+              type="checkbox"
+              {...form.register('spammy')}
+            />
+            <label htmlFor="spammyUser" className="text-red-500">
+              Mark as spammy
             </label>
           </div>
           <div className="pt-2">
