@@ -1,5 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import { LightningBoltIcon } from '@heroicons/react/outline'
+import { LightningBoltIcon as LightningBoltIconOutline } from '@heroicons/react/outline'
+import { LightningBoltIcon as LightningBoltIconSolid } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment } from 'react'
@@ -16,7 +17,11 @@ const Notifications: React.FC = () => {
       {({ open }) => (
         <Fragment>
           <Menu.Button className="flex items-center gap-2">
-            <LightningBoltIcon className="h-6 w-6" />
+            {open ? (
+              <LightningBoltIconSolid className="h-6 w-6" />
+            ) : (
+              <LightningBoltIconOutline className="h-6 w-6" />
+            )}
           </Menu.Button>
           <Transition
             show={open}
