@@ -32,7 +32,7 @@ export const productData = [
   {
     name: 'Gitpod',
     slug: 'gitpod',
-    username: 'aellopos',
+    username: 'filip',
     avatar: 'https://avatars.githubusercontent.com/u/37021919'
   },
   {
