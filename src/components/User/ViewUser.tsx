@@ -21,6 +21,7 @@ export const USER_QUERY = gql`
       profile {
         id
         avatar
+        cover
         name
         bio
         location
@@ -44,7 +45,15 @@ const ViewUser: React.FC = () => {
 
   return (
     <Fragment>
-      <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
+      {data?.user?.profile?.cover ? (
+        <img
+          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
+          src={data?.user?.profile?.cover as string}
+          alt={`@${data?.user?.username}'s cover`}
+        />
+      ) : (
+        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
+      )}
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
