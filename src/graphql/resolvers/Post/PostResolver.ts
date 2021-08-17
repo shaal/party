@@ -4,6 +4,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { getTopics } from '../../utils/getTopics'
 import { parseTopics } from '../../utils/parseTopics'
+import { getUser } from '../Common/getUser'
 import { hasLiked } from '../Common/hasLiked'
 
 builder.prismaObject(db.post, {
@@ -124,7 +125,8 @@ builder.queryField('homeFeed', (t) =>
                   ...following.following.map((user) => user.id),
                   session?.userId
                 ]
-              }
+              },
+              spammy: false
             }
           },
           orderBy: {
@@ -184,21 +186,27 @@ builder.mutationField('createPost', (t) =>
     args: {
       input: t.arg({ type: CreatePostInput })
     },
+    nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return await db.post.create({
-        data: {
-          userId: session!.userId,
-          title: input.title,
-          body: input.body,
-          done: input.done,
-          attachments: input.attachments,
-          type: input.type as PostType,
-          productId: input.productId ? input.productId : null,
-          topics: {
-            create: parseTopics(getTopics(input.body))
+      const user = await getUser(session!.userId)
+      if (!user?.spammy) {
+        return await db.post.create({
+          data: {
+            userId: session!.userId,
+            title: input.title,
+            body: input.body,
+            done: input.done,
+            attachments: input.attachments,
+            type: input.type as PostType,
+            productId: input.productId ? input.productId : null,
+            topics: {
+              create: parseTopics(getTopics(input.body))
+            }
           }
-        }
-      })
+        })
+      } else {
+        throw new Error('Your account is marked as spammy!')
+      }
     }
   })
 )
