@@ -1,5 +1,6 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
+import { modUser } from '../Stafftools/modUser'
 import { followersCount } from './followersCount'
 import { followingCount } from './followingCount'
 import { hasFollowed } from './hasFollowed'
@@ -142,6 +143,27 @@ builder.mutationField('toggleFollow', (t) =>
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await toggleFollow(session?.userId as string, input?.userId)
+    }
+  })
+)
+
+// Admin Ops
+const ModUserInput = builder.inputType('ModUserInput', {
+  fields: (t) => ({
+    userId: t.id({}),
+    isVerified: t.boolean({ required: false })
+  })
+})
+
+builder.mutationField('modUser', (t) =>
+  t.prismaField({
+    type: db.user,
+    args: {
+      input: t.arg({ type: ModUserInput })
+    },
+    nullable: true,
+    resolve: async (query, root, { input }, { session }) => {
+      return modUser(input, session)
     }
   })
 )
