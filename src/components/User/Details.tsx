@@ -1,4 +1,5 @@
 import { LocationMarkerIcon } from '@heroicons/react/outline'
+import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Linkify from 'linkifyjs/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -32,6 +33,9 @@ const Details: React.FC<Props> = ({ user }) => {
       <div>
         <div className="text-2xl font-bold flex items-center gap-1.5">
           {user?.profile?.name}
+          {user?.isVerified && (
+            <BadgeCheckIcon className="h-6 w-6 text-indigo-500" />
+          )}
         </div>
         <Slug slug={user?.username} prefix="@" className="text-xl" />
       </div>
