@@ -13,6 +13,7 @@ export const CURRENT_USER_QUERY = gql`
       id
       username
       isStaff
+      spammy
       profile {
         id
         avatar
