@@ -2,7 +2,6 @@ import { gql, useMutation } from '@apollo/client'
 import React from 'react'
 import { object, string } from 'zod'
 
-import { GridLayout } from '../../../GridLayout'
 import { Button } from '../../../ui/Button'
 import { ErrorMessage } from '../../../ui/ErrorMessage'
 import { Form, useZodForm } from '../../../ui/Form'
@@ -35,45 +34,46 @@ const ChangePasswordForm: React.FC = () => {
   const form = useZodForm({ schema: changePasswordSchema })
 
   return (
-    <GridLayout>
-      <Form
-        form={form}
-        onSubmit={({ currentPassword, newPassword }) =>
-          changePassword({
-            variables: { input: { currentPassword, newPassword } }
-          })
-        }
-      >
-        <ErrorMessage
-          title="Failed to change password"
-          error={changePasswordResult.error}
-        />
+    <Form
+      form={form}
+      className="space-y-4"
+      onSubmit={({ currentPassword, newPassword }) =>
+        changePassword({
+          variables: { input: { currentPassword, newPassword } }
+        })
+      }
+    >
+      <ErrorMessage
+        title="Failed to change password"
+        error={changePasswordResult.error}
+      />
 
-        {changePasswordResult.data && (
-          <SuccessMessage>Password has been changed!</SuccessMessage>
-        )}
+      {changePasswordResult.data && (
+        <SuccessMessage>Password has been changed!</SuccessMessage>
+      )}
 
-        <Input
-          label="Current Password"
-          type="password"
-          autoComplete="current-password"
-          {...form.register('currentPassword')}
-        />
-        <Input
-          label="New Password"
-          type="password"
-          autoComplete="new-password"
-          {...form.register('newPassword')}
-        />
-        <Input
-          label="Confirm New Password"
-          type="password"
-          autoComplete="new-password"
-          {...form.register('confirmNewPassword')}
-        />
+      <Input
+        label="Current Password"
+        type="password"
+        autoComplete="current-password"
+        {...form.register('currentPassword')}
+      />
+      <Input
+        label="New Password"
+        type="password"
+        autoComplete="new-password"
+        {...form.register('newPassword')}
+      />
+      <Input
+        label="Confirm New Password"
+        type="password"
+        autoComplete="new-password"
+        {...form.register('confirmNewPassword')}
+      />
+      <div className="ml-auto">
         <Button type="submit">Change Password</Button>
-      </Form>
-    </GridLayout>
+      </div>
+    </Form>
   )
 }
 
