@@ -3,6 +3,7 @@ import * as linkify from 'linkifyjs'
 import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
+import toast from 'react-hot-toast'
 
 import { Post } from '../../../../__generated__/schema.generated'
 import { TaskCheckbox } from '../../../ui/TaskCheckbox'
@@ -32,7 +33,15 @@ const TaskType: React.FC<Props> = ({ task }) => {
           done
         }
       }
-    `
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        toast.success('Task updated successfully!')
+      }
+    }
   )
 
   const toggleTaskStatus = () => {
