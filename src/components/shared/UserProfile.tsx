@@ -29,7 +29,9 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
               <div className="font-bold cursor-pointer flex items-center space-x-1">
                 <div>{user?.profile?.name}</div>
                 {user?.isVerified && (
-                  <BadgeCheckIcon className="h-4 w-4 text-indigo-500" />
+                  <span title="Verified">
+                    <BadgeCheckIcon className="h-4 w-4 text-indigo-500" />
+                  </span>
                 )}
               </div>
             </Link>

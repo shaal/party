@@ -35,9 +35,15 @@ const Details: React.FC<Props> = ({ user }) => {
         <div className="text-2xl font-bold flex items-center gap-1.5">
           {user?.profile?.name}
           {user?.isVerified && (
-            <BadgeCheckIcon className="h-6 w-6 text-indigo-500" />
+            <span title="Verified">
+              <BadgeCheckIcon className="h-6 w-6 text-indigo-500" />
+            </span>
           )}
-          {user?.isStaff && <SupportIcon className="h-6 w-6 text-yellow-600" />}
+          {user?.isStaff && (
+            <span title="Staff">
+              <SupportIcon className="h-6 w-6 text-yellow-600" />
+            </span>
+          )}
         </div>
         <Slug slug={user?.username} prefix="@" className="text-xl" />
       </div>
