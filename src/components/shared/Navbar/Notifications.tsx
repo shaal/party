@@ -30,7 +30,7 @@ const Notifications: React.FC = () => {
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 w-48 rounded-lg shadow-md py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none mt-2"
+              className="origin-top-right absolute right-0 w-96 rounded-lg shadow-md py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none mt-2"
             >
               <Menu.Item
                 as={NextLink}
@@ -38,11 +38,11 @@ const Notifications: React.FC = () => {
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
-                    'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                    'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 cursor-pointer'
                   )
                 }
               >
-                <div>WIP</div>
+                <div>TBD</div>
               </Menu.Item>
             </Menu.Items>
           </Transition>
