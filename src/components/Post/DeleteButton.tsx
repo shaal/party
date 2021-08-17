@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { TrashIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import { Post } from '../../__generated__/schema.generated'
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const DeleteButton: React.FC<Props> = ({ entity }) => {
+  const router = useRouter()
   const [deleteNote, deleteNoteResult] = useMutation<
     DeletePostMutation,
     DeletePostMutationVariables
@@ -23,7 +25,12 @@ const DeleteButton: React.FC<Props> = ({ entity }) => {
           id
         }
       }
-    `
+    `,
+    {
+      onCompleted() {
+        router.push('/')
+      }
+    }
   )
 
   return (
