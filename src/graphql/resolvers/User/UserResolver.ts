@@ -147,11 +147,13 @@ builder.mutationField('toggleFollow', (t) =>
   })
 )
 
-// Admin Ops
+// Staff Ops
 const ModUserInput = builder.inputType('ModUserInput', {
   fields: (t) => ({
     userId: t.id({}),
-    isVerified: t.boolean({ required: false })
+    isVerified: t.boolean({ required: false }),
+    isStaff: t.boolean({ required: false }),
+    spammy: t.boolean({ required: false })
   })
 })
 

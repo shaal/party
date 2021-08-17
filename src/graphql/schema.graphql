@@ -68,7 +68,9 @@ input LoginInput {
 }
 
 input ModUserInput {
+  isStaff: Boolean
   isVerified: Boolean
+  spammy: Boolean
   userId: ID!
 }
 

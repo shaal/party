@@ -10,7 +10,9 @@ export const modUser = async (input: ModUserInput, session: any) => {
     return await db.user.update({
       where: { id: input.userId },
       data: {
-        isVerified: input.isVerified as boolean
+        isVerified: input.isVerified as boolean,
+        isStaff: input.isStaff as boolean,
+        spammy: input.spammy as boolean
       }
     })
   }

@@ -13,7 +13,8 @@ import {
 } from './__generated__/Mod.generated'
 
 const modUserSchema = object({
-  isVerified: boolean()
+  isVerified: boolean(),
+  isStaff: boolean()
 })
 
 interface Props {
@@ -30,6 +31,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
         modUser(input: $input) {
           id
           isVerified
+          isStaff
         }
       }
     `,
@@ -46,7 +48,8 @@ const UserMod: React.FC<Props> = ({ user }) => {
   const form = useZodForm({
     schema: modUserSchema,
     defaultValues: {
-      isVerified: user?.isVerified as boolean
+      isVerified: user?.isVerified as boolean,
+      isStaff: user?.isStaff as boolean
     }
   })
 
@@ -65,12 +68,13 @@ const UserMod: React.FC<Props> = ({ user }) => {
         <Form
           form={form}
           className="space-y-1.5 mt-3 text-sm font-bold"
-          onSubmit={({ isVerified }) =>
+          onSubmit={({ isVerified, isStaff }) =>
             modUser({
               variables: {
                 input: {
                   userId: user?.id,
-                  isVerified: isVerified as boolean
+                  isVerified: isVerified as boolean,
+                  isStaff: isStaff as boolean
                 }
               }
             })
@@ -83,6 +87,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
               {...form.register('isVerified')}
             />
             <label htmlFor="verifyUser">Verify the user</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              id="verifyUser"
+              type="checkbox"
+              {...form.register('isStaff')}
+            />
+            <label htmlFor="verifyUser">Make as staff</label>
           </div>
           <div className="flex items-center gap-2">
             <input id="flagUser" type="checkbox" />
