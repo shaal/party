@@ -57,7 +57,9 @@ const ViewPost: React.FC = () => {
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
           <SinglePost post={data?.post as Post} />
-          {!loading && currentUser && <NewReply post={data?.post as Post} />}
+          {!loading && !currentUser?.spammy && (
+            <NewReply post={data?.post as Post} />
+          )}
           <Replies post={data?.post as Post} />
         </div>
       </GridItemEight>
