@@ -52,7 +52,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
     defaultValues: {
       isVerified: user?.isVerified as boolean,
       isStaff: user?.isStaff as boolean,
-      spammy: user?.isStaff as boolean
+      spammy: user?.spammy as boolean
     }
   })
 
