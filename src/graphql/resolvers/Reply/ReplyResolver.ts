@@ -68,7 +68,7 @@ builder.queryField('reply', (t) =>
       id: t.arg.id({})
     },
     resolve: async (query, root, { id }) => {
-      return await db.reply.findFirst({
+      return await db.reply.findUnique({
         ...query,
         where: {
           id
