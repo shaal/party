@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Menu, Transition } from '@headlessui/react'
+import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
@@ -145,7 +146,17 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                       )
                     }
                   >
-                    {staffMode ? 'Disable staff mode' : 'Enable staff mode'}
+                    {staffMode ? (
+                      <div className="flex items-center space-x-1.5">
+                        <div>Disable staff mode</div>
+                        <ShieldExclamationIcon className="h-4 w-4 text-yellow-600" />
+                      </div>
+                    ) : (
+                      <div className="flex items-center space-x-1.5">
+                        <div>Enable staff mode</div>
+                        <ShieldCheckIcon className="h-4 w-4 text-green-600" />
+                      </div>
+                    )}
                   </Menu.Item>
                 </Fragment>
               )}
