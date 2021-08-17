@@ -7,6 +7,7 @@ import {
 import Markdown from 'markdown-to-jsx'
 import React, { Fragment } from 'react'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { HOME_FEED_QUERY } from '../../../Home/Feed'
@@ -49,6 +50,7 @@ const QuestionType: React.FC = () => {
       onCompleted() {
         setAttachments([])
         form.reset()
+        toast.success('Task has been created successfully!')
       }
     }
   )

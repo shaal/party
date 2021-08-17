@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { boolean, object, string } from 'zod'
 
 import { HOME_FEED_QUERY } from '../../../Home/Feed'
@@ -42,6 +43,7 @@ const TaskType: React.FC = () => {
       onCompleted() {
         setAttachments([])
         form.reset()
+        toast.success('Question has been created successfully!')
       }
     }
   )

@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { HOME_FEED_QUERY } from '../../../Home/Feed'
@@ -40,6 +41,7 @@ const PostType: React.FC = () => {
       onCompleted() {
         setAttachments([])
         form.reset()
+        toast.success('Post has been created successfully!')
       }
     }
   )
