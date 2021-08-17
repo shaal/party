@@ -18,6 +18,8 @@ export const USER_QUERY = gql`
       hasFollowed
       followersCount
       followingCount
+      isVerified
+      isStaff
       profile {
         id
         avatar

@@ -70,7 +70,6 @@ const UserMod: React.FC<Props> = ({ user }) => {
               id="verifyUser"
               type="checkbox"
               {...form.register('isVerified')}
-              checked={form.getValues('isVerified')}
             />
             <label htmlFor="verifyUser">Verify the user</label>
           </div>

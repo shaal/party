@@ -1,5 +1,6 @@
 import { LocationMarkerIcon } from '@heroicons/react/outline'
 import Linkify from 'linkifyjs/react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
 
@@ -9,9 +10,10 @@ import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import Follow from './Follow'
 import Followerings from './Followerings'
-import UserMod from './Mod'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
+
+const UserMod = dynamic(() => import('./Mod'))
 
 interface Props {
   user: User
