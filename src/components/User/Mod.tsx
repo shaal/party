@@ -39,10 +39,10 @@ const UserMod: React.FC<Props> = ({ user }) => {
     `,
     {
       onError() {
-        return toast.error('Something went wrong!')
+        toast.error('Something went wrong!')
       },
       onCompleted() {
-        return toast.success('User staff settings updated!')
+        toast.success('User staff settings updated!')
       }
     }
   )
