@@ -4,7 +4,9 @@ import { boolean, object } from 'zod'
 
 import { User } from '../../__generated__/schema.generated'
 import { Card, CardBody } from '../ui/Card'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import { Form, useZodForm } from '../ui/Form'
+import { SuccessMessage } from '../ui/SuccessMessage'
 import {
   ModUserMutation,
   ModUserMutationVariables
@@ -64,6 +66,11 @@ const UserMod: React.FC<Props> = ({ user }) => {
             })
           }
         >
+          <ErrorMessage
+            title="Error creating account"
+            error={modUserResult.error}
+          />
+          {modUserResult.data && <SuccessMessage>Updated!</SuccessMessage>}
           <div className="flex items-center gap-2">
             <input
               id="verifyUser"
