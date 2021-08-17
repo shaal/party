@@ -9,6 +9,7 @@ import { Fragment } from 'react'
 import { Button } from '../../ui/Button'
 import AppContext from '../../utils/AppContext'
 import MenuItems from './MenuItems'
+import Notifications from './Notifications'
 import StaffBar from './StaffBar'
 
 interface NavItemProps {
@@ -110,6 +111,7 @@ const Navbar: React.FC = () => {
                   <div className="shimmer rounded-full h-9 w-9"></div>
                 ) : currentUser ? (
                   <div className="flex items-center gap-5">
+                    {currentUser?.isStaff && staffMode && <Notifications />}
                     <MenuItems currentUser={currentUser} />
                   </div>
                 ) : (
