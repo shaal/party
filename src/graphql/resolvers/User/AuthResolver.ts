@@ -169,6 +169,11 @@ builder.mutationField('changePassword', (t) =>
         }
       })
 
+      // Logout everywhere
+      await db.session.deleteMany({
+        where: { userId: user!.id }
+      })
+
       return Result.SUCCESS
     }
   })

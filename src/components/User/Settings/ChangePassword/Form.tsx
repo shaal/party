@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
 
@@ -22,14 +23,22 @@ const changePasswordSchema = object({
 })
 
 const ChangePasswordForm: React.FC = () => {
+  const router = useRouter()
   const [changePassword, changePasswordResult] = useMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables
-  >(gql`
-    mutation ChangePasswordMutation($input: ChangePasswordInput!) {
-      changePassword(input: $input)
+  >(
+    gql`
+      mutation ChangePasswordMutation($input: ChangePasswordInput!) {
+        changePassword(input: $input)
+      }
+    `,
+    {
+      onCompleted() {
+        router.push('/login')
+      }
     }
-  `)
+  )
 
   const form = useZodForm({ schema: changePasswordSchema })
 

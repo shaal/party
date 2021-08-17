@@ -17,7 +17,7 @@ const ChangePassword: React.FC<Props> = ({ currentUser }) => {
         <SettingsHelper
           heading="Change password"
           description={
-            "Update your account's contact information and email address."
+            'After a successful password update, you will be redirected to the login page where you can log in with your new password.'
           }
         />
       </GridItemFour>

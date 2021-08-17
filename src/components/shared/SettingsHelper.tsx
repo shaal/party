@@ -11,7 +11,7 @@ const SettingsHelper: React.FC<Props> = ({ icon, heading, description }) => {
         {icon}
         <div>{heading}</div>
       </div>
-      <div>{description}</div>
+      <div className="text-gray-600 dark:text-gray-400">{description}</div>
     </div>
   )
 }
