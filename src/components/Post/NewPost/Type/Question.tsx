@@ -47,6 +47,7 @@ const QuestionType: React.FC = () => {
     {
       refetchQueries: [{ query: HOME_FEED_QUERY }],
       onCompleted() {
+        setAttachments([])
         form.reset()
       }
     }
