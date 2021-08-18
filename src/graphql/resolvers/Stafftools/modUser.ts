@@ -1,7 +1,11 @@
 import { ModUserInput } from '../../../__generated__/schema.generated'
 import { db } from '../../../utils/prisma'
+import { Session } from '.prisma/client'
 
-export const modUser = async (input: ModUserInput, session: any) => {
+export const modUser = async (
+  input: ModUserInput,
+  session: Session | null | undefined
+) => {
   const actionUser = await db.user.findUnique({
     where: { id: session!.userId }
   })
