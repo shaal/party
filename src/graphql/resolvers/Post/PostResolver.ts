@@ -147,6 +147,7 @@ const EditPostInput = builder.inputType('EditPostInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('editPost', (t) =>
   t.prismaField({
     type: db.post,
@@ -172,6 +173,7 @@ builder.mutationField('editPost', (t) =>
   })
 )
 
+// TODO: Split to function
 const DeletePostInput = builder.inputType('DeletePostInput', {
   fields: (t) => ({
     id: t.id({})
