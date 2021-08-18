@@ -17,6 +17,9 @@ export const PRODUCT_QUERY = gql`
       slug
       avatar
       description
+      user {
+        id
+      }
     }
   }
 `

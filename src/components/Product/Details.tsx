@@ -1,7 +1,9 @@
 import Linkify from 'linkifyjs/react'
+import Link from 'next/link'
 import { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
+import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import ProductMod from './Mod'
 
@@ -25,6 +27,15 @@ const Details: React.FC<Props> = ({ product }) => {
         </div>
         <div className="text-xl">{product?.slug}</div>
       </div>
+      {currentUser?.id !== product?.user?.id ? (
+        <div>Follow</div>
+      ) : (
+        <Link href="/settings" passHref>
+          <Button size="md" variant="success">
+            Edit Product
+          </Button>
+        </Link>
+      )}
       {product?.description && (
         <div className="linkify">
           <Linkify>{product?.description}</Linkify>
