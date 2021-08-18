@@ -3,7 +3,6 @@ import { NextSeo } from 'next-seo'
 import { useEffect, useState } from 'react'
 
 import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
-import Footer from './shared/Footer'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
@@ -56,7 +55,6 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
-        <Footer />
       </div>
     </AppContext.Provider>
   )
