@@ -38,9 +38,7 @@ model User {
 }
 
 model Session {
-  id     String  @id @default(uuid())
-  spammy Boolean
-  ip     String?
+  id String @id @default(uuid())
 
   // Timestamps
   createdAt DateTime @default(now())
