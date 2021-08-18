@@ -70,7 +70,7 @@ builder.queryField('posts', (t) =>
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
-    resolve: async (query, root, { where }, { session }) => {
+    resolve: async (query, root, { where }) => {
       return await getPosts(query, where)
     }
   })
