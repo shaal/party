@@ -7,6 +7,10 @@ export const modUser = async (input: ModUserInput, session: any) => {
   })
 
   if (actionUser?.isStaff) {
+    if (input.spammy) {
+      await db.session.deleteMany({ where: { userId: input.userId } })
+    }
+
     return await db.user.update({
       where: { id: input.userId },
       data: {
