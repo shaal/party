@@ -56,7 +56,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
   useEffect(() => {
     if (user?.profile?.avatar) setAvatar(user?.profile?.avatar)
     if (user?.profile?.cover) setCover(user?.profile?.cover)
-  }, [])
+  }, [user])
 
   const handleUpload = async (evt: any, type: string) => {
     evt.preventDefault()
