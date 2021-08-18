@@ -2,9 +2,8 @@ import { PostType } from '@prisma/client'
 
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { getTopics } from '../../utils/getTopics'
-import { parseTopics } from '../../utils/parseTopics'
 import { hasLiked } from '../Common/hasLiked'
+import { createPost } from './createPost'
 
 builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),
@@ -186,24 +185,7 @@ builder.mutationField('createPost', (t) =>
       input: t.arg({ type: CreatePostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      if (getTopics(input.body)?.length > 5) {
-        throw new Error('Your post should not contain more than 5 topics')
-      }
-      return await db.post.create({
-        ...query,
-        data: {
-          userId: session!.userId,
-          title: input.title,
-          body: input.body,
-          done: input.done,
-          attachments: input.attachments,
-          type: input.type as PostType,
-          productId: input.productId ? input.productId : null,
-          topics: {
-            create: parseTopics(getTopics(input.body))
-          }
-        }
-      })
+      return await createPost(query, input, session)
     }
   })
 )
