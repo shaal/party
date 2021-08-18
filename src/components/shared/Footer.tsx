@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <footer className="mt-4 leading-7 text-sm">
+    <footer className="mt-4 leading-7 text-sm sticky top-20">
       <span className="text-gray-500 dark:text-gray-300 font-bold pr-3">
         © Devparty
       </span>
