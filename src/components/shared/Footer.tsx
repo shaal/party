@@ -11,14 +11,25 @@ const Footer: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <footer className="mt-4 space-x-4">
-      <span className="text-gray-500 dark:text-gray-300 font-bold">
+    <footer className="mt-4 leading-7 text-sm">
+      <span className="text-gray-500 dark:text-gray-300 font-bold pr-3">
         © Devparty
       </span>
-      <Link href="/">About</Link>
-      <Link href="/">Terms</Link>
-      <Link href="/">Privacy</Link>
-      <a href="https://gitlab.com/yo/devparty" target="_blank" rel="noreferrer">
+      <span className="pr-3">
+        <Link href="/">About</Link>
+      </span>
+      <span className="pr-3">
+        <Link href="/">Terms</Link>
+      </span>
+      <span className="pr-3">
+        <Link href="/">Privacy</Link>
+      </span>
+      <a
+        className="pr-3"
+        href="https://gitlab.com/yo/devparty"
+        target="_blank"
+        rel="noreferrer"
+      >
         GitLab
       </a>
       {currentUser?.isStaff &&
