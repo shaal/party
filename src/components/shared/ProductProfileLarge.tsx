@@ -24,7 +24,11 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
             </Link>
           </div>
           <Slug slug={product?.slug} />
-          {product?.description && <div>{product?.description}</div>}
+          {product?.description && (
+            <div className="mt-2 text-gray-600 dark:text-gray-300">
+              {product?.description}
+            </div>
+          )}
         </div>
       </div>
     </div>
