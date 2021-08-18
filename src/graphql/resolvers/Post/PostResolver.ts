@@ -4,6 +4,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './createPost'
+import { getPosts } from './getPosts'
 
 builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),
@@ -71,22 +72,7 @@ builder.queryField('posts', (t) =>
       where: t.arg({ type: WherePostsInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      return await db.post.findMany({
-        ...query,
-        where: {
-          type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-          user: {
-            id: where?.userId as string,
-            spammy: false
-          },
-          product: {
-            id: where?.productId as string
-          }
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
+      return await getPosts(query, where)
     }
   })
 )
