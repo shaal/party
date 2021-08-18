@@ -14,7 +14,7 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
       <div className="flex space-x-3 items-center">
         <img
           src={product?.avatar as string}
-          className="h-11 w-11 rounded-lg bg-gray-200"
+          className="h-16 w-16 rounded-lg bg-gray-200"
           alt={`#${product?.slug}'s avatar`}
         />
         <div>
@@ -24,6 +24,7 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
             </Link>
           </div>
           <Slug slug={product?.slug} />
+          {product?.description && <div>{product?.description}</div>}
         </div>
       </div>
     </div>
