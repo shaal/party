@@ -25,7 +25,8 @@ async function main() {
         profile: {
           create: {
             name: user.name,
-            avatar: user.avatar
+            avatar: user.avatar,
+            bio: user.bio
           }
         }
       }
