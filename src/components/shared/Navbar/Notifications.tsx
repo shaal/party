@@ -24,7 +24,7 @@ const Notifications: React.FC = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Popover.Panel className="text-black dark:text-gray-200 absolute text-center top-[3.1rem] md:top-10 right-0 z-20 w-full md:min-w-[25rem]">
+        <Popover.Panel className="text-black dark:text-gray-200 absolute right-0 z-20 w-full md:min-w-[25rem] py-1 mt-2">
           <div className="mx-2 md:mx-0 bg-white dark:bg-gray-900 py-2 px-2 shadow-lg rounded-xl transition border border-gray-200 dark:border-gray-800 max-h-[80vh]">
             <div>WIP</div>
           </div>
