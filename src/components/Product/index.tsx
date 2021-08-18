@@ -67,7 +67,10 @@ const Products: React.FC = () => {
       </GridItemEight>
       <GridItemFour>
         <Card>
-          <CardBody>
+          <CardBody className="space-y-3">
+            <div>
+              Launch a new product to Devparty and get noticed by peoples
+            </div>
             <Link href="/products/new" passHref>
               <Button>Create new Product</Button>
             </Link>
