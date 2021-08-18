@@ -8,7 +8,11 @@ import { useContext } from 'react'
 import AppContext from '../utils/AppContext'
 
 const Footer: React.FC = () => {
-  const { currentUser, staffMode } = useContext(AppContext)
+  const { currentUser, staffMode, setStaffMode } = useContext(AppContext)
+  const toggleStaffMode = () => {
+    localStorage.setItem('staffMode', String(!staffMode))
+    setStaffMode(!staffMode)
+  }
 
   return (
     <footer className="mt-4 leading-7 text-sm sticky top-20">
@@ -49,18 +53,21 @@ const Footer: React.FC = () => {
         >
           ▲ Powered by Vercel
         </a>
-        {currentUser?.isStaff &&
-          (staffMode ? (
-            <div className="flex items-center space-x-1 text-red-500">
-              <ShieldCheckIcon className="h-4 w-4" />
-              <div>Staff mode on</div>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-1 text-green-600">
-              <ShieldExclamationIcon className="h-4 w-4" />
-              <div>Staff mode off</div>
-            </div>
-          ))}
+        {currentUser?.isStaff && (
+          <a onClick={toggleStaffMode} className="cursor-pointer">
+            {staffMode ? (
+              <div className="flex items-center space-x-1 text-red-500">
+                <ShieldCheckIcon className="h-4 w-4" />
+                <div>Staff mode on</div>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-1 text-green-600">
+                <ShieldExclamationIcon className="h-4 w-4" />
+                <div>Staff mode off</div>
+              </div>
+            )}
+          </a>
+        )}
       </div>
     </footer>
   )
