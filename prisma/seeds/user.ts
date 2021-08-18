@@ -5,15 +5,15 @@ export const userData = [
     name: 'Yoginth',
     isStaff: true,
     avatar: 'https://i.ibb.co/Kw0Jbzf/avatar.png',
-    bio: ''
+    bio: '요기 • Creator of @Taskord • Mod at @thepracticaldev • BTS Fanboi ⟬⟭ • he/him 🏳️‍🌈🌳'
   },
   {
     email: 'filip@hey.com',
     username: 'filip',
     name: 'Filip Troníček',
     isStaff: true,
-    avatar: 'https://i.ibb.co/1nyH58W/avatar.jpg',
-    bio: ''
+    avatar: 'https://avatars.githubusercontent.com/u/29888641',
+    bio: 'A weird 16-year old who loves JavaScript and Python for a better world with OSS'
   },
   {
     email: 'svobodavl@hey.com',
