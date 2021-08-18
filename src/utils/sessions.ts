@@ -39,6 +39,7 @@ export async function createSession(req: IncomingMessage, user: User) {
   const session = await db.session.create({
     data: {
       userId: user.id,
+      spammy: user.spammy,
       expiresAt: addSeconds(new Date(), SESSION_TTL)
     }
   })
