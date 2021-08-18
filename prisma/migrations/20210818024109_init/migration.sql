@@ -19,6 +19,8 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Session" (
     "id" TEXT NOT NULL,
+    "spammy" BOOLEAN NOT NULL,
+    "ip" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
