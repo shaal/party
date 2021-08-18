@@ -62,6 +62,7 @@ builder.queryField('user', (t) =>
   })
 )
 
+// TODO: Split to function
 builder.queryField('users', (t) =>
   t.prismaConnection({
     type: db.user,
@@ -97,6 +98,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('editUser', (t) =>
   t.prismaField({
     type: db.user,
