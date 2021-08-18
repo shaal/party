@@ -149,12 +149,12 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                     {staffMode ? (
                       <div className="flex items-center space-x-1.5">
                         <div>Disable staff mode</div>
-                        <ShieldExclamationIcon className="h-4 w-4 text-yellow-600" />
+                        <ShieldExclamationIcon className="h-4 w-4 text-green-600" />
                       </div>
                     ) : (
                       <div className="flex items-center space-x-1.5">
                         <div>Enable staff mode</div>
-                        <ShieldCheckIcon className="h-4 w-4 text-green-600" />
+                        <ShieldCheckIcon className="h-4 w-4 text-red-500" />
                       </div>
                     )}
                   </Menu.Item>
