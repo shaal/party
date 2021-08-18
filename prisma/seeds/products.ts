@@ -25,14 +25,15 @@ export const productData = [
     slug: 'minecraft',
     username: 'svobodavl',
     avatar: 'https://i.ibb.co/0m8qyj8/avatar.jpg',
-    description: ''
+    description:
+      'Minecraft is a sandbox video game developed by the Swedish video game developer Mojang Studios.'
   },
   {
     name: 'Prisma',
     slug: 'prisma',
     username: 'kahy',
     avatar: 'https://avatars.githubusercontent.com/u/17219288',
-    description: ''
+    description: 'Prisma makes working with databases easy'
   },
   {
     name: 'Gitpod',
