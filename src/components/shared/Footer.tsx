@@ -1,30 +1,38 @@
+import {
+  ShieldCheckIcon,
+  ShieldExclamationIcon
+} from '@heroicons/react/outline'
 import Link from 'next/link'
+import { useContext } from 'react'
+
+import AppContext from '../utils/AppContext'
 
 const Footer: React.FC = () => {
+  const { currentUser, staffMode } = useContext(AppContext)
+
   return (
-    <footer className="p-5 flex justify-between items-center">
-      <div className="flex justify-between items-center gap-7">
-        <img className="h-10" src="/footer-logo.svg" alt="Devparty" />
-        <Link href="/">About</Link>
-        <Link href="/">Terms</Link>
-        <Link href="/">Privacy</Link>
-        <a
-          href="https://gitlab.com/yo/devparty"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitLab
-        </a>
-      </div>
-      <div>
-        <a href="https://vercel.com/?utm_source=Devparty&utm_campaign=oss">
-          <img
-            className="h-9"
-            src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
-            alt="Vercel"
-          />
-        </a>
-      </div>
+    <footer className="mt-4 space-x-4">
+      <span className="text-gray-500 dark:text-gray-300 font-bold">
+        © Devparty
+      </span>
+      <Link href="/">About</Link>
+      <Link href="/">Terms</Link>
+      <Link href="/">Privacy</Link>
+      <a href="https://gitlab.com/yo/devparty" target="_blank" rel="noreferrer">
+        GitLab
+      </a>
+      {currentUser?.isStaff &&
+        (staffMode ? (
+          <div className="flex items-center space-x-1 text-red-500">
+            <ShieldCheckIcon className="h-4 w-4" />
+            <div>Staff mode on</div>
+          </div>
+        ) : (
+          <div className="flex items-center space-x-1 text-green-600">
+            <ShieldExclamationIcon className="h-4 w-4" />
+            <div>Staff mode off</div>
+          </div>
+        ))}
     </footer>
   )
 }

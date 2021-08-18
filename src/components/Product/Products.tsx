@@ -6,6 +6,7 @@ import React, { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import Footer from '../shared/Footer'
 import ProductProfileLarge from '../shared/ProductProfileLarge'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
@@ -81,6 +82,7 @@ const Products: React.FC = () => {
             </Link>
           </CardBody>
         </Card>
+        <Footer />
       </GridItemFour>
     </GridLayout>
   )
