@@ -40,6 +40,7 @@ async function main() {
         name: product.name,
         slug: product.slug,
         avatar: product.avatar,
+        description: product.description,
         user: {
           connect: {
             username: product.username
