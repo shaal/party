@@ -63,9 +63,7 @@ const SingleReply: React.FC<Props> = ({ reply }) => {
         </div>
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
-        {!currentUser?.spammy && (
-          <LikeButton entity={reply} handleLike={handleLike} loading={false} />
-        )}
+        <LikeButton entity={reply} handleLike={handleLike} loading={false} />
         <Link href={`/replies/${reply?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />

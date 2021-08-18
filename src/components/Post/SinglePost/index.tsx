@@ -114,9 +114,7 @@ const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
-        {!currentUser?.spammy && (
-          <LikeButton entity={post} handleLike={handleLike} loading={false} />
-        )}
+        <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />

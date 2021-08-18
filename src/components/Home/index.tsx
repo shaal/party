@@ -24,7 +24,7 @@ const Home: React.FC = () => {
       <GridLayout>
         <GridItemEight>
           <div className="space-y-3">
-            {data?.me && !data?.me?.spammy && <NewPost />}
+            {data?.me && <NewPost />}
             <FeedType setFeedType={setFeedType} />
             <HomeFeed feedType={feedType} />
             <ErrorMessage
