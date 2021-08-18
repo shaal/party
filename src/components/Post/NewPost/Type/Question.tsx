@@ -50,7 +50,7 @@ const QuestionType: React.FC = () => {
       onCompleted() {
         setAttachments([])
         form.reset()
-        toast.success('Task has been created successfully!')
+        toast.success('Question has been created successfully!')
       }
     }
   )
