@@ -190,6 +190,7 @@ builder.mutationField('createPost', (t) =>
         throw new Error('Your post should not contain more than 5 topics')
       }
       return await db.post.create({
+        ...query,
         data: {
           userId: session!.userId,
           title: input.title,
