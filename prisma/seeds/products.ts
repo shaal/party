@@ -11,14 +11,14 @@ export const productData = [
     slug: 'taskord',
     username: 'yoginth',
     avatar: 'https://i.ibb.co/f0stLvg/taskord.png',
-    description: ''
+    description: '✅ Get things done socially'
   },
   {
     name: 'Interclip',
     slug: 'interclip',
     username: 'filip',
     avatar: 'https://i.ibb.co/WVDc1j7/iclip.png',
-    description: ''
+    description: 'A clipboard and file sharing tool'
   },
   {
     name: 'Minecraft',
