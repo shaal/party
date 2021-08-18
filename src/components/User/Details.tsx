@@ -47,9 +47,7 @@ const Details: React.FC<Props> = ({ user }) => {
         </div>
         <Slug slug={user?.username} prefix="@" className="text-xl" />
       </div>
-      <div>
-        <Followerings user={user} />
-      </div>
+      <Followerings user={user} />
       {currentUser?.id !== user?.id ? (
         <Follow user={user} showText={true} />
       ) : (
