@@ -65,7 +65,11 @@ const LoginForm: React.FC = () => {
                 login({ variables: { input: { email, password } } })
               }
             >
-              <ErrorMessage title="Login failed." error={loginResult.error} />
+              <ErrorMessage
+                title="Login failed."
+                error={loginResult.error}
+                className="mb-3"
+              />
               <div className="space-y-4">
                 <div>
                   <Input

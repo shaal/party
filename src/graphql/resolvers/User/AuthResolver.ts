@@ -62,8 +62,12 @@ builder.mutationField('login', (t) =>
     },
     resolve: async (_query, root, { input }, { req }) => {
       const user = await authenticateUser(input.email, input.password)
-      await createSession(req, user)
-      return user
+      if (user.spammy) {
+        throw new Error('Your account is suspended!')
+      } else {
+        await createSession(req, user)
+        return user
+      }
     }
   })
 )
