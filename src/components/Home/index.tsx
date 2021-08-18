@@ -7,6 +7,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import FeedType from '../Post/FeedType'
 import NewPost from '../Post/NewPost'
 import Banner from '../shared/Banner'
+import Footer from '../shared/Footer'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
         <GridItemFour>
           <RecentUsers />
           <RecentProducts />
+          <Footer />
         </GridItemFour>
       </GridLayout>
     </Fragment>
