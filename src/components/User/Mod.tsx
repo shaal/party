@@ -100,16 +100,18 @@ const UserMod: React.FC<Props> = ({ user }) => {
             />
             <label htmlFor="staffUser">Make as staff</label>
           </div>
-          <div className="flex items-center gap-2">
-            <input
-              id="spammyUser"
-              type="checkbox"
-              {...form.register('spammy')}
-            />
-            <label htmlFor="spammyUser" className="text-red-500">
-              Mark as spammy
-            </label>
-          </div>
+          {!user?.isStaff && (
+            <div className="flex items-center gap-2">
+              <input
+                id="spammyUser"
+                type="checkbox"
+                {...form.register('spammy')}
+              />
+              <label htmlFor="spammyUser" className="text-red-500">
+                Mark as spammy
+              </label>
+            </div>
+          )}
           <div className="pt-2">
             <Button type="submit">Update</Button>
           </div>
