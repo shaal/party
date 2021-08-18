@@ -31,6 +31,7 @@ const WhereProductsInput = builder.inputType('WhereProductsInput', {
   })
 })
 
+// TODO: Split to function
 builder.queryField('products', (t) =>
   t.prismaConnection({
     type: db.product,
@@ -78,6 +79,7 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: db.product,
