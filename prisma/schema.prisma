@@ -24,14 +24,16 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  posts      Post[]
-  products   Product[]
-  sessions   Session[]
-  profile    Profile?
-  following  User[]    @relation("follows")
-  followedBy User[]    @relation("follows")
-  likes      Like[]
-  replies    Reply[]
+  posts            Post[]
+  products         Product[]
+  sessions         Session[]
+  profile          Profile?
+  following        User[]         @relation("follows")
+  followedBy       User[]         @relation("follows")
+  likes            Like[]
+  replies          Reply[]
+  myNotification   Notification[] @relation("receiver")
+  sentNotification Notification[] @relation("dispatcher")
 
   // Attributes
   @@index([username, email])
@@ -93,12 +95,6 @@ model Post {
 
   // Attributes
   @@index([userId])
-}
-
-enum PostType {
-  POST
-  TASK
-  QUESTION
 }
 
 model PostTopics {
@@ -185,4 +181,33 @@ model Product {
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String?
   posts  Post[]
+}
+
+model Notification {
+  id      String           @id @default(uuid())
+  message String
+  type    NotificationType
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  receiver     User   @relation("receiver", fields: [receiverId], references: [id])
+  receiverId   String
+  dispatcher   User   @relation("dispatcher", fields: [dispatcherId], references: [id])
+  dispatcherId String
+}
+
+// Types
+enum PostType {
+  POST
+  TASK
+  QUESTION
+}
+
+enum NotificationType {
+  LIKE
+  FOLLOW
+  // REPLY
 }

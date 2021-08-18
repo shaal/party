@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "PostType" AS ENUM ('POST', 'TASK', 'QUESTION');
 
+-- CreateEnum
+CREATE TYPE "NotificationType" AS ENUM ('LIKE', 'FOLLOW');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -125,6 +128,19 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
+CREATE TABLE "Notification" (
+    "id" TEXT NOT NULL,
+    "message" TEXT NOT NULL,
+    "type" "NotificationType" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "receiverId" TEXT NOT NULL,
+    "dispatcherId" TEXT NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_follows" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
@@ -201,6 +217,12 @@ ALTER TABLE "Like" ADD FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELET
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Notification" ADD FOREIGN KEY ("receiverId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Notification" ADD FOREIGN KEY ("dispatcherId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
