@@ -2,5 +2,6 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "editor.formatOnSave": true,
   "editor.fontSize": 16,
-  "editor.defaultFormatter" : "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "git.autofetch": true
 }
