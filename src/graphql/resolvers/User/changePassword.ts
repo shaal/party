@@ -2,10 +2,11 @@ import { ChangePasswordInput } from '../../../__generated__/schema.generated'
 import { hashPassword, verifyPassword } from '../../../utils/auth'
 import { db } from '../../../utils/prisma'
 import { Result } from '../ResultResolver'
+import { Session } from '.prisma/client'
 
 export const changePassword = async (
   input: ChangePasswordInput,
-  session: any
+  session: Session | null | undefined
 ) => {
   const user = await db.user.findUnique({ where: { id: session!.userId } })
 
