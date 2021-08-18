@@ -6,14 +6,14 @@ import React, { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import ProductProfile from '../shared/ProductProfile'
+import ProductProfileLarge from '../shared/ProductProfileLarge'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
 import { Button } from '../ui/Button'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import AppContext from '../utils/AppContext'
-import { ProductsQuery } from './__generated__/index.generated'
+import { ProductsQuery } from './__generated__/Products.generated'
 
 export const PRODUCTS_QUERY = gql`
   query ProductsQuery {
@@ -58,7 +58,7 @@ const Products: React.FC = () => {
           <CardBody className="space-y-4">
             <ErrorMessage title="Failed to load post" error={error} />
             {data?.products?.edges?.map((product: any) => (
-              <ProductProfile
+              <ProductProfileLarge
                 key={product?.node?.id}
                 product={product?.node as Product}
               />
