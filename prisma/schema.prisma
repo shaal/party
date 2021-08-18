@@ -197,6 +197,7 @@ model Notification {
   receiverId   String
   dispatcher   User   @relation("dispatcher", fields: [dispatcherId], references: [id])
   dispatcherId String
+  //TODO: Add Post and Like for tracking entity or just entityId
 }
 
 // Types
