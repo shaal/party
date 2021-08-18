@@ -38,6 +38,7 @@ const WhereRepliesInput = builder.inputType('WhereRepliesInput', {
   })
 })
 
+// TODO: Split to function
 builder.queryField('replies', (t) =>
   t.prismaConnection({
     type: db.reply,
@@ -86,6 +87,7 @@ const CreateReplyInput = builder.inputType('CreateReplyInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('createReply', (t) =>
   t.prismaField({
     type: db.reply,
