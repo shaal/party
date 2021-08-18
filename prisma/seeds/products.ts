@@ -39,27 +39,27 @@ export const productData = [
     slug: 'gitpod',
     username: 'filip',
     avatar: 'https://avatars.githubusercontent.com/u/37021919',
-    description: ''
+    description: 'Always Ready To Code'
   },
   {
     name: 'IPFS',
     slug: 'ipfs',
     username: 'yoginth',
     avatar: 'https://avatars.githubusercontent.com/u/10536621',
-    description: ''
+    description: 'A peer-to-peer hypermedia protocol'
   },
   {
     name: 'PlanetScale',
     slug: 'planetscale',
     username: 'filip',
     avatar: 'https://avatars.githubusercontent.com/u/35612527',
-    description: ''
+    description: 'We help operationalize Vitess in the cloud and on premise.'
   },
   {
     name: 'Danger',
     slug: 'danger',
     username: 'yoginth',
     avatar: 'https://avatars.githubusercontent.com/u/17147106',
-    description: ''
+    description: 'Stop saying You forgot to...'
   }
 ]
