@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { CubeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
@@ -72,7 +73,10 @@ const Products: React.FC = () => {
               Launch a new product to Devparty and get noticed by peoples
             </div>
             <Link href="/products/new" passHref>
-              <Button>Create new Product</Button>
+              <Button className="flex items-center space-x-1">
+                <CubeIcon className="h-4 w-4" />
+                <div>Create new Product</div>
+              </Button>
             </Link>
           </CardBody>
         </Card>
