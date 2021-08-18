@@ -30,20 +30,38 @@ const Footer: React.FC = () => {
         target="_blank"
         rel="noreferrer"
       >
+        Status
+      </a>
+      <a
+        className="pr-3"
+        href="https://gitlab.com/yo/devparty"
+        target="_blank"
+        rel="noreferrer"
+      >
         GitLab
       </a>
-      {currentUser?.isStaff &&
-        (staffMode ? (
-          <div className="flex items-center space-x-1 text-red-500">
-            <ShieldCheckIcon className="h-4 w-4" />
-            <div>Staff mode on</div>
-          </div>
-        ) : (
-          <div className="flex items-center space-x-1 text-green-600">
-            <ShieldExclamationIcon className="h-4 w-4" />
-            <div>Staff mode off</div>
-          </div>
-        ))}
+      <div className="flex mt-1">
+        <a
+          className="pr-3 hover:font-bold"
+          href="https://vercel.com/?utm_source=Devparty&utm_campaign=oss"
+          target="_blank"
+          rel="noreferrer"
+        >
+          ▲ Powered by Vercel
+        </a>
+        {currentUser?.isStaff &&
+          (staffMode ? (
+            <div className="flex items-center space-x-1 text-red-500">
+              <ShieldCheckIcon className="h-4 w-4" />
+              <div>Staff mode on</div>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-1 text-green-600">
+              <ShieldExclamationIcon className="h-4 w-4" />
+              <div>Staff mode off</div>
+            </div>
+          ))}
+      </div>
     </footer>
   )
 }
