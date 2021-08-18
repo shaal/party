@@ -78,17 +78,16 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
             handleToggleFollow()
           }}
           size="md"
-          className="py-2"
           variant={isFollowed ? 'danger' : 'success'}
           outline
         >
           {isFollowed ? (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center space-x-1">
               <MinusIcon className="h-4 w-4" />
               {showText && <div>Unfollow</div>}
             </div>
           ) : (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center space-x-1">
               <PlusIcon className="h-4 w-4" />
               {showText && <div>Follow</div>}
             </div>
