@@ -186,6 +186,9 @@ builder.mutationField('createPost', (t) =>
       input: t.arg({ type: CreatePostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
+      if (getTopics(input.body)?.length > 5) {
+        throw new Error('Your post should not contain more than 5 topics')
+      }
       return await db.post.create({
         data: {
           userId: session!.userId,

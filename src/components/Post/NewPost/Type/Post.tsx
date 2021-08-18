@@ -68,10 +68,7 @@ const PostType: React.FC = () => {
         })
       }
     >
-      <ErrorMessage
-        title="Failed to create post"
-        error={createPostResult.error}
-      />
+      <ErrorMessage error={createPostResult.error} className="mb-1" />
       <TextArea {...form.register('body')} placeholder="What's on your mind?" />
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">

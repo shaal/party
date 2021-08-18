@@ -12,6 +12,6 @@ export const getTopics = (postBody: string) => {
 
     return processedArr
   } else {
-    return null
+    return []
   }
 }
