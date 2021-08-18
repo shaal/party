@@ -4,7 +4,7 @@ export const productData = [
     slug: 'devparty',
     username: 'yoginth',
     avatar: 'https://i.ibb.co/GpPz1BG/devparty.png',
-    description: ''
+    description: 'The party hub for developers 🥳'
   },
   {
     name: 'Taskord',
