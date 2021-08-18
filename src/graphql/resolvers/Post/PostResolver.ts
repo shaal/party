@@ -1,10 +1,9 @@
-import { PostType } from '@prisma/client'
-
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './createPost'
 import { getPosts } from './getPosts'
+import { homeFeed } from './homeFeed'
 
 builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),
@@ -91,43 +90,7 @@ builder.queryField('homeFeed', (t) =>
       where: t.arg({ type: WhereHomeFeedInput, required: false })
     },
     resolve: async (query, root, { where }, { session }) => {
-      if (session) {
-        const following = await db.user.findUnique({
-          where: { id: session?.userId },
-          select: { following: { select: { id: true } } }
-        })
-
-        return await db.post.findMany({
-          ...query,
-          where: {
-            type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
-            user: {
-              // @ts-ignore
-              id: {
-                in: [
-                  // @ts-ignore
-                  ...following.following.map((user) => user.id),
-                  session?.userId
-                ]
-              },
-              spammy: false
-            }
-          },
-          orderBy: {
-            createdAt: 'desc'
-          }
-        })
-      } else {
-        return await db.post.findMany({
-          ...query,
-          where: {
-            type: where?.type === 'ALL' ? undefined : (where?.type as PostType)
-          },
-          orderBy: {
-            createdAt: 'desc'
-          }
-        })
-      }
+      return await homeFeed(query, where, session)
     }
   })
 )
