@@ -1,8 +1,6 @@
-import { md5 } from 'hash-wasm'
-
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { reservedSlugs } from '../Common/reservedSlugs'
+import { createProduct } from './createProduct'
 
 builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),
@@ -80,7 +78,6 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: db.product,
@@ -88,19 +85,7 @@ builder.mutationField('createProduct', (t) =>
       input: t.arg({ type: CreateProductInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      if (reservedSlugs.includes(input.slug)) {
-        throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
-      }
-
-      return await db.product.create({
-        data: {
-          userId: session!.userId,
-          name: input.name,
-          slug: input.slug,
-          description: input.description,
-          avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=📦`
-        }
-      })
+      return await createProduct(query, input, session)
     }
   })
 )
