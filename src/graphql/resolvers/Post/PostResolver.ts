@@ -2,6 +2,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './createPost'
+import { editPost } from './editPost'
 import { getPosts } from './getPosts'
 import { homeFeed } from './homeFeed'
 
@@ -147,7 +148,6 @@ const EditPostInput = builder.inputType('EditPostInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('editPost', (t) =>
   t.prismaField({
     type: db.post,
@@ -155,20 +155,7 @@ builder.mutationField('editPost', (t) =>
       input: t.arg({ type: EditPostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      const post = await db.post.findFirst({
-        ...query,
-        where: {
-          id: input.id,
-          userId: session!.userId
-        },
-
-        rejectOnNotFound: true
-      })
-
-      return await db.post.update({
-        where: { id: post.id },
-        data: { body: input.body as string, done: input.done as boolean }
-      })
+      return await editPost(query, input, session)
     }
   })
 )
