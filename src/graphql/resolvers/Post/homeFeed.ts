@@ -1,6 +1,7 @@
+import { PostType, Session } from '@prisma/client'
+
 import { WherePostsInput } from '../../../__generated__/schema.generated'
 import { db } from '../../../utils/prisma'
-import { PostType, Session } from '.prisma/client'
 
 export const homeFeed = async (
   query: any,

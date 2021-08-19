@@ -1,8 +1,9 @@
+import { PostType, Session } from '@prisma/client'
+
 import { CreatePostInput } from '../../../__generated__/schema.generated'
 import { db } from '../../../utils/prisma'
 import { getTopics } from '../../utils/getTopics'
 import { parseTopics } from '../../utils/parseTopics'
-import { PostType, Session } from '.prisma/client'
 
 export const createPost = async (
   query: any,
