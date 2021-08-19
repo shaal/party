@@ -31,7 +31,6 @@ const WhereProductsInput = builder.inputType('WhereProductsInput', {
   })
 })
 
-// TODO: Split to function
 builder.queryField('products', (t) =>
   t.prismaConnection({
     type: db.product,
