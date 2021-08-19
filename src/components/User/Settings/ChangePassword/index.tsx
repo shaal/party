@@ -1,16 +1,11 @@
 import React from 'react'
 
-import { User } from '../../../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../../../GridLayout'
 import SettingsHelper from '../../../shared/SettingsHelper'
 import { Card, CardBody } from '../../../ui/Card'
 import ChangePasswordForm from './Form'
 
-interface Props {
-  currentUser: User
-}
-
-const ChangePassword: React.FC<Props> = ({ currentUser }) => {
+const ChangePassword: React.FC = () => {
   return (
     <GridLayout>
       <GridItemFour>
