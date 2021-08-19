@@ -15,7 +15,7 @@ type Props = {
 
 const DeleteButton: React.FC<Props> = ({ entity }) => {
   const router = useRouter()
-  const [deleteNote, deleteNoteResult] = useMutation<
+  const [deletePost] = useMutation<
     DeletePostMutation,
     DeletePostMutationVariables
   >(
@@ -36,7 +36,7 @@ const DeleteButton: React.FC<Props> = ({ entity }) => {
   return (
     <button
       className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-      onClick={() => deleteNote({ variables: { input: { id: entity?.id } } })}
+      onClick={() => deletePost({ variables: { input: { id: entity?.id } } })}
     >
       <TrashIcon className="h-5 w-5" />
     </button>
