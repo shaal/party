@@ -72,6 +72,7 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
               placeholder="Explain what's the topic about"
               {...form.register('description')}
             />
+            {/* TODO: Image Upload */}
             <div>
               <Button type="submit">Update</Button>
             </div>
