@@ -36,11 +36,9 @@ export const NOTIFICATIONS_QUERY = gql`
 `
 
 const Notifications: React.FC = () => {
-  const { data, loading, error } =
-    useQuery<NotificationsQuery>(NOTIFICATIONS_QUERY)
+  const { data } = useQuery<NotificationsQuery>(NOTIFICATIONS_QUERY)
 
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.notifications?.pageInfo
 
   return (
     <Popover className="relative">
