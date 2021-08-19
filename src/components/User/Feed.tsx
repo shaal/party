@@ -33,7 +33,7 @@ interface Props {
 }
 
 const UserFeed: React.FC<Props> = ({ user }) => {
-  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
+  const [hasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
     {
