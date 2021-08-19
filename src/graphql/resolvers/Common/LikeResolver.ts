@@ -20,7 +20,6 @@ const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('togglePostLike', (t) =>
   t.prismaField({
     type: db.post,
@@ -44,7 +43,6 @@ const ToggleReplyLikeInput = builder.inputType('ToggleReplyLikeInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('toggleReplyLike', (t) =>
   t.prismaField({
     type: db.reply,
