@@ -20,7 +20,7 @@ interface Props {
 const Follow: React.FC<Props> = ({ user, showText }) => {
   const { currentUser } = useContext(AppContext)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
-  const [toggleFollow, toggleFollowResult] = useMutation<
+  const [toggleFollow] = useMutation<
     ToggleFollowMutation,
     ToggleFollowMutationVariables
   >(

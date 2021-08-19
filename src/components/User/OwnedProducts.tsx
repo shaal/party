@@ -23,14 +23,11 @@ interface Props {
 }
 
 const OwnedProducts: React.FC<Props> = ({ user }) => {
-  const { data, loading, error } = useQuery<UserProductsQuery>(
-    USER_PRODUCTS_QUERY,
-    {
-      variables: {
-        where: { userId: user?.id }
-      }
+  const { data, loading } = useQuery<UserProductsQuery>(USER_PRODUCTS_QUERY, {
+    variables: {
+      where: { userId: user?.id }
     }
-  )
+  })
 
   const Product = ({ product }: any) => {
     return (
