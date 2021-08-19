@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+                <div className="flex-shrink-0 flex items-center space-x-2">
                   <Link href="/" passHref>
                     <img
                       className="block h-9 w-auto cursor-pointer"
@@ -99,6 +99,11 @@ const Navbar: React.FC = () => {
                       alt="Devparty"
                     />
                   </Link>
+                  {currentUser?.isStaff && staffMode && (
+                    <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-indigo-500 to-purple-500">
+                      beta
+                    </div>
+                  )}
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
