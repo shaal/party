@@ -27,7 +27,7 @@ export const TOPIC_QUERY = gql`
 const ViewTopic: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
-  const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
+  const { data, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
     variables: {
       name: router.query.topic
     },

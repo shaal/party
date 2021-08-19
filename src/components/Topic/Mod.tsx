@@ -21,7 +21,7 @@ interface Props {
 }
 
 const TopicMod: React.FC<Props> = ({ topic }) => {
-  const [modTopic, modTopicResult] = useMutation<
+  const [modTopic] = useMutation<
     ModTopicMutation,
     ModTopicMutationVariables
   >(gql`
