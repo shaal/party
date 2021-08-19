@@ -1,8 +1,9 @@
+import { Session } from '@prisma/client'
+
 import { ChangePasswordInput } from '../../../__generated__/schema.generated'
 import { hashPassword, verifyPassword } from '../../../utils/auth'
 import { db } from '../../../utils/prisma'
 import { Result } from '../ResultResolver'
-import { Session } from '.prisma/client'
 
 export const changePassword = async (
   input: ChangePasswordInput,
