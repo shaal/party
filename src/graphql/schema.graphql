@@ -98,6 +98,14 @@ type Mutation {
   toggleReplyLike(input: ToggleReplyLikeInput!): Reply
 }
 
+type Notification {
+  dispatcher: User!
+  id: ID!
+  message: String!
+  receiver: User!
+  type: String!
+}
+
 type PageInfo {
   endCursor: String
   hasNextPage: Boolean!
@@ -166,6 +174,7 @@ type Profile {
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   me: User
+  notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(slug: String!): Product!
@@ -185,6 +194,16 @@ type QueryHomeFeedConnection {
 type QueryHomeFeedConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryNotificationsConnection {
+  edges: [QueryNotificationsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryNotificationsConnectionEdge {
+  cursor: String!
+  node: Notification!
 }
 
 type QueryPostsConnection {
