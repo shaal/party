@@ -29,7 +29,7 @@
     "@giraphql/plugin-validation": "^2.9.0",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "1.0.4",
-    "@hookform/resolvers": "^2.7.1",
+    "@hookform/resolvers": "2.8.0",
     "@prisma/client": "2.29.1",
     "clsx": "^1.1.1",
     "date-fns": "^2.23.0",
