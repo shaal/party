@@ -3,8 +3,8 @@ import { db } from '../../../utils/prisma'
 import { createSession, removeSession } from '../../../utils/sessions'
 import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
-import { changePassword } from './changePassword'
-import { signUp } from './signUp'
+import { changePassword } from './mutations/changePassword'
+import { signUp } from './mutations/signUp'
 
 builder.queryField('me', (t) =>
   t.prismaField({

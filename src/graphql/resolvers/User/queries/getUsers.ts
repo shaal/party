@@ -1,4 +1,4 @@
-import { db } from '../../../utils/prisma'
+import { db } from '../../../../utils/prisma'
 
 export const getUsers = async (query: any) => {
   return await db.user.findMany({

@@ -1,10 +1,10 @@
 import { md5 } from 'hash-wasm'
 
-import { SignUpInput } from '../../../__generated__/schema.generated'
-import { hashPassword } from '../../../utils/auth'
-import { db } from '../../../utils/prisma'
-import { createSession } from '../../../utils/sessions'
-import { reservedSlugs } from '../Common/reservedSlugs'
+import { SignUpInput } from '../../../../__generated__/schema.generated'
+import { hashPassword } from '../../../../utils/auth'
+import { db } from '../../../../utils/prisma'
+import { createSession } from '../../../../utils/sessions'
+import { reservedSlugs } from '../../Common/reservedSlugs'
 
 export const signUp = async (query: any, input: SignUpInput, req: any) => {
   if (reservedSlugs.includes(input.username)) {

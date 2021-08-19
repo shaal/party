@@ -1,11 +1,11 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { modUser } from '../Stafftools/modUser'
-import { followersCount } from './followersCount'
-import { followingCount } from './followingCount'
-import { getUsers } from './getUsers'
-import { hasFollowed } from './hasFollowed'
-import { toggleFollow } from './toggleFollow'
+import { toggleFollow } from './mutations/toggleFollow'
+import { followersCount } from './queries/followersCount'
+import { followingCount } from './queries/followingCount'
+import { getUsers } from './queries/getUsers'
+import { hasFollowed } from './queries/hasFollowed'
 
 builder.prismaObject(db.user, {
   findUnique: (user) => ({ id: user.id }),
