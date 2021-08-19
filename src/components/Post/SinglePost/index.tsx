@@ -70,12 +70,11 @@ export const PostFragment = gql`
 
 interface Props {
   post: Post
-  showReplies?: boolean
 }
 
-const SinglePost: React.FC<Props> = ({ post, showReplies = false }) => {
+const SinglePost: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
-  const [togglePostLike, togglePostLikeResult] = useMutation<
+  const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
     TogglePostLikeMutationVariables
   >(
