@@ -61,6 +61,7 @@ builder.mutationField('modTopic', (t) =>
     args: {
       input: t.arg({ type: EditTopicInput })
     },
+    nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await modTopic(query, input, session)
     }
