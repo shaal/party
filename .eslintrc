@@ -25,7 +25,7 @@
     "unicorn/better-regex": "error",
     "unicorn/catch-error-name": "error",
     "unicorn/consistent-destructuring": "error",
-    "unicorn/consistent-function-scoping": "error",
+    "unicorn/consistent-function-scoping": "warn",
     "unicorn/custom-error-definition": "off"
   }
 }
