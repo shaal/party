@@ -1,13 +1,6 @@
 import { Popover, Transition } from '@headlessui/react'
 import { LightningBoltIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 import { Fragment } from 'react'
-
-const NextLink = ({ href, children, ...rest }: any) => (
-  <Link href={href}>
-    <a {...rest}>{children}</a>
-  </Link>
-)
 
 const Notifications: React.FC = () => {
   return (
