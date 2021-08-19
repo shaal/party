@@ -1,6 +1,15 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "unused-imports", "simple-import-sort"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+    "simple-import-sort",
+    "unicorn"
+  ],
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
     "react/prop-types": "off",
@@ -12,6 +21,11 @@
     "@next/next/no-img-element": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "jsx-a11y/role-supports-aria-props": "off"
+    "jsx-a11y/role-supports-aria-props": "off",
+    "unicorn/better-regex": "error",
+    "unicorn/catch-error-name": "error",
+    "unicorn/consistent-destructuring": "error",
+    "unicorn/consistent-function-scoping": "error",
+    "unicorn/custom-error-definition": "off"
   }
 }

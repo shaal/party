@@ -83,10 +83,10 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(result.status)
       res.json(formatResult(result.payload))
     }
-  } catch (err: any) {
+  } catch (error: any) {
     // TODO: Change type
     res.status(500)
-    res.end(err.toString())
+    res.end(error.toString())
   }
 }
 

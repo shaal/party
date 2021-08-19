@@ -31,8 +31,8 @@ export async function preloadQuery(
         initialClientState: client.cache.extract()
       }
     }
-  } catch (e: any) {
-    const notFoundError = e.graphQLErrors.find((error: Error) => {
+  } catch (error: any) {
+    const notFoundError = error.graphQLErrors.find((error: Error) => {
       return (error as any)?.extensions.code === 404
     })
 
