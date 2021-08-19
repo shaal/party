@@ -193,11 +193,11 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User   @relation("receiver", fields: [receiverId], references: [id])
+  receiver     User    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId   String
-  dispatcher   User   @relation("dispatcher", fields: [dispatcherId], references: [id])
+  dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
-  //TODO: Add Post and Like for tracking entity or just entityId
+  entityId     String?
 }
 
 // Types
