@@ -1,6 +1,7 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { createProduct } from './createProduct'
+import { getProducts } from './getProducts'
 
 builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),
@@ -39,17 +40,7 @@ builder.queryField('products', (t) =>
       where: t.arg({ type: WhereProductsInput, required: false })
     },
     resolve: async (query, root, { where }) => {
-      return await db.product.findMany({
-        ...query,
-        where: {
-          user: {
-            id: where?.userId as string
-          }
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
+      return await getProducts(query, where)
     }
   })
 )
