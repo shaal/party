@@ -56,7 +56,7 @@ export async function authenticateUser(email: string, password: string) {
     throw new Error('Unknown password format.')
   }
 
-  const costFactor = parseInt(costFactorString, 10)
+  const costFactor = Number.parseInt(costFactorString, 10)
   if (costFactor !== COST_FACTOR) {
     const improvedHash = await hashPassword(password)
     await db.user.update({
