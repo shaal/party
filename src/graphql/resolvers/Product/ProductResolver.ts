@@ -1,9 +1,9 @@
-import { db } from '../../../utils/prisma'
+import { prisma } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { createProduct } from './mutations/createProduct'
 import { getProducts } from './queries/getProducts'
 
-builder.prismaObject(db.product, {
+builder.prismaObject(prisma.product, {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -33,7 +33,7 @@ const WhereProductsInput = builder.inputType('WhereProductsInput', {
 
 builder.queryField('products', (t) =>
   t.prismaConnection({
-    type: db.product,
+    type: prisma.product,
     cursor: 'id',
     args: {
       where: t.arg({ type: WhereProductsInput, required: false })
@@ -46,12 +46,12 @@ builder.queryField('products', (t) =>
 
 builder.queryField('product', (t) =>
   t.prismaField({
-    type: db.product,
+    type: prisma.product,
     args: {
       slug: t.arg.string({})
     },
     resolve: async (query, root, { slug }) => {
-      return await db.product.findUnique({
+      return await prisma.product.findUnique({
         ...query,
         where: { slug },
         rejectOnNotFound: true
@@ -70,7 +70,7 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
 
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
-    type: db.product,
+    type: prisma.product,
     args: {
       input: t.arg({ type: CreateProductInput })
     },
