@@ -1,10 +1,10 @@
-import { db } from '../../../utils/prisma'
+import { prisma } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createReply } from './mutations/createReply'
 import { getReplies } from './queries/getReplies'
 
-builder.prismaObject(db.reply, {
+builder.prismaObject(prisma.reply, {
   findUnique: (reply) => ({ id: reply.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -21,7 +21,7 @@ builder.prismaObject(db.reply, {
     likesCount: t.field({
       type: 'Int',
       resolve: (root) =>
-        db.like.count({
+        prisma.like.count({
           where: { replyId: root.id }
         })
     }),
@@ -42,7 +42,7 @@ const WhereRepliesInput = builder.inputType('WhereRepliesInput', {
 
 builder.queryField('replies', (t) =>
   t.prismaConnection({
-    type: db.reply,
+    type: prisma.reply,
     cursor: 'id',
     args: {
       where: t.arg({ type: WhereRepliesInput, required: false })
@@ -55,12 +55,12 @@ builder.queryField('replies', (t) =>
 
 builder.queryField('reply', (t) =>
   t.prismaField({
-    type: db.reply,
+    type: prisma.reply,
     args: {
       id: t.arg.id({})
     },
     resolve: async (query, root, { id }) => {
-      return await db.reply.findUnique({
+      return await prisma.reply.findUnique({
         ...query,
         where: {
           id
@@ -80,7 +80,7 @@ const CreateReplyInput = builder.inputType('CreateReplyInput', {
 
 builder.mutationField('createReply', (t) =>
   t.prismaField({
-    type: db.reply,
+    type: prisma.reply,
     args: {
       input: t.arg({ type: CreateReplyInput })
     },
