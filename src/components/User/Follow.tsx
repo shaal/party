@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Switch } from '@headlessui/react'
-import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
+import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -83,12 +83,12 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
         >
           {isFollowed ? (
             <div className="flex items-center space-x-1">
-              <MinusIcon className="h-4 w-4" />
+              <UserRemoveIcon className="h-4 w-4" />
               {showText && <div>Unfollow</div>}
             </div>
           ) : (
             <div className="flex items-center space-x-1">
-              <PlusIcon className="h-4 w-4" />
+              <UserAddIcon className="h-4 w-4" />
               {showText && <div>Follow</div>}
             </div>
           )}
