@@ -1,8 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { CubeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
@@ -13,7 +12,6 @@ import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
 import { Button } from '../ui/Button'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
-import AppContext from '../utils/AppContext'
 import { ProductsQuery } from './__generated__/Products.generated'
 
 export const PRODUCTS_QUERY = gql`
@@ -33,8 +31,6 @@ export const PRODUCTS_QUERY = gql`
 `
 
 const Products: React.FC = () => {
-  const router = useRouter()
-  const { currentUser } = useContext(AppContext)
   const { data, loading, error } = useQuery<ProductsQuery>(PRODUCTS_QUERY)
 
   if (loading)
