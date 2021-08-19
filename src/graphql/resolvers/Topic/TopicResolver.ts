@@ -50,7 +50,6 @@ builder.queryField('topic', (t) =>
 const EditTopicInput = builder.inputType('EditTopicInput', {
   fields: (t) => ({
     id: t.id({}),
-    name: t.string({ required: false }),
     description: t.string({ required: false })
   })
 })

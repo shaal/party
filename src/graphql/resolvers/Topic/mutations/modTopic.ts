@@ -16,7 +16,6 @@ export const modTopic = async (
     return await db.topic.update({
       where: { id: input?.id },
       data: {
-        name: input?.name as string,
         description: input?.description as string
       }
     })
