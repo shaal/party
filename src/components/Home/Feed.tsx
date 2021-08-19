@@ -86,9 +86,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
             icon={<CollectionIcon className="h-8 w-8" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showReplies />
-          ))
+          posts?.map((post: any) => <SinglePost key={post?.id} post={post} />)
         )}
         <div ref={observe}></div>
       </div>
