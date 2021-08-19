@@ -2,6 +2,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createReply } from './createReply'
+import { getReplies } from './getReplies'
 
 builder.prismaObject(db.reply, {
   findUnique: (reply) => ({ id: reply.id }),
@@ -39,7 +40,6 @@ const WhereRepliesInput = builder.inputType('WhereRepliesInput', {
   })
 })
 
-// TODO: Split to function
 builder.queryField('replies', (t) =>
   t.prismaConnection({
     type: db.reply,
@@ -47,18 +47,8 @@ builder.queryField('replies', (t) =>
     args: {
       where: t.arg({ type: WhereRepliesInput, required: false })
     },
-    resolve: async (query, root, { where }, ctx) => {
-      return await db.reply.findMany({
-        ...query,
-        where: {
-          post: {
-            id: where?.postId as string
-          }
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
+    resolve: async (query, root, { where }) => {
+      return await getReplies(query, where)
     }
   })
 )
