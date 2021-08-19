@@ -18,7 +18,7 @@ builder.prismaObject(db.user, {
     email: t.field({
       type: 'String',
       nullable: true,
-      resolve: async (root, args, ctx, info) => {
+      resolve: async (root, args, ctx) => {
         if (!ctx.session) return null
         return root.email
       }
@@ -33,7 +33,7 @@ builder.prismaObject(db.user, {
     }),
     hasFollowed: t.field({
       type: 'Boolean',
-      resolve: async (root, args, ctx, info) => {
+      resolve: async (root, args, ctx) => {
         if (!ctx.session) return false
         return await hasFollowed(ctx.session?.userId as string, root.id)
       }
@@ -67,7 +67,7 @@ builder.queryField('users', (t) =>
   t.prismaConnection({
     type: db.user,
     cursor: 'id',
-    resolve: async (query, root) => {
+    resolve: async (query) => {
       return await getUsers(query)
     }
   })
