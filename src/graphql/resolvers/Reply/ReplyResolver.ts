@@ -1,8 +1,8 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
-import { createReply } from './createReply'
-import { getReplies } from './getReplies'
+import { createReply } from './mutations/createReply'
+import { getReplies } from './queries/getReplies'
 
 builder.prismaObject(db.reply, {
   findUnique: (reply) => ({ id: reply.id }),

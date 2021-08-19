@@ -1,7 +1,7 @@
 import { Session } from '@prisma/client'
 
-import { CreateReplyInput } from '../../../__generated__/schema.generated'
-import { db } from '../../../utils/prisma'
+import { CreateReplyInput } from '../../../../__generated__/schema.generated'
+import { db } from '../../../../utils/prisma'
 
 export const createReply = async (
   query: any,
