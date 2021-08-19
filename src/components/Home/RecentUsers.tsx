@@ -17,6 +17,7 @@ const RECENT_USERS_QUERY = gql`
           id
           username
           hasFollowed
+          isVerified
           profile {
             id
             avatar
