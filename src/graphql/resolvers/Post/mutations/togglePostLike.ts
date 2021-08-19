@@ -25,7 +25,12 @@ export const togglePostLike = async (
     where: { id: postId }
   })
 
-  await createNotification(post?.userId as string, userId, 'POSTLIKE')
+  await createNotification(
+    post?.userId as string,
+    userId,
+    post?.id as string,
+    'POSTLIKE'
+  )
 
   return post
 }
