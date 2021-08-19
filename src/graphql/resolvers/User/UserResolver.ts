@@ -1,4 +1,4 @@
-import { db } from '../../../utils/prisma'
+import { prisma } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
@@ -7,7 +7,7 @@ import { followingCount } from './queries/followingCount'
 import { getUsers } from './queries/getUsers'
 import { hasFollowed } from './queries/hasFollowed'
 
-builder.prismaObject(db.user, {
+builder.prismaObject(prisma.user, {
   findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -47,12 +47,12 @@ builder.prismaObject(db.user, {
 
 builder.queryField('user', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     args: {
       username: t.arg.string({})
     },
     resolve: async (query, root, { username }) => {
-      return await db.user.findUnique({
+      return await prisma.user.findUnique({
         ...query,
         where: {
           username
@@ -65,7 +65,7 @@ builder.queryField('user', (t) =>
 
 builder.queryField('users', (t) =>
   t.prismaConnection({
-    type: db.user,
+    type: prisma.user,
     cursor: 'id',
     resolve: async (query) => {
       return await getUsers(query)
@@ -97,12 +97,12 @@ const EditUserInput = builder.inputType('EditUserInput', {
 // TODO: Split to function
 builder.mutationField('editUser', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     args: {
       input: t.arg({ type: EditUserInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      return await db.user.update({
+      return await prisma.user.update({
         ...query,
         where: {
           id: session!.userId
@@ -134,7 +134,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
 // TODO: Split to function
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     args: {
       input: t.arg({ type: ToggleFollowInput })
     },
@@ -157,7 +157,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
 
 builder.mutationField('modUser', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     args: {
       input: t.arg({ type: ModUserInput })
     },
