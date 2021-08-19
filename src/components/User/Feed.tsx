@@ -1,7 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
-import { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '../../__generated__/schema.generated'
@@ -33,7 +32,6 @@ interface Props {
 }
 
 const UserFeed: React.FC<Props> = ({ user }) => {
-  const [hasNextPage] = useState<boolean>(true)
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
     {
@@ -92,7 +90,7 @@ const UserFeed: React.FC<Props> = ({ user }) => {
         ) : (
           posts?.map((post: any) => <SinglePost key={post?.id} post={post} />)
         )}
-        {hasNextPage && <div ref={observe}></div>}
+        <div ref={observe}></div>
       </div>
     </div>
   )
