@@ -8,7 +8,7 @@ import { reservedSlugs } from '../Common/reservedSlugs'
 
 export const signUp = async (query: any, input: SignUpInput, req: any) => {
   if (reservedSlugs.includes(input.username)) {
-    throw new Error(`Username ${input.username} is reserved by Devparty.`)
+    throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
   const user = await db.user.create({

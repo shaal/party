@@ -2,6 +2,7 @@ import { md5 } from 'hash-wasm'
 
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
+import { reservedSlugs } from '../Common/reservedSlugs'
 
 builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),
@@ -87,6 +88,10 @@ builder.mutationField('createProduct', (t) =>
       input: t.arg({ type: CreateProductInput })
     },
     resolve: async (query, root, { input }, { session }) => {
+      if (reservedSlugs.includes(input.slug)) {
+        throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
+      }
+
       return await db.product.create({
         data: {
           userId: session!.userId,
