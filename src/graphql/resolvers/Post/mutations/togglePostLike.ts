@@ -1,4 +1,5 @@
 import { db } from '../../../../utils/prisma'
+import { createNotification } from '../../Common/createNotification'
 import { hasLiked } from '../../Common/hasLiked'
 
 export const togglePostLike = async (
@@ -19,8 +20,12 @@ export const togglePostLike = async (
     })
   }
 
-  return await db.post.findUnique({
+  const post = await db.post.findUnique({
     ...query,
     where: { id: postId }
   })
+
+  await createNotification(post?.userId as string, userId, 'POSTLIKE')
+
+  return post
 }

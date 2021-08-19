@@ -26,6 +26,7 @@ builder.mutationField('togglePostLike', (t) =>
     args: {
       input: t.arg({ type: TogglePostLikeInput })
     },
+    authScopes: { user: true },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await togglePostLike(
@@ -50,6 +51,7 @@ builder.mutationField('toggleReplyLike', (t) =>
       input: t.arg({ type: ToggleReplyLikeInput })
     },
     nullable: true,
+    authScopes: { user: true },
     resolve: async (query, root, { input }, { session }) => {
       return await toggleReplyLike(
         query,

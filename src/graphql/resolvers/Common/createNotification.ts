@@ -7,11 +7,13 @@ export const createNotification = async (
   dispatcherId: string,
   type: NotificationType
 ) => {
-  return await db.notification.create({
-    data: {
-      receiverId,
-      dispatcherId,
-      type: type as NotificationType
-    }
-  })
+  if (receiverId !== dispatcherId) {
+    return await db.notification.create({
+      data: {
+        receiverId,
+        dispatcherId,
+        type: type as NotificationType
+      }
+    })
+  }
 }
