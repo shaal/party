@@ -13,7 +13,7 @@ builder.prismaObject(db.reply, {
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     hasLiked: t.field({
       type: 'Boolean',
-      resolve: async (root, args, ctx, info) => {
+      resolve: async (root, args, ctx) => {
         if (!ctx.session) return false
         return await hasLiked(ctx.session?.userId as string, null, root.id)
       }
