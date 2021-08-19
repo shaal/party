@@ -20,17 +20,6 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Invite" (
-    "id" TEXT NOT NULL,
-    "code" TEXT NOT NULL,
-    "used" BOOLEAN NOT NULL DEFAULT false,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "userId" TEXT NOT NULL,
-
-    PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Session" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -193,9 +182,6 @@ CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_follows_B_index" ON "_follows"("B");
-
--- AddForeignKey
-ALTER TABLE "Invite" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
