@@ -4,8 +4,13 @@ import { SignUpInput } from '../../../__generated__/schema.generated'
 import { hashPassword } from '../../../utils/auth'
 import { db } from '../../../utils/prisma'
 import { createSession } from '../../../utils/sessions'
+import { reservedSlugs } from '../Common/reservedSlugs'
 
 export const signUp = async (query: any, input: SignUpInput, req: any) => {
+  if (reservedSlugs.includes(input.username)) {
+    throw new Error(`Username ${input.username} is reserved by Devparty.`)
+  }
+
   const user = await db.user.create({
     ...query,
     data: {

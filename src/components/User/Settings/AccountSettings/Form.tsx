@@ -103,7 +103,7 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
       }
     >
       <ErrorMessage
-        title="Error creating account"
+        title="Error updating profile"
         error={editUserResult.error}
       />
       {editUserResult.data && (

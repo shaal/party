@@ -73,6 +73,7 @@ const SignUpForm: React.FC = () => {
               <ErrorMessage
                 title="Error creating account"
                 error={signUpResult.error}
+                className="mb-2"
               />
               <div className="space-y-4">
                 <div>

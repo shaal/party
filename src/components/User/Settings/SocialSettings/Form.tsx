@@ -70,7 +70,7 @@ const SocialSettingsForm: React.FC<Props> = ({ user }) => {
       }
     >
       <ErrorMessage
-        title="Error creating account"
+        title="Error updating social"
         error={editSocialResult.error}
       />
       {editSocialResult.data && (
