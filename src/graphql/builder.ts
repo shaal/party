@@ -28,7 +28,6 @@ export function createGraphQLContext(
 }
 
 export const builder = new SchemaBuilder<{
-  // TODO: Set to false
   DefaultInputFieldRequiredness: true
   Context: Context
   Scalars: {
