@@ -3,11 +3,10 @@ import { ComponentProps, forwardRef } from 'react'
 
 interface Props extends ComponentProps<'input'> {
   className?: string
-  error?: boolean
 }
 
 export const TaskCheckbox = forwardRef<HTMLInputElement, Props>(function Input(
-  { error, className = '', ...props },
+  { className = '', ...props },
   ref
 ) {
   return (
