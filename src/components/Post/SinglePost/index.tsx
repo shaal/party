@@ -56,6 +56,7 @@ export const PostFragment = gql`
         id
         name
         avatar
+        bio
       }
     }
     product {
