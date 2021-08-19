@@ -3,7 +3,7 @@ import { Popover, Transition } from '@headlessui/react'
 import { LightningBoltIcon } from '@heroicons/react/outline'
 import { Fragment } from 'react'
 
-import { NotificationsQuery } from './__generated__/Notifications.generated'
+import { NotificationsQuery } from './__generated__/index.generated'
 
 export const NOTIFICATIONS_QUERY = gql`
   query NotificationsQuery {
