@@ -23,10 +23,7 @@ interface Props {
 }
 
 const UserMod: React.FC<Props> = ({ user }) => {
-  const [modUser, modUserResult] = useMutation<
-    ModUserMutation,
-    ModUserMutationVariables
-  >(
+  const [modUser] = useMutation<ModUserMutation, ModUserMutationVariables>(
     gql`
       mutation ModUserMutation($input: ModUserInput!) {
         modUser(input: $input) {

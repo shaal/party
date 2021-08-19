@@ -2,21 +2,9 @@ import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 
 import { User } from '../../../__generated__/schema.generated'
-import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
 import SocialSettings from './SocialSettings'
-
-const Loading = () => (
-  <GridLayout>
-    <GridItemFour>
-      <div className="shimmer rounded-lg h-10"></div>
-    </GridItemFour>
-    <GridItemEight>
-      <div className="shimmer rounded-lg h-10"></div>
-    </GridItemEight>
-  </GridLayout>
-)
 
 export const SETTINGS_QUERY = gql`
   query SettingsQuery {
