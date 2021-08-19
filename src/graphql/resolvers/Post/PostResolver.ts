@@ -2,6 +2,7 @@ import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './createPost'
+import { deletePost } from './deletePost'
 import { editPost } from './editPost'
 import { getPosts } from './getPosts'
 import { homeFeed } from './homeFeed'
@@ -166,7 +167,6 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
     type: db.post,
@@ -174,19 +174,7 @@ builder.mutationField('deletePost', (t) =>
       input: t.arg({ type: DeletePostInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      const post = await db.post.findFirst({
-        ...query,
-        where: {
-          id: input.id,
-          userId: session!.userId
-        },
-
-        rejectOnNotFound: true
-      })
-
-      return await db.post.delete({
-        where: { id: post.id }
-      })
+      return await deletePost(query, input, session)
     }
   })
 )
