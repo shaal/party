@@ -5,7 +5,7 @@ tasks:
     init: >
       yarn --network-timeout 100000;
       cp .env.example .env;
-      yarn prisma:dev;
+      yarn prisma:migrate;
       yarn prisma:seed;
       yarn prepare;
       gp sync-done setup;
