@@ -1,6 +1,7 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
+import { createReply } from './createReply'
 
 builder.prismaObject(db.reply, {
   findUnique: (reply) => ({ id: reply.id }),
@@ -87,7 +88,6 @@ const CreateReplyInput = builder.inputType('CreateReplyInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('createReply', (t) =>
   t.prismaField({
     type: db.reply,
@@ -95,13 +95,7 @@ builder.mutationField('createReply', (t) =>
       input: t.arg({ type: CreateReplyInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      return await db.reply.create({
-        data: {
-          userId: session!.userId,
-          postId: input.postId,
-          body: input.body
-        }
-      })
+      return await createReply(query, input, session)
     }
   })
 )
