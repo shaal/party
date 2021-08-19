@@ -131,6 +131,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
     type: db.user,
