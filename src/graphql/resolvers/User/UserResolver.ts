@@ -1,6 +1,6 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { modUser } from '../Stafftools/modUser'
+import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
 import { followersCount } from './queries/followersCount'
 import { followingCount } from './queries/followingCount'

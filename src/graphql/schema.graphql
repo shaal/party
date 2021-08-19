@@ -44,6 +44,12 @@ input EditSocialInput {
   website: String
 }
 
+input EditTopicInput {
+  description: String
+  id: ID!
+  name: String
+}
+
 input EditUserInput {
   avatar: String
   bio: String
@@ -85,6 +91,7 @@ type Mutation {
   editUser(input: EditUserInput!): User!
   login(input: LoginInput!): User!
   logout: Result!
+  modTopic(input: EditTopicInput!): Topic!
   modUser(input: ModUserInput!): User
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User

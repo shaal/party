@@ -1,5 +1,6 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
+import { modTopic } from './mutations/modTopic'
 
 builder.prismaObject(db.topic, {
   findUnique: (topic) => ({ id: topic.id }),
@@ -42,6 +43,26 @@ builder.queryField('topic', (t) =>
         where: { name },
         rejectOnNotFound: true
       })
+    }
+  })
+)
+
+const EditTopicInput = builder.inputType('EditTopicInput', {
+  fields: (t) => ({
+    id: t.id({}),
+    name: t.string({ required: false }),
+    description: t.string({ required: false })
+  })
+})
+
+builder.mutationField('modTopic', (t) =>
+  t.prismaField({
+    type: db.topic,
+    args: {
+      input: t.arg({ type: EditTopicInput })
+    },
+    resolve: async (query, root, { input }, { session }) => {
+      return await modTopic(query, input, session)
     }
   })
 )
