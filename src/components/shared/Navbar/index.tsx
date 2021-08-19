@@ -99,11 +99,9 @@ const Navbar: React.FC = () => {
                       alt="Devparty"
                     />
                   </Link>
-                  {currentUser?.isStaff && staffMode && (
-                    <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-indigo-500 to-purple-500">
-                      beta
-                    </div>
-                  )}
+                  <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-indigo-500 to-purple-500">
+                    beta
+                  </div>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
