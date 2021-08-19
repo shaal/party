@@ -1,9 +1,9 @@
 import { Session } from '@prisma/client'
 import { md5 } from 'hash-wasm'
 
-import { CreateProductInput } from '../../../__generated__/schema.generated'
-import { db } from '../../../utils/prisma'
-import { reservedSlugs } from '../Common/reservedSlugs'
+import { CreateProductInput } from '../../../../__generated__/schema.generated'
+import { db } from '../../../../utils/prisma'
+import { reservedSlugs } from '../../Common/reservedSlugs'
 
 export const createProduct = async (
   query: any,

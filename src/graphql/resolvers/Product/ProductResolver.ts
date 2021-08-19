@@ -1,7 +1,7 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { createProduct } from './createProduct'
-import { getProducts } from './getProducts'
+import { createProduct } from './mutations/createProduct'
+import { getProducts } from './queries/getProducts'
 
 builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),

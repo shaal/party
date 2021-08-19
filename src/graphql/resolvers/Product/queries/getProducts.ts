@@ -1,5 +1,5 @@
-import { WhereProductsInput } from '../../../__generated__/schema.generated'
-import { db } from '../../../utils/prisma'
+import { WhereProductsInput } from '../../../../__generated__/schema.generated'
+import { db } from '../../../../utils/prisma'
 
 export const getProducts = async (
   query: any,
