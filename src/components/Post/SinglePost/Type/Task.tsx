@@ -21,10 +21,7 @@ interface Props {
 hashtag(linkify)
 
 const TaskType: React.FC<Props> = ({ task }) => {
-  const [editPost, editPostResult] = useMutation<
-    EditPostMutation,
-    EditPostMutationVariables
-  >(
+  const [editPost] = useMutation<EditPostMutation, EditPostMutationVariables>(
     gql`
       mutation EditPostMutation($input: EditPostInput!) {
         editPost(input: $input) {

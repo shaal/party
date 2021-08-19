@@ -22,7 +22,7 @@ interface Props {
 
 const SingleReply: React.FC<Props> = ({ reply }) => {
   const { currentUser } = useContext(AppContext)
-  const [toggleReplyLike, toggleReplyLikeResult] = useMutation<
+  const [toggleReplyLike] = useMutation<
     ToggleReplyLikeMutation,
     ToggleReplyLikeMutationVariables
   >(
