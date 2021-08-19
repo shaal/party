@@ -130,7 +130,7 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "Notification" (
     "id" TEXT NOT NULL,
-    "message" TEXT NOT NULL,
+    "message" TEXT,
     "type" "NotificationType" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

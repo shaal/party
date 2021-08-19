@@ -101,7 +101,6 @@ type Mutation {
 type Notification {
   dispatcher: User!
   id: ID!
-  message: String!
   receiver: User!
   type: String!
 }

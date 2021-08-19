@@ -6,7 +6,6 @@ builder.prismaObject(db.notification, {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
-    message: t.exposeString('message'),
     type: t.exposeString('type'),
     receiver: t.relation('receiver'),
     dispatcher: t.relation('dispatcher')
