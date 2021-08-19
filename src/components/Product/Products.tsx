@@ -56,8 +56,8 @@ const Products: React.FC = () => {
   return (
     <GridLayout>
       <GridItemEight>
-        <Card className="space-y-5">
-          <CardBody className="space-y-4">
+        <Card>
+          <CardBody className="space-y-6">
             <ErrorMessage title="Failed to load post" error={error} />
             {data?.products?.edges?.map((product: any) => (
               <ProductProfileLarge
