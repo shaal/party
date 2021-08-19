@@ -1,11 +1,11 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
-import { createPost } from './createPost'
-import { deletePost } from './deletePost'
-import { editPost } from './editPost'
-import { getPosts } from './getPosts'
-import { homeFeed } from './homeFeed'
+import { createPost } from './mutations/createPost'
+import { deletePost } from './mutations/deletePost'
+import { editPost } from './mutations/editPost'
+import { getPosts } from './queries/getPosts'
+import { homeFeed } from './queries/homeFeed'
 
 builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),

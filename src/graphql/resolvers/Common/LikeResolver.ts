@@ -1,6 +1,6 @@
 import { db } from '../../../utils/prisma'
 import { builder } from '../../builder'
-import { togglePostLike } from '../Post/togglePostLike'
+import { togglePostLike } from '../Post/mutations/togglePostLike'
 import { toggleReplyLike } from '../Reply/mutations/toggleReplyLike'
 
 builder.prismaObject(db.like, {
