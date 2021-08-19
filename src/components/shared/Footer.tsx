@@ -38,6 +38,14 @@ const Footer: React.FC = () => {
       </a>
       <a
         className="pr-3"
+        href="https://kinopio.club/-devparty-roadmap-SxWTMtzJ6jhQwTszij6-h"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Roadmap
+      </a>
+      <a
+        className="pr-3"
         href="https://gitlab.com/yo/devparty"
         target="_blank"
         rel="noreferrer"
