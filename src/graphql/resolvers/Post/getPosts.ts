@@ -1,6 +1,7 @@
+import { PostType } from '@prisma/client'
+
 import { WherePostsInput } from '../../../__generated__/schema.generated'
 import { db } from '../../../utils/prisma'
-import { PostType } from '.prisma/client'
 
 export const getPosts = async (
   query: any,
