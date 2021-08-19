@@ -3,6 +3,7 @@ import { builder } from '../../builder'
 import { modUser } from '../Stafftools/modUser'
 import { followersCount } from './followersCount'
 import { followingCount } from './followingCount'
+import { getUsers } from './getUsers'
 import { hasFollowed } from './hasFollowed'
 import { toggleFollow } from './toggleFollow'
 
@@ -62,17 +63,12 @@ builder.queryField('user', (t) =>
   })
 )
 
-// TODO: Split to function
 builder.queryField('users', (t) =>
   t.prismaConnection({
     type: db.user,
     cursor: 'id',
     resolve: async (query, root) => {
-      return await db.user.findMany({
-        ...query,
-        where: { spammy: false },
-        orderBy: { createdAt: 'desc' }
-      })
+      return await getUsers(query)
     }
   })
 )
