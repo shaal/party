@@ -15,7 +15,7 @@ builder.queryField('me', (t) =>
     resolve: async (query, root, args, { session }) => {
       return await db.user.findUnique({
         ...query,
-        where: { id: session.userId },
+        where: { id: session?.userId },
         rejectOnNotFound: true
       })
     }

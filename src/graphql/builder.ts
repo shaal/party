@@ -64,9 +64,7 @@ export const builder = new SchemaBuilder<{
 
 builder.queryType({})
 builder.mutationType({
-  authScopes: {
-    user: true
-  }
+  authScopes: { user: true }
 })
 
 // Cusrom Scalar Types
