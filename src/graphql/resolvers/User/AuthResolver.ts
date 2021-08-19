@@ -11,11 +11,8 @@ builder.queryField('me', (t) =>
     type: db.user,
     nullable: true,
     skipTypeScopes: true,
+    authScopes: { unauthenticated: true },
     resolve: async (query, root, args, { session }) => {
-      if (!session?.userId) {
-        return null
-      }
-
       return await db.user.findUnique({
         ...query,
         where: { id: session.userId },
