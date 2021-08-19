@@ -1,4 +1,4 @@
-import { db } from '../../../../utils/prisma'
+import { prisma } from '../../../../utils/prisma'
 import { hasLiked } from '../../Common/hasLiked'
 
 export const toggleReplyLike = async (
@@ -7,11 +7,11 @@ export const toggleReplyLike = async (
   replyId: string
 ) => {
   if (await hasLiked(userId, null, replyId)) {
-    await db.like.deleteMany({
+    await prisma.like.deleteMany({
       where: { userId, replyId }
     })
   } else {
-    await db.like.create({
+    await prisma.like.create({
       data: {
         reply: { connect: { id: replyId } },
         user: { connect: { id: userId } }
@@ -19,7 +19,7 @@ export const toggleReplyLike = async (
     })
   }
 
-  return await db.reply.findUnique({
+  return await prisma.reply.findUnique({
     ...query,
     where: { id: replyId }
   })

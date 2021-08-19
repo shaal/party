@@ -1,5 +1,5 @@
 import { authenticateUser } from '../../../utils/auth'
-import { db } from '../../../utils/prisma'
+import { prisma } from '../../../utils/prisma'
 import { createSession, removeSession } from '../../../utils/sessions'
 import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
@@ -8,7 +8,7 @@ import { signUp } from './mutations/signUp'
 
 builder.queryField('me', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     nullable: true,
     skipTypeScopes: true,
     resolve: async (query, root, args, { session }) => {
@@ -16,7 +16,7 @@ builder.queryField('me', (t) =>
         return null
       }
 
-      return await db.user.findUnique({
+      return await prisma.user.findUnique({
         ...query,
         where: { id: session.userId },
         rejectOnNotFound: true
@@ -52,7 +52,7 @@ const LoginInput = builder.inputType('LoginInput', {
 
 builder.mutationField('login', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: false
@@ -96,7 +96,7 @@ const SignUpInput = builder.inputType('SignUpInput', {
 
 builder.mutationField('signUp', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true

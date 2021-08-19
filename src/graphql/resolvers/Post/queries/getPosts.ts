@@ -1,13 +1,13 @@
 import { PostType } from '@prisma/client'
 
 import { WherePostsInput } from '../../../../__generated__/schema.generated'
-import { db } from '../../../../utils/prisma'
+import { prisma } from '../../../../utils/prisma'
 
 export const getPosts = async (
   query: any,
   where: WherePostsInput | null | undefined
 ) => {
-  return await db.post.findMany({
+  return await prisma.post.findMany({
     ...query,
     where: {
       type: where?.type === 'ALL' ? undefined : (where?.type as PostType),

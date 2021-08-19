@@ -1,7 +1,7 @@
 import { PostType, Session } from '@prisma/client'
 
 import { WherePostsInput } from '../../../../__generated__/schema.generated'
-import { db } from '../../../../utils/prisma'
+import { prisma } from '../../../../utils/prisma'
 
 export const homeFeed = async (
   query: any,
@@ -9,12 +9,12 @@ export const homeFeed = async (
   session: Session | null | undefined
 ) => {
   if (session) {
-    const following = await db.user.findUnique({
+    const following = await prisma.user.findUnique({
       where: { id: session?.userId },
       select: { following: { select: { id: true } } }
     })
 
-    return await db.post.findMany({
+    return await prisma.post.findMany({
       ...query,
       where: {
         type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
@@ -35,7 +35,7 @@ export const homeFeed = async (
       }
     })
   } else {
-    return await db.post.findMany({
+    return await prisma.post.findMany({
       ...query,
       where: {
         type: where?.type === 'ALL' ? undefined : (where?.type as PostType)

@@ -1,7 +1,7 @@
-import { db } from '../../../utils/prisma'
+import { prisma } from '../../../utils/prisma'
 import { builder } from '../../builder'
 
-builder.prismaObject(db.profile, {
+builder.prismaObject(prisma.profile, {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -30,12 +30,12 @@ const EditSocialInput = builder.inputType('EditSocialInput', {
 
 builder.mutationField('editSocial', (t) =>
   t.prismaField({
-    type: db.user,
+    type: prisma.user,
     args: {
       input: t.arg({ type: EditSocialInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      return await db.user.update({
+      return await prisma.user.update({
         ...query,
         where: {
           id: session!.userId

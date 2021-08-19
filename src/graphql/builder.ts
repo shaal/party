@@ -7,7 +7,7 @@ import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
-import { db } from '../utils/prisma'
+import { prisma } from '../utils/prisma'
 
 export interface Context {
   req: IncomingMessage
@@ -16,12 +16,12 @@ export interface Context {
 }
 
 export function createGraphQLContext(
-  req: IncomingMessage,
+  request: IncomingMessage,
   res: OutgoingMessage,
   session?: Session | null
 ): Context {
   return {
-    req,
+    req: request,
     res,
     session
   }
@@ -49,7 +49,7 @@ export const builder = new SchemaBuilder<{
     PrismaPlugin,
     RelayPlugin
   ],
-  prisma: { client: db },
+  prisma: { client: prisma },
   authScopes: async ({ session }) => ({
     public: true,
     user: !!session,

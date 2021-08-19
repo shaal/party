@@ -1,7 +1,7 @@
 import { PostType, Session } from '@prisma/client'
 
 import { CreatePostInput } from '../../../../__generated__/schema.generated'
-import { db } from '../../../../utils/prisma'
+import { prisma } from '../../../../utils/prisma'
 import { getTopics } from '../../../utils/getTopics'
 import { parseTopics } from '../../../utils/parseTopics'
 
@@ -13,7 +13,7 @@ export const createPost = async (
   if (getTopics(input.body)?.length > 5) {
     throw new Error('Your post should not contain more than 5 topics')
   }
-  return await db.post.create({
+  return await prisma.post.create({
     ...query,
     data: {
       userId: session!.userId,

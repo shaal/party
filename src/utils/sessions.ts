@@ -4,12 +4,12 @@ import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
 
-import { db } from './prisma'
+import { prisma } from './prisma'
 
 const SESSION_TTL = 15 * 24 * 3600
 const IRON_SESSION_ID_KEY = 'sessionID'
 
-interface ReqWithSession extends IncomingMessage {
+interface RequestWithSession extends IncomingMessage {
   session: import('next-iron-session').Session
 }
 
@@ -35,28 +35,31 @@ export const sessionOptions: SessionOptions = {
   }
 }
 
-export async function createSession(req: IncomingMessage, user: User) {
-  const session = await db.session.create({
+export async function createSession(request: IncomingMessage, user: User) {
+  const session = await prisma.session.create({
     data: {
       userId: user.id,
       expiresAt: addSeconds(new Date(), SESSION_TTL)
     }
   })
 
-  const reqWithSession = req as unknown as ReqWithSession
+  const requestWithSession = request as unknown as RequestWithSession
 
-  reqWithSession.session.set(IRON_SESSION_ID_KEY, session.id)
-  await reqWithSession.session.save()
+  requestWithSession.session.set(IRON_SESSION_ID_KEY, session.id)
+  await requestWithSession.session.save()
 
   return session
 }
 
-export async function removeSession(req: IncomingMessage, session: Session) {
-  const reqWithSession = req as unknown as ReqWithSession
+export async function removeSession(
+  request: IncomingMessage,
+  session: Session
+) {
+  const requestWithSession = request as unknown as RequestWithSession
 
-  reqWithSession.session.destroy()
+  requestWithSession.session.destroy()
 
-  await db.session.delete({ where: { id: session!.id } })
+  await prisma.session.delete({ where: { id: session!.id } })
 }
 
 const sessionCache = new WeakMap<IncomingMessage, Session | null>()
@@ -72,11 +75,11 @@ export async function resolveSession({
 
   let session: Session | null = null
 
-  const reqWithSession = req as unknown as ReqWithSession
-  const sessionID = reqWithSession.session.get(IRON_SESSION_ID_KEY)
+  const requestWithSession = req as unknown as RequestWithSession
+  const sessionID = requestWithSession.session.get(IRON_SESSION_ID_KEY)
 
   if (sessionID) {
-    session = await db.session.findFirst({
+    session = await prisma.session.findFirst({
       where: {
         id: sessionID,
         expiresAt: {
@@ -90,7 +93,7 @@ export async function resolveSession({
         differenceInSeconds(session.expiresAt, new Date()) < 0.75 * SESSION_TTL
 
       if (shouldRefreshSession) {
-        await db.session.update({
+        await prisma.session.update({
           where: {
             id: session.id
           },
@@ -99,7 +102,7 @@ export async function resolveSession({
           }
         })
 
-        await reqWithSession.session.save()
+        await requestWithSession.session.save()
       }
     }
   }

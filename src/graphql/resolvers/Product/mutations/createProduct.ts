@@ -2,7 +2,7 @@ import { Session } from '@prisma/client'
 import { md5 } from 'hash-wasm'
 
 import { CreateProductInput } from '../../../../__generated__/schema.generated'
-import { db } from '../../../../utils/prisma'
+import { prisma } from '../../../../utils/prisma'
 import { reservedSlugs } from '../../Common/reservedSlugs'
 
 export const createProduct = async (
@@ -14,7 +14,7 @@ export const createProduct = async (
     throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
   }
 
-  return await db.product.create({
+  return await prisma.product.create({
     ...query,
     data: {
       userId: session!.userId,
