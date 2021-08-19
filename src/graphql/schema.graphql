@@ -99,10 +99,13 @@ type Mutation {
 }
 
 type Notification {
+  createdAt: DateTime!
   dispatcher: User!
+  entityId: String
   id: ID!
   receiver: User!
   type: String!
+  updatedAt: DateTime!
 }
 
 type PageInfo {
