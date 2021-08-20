@@ -55,7 +55,7 @@ builder.queryField('user', (t) =>
       return await prisma.user.findUnique({
         ...query,
         where: {
-          username: username.slice(1)
+          username: username
         },
         rejectOnNotFound: true
       })
