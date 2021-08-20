@@ -3,7 +3,7 @@ import { preloadQuery } from '../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
   if (ctx.params!.username.startsWith('@')) {
-    const username = ctx.params!.username.substring(1)
+    const username = ctx.params!.username.slice(1)
     return preloadQuery(ctx, {
       query,
       variables: {
