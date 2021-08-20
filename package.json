@@ -55,7 +55,7 @@
     "zod": "3.7.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.1.0",
+    "@graphql-codegen/cli": "2.1.1",
     "@graphql-codegen/near-operation-file-preset": "2.1.0",
     "@graphql-codegen/typescript": "2.1.0",
     "@graphql-codegen/typescript-operations": "2.1.0",
