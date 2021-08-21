@@ -1,7 +1,7 @@
 import { Session } from '@prisma/client'
-import { prisma } from '~/utils/prisma'
 
-import { ModUserInput } from '../../../../__generated__/schema.generated'
+import { ModUserInput } from '~/__generated__/schema.generated'
+import { prisma } from '~/utils/prisma'
 
 export const modUser = async (
   input: ModUserInput,

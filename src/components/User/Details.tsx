@@ -5,12 +5,12 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Fragment, useContext } from 'react'
 
+import { Profile, User } from '~/__generated__/schema.generated'
 import Slug from '~/components/shared/Slug'
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
-import { Profile, User } from '../../__generated__/schema.generated'
 import Follow from './Follow'
 import Followerings from './Followerings'
 import OwnedProducts from './OwnedProducts'

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { User } from '~/__generated__/schema.generated'
 import {
   GridItemEight,
   GridItemFour,
@@ -8,7 +9,6 @@ import {
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
 
-import { User } from '../../../../__generated__/schema.generated'
 import SocialSettingsForm from './Form'
 
 interface Props {

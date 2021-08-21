@@ -3,11 +3,11 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
+import { User } from '~/__generated__/schema.generated'
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { User } from '../../__generated__/schema.generated'
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 

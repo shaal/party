@@ -1,12 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { User } from '../../__generated__/schema.generated'
+import { User } from '~/__generated__/schema.generated'
+import { Button } from '~/components/ui/Button'
+import AppContext from '~/components/utils/AppContext'
+
 import {
   ToggleFollowMutation,
   ToggleFollowMutationVariables

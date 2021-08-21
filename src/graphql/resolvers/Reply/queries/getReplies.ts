@@ -1,6 +1,5 @@
+import { WhereRepliesInput } from '~/__generated__/schema.generated'
 import { prisma } from '~/utils/prisma'
-
-import { WhereRepliesInput } from '../../../../__generated__/schema.generated'
 
 export const getReplies = async (
   query: any,

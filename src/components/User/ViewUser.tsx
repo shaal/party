@@ -2,10 +2,10 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
+import { User } from '~/__generated__/schema.generated'
 import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { User } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { UserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'

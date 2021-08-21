@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Notification } from '../../../../__generated__/schema.generated'
+import { Notification } from '~/__generated__/schema.generated'
 
 interface Props {
   notification: Notification
