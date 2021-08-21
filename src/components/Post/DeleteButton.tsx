@@ -3,7 +3,8 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import { Post } from '../../__generated__/schema.generated'
+import { Post } from '~/__generated__/schema.generated'
+
 import {
   DeletePostMutation,
   DeletePostMutationVariables
