@@ -13,6 +13,7 @@ import { ProductFeedQuery } from './__generated__/Feed.generated'
 const PRODUCT_FEED_QUERY = gql`
   query ProductFeedQuery($after: String, $slug: String!) {
     product(slug: $slug) {
+      id
       posts(first: 10, after: $after) {
         pageInfo {
           endCursor
