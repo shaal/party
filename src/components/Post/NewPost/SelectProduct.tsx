@@ -1,12 +1,13 @@
 import { gql, useQuery } from '@apollo/client'
-import AppContext from '~/components/utils/AppContext'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { useContext } from 'react'
 
-import { Product } from '../../../__generated__/schema.generated'
+import { Product } from '~/__generated__/schema.generated'
+import AppContext from '~/components/utils/AppContext'
+
 import { SelectProductQuery } from './__generated__/SelectProduct.generated'
 
 export const SELECT_PRODUCT_QUERY = gql`
