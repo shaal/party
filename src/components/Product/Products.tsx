@@ -3,6 +3,7 @@ import { CubeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
+import { Product } from '~/__generated__/schema.generated'
 import Footer from '~/components/shared/Footer'
 import ProductProfileLarge from '~/components/shared/ProductProfileLarge'
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
@@ -11,7 +12,6 @@ import { Button } from '~/components/ui/Button'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { Product } from '../../__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ProductsQuery } from './__generated__/Products.generated'
 
