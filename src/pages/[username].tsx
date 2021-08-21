@@ -6,9 +6,7 @@ export const getServerSideProps = async (ctx: any) => {
     const username = ctx.params!.username.slice(1)
     return preloadQuery(ctx, {
       query,
-      variables: {
-        username
-      }
+      variables: { username }
     })
   } else {
     return {
