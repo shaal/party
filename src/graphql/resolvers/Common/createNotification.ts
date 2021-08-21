@@ -1,4 +1,5 @@
 import { NotificationType } from '@prisma/client'
+
 import { prisma } from '~/utils/prisma'
 
 export const createNotification = async (

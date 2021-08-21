@@ -1,4 +1,3 @@
-import { resolveSession } from '~/utils/sessions'
 import { ExecutionResult, GraphQLError } from 'graphql'
 import {
   getGraphQLParameters,
@@ -8,6 +7,8 @@ import {
 } from 'graphql-helix'
 import { IncomingHttpHeaders } from 'http'
 import { NextApiHandler } from 'next'
+
+import { resolveSession } from '~/utils/sessions'
 
 import { Context, createGraphQLContext } from '../../graphql/builder'
 import { schema } from '../../graphql/index'

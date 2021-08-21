@@ -1,4 +1,5 @@
 import { Session } from '@prisma/client'
+
 import { prisma } from '~/utils/prisma'
 
 export const getNotifications = async (
