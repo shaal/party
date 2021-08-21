@@ -1,6 +1,4 @@
 import { gql, useMutation } from '@apollo/client'
-import { Card, CardBody } from '~/components/ui/Card'
-import AppContext from '~/components/utils/AppContext'
 import { ChatIcon, TrashIcon } from '@heroicons/react/outline'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
@@ -8,8 +6,11 @@ import React from 'react'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
+import UserProfile from '~/components/shared/UserProfile'
+import { Card, CardBody } from '~/components/ui/Card'
+import AppContext from '~/components/utils/AppContext'
+
 import { Reply, User } from '../../../__generated__/schema.generated'
-import UserProfile from '../../shared/UserProfile'
 import LikeButton from '../LikeButton'
 import {
   ToggleReplyLikeMutation,
