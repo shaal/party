@@ -40,7 +40,10 @@ const Attachments: React.FC<Props> = ({
           {attachments?.map((attachment: any) => (
             <div className="aspect-w-16 aspect-h-12" key={attachment}>
               {attachment.type === 'video/mp4' ? (
-                <video width="320" height="240" controls>
+                <video
+                  controls
+                  className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
+                >
                   <source src={attachment.url} type="video/mp4" />
                 </video>
               ) : (
