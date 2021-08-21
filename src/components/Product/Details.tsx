@@ -1,10 +1,11 @@
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'
 
-import { Product } from '../../__generated__/schema.generated'
+import { Product } from '~/__generated__/schema.generated'
+import { Button } from '~/components/ui/Button'
+import AppContext from '~/components/utils/AppContext'
+
 import ProductMod from './Mod'
 
 interface Props {
