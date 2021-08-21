@@ -13,6 +13,17 @@ export const createPost = async (
   if (getTopics(input.body)?.length > 5) {
     throw new Error('Your post should not contain more than 5 topics')
   }
+
+  if (input.productId) {
+    const product = await prisma.product.findUnique({
+      where: { id: input.productId }
+    })
+
+    if (product?.userId !== session!.userId) {
+      throw new Error('You cannot post in others product')
+    }
+  }
+
   return await prisma.post.create({
     ...query,
     data: {
