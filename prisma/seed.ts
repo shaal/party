@@ -1,3 +1,5 @@
+import 'tsconfig-paths/register'
+
 import { PrismaClient } from '@prisma/client'
 
 import { hashPassword } from '../src/utils/auth'
