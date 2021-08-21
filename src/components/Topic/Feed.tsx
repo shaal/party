@@ -1,11 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import PostShimmer from '../../components/shared/Shimmer/PostShimmer'
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import { TopicFeedQuery } from './__generated__/Feed.generated'
 
