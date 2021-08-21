@@ -11,15 +11,17 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
 const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $where: WherePostsInput) {
-    posts(first: 10, after: $after, where: $where) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        node {
-          ...PostFragment
+  query UserFeedQuery($after: String, $username: String!) {
+    user(username: $username) {
+      posts(first: 10, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...PostFragment
+          }
         }
       }
     }
@@ -37,15 +39,13 @@ const UserFeed: React.FC<Props> = ({ user }) => {
     {
       variables: {
         after: null,
-        where: {
-          userId: user?.id
-        }
+        username: user?.username
       }
     }
   )
 
-  const posts = data?.posts?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.posts?.pageInfo
+  const posts = data?.user?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.user?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
