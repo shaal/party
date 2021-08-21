@@ -1,8 +1,8 @@
 import 'tsconfig-paths/register'
 
 import { PrismaClient } from '@prisma/client'
+import { hashPassword } from '@utils/auth'
 
-import { hashPassword } from '../src/utils/auth'
 import { postData } from './seeds/posts'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'

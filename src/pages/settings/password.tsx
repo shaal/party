@@ -1,7 +1,7 @@
+import { authenticatedRoute } from '@utils/redirects'
 import { GetServerSideProps } from 'next'
 
 import ChangePassword from '../../components/User/Settings/ChangePassword'
-import { authenticatedRoute } from '../../utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute
 

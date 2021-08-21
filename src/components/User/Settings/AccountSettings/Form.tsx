@@ -5,12 +5,12 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
+import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { object, string } from 'zod'
 
 import { User } from '../../../../__generated__/schema.generated'
-import { uploadToIPFS } from '../../../utils/uploadToIPFS'
 import {
   AccountSettingsMutation,
   AccountSettingsMutationVariables

@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
+import AppContext from '@components/utils/AppContext'
 import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
@@ -8,7 +9,6 @@ import * as timeago from 'timeago.js'
 
 import { Post, User } from '../../../__generated__/schema.generated'
 import UserProfile from '../../shared/UserProfile'
-import AppContext from '../../utils/AppContext'
 import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
 import {

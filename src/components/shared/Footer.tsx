@@ -1,11 +1,10 @@
+import AppContext from '@components/utils/AppContext'
 import {
   ShieldCheckIcon,
   ShieldExclamationIcon
 } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
-
-import AppContext from '../utils/AppContext'
 
 const Footer: React.FC = () => {
   const { currentUser, staffMode, setStaffMode } = useContext(AppContext)

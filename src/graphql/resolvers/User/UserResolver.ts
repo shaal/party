@@ -1,4 +1,5 @@
-import { prisma } from '../../../utils/prisma'
+import { prisma } from '@utils/prisma'
+
 import { builder } from '../../builder'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'

@@ -1,3 +1,4 @@
+import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
@@ -5,7 +6,6 @@ import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 
 import { Post, Reply } from '../../__generated__/schema.generated'
-import AppContext from '../utils/AppContext'
 
 type Props = {
   entity: Post | Reply

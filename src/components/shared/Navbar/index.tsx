@@ -1,4 +1,5 @@
 import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -7,7 +8,6 @@ import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { Fragment } from 'react'
 
-import AppContext from '../../utils/AppContext'
 import MenuItems from './MenuItems'
 import Notifications from './Notifications'
 import StaffBar from './StaffBar'

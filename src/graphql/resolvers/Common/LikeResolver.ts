@@ -1,4 +1,5 @@
-import { prisma } from '../../../utils/prisma'
+import { prisma } from '@utils/prisma'
+
 import { builder } from '../../builder'
 import { togglePostLike } from '../Post/mutations/togglePostLike'
 import { toggleReplyLike } from '../Reply/mutations/toggleReplyLike'

@@ -1,4 +1,5 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '@utils/prisma'
+
 import { hasFollowed } from '../queries/hasFollowed'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {

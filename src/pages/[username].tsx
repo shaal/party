@@ -1,5 +1,6 @@
+import { preloadQuery } from '@utils/apollo'
+
 import ViewUser, { USER_QUERY as query } from '../components/User/ViewUser'
-import { preloadQuery } from '../utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {
   if (ctx.params!.username.startsWith('@')) {

@@ -4,11 +4,11 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import Link from 'next/link'
 import React from 'react'
 import { object, string } from 'zod'
 
-import { useAuthRedirect } from '../utils/useAuthRedirect'
 import {
   LoginFormMutation,
   LoginFormMutationVariables

@@ -1,6 +1,7 @@
-import { authenticateUser } from '../../../utils/auth'
-import { prisma } from '../../../utils/prisma'
-import { createSession, removeSession } from '../../../utils/sessions'
+import { authenticateUser } from '@utils/auth'
+import { prisma } from '@utils/prisma'
+import { createSession, removeSession } from '@utils/sessions'
+
 import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
