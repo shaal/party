@@ -5,11 +5,11 @@ import React from 'react'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
+import { Post, User } from '~/__generated__/schema.generated'
 import UserProfile from '~/components/shared/UserProfile'
 import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
 
-import { Post, User } from '../../../__generated__/schema.generated'
 import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
 import {
