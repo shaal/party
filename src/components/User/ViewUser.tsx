@@ -41,7 +41,7 @@ const ViewUser: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<UserQuery>(USER_QUERY, {
     variables: {
-      username: router.query.username
+      username: router.query.username!.slice(1)
     },
     skip: !router.isReady
   })
