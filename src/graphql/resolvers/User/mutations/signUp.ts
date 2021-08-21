@@ -1,9 +1,10 @@
 import { md5 } from 'hash-wasm'
 
-import { SignUpInput } from '../../../../__generated__/schema.generated'
-import { hashPassword } from '../../../../utils/auth'
-import { prisma } from '../../../../utils/prisma'
-import { createSession } from '../../../../utils/sessions'
+import { SignUpInput } from '~/__generated__/schema.generated'
+import { hashPassword } from '~/utils/auth'
+import { prisma } from '~/utils/prisma'
+import { createSession } from '~/utils/sessions'
+
 import { reservedSlugs } from '../../Common/reservedSlugs'
 
 export const signUp = async (query: any, input: SignUpInput, req: any) => {

@@ -3,10 +3,11 @@ import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Post, Reply } from '../../../__generated__/schema.generated'
-import PostShimmer from '../../shared/Shimmer/PostShimmer'
-import { EmptyState } from '../../ui/EmptyState'
-import { ErrorMessage } from '../../ui/ErrorMessage'
+import { Post, Reply } from '~/__generated__/schema.generated'
+import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
+import { EmptyState } from '~/components/ui/EmptyState'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+
 import { RepliesQuery } from './__generated__/Replies.generated'
 import SingleReply from './SingleReply'
 

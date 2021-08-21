@@ -6,10 +6,11 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
 
-import { User } from '../../../__generated__/schema.generated'
-import { Dropdown } from '../../ui/Dropdown'
-import AppContext from '../../utils/AppContext'
-import { useAuthRedirect } from '../../utils/useAuthRedirect'
+import { User } from '~/__generated__/schema.generated'
+import { Dropdown } from '~/components/ui/Dropdown'
+import AppContext from '~/components/utils/AppContext'
+import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
+
 import Slug from '../Slug'
 
 const NextLink = ({ href, children, ...rest }: any) => (

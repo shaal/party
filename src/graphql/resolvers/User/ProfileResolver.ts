@@ -1,5 +1,5 @@
-import { prisma } from '../../../utils/prisma'
-import { builder } from '../../builder'
+import { builder } from '~/graphql/builder'
+import { prisma } from '~/utils/prisma'
 
 builder.prismaObject(prisma.profile, {
   findUnique: (profile) => ({ id: profile.id }),

@@ -3,10 +3,11 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import PostShimmer from '../../components/shared/Shimmer/PostShimmer'
+import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
+import { EmptyState } from '~/components/ui/EmptyState'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+
 import SinglePost, { PostFragment } from '../Post/SinglePost'
-import { EmptyState } from '../ui/EmptyState'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { TopicFeedQuery } from './__generated__/Feed.generated'
 
 export const TOPIC_FEED_QUERY = gql`

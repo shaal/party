@@ -2,9 +2,10 @@ import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React, { useContext } from 'react'
 
-import { User } from '../../__generated__/schema.generated'
+import { User } from '~/__generated__/schema.generated'
+import AppContext from '~/components/utils/AppContext'
+
 import Follow from '../User/Follow'
-import AppContext from '../utils/AppContext'
 import Slug from './Slug'
 
 interface Props {

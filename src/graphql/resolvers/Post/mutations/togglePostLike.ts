@@ -1,4 +1,5 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '~/utils/prisma'
+
 import { createNotification } from '../../Common/createNotification'
 import { hasLiked } from '../../Common/hasLiked'
 

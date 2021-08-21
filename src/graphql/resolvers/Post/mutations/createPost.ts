@@ -1,9 +1,9 @@
 import { PostType, Session } from '@prisma/client'
 
-import { CreatePostInput } from '../../../../__generated__/schema.generated'
-import { prisma } from '../../../../utils/prisma'
-import { getTopics } from '../../../utils/getTopics'
-import { parseTopics } from '../../../utils/parseTopics'
+import { CreatePostInput } from '~/__generated__/schema.generated'
+import { getTopics } from '~/graphql/utils/getTopics'
+import { parseTopics } from '~/graphql/utils/parseTopics'
+import { prisma } from '~/utils/prisma'
 
 export const createPost = async (
   query: any,

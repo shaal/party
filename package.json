@@ -15,7 +15,7 @@
     "prisma:seed": "prisma db seed --preview-feature",
     "codegen": "yarn codegen:clean && run-s -l \"codegen:*\"",
     "codegen:clean": "trash \"./src/**/__generated__/**\"",
-    "codegen:schema": "ts-node --transpile-only ./src/graphql/index.ts",
+    "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
     "codegen:graphql": "graphql-codegen",
     "prepare": "husky install"
   },
@@ -82,6 +82,7 @@
     "tailwindcss": "^2.2.7",
     "trash-cli": "^4.0.0",
     "ts-node": "10.2.1",
+    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   },
   "lint-staged": {

@@ -8,7 +8,8 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import { Card, CardBody } from '../../ui/Card'
+import { Card, CardBody } from '~/components/ui/Card'
+
 import PostType from './Type/Post'
 
 const QuestionType = dynamic(() => import('./Type/Question'), {

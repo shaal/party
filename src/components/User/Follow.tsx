@@ -4,9 +4,10 @@ import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { User } from '../../__generated__/schema.generated'
-import { Button } from '../ui/Button'
-import AppContext from '../utils/AppContext'
+import { User } from '~/__generated__/schema.generated'
+import { Button } from '~/components/ui/Button'
+import AppContext from '~/components/utils/AppContext'
+
 import {
   ToggleFollowMutation,
   ToggleFollowMutationVariables

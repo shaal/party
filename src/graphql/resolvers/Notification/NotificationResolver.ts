@@ -1,5 +1,6 @@
-import { prisma } from '../../../utils/prisma'
-import { builder } from '../../builder'
+import { builder } from '~/graphql/builder'
+import { prisma } from '~/utils/prisma'
+
 import { getNotifications } from './queries/getNotifications'
 
 builder.prismaObject(prisma.notification, {

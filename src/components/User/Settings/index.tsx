@@ -1,7 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 
-import { User } from '../../../__generated__/schema.generated'
+import { User } from '~/__generated__/schema.generated'
+
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
 import SocialSettings from './SocialSettings'

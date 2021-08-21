@@ -1,7 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import Link from 'next/link'
 
-import { User } from '../../__generated__/schema.generated'
+import { User } from '~/__generated__/schema.generated'
+
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`

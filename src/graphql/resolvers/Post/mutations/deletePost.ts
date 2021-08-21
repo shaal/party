@@ -1,7 +1,7 @@
 import { Session } from '@prisma/client'
 
-import { EditPostInput } from '../../../../__generated__/schema.generated'
-import { prisma } from '../../../../utils/prisma'
+import { EditPostInput } from '~/__generated__/schema.generated'
+import { prisma } from '~/utils/prisma'
 
 export const deletePost = async (
   query: any,

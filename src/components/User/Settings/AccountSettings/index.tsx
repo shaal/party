@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { User } from '../../../../__generated__/schema.generated'
+import { User } from '~/__generated__/schema.generated'
+import SettingsHelper from '~/components/shared/SettingsHelper'
+import { Card, CardBody } from '~/components/ui/Card'
+
 import { GridItemEight, GridItemFour, GridLayout } from '../../../GridLayout'
-import SettingsHelper from '../../../shared/SettingsHelper'
-import { Card, CardBody } from '../../../ui/Card'
 import AccountSettingsForm from './Form'
 
 interface Props {

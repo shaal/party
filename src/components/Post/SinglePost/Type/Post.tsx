@@ -3,8 +3,9 @@ import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
 
-import { Post } from '../../../../__generated__/schema.generated'
-import { linkifyOptions } from '../../../utils/linkifyOptions'
+import { Post } from '~/__generated__/schema.generated'
+import { linkifyOptions } from '~/components/utils/linkifyOptions'
+
 import Attachments from '../Attachments'
 
 interface Props {

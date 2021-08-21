@@ -1,8 +1,8 @@
 import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 
-import { Spinner } from '../../ui/Spinner'
-import { uploadToIPFS } from '../../utils/uploadToIPFS'
+import { Spinner } from '~/components/ui/Spinner'
+import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 
 interface Props {
   attachments: any

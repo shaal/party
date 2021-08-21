@@ -7,7 +7,7 @@ import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
-import { prisma } from '../utils/prisma'
+import { prisma } from '~/utils/prisma'
 
 export interface Context {
   req: IncomingMessage
