@@ -1,7 +1,7 @@
-import { Card, CardBody } from '~/components/ui/Card'
 import { HashtagIcon } from '@heroicons/react/outline'
 
-import { Product } from '../../__generated__/schema.generated'
+import { Product } from '~/__generated__/schema.generated'
+import { Card, CardBody } from '~/components/ui/Card'
 
 interface Props {
   product: Product
