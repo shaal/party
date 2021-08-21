@@ -11,15 +11,17 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
 const PRODUCT_FEED_QUERY = gql`
-  query ProductFeedQuery($after: String, $where: WherePostsInput) {
-    posts(first: 10, after: $after, where: $where) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        node {
-          ...PostFragment
+  query ProductFeedQuery($after: String, $slug: String!) {
+    product(slug: $slug) {
+      posts(first: 10, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...PostFragment
+          }
         }
       }
     }
@@ -37,15 +39,13 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
     {
       variables: {
         after: null,
-        where: {
-          productId: product?.id
-        }
+        slug: product?.slug
       }
     }
   )
 
-  const posts = data?.posts?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.posts?.pageInfo
+  const posts = data?.product?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.product?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
