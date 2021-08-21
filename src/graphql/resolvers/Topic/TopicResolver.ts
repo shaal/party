@@ -1,6 +1,6 @@
+import { builder } from '~/graphql/builder'
 import { prisma } from '~/utils/prisma'
 
-import { builder } from '../../builder'
 import { modTopic } from './mutations/modTopic'
 
 builder.prismaObject(prisma.topic, {

@@ -1,6 +1,6 @@
+import { builder } from '~/graphql/builder'
 import { prisma } from '~/utils/prisma'
 
-import { builder } from '../../builder'
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
