@@ -151,13 +151,23 @@ type Product {
   github: String
   id: ID!
   name: String!
-  posts: [Post!]!
+  posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
   producthunt: String
   slug: String!
   twitter: String
   updatedAt: DateTime!
   user: User!
   website: String
+}
+
+type ProductPostsConnection {
+  edges: [ProductPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type ProductPostsConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type Profile {
