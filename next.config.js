@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['cloudflare-ipfs.com', 'avatar.tobi.sh']
+    domains: ['ipfs.io', 'cloudflare-ipfs.com', 'avatar.tobi.sh']
   },
   reactStrictMode: true,
   experimental: { esmExternals: true },
