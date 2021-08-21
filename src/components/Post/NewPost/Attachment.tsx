@@ -17,8 +17,8 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
     setLoading(true)
 
     try {
-      const cdnURL = await uploadToIPFS(evt.target.files[0])
-      setAttachments([...attachments, cdnURL])
+      const attachment = await uploadToIPFS(evt.target.files[0])
+      setAttachments([...attachments, attachment])
     } finally {
       setLoading(false)
     }

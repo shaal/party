@@ -64,8 +64,8 @@ const AccountSettingsForm: React.FC<Props> = ({ user }) => {
     // setLoading({ type, status: true })
 
     try {
-      const cdnURL = await uploadToIPFS(evt.target.files)
-      type === 'avatar' ? setAvatar(cdnURL) : setCover(cdnURL)
+      const attachment = await uploadToIPFS(evt.target.files)
+      type === 'avatar' ? setAvatar(attachment.url) : setCover(attachment.url)
     } finally {
       // setLoading({ type, status: false })
     }

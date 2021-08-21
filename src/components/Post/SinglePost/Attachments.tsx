@@ -39,12 +39,18 @@ const Attachments: React.FC<Props> = ({
         <div className={getGridRows(attachments?.length)}>
           {attachments?.map((attachment: any) => (
             <div className="aspect-w-16 aspect-h-12" key={attachment}>
-              <Image
-                className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
-                layout="fill"
-                src={attachment}
-                alt={attachment}
-              />
+              {attachment.type === 'video/mp4' ? (
+                <video width="320" height="240" controls>
+                  <source src={attachment.url} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
+                  layout="fill"
+                  src={attachment.url}
+                  alt={attachment.url}
+                />
+              )}
               {isNew && (
                 <div className="m-3">
                   <Button

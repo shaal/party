@@ -9,9 +9,12 @@ export async function uploadToIPFS(data: any) {
   })
 
   const { path }: { path: string } = await ipfs.add(data)
-  if (data.type === 'video/mp4') {
-    return `https://ipfs.io/ipfs/${path}`
-  } else {
-    return `https://cloudflare-ipfs.com/ipfs/${path}`
+
+  return {
+    type: data.type,
+    url:
+      data.type === 'video/mp4'
+        ? `https://ipfs.io/ipfs/${path}`
+        : `https://cloudflare-ipfs.com/ipfs/${path}`
   }
 }
