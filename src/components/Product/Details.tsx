@@ -1,9 +1,9 @@
+import { Button } from '@components/ui/Button'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
-import { Button } from '../ui/Button'
 import AppContext from '../utils/AppContext'
 import ProductMod from './Mod'
 

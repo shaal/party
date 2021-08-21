@@ -1,4 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
@@ -9,9 +12,6 @@ import Footer from '../shared/Footer'
 import ProductProfileLarge from '../shared/ProductProfileLarge'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
-import { Button } from '../ui/Button'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProductsQuery } from './__generated__/Products.generated'
 
 export const PRODUCTS_QUERY = gql`

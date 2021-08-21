@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { Dropdown } from '@components/ui/Dropdown'
 import { Menu, Transition } from '@headlessui/react'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
@@ -7,7 +8,6 @@ import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
 
 import { User } from '../../../__generated__/schema.generated'
-import { Dropdown } from '../../ui/Dropdown'
 import AppContext from '../../utils/AppContext'
 import { useAuthRedirect } from '../../utils/useAuthRedirect'
 import Slug from '../Slug'

@@ -1,7 +1,7 @@
+import { Card, CardBody } from '@components/ui/Card'
 import React, { useContext } from 'react'
 
 import { User } from '../../__generated__/schema.generated'
-import { Card, CardBody } from '../ui/Card'
 import Follow from '../User/Follow'
 import AppContext from '../utils/AppContext'
 import UserProfile from './UserProfile'

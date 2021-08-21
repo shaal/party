@@ -1,4 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
+import { EmptyState } from '@components/ui/EmptyState'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -6,8 +8,6 @@ import useInView from 'react-cool-inview'
 import { Product } from '../../__generated__/schema.generated'
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import PostShimmer from '../shared/Shimmer/PostShimmer'
-import { EmptyState } from '../ui/EmptyState'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
 const PRODUCT_FEED_QUERY = gql`

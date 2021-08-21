@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import * as linkify from 'linkifyjs'
 import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
@@ -6,7 +7,6 @@ import React from 'react'
 import toast from 'react-hot-toast'
 
 import { Post } from '../../../../__generated__/schema.generated'
-import { TaskCheckbox } from '../../../ui/TaskCheckbox'
 import { linkifyOptions } from '../../../utils/linkifyOptions'
 import Attachments from '../Attachments'
 import {

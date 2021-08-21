@@ -1,12 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { Product } from '../../__generated__/schema.generated'
 import ProductProfile from '../shared/ProductProfile'
 import ProductProfileShimmer from '../shared/Shimmer/ProductProfileShimmer'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
 export const RECENT_PRODUCTS_QUERY = gql`

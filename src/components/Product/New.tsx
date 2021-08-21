@@ -1,16 +1,16 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { TextArea } from '@components/ui/TextArea'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import SettingsHelper from '../shared/SettingsHelper'
-import { Button } from '../ui/Button'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { Form, useZodForm } from '../ui/Form'
-import { Input } from '../ui/Input'
-import { TextArea } from '../ui/TextArea'
 import {
   CreateProductMutation,
   CreateProductMutationVariables

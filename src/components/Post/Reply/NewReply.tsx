@@ -1,14 +1,14 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { TextArea } from '@components/ui/TextArea'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { object, string } from 'zod'
 
 import { Post } from '../../../__generated__/schema.generated'
-import { Button } from '../../ui/Button'
-import { Card, CardBody } from '../../ui/Card'
-import { ErrorMessage } from '../../ui/ErrorMessage'
-import { Form, useZodForm } from '../../ui/Form'
-import { TextArea } from '../../ui/TextArea'
 import {
   NewReplyMutation,
   NewReplyMutationVariables

@@ -1,12 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { User } from '../../__generated__/schema.generated'
 import UserProfileShimmer from '../shared/Shimmer/UserProfileShimmer'
 import UserProfile from '../shared/UserProfile'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
 
 const RECENT_USERS_QUERY = gql`
