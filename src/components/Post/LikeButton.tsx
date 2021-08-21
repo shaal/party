@@ -1,4 +1,4 @@
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'

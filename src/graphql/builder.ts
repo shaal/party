@@ -5,7 +5,7 @@ import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { prisma } from '~/utils/prisma'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
 export interface Context {

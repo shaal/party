@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { useRouter } from 'next/router'
 import React from 'react'
 

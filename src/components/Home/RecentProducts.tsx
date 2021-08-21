@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Card, CardBody } from '~/components/ui/Card'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 

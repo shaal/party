@@ -1,4 +1,4 @@
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React, { useContext } from 'react'

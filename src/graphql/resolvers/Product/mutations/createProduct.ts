@@ -1,5 +1,5 @@
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { prisma } from '~/utils/prisma'
 import { md5 } from 'hash-wasm'
 
 import { CreateProductInput } from '../../../../__generated__/schema.generated'

@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '~/components/ui/Card'
 import { Tab } from '@headlessui/react'
 import {
   CheckCircleIcon,

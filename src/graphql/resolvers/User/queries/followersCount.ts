@@ -1,4 +1,4 @@
-import { prisma } from '@utils/prisma'
+import { prisma } from '~/utils/prisma'
 
 export const followersCount = async (id: string) => {
   const user = await prisma.user.findUnique({

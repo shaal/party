@@ -1,4 +1,4 @@
-import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { linkifyOptions } from '~/components/utils/linkifyOptions'
 import * as linkify from 'linkifyjs'
 import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'

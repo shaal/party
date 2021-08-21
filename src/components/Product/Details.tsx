@@ -1,5 +1,5 @@
-import { Button } from '@components/ui/Button'
-import AppContext from '@components/utils/AppContext'
+import { Button } from '~/components/ui/Button'
+import AppContext from '~/components/utils/AppContext'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'

@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '~/components/ui/Card'
 import React from 'react'
 
 import { User } from '../../../../__generated__/schema.generated'

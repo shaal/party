@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import { EmptyState } from '@components/ui/EmptyState'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { EmptyState } from '~/components/ui/EmptyState'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'

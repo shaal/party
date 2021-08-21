@@ -1,4 +1,4 @@
-import { resolveSession } from '@utils/sessions'
+import { resolveSession } from '~/utils/sessions'
 import { ExecutionResult, GraphQLError } from 'graphql'
 import {
   getGraphQLParameters,

@@ -1,4 +1,4 @@
-import { preloadQuery } from '@utils/apollo'
+import { preloadQuery } from '~/utils/apollo'
 
 import ViewUser, { USER_QUERY as query } from '../components/User/ViewUser'
 

@@ -1,5 +1,5 @@
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { prisma } from '~/utils/prisma'
 
 import { CreateReplyInput } from '../../../../__generated__/schema.generated'
 

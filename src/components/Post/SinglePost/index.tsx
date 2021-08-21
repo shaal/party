@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
-import AppContext from '@components/utils/AppContext'
+import { Card, CardBody } from '~/components/ui/Card'
+import AppContext from '~/components/utils/AppContext'
 import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'

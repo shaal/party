@@ -1,4 +1,4 @@
-import { unauthenticatedRoute } from '@utils/redirects'
+import { unauthenticatedRoute } from '~/utils/redirects'
 import { GetServerSideProps } from 'next'
 
 import SignUpForm from '../components/Auth/SignUpForm'

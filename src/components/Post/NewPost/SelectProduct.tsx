@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'

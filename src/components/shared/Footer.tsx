@@ -1,4 +1,4 @@
-import AppContext from '@components/utils/AppContext'
+import AppContext from '~/components/utils/AppContext'
 import {
   ShieldCheckIcon,
   ShieldExclamationIcon

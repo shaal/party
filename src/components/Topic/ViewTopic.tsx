@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import AppContext from '@components/utils/AppContext'
+import { Card, CardBody } from '~/components/ui/Card'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import AppContext from '~/components/utils/AppContext'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 

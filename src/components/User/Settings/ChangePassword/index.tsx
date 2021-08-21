@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '~/components/ui/Card'
 import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../../../GridLayout'

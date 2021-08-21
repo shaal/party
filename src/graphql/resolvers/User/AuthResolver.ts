@@ -1,8 +1,8 @@
-import { authenticateUser } from '@utils/auth'
-import { prisma } from '@utils/prisma'
-import { createSession, removeSession } from '@utils/sessions'
+import { builder } from '~/graphql/builder'
+import { authenticateUser } from '~/utils/auth'
+import { prisma } from '~/utils/prisma'
+import { createSession, removeSession } from '~/utils/sessions'
 
-import { builder } from '../../builder'
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
 import { signUp } from './mutations/signUp'

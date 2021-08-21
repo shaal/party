@@ -1,6 +1,6 @@
-import { hashPassword } from '@utils/auth'
-import { prisma } from '@utils/prisma'
-import { createSession } from '@utils/sessions'
+import { hashPassword } from '~/utils/auth'
+import { prisma } from '~/utils/prisma'
+import { createSession } from '~/utils/sessions'
 import { md5 } from 'hash-wasm'
 
 import { SignUpInput } from '../../../../__generated__/schema.generated'

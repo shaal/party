@@ -1,5 +1,5 @@
 import { PostType, Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { prisma } from '~/utils/prisma'
 
 import { WherePostsInput } from '../../../../__generated__/schema.generated'
 

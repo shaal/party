@@ -1,7 +1,8 @@
-import { getTopics } from '@graphql/utils/getTopics'
-import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+
+import { getTopics } from '~/graphql/utils/getTopics'
+import { parseTopics } from '~/graphql/utils/parseTopics'
+import { prisma } from '~/utils/prisma'
 
 import { CreatePostInput } from '../../../../__generated__/schema.generated'
 

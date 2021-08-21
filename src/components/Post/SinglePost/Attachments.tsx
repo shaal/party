@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button'
+import { Button } from '~/components/ui/Button'
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
 import Image from 'next/image'

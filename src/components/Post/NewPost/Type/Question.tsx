@@ -1,9 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '@components/ui/Button'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { Form, useZodForm } from '@components/ui/Form'
-import { Input } from '@components/ui/Input'
-import { TextArea } from '@components/ui/TextArea'
+import { Button } from '~/components/ui/Button'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { Form, useZodForm } from '~/components/ui/Form'
+import { Input } from '~/components/ui/Input'
+import { TextArea } from '~/components/ui/TextArea'
 import {
   EyeIcon,
   EyeOffIcon,
