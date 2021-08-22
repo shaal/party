@@ -9,6 +9,7 @@ input CreatePostInput {
   attachments: String
   body: String!
   done: Boolean! = true
+  parentId: ID
   productId: ID
   title: String
   type: String! = "POST"
@@ -118,6 +119,7 @@ type Post {
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
   product: Product
+  replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
   title: String
   type: String!
   updatedAt: DateTime!
@@ -132,6 +134,16 @@ type PostLikesConnection {
 type PostLikesConnectionEdge {
   cursor: String!
   node: Like!
+}
+
+type PostRepliesConnection {
+  edges: [PostRepliesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type PostRepliesConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type Product {

@@ -46,6 +46,15 @@ builder.prismaObject(prisma.post, {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
+    replies: t.prismaConnection({
+      type: prisma.post,
+      cursor: 'id',
+      resolve: (query, root) =>
+        prisma.post.findMany({
+          ...query,
+          where: { parentId: root.id }
+        })
+    }),
     product: t.relation('product', { nullable: true })
   })
 })
@@ -114,6 +123,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 255 }
     }),
+    parentId: t.id({ required: false }),
     productId: t.id({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
     done: t.boolean({ defaultValue: true }),

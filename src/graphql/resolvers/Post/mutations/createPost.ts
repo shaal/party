@@ -36,7 +36,8 @@ export const createPost = async (
       productId: input.productId ? input.productId : null,
       topics: {
         create: parseTopics(getTopics(input.body))
-      }
+      },
+      parentId: input.parentId
     }
   })
 }

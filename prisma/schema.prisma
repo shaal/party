@@ -93,7 +93,7 @@ model Post {
 
   parentId String?
   parent   Post?   @relation("replies", fields: [parentId], references: [id])
-  Post     Post[]  @relation("replies")
+  replies  Post[]  @relation("replies")
 
   // Attributes
   @@index([userId])
