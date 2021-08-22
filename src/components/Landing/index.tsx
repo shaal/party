@@ -1,15 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 
 const Landing: React.FC = () => {
   return (
-    <Fragment>
-      <GridLayout>
-        <GridItemEight>Landing WIP</GridItemEight>
-        <GridItemFour>Landing WIP</GridItemFour>
-      </GridLayout>
-    </Fragment>
+    <GridLayout>
+      <GridItemEight>Landing WIP</GridItemEight>
+      <GridItemFour>Landing WIP</GridItemFour>
+    </GridLayout>
   )
 }
 
