@@ -8,7 +8,7 @@ import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import SinglePost from '../SinglePost'
+import SinglePost, { PostFragment } from '../SinglePost'
 import { RepliesQuery } from './__generated__/Replies.generated'
 
 export const REPLIES_QUERY = gql`
@@ -22,25 +22,13 @@ export const REPLIES_QUERY = gql`
         }
         edges {
           node {
-            id
-            body
-            createdAt
-            hasLiked
-            likesCount
-            user {
-              id
-              username
-              profile {
-                id
-                name
-                avatar
-              }
-            }
+            ...PostFragment
           }
         }
       }
     }
   }
+  ${PostFragment}
 `
 
 interface Props {
