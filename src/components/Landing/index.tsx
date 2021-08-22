@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-
 const Landing: React.FC = () => {
   return (
-    <GridLayout>
-      <GridItemEight>Landing WIP</GridItemEight>
-      <GridItemFour>Landing WIP</GridItemFour>
-    </GridLayout>
+    <div className="flex flex-grow items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full">
+        <h2 className="text-center text-3xl font-extrabold">
+          <img className="mx-auto h-14" src="/logo.svg" alt="Devparty" />
+          <div className="mt-5 font-serif">The social media for developers</div>
+        </h2>
+      </div>
+    </div>
   )
 }
 
