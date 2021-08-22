@@ -1,4 +1,4 @@
-image: node:latest
+image: node:16.7.0-alpine
 
 services:
   - postgres:13.4-alpine
