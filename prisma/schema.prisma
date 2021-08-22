@@ -194,9 +194,9 @@ enum PostType {
 
 enum NotificationType {
   POSTLIKE
-  TASKLIKE
-  QUESTIONLIKE
-  REPLYLIKE
-  FOLLOW
+  // TASKLIKE
+  // QUESTIONLIKE
+  // REPLYLIKE
+  // FOLLOW
   // REPLY
 }
