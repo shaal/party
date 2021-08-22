@@ -58,6 +58,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
               variables: {
                 input: {
                   parentId: post?.id,
+                  type: 'REPLY',
                   body
                 }
               }

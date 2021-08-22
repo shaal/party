@@ -189,6 +189,7 @@ enum PostType {
   POST
   TASK
   QUESTION
+  REPLY
 }
 
 enum NotificationType {
