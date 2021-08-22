@@ -55,6 +55,7 @@ builder.prismaObject(prisma.post, {
           where: { parentId: root.id }
         })
     }),
+    parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true })
   })
 })
