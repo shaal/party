@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
 
 import FeedType from '~/components/Post/FeedType'
-import Banner from '~/components/shared/Banner'
 import Footer from '~/components/shared/Footer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
@@ -18,11 +17,10 @@ export const HOME_QUERY = CURRENT_USER_QUERY
 
 const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
-  const { data, loading, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
+  const { data, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
 
   return (
     <Fragment>
-      {!data?.me && !loading && <Banner />}
       <GridLayout>
         <GridItemEight>
           <div className="space-y-3">
