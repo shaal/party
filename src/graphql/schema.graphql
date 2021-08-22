@@ -121,6 +121,7 @@ type Post {
   parent: Post
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
+  repliesCount: Int!
   title: String
   type: String!
   updatedAt: DateTime!

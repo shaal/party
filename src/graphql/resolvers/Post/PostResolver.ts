@@ -43,6 +43,13 @@ builder.prismaObject(prisma.post, {
           where: { postId: root.id }
         })
     }),
+    repliesCount: t.field({
+      type: 'Int',
+      resolve: (root) =>
+        prisma.post.count({
+          where: { parentId: root.id }
+        })
+    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
