@@ -119,17 +119,21 @@ const Navbar: React.FC = () => {
                     <MenuItems currentUser={currentUser} />
                   </div>
                 ) : (
-                  <div className="space-x-4">
-                    <Link href="/signup" passHref>
-                      <Button size="lg" variant="primary">
-                        Signup
-                      </Button>
-                    </Link>
-                    <Link href="/login" passHref>
-                      <Button size="lg" variant="success">
-                        Login
-                      </Button>
-                    </Link>
+                  <div className="space-x-4 flex">
+                    <div className="hidden sm:block">
+                      <Link href="/signup" passHref>
+                        <Button size="lg" variant="primary">
+                          Signup
+                        </Button>
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href="/login" passHref>
+                        <Button size="lg" variant="success">
+                          Login
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
