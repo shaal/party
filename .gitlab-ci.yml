@@ -55,6 +55,7 @@ Migrate 🚚:
   stage: test
   script:
     - yarn prisma:migrate
+    - yarn prisma:seed
 
 Housekeeping ✨:
   stage: clean
