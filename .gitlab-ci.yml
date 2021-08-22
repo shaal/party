@@ -1,11 +1,20 @@
 image: node:latest
 
+services:
+  - postgres:12.2-alpine
+
 stages:
   - test
   - clean
 
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+variables:
+  POSTGRES_DB: devparty
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  DATABASE_URL: postgres://postgres:postgres@postgres:5432/devparty
 
 cache:
   paths:
@@ -41,6 +50,12 @@ Build 👷‍♂️:
   stage: test
   script:
     - yarn build
+
+Migrate 🚚:
+  stage: test
+  script:
+    - yarn prisma:migrate
+    - yarn prisma:seed
 
 Housekeeping ✨:
   stage: clean
