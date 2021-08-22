@@ -14,7 +14,7 @@ variables:
   POSTGRES_DB: devparty
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
-  POSTGRES_PORT: 33452
+  POSTGRES_PORT: 35432
 
 cache:
   paths:
