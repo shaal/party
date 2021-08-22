@@ -31,7 +31,6 @@ model User {
   following        User[]         @relation("follows")
   followedBy       User[]         @relation("follows")
   likes            Like[]
-  replies          Reply[]
   myNotification   Notification[] @relation("receiver")
   sentNotification Notification[] @relation("dispatcher")
 
@@ -90,8 +89,11 @@ model Post {
   product   Product?     @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
-  replies   Reply[]
   topics    PostTopics[]
+
+  parentId String?
+  parent   Post?   @relation("replies", fields: [parentId], references: [id])
+  Post     Post[]  @relation("replies")
 
   // Attributes
   @@index([userId])
@@ -124,22 +126,6 @@ model Topic {
   posts PostTopics[]
 }
 
-model Reply {
-  id   String @id @default(uuid())
-  body String
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  likes  Like[]
-  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-}
-
 model Like {
   id String @id @default(uuid())
 
@@ -148,15 +134,13 @@ model Like {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId  String
-  post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId  String?
-  reply   Reply?  @relation(fields: [replyId], references: [id], onDelete: Cascade)
-  replyId String?
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
 
   // Attributes
-  @@unique([userId, postId, replyId], name: "likeIdentifier")
+  @@unique([userId, postId], name: "likeIdentifier")
 }
 
 model Product {

@@ -14,7 +14,6 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import PostMod from './Mod'
 import NewReply from './Reply/NewReply'
-import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
 
 export const POST_QUERY = gql`
@@ -59,7 +58,7 @@ const ViewPost: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           <SinglePost post={data?.post as Post} />
           {!loading && <NewReply post={data?.post as Post} />}
-          <Replies post={data?.post as Post} />
+          {/* <Replies post={data?.post as Post} /> */}
         </div>
       </GridItemEight>
       <GridItemFour>

@@ -1,4 +1,3 @@
-import { gql, useMutation } from '@apollo/client'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { object, string } from 'zod'
@@ -6,15 +5,8 @@ import { object, string } from 'zod'
 import { Post } from '~/__generated__/schema.generated'
 import { Button } from '~/components/ui/Button'
 import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { TextArea } from '~/components/ui/TextArea'
-
-import {
-  NewReplyMutation,
-  NewReplyMutationVariables
-} from './__generated__/NewReply.generated'
-import { REPLIES_QUERY } from './Replies'
 
 const newReplySchema = object({
   body: string().min(1).max(1000)
@@ -25,35 +17,6 @@ interface Props {
 }
 
 const NewReply: React.FC<Props> = ({ post }) => {
-  const [createReply, createReplyResult] = useMutation<
-    NewReplyMutation,
-    NewReplyMutationVariables
-  >(
-    gql`
-      mutation NewReplyMutation($input: CreateReplyInput!) {
-        createReply(input: $input) {
-          id
-          body
-        }
-      }
-    `,
-    {
-      refetchQueries: [
-        {
-          query: REPLIES_QUERY,
-          variables: {
-            where: {
-              postId: post?.id
-            }
-          }
-        }
-      ],
-      onCompleted() {
-        form.reset()
-      }
-    }
-  )
-
   const form = useZodForm({
     schema: newReplySchema
   })
@@ -64,21 +27,10 @@ const NewReply: React.FC<Props> = ({ post }) => {
         <Form
           form={form}
           className="space-y-1"
-          onSubmit={({ body }) =>
-            createReply({
-              variables: {
-                input: {
-                  postId: post?.id,
-                  body
-                }
-              }
-            })
-          }
+          onSubmit={({ body }) => {
+            // WIP
+          }}
         >
-          <ErrorMessage
-            title="Failed to create reply"
-            error={createReplyResult.error}
-          />
           <TextArea
             {...form.register('body')}
             placeholder="What's on your mind?"

@@ -24,7 +24,7 @@ builder.prismaObject(prisma.post, {
       type: 'Boolean',
       resolve: async (root, args, { session }) => {
         if (!session) return false
-        return await hasLiked(session?.userId as string, root.id, null)
+        return await hasLiked(session?.userId as string, root.id)
       }
     }),
     likes: t.prismaConnection({
@@ -43,18 +43,10 @@ builder.prismaObject(prisma.post, {
           where: { postId: root.id }
         })
     }),
-    repliesCount: t.field({
-      type: 'Int',
-      resolve: (root) =>
-        prisma.reply.count({
-          where: { postId: root.id }
-        })
-    }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
-    product: t.relation('product', { nullable: true }),
-    replies: t.relation('replies')
+    product: t.relation('product', { nullable: true })
   })
 })
 

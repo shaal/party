@@ -64,16 +64,6 @@ async function main() {
           connect: {
             username: post.username
           }
-        },
-        replies: {
-          create: {
-            user: {
-              connect: {
-                username: post.username
-              }
-            },
-            body: 'Hello, World!'
-          }
         }
       }
     })

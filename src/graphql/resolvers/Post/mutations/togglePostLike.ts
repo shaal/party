@@ -8,7 +8,7 @@ export const togglePostLike = async (
   userId: string,
   postId: string
 ) => {
-  if (await hasLiked(userId, postId, null)) {
+  if (await hasLiked(userId, postId)) {
     await prisma.like.deleteMany({
       where: { userId, postId }
     })

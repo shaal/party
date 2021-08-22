@@ -20,11 +20,6 @@ input CreateProductInput {
   slug: String!
 }
 
-input CreateReplyInput {
-  body: String!
-  postId: String!
-}
-
 scalar DateTime
 
 input DeletePostInput {
@@ -83,7 +78,6 @@ type Mutation {
   changePassword(input: ChangePasswordInput!): Result!
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
-  createReply(input: CreateReplyInput!): Reply!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
   editSocial(input: EditSocialInput!): User!
@@ -95,7 +89,6 @@ type Mutation {
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
-  toggleReplyLike(input: ToggleReplyLikeInput!): Reply
 }
 
 type Notification {
@@ -125,8 +118,6 @@ type Post {
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
   product: Product
-  replies: [Reply!]!
-  repliesCount: Int!
   title: String
   type: String!
   updatedAt: DateTime!
@@ -191,8 +182,6 @@ type Query {
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
-  replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
-  reply(id: ID!): Reply!
   topic(name: String!): Topic!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -238,16 +227,6 @@ type QueryProductsConnectionEdge {
   node: Product!
 }
 
-type QueryRepliesConnection {
-  edges: [QueryRepliesConnectionEdge]!
-  pageInfo: PageInfo!
-}
-
-type QueryRepliesConnectionEdge {
-  cursor: String!
-  node: Reply!
-}
-
 type QueryUsersConnection {
   edges: [QueryUsersConnectionEdge]!
   pageInfo: PageInfo!
@@ -256,17 +235,6 @@ type QueryUsersConnection {
 type QueryUsersConnectionEdge {
   cursor: String!
   node: User!
-}
-
-type Reply {
-  body: String!
-  createdAt: DateTime!
-  hasLiked: Boolean!
-  id: ID!
-  likesCount: Int!
-  post: Post!
-  updatedAt: DateTime!
-  user: User!
 }
 
 enum Result {
@@ -285,10 +253,6 @@ input ToggleFollowInput {
 
 input TogglePostLikeInput {
   postId: ID!
-}
-
-input ToggleReplyLikeInput {
-  replyId: ID!
 }
 
 type Topic {
@@ -347,8 +311,4 @@ input WherePostsInput {
 
 input WhereProductsInput {
   userId: String
-}
-
-input WhereRepliesInput {
-  postId: String
 }
