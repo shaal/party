@@ -1,7 +1,7 @@
 image: node:latest
 
 services:
-  - postgres:12.2-alpine
+  - postgres:13.4-alpine
 
 stages:
   - test
