@@ -78,9 +78,10 @@ export const PostFragment = gql`
 
 interface Props {
   post: Post
+  showParent?: boolean
 }
 
-const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   const { currentUser } = useContext(AppContext)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
@@ -109,7 +110,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
   return (
     <Card>
       <CardBody className="space-y-4">
-        {post?.parent && (
+        {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
             <span className="text-gray-500 dark:text-gray-400">
               Replying to

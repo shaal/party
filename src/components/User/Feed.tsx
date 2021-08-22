@@ -90,7 +90,9 @@ const UserFeed: React.FC<Props> = ({ user }) => {
             icon={<CollectionIcon className="h-8 w-8" />}
           />
         ) : (
-          posts?.map((post: any) => <SinglePost key={post?.id} post={post} />)
+          posts?.map((post: any) => (
+            <SinglePost key={post?.id} post={post} showParent />
+          ))
         )}
         <div ref={observe}></div>
       </div>
