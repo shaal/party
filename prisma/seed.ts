@@ -1,13 +1,12 @@
 import 'tsconfig-paths/register'
 
 import { PrismaClient } from '@prisma/client'
+import faker from 'faker'
 
 import { hashPassword } from '~/utils/auth'
 
-import { postData } from './seeds/posts'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
-
 const db = new PrismaClient()
 
 async function main() {
@@ -55,14 +54,16 @@ async function main() {
   }
 
   // Post
-  for (const post of postData) {
-    console.log(`Seeding Post - ${post.body} ✅`)
+  for (let i = 0; i < 100; i++) {
+    const post = faker.lorem.sentence(20)
+    console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({
       data: {
-        body: post.body,
+        body: post,
         user: {
           connect: {
-            username: post.username
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
           }
         }
       }
