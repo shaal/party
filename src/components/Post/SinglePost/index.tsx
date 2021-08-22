@@ -110,7 +110,9 @@ const SinglePost: React.FC<Props> = ({ post }) => {
       <CardBody className="space-y-4">
         {post?.parent && (
           <div className="text-sm flex space-x-1">
-            <span className="text-gray-500">Replying to</span>
+            <span className="text-gray-500 dark:text-gray-400">
+              Replying to
+            </span>
             <Slug slug={post?.parent?.user?.username} prefix="@" />
           </div>
         )}
