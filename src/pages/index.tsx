@@ -1,8 +1,8 @@
-import Home, { HOME_QUERY as query } from '~/components/Home'
-import { preloadQuery } from '~/utils/apollo'
+import { GetServerSideProps } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
-  return preloadQuery(ctx, { query })
-}
+import Landing from '~/components/Landing'
+import { unauthenticatedRoute } from '~/utils/redirects'
 
-export default Home
+export const getServerSideProps: GetServerSideProps = unauthenticatedRoute
+
+export default Landing
