@@ -1,7 +1,7 @@
-image: node:16.7.0-alpine
+image: node:latest
 
 services:
-  - postgres:13.4-alpine
+  - postgres:latest
 
 stages:
   - test
