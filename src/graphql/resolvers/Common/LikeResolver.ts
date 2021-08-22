@@ -2,7 +2,6 @@ import { builder } from '~/graphql/builder'
 import { prisma } from '~/utils/prisma'
 
 import { togglePostLike } from '../Post/mutations/togglePostLike'
-import { toggleReplyLike } from '../Reply/mutations/toggleReplyLike'
 
 builder.prismaObject(prisma.like, {
   findUnique: (like) => ({ id: like.id }),
@@ -34,30 +33,6 @@ builder.mutationField('togglePostLike', (t) =>
         query,
         session?.userId as string,
         input?.postId
-      )
-    }
-  })
-)
-
-const ToggleReplyLikeInput = builder.inputType('ToggleReplyLikeInput', {
-  fields: (t) => ({
-    replyId: t.id({})
-  })
-})
-
-builder.mutationField('toggleReplyLike', (t) =>
-  t.prismaField({
-    type: prisma.reply,
-    args: {
-      input: t.arg({ type: ToggleReplyLikeInput })
-    },
-    nullable: true,
-    authScopes: { user: true },
-    resolve: async (query, root, { input }, { session }) => {
-      return await toggleReplyLike(
-        query,
-        session?.userId as string,
-        input?.replyId
       )
     }
   })

@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
 import { Post, User } from '~/__generated__/schema.generated'
+import Slug from '~/components/shared/Slug'
 import UserProfile from '~/components/shared/UserProfile'
 import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
@@ -32,6 +33,12 @@ export const PostFragment = gql`
     hasLiked
     likesCount
     repliesCount
+    parent {
+      user {
+        id
+        username
+      }
+    }
     likes(first: 5) {
       edges {
         node {
@@ -71,9 +78,10 @@ export const PostFragment = gql`
 
 interface Props {
   post: Post
+  showParent?: boolean
 }
 
-const SinglePost: React.FC<Props> = ({ post }) => {
+const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   const { currentUser } = useContext(AppContext)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
@@ -102,6 +110,14 @@ const SinglePost: React.FC<Props> = ({ post }) => {
   return (
     <Card>
       <CardBody className="space-y-4">
+        {post?.parent && showParent && (
+          <div className="text-sm flex space-x-1">
+            <span className="text-gray-500 dark:text-gray-400">
+              Replying to
+            </span>
+            <Slug slug={post?.parent?.user?.username} prefix="@" />
+          </div>
+        )}
         <div className="flex justify-between items-center">
           <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
@@ -111,6 +127,7 @@ const SinglePost: React.FC<Props> = ({ post }) => {
           </Link>
         </div>
         {post?.type === 'POST' && <PostType post={post} />}
+        {post?.type === 'REPLY' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
       </CardBody>

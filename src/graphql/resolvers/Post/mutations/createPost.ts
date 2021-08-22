@@ -24,6 +24,19 @@ export const createPost = async (
     }
   }
 
+  let parentId = null
+
+  if (input.parentId) {
+    const parent = await prisma.post.findUnique({
+      where: { id: input.parentId }
+    })
+    if (parent) {
+      parentId = parent?.id
+    } else {
+      throw new Error('Incorrect parent ID')
+    }
+  }
+
   return await prisma.post.create({
     ...query,
     data: {
@@ -36,7 +49,8 @@ export const createPost = async (
       productId: input.productId ? input.productId : null,
       topics: {
         create: parseTopics(getTopics(input.body))
-      }
+      },
+      parentId
     }
   })
 }

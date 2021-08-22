@@ -24,7 +24,7 @@ builder.prismaObject(prisma.post, {
       type: 'Boolean',
       resolve: async (root, args, { session }) => {
         if (!session) return false
-        return await hasLiked(session?.userId as string, root.id, null)
+        return await hasLiked(session?.userId as string, root.id)
       }
     }),
     likes: t.prismaConnection({
@@ -46,15 +46,24 @@ builder.prismaObject(prisma.post, {
     repliesCount: t.field({
       type: 'Int',
       resolve: (root) =>
-        prisma.reply.count({
-          where: { postId: root.id }
+        prisma.post.count({
+          where: { parentId: root.id }
         })
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
-    product: t.relation('product', { nullable: true }),
-    replies: t.relation('replies')
+    replies: t.prismaConnection({
+      type: prisma.post,
+      cursor: 'id',
+      resolve: (query, root) =>
+        prisma.post.findMany({
+          ...query,
+          where: { parentId: root.id }
+        })
+    }),
+    parent: t.relation('parent', { nullable: true }),
+    product: t.relation('product', { nullable: true })
   })
 })
 
@@ -122,6 +131,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 255 }
     }),
+    parentId: t.id({ required: false }),
     productId: t.id({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
     done: t.boolean({ defaultValue: true }),

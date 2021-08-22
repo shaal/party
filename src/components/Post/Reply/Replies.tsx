@@ -3,41 +3,32 @@ import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Post, Reply } from '~/__generated__/schema.generated'
+import { Post } from '~/__generated__/schema.generated'
 import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
+import SinglePost, { PostFragment } from '../SinglePost'
 import { RepliesQuery } from './__generated__/Replies.generated'
-import SingleReply from './SingleReply'
 
 export const REPLIES_QUERY = gql`
-  query RepliesQuery($after: String, $where: WhereRepliesInput) {
-    replies(first: 10, after: $after, where: $where) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        node {
-          id
-          body
-          createdAt
-          hasLiked
-          likesCount
-          user {
-            id
-            username
-            profile {
-              id
-              name
-              avatar
-            }
+  query RepliesQuery($after: String, $postId: ID!) {
+    post(id: $postId) {
+      id
+      replies(first: 10, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          node {
+            ...PostFragment
           }
         }
       }
     }
   }
+  ${PostFragment}
 `
 
 interface Props {
@@ -50,15 +41,13 @@ const Replies: React.FC<Props> = ({ post }) => {
     {
       variables: {
         after: null,
-        where: {
-          postId: post?.id
-        }
+        postId: post?.id
       },
       pollInterval: 10_000
     }
   )
-  const replies = data?.replies?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.replies?.pageInfo
+  const replies = data?.post?.replies?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.post?.replies?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -97,7 +86,7 @@ const Replies: React.FC<Props> = ({ post }) => {
           />
         ) : (
           replies?.map((reply: any) => (
-            <SingleReply key={reply?.id} reply={reply as Reply} />
+            <SinglePost key={reply?.id} post={reply} />
           ))
         )}
         <div ref={observe}></div>

@@ -9,6 +9,7 @@ input CreatePostInput {
   attachments: String
   body: String!
   done: Boolean! = true
+  parentId: ID
   productId: ID
   title: String
   type: String! = "POST"
@@ -18,11 +19,6 @@ input CreateProductInput {
   description: String
   name: String!
   slug: String!
-}
-
-input CreateReplyInput {
-  body: String!
-  postId: String!
 }
 
 scalar DateTime
@@ -83,7 +79,6 @@ type Mutation {
   changePassword(input: ChangePasswordInput!): Result!
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
-  createReply(input: CreateReplyInput!): Reply!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
   editSocial(input: EditSocialInput!): User!
@@ -95,7 +90,6 @@ type Mutation {
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
-  toggleReplyLike(input: ToggleReplyLikeInput!): Reply
 }
 
 type Notification {
@@ -124,8 +118,9 @@ type Post {
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   likesCount: Int!
+  parent: Post
   product: Product
-  replies: [Reply!]!
+  replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
   repliesCount: Int!
   title: String
   type: String!
@@ -141,6 +136,16 @@ type PostLikesConnection {
 type PostLikesConnectionEdge {
   cursor: String!
   node: Like!
+}
+
+type PostRepliesConnection {
+  edges: [PostRepliesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type PostRepliesConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type Product {
@@ -191,8 +196,6 @@ type Query {
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
-  replies(after: String, before: String, first: Int, last: Int, where: WhereRepliesInput): QueryRepliesConnection!
-  reply(id: ID!): Reply!
   topic(name: String!): Topic!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -238,16 +241,6 @@ type QueryProductsConnectionEdge {
   node: Product!
 }
 
-type QueryRepliesConnection {
-  edges: [QueryRepliesConnectionEdge]!
-  pageInfo: PageInfo!
-}
-
-type QueryRepliesConnectionEdge {
-  cursor: String!
-  node: Reply!
-}
-
 type QueryUsersConnection {
   edges: [QueryUsersConnectionEdge]!
   pageInfo: PageInfo!
@@ -256,17 +249,6 @@ type QueryUsersConnection {
 type QueryUsersConnectionEdge {
   cursor: String!
   node: User!
-}
-
-type Reply {
-  body: String!
-  createdAt: DateTime!
-  hasLiked: Boolean!
-  id: ID!
-  likesCount: Int!
-  post: Post!
-  updatedAt: DateTime!
-  user: User!
 }
 
 enum Result {
@@ -285,10 +267,6 @@ input ToggleFollowInput {
 
 input TogglePostLikeInput {
   postId: ID!
-}
-
-input ToggleReplyLikeInput {
-  replyId: ID!
 }
 
 type Topic {
@@ -347,8 +325,4 @@ input WherePostsInput {
 
 input WhereProductsInput {
   userId: String
-}
-
-input WhereRepliesInput {
-  postId: String
 }

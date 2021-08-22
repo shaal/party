@@ -1,8 +1,8 @@
 -- CreateEnum
-CREATE TYPE "PostType" AS ENUM ('POST', 'TASK', 'QUESTION');
+CREATE TYPE "PostType" AS ENUM ('POST', 'TASK', 'QUESTION', 'REPLY');
 
 -- CreateEnum
-CREATE TYPE "NotificationType" AS ENUM ('POSTLIKE', 'TASKLIKE', 'QUESTIONLIKE', 'REPLYLIKE', 'FOLLOW');
+CREATE TYPE "NotificationType" AS ENUM ('POSTLIKE');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -59,6 +59,7 @@ CREATE TABLE "Post" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "productId" TEXT,
+    "parentId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -85,25 +86,12 @@ CREATE TABLE "Topic" (
 );
 
 -- CreateTable
-CREATE TABLE "Reply" (
-    "id" TEXT NOT NULL,
-    "body" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "postId" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-
-    PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Like" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "postId" TEXT,
-    "replyId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -172,7 +160,7 @@ CREATE INDEX "PostTopics.postId_topicId_index" ON "PostTopics"("postId", "topicI
 CREATE UNIQUE INDEX "Topic.name_unique" ON "Topic"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId", "replyId");
+CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product.slug_unique" ON "Product"("slug");
@@ -196,25 +184,19 @@ ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE 
 ALTER TABLE "Post" ADD FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Post" ADD FOREIGN KEY ("parentId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "PostTopics" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "PostTopics" ADD FOREIGN KEY ("topicId") REFERENCES "Topic"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reply" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Reply" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "Like" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Like" ADD FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Like" ADD FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -25,13 +25,13 @@ interface Props {
 }
 
 const NewReply: React.FC<Props> = ({ post }) => {
-  const [createReply, createReplyResult] = useMutation<
+  const [createPost, createPostResult] = useMutation<
     NewReplyMutation,
     NewReplyMutationVariables
   >(
     gql`
-      mutation NewReplyMutation($input: CreateReplyInput!) {
-        createReply(input: $input) {
+      mutation NewReplyMutation($input: CreatePostInput!) {
+        createPost(input: $input) {
           id
           body
         }
@@ -42,9 +42,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         {
           query: REPLIES_QUERY,
           variables: {
-            where: {
-              postId: post?.id
-            }
+            postId: post?.id
           }
         }
       ],
@@ -65,10 +63,11 @@ const NewReply: React.FC<Props> = ({ post }) => {
           form={form}
           className="space-y-1"
           onSubmit={({ body }) =>
-            createReply({
+            createPost({
               variables: {
                 input: {
-                  postId: post?.id,
+                  parentId: post?.id,
+                  type: 'REPLY',
                   body
                 }
               }
@@ -77,7 +76,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         >
           <ErrorMessage
             title="Failed to create reply"
-            error={createReplyResult.error}
+            error={createPostResult.error}
           />
           <TextArea
             {...form.register('body')}
