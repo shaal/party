@@ -161,8 +161,11 @@ builder.mutationField('modUser', (t) =>
       input: t.arg({ type: ModUserInput })
     },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
-      return modUser(query, input, session)
+    authScopes: {
+      isStaff: true
+    },
+    resolve: async (query, root, { input }) => {
+      return modUser(query, input)
     }
   })
 )
