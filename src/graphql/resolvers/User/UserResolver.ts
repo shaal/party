@@ -43,18 +43,7 @@ builder.prismaObject(db.user, {
     // Relations
     profile: t.relation('profile'),
     products: t.relation('products'),
-    posts: t.prismaConnection({
-      type: db.post,
-      cursor: 'id',
-      resolve: (query, root) =>
-        db.post.findMany({
-          ...query,
-          where: {
-            userId: root.id,
-            user: { spammy: false }
-          }
-        })
-    })
+    posts: t.relatedConnection('posts', { cursor: 'id' })
   })
 })
 
