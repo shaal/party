@@ -54,7 +54,7 @@ async function main() {
   }
 
   // Post
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 200; i++) {
     const post = faker.lorem.sentence(20)
     console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({

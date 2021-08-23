@@ -9,8 +9,8 @@ generator client {
 }
 
 model User {
-  id             String @id @default(uuid())
-  username       String @unique @default(uuid())
+  id             String @id @default(cuid())
+  username       String @unique @default(cuid())
   email          String @unique
   hashedPassword String
 
@@ -39,7 +39,7 @@ model User {
 }
 
 model Session {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -52,7 +52,7 @@ model Session {
 }
 
 model Profile {
-  id       String  @id @default(uuid())
+  id       String  @id @default(cuid())
   name     String
   avatar   String?
   cover    String?
@@ -72,7 +72,7 @@ model Profile {
 }
 
 model Post {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   title       String?
   body        String
   done        Boolean  @default(false)
@@ -100,7 +100,7 @@ model Post {
 }
 
 model PostTopics {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   // Relations
   post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -113,7 +113,7 @@ model PostTopics {
 }
 
 model Topic {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   name        String  @unique
   image       String?
   description String?
@@ -127,7 +127,7 @@ model Topic {
 }
 
 model Like {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -144,7 +144,7 @@ model Like {
 }
 
 model Product {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   name        String
   slug        String  @unique
   description String?
@@ -168,7 +168,7 @@ model Product {
 }
 
 model Notification {
-  id      String           @id @default(uuid())
+  id      String           @id @default(cuid())
   message String?
   type    NotificationType
 
