@@ -18,7 +18,7 @@ services:
   compiler:
     container_name: 'devparty-compiler'
     restart: unless-stopped
-    image: node:latest
+    build: .devcontainer
     command: yarn codegen:graphql --watch
     volumes:
       - .:/srv/compiler:rw
