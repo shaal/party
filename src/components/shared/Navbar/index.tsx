@@ -51,7 +51,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
       <NavItem
         url="/"
         name="Home"
-        current={router.pathname == '/'}
+        current={router.pathname == '/home'}
         isMobile={isMobile}
       />
       <NavItem
