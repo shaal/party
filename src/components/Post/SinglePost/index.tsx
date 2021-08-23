@@ -115,7 +115,11 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             <span className="text-gray-500 dark:text-gray-400">
               Replying to
             </span>
-            <Slug slug={post?.parent?.user?.username} prefix="@" />
+            <Link href={`/@${post?.parent?.user?.username}`} passHref>
+              <div className="cursor-pointer">
+                <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
+              </div>
+            </Link>
           </div>
         )}
         <div className="flex justify-between items-center">
