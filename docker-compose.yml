@@ -16,6 +16,7 @@ services:
     tty: true
 
   compiler:
+    container_name: 'devparty-compiler'
     restart: unless-stopped
     image: node:latest
     command: yarn codegen:graphql --watch
