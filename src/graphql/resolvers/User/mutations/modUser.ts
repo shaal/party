@@ -1,22 +1,22 @@
 import { Session } from '@prisma/client'
 
 import { ModUserInput } from '~/__generated__/schema.generated'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const modUser = async (
   input: ModUserInput,
   session: Session | null | undefined
 ) => {
-  const actionUser = await prisma.user.findUnique({
+  const actionUser = await db.user.findUnique({
     where: { id: session!.userId }
   })
 
   if (actionUser?.isStaff) {
     if (input.spammy) {
-      await prisma.session.deleteMany({ where: { userId: input.userId } })
+      await db.session.deleteMany({ where: { userId: input.userId } })
     }
 
-    return await prisma.user.update({
+    return await db.user.update({
       where: { id: input.userId },
       data: {
         isVerified: input.isVerified as boolean,

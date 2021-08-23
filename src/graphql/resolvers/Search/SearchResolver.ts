@@ -1,15 +1,15 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 builder.queryField('searchPosts', (t) =>
   t.prismaConnection({
-    type: prisma.post,
+    type: db.post,
     args: {
       keyword: t.arg.string({})
     },
     cursor: 'id',
     resolve: async (query, root, { keyword }) => {
-      return await prisma.post.findMany({
+      return await db.post.findMany({
         ...query,
         where: {
           body: {
@@ -23,13 +23,13 @@ builder.queryField('searchPosts', (t) =>
 
 builder.queryField('searchUsers', (t) =>
   t.prismaConnection({
-    type: prisma.user,
+    type: db.user,
     args: {
       keyword: t.arg.string({})
     },
     cursor: 'id',
     resolve: async (query, root, { keyword }) => {
-      return await prisma.user.findMany({
+      return await db.user.findMany({
         ...query,
         where: {
           username: {
@@ -43,13 +43,13 @@ builder.queryField('searchUsers', (t) =>
 
 builder.queryField('searchProduct', (t) =>
   t.prismaConnection({
-    type: prisma.product,
+    type: db.product,
     args: {
       keyword: t.arg.string({})
     },
     cursor: 'id',
     resolve: async (query, root, { keyword }) => {
-      return await prisma.product.findMany({
+      return await db.product.findMany({
         ...query,
         where: {
           slug: {

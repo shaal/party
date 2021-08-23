@@ -1,10 +1,10 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 import { createProduct } from './mutations/createProduct'
 import { getProducts } from './queries/getProducts'
 
-builder.prismaObject(prisma.product, {
+builder.prismaObject(db.product, {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -21,10 +21,10 @@ builder.prismaObject(prisma.product, {
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
     posts: t.prismaConnection({
-      type: prisma.post,
+      type: db.post,
       cursor: 'id',
       resolve: (query, root) =>
-        prisma.post.findMany({
+        db.post.findMany({
           ...query,
           where: {
             productId: root.id,
@@ -45,7 +45,7 @@ const WhereProductsInput = builder.inputType('WhereProductsInput', {
 
 builder.queryField('products', (t) =>
   t.prismaConnection({
-    type: prisma.product,
+    type: db.product,
     cursor: 'id',
     args: {
       where: t.arg({ type: WhereProductsInput, required: false })
@@ -58,12 +58,12 @@ builder.queryField('products', (t) =>
 
 builder.queryField('product', (t) =>
   t.prismaField({
-    type: prisma.product,
+    type: db.product,
     args: {
       slug: t.arg.string({})
     },
     resolve: async (query, root, { slug }) => {
-      return await prisma.product.findUnique({
+      return await db.product.findUnique({
         ...query,
         where: { slug },
         rejectOnNotFound: true
@@ -82,7 +82,7 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
 
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
-    type: prisma.product,
+    type: db.product,
     args: {
       input: t.arg({ type: CreateProductInput })
     },

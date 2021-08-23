@@ -3,7 +3,7 @@ import { PostType, Session } from '@prisma/client'
 import { CreatePostInput } from '~/__generated__/schema.generated'
 import { getTopics } from '~/graphql/utils/getTopics'
 import { parseTopics } from '~/graphql/utils/parseTopics'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const createPost = async (
   query: any,
@@ -15,7 +15,7 @@ export const createPost = async (
   }
 
   if (input.productId) {
-    const product = await prisma.product.findUnique({
+    const product = await db.product.findUnique({
       where: { id: input.productId }
     })
 
@@ -27,7 +27,7 @@ export const createPost = async (
   let parentId = null
 
   if (input.parentId) {
-    const parent = await prisma.post.findUnique({
+    const parent = await db.post.findUnique({
       where: { id: input.parentId }
     })
     if (parent) {
@@ -37,7 +37,7 @@ export const createPost = async (
     }
   }
 
-  return await prisma.post.create({
+  return await db.post.create({
     ...query,
     data: {
       userId: session!.userId,

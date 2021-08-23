@@ -1,12 +1,12 @@
 import { Session } from '@prisma/client'
 
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const getNotifications = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  return await prisma.notification.findMany({
+  return await db.notification.findMany({
     ...query,
     where: {
       receiverId: session?.userId

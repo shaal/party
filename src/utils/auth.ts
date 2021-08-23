@@ -3,7 +3,7 @@ import { bcrypt, bcryptVerify } from 'hash-wasm'
 
 import { ValidationError } from '~/graphql/errors'
 
-import { prisma } from './prisma'
+import { db } from './prisma'
 
 const COST_FACTOR = 11
 
@@ -31,7 +31,7 @@ export function verifyPassword(
 }
 
 export async function authenticateUser(email: string, password: string) {
-  const user = await prisma.user.findFirst({
+  const user = await db.user.findFirst({
     where: {
       email: {
         equals: email
@@ -60,7 +60,7 @@ export async function authenticateUser(email: string, password: string) {
   const costFactor = Number.parseInt(costFactorString, 10)
   if (costFactor !== COST_FACTOR) {
     const improvedHash = await hashPassword(password)
-    await prisma.user.update({
+    await db.user.update({
       where: { id: user.id },
       data: { hashedPassword: improvedHash }
     })

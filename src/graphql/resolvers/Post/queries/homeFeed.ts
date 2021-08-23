@@ -1,19 +1,19 @@
 import { PostType, Session } from '@prisma/client'
 
 import { WherePostsInput } from '~/__generated__/schema.generated'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const homeFeed = async (
   query: any,
   where: WherePostsInput | null | undefined,
   session: Session | null | undefined
 ) => {
-  const following = await prisma.user.findUnique({
+  const following = await db.user.findUnique({
     where: { id: session?.userId },
     select: { following: { select: { id: true } } }
   })
 
-  return await prisma.post.findMany({
+  return await db.post.findMany({
     ...query,
     where: {
       type: where?.type === 'ALL' ? undefined : (where?.type as PostType),

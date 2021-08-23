@@ -1,7 +1,7 @@
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const getUsers = async (query: any) => {
-  return await prisma.user.findMany({
+  return await db.user.findMany({
     ...query,
     where: { spammy: false },
     orderBy: { createdAt: 'desc' }
