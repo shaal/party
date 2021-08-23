@@ -40,3 +40,23 @@ builder.queryField('searchUsers', (t) =>
     }
   })
 )
+
+builder.queryField('searchProduct', (t) =>
+  t.prismaConnection({
+    type: prisma.product,
+    args: {
+      keyword: t.arg.string({})
+    },
+    cursor: 'id',
+    resolve: async (query, root, { keyword }) => {
+      return await prisma.product.findMany({
+        ...query,
+        where: {
+          slug: {
+            contains: keyword
+          }
+        }
+      })
+    }
+  })
+)
