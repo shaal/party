@@ -1,6 +1,30 @@
+import { gql, useLazyQuery } from '@apollo/client'
+
+import { SearchPostsQuery } from './__generated__/Search.generated'
+
+export const SEARCH_POSTS_QUERY = gql`
+  query SearchPostsQuery($keyword: String!) {
+    searchPosts(first: 5, keyword: $keyword) {
+      edges {
+        node {
+          id
+          body
+        }
+      }
+    }
+  }
+`
+
 const Search: React.FC = () => {
+  const [searchPosts, { loading, data }] =
+    useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
+
   const handleSearch = (evt: any) => {
-    console.log(evt.target.value)
+    searchPosts({
+      variables: {
+        keyword: evt.target.value
+      }
+    })
   }
 
   return (
