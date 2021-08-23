@@ -174,7 +174,7 @@ builder.mutationField('modUser', (t) =>
     },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return modUser(input, session)
+      return modUser(query, input, session)
     }
   })
 )

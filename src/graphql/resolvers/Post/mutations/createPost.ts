@@ -16,6 +16,7 @@ export const createPost = async (
 
   if (input.productId) {
     const product = await db.product.findUnique({
+      ...query,
       where: { id: input.productId }
     })
 
@@ -28,6 +29,7 @@ export const createPost = async (
 
   if (input.parentId) {
     const parent = await db.post.findUnique({
+      ...query,
       where: { id: input.parentId }
     })
     if (parent) {

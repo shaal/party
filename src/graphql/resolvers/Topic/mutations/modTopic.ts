@@ -9,11 +9,13 @@ export const modTopic = async (
   session: Session | null | undefined
 ) => {
   const actionUser = await db.user.findUnique({
+    ...query,
     where: { id: session!.userId }
   })
 
   if (actionUser?.isStaff) {
     return await db.topic.update({
+      ...query,
       where: { id: input?.id },
       data: {
         description: input?.description as string
