@@ -1,9 +1,13 @@
 import React from 'react'
 
+import {
+  GridItemEight,
+  GridItemFour,
+  GridLayout
+} from '~/components/GridLayout'
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../../../GridLayout'
 import ChangePasswordForm from './Form'
 
 const ChangePassword: React.FC = () => {
