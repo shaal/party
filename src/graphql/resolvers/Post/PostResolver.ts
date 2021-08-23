@@ -27,14 +27,8 @@ builder.prismaObject(db.post, {
         return await hasLiked(session?.userId as string, root.id)
       }
     }),
-    likes: t.prismaConnection({
-      type: db.like,
-      cursor: 'id',
-      resolve: (query, root) =>
-        db.like.findMany({
-          ...query,
-          where: { postId: root.id }
-        })
+    likes: t.relatedConnection('likes', {
+      cursor: 'id'
     }),
     likesCount: t.field({
       type: 'Int',
