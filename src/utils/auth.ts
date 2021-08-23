@@ -1,7 +1,8 @@
 import crypto from 'crypto'
 import { bcrypt, bcryptVerify } from 'hash-wasm'
 
-import { ValidationError } from '../graphql/errors'
+import { ValidationError } from '~/graphql/errors'
+
 import { prisma } from './prisma'
 
 const COST_FACTOR = 11
