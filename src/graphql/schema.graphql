@@ -261,7 +261,7 @@ type QuerySearchProductConnection {
 
 type QuerySearchProductConnectionEdge {
   cursor: String!
-  node: User!
+  node: Product!
 }
 
 type QuerySearchUsersConnection {
