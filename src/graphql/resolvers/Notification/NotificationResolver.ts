@@ -9,10 +9,14 @@ builder.prismaObject(db.notification, {
     id: t.exposeID('id'),
     type: t.exposeString('type'),
     entityId: t.exposeString('entityId', { nullable: true }),
-    receiver: t.relation('receiver'),
-    dispatcher: t.relation('dispatcher'),
+
+    // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' })
+    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+
+    // Relations
+    receiver: t.relation('receiver'),
+    dispatcher: t.relation('dispatcher')
   })
 })
 
