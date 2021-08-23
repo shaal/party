@@ -53,7 +53,8 @@ export const builder = new SchemaBuilder<{
   authScopes: async ({ session }) => ({
     public: true,
     user: !!session,
-    unauthenticated: !session
+    unauthenticated: !session,
+    isStaff: session?.isStaff
   }),
   relayOptions: {
     clientMutationId: 'omit',

@@ -8,12 +8,7 @@ export const modUser = async (
   input: ModUserInput,
   session: Session | null | undefined
 ) => {
-  const actionUser = await db.user.findUnique({
-    ...query,
-    where: { id: session!.userId }
-  })
-
-  if (actionUser?.isStaff) {
+  if (session?.isStaff) {
     if (input.spammy) {
       await db.session.deleteMany({ ...query, where: { userId: input.userId } })
     }

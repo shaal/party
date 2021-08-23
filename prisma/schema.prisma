@@ -40,7 +40,8 @@ model User {
 }
 
 model Session {
-  id String @id @default(cuid())
+  id      String  @id @default(cuid())
+  isStaff Boolean @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())

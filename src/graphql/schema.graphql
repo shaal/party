@@ -322,6 +322,7 @@ type TopicPostsConnectionEdge {
 }
 
 type User {
+  createdAt: DateTime!
   email: String!
   followersCount: Int!
   followingCount: Int!
@@ -333,6 +334,7 @@ type User {
   products: [Product!]!
   profile: Profile!
   spammy: Boolean!
+  updatedAt: DateTime!
   username: String!
 }
 
