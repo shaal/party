@@ -8,9 +8,9 @@ import {
 import { IncomingHttpHeaders } from 'http'
 import { NextApiHandler } from 'next'
 
+import { Context, createGraphQLContext } from '~/graphql/builder'
 import { resolveSession } from '~/utils/sessions'
 
-import { Context, createGraphQLContext } from '../../graphql/builder'
 import { schema } from '../../graphql/index'
 
 function getGraphQLCode(error: Error & { code?: number }) {
