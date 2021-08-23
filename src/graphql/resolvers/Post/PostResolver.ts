@@ -44,10 +44,12 @@ builder.prismaObject(db.post, {
     }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+
+    // Relations
     user: t.relation('user'),
-    replies: t.relatedConnection('replies', { cursor: 'id' }),
     parent: t.relation('parent', { nullable: true }),
-    product: t.relation('product', { nullable: true })
+    product: t.relation('product', { nullable: true }),
+    replies: t.relatedConnection('replies', { cursor: 'id' })
   })
 })
 
