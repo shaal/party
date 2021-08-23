@@ -47,14 +47,8 @@ builder.prismaObject(db.post, {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
-    replies: t.prismaConnection({
-      type: db.post,
-      cursor: 'id',
-      resolve: (query, root) =>
-        db.post.findMany({
-          ...query,
-          where: { parentId: root.id }
-        })
+    replies: t.relatedConnection('replies', {
+      cursor: 'id'
     }),
     parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true })
