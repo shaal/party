@@ -1,5 +1,5 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 import { hasLiked } from '../Common/hasLiked'
 import { createPost } from './mutations/createPost'
@@ -8,7 +8,7 @@ import { editPost } from './mutations/editPost'
 import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
 
-builder.prismaObject(prisma.post, {
+builder.prismaObject(db.post, {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -28,10 +28,10 @@ builder.prismaObject(prisma.post, {
       }
     }),
     likes: t.prismaConnection({
-      type: prisma.like,
+      type: db.like,
       cursor: 'id',
       resolve: (query, root) =>
-        prisma.like.findMany({
+        db.like.findMany({
           ...query,
           where: { postId: root.id }
         })
@@ -39,14 +39,14 @@ builder.prismaObject(prisma.post, {
     likesCount: t.field({
       type: 'Int',
       resolve: (root) =>
-        prisma.like.count({
+        db.like.count({
           where: { postId: root.id }
         })
     }),
     repliesCount: t.field({
       type: 'Int',
       resolve: (root) =>
-        prisma.post.count({
+        db.post.count({
           where: { parentId: root.id }
         })
     }),
@@ -54,10 +54,10 @@ builder.prismaObject(prisma.post, {
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
     replies: t.prismaConnection({
-      type: prisma.post,
+      type: db.post,
       cursor: 'id',
       resolve: (query, root) =>
-        prisma.post.findMany({
+        db.post.findMany({
           ...query,
           where: { parentId: root.id }
         })
@@ -77,7 +77,7 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
 
 builder.queryField('posts', (t) =>
   t.prismaConnection({
-    type: prisma.post,
+    type: db.post,
     cursor: 'id',
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
@@ -96,7 +96,7 @@ const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
 
 builder.queryField('homeFeed', (t) =>
   t.prismaConnection({
-    type: prisma.post,
+    type: db.post,
     cursor: 'id',
     args: {
       where: t.arg({ type: WhereHomeFeedInput, required: false })
@@ -109,12 +109,12 @@ builder.queryField('homeFeed', (t) =>
 
 builder.queryField('post', (t) =>
   t.prismaField({
-    type: prisma.post,
+    type: db.post,
     args: {
       id: t.arg.id({})
     },
     resolve: async (query, root, { id }) => {
-      return await prisma.post.findUnique({
+      return await db.post.findUnique({
         ...query,
         where: {
           id
@@ -142,7 +142,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 
 builder.mutationField('createPost', (t) =>
   t.prismaField({
-    type: prisma.post,
+    type: db.post,
     args: {
       input: t.arg({ type: CreatePostInput })
     },
@@ -162,7 +162,7 @@ const EditPostInput = builder.inputType('EditPostInput', {
 
 builder.mutationField('editPost', (t) =>
   t.prismaField({
-    type: prisma.post,
+    type: db.post,
     args: {
       input: t.arg({ type: EditPostInput })
     },
@@ -180,7 +180,7 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
-    type: prisma.post,
+    type: db.post,
     args: {
       input: t.arg({ type: DeletePostInput })
     },

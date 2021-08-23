@@ -11,6 +11,7 @@ import AppContext from '~/components/utils/AppContext'
 
 import MenuItems from './MenuItems'
 import Notifications from './Notifications'
+import Search from './Search'
 import StaffBar from './StaffBar'
 
 interface NavItemProps {
@@ -50,7 +51,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
       <NavItem
         url="/"
         name="Home"
-        current={router.pathname == '/'}
+        current={router.pathname == '/home'}
         isMobile={isMobile}
       />
       <NavItem
@@ -105,7 +106,8 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
+                  <div className="flex items-center space-x-4">
+                    <Search />
                     <NavItems />
                   </div>
                 </div>

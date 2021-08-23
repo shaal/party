@@ -1,14 +1,14 @@
 import { Session } from '@prisma/client'
 
 import { EditPostInput } from '~/__generated__/schema.generated'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const deletePost = async (
   query: any,
   input: EditPostInput | null | undefined,
   session: Session | null | undefined
 ) => {
-  const post = await prisma.post.findFirst({
+  const post = await db.post.findFirst({
     ...query,
     where: {
       id: input?.id,
@@ -18,7 +18,7 @@ export const deletePost = async (
     rejectOnNotFound: true
   })
 
-  return await prisma.post.delete({
+  return await db.post.delete({
     where: { id: post?.id }
   })
 }

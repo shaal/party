@@ -1,5 +1,5 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
@@ -8,7 +8,7 @@ import { followingCount } from './queries/followingCount'
 import { getUsers } from './queries/getUsers'
 import { hasFollowed } from './queries/hasFollowed'
 
-builder.prismaObject(prisma.user, {
+builder.prismaObject(db.user, {
   findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -44,10 +44,10 @@ builder.prismaObject(prisma.user, {
     profile: t.relation('profile'),
     products: t.relation('products'),
     posts: t.prismaConnection({
-      type: prisma.post,
+      type: db.post,
       cursor: 'id',
       resolve: (query, root) =>
-        prisma.post.findMany({
+        db.post.findMany({
           ...query,
           where: {
             userId: root.id,
@@ -60,12 +60,12 @@ builder.prismaObject(prisma.user, {
 
 builder.queryField('user', (t) =>
   t.prismaField({
-    type: prisma.user,
+    type: db.user,
     args: {
       username: t.arg.string({})
     },
     resolve: async (query, root, { username }) => {
-      return await prisma.user.findUnique({
+      return await db.user.findUnique({
         ...query,
         where: { username },
         rejectOnNotFound: true
@@ -76,7 +76,7 @@ builder.queryField('user', (t) =>
 
 builder.queryField('users', (t) =>
   t.prismaConnection({
-    type: prisma.user,
+    type: db.user,
     cursor: 'id',
     resolve: async (query) => {
       return await getUsers(query)
@@ -108,12 +108,12 @@ const EditUserInput = builder.inputType('EditUserInput', {
 // TODO: Split to function
 builder.mutationField('editUser', (t) =>
   t.prismaField({
-    type: prisma.user,
+    type: db.user,
     args: {
       input: t.arg({ type: EditUserInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      return await prisma.user.update({
+      return await db.user.update({
         ...query,
         where: {
           id: session!.userId
@@ -145,7 +145,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
 // TODO: Split to function
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
-    type: prisma.user,
+    type: db.user,
     args: {
       input: t.arg({ type: ToggleFollowInput })
     },
@@ -168,7 +168,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
 
 builder.mutationField('modUser', (t) =>
   t.prismaField({
-    type: prisma.user,
+    type: db.user,
     args: {
       input: t.arg({ type: ModUserInput })
     },

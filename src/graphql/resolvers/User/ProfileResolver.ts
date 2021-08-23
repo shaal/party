@@ -1,7 +1,7 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
-builder.prismaObject(prisma.profile, {
+builder.prismaObject(db.profile, {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -30,12 +30,12 @@ const EditSocialInput = builder.inputType('EditSocialInput', {
 
 builder.mutationField('editSocial', (t) =>
   t.prismaField({
-    type: prisma.user,
+    type: db.user,
     args: {
       input: t.arg({ type: EditSocialInput })
     },
     resolve: async (query, root, { input }, { session }) => {
-      return await prisma.user.update({
+      return await db.user.update({
         ...query,
         where: {
           id: session!.userId

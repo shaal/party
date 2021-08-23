@@ -2,7 +2,7 @@ import { md5 } from 'hash-wasm'
 
 import { SignUpInput } from '~/__generated__/schema.generated'
 import { hashPassword } from '~/utils/auth'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 import { createSession } from '~/utils/sessions'
 
 import { reservedSlugs } from '../../Common/reservedSlugs'
@@ -12,7 +12,7 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
-  const user = await prisma.user.create({
+  const user = await db.user.create({
     ...query,
     data: {
       username: input.username,

@@ -1,9 +1,9 @@
 import { builder } from '~/graphql/builder'
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 
-builder.prismaObject(prisma.topic, {
+builder.prismaObject(db.topic, {
   findUnique: (topic) => ({ id: topic.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -13,15 +13,15 @@ builder.prismaObject(prisma.topic, {
     postsCount: t.field({
       type: 'Int',
       resolve: (root) =>
-        prisma.post.count({
+        db.post.count({
           where: { topics: { some: { topic: { name: root.name } } } }
         })
     }),
     posts: t.prismaConnection({
-      type: prisma.post,
+      type: db.post,
       cursor: 'id',
       resolve: (query, root) =>
-        prisma.post.findMany({
+        db.post.findMany({
           ...query,
           where: { topics: { some: { topic: { name: root.name } } } },
           orderBy: {
@@ -34,12 +34,12 @@ builder.prismaObject(prisma.topic, {
 
 builder.queryField('topic', (t) =>
   t.prismaField({
-    type: prisma.topic,
+    type: db.topic,
     args: {
       name: t.arg.string({})
     },
     resolve: async (query, root, { name }) => {
-      return await prisma.topic.findUnique({
+      return await db.topic.findUnique({
         ...query,
         where: { name },
         rejectOnNotFound: true
@@ -57,7 +57,7 @@ const EditTopicInput = builder.inputType('EditTopicInput', {
 
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
-    type: prisma.topic,
+    type: db.topic,
     args: {
       input: t.arg({ type: EditTopicInput })
     },

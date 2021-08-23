@@ -196,6 +196,9 @@ type Query {
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
+  searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
+  searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
+  searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   topic(name: String!): Topic!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -239,6 +242,36 @@ type QueryProductsConnection {
 type QueryProductsConnectionEdge {
   cursor: String!
   node: Product!
+}
+
+type QuerySearchPostsConnection {
+  edges: [QuerySearchPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySearchPostsConnectionEdge {
+  cursor: String!
+  node: Post!
+}
+
+type QuerySearchProductConnection {
+  edges: [QuerySearchProductConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySearchProductConnectionEdge {
+  cursor: String!
+  node: Product!
+}
+
+type QuerySearchUsersConnection {
+  edges: [QuerySearchUsersConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySearchUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type QueryUsersConnection {

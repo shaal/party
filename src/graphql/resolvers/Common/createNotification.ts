@@ -1,6 +1,6 @@
 import { NotificationType } from '@prisma/client'
 
-import { prisma } from '~/utils/prisma'
+import { db } from '~/utils/prisma'
 
 export const createNotification = async (
   receiverId: string,
@@ -9,7 +9,7 @@ export const createNotification = async (
   type: NotificationType
 ) => {
   if (receiverId !== dispatcherId) {
-    return await prisma.notification.create({
+    return await db.notification.create({
       data: {
         receiverId,
         dispatcherId,
