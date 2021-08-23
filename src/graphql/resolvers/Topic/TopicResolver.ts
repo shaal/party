@@ -10,6 +10,8 @@ builder.prismaObject(db.topic, {
     name: t.exposeString('name'),
     image: t.exposeString('image', { nullable: true }),
     description: t.exposeString('description', { nullable: true }),
+
+    // Count
     postsCount: t.field({
       type: 'Int',
       resolve: (root) =>
@@ -17,6 +19,8 @@ builder.prismaObject(db.topic, {
           where: { topics: { some: { topic: { name: root.name } } } }
         })
     }),
+
+    // Relations
     posts: t.prismaConnection({
       type: db.post,
       cursor: 'id',
