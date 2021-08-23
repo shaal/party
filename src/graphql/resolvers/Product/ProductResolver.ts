@@ -17,8 +17,12 @@ builder.prismaObject(db.product, {
     discord: t.exposeString('discord', { nullable: true }),
     github: t.exposeString('github', { nullable: true }),
     twitter: t.exposeString('twitter', { nullable: true }),
+
+    // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+
+    // Relations
     user: t.relation('user'),
     posts: t.relatedConnection('posts', { cursor: 'id' })
   })
