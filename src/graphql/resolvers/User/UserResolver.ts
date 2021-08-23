@@ -17,6 +17,15 @@ builder.prismaObject(db.user, {
     isVerified: t.exposeBoolean('isVerified', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
     email: t.exposeString('email', { authScopes: { $granted: 'currentUser' } }),
+    hasFollowed: t.field({
+      type: 'Boolean',
+      resolve: async (root, args, { session }) => {
+        if (!session) return false
+        return await hasFollowed(session?.userId as string, root.id)
+      }
+    }),
+
+    // Count
     followersCount: t.field({
       type: 'Int',
       resolve: async (root) => await followersCount(root.id)
@@ -25,13 +34,10 @@ builder.prismaObject(db.user, {
       type: 'Int',
       resolve: async (root) => await followingCount(root.id)
     }),
-    hasFollowed: t.field({
-      type: 'Boolean',
-      resolve: async (root, args, { session }) => {
-        if (!session) return false
-        return await hasFollowed(session?.userId as string, root.id)
-      }
-    }),
+
+    // Timestamps
+    createdAt: t.expose('createdAt', { type: 'DateTime' }),
+    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
 
     // Relations
     profile: t.relation('profile'),
