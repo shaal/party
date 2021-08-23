@@ -2,10 +2,13 @@ version: '3'
 
 services:
   postgres:
+    container_name: 'devparty-postgres'
     restart: unless-stopped
     image: postgres:latest
     ports:
       - '35432:5432'
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data/'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -19,3 +22,6 @@ services:
     volumes:
       - .:/srv/compiler:rw
     working_dir: /srv/compiler
+
+volumes:
+  pgdata: {}
