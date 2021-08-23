@@ -19,8 +19,8 @@ builder.prismaObject(db.user, {
     email: t.field({
       type: 'String',
       nullable: true,
-      resolve: async (root, args, ctx) => {
-        if (!ctx.session) return null
+      resolve: async (root, args, { session }) => {
+        if (!session || session.userId !== root.id) return null
         return root.email
       }
     }),
@@ -34,9 +34,9 @@ builder.prismaObject(db.user, {
     }),
     hasFollowed: t.field({
       type: 'Boolean',
-      resolve: async (root, args, ctx) => {
-        if (!ctx.session) return false
-        return await hasFollowed(ctx.session?.userId as string, root.id)
+      resolve: async (root, args, { session }) => {
+        if (!session) return false
+        return await hasFollowed(session?.userId as string, root.id)
       }
     }),
 
