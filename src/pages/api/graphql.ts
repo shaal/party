@@ -9,9 +9,8 @@ import { IncomingHttpHeaders } from 'http'
 import { NextApiHandler } from 'next'
 
 import { Context, createGraphQLContext } from '~/graphql/builder'
+import { schema } from '~/graphql/index'
 import { resolveSession } from '~/utils/sessions'
-
-import { schema } from '../../graphql/index'
 
 function getGraphQLCode(error: Error & { code?: number }) {
   return error.code ?? error.name === 'NotFoundError' ? 404 : null
