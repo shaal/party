@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@apollo/client@3.4.8":
+"@apollo/client@^3.4.8":
   version "3.4.8"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.8.tgz#66d06dc1784d07d46731b3bda546046f8c280b74"
   integrity sha512-/cNqTSwc2Dw8q6FDDjdd30+yvhP7rI0Fvl3Hbro0lTtFuhzkevfNyQaI2jAiOrjU6Jc0RbanxULaNrX7UmvjSQ==
@@ -539,7 +539,7 @@
   resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.14.0.tgz#1914b0eb7c7c1c438f2f13d4ab884e6c51d4eef3"
   integrity sha512-iE1Lu7z0HupRxejwmfX2uAEb9TSWqs4F0sLoJNYISWwXqT9QyjA15yL7uw7m9ITwL3L3B5sM74vRkdU5aCqkJQ==
 
-"@giraphql/plugin-prisma@0.7.2":
+"@giraphql/plugin-prisma@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@giraphql/plugin-prisma/-/plugin-prisma-0.7.2.tgz#40e6ecb737caa9df055ff447a7c53b654320aca3"
   integrity sha512-7dIdacOKjYKpILFruiWaTt9wE8iCMFag95WK7twIFa+w4lebuVWzbaVK6SCCZmxLrx4gj0TZCg8G2Xm+HxvVnQ==
