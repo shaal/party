@@ -7,10 +7,14 @@ builder.prismaObject(db.like, {
   findUnique: (like) => ({ id: like.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    user: t.relation('user'),
-    post: t.relation('post'),
+
+    // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' })
+    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+
+    // Relations
+    user: t.relation('user'),
+    post: t.relation('post')
   })
 })
 
