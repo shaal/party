@@ -20,18 +20,7 @@ builder.prismaObject(db.product, {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
-    posts: t.prismaConnection({
-      type: db.post,
-      cursor: 'id',
-      resolve: (query, root) =>
-        db.post.findMany({
-          ...query,
-          where: {
-            productId: root.id,
-            user: { spammy: false }
-          }
-        })
-    })
+    posts: t.relatedConnection('posts', { cursor: 'id' })
   })
 })
 

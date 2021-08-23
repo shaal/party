@@ -27,9 +27,7 @@ builder.prismaObject(db.post, {
         return await hasLiked(session?.userId as string, root.id)
       }
     }),
-    likes: t.relatedConnection('likes', {
-      cursor: 'id'
-    }),
+    likes: t.relatedConnection('likes', { cursor: 'id' }),
     likesCount: t.field({
       type: 'Int',
       resolve: (root) =>
@@ -47,9 +45,7 @@ builder.prismaObject(db.post, {
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     user: t.relation('user'),
-    replies: t.relatedConnection('replies', {
-      cursor: 'id'
-    }),
+    replies: t.relatedConnection('replies', { cursor: 'id' }),
     parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true })
   })
