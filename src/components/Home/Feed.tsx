@@ -40,8 +40,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
         where: {
           type: feedType
         }
-      },
-      pollInterval: 10_000
+      }
     }
   )
   const posts = data?.homeFeed?.edges?.map((edge) => edge?.node)

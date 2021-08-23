@@ -12,6 +12,7 @@ builder.queryField('me', (t) =>
     type: db.user,
     nullable: true,
     skipTypeScopes: true,
+    grantScopes: ['currentUser'],
     resolve: async (query, root, args, { session }) => {
       if (!session?.userId) {
         return null

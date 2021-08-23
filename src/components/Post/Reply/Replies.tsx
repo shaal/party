@@ -42,8 +42,7 @@ const Replies: React.FC<Props> = ({ post }) => {
       variables: {
         after: null,
         postId: post?.id
-      },
-      pollInterval: 10_000
+      }
     }
   )
   const replies = data?.post?.replies?.edges?.map((edge) => edge?.node)

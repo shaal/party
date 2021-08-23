@@ -16,14 +16,7 @@ builder.prismaObject(db.user, {
     spammy: t.exposeBoolean('spammy', {}),
     isVerified: t.exposeBoolean('isVerified', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
-    email: t.field({
-      type: 'String',
-      nullable: true,
-      resolve: async (root, args, { session }) => {
-        if (!session || session.userId !== root.id) return null
-        return root.email
-      }
-    }),
+    email: t.exposeString('email', { authScopes: { $granted: 'currentUser' } }),
     followersCount: t.field({
       type: 'Int',
       resolve: async (root) => await followersCount(root.id)

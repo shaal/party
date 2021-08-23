@@ -322,7 +322,7 @@ type TopicPostsConnectionEdge {
 }
 
 type User {
-  email: String
+  email: String!
   followersCount: Int!
   followingCount: Int!
   hasFollowed: Boolean!
