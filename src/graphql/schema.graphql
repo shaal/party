@@ -197,6 +197,7 @@ type Query {
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
+  searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   topic(name: String!): Topic!
   user(username: String!): User!
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -250,6 +251,16 @@ type QuerySearchPostsConnection {
 type QuerySearchPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QuerySearchUsersConnection {
+  edges: [QuerySearchUsersConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySearchUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type QueryUsersConnection {

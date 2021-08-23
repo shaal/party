@@ -20,3 +20,23 @@ builder.queryField('searchPosts', (t) =>
     }
   })
 )
+
+builder.queryField('searchUsers', (t) =>
+  t.prismaConnection({
+    type: prisma.user,
+    args: {
+      keyword: t.arg.string({})
+    },
+    cursor: 'id',
+    resolve: async (query, root, { keyword }) => {
+      return await prisma.user.findMany({
+        ...query,
+        where: {
+          username: {
+            contains: keyword
+          }
+        }
+      })
+    }
+  })
+)
