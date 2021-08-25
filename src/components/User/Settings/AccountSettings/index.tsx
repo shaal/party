@@ -9,8 +9,6 @@ import {
 import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Card, CardBody } from '~/components/ui/Card'
 
-import AccountSettingsForm from './Form'
-
 interface Props {
   currentUser: User
 }
@@ -29,7 +27,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
       <GridItemEight>
         <Card>
           <CardBody>
-            <AccountSettingsForm user={currentUser as User} />
+            {/* <AccountSettingsForm user={currentUser as User} /> */}
           </CardBody>
         </Card>
       </GridItemEight>
