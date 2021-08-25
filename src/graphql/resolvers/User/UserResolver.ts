@@ -74,10 +74,6 @@ builder.queryField('users', (t) =>
 
 const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
-    username: t.string({
-      required: true,
-      validate: { minLength: 1, maxLength: 20 }
-    }),
     name: t.string({
       required: true,
       validate: { minLength: 1, maxLength: 50 }
@@ -103,7 +99,6 @@ builder.mutationField('editUser', (t) =>
           id: session!.userId
         },
         data: {
-          username: input.username,
           profile: {
             update: {
               name: input.name,

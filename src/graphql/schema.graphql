@@ -51,7 +51,6 @@ input EditUserInput {
   cover: String
   location: String
   name: String!
-  username: String!
 }
 
 type Like {
