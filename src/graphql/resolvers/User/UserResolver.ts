@@ -67,6 +67,7 @@ builder.queryField('users', (t) =>
     type: 'User',
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     resolve: async (query) => {
       return await getUsers(query)
     }

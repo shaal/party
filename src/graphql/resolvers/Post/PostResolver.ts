@@ -70,6 +70,7 @@ builder.queryField('posts', (t) =>
     type: 'Post',
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
@@ -90,6 +91,7 @@ builder.queryField('homeFeed', (t) =>
     type: 'Post',
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     args: {
       where: t.arg({ type: WhereHomeFeedInput, required: false })
     },

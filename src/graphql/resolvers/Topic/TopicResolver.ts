@@ -25,6 +25,7 @@ builder.prismaObject('Topic', {
       type: 'Post',
       cursor: 'id',
       defaultSize: 20,
+      maxSize: 100,
       resolve: (query, root) =>
         db.post.findMany({
           ...query,

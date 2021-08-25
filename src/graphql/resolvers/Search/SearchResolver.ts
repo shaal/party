@@ -9,6 +9,7 @@ builder.queryField('searchPosts', (t) =>
     },
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     resolve: async (query, root, { keyword }) => {
       return await db.post.findMany({
         ...query,
@@ -30,6 +31,7 @@ builder.queryField('searchUsers', (t) =>
     },
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     resolve: async (query, root, { keyword }) => {
       return await db.user.findMany({
         ...query,
@@ -51,6 +53,7 @@ builder.queryField('searchProduct', (t) =>
     },
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     resolve: async (query, root, { keyword }) => {
       return await db.product.findMany({
         ...query,

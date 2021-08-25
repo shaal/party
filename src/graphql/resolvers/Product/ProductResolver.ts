@@ -41,6 +41,7 @@ builder.queryField('products', (t) =>
     type: 'Product',
     cursor: 'id',
     defaultSize: 20,
+    maxSize: 100,
     args: {
       where: t.arg({ type: WhereProductsInput, required: false })
     },
