@@ -30,7 +30,11 @@ export const SETTINGS_QUERY = gql`
 `
 
 const Settings: React.FC = () => {
-  const { data } = useQuery<SettingsQuery>(SETTINGS_QUERY)
+  const { data, loading } = useQuery<SettingsQuery>(SETTINGS_QUERY)
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Fragment>
