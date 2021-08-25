@@ -11,7 +11,6 @@ export const SETTINGS_QUERY = gql`
   query SettingsQuery {
     me {
       id
-      username
       email
       profile {
         id
