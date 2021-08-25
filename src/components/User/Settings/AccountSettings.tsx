@@ -26,7 +26,6 @@ import {
 
 const editProfileSchema = object({
   username: string().min(1),
-  email: string().email().min(1),
   name: string().min(1),
   bio: string().max(255).nullable(),
   location: string().max(50).nullable(),
@@ -48,7 +47,6 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
       editUser(input: $input) {
         id
         username
-        email
         profile {
           id
           name
@@ -82,7 +80,6 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
     schema: editProfileSchema,
     defaultValues: {
       username: currentUser.username,
-      email: currentUser.email as string,
       name: currentUser.profile.name,
       bio: currentUser.profile.bio as string,
       location: currentUser.profile.location as string,
@@ -96,7 +93,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
         <SettingsHelper
           heading="Account settings"
           description={
-            "Update your account's contact information and email address."
+            "Update your account's contact information and identities."
           }
         />
       </GridItemFour>
@@ -106,12 +103,11 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ username, email, name, bio, location }) =>
+              onSubmit={({ username, name, bio, location }) =>
                 editUser({
                   variables: {
                     input: {
                       username,
-                      email,
                       name,
                       bio: bio as string,
                       location: location as string,
@@ -131,16 +127,16 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
               )}
               <Input label="ID" type="text" value={currentUser?.id} disabled />
               <Input
+                label="Email"
+                type="email"
+                value={currentUser?.email}
+                disabled
+              />
+              <Input
                 label="Username"
                 type="text"
                 placeholder="johndoe"
                 {...form.register('username')}
-              />
-              <Input
-                label="Email"
-                type="email"
-                placeholder="johndoe@example.com"
-                {...form.register('email')}
               />
               <Input
                 label="Name"
