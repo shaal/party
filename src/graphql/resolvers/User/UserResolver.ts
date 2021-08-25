@@ -23,9 +23,6 @@ builder.prismaObject('User', {
       }
     }),
 
-    // Count
-    followingCount: t.relationCount('following'),
-
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
@@ -35,6 +32,10 @@ builder.prismaObject('User', {
     products: t.relation('products'),
     posts: t.relatedConnection('posts', { cursor: 'id', totalCount: true }),
     followers: t.relatedConnection('followedBy', {
+      cursor: 'id',
+      totalCount: true
+    }),
+    following: t.relatedConnection('following', {
       cursor: 'id',
       totalCount: true
     })

@@ -20,7 +20,9 @@ export const USER_QUERY = gql`
       followers {
         totalCount
       }
-      followingCount
+      following {
+        totalCount
+      }
       isVerified
       isStaff
       spammy

@@ -324,8 +324,7 @@ type User {
   createdAt: DateTime!
   email: String!
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
-  followersCount: Int!
-  followingCount: Int!
+  following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
   hasFollowed: Boolean!
   id: ID!
   isStaff: Boolean!
@@ -345,6 +344,17 @@ type UserFollowersConnection {
 }
 
 type UserFollowersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
+type UserFollowingConnection {
+  edges: [UserFollowingConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserFollowingConnectionEdge {
   cursor: String!
   node: User!
 }
