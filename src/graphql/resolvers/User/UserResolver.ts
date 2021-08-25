@@ -3,8 +3,6 @@ import { db } from '~/utils/prisma'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
-import { followersCount } from './queries/followersCount'
-import { followingCount } from './queries/followingCount'
 import { getUsers } from './queries/getUsers'
 import { hasFollowed } from './queries/hasFollowed'
 
@@ -26,14 +24,8 @@ builder.prismaObject('User', {
     }),
 
     // Count
-    followersCount: t.field({
-      type: 'Int',
-      resolve: async (root) => await followersCount(root.id)
-    }),
-    followingCount: t.field({
-      type: 'Int',
-      resolve: async (root) => await followingCount(root.id)
-    }),
+    followersCount: t.relationCount('followedBy'),
+    followingCount: t.relationCount('following'),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
