@@ -23,15 +23,9 @@ function App({ Component, pageProps }: AppProps) {
         <Toaster
           position="top-right"
           toastOptions={{
-            success: {
-              className: 'border border-green-500'
-            },
-            error: {
-              className: 'border border-red-500'
-            },
-            loading: {
-              className: 'border border-gray-300'
-            }
+            success: { className: 'border border-green-500' },
+            error: { className: 'border border-red-500' },
+            loading: { className: 'border border-gray-300' }
           }}
         />
         <DefaultLayout>
