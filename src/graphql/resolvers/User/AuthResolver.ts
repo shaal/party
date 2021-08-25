@@ -9,7 +9,7 @@ import { signUp } from './mutations/signUp'
 
 builder.queryField('me', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     nullable: true,
     skipTypeScopes: true,
     grantScopes: ['currentUser'],
@@ -54,7 +54,7 @@ const LoginInput = builder.inputType('LoginInput', {
 
 builder.mutationField('login', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: false
@@ -98,7 +98,7 @@ const SignUpInput = builder.inputType('SignUpInput', {
 
 builder.mutationField('signUp', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     skipTypeScopes: true,
     authScopes: {
       unauthenticated: true

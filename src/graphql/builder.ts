@@ -6,6 +6,7 @@ import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
+import PrismaTypes from 'prisma/giraphql-types'
 
 import { db } from '~/utils/prisma'
 
@@ -28,6 +29,7 @@ export function createGraphQLContext(
 }
 
 export const builder = new SchemaBuilder<{
+  PrismaTypes: PrismaTypes
   DefaultInputFieldRequiredness: true
   Context: Context
   Scalars: {

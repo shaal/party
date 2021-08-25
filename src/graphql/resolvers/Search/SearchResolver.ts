@@ -3,7 +3,7 @@ import { db } from '~/utils/prisma'
 
 builder.queryField('searchPosts', (t) =>
   t.prismaConnection({
-    type: db.post,
+    type: 'Post',
     args: {
       keyword: t.arg.string({})
     },
@@ -23,7 +23,7 @@ builder.queryField('searchPosts', (t) =>
 
 builder.queryField('searchUsers', (t) =>
   t.prismaConnection({
-    type: db.user,
+    type: 'User',
     args: {
       keyword: t.arg.string({})
     },
@@ -43,7 +43,7 @@ builder.queryField('searchUsers', (t) =>
 
 builder.queryField('searchProduct', (t) =>
   t.prismaConnection({
-    type: db.product,
+    type: 'Product',
     args: {
       keyword: t.arg.string({})
     },

@@ -8,7 +8,7 @@ import { editPost } from './mutations/editPost'
 import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
 
-builder.prismaObject(db.post, {
+builder.prismaObject('Post', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -67,7 +67,7 @@ const WherePostsInput = builder.inputType('WherePostsInput', {
 
 builder.queryField('posts', (t) =>
   t.prismaConnection({
-    type: db.post,
+    type: 'Post',
     cursor: 'id',
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
@@ -86,7 +86,7 @@ const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
 
 builder.queryField('homeFeed', (t) =>
   t.prismaConnection({
-    type: db.post,
+    type: 'Post',
     cursor: 'id',
     args: {
       where: t.arg({ type: WhereHomeFeedInput, required: false })
@@ -99,7 +99,7 @@ builder.queryField('homeFeed', (t) =>
 
 builder.queryField('post', (t) =>
   t.prismaField({
-    type: db.post,
+    type: 'Post',
     args: {
       id: t.arg.id({})
     },
@@ -132,7 +132,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 
 builder.mutationField('createPost', (t) =>
   t.prismaField({
-    type: db.post,
+    type: 'Post',
     args: {
       input: t.arg({ type: CreatePostInput })
     },
@@ -152,7 +152,7 @@ const EditPostInput = builder.inputType('EditPostInput', {
 
 builder.mutationField('editPost', (t) =>
   t.prismaField({
-    type: db.post,
+    type: 'Post',
     args: {
       input: t.arg({ type: EditPostInput })
     },
@@ -170,7 +170,7 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
-    type: db.post,
+    type: 'Post',
     args: {
       input: t.arg({ type: DeletePostInput })
     },

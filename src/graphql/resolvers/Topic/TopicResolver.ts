@@ -3,7 +3,7 @@ import { db } from '~/utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 
-builder.prismaObject(db.topic, {
+builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -22,7 +22,7 @@ builder.prismaObject(db.topic, {
 
     // Relations
     posts: t.prismaConnection({
-      type: db.post,
+      type: 'Post',
       cursor: 'id',
       resolve: (query, root) =>
         db.post.findMany({
@@ -38,7 +38,7 @@ builder.prismaObject(db.topic, {
 
 builder.queryField('topic', (t) =>
   t.prismaField({
-    type: db.topic,
+    type: 'Topic',
     args: {
       name: t.arg.string({})
     },
@@ -61,7 +61,7 @@ const EditTopicInput = builder.inputType('EditTopicInput', {
 
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
-    type: db.topic,
+    type: 'Topic',
     args: {
       input: t.arg({ type: EditTopicInput })
     },

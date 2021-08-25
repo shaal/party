@@ -2171,9 +2171,9 @@ capital-case@^1.0.4:
     upper-case-first "^2.0.2"
 
 cborg@^1.2.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/cborg/-/cborg-1.4.2.tgz#4d640f965ca34fcd9acfeba9ca3a32026ee88208"
-  integrity sha512-8uLhtl4oZD4fnAzgFnitgZDmQYt32NranHmIRzyAzsLGc4Fdocr//wPvHLGrRLbZkBF/0qqDqc0kUZZSZRd/rg==
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/cborg/-/cborg-1.5.0.tgz#3a661fcf759e8deeec3834a144e6d87d82d97787"
+  integrity sha512-3t1+s45x5LiACi39HDiSubPZiKXU2rCreu0oi5A1nccQNDHnprCh9ZQKN1Za3eookOmL03e9oKEZ+LJs0iTE8A==
 
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"

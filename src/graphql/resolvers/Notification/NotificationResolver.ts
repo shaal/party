@@ -1,9 +1,8 @@
 import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
 
 import { getNotifications } from './queries/getNotifications'
 
-builder.prismaObject(db.notification, {
+builder.prismaObject('Notification', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
@@ -22,7 +21,7 @@ builder.prismaObject(db.notification, {
 
 builder.queryField('notifications', (t) =>
   t.prismaConnection({
-    type: db.notification,
+    type: 'Notification',
     cursor: 'id',
     authScopes: { user: true },
     resolve: async (query, root, args, { session }) => {
