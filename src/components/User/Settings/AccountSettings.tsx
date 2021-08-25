@@ -25,6 +25,7 @@ import {
 } from './__generated__/AccountSettings.generated'
 
 const editProfileSchema = object({
+  username: string().min(1),
   name: string().min(1),
   bio: string().max(255).nullable(),
   location: string().max(50).nullable(),
@@ -45,6 +46,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
     mutation AccountSettingsMutation($input: EditUserInput!) {
       editUser(input: $input) {
         id
+        username
         profile {
           id
           name
@@ -77,6 +79,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
+      username: currentUser.username,
       name: currentUser.profile.name,
       bio: currentUser.profile.bio as string,
       location: currentUser.profile.location as string,
@@ -100,11 +103,11 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ name, bio, location }) =>
+              onSubmit={({ username, name, bio, location }) =>
                 editUser({
                   variables: {
                     input: {
-                      username: 'yes',
+                      username,
                       name,
                       bio: bio as string,
                       location: location as string,
@@ -128,6 +131,12 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
                 type="email"
                 value={currentUser?.email}
                 disabled
+              />
+              <Input
+                label="Username"
+                type="text"
+                placeholder="johndoe"
+                {...form.register('username')}
               />
               <Input
                 label="Name"
