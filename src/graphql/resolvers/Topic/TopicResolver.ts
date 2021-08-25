@@ -12,13 +12,7 @@ builder.prismaObject('Topic', {
     description: t.exposeString('description', { nullable: true }),
 
     // Count
-    postsCount: t.field({
-      type: 'Int',
-      resolve: (root) =>
-        db.post.count({
-          where: { topics: { some: { topic: { name: root.name } } } }
-        })
-    }),
+    postsCount: t.relationCount('posts'),
 
     // Relations
     posts: t.prismaConnection({
