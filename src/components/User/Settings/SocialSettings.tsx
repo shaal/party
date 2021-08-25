@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { User } from '~/__generated__/schema.generated'
@@ -32,23 +33,32 @@ interface Props {
   currentUser: User
 }
 
+const SUCCESS_MESSAGE = 'Social successfully updated!'
+
 const SocialSettings: React.FC<Props> = ({ currentUser }) => {
   const [editSocial, editSocialResult] = useMutation<
     SocialSettingsMutation,
     SocialSettingsMutationVariables
-  >(gql`
-    mutation SocialSettingsMutation($input: EditSocialInput!) {
-      editSocial(input: $input) {
-        profile {
-          id
-          website
-          twitter
-          github
-          discord
+  >(
+    gql`
+      mutation SocialSettingsMutation($input: EditSocialInput!) {
+        editSocial(input: $input) {
+          profile {
+            id
+            website
+            twitter
+            github
+            discord
+          }
         }
       }
+    `,
+    {
+      onCompleted() {
+        toast.success(SUCCESS_MESSAGE)
+      }
     }
-  `)
+  )
 
   const form = useZodForm({
     schema: editProfileSchema,
@@ -92,7 +102,7 @@ const SocialSettings: React.FC<Props> = ({ currentUser }) => {
                 error={editSocialResult.error}
               />
               {editSocialResult.data && (
-                <SuccessMessage>Social successfully updated!</SuccessMessage>
+                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <Input
                 label="Website"

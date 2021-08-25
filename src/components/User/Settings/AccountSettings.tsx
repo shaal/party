@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { User } from '~/__generated__/schema.generated'
@@ -36,28 +37,37 @@ interface Props {
   currentUser: User
 }
 
+const SUCCESS_MESSAGE = 'Profile successfully updated!'
+
 const AccountSettings: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
   const [editUser, editUserResult] = useMutation<
     AccountSettingsMutation,
     AccountSettingsMutationVariables
-  >(gql`
-    mutation AccountSettingsMutation($input: EditUserInput!) {
-      editUser(input: $input) {
-        id
-        username
-        profile {
+  >(
+    gql`
+      mutation AccountSettingsMutation($input: EditUserInput!) {
+        editUser(input: $input) {
           id
-          name
-          bio
-          location
-          avatar
-          cover
+          username
+          profile {
+            id
+            name
+            bio
+            location
+            avatar
+            cover
+          }
         }
       }
+    `,
+    {
+      onCompleted() {
+        toast.success(SUCCESS_MESSAGE)
+      }
     }
-  `)
+  )
 
   useEffect(() => {
     if (currentUser?.profile?.avatar) setAvatar(currentUser?.profile?.avatar)
@@ -123,7 +133,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
                 error={editUserResult.error}
               />
               {editUserResult.data && (
-                <SuccessMessage>Profile successfully updated!</SuccessMessage>
+                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <Input label="ID" type="text" value={currentUser?.id} disabled />
               <Input
