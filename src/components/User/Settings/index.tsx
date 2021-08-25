@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
+import { PageLoading } from '~/components/ui/PageLoading'
 
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
@@ -33,7 +34,7 @@ const Settings: React.FC = () => {
   const { data, loading } = useQuery<SettingsQuery>(SETTINGS_QUERY)
 
   if (loading) {
-    return <div>Loading...</div>
+    return <PageLoading message="Loading settings..." />
   }
 
   return (
