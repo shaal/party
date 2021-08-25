@@ -28,22 +28,6 @@ builder.prismaObject('Post', {
       }
     }),
 
-    // Count
-    likesCount: t.field({
-      type: 'Int',
-      resolve: (root) =>
-        db.like.count({
-          where: { postId: root.id }
-        })
-    }),
-    repliesCount: t.field({
-      type: 'Int',
-      resolve: (root) =>
-        db.post.count({
-          where: { parentId: root.id }
-        })
-    }),
-
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
@@ -52,8 +36,8 @@ builder.prismaObject('Post', {
     user: t.relation('user'),
     parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true }),
-    replies: t.relatedConnection('replies', { cursor: 'id' }),
-    likes: t.relatedConnection('likes', { cursor: 'id' })
+    replies: t.relatedConnection('replies', { cursor: 'id', totalCount: true }),
+    likes: t.relatedConnection('likes', { cursor: 'id', totalCount: true })
   })
 })
 

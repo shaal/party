@@ -116,11 +116,9 @@ type Post {
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
-  likesCount: Int!
   parent: Post
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
-  repliesCount: Int!
   title: String
   type: String!
   updatedAt: DateTime!
@@ -130,6 +128,7 @@ type Post {
 type PostLikesConnection {
   edges: [PostLikesConnectionEdge]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type PostLikesConnectionEdge {
@@ -140,6 +139,7 @@ type PostLikesConnectionEdge {
 type PostRepliesConnection {
   edges: [PostRepliesConnectionEdge]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type PostRepliesConnectionEdge {

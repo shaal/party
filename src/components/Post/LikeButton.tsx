@@ -40,8 +40,8 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
       ) : (
         <HeartIcon className="h-5 w-5" />
       )}
-      {(entity?.likesCount as number) > 0 && (
-        <div className="text-xs">{entity?.likesCount}</div>
+      {(entity?.likes?.totalCount as number) > 0 && (
+        <div className="text-xs">{entity?.likes?.totalCount}</div>
       )}
     </Switch>
   )

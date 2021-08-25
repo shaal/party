@@ -31,15 +31,17 @@ export const PostFragment = gql`
     attachments
     type
     hasLiked
-    likesCount
-    repliesCount
     parent {
       user {
         id
         username
       }
     }
+    replies {
+      totalCount
+    }
     likes(first: 5) {
+      totalCount
       edges {
         node {
           user {
@@ -140,13 +142,13 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         <Link href={`/posts/${post?.id}`} passHref>
           <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
-            {(post?.repliesCount as number) > 0 && (
-              <div className="text-xs">{post?.repliesCount}</div>
+            {(post?.replies?.totalCount as number) > 0 && (
+              <div className="text-xs">{post?.replies?.totalCount}</div>
             )}
           </button>
         </Link>
         {post?.user?.id === currentUser?.id && <DeleteButton entity={post} />}
-        {(post?.likesCount as number) > 0 && (
+        {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>
             <div className="flex -space-x-1.5 overflow-hidden">
@@ -159,8 +161,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                 />
               ))}
             </div>
-            {(post?.likesCount as number) > 5 && (
-              <div>and {(post?.likesCount as number) - 5} others...</div>
+            {(post?.likes?.totalCount as number) > 5 && (
+              <div>and {(post?.likes?.totalCount as number) - 5} others...</div>
             )}
           </div>
         )}
