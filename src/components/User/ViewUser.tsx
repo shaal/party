@@ -17,7 +17,9 @@ export const USER_QUERY = gql`
       id
       username
       hasFollowed
-      followersCount
+      followers {
+        totalCount
+      }
       followingCount
       isVerified
       isStaff

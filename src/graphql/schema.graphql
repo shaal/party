@@ -323,6 +323,7 @@ type TopicPostsConnectionEdge {
 type User {
   createdAt: DateTime!
   email: String!
+  followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   followersCount: Int!
   followingCount: Int!
   hasFollowed: Boolean!
@@ -337,9 +338,21 @@ type User {
   username: String!
 }
 
+type UserFollowersConnection {
+  edges: [UserFollowersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserFollowersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
 type UserPostsConnection {
   edges: [UserPostsConnectionEdge]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type UserPostsConnectionEdge {

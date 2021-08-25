@@ -31,7 +31,9 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
           id
           username
           hasFollowed
-          followersCount
+          followers {
+            totalCount
+          }
           followingCount
         }
       }
