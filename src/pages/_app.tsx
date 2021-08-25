@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider defaultTheme="light" attribute="class">
         <DefaultSeo defaultTitle="Devparty" titleTemplate="%s | Devparty" />
         <NProgress />
-        <Toaster />
+        <Toaster position="top-right" />
         <DefaultLayout>
           <Component {...pageProps} />
         </DefaultLayout>
