@@ -1,7 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 
+import { User } from '~/__generated__/schema.generated'
+
 import { SettingsQuery } from './__generated__/index.generated'
+import AccountSettings from './AccountSettings'
 
 export const SETTINGS_QUERY = gql`
   query SettingsQuery {
@@ -28,7 +31,12 @@ export const SETTINGS_QUERY = gql`
 const Settings: React.FC = () => {
   const { data } = useQuery<SettingsQuery>(SETTINGS_QUERY)
 
-  return <Fragment>WIP</Fragment>
+  return (
+    <Fragment>
+      <AccountSettings currentUser={data?.me as User} />
+      {/* <SocialSettings currentUser={data?.me as User} /> */}
+    </Fragment>
+  )
 }
 
 export default Settings
