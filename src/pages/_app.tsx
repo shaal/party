@@ -3,8 +3,8 @@ import '../styles.css'
 import { ApolloProvider } from '@apollo/client'
 import { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
-import { ThemeProvider, useTheme } from 'next-themes'
-import toast, { Toaster } from 'react-hot-toast'
+import { ThemeProvider } from 'next-themes'
+import { Toaster } from 'react-hot-toast'
 
 import DefaultLayout from '~/components/DefaultLayout'
 import { NProgress } from '~/components/ui/NProgress'
@@ -12,8 +12,6 @@ import { useApollo } from '~/utils/apollo'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialClientState)
-  const { theme } = useTheme()
-  toast.loading('hello')
 
   return (
     <ApolloProvider client={client}>
