@@ -4,7 +4,6 @@ import React, { Fragment } from 'react'
 import { User } from '~/__generated__/schema.generated'
 
 import { SettingsQuery } from './__generated__/index.generated'
-import AccountSettings from './AccountSettings'
 import SocialSettings from './SocialSettings'
 
 export const SETTINGS_QUERY = gql`
@@ -34,7 +33,7 @@ const Settings: React.FC = () => {
 
   return (
     <Fragment>
-      <AccountSettings currentUser={data?.me as User} />
+      {/* <AccountSettings currentUser={data?.me as User} /> */}
       <SocialSettings currentUser={data?.me as User} />
     </Fragment>
   )
