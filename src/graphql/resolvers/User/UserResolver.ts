@@ -8,7 +8,7 @@ import { followingCount } from './queries/followingCount'
 import { getUsers } from './queries/getUsers'
 import { hasFollowed } from './queries/hasFollowed'
 
-builder.prismaObject(db.user, {
+builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -48,7 +48,7 @@ builder.prismaObject(db.user, {
 
 builder.queryField('user', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     args: {
       username: t.arg.string({})
     },
@@ -64,7 +64,7 @@ builder.queryField('user', (t) =>
 
 builder.queryField('users', (t) =>
   t.prismaConnection({
-    type: db.user,
+    type: 'User',
     cursor: 'id',
     resolve: async (query) => {
       return await getUsers(query)
@@ -92,7 +92,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
 // TODO: Split to function
 builder.mutationField('editUser', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     args: {
       input: t.arg({ type: EditUserInput })
     },
@@ -128,7 +128,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
 // TODO: Split to function
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     args: {
       input: t.arg({ type: ToggleFollowInput })
     },
@@ -151,7 +151,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
 
 builder.mutationField('modUser', (t) =>
   t.prismaField({
-    type: db.user,
+    type: 'User',
     args: {
       input: t.arg({ type: ModUserInput })
     },

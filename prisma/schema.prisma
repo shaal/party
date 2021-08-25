@@ -9,6 +9,12 @@ generator client {
   previewFeatures = ["orderByRelation", "selectRelationCount", "nApi", "referentialActions", "orderByAggregateGroup", "filterJson"]
 }
 
+generator giraphql {
+  provider = "prisma-giraphql-types"
+  clientOutput = "@prisma/client"
+  output = "./giraphql-types.ts"
+}
+
 model User {
   id             String @id @default(cuid())
   username       String @unique @default(cuid())

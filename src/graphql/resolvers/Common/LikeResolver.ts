@@ -1,9 +1,8 @@
 import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
 
 import { togglePostLike } from '../Post/mutations/togglePostLike'
 
-builder.prismaObject(db.like, {
+builder.prismaObject('Like', {
   findUnique: (like) => ({ id: like.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
@@ -26,7 +25,7 @@ const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
 
 builder.mutationField('togglePostLike', (t) =>
   t.prismaField({
-    type: db.post,
+    type: 'Post',
     args: {
       input: t.arg({ type: TogglePostLikeInput })
     },
