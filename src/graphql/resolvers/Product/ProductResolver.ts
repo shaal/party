@@ -40,6 +40,7 @@ builder.queryField('products', (t) =>
   t.prismaConnection({
     type: 'Product',
     cursor: 'id',
+    defaultSize: 20,
     args: {
       where: t.arg({ type: WhereProductsInput, required: false })
     },

@@ -23,6 +23,7 @@ builder.queryField('notifications', (t) =>
   t.prismaConnection({
     type: 'Notification',
     cursor: 'id',
+    defaultSize: 20,
     authScopes: { user: true },
     resolve: async (query, root, args, { session }) => {
       return await getNotifications(query, session)

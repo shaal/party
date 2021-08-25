@@ -69,6 +69,7 @@ builder.queryField('posts', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
+    defaultSize: 20,
     args: {
       where: t.arg({ type: WherePostsInput, required: false })
     },
@@ -88,6 +89,7 @@ builder.queryField('homeFeed', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
+    defaultSize: 20,
     args: {
       where: t.arg({ type: WhereHomeFeedInput, required: false })
     },

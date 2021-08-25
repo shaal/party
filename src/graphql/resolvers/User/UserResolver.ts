@@ -66,6 +66,7 @@ builder.queryField('users', (t) =>
   t.prismaConnection({
     type: 'User',
     cursor: 'id',
+    defaultSize: 20,
     resolve: async (query) => {
       return await getUsers(query)
     }
