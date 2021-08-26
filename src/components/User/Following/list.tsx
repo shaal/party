@@ -4,10 +4,10 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
-import UserProfileShimmer from '~/components/shared/Shimmer/UserProfileShimmer'
+import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
+import UserProfileLarge from '~/components/shared/UserProfileLarge'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
 import { EmptyState } from '../../ui/EmptyState'
 import { FollowingQuery } from './__generated__/list.generated'
@@ -30,6 +30,7 @@ export const FOLLOWING_QUERY = gql`
               id
               name
               avatar
+              bio
             }
           }
         }
@@ -77,17 +78,17 @@ const FollowingList: React.FC<Props> = ({ user }) => {
       <div className="space-y-3">
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
       </div>
@@ -111,7 +112,7 @@ const FollowingList: React.FC<Props> = ({ user }) => {
           following?.map((user: any) => (
             <Card key={user?.id}>
               <CardBody>
-                <UserProfile user={user} showFollow />
+                <UserProfileLarge user={user} showFollow />
               </CardBody>
             </Card>
           ))

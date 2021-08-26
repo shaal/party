@@ -32,6 +32,7 @@ export const PostFragment = gql`
     type
     hasLiked
     parent {
+      id
       user {
         id
         username
@@ -114,13 +115,13 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       <CardBody className="space-y-4">
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
-            <span className="text-gray-500 dark:text-gray-400">
-              Replying to
-            </span>
+            <Link href={`/posts/${post?.parent?.id}`} passHref>
+              <a className="text-gray-500 dark:text-gray-400">Replying to</a>
+            </Link>
             <Link href={`/@${post?.parent?.user?.username}`} passHref>
-              <div className="cursor-pointer">
+              <a>
                 <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
-              </div>
+              </a>
             </Link>
           </div>
         )}
