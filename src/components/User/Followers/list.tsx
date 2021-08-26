@@ -4,7 +4,7 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
-import UserProfileShimmer from '~/components/shared/Shimmer/UserProfileShimmer'
+import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import UserProfile from '../../shared/UserProfile'
@@ -77,17 +77,17 @@ const FollowersList: React.FC<Props> = ({ user }) => {
       <div className="space-y-3">
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <UserProfileShimmer showFollow />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
       </div>
