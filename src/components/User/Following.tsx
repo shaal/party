@@ -7,41 +7,12 @@ import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { ViewUserQuery } from './__generated__/ViewUser.generated'
+import { UserFollowingQuery } from './__generated__/Following.generated'
 import Details from './Details'
-import UserFeed from './Feed'
+import { UserFragment } from './ViewUser'
 
-export const UserFragment = gql`
-  fragment UserFragment on User {
-    id
-    username
-    hasFollowed
-    followers {
-      totalCount
-    }
-    following {
-      totalCount
-    }
-    isVerified
-    isStaff
-    spammy
-    profile {
-      id
-      avatar
-      cover
-      name
-      bio
-      location
-      website
-      twitter
-      github
-      discord
-    }
-  }
-`
-
-export const VIEW_USER_QUERY = gql`
-  query ViewUserQuery($username: String!) {
+export const USER_FOLLOWING_QUERY = gql`
+  query UserFollowingQuery($username: String!) {
     user(username: $username) {
       ...UserFragment
     }
@@ -49,14 +20,17 @@ export const VIEW_USER_QUERY = gql`
   ${UserFragment}
 `
 
-const ViewUser: React.FC = () => {
+const Following: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
-    variables: {
-      username: router.query.username!.slice(1)
-    },
-    skip: !router.isReady
-  })
+  const { data, loading, error } = useQuery<UserFollowingQuery>(
+    USER_FOLLOWING_QUERY,
+    {
+      variables: {
+        username: router.query.username!.slice(1)
+      },
+      skip: !router.isReady
+    }
+  )
 
   return (
     <Fragment>
@@ -74,12 +48,10 @@ const ViewUser: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
-        <GridItemEight>
-          <UserFeed user={data?.user as User} />
-        </GridItemEight>
+        <GridItemEight>WIP</GridItemEight>
       </GridLayout>
     </Fragment>
   )
 }
 
-export default ViewUser
+export default Following
