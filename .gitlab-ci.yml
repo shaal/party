@@ -49,8 +49,7 @@ Housekeeping ✨:
     - main
 
 Migrate 🚚:
-  needs: ["Build 👷‍♂️"]
-  when: manual
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
+  when: manual
