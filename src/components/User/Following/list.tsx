@@ -82,7 +82,7 @@ const FollowingList: React.FC<Props> = ({ user }) => {
             message={
               <div>
                 <span className="font-bold mr-1">@{user?.username}</span>
-                <span>is not following anyone!</span>
+                <span>isn’t following anybody.</span>
               </div>
             }
             icon={<UsersIcon className="h-8 w-8" />}
