@@ -56,10 +56,13 @@ async function main() {
   // Post
   for (let i = 0; i < 200; i++) {
     const post = faker.lorem.sentence(20)
+    const done = faker.datatype.boolean()
     console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({
       data: {
         body: post,
+        done,
+        type: done ? 'TASK' : 'POST',
         user: {
           connect: {
             username:
