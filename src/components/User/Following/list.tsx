@@ -1,29 +1,19 @@
 import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
-import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
-import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
 import { EmptyState } from '../../ui/EmptyState'
-import Details from '../Details'
-import { UserFragment } from '../ViewUser'
-import { UserFollowingQuery } from './__generated__/index.generated'
+import { FollowingQuery } from './__generated__/list.generated'
 
-export const USER_FOLLOWING_QUERY = gql`
-  query UserFollowingQuery($after: String, $username: String!) {
+export const FOLLOWING_QUERY = gql`
+  query FollowingQuery($after: String, $username: String!) {
     user(username: $username) {
-      ...UserFragment
-      followers {
-        totalCount
-      }
-      following(first: 10, after: $after) {
+      following(first: 5, after: $after) {
         totalCount
         pageInfo {
           endCursor
@@ -44,22 +34,23 @@ export const USER_FOLLOWING_QUERY = gql`
       }
     }
   }
-  ${UserFragment}
 `
 
-const FollowingList: React.FC = () => {
-  const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<UserFollowingQuery>(
-    USER_FOLLOWING_QUERY,
+interface Props {
+  user: User
+}
+
+const FollowingList: React.FC<Props> = ({ user }) => {
+  const { data, loading, fetchMore } = useQuery<FollowingQuery>(
+    FOLLOWING_QUERY,
     {
       variables: {
         after: null,
-        username: router.query.username!.slice(1)
-      },
-      skip: !router.isReady
+        username: user?.username
+      }
     }
   )
-  const following = data?.user?.following?.edges?.map((edge: any) => edge?.node)
+  const following = data?.user?.following?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.user?.following?.pageInfo
 
   const { observe } = useInView({
@@ -79,50 +70,34 @@ const FollowingList: React.FC = () => {
     }
   })
 
+  if (loading) {
+    return <div>Loading following...</div>
+  }
+
   return (
     <Fragment>
-      {data?.user?.profile?.cover ? (
-        <img
-          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
-          src={data?.user?.profile?.cover as string}
-          alt={`@${data?.user?.username}'s cover`}
+      {following?.length === 0 ? (
+        <EmptyState
+          message={
+            <div>
+              <span>User is not following anyone!</span>
+            </div>
+          }
+          icon={<UsersIcon className="h-8 w-8" />}
         />
       ) : (
-        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
+        <div className="space-y-3">
+          {following?.map((user: any) => (
+            <Card key={user?.id}>
+              <CardBody>
+                <UserProfile user={user} showFollow />
+              </CardBody>
+            </Card>
+          ))}
+        </div>
       )}
-      <GridLayout>
-        <GridItemFour>
-          <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
-        </GridItemFour>
-        <GridItemEight>
-          {following?.length === 0 ? (
-            <EmptyState
-              message={
-                <div>
-                  <span className="font-bold mr-1">
-                    @{data?.user?.username}
-                  </span>
-                  <span>is not following anyone!</span>
-                </div>
-              }
-              icon={<UsersIcon className="h-8 w-8" />}
-            />
-          ) : (
-            <div className="space-y-3">
-              {following?.map((user: any) => (
-                <Card key={user?.id}>
-                  <CardBody>
-                    <UserProfile user={user} showFollow />
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
-          )}
 
-          <span ref={observe}></span>
-        </GridItemEight>
-      </GridLayout>
+      <span ref={observe}></span>
     </Fragment>
   )
 }

@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
@@ -7,26 +7,19 @@ import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
+import { ViewUserQuery } from '../__generated__/ViewUser.generated'
 import Details from '../Details'
-import { UserFragment } from '../ViewUser'
-import { UserFollowingQuery } from './__generated__/index.generated'
+import { VIEW_USER_QUERY } from '../ViewUser'
+import FollowingList from './list'
 
-export const USER_FOLLOWING_QUERY = gql`
-  query UserFollowingQuery($username: String!) {
-    user(username: $username) {
-      ...UserFragment
-    }
-  }
-  ${UserFragment}
-`
+export const USER_FOLLOWING_QUERY = VIEW_USER_QUERY
 
 const Following: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<UserFollowingQuery>(
+  const { data, loading, error } = useQuery<ViewUserQuery>(
     USER_FOLLOWING_QUERY,
     {
       variables: {
-        after: null,
         username: router.query.username!.slice(1)
       },
       skip: !router.isReady
@@ -49,7 +42,9 @@ const Following: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
-        <GridItemEight>WIP</GridItemEight>
+        <GridItemEight>
+          <FollowingList user={data?.user as User} />
+        </GridItemEight>
       </GridLayout>
     </Fragment>
   )
