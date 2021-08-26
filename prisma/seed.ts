@@ -15,7 +15,27 @@ async function main() {
   await db.topic.deleteMany()
   console.log('All topics are deleted 🗑️')
 
-  // User
+  // Fake User
+  for (let i = 0; i < 50; i++) {
+    const username = faker.internet.userName()
+    console.log(`Seeding User - @${username} ✅`)
+    await db.user.create({
+      data: {
+        email: faker.internet.email(),
+        username,
+        hashedPassword: await hashPassword(username),
+        profile: {
+          create: {
+            name: faker.name.firstName(),
+            avatar: faker.internet.avatar(),
+            bio: faker.commerce.productDescription()
+          }
+        }
+      }
+    })
+  }
+
+  // Real User
   for (const user of userData) {
     console.log(`Seeding User - @${user.username} ✅`)
     await db.user.create({
