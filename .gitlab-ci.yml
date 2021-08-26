@@ -10,7 +10,7 @@ variables:
   POSTGRES_DB: devparty
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
-  DATABASE_URL: postgres://postgres:postgres@postgres:5432/devparty
+  # DATABASE_URL: postgres://postgres:postgres@postgres:5432/devparty
 
 cache:
   paths:
