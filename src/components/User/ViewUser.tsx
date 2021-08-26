@@ -19,6 +19,12 @@ export const UserFragment = gql`
     isVerified
     isStaff
     spammy
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
     profile {
       id
       avatar
@@ -38,12 +44,6 @@ export const VIEW_USER_QUERY = gql`
   query ViewUserQuery($username: String!) {
     user(username: $username) {
       ...UserFragment
-      followers {
-        totalCount
-      }
-      following {
-        totalCount
-      }
     }
   }
   ${UserFragment}
