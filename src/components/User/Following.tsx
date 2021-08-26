@@ -23,7 +23,7 @@ export const USER_FOLLOWING_QUERY = gql`
       followers {
         totalCount
       }
-      following(first: 5, after: $after) {
+      following(first: 2, after: $after) {
         totalCount
         pageInfo {
           endCursor
