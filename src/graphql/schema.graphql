@@ -167,6 +167,7 @@ type Product {
 type ProductPostsConnection {
   edges: [ProductPostsConnectionEdge]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type ProductPostsConnectionEdge {
