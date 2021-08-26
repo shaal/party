@@ -15,7 +15,33 @@ async function main() {
   await db.topic.deleteMany()
   console.log('All topics are deleted 🗑️')
 
-  // User
+  // Fake User
+  for (let i = 0; i < 50; i++) {
+    const username =
+      `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
+    console.log(`Seeding User - @${username} ✅`)
+    await db.user.create({
+      data: {
+        email: faker.internet.email(),
+        username,
+        hashedPassword: await hashPassword(username),
+        profile: {
+          create: {
+            name: faker.name.firstName(),
+            avatar: faker.internet.avatar(),
+            bio: faker.commerce.productDescription()
+          }
+        },
+        posts: {
+          create: {
+            body: faker.lorem.sentence(20)
+          }
+        }
+      }
+    })
+  }
+
+  // Real User
   for (const user of userData) {
     console.log(`Seeding User - @${user.username} ✅`)
     await db.user.create({
@@ -56,10 +82,13 @@ async function main() {
   // Post
   for (let i = 0; i < 200; i++) {
     const post = faker.lorem.sentence(20)
+    const done = faker.datatype.boolean()
     console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({
       data: {
         body: post,
+        done,
+        type: done ? 'TASK' : 'POST',
         user: {
           connect: {
             username:
