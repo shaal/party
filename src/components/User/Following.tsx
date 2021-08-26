@@ -22,6 +22,10 @@ export const USER_FOLLOWING_QUERY = gql`
       }
       following {
         totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
         edges {
           node {
             id
@@ -51,6 +55,8 @@ const Following: React.FC = () => {
       skip: !router.isReady
     }
   )
+  const following = data?.user?.following?.edges?.map((edge: any) => edge?.node)
+  const pageInfo = data?.user?.following?.pageInfo
 
   return (
     <Fragment>
@@ -71,12 +77,8 @@ const Following: React.FC = () => {
         <GridItemEight>
           <Card>
             <CardBody className="space-y-6">
-              {data?.user?.following?.edges.map((user: any) => (
-                <UserProfile
-                  key={user?.node?.id}
-                  user={user?.node}
-                  showFollow
-                />
+              {following?.map((user: any) => (
+                <UserProfile key={user?.id} user={user} showFollow />
               ))}
             </CardBody>
           </Card>
