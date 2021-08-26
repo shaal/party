@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
+import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
 import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
@@ -14,13 +15,13 @@ import Details from './Details'
 import { UserFragment } from './ViewUser'
 
 export const USER_FOLLOWING_QUERY = gql`
-  query UserFollowingQuery($username: String!) {
+  query UserFollowingQuery($after: String, $username: String!) {
     user(username: $username) {
       ...UserFragment
       followers {
         totalCount
       }
-      following {
+      following(first: 5, after: $after) {
         totalCount
         pageInfo {
           endCursor
@@ -46,7 +47,7 @@ export const USER_FOLLOWING_QUERY = gql`
 
 const Following: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<UserFollowingQuery>(
+  const { data, loading, error, fetchMore } = useQuery<UserFollowingQuery>(
     USER_FOLLOWING_QUERY,
     {
       variables: {
@@ -57,6 +58,23 @@ const Following: React.FC = () => {
   )
   const following = data?.user?.following?.edges?.map((edge: any) => edge?.node)
   const pageInfo = data?.user?.following?.pageInfo
+
+  const { observe } = useInView({
+    threshold: 1,
+    onChange: ({ observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: () => {
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor
+          }
+        })
+      }
+    }
+  })
 
   return (
     <Fragment>
@@ -80,6 +98,7 @@ const Following: React.FC = () => {
               {following?.map((user: any) => (
                 <UserProfile key={user?.id} user={user} showFollow />
               ))}
+              <div ref={observe}></div>
             </CardBody>
           </Card>
         </GridItemEight>
