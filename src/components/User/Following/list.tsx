@@ -71,36 +71,33 @@ const FollowingList: React.FC<Props> = ({ user }) => {
     }
   })
 
-  if (loading) {
-    return <div>Loading following...</div>
-  }
+  if (loading) return <div>Loading following...</div>
 
   return (
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
-      {following?.length === 0 ? (
-        <EmptyState
-          message={
-            <div>
-              <span className="font-bold mr-1">@{user?.username}</span>
-              <span>is not following anyone!</span>
-            </div>
-          }
-          icon={<UsersIcon className="h-8 w-8" />}
-        />
-      ) : (
-        <div className="space-y-3">
-          {following?.map((user: any) => (
+      <div className="space-y-3">
+        {following?.length === 0 ? (
+          <EmptyState
+            message={
+              <div>
+                <span className="font-bold mr-1">@{user?.username}</span>
+                <span>is not following anyone!</span>
+              </div>
+            }
+            icon={<UsersIcon className="h-8 w-8" />}
+          />
+        ) : (
+          following?.map((user: any) => (
             <Card key={user?.id}>
               <CardBody>
                 <UserProfile user={user} showFollow />
               </CardBody>
             </Card>
-          ))}
-        </div>
-      )}
-
-      <span ref={observe}></span>
+          ))
+        )}
+        <span ref={observe}></span>
+      </div>
     </div>
   )
 }
