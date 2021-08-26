@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 import useInView from 'react-cool-inview'
@@ -10,6 +11,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import UserProfile from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
+import { EmptyState } from '../ui/EmptyState'
 import { UserFollowingQuery } from './__generated__/Following.generated'
 import Details from './Details'
 import { UserFragment } from './ViewUser'
@@ -93,14 +95,31 @@ const Following: React.FC = () => {
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
         <GridItemEight>
-          <Card>
-            <CardBody className="space-y-6">
+          {following?.length === 0 ? (
+            <EmptyState
+              message={
+                <div>
+                  <span className="font-bold mr-1">
+                    @{data?.user?.username}
+                  </span>
+                  <span>is not following anyone!</span>
+                </div>
+              }
+              icon={<UsersIcon className="h-8 w-8" />}
+            />
+          ) : (
+            <div className="space-y-3">
               {following?.map((user: any) => (
-                <UserProfile key={user?.id} user={user} showFollow />
+                <Card key={user?.id}>
+                  <CardBody>
+                    <UserProfile user={user} showFollow />
+                  </CardBody>
+                </Card>
               ))}
-              <span ref={observe}></span>
-            </CardBody>
-          </Card>
+            </div>
+          )}
+
+          <span ref={observe}></span>
         </GridItemEight>
       </GridLayout>
     </Fragment>
