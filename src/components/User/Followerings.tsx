@@ -16,10 +16,12 @@ const Followerings: React.FC<Props> = ({ user }) => {
           <div className="text-gray-500">Following</div>
         </div>
       </Link>
-      <div>
-        <div className="text-xl">{user?.followers?.totalCount}</div>
-        <div className="text-gray-500">Followers</div>
-      </div>
+      <Link href={`/@${user?.username}/followers`} passHref>
+        <div className="cursor-pointer">
+          <div className="text-xl">{user?.followers?.totalCount}</div>
+          <div className="text-gray-500">Followers</div>
+        </div>
+      </Link>
     </div>
   )
 }
