@@ -63,7 +63,7 @@ const FollowingList: React.FC<Props> = ({ user }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }
@@ -80,7 +80,8 @@ const FollowingList: React.FC<Props> = ({ user }) => {
         <EmptyState
           message={
             <div>
-              <span>User is not following anyone!</span>
+              <span className="font-bold mr-1">@{user?.username}</span>
+              <span>is not following anyone!</span>
             </div>
           }
           icon={<UsersIcon className="h-8 w-8" />}
