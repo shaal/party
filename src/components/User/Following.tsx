@@ -98,7 +98,7 @@ const Following: React.FC = () => {
               {following?.map((user: any) => (
                 <UserProfile key={user?.id} user={user} showFollow />
               ))}
-              <div ref={observe}></div>
+              <span ref={observe}></span>
             </CardBody>
           </Card>
         </GridItemEight>

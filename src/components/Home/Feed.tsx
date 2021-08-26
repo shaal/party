@@ -90,7 +90,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <div ref={observe}></div>
+        <span ref={observe}></span>
       </div>
     </div>
   )
