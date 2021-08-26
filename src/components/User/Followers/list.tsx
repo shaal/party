@@ -15,7 +15,7 @@ import { FollowersQuery } from './__generated__/list.generated'
 export const FOLLOWERS_QUERY = gql`
   query FollowersQuery($after: String, $userId: ID!) {
     user(id: $userId) {
-      followers(first: 5, after: $after) {
+      followers(first: 10, after: $after) {
         totalCount
         pageInfo {
           endCursor

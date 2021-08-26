@@ -15,7 +15,7 @@ import { FollowingQuery } from './__generated__/list.generated'
 export const FOLLOWING_QUERY = gql`
   query FollowingQuery($after: String, $userId: ID!) {
     user(id: $userId) {
-      following(first: 5, after: $after) {
+      following(first: 10, after: $after) {
         totalCount
         pageInfo {
           endCursor
