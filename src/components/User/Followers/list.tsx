@@ -30,6 +30,7 @@ export const FOLLOWERS_QUERY = gql`
               id
               name
               avatar
+              bio
             }
           }
         }
