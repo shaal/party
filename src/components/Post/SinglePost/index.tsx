@@ -32,6 +32,7 @@ export const PostFragment = gql`
     type
     hasLiked
     parent {
+      id
       user {
         id
         username
