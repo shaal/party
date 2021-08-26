@@ -7,44 +7,51 @@ import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { UserQuery } from './__generated__/ViewUser.generated'
+import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
 
-export const USER_QUERY = gql`
-  query UserQuery($username: String!) {
-    user(username: $username) {
+export const UserFragment = gql`
+  fragment UserFragment on User {
+    id
+    username
+    hasFollowed
+    isVerified
+    isStaff
+    spammy
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    profile {
       id
-      username
-      hasFollowed
-      followers {
-        totalCount
-      }
-      following {
-        totalCount
-      }
-      isVerified
-      isStaff
-      spammy
-      profile {
-        id
-        avatar
-        cover
-        name
-        bio
-        location
-        website
-        twitter
-        github
-        discord
-      }
+      avatar
+      cover
+      name
+      bio
+      location
+      website
+      twitter
+      github
+      discord
     }
   }
 `
 
+export const VIEW_USER_QUERY = gql`
+  query ViewUserQuery($username: String!) {
+    user(username: $username) {
+      ...UserFragment
+    }
+  }
+  ${UserFragment}
+`
+
 const ViewUser: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<UserQuery>(USER_QUERY, {
+  const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username!.slice(1)
     },

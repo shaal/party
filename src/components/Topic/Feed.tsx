@@ -87,7 +87,7 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <div ref={observe}></div>
+        <span ref={observe}></span>
       </div>
     </div>
   )

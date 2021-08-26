@@ -88,7 +88,7 @@ const Replies: React.FC<Props> = ({ post }) => {
             <SinglePost key={reply?.id} post={reply} />
           ))
         )}
-        <div ref={observe}></div>
+        <span ref={observe}></span>
       </div>
     </div>
   )

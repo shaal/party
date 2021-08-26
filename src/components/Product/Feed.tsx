@@ -94,7 +94,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <div ref={observe}></div>
+        <span ref={observe}></span>
       </div>
     </div>
   )

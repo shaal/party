@@ -46,12 +46,14 @@ builder.queryField('user', (t) =>
   t.prismaField({
     type: 'User',
     args: {
-      username: t.arg.string({})
+      id: t.arg.id({ required: false }),
+      username: t.arg.string({ required: false })
     },
-    resolve: async (query, root, { username }) => {
+    nullable: true,
+    resolve: async (query, root, { id, username }) => {
       return await db.user.findUnique({
         ...query,
-        where: { username },
+        where: { id: id as string, username: username as string },
         rejectOnNotFound: true
       })
     }
