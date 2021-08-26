@@ -17,7 +17,7 @@ async function main() {
 
   // Fake User
   for (let i = 0; i < 50; i++) {
-    const username = faker.internet.userName()
+    const username = faker.name.firstName().toLocaleLowerCase()
     console.log(`Seeding User - @${username} ✅`)
     await db.user.create({
       data: {
@@ -29,6 +29,11 @@ async function main() {
             name: faker.name.firstName(),
             avatar: faker.internet.avatar(),
             bio: faker.commerce.productDescription()
+          }
+        },
+        posts: {
+          create: {
+            body: faker.lorem.sentence(20)
           }
         }
       }
