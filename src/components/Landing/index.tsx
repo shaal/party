@@ -14,8 +14,11 @@ const Landing: React.FC = () => {
         ></div>
         <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-16 md:px-10 sm:px-5 px-3">
           <div className="space-y-6 mx-auto">
-            <div className="font-serif font-extrabold text-3xl">
+            <div className="font-extrabold text-4xl">
               The social media for developers
+            </div>
+            <div className="font-bold text-gray-700 text-2xl mt-3">
+              Join Devparty today.
             </div>
             <div className="space-x-4 flex">
               <Link href="/signup" passHref>
@@ -27,6 +30,12 @@ const Landing: React.FC = () => {
                   <ArrowCircleRightIcon className="h-5 w-5" />
                   <div>Get started</div>
                 </Button>
+              </Link>
+            </div>
+            <div className="linkify">
+              Already have an account?{' '}
+              <Link href="/login">
+                <a className="font-bold">Log in</a>
               </Link>
             </div>
           </div>
