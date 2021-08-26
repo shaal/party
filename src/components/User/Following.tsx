@@ -23,7 +23,7 @@ export const USER_FOLLOWING_QUERY = gql`
       followers {
         totalCount
       }
-      following(first: 2, after: $after) {
+      following(first: 10, after: $after) {
         totalCount
         pageInfo {
           endCursor
@@ -53,6 +53,7 @@ const Following: React.FC = () => {
     USER_FOLLOWING_QUERY,
     {
       variables: {
+        after: null,
         username: router.query.username!.slice(1)
       },
       skip: !router.isReady
