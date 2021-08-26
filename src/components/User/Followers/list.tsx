@@ -4,6 +4,7 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
+import UserProfileShimmer from '~/components/shared/Shimmer/UserProfileShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import UserProfile from '../../shared/UserProfile'
@@ -71,7 +72,26 @@ const FollowersList: React.FC<Props> = ({ user }) => {
     }
   })
 
-  if (loading) return <div>Loading followers...</div>
+  if (loading)
+    return (
+      <div className="space-y-3">
+        <Card>
+          <CardBody>
+            <UserProfileShimmer showFollow />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <UserProfileShimmer showFollow />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <UserProfileShimmer showFollow />
+          </CardBody>
+        </Card>
+      </div>
+    )
 
   return (
     <div>
