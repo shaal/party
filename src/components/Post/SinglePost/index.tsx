@@ -114,7 +114,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       <CardBody className="space-y-4">
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
-            <Link href={`/posts/${post?.id}`} passHref>
+            <Link href={`/posts/${post?.parent?.id}`} passHref>
               <a className="text-gray-500 dark:text-gray-400">Replying to</a>
             </Link>
             <Link href={`/@${post?.parent?.user?.username}`} passHref>
