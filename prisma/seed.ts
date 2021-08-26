@@ -17,7 +17,8 @@ async function main() {
 
   // Fake User
   for (let i = 0; i < 50; i++) {
-    const username = faker.name.firstName().toLocaleLowerCase()
+    const username =
+      `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
     console.log(`Seeding User - @${username} ✅`)
     await db.user.create({
       data: {
