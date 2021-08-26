@@ -1,9 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
-import React, { Fragment } from 'react'
+import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
+import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'
@@ -41,7 +42,7 @@ interface Props {
 }
 
 const FollowingList: React.FC<Props> = ({ user }) => {
-  const { data, loading, fetchMore } = useQuery<FollowingQuery>(
+  const { data, loading, error, fetchMore } = useQuery<FollowingQuery>(
     FOLLOWING_QUERY,
     {
       variables: {
@@ -75,7 +76,8 @@ const FollowingList: React.FC<Props> = ({ user }) => {
   }
 
   return (
-    <Fragment>
+    <div>
+      <ErrorMessage title="Failed to load posts" error={error} />
       {following?.length === 0 ? (
         <EmptyState
           message={
@@ -99,7 +101,7 @@ const FollowingList: React.FC<Props> = ({ user }) => {
       )}
 
       <span ref={observe}></span>
-    </Fragment>
+    </div>
   )
 }
 
