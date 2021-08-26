@@ -30,7 +30,15 @@ builder.prismaObject('User', {
     // Relations
     profile: t.relation('profile'),
     products: t.relation('products'),
-    posts: t.relatedConnection('posts', { cursor: 'id', totalCount: true }),
+    posts: t.relatedConnection('posts', {
+      cursor: 'id',
+      totalCount: true,
+      query: () => ({
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+    }),
     followers: t.relatedConnection('followedBy', {
       cursor: 'id',
       totalCount: true
