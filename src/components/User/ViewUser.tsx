@@ -16,12 +16,6 @@ export const UserFragment = gql`
     id
     username
     hasFollowed
-    followers {
-      totalCount
-    }
-    following {
-      totalCount
-    }
     isVerified
     isStaff
     spammy
@@ -44,6 +38,12 @@ export const VIEW_USER_QUERY = gql`
   query ViewUserQuery($username: String!) {
     user(username: $username) {
       ...UserFragment
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
     }
   }
   ${UserFragment}

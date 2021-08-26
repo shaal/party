@@ -7,6 +7,8 @@ import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import UserProfile from '../shared/UserProfile'
+import { Card, CardBody } from '../ui/Card'
 import { UserFollowingQuery } from './__generated__/Following.generated'
 import Details from './Details'
 import { UserFragment } from './ViewUser'
@@ -15,6 +17,24 @@ export const USER_FOLLOWING_QUERY = gql`
   query UserFollowingQuery($username: String!) {
     user(username: $username) {
       ...UserFragment
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+        edges {
+          node {
+            id
+            username
+            hasFollowed
+            profile {
+              id
+              name
+              avatar
+            }
+          }
+        }
+      }
     }
   }
   ${UserFragment}
@@ -48,7 +68,19 @@ const Following: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
-        <GridItemEight>WIP</GridItemEight>
+        <GridItemEight>
+          <Card>
+            <CardBody className="space-y-6">
+              {data?.user?.following?.edges.map((user: any) => (
+                <UserProfile
+                  key={user?.node?.id}
+                  user={user?.node}
+                  showFollow
+                />
+              ))}
+            </CardBody>
+          </Card>
+        </GridItemEight>
       </GridLayout>
     </Fragment>
   )
