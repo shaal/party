@@ -8,7 +8,10 @@ const Landing: React.FC = () => {
   return (
     <div className="flex flex-grow justify-center">
       <div className="grid grid-cols-12 w-full">
-        <div className="lg:col-span-7 md:col-span-12 col-span-12 bg-indigo-500"></div>
+        <div
+          className="lg:col-span-7 md:col-span-12 col-span-12 bg-indigo-500"
+          style={{ backgroundImage: `url('https://svgur.com/i/_Zt.svg')` }}
+        ></div>
         <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-16 md:px-10 sm:px-5 px-3">
           <div className="space-y-6 mx-auto">
             <div className="font-serif font-extrabold text-3xl">
