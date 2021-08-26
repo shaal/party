@@ -42,13 +42,15 @@ Build 👷‍♂️:
   script:
     - yarn build
 
-Migrate 🚚:
-  script:
-    - yarn prisma:migrate
-    - yarn prisma:seed
-
 Housekeeping ✨:
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
   only:
     - main
+
+Migrate 🚚:
+  needs: ["Build 👷‍♂️"]
+  when: manual
+  script:
+    - yarn prisma:migrate
+    - yarn prisma:seed
