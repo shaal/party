@@ -46,7 +46,9 @@ const Notifications: React.FC = () => {
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to notifications" error={error} />
-          WIP
+          <Card>
+            <CardBody>WIP</CardBody>
+          </Card>
         </div>
       </GridItemEight>
     </GridLayout>
