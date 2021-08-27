@@ -7,6 +7,6 @@ export const useAuthRedirect = () => {
 
   return () => {
     client.resetStore()
-    router.push((router.query.redirect as string) ?? '/')
+    window.location.replace((router.query.redirect as string) ?? '/')
   }
 }
