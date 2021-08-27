@@ -12,8 +12,8 @@ const Landing: React.FC = () => {
           className="lg:col-span-7 md:col-span-12 col-span-12 bg-indigo-500 md:block hidden"
           style={{ backgroundImage: `url('https://svgur.com/i/_Zt.svg')` }}
         ></div>
-        <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-14 md:px-10 sm:px-5 px-5">
-          <div className="space-y-7 mx-auto">
+        <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-14 md:px-10 sm:px-5 px-5 flex flex-col">
+          <div className="space-y-7 flex-grow">
             <img
               src="https://i.ibb.co/MZrdTpS/hero.png"
               className="w-20"
@@ -44,6 +44,7 @@ const Landing: React.FC = () => {
               </Link>
             </div>
           </div>
+          <div>Footer WIP</div>
         </div>
       </div>
     </div>
