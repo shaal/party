@@ -6,6 +6,7 @@ import { Product } from '~/__generated__/schema.generated'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import { PageLoading } from '../ui/PageLoading'
 import { ProductQuery } from './__generated__/ViewProduct.generated'
 import Details from './Details'
 import ProductFeed from './Feed'
@@ -34,7 +35,7 @@ const ViewProduct: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <GridLayout>Loading</GridLayout>
+  if (loading) return <PageLoading message="Loading Product..." />
 
   return (
     <GridLayout>
