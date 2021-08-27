@@ -1,7 +1,10 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { Fragment } from 'react'
 
-import { SearchPostsQuery } from './__generated__/Search.generated'
+import {
+  SearchPostsQuery,
+  SearchUsersQuery
+} from './__generated__/Search.generated'
 
 export const SEARCH_POSTS_QUERY = gql`
   query SearchPostsQuery($keyword: String!) {
@@ -16,13 +19,33 @@ export const SEARCH_POSTS_QUERY = gql`
   }
 `
 
+export const SEARCH_USERS_QUERY = gql`
+  query SearchUsersQuery($keyword: String!) {
+    searchUsers(first: 5, keyword: $keyword) {
+      edges {
+        node {
+          id
+          username
+        }
+      }
+    }
+  }
+`
+
 const Search: React.FC = () => {
-  const [searchPosts, { loading, data }] =
+  const [searchPosts, { loading: postsLoading, data: posts }] =
     useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
+  const [searchUsers, { loading: usersLoading, data: users }] =
+    useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
 
   const handleSearch = (evt: any) => {
     console.log(evt.target.value)
     searchPosts({
+      variables: {
+        keyword: evt.target.value
+      }
+    })
+    searchUsers({
       variables: {
         keyword: evt.target.value
       }
