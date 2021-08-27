@@ -4,7 +4,6 @@ import React from 'react'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { GridItemEight, GridLayout } from '../GridLayout'
 import { PageLoading } from '../ui/PageLoading'
 import { NotificationsQuery } from './__generated__/index.generated'
 
@@ -27,16 +26,16 @@ const Notifications: React.FC = () => {
   if (loading) return <PageLoading message="Loading notifications..." />
 
   return (
-    <GridLayout>
-      <GridItemEight>
+    <div className="flex flex-grow justify-center px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl w-full space-y-8">
         <div className="space-y-5">
           <ErrorMessage title="Failed to notifications" error={error} />
           <Card>
             <CardBody>WIP</CardBody>
           </Card>
         </div>
-      </GridItemEight>
-    </GridLayout>
+      </div>
+    </div>
   )
 }
 
