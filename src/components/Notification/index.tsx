@@ -58,20 +58,21 @@ const Notifications: React.FC = () => {
       <div className="max-w-5xl w-full space-y-8">
         <div className="space-y-5">
           <ErrorMessage title="Failed to notifications" error={error} />
-          <Card>
-            <CardBody>
-              {notifications?.length === 0 ? (
-                <EmptyState
-                  message="Congratulations, you have read all your notifications."
-                  icon={<BellIcon className="h-8 w-8" />}
-                />
-              ) : (
-                notifications?.map((notification: any) => (
+          {notifications?.length === 0 ? (
+            <EmptyState
+              message="Congratulations, you have read all your notifications."
+              icon={<BellIcon className="h-8 w-8" />}
+            />
+          ) : (
+            <Card>
+              <CardBody>
+                {notifications?.map((notification: any) => (
                   <div key={notification?.id}>{notification?.id}</div>
-                ))
-              )}
-            </CardBody>
-          </Card>
+                ))}
+              </CardBody>
+            </Card>
+          )}
+
           <span ref={observe}></span>
         </div>
       </div>
