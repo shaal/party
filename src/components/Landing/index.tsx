@@ -25,7 +25,7 @@ const Landing: React.FC = () => {
             <div className="font-extrabold text-4xl">
               Welcome, To the social media for developers
             </div>
-            <div className="font-bold text-gray-700 text-2xl">
+            <div className="font-bold text-gray-700 dark:text-gray-400 text-2xl">
               Join Devparty today.
             </div>
             <div className="space-x-4 flex">
