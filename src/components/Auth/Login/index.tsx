@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
 
-import LandingFooter from '~/components/shared/LandingFooter'
-
 import LoginForm from './Form'
 
 const Login: React.FC = () => {
@@ -35,7 +33,6 @@ const Login: React.FC = () => {
             </div>
             <LoginForm />
           </div>
-          <LandingFooter />
         </div>
       </div>
     </div>
