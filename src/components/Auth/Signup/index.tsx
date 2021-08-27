@@ -21,11 +21,11 @@ const Signup: React.FC = () => {
               alt="Hero"
             />
             <div className="space-y-2">
-              <div className="font-extrabold text-4xl">Signup your account</div>
-              <div className="font-extrabold linkify">
-                or{' '}
+              <div className="font-extrabold text-4xl">Sign up</div>
+              <div className="linkify">
+                Already have an account?{' '}
                 <Link href="/login">
-                  <a>login now</a>
+                  <a className="font-bold">Login now</a>
                 </Link>
               </div>
             </div>
