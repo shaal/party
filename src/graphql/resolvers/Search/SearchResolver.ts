@@ -37,7 +37,7 @@ builder.queryField('searchUsers', (t) =>
         ...query,
         where: {
           username: {
-            contains: keyword
+            search: keyword
           }
         }
       })
@@ -59,7 +59,7 @@ builder.queryField('searchProduct', (t) =>
         ...query,
         where: {
           slug: {
-            contains: keyword
+            search: keyword
           }
         }
       })
