@@ -63,12 +63,13 @@ builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
     args: {
-      slug: t.arg.string({})
+      id: t.arg.id({ required: false }),
+      slug: t.arg.string({ required: false })
     },
-    resolve: async (query, root, { slug }) => {
+    resolve: async (query, root, { id, slug }) => {
       return await db.product.findUnique({
         ...query,
-        where: { slug },
+        where: { id: id as string, slug: slug as string },
         rejectOnNotFound: true
       })
     }
@@ -91,6 +92,46 @@ builder.mutationField('createProduct', (t) =>
     },
     resolve: async (query, root, { input }, { session }) => {
       return await createProduct(query, input, session)
+    }
+  })
+)
+
+const EditProductInput = builder.inputType('EditProductInput', {
+  fields: (t) => ({
+    id: t.id({ required: true }),
+    slug: t.string({
+      required: true,
+      validate: { minLength: 1, maxLength: 20 }
+    }),
+    name: t.string({
+      required: true,
+      validate: { minLength: 1, maxLength: 50 }
+    }),
+    description: t.string({ required: false, validate: { maxLength: 255 } }),
+    avatar: t.string({ required: false })
+  })
+})
+
+// TODO: Split to function
+builder.mutationField('editProduct', (t) =>
+  t.prismaField({
+    type: 'Product',
+    args: {
+      input: t.arg({ type: EditProductInput })
+    },
+    resolve: async (query, root, { input }) => {
+      return await db.product.update({
+        ...query,
+        where: {
+          id: input?.id
+        },
+        data: {
+          slug: input.slug,
+          name: input.name,
+          description: input.description,
+          avatar: input.avatar
+        }
+      })
     }
   })
 )

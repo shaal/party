@@ -33,6 +33,14 @@ input EditPostInput {
   id: ID!
 }
 
+input EditProductInput {
+  avatar: String
+  description: String
+  id: ID!
+  name: String!
+  slug: String!
+}
+
 input EditSocialInput {
   discord: String
   github: String
@@ -80,6 +88,7 @@ type Mutation {
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Post!
   editPost(input: EditPostInput!): Post!
+  editProduct(input: EditProductInput!): Product!
   editSocial(input: EditSocialInput!): User!
   editUser(input: EditUserInput!): User!
   login(input: LoginInput!): User!
@@ -194,7 +203,7 @@ type Query {
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
-  product(slug: String!): Product!
+  product(id: ID, slug: String): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
