@@ -15,7 +15,7 @@ builder.queryField('searchPosts', (t) =>
         ...query,
         where: {
           body: {
-            search: keyword
+            contains: keyword
           }
         }
       })
@@ -37,7 +37,7 @@ builder.queryField('searchUsers', (t) =>
         ...query,
         where: {
           username: {
-            search: keyword
+            contains: keyword
           }
         }
       })
@@ -59,7 +59,7 @@ builder.queryField('searchProduct', (t) =>
         ...query,
         where: {
           slug: {
-            search: keyword
+            contains: keyword
           }
         }
       })
