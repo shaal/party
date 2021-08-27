@@ -11,8 +11,8 @@ import { PageLoading } from '../ui/PageLoading'
 import { NotificationsQuery } from './__generated__/index.generated'
 
 export const NOTIFICATIONS_QUERY = gql`
-  query NotificationsQuery {
-    notifications {
+  query NotificationsQuery($after: String) {
+    notifications(first: 10, after: $after) {
       pageInfo {
         hasNextPage
         endCursor
@@ -27,8 +27,10 @@ export const NOTIFICATIONS_QUERY = gql`
 `
 
 const Notifications: React.FC = () => {
-  const { data, loading, error, fetchMore } =
-    useQuery<NotificationsQuery>(NOTIFICATIONS_QUERY)
+  const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
+    NOTIFICATIONS_QUERY,
+    { variables: { after: null } }
+  )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
 
