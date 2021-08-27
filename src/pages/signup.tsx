@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 
-import SignUpForm from '~/components/Auth/SignUpForm'
+import Signup from '~/components/Auth/Signup'
 import { unauthenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = unauthenticatedRoute
 
-export default SignUpForm
+export default Signup
