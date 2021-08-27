@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { BellIcon } from '@heroicons/react/outline'
 import React from 'react'
+import useInView from 'react-cool-inview'
 
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -26,10 +27,27 @@ export const NOTIFICATIONS_QUERY = gql`
 `
 
 const Notifications: React.FC = () => {
-  const { data, loading, error } =
+  const { data, loading, error, fetchMore } =
     useQuery<NotificationsQuery>(NOTIFICATIONS_QUERY)
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
+
+  const { observe } = useInView({
+    threshold: 1,
+    onChange: ({ observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: () => {
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor
+          }
+        })
+      }
+    }
+  })
 
   if (loading) return <PageLoading message="Loading notifications..." />
 
@@ -52,6 +70,7 @@ const Notifications: React.FC = () => {
               )}
             </CardBody>
           </Card>
+          <span ref={observe}></span>
         </div>
       </div>
     </div>
