@@ -4,7 +4,6 @@ import React from 'react'
 import { object, string } from 'zod'
 
 import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
@@ -46,63 +45,59 @@ const SignupForm: React.FC = () => {
   })
 
   return (
-    <Card>
-      <CardBody>
-        <Form
-          form={form}
-          onSubmit={({ username, email, password }) =>
-            signUp({
-              variables: {
-                input: { username, email, password }
-              }
-            })
+    <Form
+      form={form}
+      onSubmit={({ username, email, password }) =>
+        signUp({
+          variables: {
+            input: { username, email, password }
           }
-        >
-          <ErrorMessage
-            title="Error creating account"
-            error={signUpResult.error}
-            className="mb-2"
+        })
+      }
+    >
+      <ErrorMessage
+        title="Error creating account"
+        error={signUpResult.error}
+        className="mb-2"
+      />
+      <div className="space-y-4">
+        <div>
+          <Input
+            label="Username"
+            type="text"
+            autoComplete="username"
+            placeholder="johndoe"
+            autoFocus
+            {...form.register('username')}
           />
-          <div className="space-y-4">
-            <div>
-              <Input
-                label="Username"
-                type="text"
-                autoComplete="username"
-                placeholder="johndoe"
-                autoFocus
-                {...form.register('username')}
-              />
-            </div>
-            <div>
-              <Input
-                label="Email"
-                type="email"
-                autoComplete="email"
-                placeholder="me@example.com"
-                {...form.register('email')}
-              />
-            </div>
-            <div>
-              <Input
-                label="Password"
-                type="password"
-                autoComplete="new-password"
-                placeholder="••••••••••"
-                {...form.register('password')}
-              />
-            </div>
-            <Button
-              type="submit"
-              className=" w-full flex items-center justify-center space-x-1.5"
-            >
-              <UserAddIcon className="h-5 w-5" />
-              <div>Sign Up</div>
-            </Button>
-          </div>
-        </Form>
-      </CardBody>
-    </Card>
+        </div>
+        <div>
+          <Input
+            label="Email"
+            type="email"
+            autoComplete="email"
+            placeholder="me@example.com"
+            {...form.register('email')}
+          />
+        </div>
+        <div>
+          <Input
+            label="Password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="••••••••••"
+            {...form.register('password')}
+          />
+        </div>
+        <Button
+          type="submit"
+          className=" w-full flex items-center justify-center space-x-1.5"
+        >
+          <UserAddIcon className="h-5 w-5" />
+          <div>Sign Up</div>
+        </Button>
+      </div>
+    </Form>
   )
 }
 
