@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { LogoutIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { object, string } from 'zod'
 
@@ -77,8 +78,12 @@ const LoginForm: React.FC = () => {
                 {...form.register('password')}
               />
             </div>
-            <Button className="w-full" type="submit">
-              Login
+            <Button
+              type="submit"
+              className=" w-full flex items-center justify-center space-x-1.5"
+            >
+              <LogoutIcon className="h-5 w-5" />
+              <div>Login</div>
             </Button>
           </div>
         </Form>
