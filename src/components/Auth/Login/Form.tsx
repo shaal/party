@@ -4,7 +4,6 @@ import React from 'react'
 import { object, string } from 'zod'
 
 import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
@@ -45,50 +44,46 @@ const LoginForm: React.FC = () => {
   })
 
   return (
-    <Card>
-      <CardBody>
-        <Form
-          form={form}
-          onSubmit={({ email, password }) =>
-            login({ variables: { input: { email, password } } })
-          }
-        >
-          <ErrorMessage
-            title="Login failed."
-            error={loginResult.error}
-            className="mb-3"
+    <Form
+      form={form}
+      onSubmit={({ email, password }) =>
+        login({ variables: { input: { email, password } } })
+      }
+    >
+      <ErrorMessage
+        title="Login failed."
+        error={loginResult.error}
+        className="mb-3"
+      />
+      <div className="space-y-4">
+        <div>
+          <Input
+            label="Email"
+            type="email"
+            autoComplete="email"
+            placeholder="me@example.com"
+            autoFocus
+            {...form.register('email')}
           />
-          <div className="space-y-4">
-            <div>
-              <Input
-                label="Email"
-                type="email"
-                autoComplete="email"
-                placeholder="me@example.com"
-                autoFocus
-                {...form.register('email')}
-              />
-            </div>
-            <div>
-              <Input
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="••••••••••"
-                {...form.register('password')}
-              />
-            </div>
-            <Button
-              type="submit"
-              className=" w-full flex items-center justify-center space-x-1.5"
-            >
-              <LogoutIcon className="h-5 w-5" />
-              <div>Login</div>
-            </Button>
-          </div>
-        </Form>
-      </CardBody>
-    </Card>
+        </div>
+        <div>
+          <Input
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="••••••••••"
+            {...form.register('password')}
+          />
+        </div>
+        <Button
+          type="submit"
+          className=" w-full flex items-center justify-center space-x-1.5"
+        >
+          <LogoutIcon className="h-5 w-5" />
+          <div>Login</div>
+        </Button>
+      </div>
+    </Form>
   )
 }
 
