@@ -31,7 +31,7 @@ const Details: React.FC<Props> = ({ product }) => {
       {currentUser?.id !== product?.user?.id ? (
         <div>Follow</div>
       ) : (
-        <Link href="/settings" passHref>
+        <Link href={`/products/${product?.slug}/settings`} passHref>
           <Button size="md" variant="success">
             Edit Product
           </Button>
