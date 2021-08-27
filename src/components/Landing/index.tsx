@@ -6,7 +6,7 @@ import { Button } from '../ui/Button'
 
 const Landing: React.FC = () => {
   return (
-    <div className="flex flex-grow justify-center">
+    <div className="flex flex-grow">
       <div className="grid grid-cols-12 w-full">
         <div
           className="lg:col-span-7 md:col-span-12 col-span-12 bg-indigo-600 md:block hidden"
