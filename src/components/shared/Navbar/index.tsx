@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { LightningBoltIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,7 +10,6 @@ import { Button } from '~/components/ui/Button'
 import AppContext from '~/components/utils/AppContext'
 
 import MenuItems from './MenuItems'
-import Notifications from './Notifications'
 import Search from './Search'
 import StaffBar from './StaffBar'
 
@@ -117,7 +116,13 @@ const Navbar: React.FC = () => {
                   <div className="shimmer rounded-full h-9 w-9"></div>
                 ) : currentUser ? (
                   <div className="flex items-center gap-5">
-                    {currentUser?.isStaff && staffMode && <Notifications />}
+                    {currentUser && (
+                      <Link href="/notifications">
+                        <a>
+                          <LightningBoltIcon className="h-6 w-6" />
+                        </a>
+                      </Link>
+                    )}
                     <MenuItems currentUser={currentUser} />
                   </div>
                 ) : (
