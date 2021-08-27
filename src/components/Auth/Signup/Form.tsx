@@ -90,6 +90,7 @@ const SignupForm: React.FC = () => {
           />
         </div>
         <Button
+          size="lg"
           type="submit"
           className=" w-full flex items-center justify-center space-x-1.5"
         >
