@@ -13,11 +13,16 @@ const Landing: React.FC = () => {
           style={{ backgroundImage: `url('https://svgur.com/i/_Zt.svg')` }}
         ></div>
         <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-14 md:px-10 sm:px-5 px-5">
-          <div className="space-y-6 mx-auto">
+          <div className="space-y-7 mx-auto">
+            <img
+              src="https://i.ibb.co/MZrdTpS/hero.png"
+              className="w-20"
+              alt="Hero"
+            />
             <div className="font-extrabold text-4xl">
-              The social media for developers
+              Welcome, To the social media for developers
             </div>
-            <div className="font-bold text-gray-700 text-2xl mt-3">
+            <div className="font-bold text-gray-700 text-2xl">
               Join Devparty today.
             </div>
             <div className="space-x-4 flex">
