@@ -119,6 +119,7 @@ builder.mutationField('editProduct', (t) =>
     args: {
       input: t.arg({ type: EditProductInput })
     },
+    authScopes: { user: true },
     resolve: async (query, root, { input }) => {
       return await db.product.update({
         ...query,

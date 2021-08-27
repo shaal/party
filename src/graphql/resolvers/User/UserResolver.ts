@@ -104,6 +104,7 @@ builder.mutationField('editUser', (t) =>
     args: {
       input: t.arg({ type: EditUserInput })
     },
+    authScopes: { user: true },
     resolve: async (query, root, { input }, { session }) => {
       return await db.user.update({
         ...query,
