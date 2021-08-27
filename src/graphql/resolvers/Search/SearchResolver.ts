@@ -15,7 +15,7 @@ builder.queryField('searchPosts', (t) =>
         ...query,
         where: {
           body: {
-            contains: keyword
+            search: keyword
           }
         }
       })

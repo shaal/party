@@ -6,13 +6,13 @@ datasource db {
 generator client {
   provider        = "prisma-client-js"
   binaryTargets   = ["native", "debian-openssl-1.1.x"]
-  previewFeatures = ["orderByRelation", "selectRelationCount", "nApi", "referentialActions", "orderByAggregateGroup", "filterJson"]
+  previewFeatures = ["orderByRelation", "selectRelationCount", "nApi", "referentialActions", "orderByAggregateGroup", "filterJson", "fullTextSearch"]
 }
 
 generator giraphql {
-  provider = "prisma-giraphql-types"
+  provider     = "prisma-giraphql-types"
   clientOutput = "@prisma/client"
-  output = "./giraphql-types.ts"
+  output       = "./giraphql-types.ts"
 }
 
 model User {
