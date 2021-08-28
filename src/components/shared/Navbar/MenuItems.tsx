@@ -100,7 +100,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               </Menu.Item>
               <Menu.Item
                 as={NextLink}
-                href="/settings"
+                href="/settings/profile"
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },

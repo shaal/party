@@ -52,7 +52,7 @@ const Details: React.FC<Props> = ({ user }) => {
       {currentUser?.id !== user?.id ? (
         <Follow user={user} showText={true} />
       ) : (
-        <Link href="/settings" passHref>
+        <Link href="/settings/profile" passHref>
           <Button size="md" variant="success">
             Edit Profile
           </Button>
