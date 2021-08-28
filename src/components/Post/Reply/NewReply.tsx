@@ -75,7 +75,9 @@ const NewReply: React.FC<Props> = ({ post }) => {
                 input: {
                   parentId: post?.id,
                   type: 'REPLY',
-                  body
+                  body,
+                  attachments:
+                    attachments.length > 0 ? JSON.stringify(attachments) : null
                 }
               }
             })
