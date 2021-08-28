@@ -29,9 +29,9 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
       <button type="button">
         <label className="flex items-center gap-1 cursor-pointer">
           {loading ? (
-            <Spinner color="text-indigo-500" />
+            <Spinner color="text-brand-500" />
           ) : (
-            <PhotographIcon className="h-5 w-5 text-indigo-500" />
+            <PhotographIcon className="h-5 w-5 text-brand-500" />
           )}
           <input
             type="file"
