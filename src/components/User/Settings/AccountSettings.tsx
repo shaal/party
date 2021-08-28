@@ -10,7 +10,6 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
-import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Button } from '~/components/ui/Button'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -24,6 +23,7 @@ import {
   AccountSettingsMutation,
   AccountSettingsMutationVariables
 } from './__generated__/AccountSettings.generated'
+import Sidebar from './Sidebar'
 
 const editProfileSchema = object({
   username: string().min(1),
@@ -100,12 +100,7 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
   return (
     <GridLayout>
       <GridItemFour>
-        <SettingsHelper
-          heading="Account settings"
-          description={
-            "Update your account's contact information and identities."
-          }
-        />
+        <Sidebar />
       </GridItemFour>
       <GridItemEight>
         <Card>
