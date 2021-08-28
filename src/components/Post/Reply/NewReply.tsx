@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { Post } from '~/__generated__/schema.generated'
@@ -46,8 +47,12 @@ const NewReply: React.FC<Props> = ({ post }) => {
           }
         }
       ],
+      onError() {
+        toast.error('Something went wrong!')
+      },
       onCompleted() {
         form.reset()
+        toast.success('Replied successfully!')
       }
     }
   )
