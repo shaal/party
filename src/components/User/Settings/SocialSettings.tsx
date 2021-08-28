@@ -9,7 +9,6 @@ import {
   GridItemFour,
   GridLayout
 } from '~/components/GridLayout'
-import SettingsHelper from '~/components/shared/SettingsHelper'
 import { Button } from '~/components/ui/Button'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -21,6 +20,7 @@ import {
   SocialSettingsMutation,
   SocialSettingsMutationVariables
 } from './__generated__/SocialSettings.generated'
+import Sidebar from './Sidebar'
 
 const editProfileSchema = object({
   website: string().max(100).nullable(),
@@ -73,10 +73,7 @@ const SocialSettings: React.FC<Props> = ({ currentUser }) => {
   return (
     <GridLayout>
       <GridItemFour>
-        <SettingsHelper
-          heading="Social settings"
-          description={'Update your online presense in the internet.'}
-        />
+        <Sidebar />
       </GridItemFour>
       <GridItemEight>
         <Card>
