@@ -35,23 +35,23 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       ref={ref}
       className={clsx(
         {
-          'bg-brand-500 hover:bg-brand-600 border border-brand-600 text-white':
+          'bg-brand-500 hover:bg-brand-600 border border-brand-600 text-white focus:ring-brand-400':
             !outline && variant === 'primary',
-          'bg-green-500 hover:bg-green-400 border border-green-600 text-white':
+          'bg-green-500 hover:bg-green-400 border border-green-600 text-white focus:ring-green-400':
             !outline && variant === 'success',
-          'bg-red-500 hover:bg-red-400 border border-red-600 text-white':
+          'bg-red-500 hover:bg-red-400 border border-red-600 text-white focus:ring-red-400':
             !outline && variant === 'danger',
-          'border border-brand-500 text-brand-500 hover:bg-brand-100':
+          'border border-brand-500 text-brand-500 hover:bg-brand-100 focus:ring-brand-400':
             outline && variant === 'primary',
-          'border border-green-500 text-green-500 hover:bg-green-100':
+          'border border-green-500 text-green-500 hover:bg-green-100 focus:ring-green-400':
             outline && variant === 'success',
-          'border border-red-500 text-red-500 hover:bg-red-100':
+          'border border-red-500 text-red-500 hover:bg-red-100 focus:ring-red-400':
             outline && variant === 'danger',
           'px-2 py-0.5': size === 'sm',
           'px-3 py-1': size === 'md',
           'px-4 py-1.5': size === 'lg'
         },
-        'rounded-lg font-bold disabled:opacity-50 shadow-sm',
+        'rounded-lg font-bold disabled:opacity-50 shadow-sm focus:ring-2 focus:ring-opacity-50 outline-none',
         className
       )}
       disabled={loading}
