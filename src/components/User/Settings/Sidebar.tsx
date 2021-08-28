@@ -54,10 +54,7 @@ const Sidebar: React.FC = () => {
         <LockClosedIcon className="h-4 w-4" />
         <div>Security</div>
       </Menu>
-      <Menu
-        current={router.pathname == '/settings/security'}
-        url="/settings/security"
-      >
+      <Menu current={router.pathname == '/settings/labs'} url="/settings/labs">
         <BeakerIcon className="h-4 w-4" />
         <div>Labs</div>
       </Menu>
