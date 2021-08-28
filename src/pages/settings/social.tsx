@@ -1,8 +1,16 @@
-import { GetServerSideProps } from 'next'
-
-import SocialSettingsPage from '~/components/User/Settings/social'
+import SocialSettings, {
+  SOCIAL_SETTINGS_QUERY as query
+} from '~/components/User/Settings/Social'
+import { preloadQuery } from '~/utils/apollo'
 import { authenticatedRoute } from '~/utils/redirects'
 
-export const getServerSideProps: GetServerSideProps = authenticatedRoute
+export const getServerSideProps = async (ctx: any) => {
+  const auth = await authenticatedRoute(ctx)
+  if ('redirect' in auth) {
+    return auth
+  }
 
-export default SocialSettingsPage
+  return preloadQuery(ctx, { query })
+}
+
+export default SocialSettings
