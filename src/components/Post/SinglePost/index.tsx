@@ -3,6 +3,7 @@ import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
+import toast from 'react-hot-toast'
 import * as timeago from 'timeago.js'
 
 import { Post, User } from '~/__generated__/schema.generated'
@@ -97,7 +98,16 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         }
       }
       ${PostFragment}
-    `
+    `,
+    {
+      onCompleted(data) {
+        if (data?.togglePostLike?.hasLiked) {
+          toast.success('Post liked successfully')
+        } else {
+          toast.success('Post disliked successfully')
+        }
+      }
+    }
   )
 
   const handleLike = (post: any) => {
