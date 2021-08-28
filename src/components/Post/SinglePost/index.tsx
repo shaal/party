@@ -100,6 +100,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       ${PostFragment}
     `,
     {
+      onError() {
+        toast.error('Something went wrong!')
+      },
       onCompleted(data) {
         if (data?.togglePostLike?.hasLiked) {
           toast.success('Post liked successfully')
