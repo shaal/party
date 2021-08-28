@@ -12,6 +12,7 @@ import { Form, useZodForm } from '~/components/ui/Form'
 import { TextArea } from '~/components/ui/TextArea'
 
 import Attachment from '../NewPost/Attachment'
+import Attachments from '../SinglePost/Attachments'
 import {
   NewReplyMutation,
   NewReplyMutationVariables
@@ -54,6 +55,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
       },
       onCompleted() {
         form.reset()
+        setAttachments([])
         toast.success('Replied successfully!')
       }
     }
@@ -113,6 +115,11 @@ const NewReply: React.FC<Props> = ({ post }) => {
               </Button>
             </div>
           </div>
+          <Attachments
+            attachments={attachments}
+            setAttachments={setAttachments}
+            isNew
+          />
         </Form>
       </CardBody>
     </Card>
