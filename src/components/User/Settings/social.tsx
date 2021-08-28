@@ -4,11 +4,11 @@ import React, { Fragment } from 'react'
 import { User } from '~/__generated__/schema.generated'
 import { PageLoading } from '~/components/ui/PageLoading'
 
-import { SettingsQuery } from './__generated__/index.generated'
+import { SocialSettingsQuery } from './__generated__/social.generated'
 import SocialSettings from './SocialSettings'
 
-export const SETTINGS_QUERY = gql`
-  query SettingsQuery {
+export const SOCIAL_SETTINGS_QUERY = gql`
+  query SocialSettingsQuery {
     me {
       id
       username
@@ -30,7 +30,7 @@ export const SETTINGS_QUERY = gql`
 `
 
 const SocialSettingsPage: React.FC = () => {
-  const { data, loading } = useQuery<SettingsQuery>(SETTINGS_QUERY)
+  const { data, loading } = useQuery<SocialSettingsQuery>(SOCIAL_SETTINGS_QUERY)
 
   if (loading) {
     return <PageLoading message="Loading settings..." />

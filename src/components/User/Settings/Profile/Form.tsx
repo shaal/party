@@ -19,11 +19,11 @@ import { SuccessMessage } from '~/components/ui/SuccessMessage'
 import { TextArea } from '~/components/ui/TextArea'
 import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 
+import Sidebar from '../Sidebar'
 import {
-  AccountSettingsMutation,
-  AccountSettingsMutationVariables
-} from './__generated__/AccountSettings.generated'
-import Sidebar from './Sidebar'
+  ProfileSettingsMutation,
+  ProfileSettingsMutationVariables
+} from './__generated__/Form.generated'
 
 const editProfileSchema = object({
   username: string().min(1),
@@ -39,15 +39,15 @@ interface Props {
 
 const SUCCESS_MESSAGE = 'Profile successfully updated!'
 
-const AccountSettings: React.FC<Props> = ({ currentUser }) => {
+const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
   const [editUser, editUserResult] = useMutation<
-    AccountSettingsMutation,
-    AccountSettingsMutationVariables
+    ProfileSettingsMutation,
+    ProfileSettingsMutationVariables
   >(
     gql`
-      mutation AccountSettingsMutation($input: EditUserInput!) {
+      mutation ProfileSettingsMutation($input: EditUserInput!) {
         editUser(input: $input) {
           id
           username
@@ -205,4 +205,4 @@ const AccountSettings: React.FC<Props> = ({ currentUser }) => {
   )
 }
 
-export default AccountSettings
+export default ProfileSettingsForm
