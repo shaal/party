@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { ReplyIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
@@ -11,6 +11,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { TextArea } from '~/components/ui/TextArea'
 
+import Attachment from '../NewPost/Attachment'
 import {
   NewReplyMutation,
   NewReplyMutationVariables
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const NewReply: React.FC<Props> = ({ post }) => {
+  const [attachments, setAttachments] = useState<string[]>([])
   const [createPost, createPostResult] = useMutation<
     NewReplyMutation,
     NewReplyMutationVariables
@@ -87,21 +89,27 @@ const NewReply: React.FC<Props> = ({ post }) => {
             {...form.register('body')}
             placeholder="What's on your mind?"
           />
-          <div className="flex ml-auto space-x-2">
-            <Button
-              type="button"
-              outline
-              className="flex items-center gap-1.5"
-              onClick={() => {
-                form.reset()
-              }}
-            >
-              <div>Cancel</div>
-            </Button>
-            <Button type="submit" className="flex items-center gap-1.5">
-              <ReplyIcon className="h-4 w-4" />
-              <div>Reply</div>
-            </Button>
+          <div className="flex justify-between items-center">
+            <Attachment
+              attachments={attachments}
+              setAttachments={setAttachments}
+            />
+            <div className="flex space-x-2">
+              <Button
+                type="button"
+                outline
+                className="flex items-center gap-1.5"
+                onClick={() => {
+                  form.reset()
+                }}
+              >
+                <div>Cancel</div>
+              </Button>
+              <Button type="submit" className="flex items-center gap-1.5">
+                <ReplyIcon className="h-4 w-4" />
+                <div>Reply</div>
+              </Button>
+            </div>
           </div>
         </Form>
       </CardBody>
