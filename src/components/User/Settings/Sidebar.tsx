@@ -27,13 +27,13 @@ const Sidebar: React.FC = () => {
   const router = useRouter()
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1.5 mb-4">
       <Menu
         current={router.pathname == '/settings/profile'}
         url="/settings/profile"
       >
         <UserIcon className="h-4 w-4" />
-        <div>Account</div>
+        <div>Profile</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/social'}
