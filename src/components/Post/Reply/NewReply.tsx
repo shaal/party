@@ -89,10 +89,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
             title="Failed to create reply"
             error={createPostResult.error}
           />
-          <TextArea
-            {...form.register('body')}
-            placeholder="What's on your mind?"
-          />
+          <TextArea {...form.register('body')} placeholder="Post your reply" />
           <div className="flex justify-between items-center">
             <Attachment
               attachments={attachments}
