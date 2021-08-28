@@ -33,7 +33,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <button
                   className={clsx(
-                    { 'text-indigo-500': selected },
+                    { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
                     'flex items-center gap-1.5 text-sm'
                   )}
@@ -46,7 +46,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <button
                   className={clsx(
-                    { 'text-indigo-500': selected },
+                    { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
                     'flex items-center gap-1.5 text-sm'
                   )}
@@ -59,7 +59,7 @@ const NewPost: React.FC = () => {
               {({ selected }) => (
                 <button
                   className={clsx(
-                    { 'text-indigo-500': selected },
+                    { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
                     'flex items-center gap-1.5 text-sm'
                   )}
