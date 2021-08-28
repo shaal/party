@@ -35,6 +35,7 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
           )}
           <input
             type="file"
+            accept="image/*, video/mp4"
             className="hidden"
             onChange={handleAttachment}
             disabled={attachments.length >= 4}
