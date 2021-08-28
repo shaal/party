@@ -51,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
           'px-3 py-1': size === 'md',
           'px-4 py-1.5': size === 'lg'
         },
-        'rounded-lg font-bold disabled:opacity-50 shadow-sm focus:ring-2 focus:ring-opacity-50 outline-none',
+        'rounded-lg font-bold disabled:opacity-50 shadow-sm focus:ring-2 focus:ring-opacity-50 focus:ring-offset-1 outline-none',
         className
       )}
       disabled={loading}
