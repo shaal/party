@@ -5,21 +5,12 @@ module.exports = {
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      blue: colors.blue,
-      white: colors.white,
-      gray: colors.gray,
-      indigo: colors.indigo,
-      green: colors.green,
-      red: colors.rose,
-      pink: colors.pink,
-      yellow: colors.yellow,
-      purple: colors.purple
-    },
-    extend: {}
+    extend: {
+      colors: {
+        gray: colors.gray,
+        brand: colors.violet
+      }
+    }
   },
   variants: {
     extend: {}
