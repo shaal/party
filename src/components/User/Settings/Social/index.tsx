@@ -11,15 +11,8 @@ export const SOCIAL_SETTINGS_QUERY = gql`
   query SocialSettingsQuery {
     me {
       id
-      username
-      email
       profile {
         id
-        name
-        bio
-        location
-        avatar
-        cover
         website
         twitter
         github
