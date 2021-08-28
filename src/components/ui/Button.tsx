@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
             !outline && variant === 'success',
           'bg-red-500 hover:bg-red-400 border border-red-600 text-white':
             !outline && variant === 'danger',
-          'border border-indigo-500 text-indigo-500 hover:bg-indigo-100':
+          'border border-brand-500 text-brand-500 hover:bg-brand-100':
             outline && variant === 'primary',
           'border border-green-500 text-green-500 hover:bg-green-100':
             outline && variant === 'success',

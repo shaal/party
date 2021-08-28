@@ -37,7 +37,7 @@ const Details: React.FC<Props> = ({ user }) => {
           {user?.profile?.name}
           {user?.isVerified && (
             <span title="Verified">
-              <BadgeCheckIcon className="h-6 w-6 text-indigo-500" />
+              <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
             </span>
           )}
           {user?.isStaff && (
