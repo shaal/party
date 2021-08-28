@@ -6,7 +6,6 @@ import { PageLoading } from '~/components/ui/PageLoading'
 
 import { SettingsQuery } from './__generated__/index.generated'
 import AccountSettings from './AccountSettings'
-import SocialSettings from './SocialSettings'
 
 export const SETTINGS_QUERY = gql`
   query SettingsQuery {
@@ -40,7 +39,6 @@ const Settings: React.FC = () => {
   return (
     <Fragment>
       <AccountSettings currentUser={data?.me as User} />
-      <SocialSettings currentUser={data?.me as User} />
     </Fragment>
   )
 }
