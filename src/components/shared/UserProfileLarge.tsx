@@ -32,7 +32,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
                   <div>{user?.profile?.name}</div>
                   {user?.isVerified && (
                     <span title="Verified">
-                      <BadgeCheckIcon className="h-4 w-4 text-indigo-500" />
+                      <BadgeCheckIcon className="h-4 w-4 text-brand-500" />
                     </span>
                   )}
                 </div>

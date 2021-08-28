@@ -11,7 +11,7 @@ export const TaskCheckbox = forwardRef<HTMLInputElement, Props>(function Input(
 ) {
   return (
     <input
-      className={clsx('text-indigo-500 rounded-full p-2.5', className)}
+      className={clsx('text-brand-500 rounded-full p-2.5', className)}
       type="checkbox"
       ref={ref}
       {...props}

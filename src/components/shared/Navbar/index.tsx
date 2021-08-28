@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
                       alt="Devparty"
                     />
                   </Link>
-                  <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-indigo-500 to-purple-500">
+                  <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-brand-500 to-purple-500">
                     beta
                   </div>
                 </div>
