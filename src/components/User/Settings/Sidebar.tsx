@@ -1,4 +1,4 @@
-import { ShareIcon, UserIcon } from '@heroicons/react/outline'
+import { LockClosedIcon, ShareIcon, UserIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -32,15 +32,20 @@ const Sidebar: React.FC = () => {
         <UserIcon className="h-4 w-4" />
         <div>Account</div>
       </Menu>
-      <Link href="/settings/social" passHref>
-        <Menu
-          current={router.pathname == '/settings/social'}
-          url="/settings/social"
-        >
-          <ShareIcon className="h-4 w-4" />
-          <div>Social</div>
-        </Menu>
-      </Link>
+      <Menu
+        current={router.pathname == '/settings/social'}
+        url="/settings/social"
+      >
+        <ShareIcon className="h-4 w-4" />
+        <div>Social</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/settings/social'}
+        url="/settings/security"
+      >
+        <LockClosedIcon className="h-4 w-4" />
+        <div>Security</div>
+      </Menu>
     </div>
   )
 }
