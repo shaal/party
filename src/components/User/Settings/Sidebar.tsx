@@ -1,4 +1,9 @@
-import { LockClosedIcon, ShareIcon, UserIcon } from '@heroicons/react/outline'
+import {
+  BeakerIcon,
+  LockClosedIcon,
+  ShareIcon,
+  UserIcon
+} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -48,6 +53,13 @@ const Sidebar: React.FC = () => {
       >
         <LockClosedIcon className="h-4 w-4" />
         <div>Security</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/settings/security'}
+        url="/settings/security"
+      >
+        <BeakerIcon className="h-4 w-4" />
+        <div>Labs</div>
       </Menu>
     </div>
   )
