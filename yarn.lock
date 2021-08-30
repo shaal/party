@@ -534,37 +534,37 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@giraphql/core@^2.14.2":
-  version "2.14.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.14.2.tgz#5c4c54b7f084703427152666618b950a67abea38"
-  integrity sha512-JKG6D7lkeYbtbAEG76RLLFRR/v9LFx3f32dOAIJisfCI5uBWDu4d4matnUwnodAPH0bq1XsYhUawhohFSY/cfw==
+"@giraphql/core@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.15.0.tgz#352ed02dec48ee61ed1541f8a03374bf8f4f2751"
+  integrity sha512-7XPSRDLnTN/EDAafB0ucbN7aUWaTu3YpxY+QKfykmOU+6dfjc8FRjN+68e1hmbmj1wa0tk7/vPXDiVQ3IiJjaw==
 
-"@giraphql/plugin-prisma@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-prisma/-/plugin-prisma-0.8.2.tgz#ef1905a4ef3b3a9aae437c7e4ee422b1fe16447e"
-  integrity sha512-99TZTh9dPKxQMEb1tbF96j7m9mcmteMjeVNUFz8YCFTe3U/ETkGJDPCvjU0g1ou70Tv0bYl7VdEF8/rxouNt/g==
+"@giraphql/plugin-prisma@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-prisma/-/plugin-prisma-0.9.0.tgz#6a1c8cf4525aad8fe2f4de1aad6e1aec88409971"
+  integrity sha512-CUduW1PYGamERthFOFs6rv+8qClKF9ehL55gwe99mGzCByl7EHc7g8t6N4KZ1h67TvOuQQNADWKIRko8aakdwA==
   dependencies:
     "@prisma/generator-helper" "^2.30.0"
 
-"@giraphql/plugin-relay@^2.14.1":
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-relay/-/plugin-relay-2.14.1.tgz#4311a39d9c7df4bf50aae69d53ecde20abf7ac1a"
-  integrity sha512-l82aNTzGDePUEmtEadlpJtKELOxQqAySJYJem5qXym52BIuCydAlJofFfoxurk5L+8tQ7urUJ8AId6daA57nGQ==
+"@giraphql/plugin-relay@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-relay/-/plugin-relay-2.15.0.tgz#607e4c653dfa9b15629868f01ca4865e361a3712"
+  integrity sha512-YZGimUdLNhTdyQN7MP0z7Zd27EZR1h4DEFtM9+iTfuiPwXi8dsEc7LG7k4efyTOMUFXr/8j9u8KGvY7q7VZFQw==
 
-"@giraphql/plugin-scope-auth@^2.9.1":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-scope-auth/-/plugin-scope-auth-2.9.1.tgz#b7f68dcfb2fe3af6336cc506a02d38a934c04016"
-  integrity sha512-WugA1xifSWCPlEUxE0Ea6mB8m9YLpUrJ+YwXy5y1ur0VS34Hv+/95FFf7YjKmFHGj1ecFBEKUz0LfWnJCWQwFQ==
+"@giraphql/plugin-scope-auth@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-scope-auth/-/plugin-scope-auth-2.10.0.tgz#090aac1565d81d104eb38edbf91667e18295c1b0"
+  integrity sha512-r9JXCJWDfGrTrB5c9jaEsNeMrdJUbBEdwK8iwdZ0EGTvpdkzzUlYr7xADeHlIJPTX+C3PVjaLEhAhL6mDhzu6w==
 
-"@giraphql/plugin-simple-objects@^2.7.1":
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-simple-objects/-/plugin-simple-objects-2.7.1.tgz#5c02ce85a46723a848fdd0b052d58c5f4ac38229"
-  integrity sha512-D9xiueslsTpvFB9UL6seC7yMtkV6u0UAqGzWiXjgcCQZKPn3f3nzzGwYeORD6gLPs7s4DIy3SoIK4FE0VGDsmw==
+"@giraphql/plugin-simple-objects@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-simple-objects/-/plugin-simple-objects-2.8.0.tgz#1f26318145e8fee30157cee54739f50c544d786c"
+  integrity sha512-vJpKgTjbZVCXn3zxmrRUnRkN+4ENMNIUOcGMOi2syUE2CeHbN2HhbIFiiilqCQlV0sirY7JmxzhciiKoWmKNog==
 
-"@giraphql/plugin-validation@^2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-validation/-/plugin-validation-2.9.2.tgz#6fd82312c4fcf4ade84fdf011634300aace5c2b3"
-  integrity sha512-7P+6SHCwbcUd4SZPnPURCHi945+k9VJdhlwGZb6DzuYQaokPSZI6nFF/JMM/eqbKH/lLmfPNsedAy1VhsgYyig==
+"@giraphql/plugin-validation@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-validation/-/plugin-validation-2.10.0.tgz#654d4d58d4ff47bd4054c2f277ac1fe535be685f"
+  integrity sha512-+ugBirwY3SWEVL29OjPVszQX1xqeVpUdikVHb86Aq1RbmVBPOO4yjwom2+rCguyivWOhhJgiAr7HDUfL++ytpQ==
 
 "@graphql-codegen/add@^3.1.0":
   version "3.1.0"
