@@ -7,7 +7,7 @@ input ChangePasswordInput {
 
 input CreatePostInput {
   attachments: String
-  body: String!
+  body: String
   done: Boolean! = true
   parentId: ID
   productId: ID
@@ -119,7 +119,7 @@ type PageInfo {
 
 type Post {
   attachments: Attachments
-  body: String!
+  body: String
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!

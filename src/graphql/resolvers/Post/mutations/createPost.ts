@@ -10,6 +10,10 @@ export const createPost = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
+  if (!input.body) {
+    throw new Error('Body should not be empty')
+  }
+
   if (getTopics(input.body)?.length > 5) {
     throw new Error('Your post should not contain more than 5 topics')
   }
