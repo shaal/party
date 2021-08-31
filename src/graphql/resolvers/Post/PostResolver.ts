@@ -13,7 +13,7 @@ builder.prismaObject('Post', {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     title: t.exposeString('title', { nullable: true }),
-    body: t.exposeString('body', {}),
+    body: t.exposeString('body', { nullable: true }),
     type: t.exposeString('type', {}),
     done: t.exposeBoolean('done', {}),
     attachments: t.expose('attachments', {

@@ -52,7 +52,7 @@ CREATE TABLE "Profile" (
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT,
-    "body" TEXT NOT NULL,
+    "body" TEXT,
     "done" BOOLEAN NOT NULL DEFAULT false,
     "type" "PostType" NOT NULL DEFAULT E'POST',
     "attachments" JSONB,
@@ -152,7 +152,7 @@ CREATE INDEX "Profile.userId_index" ON "Profile"("userId");
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
-CREATE INDEX "Post.userId_index" ON "Post"("userId");
+CREATE INDEX "Post.userId_parentId_index" ON "Post"("userId", "parentId");
 
 -- CreateIndex
 CREATE INDEX "PostTopics.postId_topicId_index" ON "PostTopics"("postId", "topicId");
