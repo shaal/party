@@ -5,8 +5,8 @@ updates:
     schedule:
       interval: 'daily'
     commit-message:
-      prefix: "dependency"
-      prefix-development: "development-dependency"
+      prefix: 'dependency'
+      prefix-development: 'development-dependency'
     assignees:
       - yo
     reviewers:
