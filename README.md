@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cloudflare-ipfs.com/ipfs/QmfSYPQKUDb4Za2PoquGSpdSu5GBy3kptuzY81La9wQjVT" height="70" alt="Devparty Logo">
+    <img src="public/logo.svg" height="70" alt="Devparty Logo">
     <h1>Devparty</h1>
     <strong>🥳 Social media for developers</strong>
 </div>
