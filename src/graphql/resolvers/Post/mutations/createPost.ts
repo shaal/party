@@ -14,6 +14,10 @@ export const createPost = async (
     throw new Error('Your post should not contain more than 5 topics')
   }
 
+  if (input.parentId && input.type !== 'REPLY') {
+    throw new Error('Invalid type')
+  }
+
   if (input.productId) {
     const product = await db.product.findUnique({
       ...query,
