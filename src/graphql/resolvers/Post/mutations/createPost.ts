@@ -25,7 +25,9 @@ export const createPost = async (
     })
 
     if (product?.userId !== session!.userId) {
-      throw new Error('You cannot post in other user products')
+      throw new Error(
+        'Oops! Sorry you cannot post in product that is not owned'
+      )
     }
   }
 
