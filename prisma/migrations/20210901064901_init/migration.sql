@@ -52,7 +52,7 @@ CREATE TABLE "Profile" (
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT,
-    "body" TEXT,
+    "body" TEXT NOT NULL,
     "done" BOOLEAN NOT NULL DEFAULT false,
     "type" "PostType" NOT NULL DEFAULT E'POST',
     "attachments" JSONB,

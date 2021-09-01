@@ -15,11 +15,7 @@ const QuestionType: React.FC<Props> = ({ question }) => {
       <div>
         <div className="font-bold mb-1">{question?.title}</div>
         <div className="prose">
-          {question?.body && (
-            <Markdown options={{ wrapper: 'article' }}>
-              {question?.body}
-            </Markdown>
-          )}
+          <Markdown options={{ wrapper: 'article' }}>{question?.body}</Markdown>
         </div>
       </div>
       {question?.attachments && (
