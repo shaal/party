@@ -11,7 +11,7 @@ export const createPost = async (
   session: Session | null | undefined
 ) => {
   if (getTopics(input.body)?.length > 5) {
-    throw new Error('Your post should not contain more than 5 topics')
+    throw new Error('Oops! Your post should not contain more than 5 topics')
   }
 
   if (input.parentId && input.type !== 'REPLY') {
