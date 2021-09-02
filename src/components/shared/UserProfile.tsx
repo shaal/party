@@ -5,6 +5,7 @@ import React, { useContext } from 'react'
 import { User } from '~/__generated__/schema.generated'
 import AppContext from '~/components/utils/AppContext'
 
+import { Tooltip } from '../ui/Tooltip'
 import Follow from '../User/Follow'
 import Slug from './Slug'
 
@@ -30,9 +31,9 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
               <div className="font-bold cursor-pointer flex items-center space-x-1">
                 <div>{user?.profile?.name}</div>
                 {user?.isVerified && (
-                  <span title="Verified">
+                  <Tooltip content={'Verified'}>
                     <BadgeCheckIcon className="h-4 w-4 text-brand-500" />
-                  </span>
+                  </Tooltip>
                 )}
               </div>
             </Link>
