@@ -33,15 +33,17 @@ const USER_FEED_QUERY = gql`
 
 interface Props {
   user: User
+  feedType: string
 }
 
-const UserFeed: React.FC<Props> = ({ user }) => {
+const UserFeed: React.FC<Props> = ({ user, feedType }) => {
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
     {
       variables: {
         after: null,
-        username: user?.username
+        username: user?.username,
+        type: feedType
       }
     }
   )

@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
@@ -10,6 +10,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
+import FeedType from './FeedType'
 
 export const UserFragment = gql`
   fragment UserFragment on User {
@@ -51,6 +52,7 @@ export const VIEW_USER_QUERY = gql`
 
 const ViewUser: React.FC = () => {
   const router = useRouter()
+  const [feedType, setFeedType] = useState<string>('ALL')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username!.slice(1)
@@ -75,7 +77,10 @@ const ViewUser: React.FC = () => {
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
         <GridItemEight>
-          <UserFeed user={data?.user as User} />
+          <div className="space-y-3">
+            <FeedType setFeedType={setFeedType} />
+            <UserFeed user={data?.user as User} feedType={feedType} />
+          </div>
         </GridItemEight>
       </GridLayout>
     </Fragment>
