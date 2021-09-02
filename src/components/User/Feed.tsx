@@ -96,7 +96,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <span ref={observe}></span>
+        {pageInfo?.hasNextPage && <span ref={observe}></span>}
       </div>
     </Fragment>
   )
