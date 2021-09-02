@@ -104,7 +104,7 @@ const SignupForm: React.FC = () => {
           className=" w-full flex items-center justify-center space-x-1.5"
         >
           <UserAddIcon className="h-5 w-5" />
-          <div>Join Waitlist</div>
+          <div>Sign up</div>
         </Button>
       </div>
     </Form>
