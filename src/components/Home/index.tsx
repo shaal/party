@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import React, { Fragment, useState } from 'react'
 
-import FeedType from '~/components/Post/FeedType'
+import FeedType from '~/components/Home/FeedType'
 import Footer from '~/components/shared/Footer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
