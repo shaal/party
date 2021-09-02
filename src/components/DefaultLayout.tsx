@@ -28,12 +28,11 @@ interface Props {
 }
 
 const DefaultLayout: React.FC<Props> = ({ children }) => {
-  const { theme } = useTheme()
-  console.log(theme)
+  const { resolvedTheme } = useTheme()
   const toastOptions = {
     style: {
-      background: '#111827',
-      color: '#fff'
+      background: resolvedTheme === 'dark' && '#111827',
+      color: resolvedTheme === 'dark' && '#fff'
     },
     success: {
       className: 'border border-green-500',
