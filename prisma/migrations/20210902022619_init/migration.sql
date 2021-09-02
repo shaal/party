@@ -49,6 +49,17 @@ CREATE TABLE "Profile" (
 );
 
 -- CreateTable
+CREATE TABLE "Invite" (
+    "id" TEXT NOT NULL,
+    "code" TEXT,
+    "usedTimes" INTEGER NOT NULL DEFAULT 0,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" TEXT NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT,
@@ -152,6 +163,9 @@ CREATE INDEX "Profile.userId_index" ON "Profile"("userId");
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Invite_userId_unique" ON "Invite"("userId");
+
+-- CreateIndex
 CREATE INDEX "Post.userId_parentId_index" ON "Post"("userId", "parentId");
 
 -- CreateIndex
@@ -177,6 +191,9 @@ ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELE
 
 -- AddForeignKey
 ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invite" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
