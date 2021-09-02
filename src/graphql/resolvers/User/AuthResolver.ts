@@ -92,6 +92,12 @@ const SignUpInput = builder.inputType('SignUpInput', {
       validate: {
         minLength: 6
       }
+    }),
+    invite: t.string({
+      validate: {
+        minLength: 1,
+        maxLength: 12
+      }
     })
   })
 })

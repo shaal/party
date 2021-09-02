@@ -13,6 +13,7 @@ CREATE TABLE "User" (
     "spammy" BOOLEAN NOT NULL DEFAULT false,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
     "isStaff" BOOLEAN NOT NULL DEFAULT false,
+    "inWaitlist" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -43,6 +44,17 @@ CREATE TABLE "Profile" (
     "discord" TEXT,
     "github" TEXT,
     "twitter" TEXT,
+    "userId" TEXT NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Invite" (
+    "id" TEXT NOT NULL,
+    "code" TEXT,
+    "usedTimes" INTEGER NOT NULL DEFAULT 0,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
@@ -152,6 +164,9 @@ CREATE INDEX "Profile.userId_index" ON "Profile"("userId");
 CREATE UNIQUE INDEX "Profile_userId_unique" ON "Profile"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Invite_userId_unique" ON "Invite"("userId");
+
+-- CreateIndex
 CREATE INDEX "Post.userId_parentId_index" ON "Post"("userId", "parentId");
 
 -- CreateIndex
@@ -177,6 +192,9 @@ ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELE
 
 -- AddForeignKey
 ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Invite" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -62,6 +62,12 @@ input EditUserInput {
   username: String!
 }
 
+type Invite {
+  code: String
+  id: ID!
+  usedTimes: Int
+}
+
 type Like {
   createdAt: DateTime!
   id: ID!
@@ -95,6 +101,7 @@ type Mutation {
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
+  regenerateInvite: Invite!
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
@@ -299,6 +306,7 @@ enum Result {
 
 input SignUpInput {
   email: String!
+  invite: String!
   password: String!
   username: String!
 }
@@ -337,6 +345,7 @@ type User {
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
   hasFollowed: Boolean!
   id: ID!
+  invite: Invite
   isStaff: Boolean!
   isVerified: Boolean!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!

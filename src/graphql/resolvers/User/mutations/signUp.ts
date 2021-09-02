@@ -12,6 +12,14 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
+  const invite = await db.invite.findFirst({
+    where: { code: input.invite }
+  })
+
+  if (!invite) {
+    throw new Error('Invite code is invalid or expired.')
+  }
+
   const user = await db.user.create({
     ...query,
     data: {
@@ -23,11 +31,23 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
           name: input.username,
           avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
         }
+      },
+      invite: {
+        create: {
+          code: await (await md5(input.email + Math.random()))
+            .slice(0, 12)
+            .toUpperCase()
+        }
       }
     }
   })
 
   await createSession(req, user)
+
+  await db.invite.updateMany({
+    where: { code: input.invite },
+    data: { usedTimes: { increment: 1 } }
+  })
 
   return user
 }

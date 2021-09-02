@@ -17,7 +17,8 @@ import {
 const signUpSchema = object({
   username: string().min(2).max(30),
   email: string().email(),
-  password: string().min(6)
+  password: string().min(6),
+  invite: string().min(1).max(12)
 })
 
 const SignupForm: React.FC = () => {
@@ -47,10 +48,10 @@ const SignupForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ username, email, password }) =>
+      onSubmit={({ username, email, password, invite }) =>
         signUp({
           variables: {
-            input: { username, email, password }
+            input: { username, email, password, invite }
           }
         })
       }
@@ -89,13 +90,21 @@ const SignupForm: React.FC = () => {
             {...form.register('password')}
           />
         </div>
+        <div>
+          <Input
+            label="Invite code"
+            type="text"
+            placeholder="123456789ABC"
+            {...form.register('invite')}
+          />
+        </div>
         <Button
           size="lg"
           type="submit"
           className=" w-full flex items-center justify-center space-x-1.5"
         >
           <UserAddIcon className="h-5 w-5" />
-          <div>Sign Up</div>
+          <div>Join Waitlist</div>
         </Button>
       </div>
     </Form>

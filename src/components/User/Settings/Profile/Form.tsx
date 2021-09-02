@@ -22,7 +22,9 @@ import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 import Sidebar from '../Sidebar'
 import {
   ProfileSettingsMutation,
-  ProfileSettingsMutationVariables
+  ProfileSettingsMutationVariables,
+  RegenerateInviteMutation,
+  RegenerateInviteMutationVariables
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
@@ -69,6 +71,29 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     }
   )
 
+  const [regenerateInvite] = useMutation<
+    RegenerateInviteMutation,
+    RegenerateInviteMutationVariables
+  >(
+    gql`
+      mutation RegenerateInviteMutation {
+        regenerateInvite {
+          id
+          code
+          usedTimes
+        }
+      }
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        toast.success('Invite code regenerated successfully!')
+      }
+    }
+  )
+
   useEffect(() => {
     if (currentUser?.profile?.avatar) setAvatar(currentUser?.profile?.avatar)
     if (currentUser?.profile?.cover) setCover(currentUser?.profile?.cover)
@@ -103,7 +128,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
         <Sidebar />
       </GridItemFour>
       <GridItemEight>
-        <Card>
+        <Card className="mb-4">
           <CardBody>
             <Form
               form={form}
@@ -198,6 +223,32 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 <Button type="submit">Save</Button>
               </div>
             </Form>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <div className="text-xl font-bold mb-2">Invite</div>
+            <div className="flex items-center justify-between">
+              <div className="font-mono font-bold">
+                {currentUser?.invite?.code}
+              </div>
+              <div className="flex items-center space-x-2">
+                <div>
+                  You invited{' '}
+                  <span className="font-bold">
+                    {currentUser?.invite?.usedTimes} users
+                  </span>
+                </div>
+                <Button
+                  size="sm"
+                  variant="danger"
+                  className="text-sm"
+                  onClick={() => regenerateInvite()}
+                >
+                  Regenerate
+                </Button>
+              </div>
+            </div>
           </CardBody>
         </Card>
       </GridItemEight>
