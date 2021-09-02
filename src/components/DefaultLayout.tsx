@@ -31,8 +31,8 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
   const toastOptions = {
     style: {
-      background: resolvedTheme === 'dark' && '#111827',
-      color: resolvedTheme === 'dark' && '#fff'
+      background: resolvedTheme === 'dark' ? '#18181B' : '',
+      color: resolvedTheme === 'dark' ? '#fff' : ''
     },
     success: {
       className: 'border border-green-500',
