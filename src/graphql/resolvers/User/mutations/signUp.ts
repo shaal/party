@@ -34,7 +34,9 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
       },
       invite: {
         create: {
-          code: await (await md5(input.email + Math.random())).slice(0, 12)
+          code: await (await md5(input.email + Math.random()))
+            .slice(0, 12)
+            .toUpperCase()
         }
       }
     }

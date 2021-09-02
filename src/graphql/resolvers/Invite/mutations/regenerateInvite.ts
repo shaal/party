@@ -17,9 +17,9 @@ export const regenerateInvite = async (
     ...query,
     where: { id: invite?.id },
     data: {
-      code: await (
-        await md5((session?.userId as string) + Math.random())
-      ).slice(0, 12)
+      code: await (await md5((session?.userId as string) + Math.random()))
+        .slice(0, 12)
+        .toUpperCase()
     }
   })
 }
