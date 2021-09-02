@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
 import { Card, CardBody } from '~/components/ui/Card'
+import { Tooltip } from '~/components/ui/Tooltip'
 
 import PostType from './Type/Post'
 
@@ -38,7 +39,9 @@ const NewPost: React.FC = () => {
                     'flex items-center gap-1.5 text-sm'
                   )}
                 >
-                  <CollectionIcon className="h-5 w-5" />
+                  <Tooltip content="Post">
+                    <CollectionIcon className="h-5 w-5" />
+                  </Tooltip>
                 </button>
               )}
             </Tab>
@@ -51,7 +54,9 @@ const NewPost: React.FC = () => {
                     'flex items-center gap-1.5 text-sm'
                   )}
                 >
-                  <CheckCircleIcon className="h-5 w-5" />
+                  <Tooltip content="Task">
+                    <CheckCircleIcon className="h-5 w-5" />
+                  </Tooltip>
                 </button>
               )}
             </Tab>
@@ -64,7 +69,9 @@ const NewPost: React.FC = () => {
                     'flex items-center gap-1.5 text-sm'
                   )}
                 >
-                  <QuestionMarkCircleIcon className="h-5 w-5" />
+                  <Tooltip content="Question">
+                    <QuestionMarkCircleIcon className="h-5 w-5" />
+                  </Tooltip>
                 </button>
               )}
             </Tab>
