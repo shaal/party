@@ -94,7 +94,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <span ref={observe}></span>
+        {pageInfo?.hasNextPage && <span ref={observe}></span>}
       </div>
     </div>
   )

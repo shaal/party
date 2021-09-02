@@ -117,7 +117,7 @@ const FollowersList: React.FC<Props> = ({ user }) => {
             </Card>
           ))
         )}
-        <span ref={observe}></span>
+        {pageInfo?.hasNextPage && <span ref={observe}></span>}
       </div>
     </div>
   )

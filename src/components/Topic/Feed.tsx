@@ -87,7 +87,7 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        <span ref={observe}></span>
+        {pageInfo?.hasNextPage && <span ref={observe}></span>}
       </div>
     </div>
   )
