@@ -209,7 +209,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
               </div>
               <div className="flex items-center space-x-2">
                 <div>Used {currentUser?.invite?.usedTimes} times</div>
-                <Button size="sm" variant="danger">
+                <Button size="sm" variant="danger" className="text-sm">
                   Regenerate
                 </Button>
               </div>
