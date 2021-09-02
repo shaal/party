@@ -202,7 +202,18 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
         </Card>
         <Card>
           <CardBody>
-            <div className="text-xl font-bold">Invite</div>
+            <div className="text-xl font-bold mb-2">Invite</div>
+            <div className="flex items-center justify-between">
+              <div className="font-mono font-bold">
+                {currentUser?.invite?.code}
+              </div>
+              <div className="flex items-center space-x-2">
+                <div>Used {currentUser?.invite?.usedTimes} times</div>
+                <Button size="sm" variant="danger">
+                  Regenerate
+                </Button>
+              </div>
+            </div>
           </CardBody>
         </Card>
       </GridItemEight>
