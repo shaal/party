@@ -103,7 +103,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
         <Sidebar />
       </GridItemFour>
       <GridItemEight>
-        <Card>
+        <Card className="mb-4">
           <CardBody>
             <Form
               form={form}
@@ -198,6 +198,11 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 <Button type="submit">Save</Button>
               </div>
             </Form>
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <div className="text-xl font-bold">Invite</div>
           </CardBody>
         </Card>
       </GridItemEight>
