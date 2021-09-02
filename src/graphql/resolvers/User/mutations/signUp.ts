@@ -25,7 +25,9 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
         }
       },
       invite: {
-        create: { code: await md5(input.email + new Date()) }
+        create: {
+          code: await (await md5(input.email + new Date())).slice(0, 12)
+        }
       }
     }
   })
