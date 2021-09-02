@@ -30,7 +30,10 @@ builder.prismaObject('User', {
     // Relations
     profile: t.relation('profile'),
     products: t.relation('products'),
-    invite: t.relation('invite', { nullable: true }),
+    invite: t.relation('invite', {
+      nullable: true,
+      authScopes: { $granted: 'currentUser' }
+    }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,
