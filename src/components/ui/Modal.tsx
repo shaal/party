@@ -29,6 +29,7 @@ export const Modal: React.FC<Props> = (props) => {
       }
     }
   }
+
   useEffect(() => {
     window.addEventListener('keydown', handler)
     return () => {
