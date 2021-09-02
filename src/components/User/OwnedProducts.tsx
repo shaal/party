@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { User } from '~/__generated__/schema.generated'
 
+import { Tooltip } from '../ui/Tooltip'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
@@ -12,6 +13,7 @@ export const USER_PRODUCTS_QUERY = gql`
         node {
           id
           slug
+          name
           avatar
         }
       }
@@ -32,13 +34,15 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
 
   const Product = ({ product }: any) => {
     return (
-      <Link href={`/products/${product?.slug}`} passHref>
-        <img
-          className="h-9 w-9 rounded-lg cursor-pointer"
-          src={product?.avatar}
-          alt={`#${product?.slug}'s avatar`}
-        />
-      </Link>
+      <Tooltip content={product?.name}>
+        <Link href={`/products/${product?.slug}`} passHref>
+          <img
+            className="h-9 w-9 rounded-lg cursor-pointer"
+            src={product?.avatar}
+            alt={`#${product?.slug}'s avatar`}
+          />
+        </Link>
+      </Tooltip>
     )
   }
 
