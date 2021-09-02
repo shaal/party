@@ -23,6 +23,9 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
           name: input.username,
           avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
         }
+      },
+      invite: {
+        create: { code: await md5(input.email + new Date()) }
       }
     }
   })
