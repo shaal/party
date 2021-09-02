@@ -16,6 +16,7 @@ const USER_FEED_QUERY = gql`
     user(username: $username) {
       id
       posts(first: 10, after: $after) {
+        totalCount
         pageInfo {
           endCursor
           hasNextPage
@@ -80,7 +81,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {posts?.length === 0 ? (
+        {data?.user?.posts?.totalCount === 0 ? (
           <EmptyState
             message={
               <div>
