@@ -36,7 +36,7 @@ async function main() {
         invite: {
           create: {
             code: await (
-              await md5(faker.internet.email() + new Date())
+              await md5(faker.internet.email() + Math.random())
             ).slice(0, 12)
           }
         },
@@ -67,7 +67,7 @@ async function main() {
         },
         invite: {
           create: {
-            code: await (await md5(user.email + new Date())).slice(0, 12)
+            code: await (await md5(user.email + Math.random())).slice(0, 12)
           }
         }
       }

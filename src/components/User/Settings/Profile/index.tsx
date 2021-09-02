@@ -22,6 +22,7 @@ export const PROFILE_SETTINGS_QUERY = gql`
         cover
       }
       invite {
+        id
         code
         usedTimes
       }
