@@ -2,6 +2,7 @@ image: gitpod/workspace-postgres
 
 tasks:
   - name: Setup
+    before: printf "\n[settings]\napi_key = $WAKA_TIME_API_KEY\n" > ~/.wakatime.cfg
     init: >
       yarn --network-timeout 100000;
       cp .env.example .env;
