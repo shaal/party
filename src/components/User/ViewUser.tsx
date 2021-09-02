@@ -82,7 +82,6 @@ const ViewUser: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             <FeedType user={data?.user as User} setFeedType={setFeedType} />
-            {loading && 'yoyoyoyoyoyoyoyoyoyoyoyoyoyoyoyo'}
             <UserFeed user={data?.user as User} feedType={feedType} />
           </div>
         </GridItemEight>
