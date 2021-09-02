@@ -80,6 +80,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
 
   return (
     <Fragment>
+      {loading && 'Loading'}
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data?.user?.posts?.totalCount === 0 ? (
