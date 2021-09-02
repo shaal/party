@@ -2,6 +2,7 @@ import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 
 import { Spinner } from '~/components/ui/Spinner'
+import { Tooltip } from '~/components/ui/Tooltip'
 import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 
 interface Props {
@@ -31,7 +32,9 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
           {loading ? (
             <Spinner color="text-brand-500" />
           ) : (
-            <PhotographIcon className="h-5 w-5 text-brand-500" />
+            <Tooltip content="Media">
+              <PhotographIcon className="h-5 w-5 text-brand-500" />
+            </Tooltip>
           )}
           <input
             type="file"
