@@ -72,7 +72,6 @@ const Notifications: React.FC = () => {
               </CardBody>
             </Card>
           )}
-
           <span ref={observe}></span>
         </div>
       </div>
