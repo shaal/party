@@ -48,10 +48,9 @@ export const Modal: React.FC<Props> = (props) => {
         style={{ display: 'table-cell' }}
       >
         <div
-          className={
-            'relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 max-w-lg mx-auto text-left text-gray-600 ' +
-            (props.className || '')
-          }
+          className={`relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 max-w-lg mx-auto text-left text-gray-600 ${
+            props.className || ''
+          }`}
           onClick={(e) => e.stopPropagation()}
         >
           {props.closeable !== false && (

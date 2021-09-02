@@ -1,10 +1,11 @@
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import AppContext from '~/components/utils/AppContext'
 
+import { Modal } from '../ui/Modal'
 import { Tooltip } from '../ui/Tooltip'
 import Follow from '../User/Follow'
 import Slug from './Slug'
@@ -16,6 +17,7 @@ interface Props {
 
 const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
   const { currentUser } = useContext(AppContext)
+  const [editModal, setEditModal] = useState(false)
 
   return (
     <div className="flex justify-between items-center">
@@ -45,6 +47,15 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
         </div>
       </div>
       {currentUser && showFollow && <Follow user={user} showText />}
+      <button onClick={() => setEditModal(!editModal)}>sdg</button>
+      {editModal && (
+        <Modal visible={true} onClose={() => setEditModal(!editModal)}>
+          <h3 className="pb-2">Edit Permissions</h3>
+          <div className="border-t border-b border-gray-200 dark:border-gray-800 mt-2 -mx-6 px-6 py-4">
+            Yo
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }
