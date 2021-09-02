@@ -101,6 +101,7 @@ type Mutation {
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
+  regenerateInvite: Invite!
   signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
