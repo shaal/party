@@ -5,7 +5,7 @@ import React, { useContext } from 'react'
 import { User } from '~/__generated__/schema.generated'
 import AppContext from '~/components/utils/AppContext'
 
-import Tooltip from '../ui/Tooltip'
+import { Tooltip } from '../ui/Tooltip'
 import Follow from '../User/Follow'
 import Slug from './Slug'
 

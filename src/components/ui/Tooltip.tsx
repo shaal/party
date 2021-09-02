@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
-export interface TooltipProps {
-  children: React.ReactChild[] | React.ReactChild
+interface Props {
+  children: React.ReactChild
   content: string
 }
 
-function Tooltip(props: TooltipProps) {
+export const Tooltip: React.FC<Props> = ({ children, content }) => {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -14,7 +14,7 @@ function Tooltip(props: TooltipProps) {
       onMouseEnter={() => setExpanded(true)}
       className="relative"
     >
-      <div>{props.children}</div>
+      <div>{children}</div>
       {expanded ? (
         <div
           style={{
@@ -24,11 +24,9 @@ function Tooltip(props: TooltipProps) {
           }}
           className={`mt-2 z-50 py-1 px-2 bg-gray-900 text-gray-100 text-sm absolute flex flex-col border border-gray-200 dark:border-gray-800 rounded-md truncated whitespace-nowrap`}
         >
-          {props.content}
+          {content}
         </div>
       ) : null}
     </div>
   )
 }
-
-export default Tooltip
