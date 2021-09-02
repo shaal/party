@@ -1,6 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import { NextSeo } from 'next-seo'
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
 import Navbar from './shared/Navbar'
@@ -26,6 +28,29 @@ interface Props {
 }
 
 const DefaultLayout: React.FC<Props> = ({ children }) => {
+  const { theme } = useTheme()
+  console.log(theme)
+  const toastOptions = {
+    style: {
+      background: '#111827',
+      color: '#fff'
+    },
+    success: {
+      className: 'border border-green-500',
+      iconTheme: {
+        primary: '#10B981',
+        secondary: 'white'
+      }
+    },
+    error: {
+      className: 'border border-red-500',
+      iconTheme: {
+        primary: '#EF4444',
+        secondary: 'white'
+      }
+    },
+    loading: { className: 'border border-gray-300' }
+  }
   const { data, loading, error } =
     useQuery<CurrentUserQuery>(CURRENT_USER_QUERY)
   const [staffMode, setStaffMode] = useState<boolean>()
@@ -44,6 +69,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <AppContext.Provider value={injectedGlobalContext}>
+      <Toaster position="top-right" toastOptions={toastOptions} />
       <NextSeo
         additionalLinkTags={[
           {
