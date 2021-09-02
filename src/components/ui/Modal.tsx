@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-export const Modal = (props: {
+interface Props {
   title?: string
   buttons?: React.ReactChild[] | React.ReactChild
   children: React.ReactChild[] | React.ReactChild
@@ -9,7 +9,9 @@ export const Modal = (props: {
   className?: string
   onClose: () => void
   onEnter?: () => boolean
-}) => {
+}
+
+export const Modal: React.FC<Props> = (props) => {
   const handler = (evt: KeyboardEvent) => {
     if (evt.defaultPrevented) {
       return
