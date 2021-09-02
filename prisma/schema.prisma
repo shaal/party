@@ -35,6 +35,7 @@ model User {
   products         Product[]
   sessions         Session[]
   profile          Profile?
+  invite           Invite?
   following        User[]         @relation("follows")
   followedBy       User[]         @relation("follows")
   likes            Like[]
@@ -77,6 +78,19 @@ model Profile {
 
   // Attributes
   @@index([userId])
+}
+
+model Invite {
+  id        String  @id @default(uuid())
+  code      String?
+  usedTimes Int     @default(0)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 }
 
 model Post {
