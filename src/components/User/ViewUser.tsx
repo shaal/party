@@ -26,6 +26,9 @@ export const UserFragment = gql`
     following {
       totalCount
     }
+    posts {
+      totalCount
+    }
     profile {
       id
       avatar
@@ -78,7 +81,7 @@ const ViewUser: React.FC = () => {
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
-            <FeedType setFeedType={setFeedType} />
+            <FeedType user={data?.user as User} setFeedType={setFeedType} />
             <UserFeed user={data?.user as User} feedType={feedType} />
           </div>
         </GridItemEight>
