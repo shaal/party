@@ -44,7 +44,8 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
       variables: {
         after: null,
         username: user?.username
-      }
+      },
+      skip: !user?.id
     }
   )
 
