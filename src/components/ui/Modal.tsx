@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import { XIcon } from '@heroicons/react/outline'
+import React, { Fragment, useEffect } from 'react'
 
 interface Props {
-  title?: string
-  buttons?: React.ReactChild[] | React.ReactChild
+  title: string
   children: React.ReactChild[] | React.ReactChild
   visible: boolean
-  closeable?: boolean
   className?: string
   onClose: () => void
   onEnter?: () => boolean
@@ -53,49 +52,18 @@ export const Modal: React.FC<Props> = (props) => {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          {props.closeable !== false && (
-            <div
-              className="absolute right-7 top-6 cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-2"
-              onClick={props.onClose}
-            >
-              <svg
-                version="1.1"
-                width="14px"
-                height="14px"
-                viewBox="0 0 100 100"
-              >
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="100"
-                  y2="100"
-                  stroke="currentColor"
-                  strokeWidth="10px"
-                />
-                <line
-                  x1="0"
-                  y1="100"
-                  x2="100"
-                  y2="0"
-                  stroke="currentColor"
-                  strokeWidth="10px"
-                />
-              </svg>
+          <Fragment>
+            <h3 className="pb-2">{props.title}</h3>
+            <div className="border-t border-b border-gray-200 dark:border-gray-800 mt-2 -mx-6 px-6 py-4">
+              {props.children}
             </div>
-          )}
-          {props.title ? (
-            <>
-              <h3 className="pb-2">{props.title}</h3>
-              <div className="border-t border-b border-gray-200 dark:border-gray-800 mt-2 -mx-6 px-6 py-4">
-                {props.children}
-              </div>
-              <div className="flex justify-end mt-6 space-x-2">
-                {props.buttons}
-              </div>
-            </>
-          ) : (
-            props.children
-          )}
+          </Fragment>
+          <div
+            className="cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-2"
+            onClick={props.onClose}
+          >
+            <XIcon className="h-5 w-5" />
+          </div>
         </div>
       </div>
     </div>
