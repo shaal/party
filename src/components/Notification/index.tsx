@@ -72,7 +72,7 @@ const Notifications: React.FC = () => {
               </CardBody>
             </Card>
           )}
-          <span ref={observe}></span>
+          {pageInfo?.hasNextPage && <span ref={observe}></span>}
         </div>
       </div>
     </div>
