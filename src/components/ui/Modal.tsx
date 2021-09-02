@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default function Modal(props: {
+export const Modal = (props: {
   title?: string
   buttons?: React.ReactChild[] | React.ReactChild
   children: React.ReactChild[] | React.ReactChild
@@ -9,7 +9,7 @@ export default function Modal(props: {
   className?: string
   onClose: () => void
   onEnter?: () => boolean
-}) {
+}) => {
   const handler = (evt: KeyboardEvent) => {
     if (evt.defaultPrevented) {
       return
@@ -27,14 +27,12 @@ export default function Modal(props: {
       }
     }
   }
-  // Add event listeners
   useEffect(() => {
     window.addEventListener('keydown', handler)
-    // Remove event listeners on cleanup
     return () => {
       window.removeEventListener('keydown', handler)
     }
-  }, []) // Empty array ensures that effect is only run on mount and unmount
+  }, [])
 
   if (!props.visible) {
     return null
