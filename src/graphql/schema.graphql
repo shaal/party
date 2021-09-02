@@ -305,6 +305,7 @@ enum Result {
 
 input SignUpInput {
   email: String!
+  invite: String!
   password: String!
   username: String!
 }

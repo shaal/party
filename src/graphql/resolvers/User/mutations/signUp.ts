@@ -12,6 +12,14 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
+  const invite = await db.invite.findFirst({
+    where: { code: input.invite }
+  })
+
+  if (!invite) {
+    throw new Error('Invite code is invalid or expired.')
+  }
+
   const user = await db.user.create({
     ...query,
     data: {
@@ -33,6 +41,11 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
   })
 
   await createSession(req, user)
+
+  await db.invite.updateMany({
+    where: { code: input.invite },
+    data: { usedTimes: { increment: 1 } }
+  })
 
   return user
 }
