@@ -22,7 +22,9 @@ import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 import Sidebar from '../Sidebar'
 import {
   ProfileSettingsMutation,
-  ProfileSettingsMutationVariables
+  ProfileSettingsMutationVariables,
+  RegenerateInviteMutation,
+  RegenerateInviteMutationVariables
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
@@ -65,6 +67,29 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     {
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
+      }
+    }
+  )
+
+  const [regenerateInvite] = useMutation<
+    RegenerateInviteMutation,
+    RegenerateInviteMutationVariables
+  >(
+    gql`
+      mutation RegenerateInviteMutation {
+        regenerateInvite {
+          id
+          code
+          usedTimes
+        }
+      }
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        toast.success('Invite code regenerated successfully!')
       }
     }
   )
@@ -214,7 +239,12 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     {currentUser?.invite?.usedTimes} users
                   </span>
                 </div>
-                <Button size="sm" variant="danger" className="text-sm">
+                <Button
+                  size="sm"
+                  variant="danger"
+                  className="text-sm"
+                  onClick={() => regenerateInvite()}
+                >
                   Regenerate
                 </Button>
               </div>
