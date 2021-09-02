@@ -18,7 +18,7 @@ const Signup: React.FC = () => {
               alt="Hero"
             />
             <div className="space-y-2">
-              <div className="font-extrabold text-4xl">Sign up</div>
+              <div className="font-extrabold text-4xl">Join Waitlist</div>
               <div className="linkify">
                 Already have an account?{' '}
                 <Link href="/login">
