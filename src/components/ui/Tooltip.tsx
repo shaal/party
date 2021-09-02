@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Tooltip: React.FC<Props> = ({ children, content }) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState<boolean>(false)
 
   return (
     <div
