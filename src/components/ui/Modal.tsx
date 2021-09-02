@@ -5,7 +5,6 @@ interface Props {
   title: string
   children: React.ReactChild[] | React.ReactChild
   visible: boolean
-  className?: string
   onClose: () => void
   onEnter?: () => boolean
 }
@@ -47,9 +46,7 @@ export const Modal: React.FC<Props> = (props) => {
         style={{ display: 'table-cell' }}
       >
         <div
-          className={`relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg max-w-lg mx-auto text-left ${
-            props.className || ''
-          }`}
+          className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg max-w-lg mx-auto text-left"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between border-b dark:border-gray-800 px-5 py-3.5">
