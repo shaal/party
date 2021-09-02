@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 interface Props {
   title: string
   children: React.ReactChild[] | React.ReactChild
-  visible: boolean
   onClose: () => void
   onEnter?: () => boolean
 }
@@ -34,10 +33,6 @@ export const Modal: React.FC<Props> = (props) => {
       window.removeEventListener('keydown', handler)
     }
   }, [])
-
-  if (!props.visible) {
-    return null
-  }
 
   return (
     <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 w-screen h-screen">
