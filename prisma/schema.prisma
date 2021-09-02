@@ -25,6 +25,7 @@ model User {
   spammy     Boolean @default(false)
   isVerified Boolean @default(false)
   isStaff    Boolean @default(false)
+  inWaitlist Boolean @default(true)
 
   // Timestamps
   createdAt DateTime @default(now())

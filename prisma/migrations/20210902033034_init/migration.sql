@@ -13,6 +13,7 @@ CREATE TABLE "User" (
     "spammy" BOOLEAN NOT NULL DEFAULT false,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
     "isStaff" BOOLEAN NOT NULL DEFAULT false,
+    "inWaitlist" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
