@@ -11,6 +11,9 @@
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
     </a>
+    <a href="https://wakatime.com/badge/gitlab/yo/devparty">
+        <img src="https://wakatime.com/badge/gitlab/yo/devparty.svg" alt="Wakatime">
+    </a>
     <a href="https://gitpod.io/#https://gitlab.com/yo/devparty/-/tree/main/">
         <img src="https://img.shields.io/badge/setup-automated-blue?logo=gitpod" alt="Gitpod">
     </a>
