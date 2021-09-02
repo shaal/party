@@ -54,9 +54,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
           visible={true}
           onClose={() => setEditModal(!editModal)}
         >
-          <div className="border-gray-200 dark:border-gray-800 mt-2 -mx-6 px-6 py-4">
-            Yo
-          </div>
+          <div className="border-gray-200 dark:border-gray-800">Yo</div>
         </Modal>
       )}
     </div>
