@@ -69,35 +69,36 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
     }
   })
 
+  if (loading)
+    return (
+      <div className="space-y-3">
+        <PostShimmer />
+        <PostShimmer />
+        <PostShimmer />
+      </div>
+    )
+
   return (
     <Fragment>
       <ErrorMessage title="Failed to load posts" error={error} />
-      {loading ? (
-        <div className="space-y-3">
-          <PostShimmer />
-          <PostShimmer />
-          <PostShimmer />
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {data?.user?.posts?.totalCount === 0 ? (
-            <EmptyState
-              message={
-                <div>
-                  <span className="font-bold mr-1">@{user?.username}</span>
-                  <span>seems like not posted yet!</span>
-                </div>
-              }
-              icon={<CollectionIcon className="h-8 w-8" />}
-            />
-          ) : (
-            posts?.map((post: any) => (
-              <SinglePost key={post?.id} post={post} showParent />
-            ))
-          )}
-          {pageInfo?.hasNextPage && <span ref={observe}></span>}
-        </div>
-      )}
+      <div className="space-y-3">
+        {data?.user?.posts?.totalCount === 0 ? (
+          <EmptyState
+            message={
+              <div>
+                <span className="font-bold mr-1">@{user?.username}</span>
+                <span>seems like not posted yet!</span>
+              </div>
+            }
+            icon={<CollectionIcon className="h-8 w-8" />}
+          />
+        ) : (
+          posts?.map((post: any) => (
+            <SinglePost key={post?.id} post={post} showParent />
+          ))
+        )}
+        {pageInfo?.hasNextPage && <span ref={observe}></span>}
+      </div>
     </Fragment>
   )
 }
