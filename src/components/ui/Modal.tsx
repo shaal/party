@@ -47,12 +47,12 @@ export const Modal: React.FC<Props> = (props) => {
         style={{ display: 'table-cell' }}
       >
         <div
-          className={`relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl max-w-lg mx-auto text-left text-gray-600 ${
+          className={`relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg max-w-lg mx-auto text-left ${
             props.className || ''
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex items-center justify-between border-b px-5 py-3.5">
+          <div className="flex items-center justify-between border-b dark:border-gray-800 px-5 py-3.5">
             <div className="font-bold">{props.title}</div>
             <div
               className="cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-1"
