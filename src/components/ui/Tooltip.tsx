@@ -18,11 +18,9 @@ export const Tooltip: React.FC<Props> = ({ children, content }) => {
       {expanded ? (
         <div
           style={{
-            top: '-0.5rem',
-            left: '50%',
             transform: 'translate(-50%, -100%)'
           }}
-          className={`mt-2 z-50 py-1 px-2 bg-gray-900 text-gray-100 text-sm absolute flex flex-col border border-gray-200 dark:border-gray-800 rounded-md truncated whitespace-nowrap`}
+          className="-top-3 left-1/2 mt-2 z-50 py-1 px-2 bg-gray-900 text-gray-100 text-sm absolute flex flex-col border border-gray-200 dark:border-gray-800 rounded-md truncated whitespace-nowrap"
         >
           {content}
         </div>
