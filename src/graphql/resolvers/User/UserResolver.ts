@@ -30,6 +30,7 @@ builder.prismaObject('User', {
     // Relations
     profile: t.relation('profile'),
     products: t.relation('products'),
+    invite: t.relation('invite', { nullable: true }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,
