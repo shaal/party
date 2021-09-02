@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { Fragment } from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
@@ -78,7 +78,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
     )
 
   return (
-    <div>
+    <Fragment>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data?.user?.posts?.totalCount === 0 ? (
@@ -98,7 +98,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
         )}
         <span ref={observe}></span>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
