@@ -94,11 +94,13 @@ const Navbar: React.FC = () => {
               <div className="flex-1 flex items-center justify-center sm:justify-start">
                 <div className="flex-shrink-0 flex items-center space-x-3">
                   <Link href="/" passHref>
-                    <img
-                      className="block h-9 w-auto cursor-pointer"
-                      src="/logo.svg"
-                      alt="Devparty"
-                    />
+                    <a>
+                      <img
+                        className="block h-9 w-auto cursor-pointer"
+                        src="/logo.svg"
+                        alt="Devparty"
+                      />
+                    </a>
                   </Link>
                   <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-brand-500 to-purple-500">
                     beta
