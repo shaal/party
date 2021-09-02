@@ -16,6 +16,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
 import { TextArea } from '~/components/ui/TextArea'
+import { Tooltip } from '~/components/ui/Tooltip'
 
 import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
@@ -112,19 +113,21 @@ const QuestionType: React.FC = () => {
             setAttachments={setAttachments}
           />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
-          <Button
-            type="button"
-            variant="success"
-            size="sm"
-            outline
-            onClick={() => setPreview(!preview)}
-          >
-            {preview ? (
-              <EyeOffIcon className="h-5 w-5" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </Button>
+          <Tooltip content="Preview Markdown">
+            <Button
+              type="button"
+              variant="success"
+              size="sm"
+              outline
+              onClick={() => setPreview(!preview)}
+            >
+              {preview ? (
+                <EyeOffIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </Button>
+          </Tooltip>
         </div>
         <Button type="submit" className="flex items-center gap-1.5">
           <QuestionMarkCircleIcon className="h-4 w-4" />
