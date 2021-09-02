@@ -1,4 +1,4 @@
-import { CubeIcon } from '@heroicons/react/outline'
+import { CubeIcon, ShieldCheckIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import packageJson from '../../../../package.json'
@@ -18,8 +18,8 @@ const StaffBar: React.FC = () => {
           </span>
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <div>100ms</div>
+      <div className="flex items-center gap-4" title="Staff panel">
+        <ShieldCheckIcon className="h-4 w-4" />
       </div>
     </div>
   )
