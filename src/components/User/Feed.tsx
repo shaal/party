@@ -42,8 +42,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
     {
       variables: {
         after: null,
-        username: user?.username,
-        type: feedType
+        username: user?.username
       }
     }
   )
@@ -61,7 +60,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }
