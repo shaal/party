@@ -20,7 +20,7 @@ export const Tooltip: React.FC<Props> = ({ children, content }) => {
           style={{
             transform: 'translate(-50%, -100%)'
           }}
-          className="-top-3 left-1/2 mt-2 z-50 py-1 px-2 bg-gray-900 text-gray-100 text-sm absolute flex flex-col border border-gray-800 rounded-lg truncated whitespace-nowrap"
+          className="-top-3 left-1/2 mt-2 z-50 py-0.5 px-2 bg-gray-900 text-gray-100 text-xs absolute flex flex-col border border-gray-800 rounded-lg truncated whitespace-nowrap"
         >
           {content}
         </div>
