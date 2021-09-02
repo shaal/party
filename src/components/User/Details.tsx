@@ -11,6 +11,7 @@ import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
+import { Tooltip } from '../ui/Tooltip'
 import Follow from './Follow'
 import Followerings from './Followerings'
 import OwnedProducts from './OwnedProducts'
@@ -36,14 +37,14 @@ const Details: React.FC<Props> = ({ user }) => {
         <div className="text-2xl font-bold flex items-center gap-1.5">
           {user?.profile?.name}
           {user?.isVerified && (
-            <span title="Verified">
+            <Tooltip content={'Verified'}>
               <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
-            </span>
+            </Tooltip>
           )}
           {user?.isStaff && (
-            <span title="Staff">
+            <Tooltip content={'Staff'}>
               <SupportIcon className="h-6 w-6 text-yellow-600" />
-            </span>
+            </Tooltip>
           )}
         </div>
         <Slug slug={user?.username} prefix="@" className="text-xl" />
