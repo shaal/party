@@ -1,1 +1,1 @@
-export const reservedSlugs = ['admin', 'explore', 'products']
+export const reservedSlugs = ['admin', 'discover', 'products']

@@ -60,8 +60,8 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
         isMobile={isMobile}
       />
       <NavItem
-        url="/explore"
-        name="Explore"
+        url="/discover"
+        name="Discover"
         current={false}
         isMobile={isMobile}
       />
