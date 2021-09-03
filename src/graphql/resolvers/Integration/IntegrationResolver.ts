@@ -80,7 +80,7 @@ builder.mutationField('editIntegration', (t) =>
       } else {
         return await db.integration.create({
           data: {
-            user: { connect: { id: session?.id } },
+            user: { connect: { id: session?.userId } },
             wakatimeAPIKey: input.wakatimeAPIKey
           }
         })
