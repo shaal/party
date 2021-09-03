@@ -64,6 +64,7 @@ input EditUserInput {
 
 type Integration {
   createdAt: DateTime!
+  hasWakatime: Boolean!
   id: ID!
   updatedAt: DateTime!
   wakatimeActivity: String

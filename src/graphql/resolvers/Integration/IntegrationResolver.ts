@@ -7,6 +7,15 @@ builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
+    hasWakatime: t.field({
+      type: 'Boolean',
+      resolve: async (root) => {
+        const hasWakatime = await db.integration.findUnique({
+          where: { id: root.id }
+        })
+        return hasWakatime ? true : false
+      }
+    }),
     wakatimeActivity: t.field({
       type: 'String',
       nullable: true,
