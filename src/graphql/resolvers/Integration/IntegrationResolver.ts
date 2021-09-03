@@ -1,15 +1,26 @@
 import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
+import { editIntegration } from './mutations/editIntegration'
 import { wakatimeActivity } from './wakatimeActivity'
 
 builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    wakatimeAPIKey: t.exposeString('wakatimeAPIKey', {
+    wakatimeAPIKey: t.field({
+      type: 'String',
       nullable: true,
-      authScopes: { user: true, $granted: 'currentUser' }
+      resolve: async (root, args, { session }) => {
+        if (!session || session.userId !== root.userId) {
+          return null
+        }
+
+        const wakatime = await db.integration.findUnique({
+          where: { id: root.id }
+        })
+        return wakatime?.wakatimeAPIKey
+      }
     }),
     hasWakatime: t.field({
       type: 'Boolean',
@@ -62,29 +73,8 @@ builder.mutationField('editIntegration', (t) =>
     args: {
       input: t.arg({ type: EditIntegrationInput })
     },
-    authScopes: { user: true },
     resolve: async (query, root, { input }, { session }) => {
-      const integration = await db.integration.findFirst({
-        where: { userId: session?.userId }
-      })
-
-      if (integration) {
-        return await db.integration.update({
-          where: {
-            id: integration.id
-          },
-          data: {
-            wakatimeAPIKey: input.wakatimeAPIKey
-          }
-        })
-      } else {
-        return await db.integration.create({
-          data: {
-            user: { connect: { id: session?.userId } },
-            wakatimeAPIKey: input.wakatimeAPIKey
-          }
-        })
-      }
+      return await editIntegration(input, session)
     }
   })
 )
