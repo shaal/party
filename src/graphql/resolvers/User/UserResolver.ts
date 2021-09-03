@@ -50,6 +50,24 @@ builder.prismaObject('User', {
     following: t.relatedConnection('following', {
       cursor: 'id',
       totalCount: true
+    }),
+    hasWakatimeIntegration: t.field({
+      type: 'Boolean',
+      resolve: async (root) => {
+        const integration = await db.integration.findFirst({
+          where: { userId: root.id }
+        })
+        return integration?.wakatimeAPIKey ? true : false
+      }
+    }),
+    hasSpotifyIntegration: t.field({
+      type: 'Boolean',
+      resolve: async (root) => {
+        const integration = await db.integration.findFirst({
+          where: { userId: root.id }
+        })
+        return integration?.spotifyAccessToken ? true : false
+      }
     })
   })
 })

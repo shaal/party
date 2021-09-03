@@ -69,7 +69,6 @@ input EditUserInput {
 
 type Integration {
   createdAt: DateTime!
-  hasWakatime: Boolean!
   id: ID!
   spotifyAccessToken: String
   spotifyPlaying: String
@@ -362,6 +361,8 @@ type User {
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
   hasFollowed: Boolean!
+  hasSpotifyIntegration: Boolean!
+  hasWakatimeIntegration: Boolean!
   id: ID!
   invite: Invite
   isStaff: Boolean!

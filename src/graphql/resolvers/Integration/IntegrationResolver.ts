@@ -35,15 +35,6 @@ builder.prismaObject('Integration', {
         return integration?.spotifyAccessToken
       }
     }),
-    hasWakatime: t.field({
-      type: 'Boolean',
-      resolve: async (root) => {
-        const hasWakatime = await db.integration.findUnique({
-          where: { id: root.id }
-        })
-        return hasWakatime ? true : false
-      }
-    }),
     wakatimeActivity: t.field({
       type: 'String',
       nullable: true,

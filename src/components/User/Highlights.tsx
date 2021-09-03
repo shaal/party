@@ -8,7 +8,6 @@ import { IntegrationsQuery } from './__generated__/Highlights.generated'
 const INTEGRATIONS_QUERY = gql`
   query IntegrationsQuery($userId: ID!) {
     integration(userId: $userId) {
-      hasWakatime
       wakatimeActivity
       spotifyPlaying
     }
@@ -30,7 +29,7 @@ const Highlights: React.FC<Props> = ({ user }) => {
 
   return (
     <div className="space-y-2">
-      {data?.integration?.hasWakatime && data?.integration?.wakatimeActivity && (
+      {data?.integration?.wakatimeActivity && (
         <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
           <div className="font-bold font-mono">
