@@ -41,6 +41,8 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
       mutation IntegrationSettingsMutation($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
+          wakatimeAPIKey
+          spotifyAccessToken
         }
       }
     `,
@@ -92,9 +94,21 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               />
               <div>
                 {integration.spotifyAccessToken ? (
-                  <Button variant="success">Disconnect Spotify</Button>
+                  <Button
+                    variant="success"
+                    type="button"
+                    onClick={() =>
+                      editIntegration({
+                        variables: { input: { spotifyAccessToken: null } }
+                      })
+                    }
+                  >
+                    Disconnect Spotify
+                  </Button>
                 ) : (
-                  <Button variant="success">Connect Spotify</Button>
+                  <Button variant="success" type="button">
+                    Connect Spotify
+                  </Button>
                 )}
               </div>
               <div className="ml-auto pt-3">

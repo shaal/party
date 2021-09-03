@@ -18,6 +18,6 @@ export const spotify = async (id: string) => {
 
     return response.body.item?.name
   } catch {
-    throw new Error('Something went wrong!')
+    return null
   }
 }

@@ -82,7 +82,8 @@ builder.queryField('integration', (t) =>
 
 const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   fields: (t) => ({
-    wakatimeAPIKey: t.string({})
+    wakatimeAPIKey: t.string({ required: false }),
+    spotifyAccessToken: t.string({ required: false })
   })
 })
 

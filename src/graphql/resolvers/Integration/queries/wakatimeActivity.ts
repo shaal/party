@@ -17,6 +17,6 @@ export const wakatimeActivity = async (id: string) => {
       return api.data.human_readable_total
     }
   } catch {
-    throw new Error('Something went wrong!')
+    return null
   }
 }
