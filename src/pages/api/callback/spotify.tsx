@@ -11,8 +11,8 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
     redirectUri: 'http://localhost:3000/api/callback/spotify'
   }
 
-  const session = await resolveSession({ req, res })
   const spotifyApi = new SpotifyWebApi(credentials)
+  const session = await resolveSession({ req, res })
 
   spotifyApi.authorizationCodeGrant(req.query.code as string).then(
     async function (data) {
