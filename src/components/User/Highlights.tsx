@@ -24,7 +24,8 @@ const Highlights: React.FC<Props> = ({ user }) => {
     variables: {
       userId: user?.id
     },
-    skip: !user?.id
+    skip: !user?.id,
+    pollInterval: 10_000
   })
 
   return (
