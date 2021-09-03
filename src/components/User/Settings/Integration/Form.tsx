@@ -18,38 +18,29 @@ import { SuccessMessage } from '~/components/ui/SuccessMessage'
 
 import Sidebar from '../Sidebar'
 import {
-  SocialSettingsMutation,
-  SocialSettingsMutationVariables
+  IntegrationSettingsMutation,
+  IntegrationSettingsMutationVariables
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
-  website: string().max(100).nullable(),
-  twitter: string().max(50).nullable(),
-  github: string().max(50).nullable(),
-  discord: string().max(50).nullable()
+  wakatimeAPIKey: string().max(100).nullable()
 })
 
 interface Props {
   currentUser: User
 }
 
-const SUCCESS_MESSAGE = 'Social successfully updated!'
+const SUCCESS_MESSAGE = 'Integration settings successfully updated!'
 
 const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editSocial, editSocialResult] = useMutation<
-    SocialSettingsMutation,
-    SocialSettingsMutationVariables
+  const [editIntegration, editIntegrationResult] = useMutation<
+    IntegrationSettingsMutation,
+    IntegrationSettingsMutationVariables
   >(
     gql`
-      mutation SocialSettingsMutation($input: EditSocialInput!) {
-        editSocial(input: $input) {
-          profile {
-            id
-            website
-            twitter
-            github
-            discord
-          }
+      mutation IntegrationSettingsMutation($input: EditIntegrationInput!) {
+        editIntegration(input: $input) {
+          id
         }
       }
     `,
@@ -63,10 +54,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      website: currentUser.profile.website as string,
-      twitter: currentUser.profile.twitter as string,
-      github: currentUser.profile.github as string,
-      discord: currentUser.profile.discord as string
+      wakatimeAPIKey: currentUser.profile.website as string
     }
   })
 
@@ -81,49 +69,26 @@ const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ website, twitter, github, discord }) =>
-                editSocial({
+              onSubmit={({ wakatimeAPIKey }) =>
+                editIntegration({
                   variables: {
-                    input: {
-                      website: website as string,
-                      twitter: twitter as string,
-                      github: github as string,
-                      discord: discord as string
-                    }
+                    input: { wakatimeAPIKey: wakatimeAPIKey as string }
                   }
                 })
               }
             >
               <ErrorMessage
-                title="Error updating social"
-                error={editSocialResult.error}
+                title="Error updating integration settings"
+                error={editIntegrationResult.error}
               />
-              {editSocialResult.data && (
+              {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <Input
-                label="Website"
+                label="Wakatime API Key"
                 type="text"
-                placeholder="https://johndoe.com"
-                {...form.register('website')}
-              />
-              <Input
-                label="Twitter"
-                type="text"
-                placeholder="johndoe"
-                {...form.register('twitter')}
-              />
-              <Input
-                label="GitHub"
-                type="text"
-                placeholder="johndoe"
-                {...form.register('github')}
-              />
-              <Input
-                label="Discord"
-                type="text"
-                placeholder="Johndoe#1998"
-                {...form.register('discord')}
+                placeholder="123456-789123"
+                {...form.register('wakatimeAPIKey')}
               />
               <div className="ml-auto pt-3">
                 <Button type="submit">Save</Button>
