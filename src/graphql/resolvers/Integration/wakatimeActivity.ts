@@ -5,9 +5,9 @@ export const wakatimeActivity = async (id: string) => {
     where: { id }
   })
   const response = await fetch(
-    `https://wakatime.com/api/v1/users/yoginth/all_time_since_today?api_key=${integration?.wakatimeAPIKey}`
+    `https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key=${integration?.wakatimeAPIKey}`
   )
   const reader = await response.json()
 
-  return reader.data.text
+  return reader.data.human_readable_total
 }
