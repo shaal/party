@@ -65,7 +65,7 @@ builder.mutationField('editIntegration', (t) =>
     authScopes: { user: true },
     resolve: async (query, root, { input }, { session }) => {
       const integration = await db.integration.findFirst({
-        where: { userId: session?.id }
+        where: { userId: session?.userId }
       })
 
       if (integration) {
