@@ -209,7 +209,7 @@ model Notification {
 }
 
 model Integration {
-  id String @id @default(uuid())
+  id             String  @id @default(uuid())
   wakatimeAPIKey String?
 
   // Timestamps
