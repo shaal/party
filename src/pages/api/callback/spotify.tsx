@@ -26,7 +26,7 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       })
 
-      return res.json({ access_token: data.body['access_token'] })
+      return res.redirect('/')
     },
     function () {
       throw new Error('Something went wrong!')
