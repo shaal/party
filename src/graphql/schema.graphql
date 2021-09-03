@@ -71,6 +71,7 @@ type Integration {
   hasWakatime: Boolean!
   id: ID!
   spotifyAccessToken: String
+  spotifyPlaying: String
   updatedAt: DateTime!
   wakatimeAPIKey: String
   wakatimeActivity: String
