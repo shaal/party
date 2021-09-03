@@ -3,10 +3,10 @@ import { gql, useQuery } from '@apollo/client'
 import { User } from '~/__generated__/schema.generated'
 
 import { Card } from '../ui/Card'
-import { WakatimeQuery } from './__generated__/Highlights.generated'
+import { IntegrationsQuery } from './__generated__/Highlights.generated'
 
-export const WAKATIME_QUERY = gql`
-  query WakatimeQuery($userId: ID!) {
+const INTEGRATIONS_QUERY = gql`
+  query IntegrationsQuery($userId: ID!) {
     integration(userId: $userId) {
       hasWakatime
       wakatimeActivity
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Highlights: React.FC<Props> = ({ user }) => {
-  const { data } = useQuery<WakatimeQuery>(WAKATIME_QUERY, {
+  const { data } = useQuery<IntegrationsQuery>(INTEGRATIONS_QUERY, {
     variables: {
       userId: user?.id
     },
