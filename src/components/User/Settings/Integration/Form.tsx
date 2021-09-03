@@ -54,7 +54,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      wakatimeAPIKey: integration.wakatimeAPIKey as string
+      wakatimeAPIKey: integration?.wakatimeAPIKey as string
     }
   })
 
