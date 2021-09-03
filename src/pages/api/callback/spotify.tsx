@@ -18,12 +18,8 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   spotifyApi.authorizationCodeGrant(code as string).then(
     async function (data) {
       await db.integration.updateMany({
-        where: {
-          userId: session?.userId
-        },
-        data: {
-          spotifyAccessToken: data.body['access_token']
-        }
+        where: { userId: session?.userId },
+        data: { spotifyAccessToken: data.body['access_token'] }
       })
 
       return res.redirect('/')
