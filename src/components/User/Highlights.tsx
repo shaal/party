@@ -29,7 +29,7 @@ const Highlights: React.FC<Props> = ({ user }) => {
   return (
     <div className="space-y-2 pt-2">
       {data?.integration?.hasWakatime && (
-        <Card className="p-3 space-y-1">
+        <Card className="p-3 space-y-1 border-2 border-dashed bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
           <div className="font-bold font-mono">
             {data?.integration?.wakatimeActivity}
