@@ -210,6 +210,7 @@ model Notification {
 
 model Integration {
   id String @id @default(uuid())
+  wakatimeAPIKey String?
 
   // Timestamps
   createdAt DateTime @default(now())
