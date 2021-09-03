@@ -37,6 +37,7 @@ model User {
   sessions         Session[]
   profile          Profile?
   invite           Invite?
+  integrations     Integration?
   following        User[]         @relation("follows")
   followedBy       User[]         @relation("follows")
   likes            Like[]
@@ -205,6 +206,18 @@ model Notification {
   dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
   entityId     String?
+}
+
+model Integration {
+  id String @id @default(uuid())
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 }
 
 // Types
