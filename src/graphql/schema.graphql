@@ -62,6 +62,13 @@ input EditUserInput {
   username: String!
 }
 
+type Integration {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  wakatimeActivity: String!
+}
+
 type Invite {
   code: String
   id: ID!
@@ -206,6 +213,7 @@ type Profile {
 
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
+  integration(userId: ID!): Integration
   me: User
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
