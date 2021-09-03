@@ -87,7 +87,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
               <Input
                 label="Wakatime API Key"
                 type="text"
-                placeholder="123456-789123"
+                placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
                 {...form.register('wakatimeAPIKey')}
               />
               <div className="ml-auto pt-3">
