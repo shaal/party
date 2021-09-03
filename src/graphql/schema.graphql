@@ -66,7 +66,7 @@ type Integration {
   createdAt: DateTime!
   id: ID!
   updatedAt: DateTime!
-  wakatimeActivity: String!
+  wakatimeActivity: String
 }
 
 type Invite {
