@@ -56,8 +56,8 @@ const Sidebar: React.FC = () => {
         <div>Security</div>
       </Menu>
       <Menu
-        current={router.pathname == '/settings/integrations'}
-        url="/settings/integrations"
+        current={router.pathname == '/settings/integration'}
+        url="/settings/integration"
       >
         <PuzzleIcon className="h-4 w-4" />
         <div>Integrations</div>
