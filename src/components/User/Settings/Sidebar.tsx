@@ -1,6 +1,7 @@
 import {
   BeakerIcon,
   LockClosedIcon,
+  PuzzleIcon,
   ShareIcon,
   UserIcon
 } from '@heroicons/react/outline'
@@ -53,6 +54,13 @@ const Sidebar: React.FC = () => {
       >
         <LockClosedIcon className="h-4 w-4" />
         <div>Security</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/settings/integrations'}
+        url="/settings/integrations"
+      >
+        <PuzzleIcon className="h-4 w-4" />
+        <div>Integrations</div>
       </Menu>
       <Menu current={router.pathname == '/settings/labs'} url="/settings/labs">
         <BeakerIcon className="h-4 w-4" />
