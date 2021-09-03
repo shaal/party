@@ -15,11 +15,23 @@ builder.prismaObject('Integration', {
         if (!session || session.userId !== root.userId) {
           return null
         }
-
-        const wakatime = await db.integration.findUnique({
+        const integration = await db.integration.findUnique({
           where: { id: root.id }
         })
-        return wakatime?.wakatimeAPIKey
+        return integration?.wakatimeAPIKey
+      }
+    }),
+    spotifyAccessToken: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (root, args, { session }) => {
+        if (!session || session.userId !== root.userId) {
+          return null
+        }
+        const integration = await db.integration.findUnique({
+          where: { id: root.id }
+        })
+        return integration?.spotifyAccessToken
       }
     }),
     hasWakatime: t.field({
@@ -66,7 +78,6 @@ const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('editIntegration', (t) =>
   t.prismaField({
     type: 'Integration',

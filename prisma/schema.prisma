@@ -209,8 +209,9 @@ model Notification {
 }
 
 model Integration {
-  id             String  @id @default(uuid())
-  wakatimeAPIKey String?
+  id                 String  @id @default(uuid())
+  wakatimeAPIKey     String?
+  spotifyAccessToken String?
 
   // Timestamps
   createdAt DateTime @default(now())

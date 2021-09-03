@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import SpotifyWebApi from 'spotify-web-api-node'
 
+import { db } from '~/utils/prisma'
+import { resolveSession } from '~/utils/sessions'
+
 const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const credentials = {
     clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -8,12 +11,20 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
     redirectUri: 'http://localhost:3000/api/callback/spotify'
   }
 
+  const session = await resolveSession({ req, res })
   const spotifyApi = new SpotifyWebApi(credentials)
   const code = req.query.code
 
   spotifyApi.authorizationCodeGrant(code as string).then(
-    function (data) {
-      spotifyApi.setAccessToken(data.body['access_token'])
+    async function (data) {
+      await db.integration.updateMany({
+        where: {
+          userId: session?.userId
+        },
+        data: {
+          spotifyAccessToken: data.body['access_token']
+        }
+      })
 
       return res.json({ access_token: data.body['access_token'] })
     },

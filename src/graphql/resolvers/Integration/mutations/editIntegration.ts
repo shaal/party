@@ -11,21 +11,12 @@ export const editIntegration = async (
     where: { userId: session?.userId }
   })
 
-  if (integration) {
-    return await db.integration.update({
-      where: {
-        id: integration.id
-      },
-      data: {
-        wakatimeAPIKey: input.wakatimeAPIKey
-      }
-    })
-  } else {
-    return await db.integration.create({
-      data: {
-        user: { connect: { id: session?.userId } },
-        wakatimeAPIKey: input.wakatimeAPIKey
-      }
-    })
-  }
+  return await db.integration.update({
+    where: {
+      id: integration?.id
+    },
+    data: {
+      wakatimeAPIKey: input.wakatimeAPIKey
+    }
+  })
 }
