@@ -2,7 +2,8 @@ import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
 import { editIntegration } from './mutations/editIntegration'
-import { wakatimeActivity } from './wakatimeActivity'
+import { spotify } from './queries/spotify'
+import { wakatimeActivity } from './queries/wakatimeActivity'
 
 builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
@@ -15,11 +16,23 @@ builder.prismaObject('Integration', {
         if (!session || session.userId !== root.userId) {
           return null
         }
-
-        const wakatime = await db.integration.findUnique({
+        const integration = await db.integration.findUnique({
           where: { id: root.id }
         })
-        return wakatime?.wakatimeAPIKey
+        return integration?.wakatimeAPIKey
+      }
+    }),
+    spotifyAccessToken: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (root, args, { session }) => {
+        if (!session || session.userId !== root.userId) {
+          return null
+        }
+        const integration = await db.integration.findUnique({
+          where: { id: root.id }
+        })
+        return integration?.spotifyAccessToken
       }
     }),
     hasWakatime: t.field({
@@ -36,6 +49,13 @@ builder.prismaObject('Integration', {
       nullable: true,
       resolve: async (root) => {
         return await wakatimeActivity(root.id as string)
+      }
+    }),
+    spotifyPlaying: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (root) => {
+        return await spotify(root.id as string)
       }
     }),
 
@@ -62,11 +82,11 @@ builder.queryField('integration', (t) =>
 
 const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   fields: (t) => ({
-    wakatimeAPIKey: t.string({})
+    wakatimeAPIKey: t.string({ required: false }),
+    spotifyAccessToken: t.string({ required: false })
   })
 })
 
-// TODO: Split to function
 builder.mutationField('editIntegration', (t) =>
   t.prismaField({
     type: 'Integration',

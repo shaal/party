@@ -38,7 +38,8 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
             .slice(0, 12)
             .toUpperCase()
         }
-      }
+      },
+      integrations: { create: {} }
     }
   })
 

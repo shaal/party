@@ -41,6 +41,8 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
       mutation IntegrationSettingsMutation($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
+          wakatimeAPIKey
+          spotifyAccessToken
         }
       }
     `,
@@ -84,6 +86,24 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
+              {integration.spotifyAccessToken ? (
+                <Button
+                  variant="success"
+                  type="button"
+                  onClick={() =>
+                    editIntegration({
+                      variables: { input: { spotifyAccessToken: null } }
+                    })
+                  }
+                >
+                  Disconnect Spotify
+                </Button>
+              ) : (
+                <Button variant="success" type="button">
+                  Connect Spotify
+                </Button>
+              )}
+              <div className="border-b"></div>
               <Input
                 label="Wakatime API Key"
                 type="text"

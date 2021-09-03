@@ -146,6 +146,7 @@ CREATE TABLE "Notification" (
 CREATE TABLE "Integration" (
     "id" TEXT NOT NULL,
     "wakatimeAPIKey" TEXT,
+    "spotifyAccessToken" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,

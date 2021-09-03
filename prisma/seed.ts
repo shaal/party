@@ -40,6 +40,7 @@ async function main() {
               .toUpperCase()
           }
         },
+        integrations: { create: {} },
         posts: {
           create: {
             body: faker.lorem.sentence(20)
@@ -71,7 +72,8 @@ async function main() {
               .slice(0, 12)
               .toUpperCase()
           }
-        }
+        },
+        integrations: { create: {} }
       }
     })
   }

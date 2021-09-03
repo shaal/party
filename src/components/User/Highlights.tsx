@@ -10,6 +10,7 @@ const INTEGRATIONS_QUERY = gql`
     integration(userId: $userId) {
       hasWakatime
       wakatimeActivity
+      spotifyPlaying
     }
   }
 `
@@ -23,16 +24,25 @@ const Highlights: React.FC<Props> = ({ user }) => {
     variables: {
       userId: user?.id
     },
-    skip: !user?.id
+    skip: !user?.id,
+    pollInterval: 10_000
   })
 
   return (
     <div className="space-y-2">
       {data?.integration?.hasWakatime && data?.integration?.wakatimeActivity && (
-        <Card className="p-3 space-y-1 border-2 border-dashed bg-blue-100 border-blue-300">
+        <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
           <div className="font-bold font-mono">
             {data?.integration?.wakatimeActivity}
+          </div>
+        </Card>
+      )}
+      {data?.integration?.spotifyPlaying && (
+        <Card className="p-3 space-y-1 bg-green-100 border-green-300">
+          <div>Listening to</div>
+          <div className="font-bold font-mono">
+            {data?.integration?.spotifyPlaying}
           </div>
         </Card>
       )}

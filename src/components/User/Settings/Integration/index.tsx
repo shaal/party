@@ -12,6 +12,7 @@ export const INTEGRATION_SETTINGS_QUERY = gql`
     integration {
       id
       wakatimeAPIKey
+      spotifyAccessToken
     }
   }
 `
