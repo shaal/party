@@ -86,31 +86,30 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
+              {integration.spotifyAccessToken ? (
+                <Button
+                  variant="success"
+                  type="button"
+                  onClick={() =>
+                    editIntegration({
+                      variables: { input: { spotifyAccessToken: null } }
+                    })
+                  }
+                >
+                  Disconnect Spotify
+                </Button>
+              ) : (
+                <Button variant="success" type="button">
+                  Connect Spotify
+                </Button>
+              )}
+              <div className="border-b"></div>
               <Input
                 label="Wakatime API Key"
                 type="text"
                 placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
                 {...form.register('wakatimeAPIKey')}
               />
-              <div>
-                {integration.spotifyAccessToken ? (
-                  <Button
-                    variant="success"
-                    type="button"
-                    onClick={() =>
-                      editIntegration({
-                        variables: { input: { spotifyAccessToken: null } }
-                      })
-                    }
-                  >
-                    Disconnect Spotify
-                  </Button>
-                ) : (
-                  <Button variant="success" type="button">
-                    Connect Spotify
-                  </Button>
-                )}
-              </div>
               <div className="ml-auto pt-3">
                 <Button type="submit">Save</Button>
               </div>
