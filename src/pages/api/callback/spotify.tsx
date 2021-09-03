@@ -13,9 +13,8 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const session = await resolveSession({ req, res })
   const spotifyApi = new SpotifyWebApi(credentials)
-  const code = req.query.code
 
-  spotifyApi.authorizationCodeGrant(code as string).then(
+  spotifyApi.authorizationCodeGrant(req.query.code as string).then(
     async function (data) {
       await db.integration.updateMany({
         where: { userId: session?.userId },
