@@ -90,6 +90,13 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
                 {...form.register('wakatimeAPIKey')}
               />
+              <div>
+                {integration.spotifyAccessToken ? (
+                  <Button variant="success">Disconnect Spotify</Button>
+                ) : (
+                  <Button variant="success">Connect Spotify</Button>
+                )}
+              </div>
               <div className="ml-auto pt-3">
                 <Button type="submit">Save</Button>
               </div>
