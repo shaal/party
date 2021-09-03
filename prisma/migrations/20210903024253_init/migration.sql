@@ -143,6 +143,17 @@ CREATE TABLE "Notification" (
 );
 
 -- CreateTable
+CREATE TABLE "Integration" (
+    "id" TEXT NOT NULL,
+    "wakatimeAPIKey" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_follows" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
@@ -180,6 +191,9 @@ CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product.slug_unique" ON "Product"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Integration_userId_unique" ON "Integration"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
@@ -225,6 +239,9 @@ ALTER TABLE "Notification" ADD FOREIGN KEY ("receiverId") REFERENCES "User"("id"
 
 -- AddForeignKey
 ALTER TABLE "Notification" ADD FOREIGN KEY ("dispatcherId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Integration" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

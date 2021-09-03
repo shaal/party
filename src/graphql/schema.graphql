@@ -27,6 +27,10 @@ input DeletePostInput {
   id: ID!
 }
 
+input EditIntegrationInput {
+  wakatimeAPIKey: String!
+}
+
 input EditPostInput {
   body: String
   done: Boolean
@@ -62,6 +66,15 @@ input EditUserInput {
   username: String!
 }
 
+type Integration {
+  createdAt: DateTime!
+  hasWakatime: Boolean!
+  id: ID!
+  updatedAt: DateTime!
+  wakatimeAPIKey: String
+  wakatimeActivity: String
+}
+
 type Invite {
   code: String
   id: ID!
@@ -93,6 +106,7 @@ type Mutation {
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Post!
+  editIntegration(input: EditIntegrationInput!): Integration!
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product!
   editSocial(input: EditSocialInput!): User!
@@ -206,6 +220,7 @@ type Profile {
 
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
+  integration(userId: ID): Integration
   me: User
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
