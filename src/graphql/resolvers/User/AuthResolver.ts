@@ -11,7 +11,6 @@ builder.queryField('me', (t) =>
   t.prismaField({
     type: 'User',
     nullable: true,
-    skipTypeScopes: true,
     grantScopes: ['currentUser'],
     resolve: async (query, root, args, { session }) => {
       if (!session?.userId) {

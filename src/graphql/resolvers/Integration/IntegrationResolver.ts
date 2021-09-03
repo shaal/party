@@ -9,7 +9,7 @@ builder.prismaObject('Integration', {
     id: t.exposeID('id', {}),
     wakatimeAPIKey: t.exposeString('wakatimeAPIKey', {
       nullable: true,
-      authScopes: { $granted: 'currentUser' }
+      authScopes: { user: true, $granted: 'currentUser' }
     }),
     hasWakatime: t.field({
       type: 'Boolean',
