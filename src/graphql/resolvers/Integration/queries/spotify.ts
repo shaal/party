@@ -11,19 +11,12 @@ export const spotify = async (id: string) => {
     }
 
     const spotifyApi = new SpotifyWebApi(credentials)
-    const integration = await db.integration.findFirst({
-      where: { id }
-    })
+    const integration = await db.integration.findUnique({ where: { id } })
 
     spotifyApi.setAccessToken(integration?.spotifyAccessToken as string)
-    spotifyApi.getMyCurrentPlayingTrack({}, (err: any, data: any) => {
-      if (err) {
-        throw new Error('Something went wrong!')
-      } else {
-        console.log(data.body.item?.name)
-        return data.body.item?.name
-      }
-    })
+    const response = await spotifyApi.getMyCurrentPlayingTrack()
+
+    return response.body.item?.name
   } catch {
     throw new Error('Something went wrong!')
   }
