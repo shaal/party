@@ -17,6 +17,8 @@ export const UserFragment = gql`
     id
     username
     hasFollowed
+    hasWakatimeIntegration
+    hasSpotifyIntegration
     isVerified
     isStaff
     spammy

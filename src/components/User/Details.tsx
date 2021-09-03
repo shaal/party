@@ -14,7 +14,8 @@ import AppContext from '~/components/utils/AppContext'
 import { Tooltip } from '../ui/Tooltip'
 import Follow from './Follow'
 import Followerings from './Followerings'
-import Highlights from './Highlights'
+import Spotify from './Highlights/Spotify'
+import Wakatime from './Highlights/Wakatime'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
 
@@ -73,7 +74,8 @@ const Details: React.FC<Props> = ({ user }) => {
       )}
       <Social profile={user?.profile as Profile} />
       <OwnedProducts user={user} />
-      <Highlights user={user} />
+      {user?.hasWakatimeIntegration && <Wakatime user={user} />}
+      {user?.hasSpotifyIntegration && <Spotify user={user} />}
       {currentUser?.isStaff && staffMode && (
         <Fragment>
           {user?.spammy && (
