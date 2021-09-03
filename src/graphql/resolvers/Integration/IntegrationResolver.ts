@@ -10,8 +10,8 @@ builder.prismaObject('Integration', {
     wakatimeActivity: t.field({
       type: 'String',
       nullable: true,
-      resolve: async (root, args, { session }) => {
-        return await wakatimeActivity(session?.userId as string)
+      resolve: async (root) => {
+        return await wakatimeActivity(root.id as string)
       }
     }),
 

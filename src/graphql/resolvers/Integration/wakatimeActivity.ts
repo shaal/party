@@ -1,8 +1,8 @@
 import { db } from '~/utils/prisma'
 
-export const wakatimeActivity = async (userId: string) => {
-  const integration = await db.integration.findFirst({
-    where: { userId }
+export const wakatimeActivity = async (id: string) => {
+  const integration = await db.integration.findUnique({
+    where: { id }
   })
   const response = await fetch(
     `https://wakatime.com/api/v1/users/yoginth/all_time_since_today?api_key=${integration?.wakatimeAPIKey}`
