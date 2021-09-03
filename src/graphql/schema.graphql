@@ -220,7 +220,7 @@ type Profile {
 
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
-  integration(userId: ID!): Integration
+  integration(userId: ID): Integration
   me: User
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!

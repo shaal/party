@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import React, { Fragment } from 'react'
 
-import { User } from '~/__generated__/schema.generated'
+import { Integration } from '~/__generated__/schema.generated'
 import { PageLoading } from '~/components/ui/PageLoading'
 
 import { IntegrationSettingsQuery } from './__generated__/index.generated'
@@ -9,15 +9,9 @@ import IntegrationSettingsForm from './Form'
 
 export const INTEGRATION_SETTINGS_QUERY = gql`
   query IntegrationSettingsQuery {
-    me {
+    integration {
       id
-      profile {
-        id
-        website
-        twitter
-        github
-        discord
-      }
+      wakatimeAPIKey
     }
   }
 `
@@ -33,7 +27,7 @@ const IntegrationSettings: React.FC = () => {
 
   return (
     <Fragment>
-      <IntegrationSettingsForm currentUser={data?.me as User} />
+      <IntegrationSettingsForm integration={data?.integration as Integration} />
     </Fragment>
   )
 }

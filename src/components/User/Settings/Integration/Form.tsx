@@ -3,7 +3,7 @@ import React from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import { User } from '~/__generated__/schema.generated'
+import { Integration } from '~/__generated__/schema.generated'
 import {
   GridItemEight,
   GridItemFour,
@@ -27,12 +27,12 @@ const editProfileSchema = object({
 })
 
 interface Props {
-  currentUser: User
+  integration: Integration
 }
 
 const SUCCESS_MESSAGE = 'Integration settings successfully updated!'
 
-const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
+const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const [editIntegration, editIntegrationResult] = useMutation<
     IntegrationSettingsMutation,
     IntegrationSettingsMutationVariables
@@ -54,7 +54,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editProfileSchema,
     defaultValues: {
-      wakatimeAPIKey: currentUser.profile.website as string
+      wakatimeAPIKey: integration.wakatimeAPIKey as string
     }
   })
 

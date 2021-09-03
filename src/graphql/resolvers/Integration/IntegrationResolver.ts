@@ -38,12 +38,12 @@ builder.queryField('integration', (t) =>
   t.prismaField({
     type: 'Integration',
     args: {
-      userId: t.arg.id({})
+      userId: t.arg.id({ required: false })
     },
     nullable: true,
-    resolve: async (query, root, { userId }) => {
+    resolve: async (query, root, { userId }, { session }) => {
       return await db.integration.findFirst({
-        where: { userId }
+        where: { userId: userId ? userId : session?.userId }
       })
     }
   })
