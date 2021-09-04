@@ -6,6 +6,7 @@ import useInView from 'react-cool-inview'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
+import { PostFragment } from '../Post/SinglePost'
 import { EmptyState } from '../ui/EmptyState'
 import { PageLoading } from '../ui/PageLoading'
 import { NotificationsQuery } from './__generated__/index.generated'
@@ -20,10 +21,21 @@ export const NOTIFICATIONS_QUERY = gql`
       edges {
         node {
           id
+          dispatcher {
+            id
+            username
+          }
+          like {
+            id
+            post {
+              ...PostFragment
+            }
+          }
         }
       }
     }
   }
+  ${PostFragment}
 `
 
 const Notifications: React.FC = () => {
