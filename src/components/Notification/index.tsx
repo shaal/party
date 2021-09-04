@@ -3,13 +3,13 @@ import { BellIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { PostFragment } from '../Post/SinglePost'
 import { EmptyState } from '../ui/EmptyState'
 import { PageLoading } from '../ui/PageLoading'
 import { NotificationsQuery } from './__generated__/index.generated'
+import LikeNotification from './Like'
 
 export const NOTIFICATIONS_QUERY = gql`
   query NotificationsQuery($after: String) {
@@ -21,9 +21,15 @@ export const NOTIFICATIONS_QUERY = gql`
       edges {
         node {
           id
+          type
           dispatcher {
             id
             username
+            profile {
+              id
+              name
+              avatar
+            }
           }
           like {
             id
@@ -31,6 +37,7 @@ export const NOTIFICATIONS_QUERY = gql`
               ...PostFragment
             }
           }
+          createdAt
         }
       }
     }
@@ -76,13 +83,15 @@ const Notifications: React.FC = () => {
               icon={<BellIcon className="h-8 w-8" />}
             />
           ) : (
-            <Card>
-              <CardBody>
-                {notifications?.map((notification: any) => (
-                  <div key={notification?.id}>{notification?.id}</div>
-                ))}
-              </CardBody>
-            </Card>
+            <div className="space-y-4">
+              {notifications?.map((notification: any) => (
+                <div key={notification?.id}>
+                  {notification?.type === 'POSTLIKE' && (
+                    <LikeNotification notification={notification} />
+                  )}
+                </div>
+              ))}
+            </div>
           )}
           {pageInfo?.hasNextPage && <span ref={observe}></span>}
         </div>
