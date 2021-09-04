@@ -1,5 +1,6 @@
 import { db } from '~/utils/prisma'
 
+import { createNotification } from '../../Common/createNotification'
 import { hasLiked } from '../../Common/hasLiked'
 
 export const togglePostLike = async (
@@ -7,22 +8,16 @@ export const togglePostLike = async (
   userId: string,
   postId: string
 ) => {
+  let like
   if (await hasLiked(userId, postId)) {
     await db.like.deleteMany({
       where: { userId, postId }
     })
   } else {
-    await db.like.create({
+    like = await db.like.create({
       data: {
         post: { connect: { id: postId } },
-        user: { connect: { id: userId } },
-        notification: {
-          create: {
-            dispatcher: { connect: { id: userId } },
-            receiver: { connect: { id: userId } },
-            type: 'POSTLIKE'
-          }
-        }
+        user: { connect: { id: userId } }
       }
     })
   }
@@ -31,6 +26,10 @@ export const togglePostLike = async (
     ...query,
     where: { id: postId }
   })
+
+  if (like && userId !== post?.userId) {
+    await createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
+  }
 
   return post
 }
