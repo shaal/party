@@ -16,11 +16,14 @@ export const spotify = async (userId: string) => {
     const integration = await db.integration.findFirst({ where: { userId } })
 
     spotifyApi.setAccessToken(integration?.spotifyAccessToken as string)
-    const response = await spotifyApi.getMyCurrentPlayingTrack()
+    const { body } = await spotifyApi.getMyCurrentPlayingTrack()
+    const item = body.item as SpotifyApi.TrackObjectFull
 
     return new Spotify(
-      response.body.item?.name as string,
-      response.body.is_playing
+      item?.name as string,
+      body.is_playing,
+      item?.external_urls?.spotify as string,
+      item.album.images[0].url
     )
   } catch {
     return null
