@@ -13,5 +13,9 @@ module.exports = {
     }
 
     return config
+  },
+  env: {
+    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
+    BASE_URL: process.env.BASE_URL
   }
 }

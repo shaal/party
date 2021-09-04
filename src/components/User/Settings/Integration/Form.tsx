@@ -99,9 +99,13 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                   Disconnect Spotify
                 </Button>
               ) : (
-                <Button variant="success" type="button">
-                  Connect Spotify
-                </Button>
+                <a
+                  href={`https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.BASE_URL}/api/callback/spotify&scope=user-read-currently-playing`}
+                >
+                  <Button className="w-full" variant="success" type="button">
+                    Connect Spotify
+                  </Button>
+                </a>
               )}
               <div className="border-b"></div>
               <Input
