@@ -15,7 +15,6 @@ export const spotify = async (userId: string) => {
     const spotifyApi = new SpotifyWebApi(credentials)
     const token = await spotifyApi.refreshAccessToken()
     spotifyApi.setAccessToken(token.body.access_token)
-
     const { body } = await spotifyApi.getMyCurrentPlayingTrack()
     const item = body.item as SpotifyApi.TrackObjectFull
 
@@ -26,7 +25,7 @@ export const spotify = async (userId: string) => {
       item.album.images[0].url,
       item.artists[0].name
     )
-  } catch (error) {
-    return error
+  } catch {
+    return null
   }
 }
