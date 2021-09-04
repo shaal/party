@@ -9,6 +9,7 @@ import { PostFragment } from '../Post/SinglePost'
 import { EmptyState } from '../ui/EmptyState'
 import { PageLoading } from '../ui/PageLoading'
 import { NotificationsQuery } from './__generated__/index.generated'
+import FollowNotification from './Follow'
 import LikeNotification from './Like'
 
 export const NOTIFICATIONS_QUERY = gql`
@@ -25,6 +26,7 @@ export const NOTIFICATIONS_QUERY = gql`
           dispatcher {
             id
             username
+            hasFollowed
             profile {
               id
               name
@@ -88,6 +90,9 @@ const Notifications: React.FC = () => {
                 <div key={notification?.id}>
                   {notification?.type === 'POSTLIKE' && (
                     <LikeNotification notification={notification} />
+                  )}
+                  {notification?.type === 'FOLLOW' && (
+                    <FollowNotification notification={notification} />
                   )}
                 </div>
               ))}
