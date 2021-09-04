@@ -28,7 +28,7 @@ export const togglePostLike = async (
   })
 
   if (like && userId !== post?.userId) {
-    await createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
+    createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
   }
 
   return post
