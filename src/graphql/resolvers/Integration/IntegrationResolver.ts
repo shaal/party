@@ -2,7 +2,6 @@ import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
 import { editIntegration } from './mutations/editIntegration'
-import { spotify } from './queries/spotify'
 import { wakatimeActivity } from './queries/wakatimeActivity'
 
 builder.prismaObject('Integration', {
@@ -42,14 +41,6 @@ builder.prismaObject('Integration', {
         return await wakatimeActivity(root.id as string)
       }
     }),
-    spotifyPlaying: t.field({
-      type: 'String',
-      nullable: true,
-      resolve: async (root) => {
-        return await spotify(root.id as string)
-      }
-    }),
-
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' })

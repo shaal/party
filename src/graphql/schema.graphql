@@ -71,7 +71,6 @@ type Integration {
   createdAt: DateTime!
   id: ID!
   spotifyAccessToken: String
-  spotifyPlaying: String
   updatedAt: DateTime!
   wakatimeAPIKey: String
   wakatimeActivity: String
@@ -232,6 +231,7 @@ type Query {
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
+  spotify(userId: ID!): Spotify
   topic(name: String!): Topic!
   user(id: ID, username: String): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -326,6 +326,11 @@ input SignUpInput {
   invite: String!
   password: String!
   username: String!
+}
+
+type Spotify {
+  isPlaying: Boolean
+  name: String
 }
 
 input ToggleFollowInput {

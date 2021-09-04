@@ -8,8 +8,9 @@ import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
 
 const SPOTIFY_INTEGRATIONS_QUERY = gql`
   query SpotifyIntegrationsQuery($userId: ID!) {
-    integration(userId: $userId) {
-      spotifyPlaying
+    spotify(userId: $userId) {
+      name
+      isPlaying
     }
   }
 `
@@ -32,12 +33,10 @@ const Spotify: React.FC<Props> = ({ user }) => {
 
   return (
     <Fragment>
-      {data?.integration?.spotifyPlaying && (
+      {data?.spotify?.isPlaying && (
         <Card className="p-3 space-y-1 bg-green-100 border-green-300">
           <div>Listening to</div>
-          <div className="font-bold font-mono">
-            {data?.integration?.spotifyPlaying}
-          </div>
+          <div className="font-bold font-mono">{data?.spotify?.name}</div>
         </Card>
       )}
     </Fragment>

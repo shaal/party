@@ -2,7 +2,9 @@ import SpotifyWebApi from 'spotify-web-api-node'
 
 import { db } from '~/utils/prisma'
 
-export const spotify = async (id: string) => {
+import { Spotify } from '../SpotifyResolver'
+
+export const spotify = async (userId: string) => {
   try {
     const credentials = {
       clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -11,12 +13,15 @@ export const spotify = async (id: string) => {
     }
 
     const spotifyApi = new SpotifyWebApi(credentials)
-    const integration = await db.integration.findUnique({ where: { id } })
+    const integration = await db.integration.findFirst({ where: { userId } })
 
     spotifyApi.setAccessToken(integration?.spotifyAccessToken as string)
     const response = await spotifyApi.getMyCurrentPlayingTrack()
 
-    return response.body.item?.name
+    return new Spotify(
+      response.body.item?.name as string,
+      response.body.is_playing
+    )
   } catch {
     return null
   }
