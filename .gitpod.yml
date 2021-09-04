@@ -44,3 +44,4 @@ vscode:
     - gitlab.gitlab-workflow
     - bradlc.vscode-tailwindcss
     - wakatime.vscode-wakatime
+    - bierner.markdown-preview-github-styles
