@@ -48,7 +48,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
             <div>
               <a
                 className="font-bold"
-                href={data?.spotify?.url as string}
+                href={`${data?.spotify?.url as string}?utm_source=devparty`}
                 target="_blank"
               >
                 {data?.spotify?.name}
