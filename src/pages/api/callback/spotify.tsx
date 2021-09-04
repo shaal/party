@@ -13,7 +13,7 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const credentials = {
     clientId: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    redirectUri: `http://localhost:3000/api/callback/spotify`
+    redirectUri: `${process.env.BASE_URL}/api/callback/spotify`
   }
 
   const spotifyApi = new SpotifyWebApi(credentials)
