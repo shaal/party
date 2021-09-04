@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { ClockIcon } from '@heroicons/react/outline'
 import { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -35,7 +36,10 @@ const Wakatime: React.FC<Props> = ({ user }) => {
       {data?.wakatime?.hours && (
         <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
-          <div className="font-bold font-mono">{data?.wakatime?.hours}</div>
+          <div className="flex items-center space-x-1.5">
+            <ClockIcon className="h-4 w-4" />
+            <div className="font-bold font-mono">{data?.wakatime?.hours}</div>
+          </div>
         </Card>
       )}
     </Fragment>
