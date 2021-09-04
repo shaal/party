@@ -8,8 +8,8 @@ import { WakatimeIntegrationsQuery } from './__generated__/Wakatime.generated'
 
 const WAKATIME_INTEGRATIONS_QUERY = gql`
   query WakatimeIntegrationsQuery($userId: ID!) {
-    integration(userId: $userId) {
-      wakatimeActivity
+    wakatime(userId: $userId) {
+      hours
     }
   }
 `
@@ -32,12 +32,10 @@ const Wakatime: React.FC<Props> = ({ user }) => {
 
   return (
     <Fragment>
-      {data?.integration?.wakatimeActivity && (
+      {data?.wakatime?.hours && (
         <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
-          <div className="font-bold font-mono">
-            {data?.integration?.wakatimeActivity}
-          </div>
+          <div className="font-bold font-mono">{data?.wakatime?.hours}</div>
         </Card>
       )}
     </Fragment>

@@ -1,8 +1,10 @@
 import { db } from '~/utils/prisma'
 
-export const wakatimeActivity = async (id: string) => {
+import { Wakatime } from '../WakatimeResolver'
+
+export const wakatime = async (userId: string) => {
   try {
-    const integration = await db.integration.findUnique({ where: { id } })
+    const integration = await db.integration.findFirst({ where: { userId } })
     const response = await fetch(
       `https://wakatime.com/api/v1/users/current/stats/last_30_days?api_key=${integration?.wakatimeAPIKey}`
     )
@@ -12,9 +14,9 @@ export const wakatimeActivity = async (id: string) => {
       api.data.status === 'pending_update' ||
       api.data.status === 'updating'
     ) {
-      return 'Calculating...'
+      return new Wakatime('Calculating...')
     } else {
-      return api.data.human_readable_total
+      return new Wakatime(api.data.human_readable_total as string)
     }
   } catch {
     return null
