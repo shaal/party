@@ -15,7 +15,7 @@ export const spotify = async (userId: string) => {
     const spotifyApi = new SpotifyWebApi(credentials)
     const integration = await db.integration.findFirst({ where: { userId } })
 
-    spotifyApi.setAccessToken(integration?.spotifyAccessToken as string)
+    spotifyApi.setAccessToken(integration?.spotifyRefreshToken as string)
     const { body } = await spotifyApi.getMyCurrentPlayingTrack()
     const item = body.item as SpotifyApi.TrackObjectFull
 

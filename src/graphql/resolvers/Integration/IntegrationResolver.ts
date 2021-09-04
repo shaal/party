@@ -21,7 +21,7 @@ builder.prismaObject('Integration', {
         return integration?.wakatimeAPIKey
       }
     }),
-    spotifyAccessToken: t.field({
+    spotifyRefreshToken: t.field({
       type: 'String',
       nullable: true,
       resolve: async (root, args, { session }) => {
@@ -31,7 +31,7 @@ builder.prismaObject('Integration', {
         const integration = await db.integration.findUnique({
           where: { id: root.id }
         })
-        return integration?.spotifyAccessToken
+        return integration?.spotifyRefreshToken
       }
     }),
     wakatimeActivity: t.field({
@@ -65,7 +65,7 @@ builder.queryField('integration', (t) =>
 const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   fields: (t) => ({
     wakatimeAPIKey: t.string({ required: false }),
-    spotifyAccessToken: t.string({ required: false })
+    spotifyRefreshToken: t.string({ required: false })
   })
 })
 

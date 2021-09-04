@@ -66,7 +66,7 @@ builder.prismaObject('User', {
         const integration = await db.integration.findFirst({
           where: { userId: root.id }
         })
-        return integration?.spotifyAccessToken ? true : false
+        return integration?.spotifyRefreshToken ? true : false
       }
     })
   })
