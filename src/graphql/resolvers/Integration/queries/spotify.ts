@@ -6,16 +6,15 @@ import { Spotify } from '../SpotifyResolver'
 
 export const spotify = async (userId: string) => {
   try {
+    const integration = await db.integration.findFirst({ where: { userId } })
     const credentials = {
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      redirectUri: `http://localhost:3000/api/callback/spotify`
+      refreshToken: integration?.spotifyRefreshToken as string
     }
-
     const spotifyApi = new SpotifyWebApi(credentials)
-    const integration = await db.integration.findFirst({ where: { userId } })
-
-    spotifyApi.setAccessToken(integration?.spotifyAccessToken as string)
+    const token = await spotifyApi.refreshAccessToken()
+    spotifyApi.setAccessToken(token.body.access_token)
     const { body } = await spotifyApi.getMyCurrentPlayingTrack()
     const item = body.item as SpotifyApi.TrackObjectFull
 

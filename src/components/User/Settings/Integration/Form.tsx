@@ -42,7 +42,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
         editIntegration(input: $input) {
           id
           wakatimeAPIKey
-          spotifyAccessToken
+          spotifyRefreshToken
         }
       }
     `,
@@ -86,13 +86,13 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
-              {integration.spotifyAccessToken ? (
+              {integration.spotifyRefreshToken ? (
                 <Button
                   variant="success"
                   type="button"
                   onClick={() =>
                     editIntegration({
-                      variables: { input: { spotifyAccessToken: null } }
+                      variables: { input: { spotifyRefreshToken: null } }
                     })
                   }
                 >

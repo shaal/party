@@ -28,7 +28,7 @@ input DeletePostInput {
 }
 
 input EditIntegrationInput {
-  spotifyAccessToken: String
+  spotifyRefreshToken: String
   wakatimeAPIKey: String
 }
 
@@ -70,7 +70,7 @@ input EditUserInput {
 type Integration {
   createdAt: DateTime!
   id: ID!
-  spotifyAccessToken: String
+  spotifyRefreshToken: String
   updatedAt: DateTime!
   wakatimeAPIKey: String
   wakatimeActivity: String

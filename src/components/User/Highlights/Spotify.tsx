@@ -38,7 +38,14 @@ const Spotify: React.FC<Props> = ({ user }) => {
     <Fragment>
       {data?.spotify?.isPlaying && (
         <Card className="p-3 space-y-1 bg-green-100 border-green-300">
-          <div>Listening to Spotify</div>
+          <div className="flex items-center justify-between">
+            <div>Listening to Spotify</div>
+            <img
+              className="h-4 w-4"
+              src="/brand/spotify.svg"
+              alt="Spotify Logo"
+            />
+          </div>
           <div className="flex items-center space-x-2 pt-1">
             <img
               src={data.spotify.image as string}
