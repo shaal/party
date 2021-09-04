@@ -124,8 +124,8 @@ type Mutation {
 type Notification {
   createdAt: DateTime!
   dispatcher: User!
-  entityId: String
   id: ID!
+  like: Like!
   receiver: User!
   type: String!
   updatedAt: DateTime!

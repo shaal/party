@@ -1,6 +1,5 @@
 import { db } from '~/utils/prisma'
 
-import { createNotification } from '../../Common/createNotification'
 import { hasLiked } from '../../Common/hasLiked'
 
 export const togglePostLike = async (
@@ -16,7 +15,14 @@ export const togglePostLike = async (
     await db.like.create({
       data: {
         post: { connect: { id: postId } },
-        user: { connect: { id: userId } }
+        user: { connect: { id: userId } },
+        notification: {
+          create: {
+            dispatcher: { connect: { id: userId } },
+            receiver: { connect: { id: userId } },
+            type: 'POSTLIKE'
+          }
+        }
       }
     })
   }
@@ -25,13 +31,6 @@ export const togglePostLike = async (
     ...query,
     where: { id: postId }
   })
-
-  await createNotification(
-    post?.userId as string,
-    userId,
-    post?.id as string,
-    'POSTLIKE'
-  )
 
   return post
 }

@@ -137,7 +137,7 @@ CREATE TABLE "Notification" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "receiverId" TEXT NOT NULL,
     "dispatcherId" TEXT NOT NULL,
-    "entityId" TEXT,
+    "likeId" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -240,6 +240,9 @@ ALTER TABLE "Notification" ADD FOREIGN KEY ("receiverId") REFERENCES "User"("id"
 
 -- AddForeignKey
 ALTER TABLE "Notification" ADD FOREIGN KEY ("dispatcherId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Notification" ADD FOREIGN KEY ("likeId") REFERENCES "Like"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Integration" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

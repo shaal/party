@@ -7,7 +7,6 @@ builder.prismaObject('Notification', {
   fields: (t) => ({
     id: t.exposeID('id'),
     type: t.exposeString('type'),
-    entityId: t.exposeString('entityId', { nullable: true }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
@@ -15,7 +14,8 @@ builder.prismaObject('Notification', {
 
     // Relations
     receiver: t.relation('receiver'),
-    dispatcher: t.relation('dispatcher')
+    dispatcher: t.relation('dispatcher'),
+    like: t.relation('like')
   })
 })
 
