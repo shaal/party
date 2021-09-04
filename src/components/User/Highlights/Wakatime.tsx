@@ -26,8 +26,7 @@ const Wakatime: React.FC<Props> = ({ user }) => {
       variables: {
         userId: user?.id
       },
-      skip: !user?.id,
-      pollInterval: 10_000
+      skip: !user?.id
     }
   )
 
