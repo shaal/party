@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
+import { Tooltip } from '~/components/ui/Tooltip'
 
 import { Card } from '../../ui/Card'
 import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
@@ -40,11 +41,20 @@ const Spotify: React.FC<Props> = ({ user }) => {
         <Card className="p-3 space-y-1 bg-green-100 border-green-300">
           <div className="flex items-center justify-between">
             <div>Listening to Spotify</div>
-            <img
-              className="h-4 w-4"
-              src="/brand/spotify.svg"
-              alt="Spotify Logo"
-            />
+            <Tooltip content="Go to Spotify">
+              <a
+                className="font-bold"
+                href={`${data?.spotify?.url as string}?utm_source=devparty`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="h-4 w-4"
+                  src="/brand/spotify.svg"
+                  alt="Spotify Logo"
+                />
+              </a>
+            </Tooltip>
           </div>
           <div className="flex items-center space-x-2 pt-1">
             <img
