@@ -1,5 +1,6 @@
 import { db } from '~/utils/prisma'
 
+import { createNotification } from '../../Common/createNotification'
 import { hasFollowed } from '../queries/hasFollowed'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {
@@ -28,6 +29,11 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
       }
     }
   })
+
+  if (userId !== currentUserId) {
+    console.log('sfs')
+    createNotification(currentUserId, userId, userId, 'FOLLOW')
+  }
 
   return user
 }

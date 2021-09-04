@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import * as timeago from 'timeago.js'
 
-import { Notification } from '~/__generated__/schema.generated'
+import { Notification, Post } from '~/__generated__/schema.generated'
 import { Card, CardBody } from '~/components/ui/Card'
 
 import SinglePost from '../Post/SinglePost'
@@ -30,7 +30,7 @@ const LikeNotification: React.FC<Props> = ({ notification }) => {
             </Link>
           </div>
         </div>
-        <SinglePost post={notification?.like?.post} />
+        <SinglePost post={notification?.like?.post as Post} />
       </CardBody>
     </Card>
   )

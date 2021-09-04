@@ -12,7 +12,7 @@ export const createNotification = async (
     data: {
       dispatcher: { connect: { id: dispatcherId } },
       receiver: { connect: { id: receiverId } },
-      like: { connect: { id: type === 'POSTLIKE' ? entityId : null } },
+      like: type === 'POSTLIKE' ? { connect: { id: entityId } } : undefined,
       type
     }
   })

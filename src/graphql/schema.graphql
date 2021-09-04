@@ -125,7 +125,7 @@ type Notification {
   createdAt: DateTime!
   dispatcher: User!
   id: ID!
-  like: Like!
+  like: Like
   receiver: User!
   type: String!
   updatedAt: DateTime!
