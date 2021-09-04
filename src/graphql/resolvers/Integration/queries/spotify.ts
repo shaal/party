@@ -6,16 +6,16 @@ import { Spotify } from '../SpotifyResolver'
 
 export const spotify = async (userId: string) => {
   try {
+    const integration = await db.integration.findFirst({ where: { userId } })
     const credentials = {
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      redirectUri: `http://localhost:3000/api/callback/spotify`
+      refreshToken: integration?.spotifyRefreshToken as string
     }
-
     const spotifyApi = new SpotifyWebApi(credentials)
-    const integration = await db.integration.findFirst({ where: { userId } })
+    const token = await spotifyApi.refreshAccessToken()
+    spotifyApi.setAccessToken(token.body.access_token)
 
-    spotifyApi.setAccessToken(integration?.spotifyRefreshToken as string)
     const { body } = await spotifyApi.getMyCurrentPlayingTrack()
     const item = body.item as SpotifyApi.TrackObjectFull
 
@@ -26,7 +26,7 @@ export const spotify = async (userId: string) => {
       item.album.images[0].url,
       item.artists[0].name
     )
-  } catch {
-    return null
+  } catch (error) {
+    return error
   }
 }
