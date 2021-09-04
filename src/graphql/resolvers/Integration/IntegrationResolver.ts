@@ -2,7 +2,6 @@ import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
 import { editIntegration } from './mutations/editIntegration'
-import { wakatimeActivity } from './queries/wakatimeActivity'
 
 builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
@@ -32,13 +31,6 @@ builder.prismaObject('Integration', {
           where: { id: root.id }
         })
         return integration?.spotifyRefreshToken
-      }
-    }),
-    wakatimeActivity: t.field({
-      type: 'String',
-      nullable: true,
-      resolve: async (root) => {
-        return await wakatimeActivity(root.id as string)
       }
     }),
     // Timestamps

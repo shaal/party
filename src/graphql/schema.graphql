@@ -73,7 +73,6 @@ type Integration {
   spotifyRefreshToken: String
   updatedAt: DateTime!
   wakatimeAPIKey: String
-  wakatimeActivity: String
 }
 
 type Invite {
@@ -235,6 +234,7 @@ type Query {
   topic(name: String!): Topic!
   user(id: ID, username: String): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
+  wakatime(userId: ID!): Wakatime
 }
 
 type QueryHomeFeedConnection {
@@ -414,6 +414,10 @@ type UserPostsConnection {
 type UserPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type Wakatime {
+  hours: String
 }
 
 input WhereHomeFeedInput {

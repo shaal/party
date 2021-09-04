@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { ClockIcon } from '@heroicons/react/outline'
 import { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -8,8 +9,8 @@ import { WakatimeIntegrationsQuery } from './__generated__/Wakatime.generated'
 
 const WAKATIME_INTEGRATIONS_QUERY = gql`
   query WakatimeIntegrationsQuery($userId: ID!) {
-    integration(userId: $userId) {
-      wakatimeActivity
+    wakatime(userId: $userId) {
+      hours
     }
   }
 `
@@ -25,18 +26,18 @@ const Wakatime: React.FC<Props> = ({ user }) => {
       variables: {
         userId: user?.id
       },
-      skip: !user?.id,
-      pollInterval: 10_000
+      skip: !user?.id
     }
   )
 
   return (
     <Fragment>
-      {data?.integration?.wakatimeActivity && (
+      {data?.wakatime?.hours && (
         <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
           <div>Hours coded last 30 days</div>
-          <div className="font-bold font-mono">
-            {data?.integration?.wakatimeActivity}
+          <div className="flex items-center space-x-1.5">
+            <ClockIcon className="h-4 w-4" />
+            <div className="font-bold font-mono">{data?.wakatime?.hours}</div>
           </div>
         </Card>
       )}
