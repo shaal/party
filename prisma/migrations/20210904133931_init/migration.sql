@@ -2,7 +2,7 @@
 CREATE TYPE "PostType" AS ENUM ('POST', 'TASK', 'QUESTION', 'REPLY');
 
 -- CreateEnum
-CREATE TYPE "NotificationType" AS ENUM ('POSTLIKE');
+CREATE TYPE "NotificationType" AS ENUM ('POSTLIKE', 'FOLLOW');
 
 -- CreateTable
 CREATE TABLE "User" (
