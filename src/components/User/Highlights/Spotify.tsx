@@ -41,15 +41,16 @@ const Spotify: React.FC<Props> = ({ user }) => {
           <div>Listening to Spotify</div>
           <div className="flex items-center space-x-2 pt-1">
             <img
-              src={data?.spotify?.image as string}
+              src={data.spotify.image as string}
               className="h-16 w-16 rounded-lg"
-              alt={data?.spotify?.name as string}
+              alt={data.spotify.name as string}
             />
             <div>
               <a
                 className="font-bold"
                 href={`${data?.spotify?.url as string}?utm_source=devparty`}
                 target="_blank"
+                rel="noreferrer"
               >
                 {data?.spotify?.name}
               </a>
