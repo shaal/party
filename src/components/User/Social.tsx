@@ -1,3 +1,5 @@
+import { useTheme } from 'next-themes'
+
 import { Profile } from '~/__generated__/schema.generated'
 
 interface Props {
@@ -5,6 +7,7 @@ interface Props {
 }
 
 const Social: React.FC<Props> = ({ profile }) => {
+  const { resolvedTheme } = useTheme()
   return (
     <div className="space-y-2">
       {profile?.website && (
@@ -25,7 +28,19 @@ const Social: React.FC<Props> = ({ profile }) => {
       )}
       {profile?.github && (
         <div className="flex items-center gap-2">
-          <img src="/brand/github-dark.svg" className="w-4" alt="GitHub Logo" />
+          {resolvedTheme === 'dark' ? (
+            <img
+              src="/brand/github-light.svg"
+              className="w-4"
+              alt="GitHub Logo"
+            />
+          ) : (
+            <img
+              src="/brand/github-dark.svg"
+              className="w-4"
+              alt="GitHub Logo"
+            />
+          )}
           <div>{profile?.github}</div>
         </div>
       )}
