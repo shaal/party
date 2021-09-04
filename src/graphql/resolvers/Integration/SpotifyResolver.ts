@@ -7,12 +7,20 @@ export class Spotify {
   isPlaying: boolean
   url: string
   image: string
+  artist: string
 
-  constructor(name: string, isPlaying: boolean, url: string, image: string) {
+  constructor(
+    name: string,
+    isPlaying: boolean,
+    url: string,
+    image: string,
+    artist: string
+  ) {
     this.name = name
     this.isPlaying = isPlaying
     this.url = url
     this.image = image
+    this.artist = artist
   }
 }
 
@@ -21,7 +29,8 @@ export const SpotifyObject = builder.objectRef<Spotify>('Spotify').implement({
     name: t.exposeString('name', { nullable: true }),
     isPlaying: t.exposeBoolean('isPlaying', { nullable: true }),
     url: t.exposeString('url', { nullable: true }),
-    image: t.exposeString('image', { nullable: true })
+    image: t.exposeString('image', { nullable: true }),
+    artist: t.exposeString('artist', { nullable: true })
   })
 })
 

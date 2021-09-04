@@ -329,6 +329,7 @@ input SignUpInput {
 }
 
 type Spotify {
+  artist: String
   image: String
   isPlaying: Boolean
   name: String

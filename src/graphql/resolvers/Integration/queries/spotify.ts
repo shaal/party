@@ -23,7 +23,8 @@ export const spotify = async (userId: string) => {
       item?.name as string,
       body.is_playing,
       item?.external_urls?.spotify as string,
-      item.album.images[0].url
+      item.album.images[0].url,
+      item.artists[0].name
     )
   } catch {
     return null

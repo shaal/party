@@ -11,6 +11,9 @@ const SPOTIFY_INTEGRATIONS_QUERY = gql`
     spotify(userId: $userId) {
       name
       isPlaying
+      image
+      url
+      artist
     }
   }
 `
@@ -35,8 +38,24 @@ const Spotify: React.FC<Props> = ({ user }) => {
     <Fragment>
       {data?.spotify?.isPlaying && (
         <Card className="p-3 space-y-1 bg-green-100 border-green-300">
-          <div>Listening to</div>
-          <div className="font-bold font-mono">{data?.spotify?.name}</div>
+          <div>Listening to Spotify</div>
+          <div className="flex items-center space-x-2 pt-1">
+            <img
+              src={data?.spotify?.image as string}
+              className="h-16 w-16 rounded-lg"
+              alt={data?.spotify?.name as string}
+            />
+            <div>
+              <a
+                className="font-bold"
+                href={data?.spotify?.url as string}
+                target="_blank"
+              >
+                {data?.spotify?.name}
+              </a>
+              <div className="text-sm">by {data?.spotify?.artist}</div>
+            </div>
+          </div>
         </Card>
       )}
     </Fragment>
