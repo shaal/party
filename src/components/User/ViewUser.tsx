@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import React, { Fragment, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -67,6 +68,10 @@ const ViewUser: React.FC = () => {
 
   return (
     <Fragment>
+      <NextSeo
+        title={`${data?.user?.username} (${data?.user?.profile?.name})`}
+        description={data?.user?.profile?.bio as string}
+      />
       {data?.user?.profile?.cover ? (
         <img
           className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
