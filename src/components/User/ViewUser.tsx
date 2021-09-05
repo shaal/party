@@ -75,12 +75,12 @@ const ViewUser: React.FC = () => {
       />
       {data?.user?.profile?.cover ? (
         <img
-          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
+          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full"
           src={data?.user?.profile?.cover as string}
           alt={`@${data?.user?.username}'s cover`}
         />
       ) : (
-        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
+        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full" />
       )}
       <GridLayout>
         <GridItemFour>
