@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '~/__generated__/schema.generated'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
@@ -33,19 +33,19 @@ const USER_FEED_QUERY = gql`
 `
 
 interface Props {
-  user: User
   feedType: string
 }
 
-const UserFeed: React.FC<Props> = ({ user, feedType }) => {
+const UserFeed: React.FC<Props> = ({ feedType }) => {
+  const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
     {
       variables: {
         after: null,
-        username: user?.username
+        username: router.query.username
       },
-      skip: !user?.id
+      skip: !router.isReady
     }
   )
 
@@ -79,7 +79,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
           <EmptyState
             message={
               <div>
-                <span className="font-bold mr-1">@{user?.username}</span>
+                <span className="font-bold mr-1">@{router.query.username}</span>
                 <span>seems like not posted yet!</span>
               </div>
             }
