@@ -60,13 +60,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 
   if (!nextClient) {
     nextClient = new ApolloClient({
-      ssrMode: typeof window === 'undefined',
+      ssrMode: true,
       credentials: 'include',
       link: new HttpLink({
-        uri:
-          typeof window === 'undefined'
-            ? 'http://localhost:3000/api/graphql'
-            : '/api/graphql',
+        uri: '/api/graphql',
         headers: headers
       }),
       cache: new InMemoryCache({

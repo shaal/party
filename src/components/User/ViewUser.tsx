@@ -4,10 +4,10 @@ import { NextSeo } from 'next-seo'
 import React, { Fragment, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import { PageLoading } from '../ui/PageLoading'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
@@ -66,6 +66,8 @@ const ViewUser: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (loading) return <PageLoading message="Profile Loading..." />
+
   return (
     <Fragment>
       <NextSeo
@@ -84,7 +86,7 @@ const ViewUser: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
+          <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
