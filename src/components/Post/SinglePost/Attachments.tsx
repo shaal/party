@@ -1,6 +1,5 @@
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
-import Image from 'next/image'
 import React, { Fragment } from 'react'
 
 import { Button } from '~/components/ui/Button'
@@ -47,9 +46,8 @@ const Attachments: React.FC<Props> = ({
                   <source src={attachment.url} type="video/mp4" />
                 </video>
               ) : (
-                <Image
+                <img
                   className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
-                  layout="fill"
                   src={attachment.url}
                   alt={attachment.url}
                 />
