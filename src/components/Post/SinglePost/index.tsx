@@ -131,7 +131,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             <Link href={`/posts/${post?.parent?.id}`} passHref>
               <a className="text-gray-500 dark:text-gray-400">Replying to</a>
             </Link>
-            <Link href={`/@${post?.parent?.user?.username}`} passHref>
+            <Link href={`/@/${post?.parent?.user?.username}`} passHref>
               <a>
                 <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
               </a>

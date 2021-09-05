@@ -20,7 +20,7 @@ const Followers: React.FC = () => {
     USER_FOLLOWERS_QUERY,
     {
       variables: {
-        username: router.query.username!.slice(1)
+        username: router.query.username
       },
       skip: !router.isReady
     }

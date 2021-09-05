@@ -61,7 +61,7 @@ const ViewUser: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
-      username: router.query.username!.slice(1)
+      username: router.query.username
     },
     skip: !router.isReady
   })

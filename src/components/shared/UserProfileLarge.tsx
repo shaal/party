@@ -23,12 +23,12 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
         <img
           src={user?.profile?.avatar as string}
           className="h-14 w-14 rounded-full bg-gray-200"
-          alt={`@${user?.username}'s avatar`}
+          alt={`@/${user?.username}'s avatar`}
         />
         <div className="space-y-2">
           <div>
             <div className="flex items-center gap-1.5">
-              <Link href={`/@${user?.username}`} passHref>
+              <Link href={`/@/${user?.username}`} passHref>
                 <div className="font-bold cursor-pointer flex items-center space-x-1">
                   <div>{user?.profile?.name}</div>
                   {user?.isVerified && (

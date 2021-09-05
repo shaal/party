@@ -20,7 +20,7 @@ const Following: React.FC = () => {
     USER_FOLLOWING_QUERY,
     {
       variables: {
-        username: router.query.username!.slice(1)
+        username: router.query.username
       },
       skip: !router.isReady
     }
