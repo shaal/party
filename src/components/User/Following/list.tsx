@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '~/__generated__/schema.generated'
 import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
 import UserProfileLarge from '~/components/shared/UserProfileLarge'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -13,8 +13,8 @@ import { EmptyState } from '../../ui/EmptyState'
 import { FollowingQuery } from './__generated__/list.generated'
 
 export const FOLLOWING_QUERY = gql`
-  query FollowingQuery($after: String, $userId: ID!) {
-    user(id: $userId) {
+  query FollowingQuery($after: String, $username: String!) {
+    user(username: $username) {
       following(first: 10, after: $after) {
         totalCount
         pageInfo {
@@ -40,18 +40,16 @@ export const FOLLOWING_QUERY = gql`
   }
 `
 
-interface Props {
-  user: User
-}
-
-const FollowingList: React.FC<Props> = ({ user }) => {
+const FollowingList: React.FC = () => {
+  const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<FollowingQuery>(
     FOLLOWING_QUERY,
     {
       variables: {
         after: null,
-        userId: user?.id
-      }
+        username: router.query.username
+      },
+      skip: !router.isReady
     }
   )
   const following = data?.user?.following?.edges?.map((edge) => edge?.node)
@@ -103,7 +101,7 @@ const FollowingList: React.FC<Props> = ({ user }) => {
           <EmptyState
             message={
               <div>
-                <span className="font-bold mr-1">@{user?.username}</span>
+                <span className="font-bold mr-1">@{router.query.username}</span>
                 <span>isn’t following anybody.</span>
               </div>
             }
