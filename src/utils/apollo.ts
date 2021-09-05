@@ -70,10 +70,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
         typePolicies: {
           Query: {
             fields: {
-              posts: relayStylePagination(),
-              homeFeed: relayStylePagination(),
-              replies: relayStylePagination(),
-              notifications: relayStylePagination()
+              posts: relayStylePagination([]),
+              homeFeed: relayStylePagination([]),
+              replies: relayStylePagination([]),
+              notifications: relayStylePagination([])
             }
           },
           Topic: {
@@ -90,7 +90,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
           },
           Product: {
             fields: {
-              posts: relayStylePagination()
+              posts: relayStylePagination([])
             }
           },
           Post: {
