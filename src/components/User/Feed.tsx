@@ -4,11 +4,11 @@ import React, { Fragment } from 'react'
 import useInView from 'react-cool-inview'
 
 import { User } from '~/__generated__/schema.generated'
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
 const USER_FEED_QUERY = gql`
@@ -69,14 +69,7 @@ const UserFeed: React.FC<Props> = ({ user, feedType }) => {
     }
   })
 
-  if (loading)
-    return (
-      <div className="space-y-3">
-        <PostShimmer />
-        <PostShimmer />
-        <PostShimmer />
-      </div>
-    )
+  if (loading) return <PostsShimmer />
 
   return (
     <Fragment>

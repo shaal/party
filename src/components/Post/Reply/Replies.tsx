@@ -4,7 +4,7 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { Post } from '~/__generated__/schema.generated'
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
+import PostsShimmer from '~/components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
@@ -65,14 +65,7 @@ const Replies: React.FC<Props> = ({ post }) => {
     }
   })
 
-  if (loading)
-    return (
-      <div className="space-y-3">
-        <PostShimmer />
-        <PostShimmer />
-        <PostShimmer />
-      </div>
-    )
+  if (loading) return <PostsShimmer />
 
   return (
     <div>

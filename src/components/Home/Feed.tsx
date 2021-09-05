@@ -3,11 +3,11 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import useInView from 'react-cool-inview'
 
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
 export const HOME_FEED_QUERY = gql`
@@ -67,14 +67,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
     }
   })
 
-  if (loading)
-    return (
-      <div className="space-y-3">
-        <PostShimmer />
-        <PostShimmer />
-        <PostShimmer />
-      </div>
-    )
+  if (loading) return <PostsShimmer />
 
   return (
     <div>

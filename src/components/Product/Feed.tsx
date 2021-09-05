@@ -4,11 +4,11 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { Product } from '~/__generated__/schema.generated'
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
+import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
 const PRODUCT_FEED_QUERY = gql`
@@ -66,14 +66,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
     }
   })
 
-  if (loading)
-    return (
-      <div className="space-y-3">
-        <PostShimmer />
-        <PostShimmer />
-        <PostShimmer />
-      </div>
-    )
+  if (loading) return <PostsShimmer />
 
   return (
     <div>
