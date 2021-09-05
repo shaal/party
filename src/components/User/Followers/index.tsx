@@ -43,7 +43,7 @@ const Followers: React.FC = () => {
           {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
         </GridItemFour>
         <GridItemEight>
-          <FollowersList user={data?.user as User} />
+          <FollowersList />
         </GridItemEight>
       </GridLayout>
     </Fragment>

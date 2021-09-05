@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { UsersIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '~/__generated__/schema.generated'
 import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
@@ -13,8 +13,8 @@ import { EmptyState } from '../../ui/EmptyState'
 import { FollowersQuery } from './__generated__/list.generated'
 
 export const FOLLOWERS_QUERY = gql`
-  query FollowersQuery($after: String, $userId: ID!) {
-    user(id: $userId) {
+  query FollowersQuery($after: String, $username: String!) {
+    user(username: $username) {
       followers(first: 10, after: $after) {
         totalCount
         pageInfo {
@@ -40,18 +40,16 @@ export const FOLLOWERS_QUERY = gql`
   }
 `
 
-interface Props {
-  user: User
-}
-
-const FollowersList: React.FC<Props> = ({ user }) => {
+const FollowersList: React.FC = () => {
+  const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<FollowersQuery>(
     FOLLOWERS_QUERY,
     {
       variables: {
         after: null,
-        userId: user?.id
-      }
+        username: router.query.username
+      },
+      skip: !router.isReady
     }
   )
   const followers = data?.user?.followers?.edges?.map((edge) => edge?.node)
@@ -103,7 +101,7 @@ const FollowersList: React.FC<Props> = ({ user }) => {
           <EmptyState
             message={
               <div>
-                <span className="font-bold mr-1">@{user?.username}</span>
+                <span className="font-bold mr-1">@{router.query.username}</span>
                 <span>doesn’t have any followers yet.</span>
               </div>
             }
