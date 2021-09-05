@@ -66,6 +66,8 @@ const ViewUser: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (loading) return <NextSeo title="Loading..." />
+
   return (
     <Fragment>
       <NextSeo
