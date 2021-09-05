@@ -8,6 +8,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
+import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
@@ -89,7 +90,11 @@ const ViewUser: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             <FeedType user={data?.user as User} setFeedType={setFeedType} />
-            <UserFeed user={data?.user as User} feedType={feedType} />
+            {loading ? (
+              <PostsShimmer />
+            ) : (
+              <UserFeed user={data?.user as User} feedType={feedType} />
+            )}
           </div>
         </GridItemEight>
       </GridLayout>
