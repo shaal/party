@@ -25,11 +25,13 @@ const InviteDetails: React.FC = () => {
 
   return (
     <Fragment>
-      <img
-        className="object-cover h-[18.5rem] w-full"
-        src="https://i.ibb.co/xYQW7cs/invite.webp"
-        alt="Invite Illustration"
-      />
+      <div className="bg-brand-300 py-2">
+        <img
+          className="object-cover h-60 w-60 mx-auto"
+          src="https://i.ibb.co/HpqsxFT/3d-stripy-new-mail.png"
+          alt="Invite Illustration"
+        />
+      </div>
       <div className="px-5 py-3.5">
         <div className="text-center space-y-4">
           <div className="text-xl font-bold">
