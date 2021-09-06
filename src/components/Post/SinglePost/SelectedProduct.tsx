@@ -12,7 +12,7 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
     <div className="text-sm flex items-center space-x-2 ml-auto">
       <div>Posted in</div>
       <Link href={`/products/${product?.slug}`} passHref>
-        <div className="flex items-center space-x-1 cursor-pointer">
+        <a className="flex items-center space-x-1 cursor-pointer">
           <img
             className="h-4 w-4 rounded"
             src={product?.avatar as string}
@@ -21,7 +21,7 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
           <div className="font-bold text-gray-600 dark:text-gray-200">
             {product?.name}
           </div>
-        </div>
+        </a>
       </Link>
     </div>
   )

@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import DetailsShimmer from '~/components/shared/Shimmer/DetailsShimmer'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { PageLoading } from '~/components/ui/PageLoading'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { ViewUserQuery } from '../__generated__/ViewUser.generated'
@@ -26,6 +26,8 @@ const Followers: React.FC = () => {
     }
   )
 
+  if (loading) return <PageLoading message="Loading followers..." />
+
   return (
     <Fragment>
       {data?.user?.profile?.cover ? (
@@ -40,7 +42,7 @@ const Followers: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
+          <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
           <FollowersList />

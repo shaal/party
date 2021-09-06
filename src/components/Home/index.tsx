@@ -9,6 +9,7 @@ import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
 import { CURRENT_USER_QUERY } from '../DefaultLayout'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import NewPost from '../Post/NewPost'
+import Announcement from './Announcement'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
@@ -25,7 +26,7 @@ const Home: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             {data?.me && <NewPost />}
-            <FeedType setFeedType={setFeedType} />
+            <FeedType setFeedType={setFeedType} feedType={feedType} />
             <HomeFeed feedType={feedType} />
             <ErrorMessage
               title="Failed to load the current user."
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
           </div>
         </GridItemEight>
         <GridItemFour>
+          {true && <Announcement />}
           <RecentUsers />
           <RecentProducts />
           <Footer />

@@ -7,7 +7,7 @@ import { User } from '~/__generated__/schema.generated'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
+import { PageLoading } from '../ui/PageLoading'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
@@ -58,7 +58,7 @@ export const VIEW_USER_QUERY = gql`
 
 const ViewUser: React.FC = () => {
   const router = useRouter()
-  const [feedType, setFeedType] = useState<string>('ALL')
+  const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
@@ -66,7 +66,7 @@ const ViewUser: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <NextSeo title="Loading..." />
+  if (loading) return <PageLoading message="Loading user..." />
 
   return (
     <Fragment>
@@ -86,11 +86,11 @@ const ViewUser: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
+          <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
-            <FeedType user={data?.user as User} setFeedType={setFeedType} />
+            <FeedType setFeedType={setFeedType} feedType={feedType} />
             <UserFeed feedType={feedType} />
           </div>
         </GridItemEight>

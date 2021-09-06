@@ -23,7 +23,7 @@ interface NavItemProps {
 const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
   return (
     <Link href={url} passHref>
-      <span
+      <a
         className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
           block: isMobile,
           'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
@@ -33,7 +33,7 @@ const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
         aria-current={current ? 'page' : undefined}
       >
         {name}
-      </span>
+      </a>
     </Link>
   )
 }

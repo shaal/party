@@ -32,6 +32,7 @@ export const PostFragment = gql`
     attachments
     type
     hasLiked
+    createdAt
     parent {
       id
       user {
@@ -51,14 +52,12 @@ export const PostFragment = gql`
             username
             profile {
               id
-              name
               avatar
             }
           }
         }
       }
     }
-    createdAt
     user {
       id
       username
@@ -141,9 +140,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         <div className="flex justify-between items-center">
           <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
-            <div className="text-sm cursor-pointer">
+            <a className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
-            </div>
+            </a>
           </Link>
         </div>
         {post?.type === 'POST' && <PostType post={post} />}
@@ -154,12 +153,12 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`} passHref>
-          <button className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
+          <a className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
             <ChatIcon className="h-5 w-5" />
             {(post?.replies?.totalCount as number) > 0 && (
               <div className="text-xs">{post?.replies?.totalCount}</div>
             )}
-          </button>
+          </a>
         </Link>
         {post?.user?.id === currentUser?.id && <DeleteButton entity={post} />}
         {(post?.likes?.totalCount as number) > 0 && (
@@ -167,12 +166,19 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             <div>Liked by</div>
             <div className="flex -space-x-1.5 overflow-hidden">
               {post?.likes?.edges?.map((like) => (
-                <img
+                <Link
                   key={like?.node?.user?.id}
-                  className="rounded-full border h-5 w-5"
-                  src={like?.node?.user?.profile?.avatar as string}
-                  alt={`@${like?.node?.user?.username}'s avatar`}
-                />
+                  href={`/@/${like?.node?.user?.username}`}
+                  passHref
+                >
+                  <a>
+                    <img
+                      className="rounded-full border h-5 w-5"
+                      src={like?.node?.user?.profile?.avatar as string}
+                      alt={`@${like?.node?.user?.username}'s avatar`}
+                    />
+                  </a>
+                </Link>
               ))}
             </div>
             {(post?.likes?.totalCount as number) > 5 && (

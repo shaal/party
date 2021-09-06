@@ -55,7 +55,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
   })
 
   return (
-    <Card className="mt-5 border-yellow-400 bg-yellow-100">
+    <Card className="mt-5 border-yellow-400">
       <CardBody>
         <div className="font-bold text-lg">Details</div>
         <div className="space-y-1 mt-3 text-sm">
