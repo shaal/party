@@ -51,7 +51,6 @@ export const PostFragment = gql`
             username
             profile {
               id
-              name
               avatar
             }
           }
