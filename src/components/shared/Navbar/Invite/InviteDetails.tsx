@@ -21,7 +21,7 @@ export const INVITE_CODE_QUERY = gql`
 const InviteDetails: React.FC = () => {
   const { data, loading } = useQuery<InviteCodeQuery>(INVITE_CODE_QUERY)
 
-  if (loading) return <div>Loading Invite Code...</div>
+  if (loading) return <div className="px-5 py-3.5">Loading Invite Code...</div>
 
   return (
     <Fragment>
