@@ -34,7 +34,7 @@ const Wakatime: React.FC<Props> = ({ user }) => {
   return (
     <Fragment>
       {data?.wakatime?.hours && (
-        <Card className="p-3 space-y-1 bg-blue-100 border-blue-300">
+        <Card className="p-3 space-y-1 !bg-blue-100 border-blue-300">
           <div className="flex items-center justify-between">
             <div>Hours coded last 30 days</div>
             <Tooltip content="Go to WakaTime">
