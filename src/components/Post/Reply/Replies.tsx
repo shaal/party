@@ -69,7 +69,7 @@ const Replies: React.FC<Props> = ({ post }) => {
 
   return (
     <div>
-      <ErrorMessage title="Failed to load posts" error={error} />
+      <ErrorMessage title="Failed to load replies" error={error} />
       <div className="space-y-3">
         {replies?.length === 0 ? (
           <EmptyState

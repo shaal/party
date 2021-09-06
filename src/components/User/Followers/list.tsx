@@ -95,7 +95,7 @@ const FollowersList: React.FC = () => {
 
   return (
     <div>
-      <ErrorMessage title="Failed to load posts" error={error} />
+      <ErrorMessage title="Failed to load followers" error={error} />
       <div className="space-y-3">
         {followers?.length === 0 ? (
           <EmptyState

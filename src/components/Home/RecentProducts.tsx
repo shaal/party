@@ -59,7 +59,7 @@ const RecentProducts: React.FC = () => {
 
   return (
     <RecentUsersCard>
-      <ErrorMessage title="Failed to load posts" error={error} />
+      <ErrorMessage title="Failed to load products" error={error} />
       <div className="space-y-3">
         {data?.products?.edges?.map((product: any) => (
           <ProductProfile
