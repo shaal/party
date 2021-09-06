@@ -8,6 +8,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
+import { PageLoading } from '../ui/PageLoading'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
@@ -66,7 +67,7 @@ const ViewUser: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <NextSeo title="Loading..." />
+  if (loading) return <PageLoading message="Loading user..." />
 
   return (
     <Fragment>
