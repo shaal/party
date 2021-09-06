@@ -3,6 +3,7 @@ import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { StaffToolsDashboardQuery } from './__generated__/index.generated'
+import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
   query StaffToolsDashboardQuery {
@@ -19,8 +20,10 @@ const StaffToolsDashboard: React.FC = () => {
 
   return (
     <GridLayout>
+      <GridItemFour>
+        <Sidebar />
+      </GridItemFour>
       <GridItemEight>TBD</GridItemEight>
-      <GridItemFour>TBD</GridItemFour>
     </GridLayout>
   )
 }
