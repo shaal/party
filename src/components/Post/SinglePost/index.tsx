@@ -140,9 +140,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         <div className="flex justify-between items-center">
           <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`} passHref>
-            <div className="text-sm cursor-pointer">
+            <a className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
-            </div>
+            </a>
           </Link>
         </div>
         {post?.type === 'POST' && <PostType post={post} />}
