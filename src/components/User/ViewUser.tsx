@@ -7,7 +7,6 @@ import { User } from '~/__generated__/schema.generated'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import DetailsShimmer from '../shared/Shimmer/DetailsShimmer'
 import { PageLoading } from '../ui/PageLoading'
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
@@ -87,7 +86,7 @@ const ViewUser: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          {loading ? <DetailsShimmer /> : <Details user={data?.user as User} />}
+          <Details user={data?.user as User} />
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
