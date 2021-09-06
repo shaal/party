@@ -6,6 +6,7 @@ import { createSession, removeSession } from '~/utils/sessions'
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
 import { joinWaitlist } from './mutations/joinWaitlist'
+import { signUp } from './mutations/signUp'
 
 builder.queryField('me', (t) =>
   t.prismaField({
@@ -113,6 +114,49 @@ builder.mutationField('joinWaitlist', (t) =>
     },
     resolve: async (query, root, { input }) => {
       return joinWaitlist(query, input)
+    }
+  })
+)
+
+const SignupInput = builder.inputType('SignupInput', {
+  fields: (t) => ({
+    username: t.string({
+      validate: {
+        minLength: 1,
+        maxLength: 30
+      }
+    }),
+    email: t.string({
+      validate: {
+        email: true
+      }
+    }),
+    password: t.string({
+      validate: {
+        minLength: 6
+      }
+    }),
+    invite: t.string({
+      validate: {
+        minLength: 1,
+        maxLength: 12
+      }
+    })
+  })
+})
+
+builder.mutationField('signUp', (t) =>
+  t.prismaField({
+    type: 'User',
+    skipTypeScopes: true,
+    authScopes: {
+      unauthenticated: true
+    },
+    args: {
+      input: t.arg({ type: SignupInput })
+    },
+    resolve: async (query, root, { input }, { req }) => {
+      return signUp(query, input, req)
     }
   })
 )

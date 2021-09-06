@@ -123,6 +123,7 @@ type Mutation {
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   regenerateInvite: Invite!
+  signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
 }
@@ -325,6 +326,13 @@ type QueryUsersConnectionEdge {
 
 enum Result {
   SUCCESS
+}
+
+input SignupInput {
+  email: String!
+  invite: String!
+  password: String!
+  username: String!
 }
 
 type Spotify {
