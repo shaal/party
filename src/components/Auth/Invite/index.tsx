@@ -55,7 +55,7 @@ const InviteSignup: React.FC = () => {
                     <Link href={`/@/${data?.invite?.user?.username}`}>
                       <a className="font-bold">
                         <Slug slug={data?.invite?.user?.username} prefix="@" />{' '}
-                        invited you to Devparty
+                        invited you to the party
                       </a>
                     </Link>
                   </div>
