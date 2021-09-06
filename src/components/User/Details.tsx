@@ -29,10 +29,10 @@ const Details: React.FC<Props> = ({ user }) => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <div className="space-y-5 w-96">
+    <div className="space-y-5">
       <img
         src={user?.profile?.avatar as string}
-        className="rounded-full h-40 w-40 -mt-24 ring-8 ring-gray-50 dark:ring-black"
+        className="rounded-full h-40 w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
         alt={`@${user?.username}'s avatar`}
       />
       <div>
@@ -62,7 +62,7 @@ const Details: React.FC<Props> = ({ user }) => {
         </Link>
       )}
       {user?.profile?.bio && (
-        <div className="linkify">
+        <div className="linkify w-96">
           <Linkify>{user?.profile?.bio}</Linkify>
         </div>
       )}
