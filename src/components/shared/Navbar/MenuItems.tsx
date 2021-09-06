@@ -29,7 +29,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
   const authRedirect = useAuthRedirect()
   const [logout] = useMutation(
     gql`
-      mutation UserInfoLogoutMutation {
+      mutation UserLogoutMutation {
         logout
       }
     `,
