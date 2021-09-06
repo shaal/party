@@ -198,3 +198,19 @@ builder.mutationField('modUser', (t) =>
     }
   })
 )
+
+builder.mutationField('onboardUser', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: {
+      userId: t.arg.id()
+    },
+    nullable: true,
+    resolve: async (query, root, { userId }) => {
+      return await db.user.update({
+        where: { id: userId },
+        data: { inWaitlist: false }
+      })
+    }
+  })
+)

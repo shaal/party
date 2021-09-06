@@ -123,6 +123,7 @@ type Mutation {
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
+  onboardUser(userId: ID!): User
   regenerateInvite: Invite!
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User

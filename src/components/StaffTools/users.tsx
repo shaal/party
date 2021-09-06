@@ -1,13 +1,19 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import toast from 'react-hot-toast'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import UserProfileLarge from '../shared/UserProfileLarge'
+import { Button } from '../ui/Button'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PageLoading } from '../ui/PageLoading'
-import { StaffToolsUsersQuery } from './__generated__/users.generated'
+import {
+  OnboardUserMutation,
+  OnboardUserMutationVariables,
+  StaffToolsUsersQuery
+} from './__generated__/users.generated'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_USERS_QUERY = gql`
@@ -21,6 +27,9 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
         node {
           id
           username
+          inWaitlist
+          isVerified
+          hasFollowed
           profile {
             id
             name
@@ -44,6 +53,28 @@ const StaffToolsUsers: React.FC = () => {
   )
   const users = data?.users?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.users?.pageInfo
+
+  const [onboardUser] = useMutation<
+    OnboardUserMutation,
+    OnboardUserMutationVariables
+  >(
+    gql`
+      mutation OnboardUserMutation($userId: ID!) {
+        onboardUser(userId: $userId) {
+          id
+          inWaitlist
+        }
+      }
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        toast.success('Successfully onboarded the user')
+      }
+    }
+  )
 
   const { observe } = useInView({
     threshold: 1,
@@ -77,7 +108,21 @@ const StaffToolsUsers: React.FC = () => {
               <div key={user?.id}>
                 <UserProfileLarge user={user} showFollow />
                 <div className="border-b mt-4" />
-                <div className="my-3">TBD</div>
+                <div className="my-3">
+                  {user?.inWaitlist && (
+                    <div>
+                      <Button
+                        size="sm"
+                        className="text-sm"
+                        onClick={() =>
+                          onboardUser({ variables: { userId: user?.id } })
+                        }
+                      >
+                        Onboard user
+                      </Button>
+                    </div>
+                  )}
+                </div>
                 <div className="border-b" />
               </div>
             ))}
