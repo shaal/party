@@ -36,11 +36,13 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
     return (
       <Tooltip content={product?.name}>
         <Link href={`/products/${product?.slug}`} passHref>
-          <img
-            className="h-9 w-9 rounded-lg cursor-pointer"
-            src={product?.avatar}
-            alt={`#${product?.slug}'s avatar`}
-          />
+          <a>
+            <img
+              className="h-9 w-9 rounded-lg"
+              src={product?.avatar}
+              alt={`#${product?.slug}'s avatar`}
+            />
+          </a>
         </Link>
       </Tooltip>
     )
