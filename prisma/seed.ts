@@ -38,7 +38,7 @@ async function main() {
           create: {
             code: await (await md5(faker.internet.email() + Math.random()))
               .slice(0, 12)
-              .toUpperCase()
+              .toLowerCase()
           }
         },
         integrations: { create: {} },
@@ -72,7 +72,7 @@ async function main() {
           create: {
             code: await (await md5(user.email + Math.random()))
               .slice(0, 12)
-              .toUpperCase()
+              .toLowerCase()
           }
         },
         integrations: { create: {} }

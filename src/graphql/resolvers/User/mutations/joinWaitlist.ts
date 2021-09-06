@@ -28,7 +28,7 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
         create: {
           code: await (await md5(input.email + Math.random()))
             .slice(0, 12)
-            .toUpperCase()
+            .toLowerCase()
         }
       },
       integrations: { create: {} }
