@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "yarn generate && next dev",
     "build": "yarn generate && next build",
-    "start": "next start -p ${PORT-3000}",
+    "start": "next start -p ${PORT-8080}",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --write \"./src/**/*.{ts,tsx}\"",
