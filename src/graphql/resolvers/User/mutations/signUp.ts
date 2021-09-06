@@ -5,7 +5,7 @@ import { hashPassword } from '~/utils/auth'
 import { db } from '~/utils/prisma'
 import { createSession } from '~/utils/sessions'
 
-import { reservedSlugs } from '../../Common/reservedSlugs'
+import { reservedSlugs } from '../../Common/queries/reservedSlugs'
 
 export const signUp = async (query: any, input: SignUpInput, req: any) => {
   if (reservedSlugs.includes(input.username)) {

@@ -1,6 +1,6 @@
 import { db } from '~/utils/prisma'
 
-import { createNotification } from '../../Common/createNotification'
+import { createNotification } from '../../Notification/mutations/createNotification'
 import { hasFollowed } from '../queries/hasFollowed'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {

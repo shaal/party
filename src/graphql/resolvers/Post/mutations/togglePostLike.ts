@@ -1,7 +1,7 @@
 import { db } from '~/utils/prisma'
 
-import { createNotification } from '../../Common/createNotification'
-import { hasLiked } from '../../Common/hasLiked'
+import { hasLiked } from '../../Like/queries/hasLiked'
+import { createNotification } from '../../Notification/mutations/createNotification'
 
 export const togglePostLike = async (
   query: any,
