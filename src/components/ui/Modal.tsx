@@ -35,7 +35,7 @@ export const Modal: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 w-screen h-screen">
+    <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 h-screen">
       <div
         className="w-screen h-screen align-middle"
         style={{ display: 'table-cell' }}
