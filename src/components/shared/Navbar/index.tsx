@@ -9,6 +9,7 @@ import { Fragment } from 'react'
 import { Button } from '~/components/ui/Button'
 import AppContext from '~/components/utils/AppContext'
 
+import Invite from './Invite'
 import MenuItems from './MenuItems'
 import Search from './Search'
 import StaffBar from './StaffBar'
@@ -118,13 +119,12 @@ const Navbar: React.FC = () => {
                   <div className="shimmer rounded-full h-9 w-9"></div>
                 ) : currentUser ? (
                   <div className="flex items-center gap-5">
-                    {currentUser && (
-                      <Link href="/notifications">
-                        <a>
-                          <LightningBoltIcon className="h-6 w-6" />
-                        </a>
-                      </Link>
-                    )}
+                    <Invite />
+                    <Link href="/notifications">
+                      <a>
+                        <LightningBoltIcon className="h-6 w-6" />
+                      </a>
+                    </Link>
                     <MenuItems currentUser={currentUser} />
                   </div>
                 ) : (
