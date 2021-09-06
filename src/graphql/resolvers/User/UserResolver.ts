@@ -14,6 +14,9 @@ builder.prismaObject('User', {
     spammy: t.exposeBoolean('spammy', {}),
     isVerified: t.exposeBoolean('isVerified', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
+    inWaitlist: t.exposeBoolean('inWaitlist', {
+      authScopes: { isStaff: true }
+    }),
     email: t.exposeString('email', { authScopes: { $granted: 'currentUser' } }),
     hasFollowed: t.field({
       type: 'Boolean',
@@ -32,7 +35,7 @@ builder.prismaObject('User', {
     products: t.relation('products'),
     invite: t.relation('invite', {
       nullable: true,
-      authScopes: { $granted: 'currentUser' }
+      authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
@@ -192,6 +195,22 @@ builder.mutationField('modUser', (t) =>
     },
     resolve: async (query, root, { input }) => {
       return modUser(query, input)
+    }
+  })
+)
+
+builder.mutationField('onboardUser', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: {
+      userId: t.arg.id()
+    },
+    nullable: true,
+    resolve: async (query, root, { userId }) => {
+      return await db.user.update({
+        where: { id: userId },
+        data: { inWaitlist: false }
+      })
     }
   })
 )

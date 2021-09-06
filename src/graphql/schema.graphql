@@ -123,6 +123,7 @@ type Mutation {
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
+  onboardUser(userId: ID!): User
   regenerateInvite: Invite!
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
@@ -381,6 +382,7 @@ type User {
   hasSpotifyIntegration: Boolean!
   hasWakatimeIntegration: Boolean!
   id: ID!
+  inWaitlist: Boolean!
   invite: Invite
   isStaff: Boolean!
   isVerified: Boolean!

@@ -55,7 +55,7 @@ const InviteDetails: React.FC = () => {
           </div>
         </div>
         <div className="mt-5 mb-1 text-center">
-          You invited <b>{data?.me?.invite?.usedTimes}</b> users
+          You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
         </div>
       </div>
     </Fragment>

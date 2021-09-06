@@ -1,4 +1,5 @@
 import { ShieldCheckIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
 import React from 'react'
 
 import packageJson from '../../../../package.json'
@@ -21,7 +22,11 @@ const StaffBar: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center gap-4" title="Staff panel">
-        <ShieldCheckIcon className="h-4 w-4" />
+        <Link href="/stafftools">
+          <a>
+            <ShieldCheckIcon className="h-4 w-4" />
+          </a>
+        </Link>
       </div>
     </div>
   )
