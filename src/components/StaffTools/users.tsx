@@ -3,7 +3,7 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import UserProfile from '../shared/UserProfile'
+import UserProfileLarge from '../shared/UserProfileLarge'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PageLoading } from '../ui/PageLoading'
@@ -24,6 +24,7 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
           profile {
             id
             name
+            bio
             avatar
           }
         }
@@ -74,7 +75,10 @@ const StaffToolsUsers: React.FC = () => {
             <ErrorMessage title="Failed to load users" error={error} />
             {users?.map((user: any) => (
               <div key={user?.id}>
-                <UserProfile user={user} showFollow />
+                <UserProfileLarge user={user} showFollow />
+                <div className="border-b mt-4" />
+                <div className="my-3">TBD</div>
+                <div className="border-b" />
               </div>
             ))}
           </CardBody>
