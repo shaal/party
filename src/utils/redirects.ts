@@ -43,3 +43,23 @@ export async function authenticatedRoute(
     props: {}
   }
 }
+
+export async function staffRoute(
+  ctx: GetServerSidePropsContext,
+  redirect = '/'
+): Promise<GetServerSidePropsResult<{}>> {
+  const session = await resolveSession(ctx)
+
+  if (!session?.isStaff) {
+    return {
+      redirect: {
+        destination: redirect,
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}
