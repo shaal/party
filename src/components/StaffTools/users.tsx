@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
+import * as timeago from 'timeago.js'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import UserProfileLarge from '../shared/UserProfileLarge'
@@ -9,6 +10,7 @@ import { Button } from '../ui/Button'
 import { Card, CardBody } from '../ui/Card'
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { PageLoading } from '../ui/PageLoading'
+import { Tooltip } from '../ui/Tooltip'
 import {
   OnboardUserMutation,
   OnboardUserMutationVariables,
@@ -30,6 +32,12 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
           inWaitlist
           isVerified
           hasFollowed
+          createdAt
+          updatedAt
+          invite {
+            code
+            usedTimes
+          }
           profile {
             id
             name
@@ -48,7 +56,8 @@ const StaffToolsUsers: React.FC = () => {
     {
       variables: {
         after: null
-      }
+      },
+      pollInterval: 10_000
     }
   )
   const users = data?.users?.edges?.map((edge) => edge?.node)
@@ -107,8 +116,24 @@ const StaffToolsUsers: React.FC = () => {
             {users?.map((user: any) => (
               <div key={user?.id}>
                 <UserProfileLarge user={user} showFollow />
-                <div className="border-b mt-4" />
-                <div className="my-3">
+                <div className="border-b border-gray-200 dark:border-gray-800 mt-4" />
+                <div className="my-3 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      <div>
+                        Created: <b>{timeago.format(user?.createdAt)}</b>
+                      </div>
+                      <div>
+                        Updated: <b>{timeago.format(user?.updatedAt)}</b>
+                      </div>
+                      <div className="flex space-x-1">
+                        <span>Invite:</span>
+                        <Tooltip content={user?.invite?.code}>
+                          <b>{user?.invite?.usedTimes} people</b>
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </div>
                   {user?.inWaitlist && (
                     <div>
                       <Button
@@ -123,7 +148,7 @@ const StaffToolsUsers: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className="border-b" />
+                <div className="border-b border-gray-200 dark:border-gray-800" />
               </div>
             ))}
           </CardBody>
