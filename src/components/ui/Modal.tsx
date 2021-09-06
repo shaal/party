@@ -32,7 +32,7 @@ export const Modal: React.FC<Props> = (props) => {
     return () => {
       window.removeEventListener('keydown', handler)
     }
-  }, [])
+  })
 
   return (
     <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 h-screen">

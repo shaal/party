@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "yarn generate && next dev",
     "build": "yarn generate && next build",
-    "export": "yarn build && next export -o _static",
     "start": "next start -p ${PORT-3000}",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
