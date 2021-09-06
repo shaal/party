@@ -25,7 +25,7 @@ const Home: React.FC = () => {
         <GridItemEight>
           <div className="space-y-3">
             {data?.me && <NewPost />}
-            <FeedType setFeedType={setFeedType} />
+            <FeedType setFeedType={setFeedType} feedType={feedType} />
             <HomeFeed feedType={feedType} />
             <ErrorMessage
               title="Failed to load the current user."
