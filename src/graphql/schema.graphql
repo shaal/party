@@ -81,6 +81,12 @@ type Invite {
   usedTimes: Int
 }
 
+input JoinWaitlistInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
 type Like {
   createdAt: DateTime!
   id: ID!
@@ -111,12 +117,12 @@ type Mutation {
   editProduct(input: EditProductInput!): Product!
   editSocial(input: EditSocialInput!): User!
   editUser(input: EditUserInput!): User!
+  joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   regenerateInvite: Invite!
-  signUp(input: SignUpInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
 }
@@ -319,13 +325,6 @@ type QueryUsersConnectionEdge {
 
 enum Result {
   SUCCESS
-}
-
-input SignUpInput {
-  email: String!
-  invite: String!
-  password: String!
-  username: String!
 }
 
 type Spotify {

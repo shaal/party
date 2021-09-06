@@ -1,23 +1,14 @@
 import { md5 } from 'hash-wasm'
 
-import { SignUpInput } from '~/__generated__/schema.generated'
+import { JoinWaitlistInput } from '~/__generated__/schema.generated'
 import { hashPassword } from '~/utils/auth'
 import { db } from '~/utils/prisma'
-import { createSession } from '~/utils/sessions'
 
 import { reservedSlugs } from '../../Common/queries/reservedSlugs'
 
-export const signUp = async (query: any, input: SignUpInput, req: any) => {
+export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
   if (reservedSlugs.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
-  }
-
-  const invite = await db.invite.findFirst({
-    where: { code: input.invite }
-  })
-
-  if (!invite) {
-    throw new Error('Invite code is invalid or expired.')
   }
 
   const user = await db.user.create({
@@ -42,13 +33,6 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
       },
       integrations: { create: {} }
     }
-  })
-
-  await createSession(req, user)
-
-  await db.invite.updateMany({
-    where: { code: input.invite },
-    data: { usedTimes: { increment: 1 } }
   })
 
   return user
