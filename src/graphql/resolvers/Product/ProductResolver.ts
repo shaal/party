@@ -80,6 +80,10 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
   fields: (t) => ({
     name: t.string({ validate: { minLength: 1, maxLength: 50 } }),
     slug: t.string({ validate: { minLength: 1, maxLength: 50 } }),
+    website: t.string({
+      required: false,
+      validate: { maxLength: 100, url: true }
+    }),
     description: t.string({ required: false, validate: { maxLength: 255 } })
   })
 })

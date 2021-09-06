@@ -21,7 +21,10 @@ builder.prismaObject('Profile', {
 
 const EditSocialInput = builder.inputType('EditSocialInput', {
   fields: (t) => ({
-    website: t.string({ required: false, validate: { maxLength: 100 } }),
+    website: t.string({
+      required: false,
+      validate: { maxLength: 100, url: true }
+    }),
     twitter: t.string({ required: false, validate: { maxLength: 50 } }),
     github: t.string({ required: false, validate: { maxLength: 50 } }),
     discord: t.string({ required: false, validate: { maxLength: 50 } })

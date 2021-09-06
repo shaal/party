@@ -21,6 +21,7 @@ export const createProduct = async (
       userId: session!.userId,
       name: input.name,
       slug: input.slug,
+      website: input.website,
       description: input.description,
       avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=📦`
     }

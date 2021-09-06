@@ -20,6 +20,7 @@ import {
 const newProductSchema = object({
   name: string().min(1),
   slug: string().min(1), // TODO: Don't allow space
+  website: string().url(),
   description: string().max(255)
 })
 
@@ -63,12 +64,13 @@ const NewProduct: React.FC = () => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ name, slug, description }) =>
+              onSubmit={({ name, slug, website, description }) =>
                 createProduct({
                   variables: {
                     input: {
                       name,
                       slug,
+                      website,
                       description
                     }
                   }
@@ -90,6 +92,12 @@ const NewProduct: React.FC = () => {
                 type="text"
                 placeholder="minecraft"
                 {...form.register('slug')}
+              />
+              <Input
+                label="Website"
+                type="text"
+                placeholder="https://minecraft.net"
+                {...form.register('website')}
               />
               <TextArea
                 label="Bio"
