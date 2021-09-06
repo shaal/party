@@ -5,6 +5,7 @@ import useInView from 'react-cool-inview'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import UserProfile from '../shared/UserProfile'
 import { Card, CardBody } from '../ui/Card'
+import { ErrorMessage } from '../ui/ErrorMessage'
 import { PageLoading } from '../ui/PageLoading'
 import { StaffToolsUsersQuery } from './__generated__/users.generated'
 import Sidebar from './Sidebar'
@@ -70,9 +71,10 @@ const StaffToolsUsers: React.FC = () => {
       <GridItemEight>
         <Card>
           <CardBody className="space-y-4">
+            <ErrorMessage title="Failed to load users" error={error} />
             {users?.map((user: any) => (
               <div key={user?.id}>
-                <UserProfile user={user} />
+                <UserProfile user={user} showFollow />
               </div>
             ))}
           </CardBody>
