@@ -32,6 +32,12 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
           inWaitlist
           isVerified
           hasFollowed
+          followers {
+            totalCount
+          }
+          following {
+            totalCount
+          }
           createdAt
           updatedAt
           invite {
@@ -118,8 +124,8 @@ const StaffToolsUsers: React.FC = () => {
                 <UserProfileLarge user={user} showFollow />
                 <div className="border-b border-gray-200 dark:border-gray-800 mt-4" />
                 <div className="my-3 flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                  <div className="flex space-x-3 text-gray-600 dark:text-gray-300">
+                    <div className="text-sm">
                       <div>
                         Created: <b>{timeago.format(user?.createdAt)}</b>
                       </div>
@@ -127,10 +133,19 @@ const StaffToolsUsers: React.FC = () => {
                         Updated: <b>{timeago.format(user?.updatedAt)}</b>
                       </div>
                       <div className="flex space-x-1">
-                        <span>Invite:</span>
+                        <span>Invited:</span>
                         <Tooltip content={user?.invite?.code}>
                           <b>{user?.invite?.usedTimes} people</b>
                         </Tooltip>
+                      </div>
+                    </div>
+                    <div className="border-l border-gray-200 dark:border-gray-800" />
+                    <div className="text-sm text-gray-600 dark:text-gray-300">
+                      <div>
+                        Following: <b>{user?.following?.totalCount}</b>
+                      </div>
+                      <div>
+                        Followers: <b>{user?.followers?.totalCount}</b>
                       </div>
                     </div>
                   </div>
