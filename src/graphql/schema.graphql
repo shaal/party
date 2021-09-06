@@ -79,6 +79,7 @@ type Invite {
   code: String
   id: ID!
   usedTimes: Int
+  user: User!
 }
 
 input JoinWaitlistInput {
@@ -228,6 +229,7 @@ type Profile {
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   integration(userId: ID): Integration
+  invite(code: String!): Invite
   me: User
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!

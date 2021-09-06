@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { UserAddIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
 
@@ -22,13 +23,14 @@ const signUpSchema = object({
 
 const InviteSignupForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
+  const router = useRouter()
   const [signUp, signUpResult] = useMutation<
     SignupMutation,
     SignupMutationVariables
   >(
     gql`
-      mutation SignupMutation($input: JoinWaitlistInput!) {
-        joinWaitlist(input: $input) {
+      mutation SignupMutation($input: SignupInput!) {
+        signUp(input: $input) {
           id
         }
       }
@@ -50,7 +52,12 @@ const InviteSignupForm: React.FC = () => {
       onSubmit={({ username, email, password }) =>
         signUp({
           variables: {
-            input: { username, email, password }
+            input: {
+              username,
+              email,
+              password,
+              invite: router.query.code as string
+            }
           }
         })
       }
@@ -95,7 +102,7 @@ const InviteSignupForm: React.FC = () => {
           className=" w-full flex items-center justify-center space-x-1.5"
         >
           <UserAddIcon className="h-5 w-5" />
-          <div>Join Waitlist</div>
+          <div>Sign Up</div>
         </Button>
       </div>
     </Form>
