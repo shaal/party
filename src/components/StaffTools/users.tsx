@@ -3,20 +3,20 @@ import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { Card, CardBody } from '../ui/Card'
-import { StaffToolsDashboardQuery } from './__generated__/index.generated'
+import { StaffToolsUsersQuery } from './__generated__/users.generated'
 import Sidebar from './Sidebar'
 
-export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
-  query StaffToolsDashboardQuery {
+export const STAFF_TOOLS_USERS_QUERY = gql`
+  query StaffToolsUsersQuery {
     me {
       id
     }
   }
 `
 
-const StaffToolsDashboard: React.FC = () => {
-  const { data, loading, error } = useQuery<StaffToolsDashboardQuery>(
-    STAFF_TOOLS_DASHBOARD_QUERY
+const StaffToolsUsers: React.FC = () => {
+  const { data, loading, error } = useQuery<StaffToolsUsersQuery>(
+    STAFF_TOOLS_USERS_QUERY
   )
 
   return (
@@ -33,4 +33,4 @@ const StaffToolsDashboard: React.FC = () => {
   )
 }
 
-export default StaffToolsDashboard
+export default StaffToolsUsers
