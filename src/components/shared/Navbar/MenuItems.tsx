@@ -1,4 +1,3 @@
-import { gql, useMutation } from '@apollo/client'
 import { Menu, Transition } from '@headlessui/react'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
@@ -9,7 +8,6 @@ import { Fragment, useContext } from 'react'
 import { User } from '~/__generated__/schema.generated'
 import { Dropdown } from '~/components/ui/Dropdown'
 import AppContext from '~/components/utils/AppContext'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
 
 import Slug from '../Slug'
 
@@ -26,19 +24,6 @@ interface Props {
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
   const { theme, themes, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
-  const authRedirect = useAuthRedirect()
-  const [logout] = useMutation(
-    gql`
-      mutation UserLogoutMutation {
-        logout
-      }
-    `,
-    {
-      onCompleted() {
-        authRedirect()
-      }
-    }
-  )
 
   const toggleStaffMode = () => {
     localStorage.setItem('staffMode', String(!staffMode))
@@ -111,8 +96,8 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 Settings
               </Menu.Item>
               <Menu.Item
-                as="div"
-                onClick={() => logout()}
+                as="a"
+                href="/api/logout"
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },

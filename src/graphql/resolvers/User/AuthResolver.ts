@@ -1,7 +1,7 @@
 import { builder } from '~/graphql/builder'
 import { authenticateUser } from '~/utils/auth'
 import { db } from '~/utils/prisma'
-import { createSession, removeSession } from '~/utils/sessions'
+import { createSession } from '~/utils/sessions'
 
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
@@ -24,16 +24,6 @@ builder.queryField('me', (t) =>
         where: { id: session.userId },
         rejectOnNotFound: true
       })
-    }
-  })
-)
-
-builder.mutationField('logout', (t) =>
-  t.field({
-    type: Result,
-    resolve: async (root, args, { req, session }) => {
-      await removeSession(req, session!)
-      return Result.SUCCESS
     }
   })
 )
