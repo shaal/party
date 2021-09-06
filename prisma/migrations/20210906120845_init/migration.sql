@@ -129,6 +129,19 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
+CREATE TABLE "Group" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "description" TEXT,
+    "avatar" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Notification" (
     "id" TEXT NOT NULL,
     "message" TEXT,
@@ -152,6 +165,12 @@ CREATE TABLE "Integration" (
     "userId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_GroupToUser" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -194,7 +213,16 @@ CREATE UNIQUE INDEX "likeIdentifier" ON "Like"("userId", "postId");
 CREATE UNIQUE INDEX "Product.slug_unique" ON "Product"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Group.slug_unique" ON "Group"("slug");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Integration_userId_unique" ON "Integration"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_GroupToUser_AB_unique" ON "_GroupToUser"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_GroupToUser_B_index" ON "_GroupToUser"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_follows_AB_unique" ON "_follows"("A", "B");
@@ -246,6 +274,12 @@ ALTER TABLE "Notification" ADD FOREIGN KEY ("likeId") REFERENCES "Like"("id") ON
 
 -- AddForeignKey
 ALTER TABLE "Integration" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_GroupToUser" ADD FOREIGN KEY ("A") REFERENCES "Group"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_GroupToUser" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_follows" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

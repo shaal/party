@@ -34,6 +34,7 @@ model User {
   // Relations
   posts            Post[]
   products         Product[]
+  groups           Group[]
   sessions         Session[]
   profile          Profile?
   invite           Invite?
@@ -190,6 +191,21 @@ model Product {
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String?
   posts  Post[]
+}
+
+model Group {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+  avatar      String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  users   User[]
 }
 
 model Notification {
