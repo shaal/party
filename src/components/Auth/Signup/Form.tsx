@@ -21,8 +21,7 @@ const signUpSchema = object({
   password: string().min(6)
 })
 
-const SUCCESS_MESSAGE =
-  'You are in the waitlist now 🎉, We will let you in ASAP!'
+const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'
 
 const SignupForm: React.FC = () => {
   const [signUp, signUpResult] = useMutation<
