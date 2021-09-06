@@ -58,7 +58,7 @@ export const VIEW_USER_QUERY = gql`
 
 const ViewUser: React.FC = () => {
   const router = useRouter()
-  const [feedType, setFeedType] = useState<string>('ALL')
+  const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
@@ -90,7 +90,7 @@ const ViewUser: React.FC = () => {
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
-            <FeedType setFeedType={setFeedType} />
+            <FeedType setFeedType={setFeedType} feedType={feedType} />
             <UserFeed feedType={feedType} />
           </div>
         </GridItemEight>
