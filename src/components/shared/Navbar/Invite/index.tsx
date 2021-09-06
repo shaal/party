@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Button } from '~/components/ui/Button'
 import { Modal } from '~/components/ui/Modal'
 
+import InviteDetails from './InviteDetails'
+
 const Invite: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
   return (
@@ -17,7 +19,7 @@ const Invite: React.FC = () => {
       </Button>
       {showModal && (
         <Modal onClose={() => setShowModal(!showModal)} title="Invite Code">
-          Hello
+          <InviteDetails />
         </Modal>
       )}
     </div>
