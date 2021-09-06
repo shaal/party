@@ -1,12 +1,35 @@
+import { gql, useQuery } from '@apollo/client'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import Hero from '~/components/shared/Hero'
+import Slug from '~/components/shared/Slug'
 
+import { GetInviteQuery } from './__generated__/index.generated'
 import SignupForm from './Form'
 
+export const GET_INVITE_QUERY = gql`
+  query GetInviteQuery($code: String!) {
+    invite(code: $code) {
+      user {
+        id
+        username
+      }
+    }
+  }
+`
+
 const InviteSignup: React.FC = () => {
+  const router = useRouter()
+  const { data, loading, error } = useQuery<GetInviteQuery>(GET_INVITE_QUERY, {
+    variables: {
+      code: router.query.code
+    },
+    skip: !router.isReady
+  })
+
   return (
     <div className="flex flex-grow">
       <NextSeo
@@ -24,6 +47,18 @@ const InviteSignup: React.FC = () => {
             />
             <div className="space-y-2">
               <div className="font-extrabold text-4xl">Signup</div>
+              {loading ? (
+                <div className="shimmer h-7 max-w-sm rounded-lg" />
+              ) : (
+                <div className="text-xl">
+                  <Link href={`/@/${data?.invite?.user?.username}`}>
+                    <a className="font-bold">
+                      <Slug slug={data?.invite?.user?.username} prefix="@" />{' '}
+                      invited you to Devparty
+                    </a>
+                  </Link>
+                </div>
+              )}
               <div className="linkify">
                 Already have an account?{' '}
                 <Link href="/login">
