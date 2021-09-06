@@ -53,7 +53,7 @@ export const Modal: React.FC<Props> = (props) => {
               <XIcon className="h-5 w-5" />
             </div>
           </div>
-          <div className="border-gray-200 dark:border-gray-800 px-5 py-3.5">
+          <div className="border-gray-200 dark:border-gray-800">
             {props.children}
           </div>
         </div>
