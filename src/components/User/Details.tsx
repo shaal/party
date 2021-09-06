@@ -62,7 +62,7 @@ const Details: React.FC<Props> = ({ user }) => {
         </Link>
       )}
       {user?.profile?.bio && (
-        <div className="linkify w-96">
+        <div className="linkify">
           <Linkify>{user?.profile?.bio}</Linkify>
         </div>
       )}

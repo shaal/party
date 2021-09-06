@@ -38,7 +38,7 @@ const Details: React.FC<Props> = ({ product }) => {
         </Link>
       )}
       {product?.description && (
-        <div className="linkify w-96">
+        <div className="linkify">
           <Linkify>{product?.description}</Linkify>
         </div>
       )}
