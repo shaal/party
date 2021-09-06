@@ -1,18 +1,18 @@
 import { gql, useMutation } from '@apollo/client'
 import { UserAddIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
-import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
-import { SuccessMessage } from '~/components/ui/SuccessMessage'
+import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
 
 import {
-  JoinWaitlistFormMutation,
-  JoinWaitlistFormMutationVariables
+  SignupMutation,
+  SignupMutationVariables
 } from './__generated__/Form.generated'
 
 const signUpSchema = object({
@@ -21,23 +21,23 @@ const signUpSchema = object({
   password: string().min(6)
 })
 
-const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'
-
-const SignupForm: React.FC = () => {
+const InviteSignupForm: React.FC = () => {
+  const authRedirect = useAuthRedirect()
+  const router = useRouter()
   const [signUp, signUpResult] = useMutation<
-    JoinWaitlistFormMutation,
-    JoinWaitlistFormMutationVariables
+    SignupMutation,
+    SignupMutationVariables
   >(
     gql`
-      mutation JoinWaitlistFormMutation($input: JoinWaitlistInput!) {
-        joinWaitlist(input: $input) {
+      mutation SignupMutation($input: SignupInput!) {
+        signUp(input: $input) {
           id
         }
       }
     `,
     {
       onCompleted() {
-        toast.success(SUCCESS_MESSAGE)
+        authRedirect()
       }
     }
   )
@@ -52,7 +52,12 @@ const SignupForm: React.FC = () => {
       onSubmit={({ username, email, password }) =>
         signUp({
           variables: {
-            input: { username, email, password }
+            input: {
+              username,
+              email,
+              password,
+              invite: router.query.code as string
+            }
           }
         })
       }
@@ -62,9 +67,6 @@ const SignupForm: React.FC = () => {
         error={signUpResult.error}
         className="mb-3"
       />
-      {signUpResult.data && (
-        <SuccessMessage className="mb-3">{SUCCESS_MESSAGE}</SuccessMessage>
-      )}
       <div className="space-y-4">
         <div>
           <Input
@@ -100,11 +102,11 @@ const SignupForm: React.FC = () => {
           className=" w-full flex items-center justify-center space-x-1.5"
         >
           <UserAddIcon className="h-5 w-5" />
-          <div>Join Waitlist</div>
+          <div>Sign Up</div>
         </Button>
       </div>
     </Form>
   )
 }
 
-export default SignupForm
+export default InviteSignupForm

@@ -35,7 +35,7 @@ export const Modal: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 w-screen h-screen">
+    <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 h-screen">
       <div
         className="w-screen h-screen align-middle"
         style={{ display: 'table-cell' }}
@@ -53,7 +53,7 @@ export const Modal: React.FC<Props> = (props) => {
               <XIcon className="h-5 w-5" />
             </div>
           </div>
-          <div className="border-gray-200 dark:border-gray-800 px-5 py-3.5">
+          <div className="border-gray-200 dark:border-gray-800">
             {props.children}
           </div>
         </div>

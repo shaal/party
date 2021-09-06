@@ -25,6 +25,7 @@ async function main() {
       data: {
         email: faker.internet.email(),
         username,
+        inWaitlist: false,
         hashedPassword: await hashPassword(username),
         profile: {
           create: {
@@ -37,7 +38,7 @@ async function main() {
           create: {
             code: await (await md5(faker.internet.email() + Math.random()))
               .slice(0, 12)
-              .toUpperCase()
+              .toLowerCase()
           }
         },
         integrations: { create: {} },
@@ -58,6 +59,7 @@ async function main() {
         email: user.email,
         username: user.username,
         isStaff: user.isStaff,
+        inWaitlist: false,
         hashedPassword: await hashPassword(user.username),
         profile: {
           create: {
@@ -70,7 +72,7 @@ async function main() {
           create: {
             code: await (await md5(user.email + Math.random()))
               .slice(0, 12)
-              .toUpperCase()
+              .toLowerCase()
           }
         },
         integrations: { create: {} }

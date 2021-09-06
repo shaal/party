@@ -19,7 +19,7 @@ export const regenerateInvite = async (
     data: {
       code: await (await md5((session?.userId as string) + Math.random()))
         .slice(0, 12)
-        .toUpperCase()
+        .toLowerCase()
     }
   })
 }

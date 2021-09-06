@@ -79,6 +79,13 @@ type Invite {
   code: String
   id: ID!
   usedTimes: Int
+  user: User!
+}
+
+input JoinWaitlistInput {
+  email: String!
+  password: String!
+  username: String!
 }
 
 type Like {
@@ -111,12 +118,13 @@ type Mutation {
   editProduct(input: EditProductInput!): Product!
   editSocial(input: EditSocialInput!): User!
   editUser(input: EditUserInput!): User!
+  joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
   logout: Result!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   regenerateInvite: Invite!
-  signUp(input: SignUpInput!): User!
+  signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
 }
@@ -221,6 +229,7 @@ type Profile {
 type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   integration(userId: ID): Integration
+  invite(code: String!): Invite
   me: User
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
@@ -321,7 +330,7 @@ enum Result {
   SUCCESS
 }
 
-input SignUpInput {
+input SignupInput {
   email: String!
   invite: String!
   password: String!
