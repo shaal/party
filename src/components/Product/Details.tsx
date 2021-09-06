@@ -16,7 +16,7 @@ const Details: React.FC<Props> = ({ product }) => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <div className="space-y-5 w-96">
+    <div className="space-y-5">
       <img
         src={product?.avatar as string}
         className="rounded-lg h-40 w-40 ring-8 ring-gray-50 dark:ring-black"
@@ -38,7 +38,7 @@ const Details: React.FC<Props> = ({ product }) => {
         </Link>
       )}
       {product?.description && (
-        <div className="linkify">
+        <div className="linkify w-96">
           <Linkify>{product?.description}</Linkify>
         </div>
       )}
