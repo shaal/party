@@ -32,6 +32,7 @@ export const PostFragment = gql`
     attachments
     type
     hasLiked
+    createdAt
     parent {
       id
       user {
@@ -57,7 +58,6 @@ export const PostFragment = gql`
         }
       }
     }
-    createdAt
     user {
       id
       username
