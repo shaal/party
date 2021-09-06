@@ -1,13 +1,10 @@
 import { CollectionIcon, ReplyIcon } from '@heroicons/react/outline'
 
-import { User } from '~/__generated__/schema.generated'
-
 interface Props {
-  user: User
   setFeedType: any
 }
 
-const FeedType: React.FC<Props> = ({ user, setFeedType }) => {
+const FeedType: React.FC<Props> = ({ setFeedType }) => {
   return (
     <div className="flex gap-3">
       <button

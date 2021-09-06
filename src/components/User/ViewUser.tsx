@@ -90,7 +90,7 @@ const ViewUser: React.FC = () => {
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
-            <FeedType user={data?.user as User} setFeedType={setFeedType} />
+            <FeedType setFeedType={setFeedType} />
             <UserFeed feedType={feedType} />
           </div>
         </GridItemEight>
