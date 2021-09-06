@@ -167,12 +167,19 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             <div>Liked by</div>
             <div className="flex -space-x-1.5 overflow-hidden">
               {post?.likes?.edges?.map((like) => (
-                <img
+                <Link
                   key={like?.node?.user?.id}
-                  className="rounded-full border h-5 w-5"
-                  src={like?.node?.user?.profile?.avatar as string}
-                  alt={`@${like?.node?.user?.username}'s avatar`}
-                />
+                  href={`/@/${like?.node?.user?.username}`}
+                  passHref
+                >
+                  <a>
+                    <img
+                      className="rounded-full border h-5 w-5"
+                      src={like?.node?.user?.profile?.avatar as string}
+                      alt={`@${like?.node?.user?.username}'s avatar`}
+                    />
+                  </a>
+                </Link>
               ))}
             </div>
             {(post?.likes?.totalCount as number) > 5 && (
