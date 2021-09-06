@@ -50,14 +50,16 @@ const InviteSignup: React.FC = () => {
               {loading ? (
                 <div className="shimmer h-7 max-w-sm rounded-lg" />
               ) : (
-                <div className="text-xl">
-                  <Link href={`/@/${data?.invite?.user?.username}`}>
-                    <a className="font-bold">
-                      <Slug slug={data?.invite?.user?.username} prefix="@" />{' '}
-                      invited you to Devparty
-                    </a>
-                  </Link>
-                </div>
+                !error && (
+                  <div className="text-xl">
+                    <Link href={`/@/${data?.invite?.user?.username}`}>
+                      <a className="font-bold">
+                        <Slug slug={data?.invite?.user?.username} prefix="@" />{' '}
+                        invited you to Devparty
+                      </a>
+                    </Link>
+                  </div>
+                )
               )}
               <div className="linkify">
                 Already have an account?{' '}
@@ -66,7 +68,13 @@ const InviteSignup: React.FC = () => {
                 </Link>
               </div>
             </div>
-            <SignupForm />
+            {error ? (
+              <div className="text-red-500 text-xl font-bold">
+                {error?.message}
+              </div>
+            ) : (
+              <SignupForm />
+            )}
           </div>
         </div>
       </div>
