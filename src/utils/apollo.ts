@@ -60,7 +60,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 
   if (!nextClient) {
     nextClient = new ApolloClient({
-      ssrMode: true,
+      ssrMode: typeof window === 'undefined',
       credentials: 'include',
       link: new HttpLink({
         uri: '/api/graphql',
