@@ -26,6 +26,7 @@ export const signUp = async (query: any, input: SignUpInput, req: any) => {
       username: input.username,
       email: input.email,
       hashedPassword: await hashPassword(input.password),
+      inWaitlist: true,
       profile: {
         create: {
           name: input.username,
