@@ -381,6 +381,7 @@ type User {
   hasSpotifyIntegration: Boolean!
   hasWakatimeIntegration: Boolean!
   id: ID!
+  inWaitlist: Boolean!
   invite: Invite
   isStaff: Boolean!
   isVerified: Boolean!
