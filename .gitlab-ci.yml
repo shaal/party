@@ -33,6 +33,11 @@ Build 👷‍♂️:
   script:
     - yarn build
 
+Docker 🐳:
+  image: docker:latest
+  script:
+    - docker build . -t devparty
+
 Housekeeping ✨:
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
