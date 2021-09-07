@@ -18,7 +18,7 @@ RUN yarn build
 # Production image, copy all the files and run next
 FROM base AS runner
 ENV NODE_ENV production
-ENV PORT 8080
+ENV PORT 3000
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY --from=builder /builder/next.config.js ./
