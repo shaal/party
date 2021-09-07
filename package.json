@@ -83,7 +83,7 @@
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "prisma": "2.30.3",
-    "tailwindcss": "^2.2.9",
+    "tailwindcss": "^2.2.10",
     "trash-cli": "^4.0.0",
     "ts-node": "^10.2.1",
     "tsconfig-paths": "^3.11.0",
