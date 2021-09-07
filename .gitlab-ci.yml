@@ -34,9 +34,9 @@ Build 👷‍♂️:
     - yarn build
 
 Docker 🐳:
-  image: docker:latest
+  image: docker:dind
   script:
-    - docker build . -t devparty
+    - docker build -t devparty .
 
 Housekeeping ✨:
   script:
