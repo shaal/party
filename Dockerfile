@@ -2,7 +2,7 @@ FROM node:latest AS base
 
 FROM base AS deps
 WORKDIR /deps
-COPY package*.json ./
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --silent
 
 FROM base AS builder
