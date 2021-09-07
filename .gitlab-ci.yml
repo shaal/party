@@ -48,7 +48,6 @@ Housekeeping ✨:
     - main
 
 Migrate 🚚:
-  before_script: []
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
