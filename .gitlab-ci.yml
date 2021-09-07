@@ -8,50 +8,66 @@ cache:
     - node_modules/
     - .next/cache/
 
+stages:
+  - build
+  - release
+  - deploy
+  - clean
+
 before_script:
   - cp .env.example .env
   - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
+  stage: build
   script:
     - yarn lint
 
 Prettier 📚:
+  stage: build
   script:
     - yarn prettier:check
 
 Generate 🧞‍♂️:
+  stage: build
   script:
     - yarn generate
 
 Typecheck 🧐:
+  stage: build
   script:
     - yarn generate
     - yarn typecheck
 
 Build 👷‍♂️:
+  stage: build
   script:
     - yarn build
 
 Docker 🐳:
+  stage: release
   image: docker:latest
   services:
     - docker:dind
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   before_script: []
   script:
     - docker login registry.gitlab.com -u yo -p $GITLAB_TOKEN
-    - docker build -t registry.gitlab.com/yo/devparty .
-    - docker push registry.gitlab.com/yo/devparty
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
+Migrate 🚚:
+  stage: deploy
+  script:
+    - yarn prisma:migrate
+    - yarn prisma:seed
+  when: manual
 
 Housekeeping ✨:
+  stage: clean
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
   only:
     - main
-
-Migrate 🚚:
-  script:
-    - yarn prisma:migrate
-    - yarn prisma:seed
-  when: manual
