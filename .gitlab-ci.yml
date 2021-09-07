@@ -41,12 +41,14 @@ Docker 🐳:
     - docker build -t yoginth/devparty:latest .
 
 Housekeeping ✨:
+  before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
   only:
     - main
 
 Migrate 🚚:
+  before_script: []
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
