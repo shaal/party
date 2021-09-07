@@ -12,7 +12,6 @@ WORKDIR /builder
 COPY --from=deps /deps/node_modules ./node_modules
 COPY . .
 RUN yarn build
-RUN yarn generate
 
 FROM base AS runner
 ENV NODE_ENV production
