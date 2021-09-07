@@ -11,7 +11,6 @@ ARG COOKIE_SECRET
 WORKDIR /builder
 COPY --from=deps /deps/node_modules ./node_modules
 COPY . .
-RUN yarn generate
 RUN yarn build
 
 FROM base AS runner
