@@ -20,8 +20,6 @@ FROM base AS runner
 ENV NODE_ENV production
 ENV PORT 3000
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
 
 COPY --from=builder /builder/next.config.js ./
 COPY --from=builder /builder/public ./public
