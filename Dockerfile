@@ -20,6 +20,7 @@ ENV PORT 3000
 COPY --from=builder /builder/next.config.js ./
 COPY --from=builder /builder/public ./public
 COPY --from=builder /builder/prisma ./prisma
+COPY --from=builder /builder/src ./src
 COPY --from=builder /builder/.next ./.next
 COPY --from=builder /builder/node_modules ./node_modules
 COPY --from=builder /builder/package.json ./package.json
