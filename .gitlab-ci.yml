@@ -50,7 +50,6 @@ Docker 🐳:
   image: docker:latest
   services:
     - docker:dind
-  variables:
   before_script:
     - docker login -u $CI_REGISTRY_USERNAME -p $CI_REGISTRY_PASSWORD
   script:
