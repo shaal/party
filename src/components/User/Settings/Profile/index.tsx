@@ -21,11 +21,6 @@ export const PROFILE_SETTINGS_QUERY = gql`
         avatar
         cover
       }
-      invite {
-        id
-        code
-        usedTimes
-      }
     }
   }
 `

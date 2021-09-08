@@ -1,8 +1,15 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { Fragment } from 'react'
+import toast from 'react-hot-toast'
+
+import { Button } from '~/components/ui/Button'
 
 import Slug from '../../Slug'
-import { InviteCodeQuery } from './__generated__/InviteDetails.generated'
+import {
+  InviteCodeQuery,
+  RegenerateInviteMutation,
+  RegenerateInviteMutationVariables
+} from './__generated__/InviteDetails.generated'
 
 export const INVITE_CODE_QUERY = gql`
   query InviteCodeQuery {
@@ -20,6 +27,29 @@ export const INVITE_CODE_QUERY = gql`
 
 const InviteDetails: React.FC = () => {
   const { data, loading } = useQuery<InviteCodeQuery>(INVITE_CODE_QUERY)
+
+  const [regenerateInvite] = useMutation<
+    RegenerateInviteMutation,
+    RegenerateInviteMutationVariables
+  >(
+    gql`
+      mutation RegenerateInviteMutation {
+        regenerateInvite {
+          id
+          code
+          usedTimes
+        }
+      }
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted() {
+        toast.success('Invite code regenerated successfully!')
+      }
+    }
+  )
 
   if (loading) return <div className="px-5 py-3.5">Loading Invite Code...</div>
 
@@ -58,6 +88,14 @@ const InviteDetails: React.FC = () => {
         <div className="mt-5 mb-1 text-center">
           You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
         </div>
+        <Button
+          size="sm"
+          variant="danger"
+          className="text-sm"
+          onClick={() => regenerateInvite()}
+        >
+          Regenerate
+        </Button>
       </div>
     </Fragment>
   )
