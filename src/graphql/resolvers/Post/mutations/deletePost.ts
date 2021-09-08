@@ -2,6 +2,7 @@ import { Session } from '@prisma/client'
 
 import { EditPostInput } from '~/__generated__/schema.generated'
 import { db } from '~/utils/prisma'
+import { purgeLikes } from '~/utils/purger/purgeLikes'
 
 export const deletePost = async (
   query: any,
@@ -17,6 +18,8 @@ export const deletePost = async (
 
     rejectOnNotFound: true
   })
+
+  await purgeLikes(post?.id as string)
 
   return await db.post.delete({
     where: { id: post?.id }
