@@ -15,7 +15,7 @@ import {
   OnboardUserMutation,
   OnboardUserMutationVariables,
   StaffToolsUsersQuery
-} from './__generated__/users.generated'
+} from './__generated__/Users.generated'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_USERS_QUERY = gql`
@@ -29,6 +29,7 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
         node {
           id
           username
+          email
           inWaitlist
           isVerified
           hasFollowed
@@ -146,6 +147,9 @@ const StaffToolsUsers: React.FC = () => {
                       </div>
                       <div>
                         Followers: <b>{user?.followers?.totalCount}</b>
+                      </div>
+                      <div>
+                        Email: <b>{user?.email}</b>
                       </div>
                     </div>
                   </div>

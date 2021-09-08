@@ -17,7 +17,9 @@ builder.prismaObject('User', {
     inWaitlist: t.exposeBoolean('inWaitlist', {
       authScopes: { isStaff: true }
     }),
-    email: t.exposeString('email', { authScopes: { $granted: 'currentUser' } }),
+    email: t.exposeString('email', {
+      authScopes: { isStaff: true, $granted: 'currentUser' }
+    }),
     hasFollowed: t.field({
       type: 'Boolean',
       resolve: async (root, args, { session }) => {
