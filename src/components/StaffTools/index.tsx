@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
@@ -42,32 +43,53 @@ const StaffToolsDashboard: React.FC = () => {
             <ErrorMessage title="Failed to stats" error={error} />
             <div className="text-xl font-bold mb-1.5">Platform Stats</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
-              <div>
-                <span className="font-bold">{data?.stats?.users}</span> Users
+              <div className="flex items-center space-x-1.5">
+                <UsersIcon className="h-4 w-4" />
+                <div>
+                  <span className="font-bold">{data?.stats?.users}</span> Users
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.products}</span>{' '}
-                Products
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.products}</span>{' '}
+                  Products
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.groups}</span> Groups
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.groups}</span>{' '}
+                  Groups
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.posts}</span> Posts
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.posts}</span> Posts
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.likes}</span> Likes
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.likes}</span> Likes
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.topics}</span> Topics
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.topics}</span>{' '}
+                  Topics
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.notifications}</span>{' '}
-                Notifications
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">
+                    {data?.stats?.notifications}
+                  </span>{' '}
+                  Notifications
+                </div>
               </div>
-              <div>
-                <span className="font-bold">{data?.stats?.sessions}</span>{' '}
-                Sessions
+              <div className="flex items-center space-x-1.5">
+                <div>
+                  <span className="font-bold">{data?.stats?.sessions}</span>{' '}
+                  Sessions
+                </div>
               </div>
             </div>
           </CardBody>
