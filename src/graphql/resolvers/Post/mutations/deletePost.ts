@@ -19,7 +19,7 @@ export const deletePost = async (
     rejectOnNotFound: true
   })
 
-  await purgeLikes(post?.id as string)
+  await purgeLikes({ postId: post?.id })
 
   return await db.post.delete({
     where: { id: post?.id }
