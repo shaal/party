@@ -16,8 +16,9 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
       groups
       posts
       likes
-      notifications
       topics
+      notifications
+      sessions
     }
   }
 `
@@ -63,6 +64,10 @@ const StaffToolsDashboard: React.FC = () => {
               <div>
                 <span className="font-bold">{data?.stats?.notifications}</span>{' '}
                 Notifications
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.sessions}</span>{' '}
+                Sessions
               </div>
             </div>
           </CardBody>
