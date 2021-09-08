@@ -54,7 +54,7 @@ Docker 🐳:
   before_script:
     - docker login -u $CI_REGISTRY_USERNAME -p $CI_REGISTRY_PASSWORD
   script:
-    - docker build -t yoginth/devparty:latest .
+    - docker build -e DATABASE_URL="fake" -e COOKIE_SECRET="fake" -t yoginth/devparty:latest .
     - docker push yoginth/devparty:latest
 
 Migrate 🚚:
