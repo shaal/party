@@ -9,6 +9,7 @@ export class Stats {
   likes: number
   topics: number
   notifications: number
+  sessions: number
 
   constructor(
     users: number,
@@ -17,7 +18,8 @@ export class Stats {
     posts: number,
     likes: number,
     topics: number,
-    notifications: number
+    notifications: number,
+    sessions: number
   ) {
     this.users = users
     this.products = products
@@ -26,6 +28,7 @@ export class Stats {
     this.likes = likes
     this.topics = topics
     this.notifications = notifications
+    this.sessions = sessions
   }
 }
 
@@ -37,7 +40,8 @@ export const StatsObject = builder.objectRef<Stats>('Stats').implement({
     posts: t.exposeInt('posts'),
     likes: t.exposeInt('likes'),
     topics: t.exposeInt('topics'),
-    notifications: t.exposeInt('notifications')
+    notifications: t.exposeInt('notifications'),
+    sessions: t.exposeInt('sessions')
   })
 })
 
@@ -54,6 +58,7 @@ builder.queryField('stats', (t) =>
       const likes = await db.like.count()
       const topics = await db.topic.count()
       const notifications = await db.notification.count()
+      const sessions = await db.session.count()
 
       return new Stats(
         users,
@@ -62,7 +67,8 @@ builder.queryField('stats', (t) =>
         posts,
         likes,
         topics,
-        notifications
+        notifications,
+        sessions
       )
     }
   })

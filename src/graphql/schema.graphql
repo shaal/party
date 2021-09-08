@@ -353,6 +353,7 @@ type Stats {
   notifications: Int!
   posts: Int!
   products: Int!
+  sessions: Int!
   topics: Int!
   users: Int!
 }
