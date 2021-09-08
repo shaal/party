@@ -348,8 +348,11 @@ type Spotify {
 }
 
 type Stats {
+  likes: Int!
+  notifications: Int!
   posts: Int!
   products: Int!
+  topics: Int!
   users: Int!
 }
 
