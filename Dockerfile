@@ -10,6 +10,7 @@ RUN yarn install --frozen-lockfile
 FROM base AS builder
 ARG DATABASE_URL
 ARG COOKIE_SECRET
+ENV DATABASE_URL fake
 WORKDIR /builder
 COPY --from=deps /deps/node_modules ./node_modules
 COPY . .
@@ -19,7 +20,6 @@ RUN yarn build
 FROM base AS runner
 ENV NODE_ENV production
 ENV PORT 3000
-ENV DATABASE_URL fake
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY --from=builder /builder/next.config.js ./
