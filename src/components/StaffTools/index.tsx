@@ -11,8 +11,9 @@ import Sidebar from './Sidebar'
 export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
   query StaffToolsDashboardQuery {
     stats {
-      products
       users
+      products
+      groups
       posts
       likes
       notifications
@@ -46,6 +47,9 @@ const StaffToolsDashboard: React.FC = () => {
               <div>
                 <span className="font-bold">{data?.stats?.products}</span>{' '}
                 Products
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.groups}</span> Groups
               </div>
               <div>
                 <span className="font-bold">{data?.stats?.posts}</span> Posts
