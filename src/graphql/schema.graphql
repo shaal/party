@@ -241,6 +241,7 @@ type Query {
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   spotify(userId: ID!): Spotify
+  stats: Stats
   topic(name: String!): Topic!
   user(id: ID, username: String): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -344,6 +345,12 @@ type Spotify {
   isPlaying: Boolean
   name: String
   url: String
+}
+
+type Stats {
+  posts: Int!
+  products: Int!
+  users: Int!
 }
 
 input ToggleFollowInput {
