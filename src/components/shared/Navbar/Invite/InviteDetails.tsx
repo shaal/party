@@ -49,7 +49,6 @@ const InviteDetails: React.FC = () => {
             {process.env.BASE_URL}/invite/{data?.me?.invite?.code}
           </div>
         </div>
-        <div className="border-b" />
         <div className="mt-4 space-y-1.5">
           <div className="text-sm font-bold">Your Invite Code</div>
           <div className="bg-gray-200 px-2 py-1.5 rounded-lg border border-gray-300 select-all">
