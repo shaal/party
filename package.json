@@ -11,7 +11,7 @@
     "prettier:check": "prettier --check \"./src/**/*.{ts,tsx}\"",
     "generate": "prisma generate && yarn codegen",
     "prisma:migrate": "prisma migrate dev --preview-feature",
-    "prisma:seed": "prisma db seed --preview-feature",
+    "prisma:seed": "ts-node prisma/seed.ts",
     "codegen": "run-s -l \"codegen:*\"",
     "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
     "codegen:graphql": "graphql-codegen",

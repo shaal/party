@@ -52,7 +52,7 @@ export const createPost = async (
       title: input.title,
       body: input.body,
       done: input.done,
-      attachments: input.attachments,
+      attachments: input.attachments ? input.attachments : undefined,
       type: input.type as PostType,
       productId: input.productId ? input.productId : null,
       topics: {

@@ -12,7 +12,6 @@ stages:
   - build
   - test
   - release
-  - deploy
   - clean
 
 before_script:
@@ -55,13 +54,6 @@ Docker 🐳:
   script:
     - docker build -t yoginth/devparty:latest .
     - docker push yoginth/devparty:latest
-
-Migrate 🚚:
-  stage: deploy
-  script:
-    - yarn prisma:migrate
-    - yarn prisma:seed
-  when: manual
 
 Housekeeping ✨:
   stage: clean

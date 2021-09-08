@@ -12,9 +12,11 @@ const db = new PrismaClient()
 
 async function main() {
   await db.user.deleteMany()
-  console.log('All users and related data are deleted 🗑️')
+  console.log('All users are deleted 🗑️')
   await db.topic.deleteMany()
   console.log('All topics are deleted 🗑️')
+  await db.product.deleteMany()
+  console.log('All products are deleted 🗑️')
 
   // Fake User
   for (let i = 0; i < 50; i++) {
