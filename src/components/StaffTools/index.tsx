@@ -38,12 +38,29 @@ const StaffToolsDashboard: React.FC = () => {
         <Card>
           <CardBody>
             <ErrorMessage title="Failed to stats" error={error} />
-            <div>{data?.stats?.users} Users</div>
-            <div>{data?.stats?.products} Products</div>
-            <div>{data?.stats?.posts} Posts</div>
-            <div>{data?.stats?.likes} Likes</div>
-            <div>{data?.stats?.topics} Topics</div>
-            <div>{data?.stats?.notifications} Notifications</div>
+            <div className="text-xl font-bold mb-1.5">Platform Stats</div>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div>
+                <span className="font-bold">{data?.stats?.users}</span> Users
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.products}</span>{' '}
+                Products
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.posts}</span> Posts
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.likes}</span> Likes
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.topics}</span> Topics
+              </div>
+              <div>
+                <span className="font-bold">{data?.stats?.notifications}</span>{' '}
+                Notifications
+              </div>
+            </div>
           </CardBody>
         </Card>
       </GridItemEight>
