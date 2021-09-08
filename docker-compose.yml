@@ -7,7 +7,7 @@ services:
     image: mysql:latest
     platform: linux/x86_64
     ports:
-      - '33306:3306'
+      - '33060:3306'
     environment:
       MYSQL_ROOT_PASSWORD: devparty
       MYSQL_DATABASE: devparty
