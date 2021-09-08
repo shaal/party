@@ -52,7 +52,8 @@ const InviteDetails: React.FC = () => {
     }
   )
 
-  if (loading) return <div className="px-5 py-3.5">Loading Invite Code...</div>
+  if (loading)
+    return <div className="px-5 py-3.5">Loading invite details...</div>
 
   return (
     <Fragment>
