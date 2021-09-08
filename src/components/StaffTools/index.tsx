@@ -1,5 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
-import { UsersIcon } from '@heroicons/react/outline'
+import {
+  BellIcon,
+  CollectionIcon,
+  CubeIcon,
+  HashtagIcon,
+  HeartIcon,
+  LoginIcon,
+  UserGroupIcon,
+  UsersIcon
+} from '@heroicons/react/outline'
 import React from 'react'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
@@ -50,34 +59,40 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <CubeIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.products}</span>{' '}
                   Products
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <UserGroupIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.groups}</span>{' '}
                   Groups
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <CollectionIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.posts}</span> Posts
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <HeartIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.likes}</span> Likes
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <HashtagIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.topics}</span>{' '}
                   Topics
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <BellIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">
                     {data?.stats?.notifications}
@@ -86,6 +101,7 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
+                <LoginIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.sessions}</span>{' '}
                   Sessions
