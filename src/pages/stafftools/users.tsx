@@ -1,6 +1,6 @@
 import StaffToolsUsers, {
   STAFF_TOOLS_USERS_QUERY as query
-} from '~/components/StaffTools/users'
+} from '~/components/StaffTools/Users'
 import { preloadQuery } from '~/utils/apollo'
 import { staffRoute } from '~/utils/redirects'
 
