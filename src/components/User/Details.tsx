@@ -11,7 +11,6 @@ import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
-import { Card, CardBody } from '../ui/Card'
 import { Tooltip } from '../ui/Tooltip'
 import Follow from './Follow'
 import Followerings from './Followerings'
@@ -77,18 +76,6 @@ const Details: React.FC<Props> = ({ user }) => {
       <OwnedProducts user={user} />
       {user?.hasWakatimeIntegration && <Wakatime user={user} />}
       {user?.hasSpotifyIntegration && <Spotify user={user} />}
-      {currentUser?.id === user?.id && currentUser?.isStaff && staffMode && (
-        <Card className="!bg-gray-800 !border-black text-white">
-          <CardBody className="flex items-center space-x-2">
-            <img
-              className="h-4 w-4"
-              src="/brand/github-light.svg"
-              alt="GitHub Logo"
-            />
-            <div className="font-mono">Pin upto 3 GitHub repos here</div>
-          </CardBody>
-        </Card>
-      )}
       {currentUser?.isStaff && staffMode && (
         <Fragment>
           {user?.spammy && (
