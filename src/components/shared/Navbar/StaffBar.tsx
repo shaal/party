@@ -1,4 +1,4 @@
-import { ShieldCheckIcon } from '@heroicons/react/outline'
+import { DatabaseIcon, ShieldCheckIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
@@ -21,9 +21,17 @@ const StaffBar: React.FC = () => {
           </span>
         </div>
       </div>
-      <div className="flex items-center gap-4" title="Staff panel">
+      <div className="flex items-center gap-4">
+        <a
+          href="https://app.planetscale.com/yo/devparty"
+          title="Planetscale"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <DatabaseIcon className="h-4 w-4" />
+        </a>
         <Link href="/stafftools">
-          <a>
+          <a title="Staff panel">
             <ShieldCheckIcon className="h-4 w-4" />
           </a>
         </Link>
