@@ -36,7 +36,7 @@ model User {
   // Relations
   posts            Post[]
   products         Product[]
-  groups           Group[]
+  communities      Community[]
   sessions         Session[]
   profile          Profile?
   invite           Invite?
@@ -195,7 +195,7 @@ model Product {
   posts  Post[]
 }
 
-model Group {
+model Community {
   id          String  @id @default(cuid())
   name        String
   slug        String  @unique
