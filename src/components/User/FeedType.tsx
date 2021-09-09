@@ -8,7 +8,7 @@ interface Props {
 
 const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 px-2 sm:px-0">
       <button
         className={clsx(
           {
