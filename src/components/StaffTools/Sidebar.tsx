@@ -1,4 +1,8 @@
-import { ChartSquareBarIcon, UsersIcon } from '@heroicons/react/outline'
+import {
+  ChartSquareBarIcon,
+  CubeIcon,
+  UsersIcon
+} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -38,6 +42,13 @@ const Sidebar: React.FC = () => {
       >
         <UsersIcon className="h-4 w-4" />
         <div>Users</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/stafftools/products'}
+        url="/stafftools/products"
+      >
+        <CubeIcon className="h-4 w-4" />
+        <div>Products</div>
       </Menu>
     </div>
   )
