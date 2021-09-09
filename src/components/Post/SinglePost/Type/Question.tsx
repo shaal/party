@@ -11,9 +11,9 @@ interface Props {
 
 const QuestionType: React.FC<Props> = ({ question }) => {
   return (
-    <div className="text-xl post space-y-3 inline-flex">
+    <div className="post space-y-3 inline-flex">
       <div>
-        <div className="font-bold mb-1">{question?.title}</div>
+        <div className="text-lg font-bold mb-1">{question?.title}</div>
         <div className="prose">
           <Markdown options={{ wrapper: 'article' }}>{question?.body}</Markdown>
         </div>

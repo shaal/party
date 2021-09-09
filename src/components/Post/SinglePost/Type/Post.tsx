@@ -17,7 +17,7 @@ hashtag(linkify)
 const PostType: React.FC<Props> = ({ post }) => {
   return (
     <div className="space-y-3">
-      <div className="text-lg linkify space-y-3 inline-flex">
+      <div className="linkify space-y-3 inline-flex">
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
       </div>
       {post?.attachments && <Attachments attachments={post?.attachments} />}
