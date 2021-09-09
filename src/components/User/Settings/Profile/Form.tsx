@@ -19,6 +19,7 @@ import { SuccessMessage } from '~/components/ui/SuccessMessage'
 import { TextArea } from '~/components/ui/TextArea'
 import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
 
+import ChooseFile from '../../ChooseFile'
 import Sidebar from '../Sidebar'
 import {
   ProfileSettingsMutation,
@@ -168,9 +169,8 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     src={avatar}
                     alt={avatar}
                   />
-                  <input
-                    type="file"
-                    onChange={(evt) => handleUpload(evt, 'avatar')}
+                  <ChooseFile
+                    onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
                 </div>
               </div>
@@ -186,9 +186,8 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                       />
                     </div>
                   )}
-                  <input
-                    type="file"
-                    onChange={(evt) => handleUpload(evt, 'cover')}
+                  <ChooseFile
+                    onChange={(evt: any) => handleUpload(evt, 'cover')}
                   />
                 </div>
               </div>
