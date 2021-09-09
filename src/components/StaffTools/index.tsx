@@ -35,8 +35,7 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
 
 const StaffToolsDashboard: React.FC = () => {
   const { data, loading, error } = useQuery<StaffToolsDashboardQuery>(
-    STAFF_TOOLS_DASHBOARD_QUERY,
-    { pollInterval: 10_000 }
+    STAFF_TOOLS_DASHBOARD_QUERY
   )
 
   if (loading) return <PageLoading message="Loading dashboard..." />
