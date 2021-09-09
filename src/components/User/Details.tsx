@@ -29,53 +29,55 @@ const Details: React.FC<Props> = ({ user }) => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <div className="space-y-5 mb-4">
-      <img
-        src={user?.profile?.avatar as string}
-        className="rounded-full h-40 w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
-        alt={`@${user?.username}'s avatar`}
-      />
-      <div>
-        <div className="text-2xl font-bold flex items-center gap-1.5">
-          {user?.profile?.name}
-          {user?.isVerified && (
-            <Tooltip content={'Verified'}>
-              <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
-            </Tooltip>
-          )}
-          {user?.isStaff && (
-            <Tooltip content={'Staff'}>
-              <SupportIcon className="h-6 w-6 text-yellow-600" />
-            </Tooltip>
-          )}
+    <Fragment>
+      <div className="px-5 sm:px-0 space-y-5">
+        <img
+          src={user?.profile?.avatar as string}
+          className="rounded-full h-28 w-28 sm:h-40 sm:w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
+          alt={`@${user?.username}'s avatar`}
+        />
+        <div>
+          <div className="text-2xl font-bold flex items-center gap-1.5">
+            {user?.profile?.name}
+            {user?.isVerified && (
+              <Tooltip content={'Verified'}>
+                <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
+              </Tooltip>
+            )}
+            {user?.isStaff && (
+              <Tooltip content={'Staff'}>
+                <SupportIcon className="h-6 w-6 text-yellow-600" />
+              </Tooltip>
+            )}
+          </div>
+          <Slug slug={user?.username} prefix="@" className="text-xl" />
         </div>
-        <Slug slug={user?.username} prefix="@" className="text-xl" />
+        <Followerings user={user} />
+        {currentUser?.id !== user?.id ? (
+          <Follow user={user} showText={true} />
+        ) : (
+          <Link href="/settings/profile" passHref>
+            <Button size="md" variant="success">
+              Edit Profile
+            </Button>
+          </Link>
+        )}
+        {user?.profile?.bio && (
+          <div className="linkify">
+            <Linkify>{user?.profile?.bio}</Linkify>
+          </div>
+        )}
+        {user?.profile?.location && (
+          <div className="flex items-center gap-2">
+            <LocationMarkerIcon className="h-4 w-4" />
+            <div>{user?.profile?.location}</div>
+          </div>
+        )}
+        <Social profile={user?.profile as Profile} />
+        <OwnedProducts user={user} />
+        {user?.hasWakatimeIntegration && <Wakatime user={user} />}
+        {user?.hasSpotifyIntegration && <Spotify user={user} />}
       </div>
-      <Followerings user={user} />
-      {currentUser?.id !== user?.id ? (
-        <Follow user={user} showText={true} />
-      ) : (
-        <Link href="/settings/profile" passHref>
-          <Button size="md" variant="success">
-            Edit Profile
-          </Button>
-        </Link>
-      )}
-      {user?.profile?.bio && (
-        <div className="linkify">
-          <Linkify>{user?.profile?.bio}</Linkify>
-        </div>
-      )}
-      {user?.profile?.location && (
-        <div className="flex items-center gap-2">
-          <LocationMarkerIcon className="h-4 w-4" />
-          <div>{user?.profile?.location}</div>
-        </div>
-      )}
-      <Social profile={user?.profile as Profile} />
-      <OwnedProducts user={user} />
-      {user?.hasWakatimeIntegration && <Wakatime user={user} />}
-      {user?.hasSpotifyIntegration && <Spotify user={user} />}
       {currentUser?.isStaff && staffMode && (
         <Fragment>
           {user?.spammy && (
@@ -87,7 +89,7 @@ const Details: React.FC<Props> = ({ user }) => {
           <UserMod user={user} />
         </Fragment>
       )}
-    </div>
+    </Fragment>
   )
 }
 
