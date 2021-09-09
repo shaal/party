@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React from 'react'
 
 const StaffBar: React.FC = () => {
-  const reactVersion = React.version.split('-')
   return (
     <div className="bg-gray-200 dark:bg-black px-3 py-1 flex justify-between text-sm">
       <div className="flex items-center gap-1">
