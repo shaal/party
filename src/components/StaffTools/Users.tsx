@@ -33,6 +33,8 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
           inWaitlist
           isVerified
           hasFollowed
+          hasSpotifyIntegration
+          hasWakatimeIntegration
           followers {
             totalCount
           }
@@ -139,16 +141,37 @@ const StaffToolsUsers: React.FC = () => {
                           <b>{user?.invite?.usedTimes} people</b>
                         </Tooltip>
                       </div>
-                    </div>
-                    <div className="text-sm pl-3">
                       <div>
                         Following: <b>{user?.following?.totalCount}</b>
                       </div>
                       <div>
                         Followers: <b>{user?.followers?.totalCount}</b>
                       </div>
+                    </div>
+                    <div className="text-sm pl-3">
                       <div>
                         Email: <b>{user?.email}</b>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <div>Integrations:</div>
+                        <div className="flex items-center space-x-1.5">
+                          {!user?.hasSpotifyIntegration &&
+                            !user?.hasWakatimeIntegration && <div>None</div>}
+                          {user?.hasSpotifyIntegration && (
+                            <img
+                              className="h-4 w-4"
+                              src="/brand/spotify.svg"
+                              alt="Spotify Logo"
+                            />
+                          )}
+                          {user?.hasWakatimeIntegration && (
+                            <img
+                              className="h-4 w-4"
+                              src="/brand/wakatime-dark.svg"
+                              alt="Wakatime Logo"
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
