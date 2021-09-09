@@ -17,7 +17,7 @@ const StaffBar: React.FC = () => {
         <div className="flex items-center gap-1">
           Next.js{' '}
           <span className="text-xs font-bold bg-gray-300 dark:bg-gray-900 py-0.5 px-1.5 rounded-md">
-            v{packageJson?.dependencies?.next.replace('^', '')}
+            {packageJson?.dependencies?.next}
           </span>
         </div>
       </div>
