@@ -1,10 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import { PencilAltIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import { HOME_FEED_QUERY } from '~/components/Home/Feed'
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
@@ -23,6 +23,7 @@ const newPostSchema = object({
 })
 
 const PostType: React.FC = () => {
+  const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPost, createPostResult] = useMutation<
@@ -38,11 +39,11 @@ const PostType: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: HOME_FEED_QUERY }],
-      onCompleted() {
+      onCompleted(data) {
         setAttachments([])
         form.reset()
         toast.success('Post has been created successfully!')
+        router.push(`/posts/${data?.createPost?.id}`)
       }
     }
   )
