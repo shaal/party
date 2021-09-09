@@ -13,7 +13,7 @@ interface Props {
 
 const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 px-2 sm:px-0">
       <button
         className={clsx(
           {
@@ -25,7 +25,7 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
         onClick={() => setFeedType('ALL')}
       >
         <GlobeIcon className="h-4 w-4" />
-        <div>All</div>
+        <div className={feedType === 'ALL' ? '' : `hidden sm:block`}>All</div>
       </button>
       <button
         className={clsx(
@@ -38,7 +38,9 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
         onClick={() => setFeedType('POST')}
       >
         <CollectionIcon className="h-4 w-4" />
-        <div>Posts</div>
+        <div className={feedType === 'POST' ? '' : `hidden sm:block`}>
+          Posts
+        </div>
       </button>
       <button
         className={clsx(
@@ -51,7 +53,9 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
         onClick={() => setFeedType('TASK')}
       >
         <CheckCircleIcon className="h-4 w-4" />
-        <div>Tasks</div>
+        <div className={feedType === 'TASK' ? '' : `hidden sm:block`}>
+          Tasks
+        </div>
       </button>
       <button
         className={clsx(
@@ -64,7 +68,9 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
         onClick={() => setFeedType('QUESTION')}
       >
         <QuestionMarkCircleIcon className="h-4 w-4" />
-        <div>Question</div>
+        <div className={feedType === 'QUESTION' ? '' : `hidden sm:block`}>
+          Question
+        </div>
       </button>
     </div>
   )
