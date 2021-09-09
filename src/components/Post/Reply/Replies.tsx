@@ -68,7 +68,7 @@ const Replies: React.FC<Props> = ({ post }) => {
   if (loading) return <PostsShimmer />
 
   return (
-    <div>
+    <div className="pb-5">
       <ErrorMessage title="Failed to load replies" error={error} />
       <div className="space-y-3">
         {replies?.length === 0 ? (
