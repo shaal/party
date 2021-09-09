@@ -59,7 +59,7 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
           <Transition show={open} as={Fragment}>
             <Listbox.Options
               static
-              className="absolute mt-1 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-md rounded-lg py-1 px-2 text-base focus:outline-none sm:text-sm"
+              className="z-10 absolute mt-1 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-md rounded-lg py-1 px-2 text-base focus:outline-none sm:text-sm"
             >
               {data?.products?.edges?.map((product: any) => (
                 <Listbox.Option
