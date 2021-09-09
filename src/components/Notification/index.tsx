@@ -50,7 +50,7 @@ export const NOTIFICATIONS_QUERY = gql`
 const Notifications: React.FC = () => {
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    { variables: { after: null }, pollInterval: 5000 }
+    { variables: { after: null }, pollInterval: 10_000 }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
