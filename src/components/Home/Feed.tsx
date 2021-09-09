@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
-import React, { useEffect } from 'react'
+import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { EmptyState } from '~/components/ui/EmptyState'
@@ -32,7 +32,7 @@ interface Props {
 }
 
 const HomeFeed: React.FC<Props> = ({ feedType }) => {
-  const { data, loading, error, refetch, fetchMore } = useQuery<HomeFeedQuery>(
+  const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(
     HOME_FEED_QUERY,
     {
       variables: {
@@ -45,10 +45,6 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
   )
   const posts = data?.homeFeed?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.homeFeed?.pageInfo
-
-  useEffect(() => {
-    refetch()
-  }, [feedType, refetch])
 
   const { observe } = useInView({
     threshold: 1,
