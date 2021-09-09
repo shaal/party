@@ -18,7 +18,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center space-x-5">
       <div className="flex space-x-3 items-center">
         <img
           src={user?.profile?.avatar as string}
