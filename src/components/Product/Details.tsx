@@ -1,6 +1,6 @@
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
-import { Fragment, useContext } from 'react'
+import { useContext } from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
 import { Button } from '~/components/ui/Button'
@@ -16,7 +16,7 @@ const Details: React.FC<Props> = ({ product }) => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <Fragment>
+    <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
         <img
           src={product?.avatar as string}
@@ -45,7 +45,7 @@ const Details: React.FC<Props> = ({ product }) => {
         )}
       </div>
       {currentUser?.isStaff && staffMode && <ProductMod product={product} />}
-    </Fragment>
+    </div>
   )
 }
 

@@ -29,7 +29,7 @@ const Details: React.FC<Props> = ({ user }) => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <Fragment>
+    <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
         <img
           src={user?.profile?.avatar as string}
@@ -89,7 +89,7 @@ const Details: React.FC<Props> = ({ user }) => {
           <UserMod user={user} />
         </Fragment>
       )}
-    </Fragment>
+    </div>
   )
 }
 
