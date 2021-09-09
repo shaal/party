@@ -160,7 +160,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </a>
         </Link>
-        {post?.user?.id === currentUser?.id && <DeleteButton entity={post} />}
+        {post?.user?.id === currentUser?.id && <DeleteButton post={post} />}
         {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>

@@ -11,10 +11,10 @@ import {
 } from './__generated__/DeleteButton.generated'
 
 type Props = {
-  entity: Post
+  post: Post
 }
 
-const DeleteButton: React.FC<Props> = ({ entity }) => {
+const DeleteButton: React.FC<Props> = ({ post }) => {
   const router = useRouter()
   const [deletePost] = useMutation<
     DeletePostMutation,
@@ -37,7 +37,7 @@ const DeleteButton: React.FC<Props> = ({ entity }) => {
   return (
     <button
       className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-      onClick={() => deletePost({ variables: { input: { id: entity?.id } } })}
+      onClick={() => deletePost({ variables: { input: { id: post?.id } } })}
     >
       <TrashIcon className="h-5 w-5" />
     </button>
