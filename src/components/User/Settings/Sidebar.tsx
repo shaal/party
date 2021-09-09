@@ -1,5 +1,6 @@
 import {
   BeakerIcon,
+  ClipboardListIcon,
   LockClosedIcon,
   PuzzleIcon,
   ShareIcon,
@@ -8,7 +9,9 @@ import {
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { Fragment, useContext } from 'react'
+
+import AppContext from '~/components/utils/AppContext'
 
 interface MenuProps {
   children: React.ReactNode
@@ -31,6 +34,7 @@ const Menu: React.FC<MenuProps> = ({ children, current, url }) => (
 
 const Sidebar: React.FC = () => {
   const router = useRouter()
+  const { currentUser, staffMode } = useContext(AppContext)
 
   return (
     <div className="space-y-1.5 mb-4">
@@ -62,10 +66,24 @@ const Sidebar: React.FC = () => {
         <PuzzleIcon className="h-4 w-4" />
         <div>Integrations</div>
       </Menu>
-      <Menu current={router.pathname == '/settings/labs'} url="/settings/labs">
-        <BeakerIcon className="h-4 w-4" />
-        <div>Labs</div>
-      </Menu>
+      {currentUser?.isStaff && staffMode && (
+        <Fragment>
+          <Menu
+            current={router.pathname == '/settings/logs'}
+            url="/settings/logs"
+          >
+            <ClipboardListIcon className="h-4 w-4" />
+            <div>Audit Logs</div>
+          </Menu>
+          <Menu
+            current={router.pathname == '/settings/labs'}
+            url="/settings/labs"
+          >
+            <BeakerIcon className="h-4 w-4" />
+            <div>Labs</div>
+          </Menu>
+        </Fragment>
+      )}
     </div>
   )
 }
