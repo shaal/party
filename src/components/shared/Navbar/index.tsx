@@ -28,7 +28,7 @@ const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
         className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
           block: isMobile,
           'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
-          'text-gray-500 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
+          'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
             !current
         })}
         aria-current={current ? 'page' : undefined}
