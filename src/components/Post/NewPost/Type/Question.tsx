@@ -5,12 +5,12 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
+import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import { HOME_FEED_QUERY } from '~/components/Home/Feed'
 import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
@@ -32,6 +32,7 @@ const newPostSchema = object({
 })
 
 const QuestionType: React.FC = () => {
+  const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [preview, setPreview] = useState<boolean>(false)
@@ -48,11 +49,11 @@ const QuestionType: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: HOME_FEED_QUERY }],
-      onCompleted() {
+      onCompleted(data) {
         setAttachments([])
         form.reset()
         toast.success('Question has been created successfully!')
+        router.push(`/posts/${data?.createPost?.id}`)
       }
     }
   )
