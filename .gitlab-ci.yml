@@ -11,6 +11,7 @@ cache:
 stages:
   - build
   - test
+  - deploy
   - clean
 
 before_script:
@@ -42,6 +43,12 @@ Build 👷‍♂️:
   stage: build
   script:
     - yarn build
+
+Migrate 🚚:
+  stage: deploy
+  script:
+    - yarn prisma:migrate
+  when: manual
 
 Housekeeping ✨:
   stage: clean
