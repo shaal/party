@@ -23,7 +23,7 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
     stats {
       users
       products
-      groups
+      communities
       posts
       likes
       topics
@@ -68,8 +68,8 @@ const StaffToolsDashboard: React.FC = () => {
               <div className="flex items-center space-x-1.5">
                 <UserGroupIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.groups}</span>{' '}
-                  Groups
+                  <span className="font-bold">{data?.stats?.communities}</span>{' '}
+                  Communities
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
