@@ -9,7 +9,6 @@ import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
 import { CURRENT_USER_QUERY } from '../DefaultLayout'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import NewPost from '../Post/NewPost'
-import Announcement from './Announcement'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import RecentUsers from './RecentUsers'
@@ -35,7 +34,6 @@ const Home: React.FC = () => {
           </div>
         </GridItemEight>
         <GridItemFour>
-          {true && <Announcement />}
           <RecentUsers />
           <RecentProducts />
           <Footer />
