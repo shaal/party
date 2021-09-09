@@ -72,7 +72,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
             fields: {
               posts: relayStylePagination([]),
               users: relayStylePagination([]),
-              homeFeed: relayStylePagination(['where']),
+              homeFeed: relayStylePagination(['where', 'first', 'after']),
               replies: relayStylePagination([]),
               notifications: relayStylePagination([])
             }
