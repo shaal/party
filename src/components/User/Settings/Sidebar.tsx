@@ -37,7 +37,7 @@ const Sidebar: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
 
   return (
-    <div className="space-y-1.5 mb-4">
+    <div className="space-y-1.5 mb-4 px-3 sm:px-0">
       <Menu
         current={router.pathname == '/settings/profile'}
         url="/settings/profile"

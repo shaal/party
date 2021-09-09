@@ -32,7 +32,7 @@ const Sidebar: React.FC = () => {
   const router = useRouter()
 
   return (
-    <div className="space-y-1.5 mb-4">
+    <div className="space-y-1.5 mb-4 px-3 sm:px-0">
       <Menu current={router.pathname == '/stafftools'} url="/stafftools">
         <ChartSquareBarIcon className="h-4 w-4" />
         <div>Dashboard</div>
