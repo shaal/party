@@ -20,7 +20,7 @@ import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_USERS_QUERY = gql`
   query StaffToolsUsersQuery($after: String) {
-    users(first: 30, after: $after) {
+    users(first: 5, after: $after) {
       pageInfo {
         endCursor
         hasNextPage
