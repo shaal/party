@@ -1,12 +1,12 @@
 import { ArrowRightIcon, QrcodeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import Footer from '../shared/Footer'
 
 const About: React.FC = () => {
   return (
-    <div>
+    <Fragment>
       <section className="px-2 pt-20 bg-white dark:bg-black dark:text-white md:px-0">
         <div className="container items-center max-w-6xl px-5 mx-auto space-y-6 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-left sm:text-5xl md:text-6xl md:text-center">
@@ -143,7 +143,7 @@ const About: React.FC = () => {
       <div className="my-4 mx-4 flex justify-center">
         <Footer />
       </div>
-    </div>
+    </Fragment>
   )
 }
 
