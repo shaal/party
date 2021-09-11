@@ -68,7 +68,7 @@ const MorePosts: React.FC<Props> = ({ post }) => {
       <ErrorMessage title="Failed to load more posts" error={error} />
       {posts?.map((post: any) => (
         <div key={post?.id} className="space-y-2">
-          <div className="font-bold">{post?.title}</div>
+          <div>{post?.title}</div>
           <div className="flex items-start space-x-1 text-sm">
             <img
               className="h-5 w-5 rounded-full"
