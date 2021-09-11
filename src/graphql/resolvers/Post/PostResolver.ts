@@ -5,6 +5,7 @@ import { hasLiked } from '../Like/queries/hasLiked'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
+import { getMorePostsByUser } from './queries/getMorePostsByUser'
 import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
 
@@ -68,6 +69,28 @@ builder.queryField('posts', (t) =>
     },
     resolve: async (query, root, { where }) => {
       return await getPosts(query, where)
+    }
+  })
+)
+const WhereMorePostsByUserInput = builder.inputType(
+  'WhereMorePostsByUserInput',
+  {
+    fields: (t) => ({
+      userId: t.id({ required: false }),
+      type: t.string({ required: false })
+    })
+  }
+)
+
+builder.queryField('morePostsByUser', (t) =>
+  t.prismaConnection({
+    type: 'Post',
+    cursor: 'id',
+    args: {
+      where: t.arg({ type: WhereMorePostsByUserInput, required: false })
+    },
+    resolve: async (query, root, { where }) => {
+      return await getMorePostsByUser(query, where)
     }
   })
 )
