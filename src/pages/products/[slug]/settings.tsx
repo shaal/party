@@ -2,12 +2,22 @@ import Settings, {
   PRODUCT_SETTINGS_QUERY as query
 } from '~/components/Product/Settings'
 import { preloadQuery } from '~/utils/apollo'
-import { authenticatedRoute } from '~/utils/redirects'
+import { db } from '~/utils/prisma'
+import { resolveSession } from '~/utils/sessions'
 
 export const getServerSideProps = async (ctx: any) => {
-  const auth = await authenticatedRoute(ctx)
-  if ('redirect' in auth) {
-    return auth
+  const session = await resolveSession(ctx)
+  const product = await db.product.findUnique({
+    where: { slug: ctx.params!.slug as string }
+  })
+
+  if (session?.userId !== product?.userId) {
+    return {
+      redirect: {
+        destination: `/products/${product?.slug}`,
+        permanent: false
+      }
+    }
   }
 
   return preloadQuery(ctx, { query })

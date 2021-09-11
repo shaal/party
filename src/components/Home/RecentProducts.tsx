@@ -25,7 +25,7 @@ export const RECENT_PRODUCTS_QUERY = gql`
   }
 `
 
-const RecentUsersCard = ({ children }: any) => {
+const RecentProductsCard = ({ children }: any) => {
   return (
     <div className="mb-4">
       <div className="mb-2 flex items-center gap-2">
@@ -46,7 +46,7 @@ const RecentProducts: React.FC = () => {
 
   if (loading)
     return (
-      <RecentUsersCard>
+      <RecentProductsCard>
         <div className="space-y-3">
           <ProductProfileShimmer />
           <ProductProfileShimmer />
@@ -54,11 +54,11 @@ const RecentProducts: React.FC = () => {
           <ProductProfileShimmer />
           <ProductProfileShimmer />
         </div>
-      </RecentUsersCard>
+      </RecentProductsCard>
     )
 
   return (
-    <RecentUsersCard>
+    <RecentProductsCard>
       <ErrorMessage title="Failed to load products" error={error} />
       <div className="space-y-3">
         {data?.products?.edges?.map((product: any) => (
@@ -68,7 +68,7 @@ const RecentProducts: React.FC = () => {
           />
         ))}
       </div>
-    </RecentUsersCard>
+    </RecentProductsCard>
   )
 }
 

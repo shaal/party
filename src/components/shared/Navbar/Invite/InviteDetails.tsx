@@ -60,7 +60,7 @@ const InviteDetails: React.FC = () => {
       <div className="bg-brand-300 py-2">
         <img
           className="object-cover h-60 w-60 mx-auto"
-          src="https://i.ibb.co/HpqsxFT/3d-stripy-new-mail.png"
+          src="https://assets.devparty.io/images/illustrations/invite.png"
           alt="Invite Illustration"
         />
       </div>

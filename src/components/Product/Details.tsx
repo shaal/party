@@ -7,6 +7,7 @@ import { Button } from '~/components/ui/Button'
 import AppContext from '~/components/utils/AppContext'
 
 import ProductMod from './Mod'
+import Social from './Social'
 
 interface Props {
   product: Product
@@ -43,6 +44,7 @@ const Details: React.FC<Props> = ({ product }) => {
             <Linkify>{product?.description}</Linkify>
           </div>
         )}
+        <Social product={product} />
       </div>
       {currentUser?.isStaff && staffMode && <ProductMod product={product} />}
     </div>

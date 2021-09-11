@@ -19,6 +19,11 @@ export const PRODUCT_QUERY = gql`
       slug
       avatar
       description
+      website
+      twitter
+      producthunt
+      github
+      discord
       user {
         id
       }

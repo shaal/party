@@ -4,6 +4,7 @@ import { db } from '~/utils/prisma'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
 import { getUsers } from './queries/getUsers'
+import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
 
 builder.prismaObject('User', {
@@ -103,6 +104,16 @@ builder.queryField('users', (t) =>
     maxSize: 100,
     resolve: async (query) => {
       return await getUsers(query)
+    }
+  })
+)
+
+builder.queryField('whoToFollow', (t) =>
+  t.prismaConnection({
+    type: 'User',
+    cursor: 'id',
+    resolve: async (query, root, args, { session }) => {
+      return await getWhoToFollow(query, session)
     }
   })
 )

@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { UsersIcon } from '@heroicons/react/outline'
+import { SparklesIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -8,11 +8,11 @@ import UserProfile from '~/components/shared/UserProfile'
 import { Card, CardBody } from '~/components/ui/Card'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
-import { RecentUsersQuery } from './__generated__/RecentUsers.generated'
+import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
-const RECENT_USERS_QUERY = gql`
-  query RecentUsersQuery {
-    users(first: 5) {
+const WHO_TO_FOLLOW_QUERY = gql`
+  query WhoToFollowQuery {
+    whoToFollow {
       edges {
         node {
           id
@@ -30,12 +30,12 @@ const RECENT_USERS_QUERY = gql`
   }
 `
 
-const RecentUsersCard = ({ children }: any) => {
+const WhoToFollowCard = ({ children }: any) => {
   return (
     <div className="mb-4">
       <div className="mb-2 flex items-center gap-2">
-        <UsersIcon className="h-4 w-4" />
-        <div>Recent users</div>
+        <SparklesIcon className="h-4 w-4" />
+        <div>Who to follow</div>
       </div>
       <Card>
         <CardBody>{children}</CardBody>
@@ -44,13 +44,13 @@ const RecentUsersCard = ({ children }: any) => {
   )
 }
 
-const RecentUsers: React.FC = () => {
+const WhoToFollow: React.FC = () => {
   const { data, loading, error } =
-    useQuery<RecentUsersQuery>(RECENT_USERS_QUERY)
+    useQuery<WhoToFollowQuery>(WHO_TO_FOLLOW_QUERY)
 
   if (loading)
     return (
-      <RecentUsersCard>
+      <WhoToFollowCard>
         <div className="space-y-3">
           <UserProfileShimmer showFollow />
           <UserProfileShimmer showFollow />
@@ -58,14 +58,14 @@ const RecentUsers: React.FC = () => {
           <UserProfileShimmer showFollow />
           <UserProfileShimmer showFollow />
         </div>
-      </RecentUsersCard>
+      </WhoToFollowCard>
     )
 
   return (
-    <RecentUsersCard>
+    <WhoToFollowCard>
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
-        {data?.users?.edges?.map((user: any) => (
+        {data?.whoToFollow?.edges?.map((user: any) => (
           <UserProfile
             key={user?.node?.id}
             user={user?.node as User}
@@ -73,8 +73,8 @@ const RecentUsers: React.FC = () => {
           />
         ))}
       </div>
-    </RecentUsersCard>
+    </WhoToFollowCard>
   )
 }
 
-export default RecentUsers
+export default WhoToFollow

@@ -160,14 +160,14 @@ const StaffToolsUsers: React.FC = () => {
                           {user?.hasSpotifyIntegration && (
                             <img
                               className="h-4 w-4"
-                              src="/brand/spotify.svg"
+                              src="https://assets.devparty.io/images/brands/spotify.svg"
                               alt="Spotify Logo"
                             />
                           )}
                           {user?.hasWakatimeIntegration && (
                             <img
                               className="h-4 w-4"
-                              src="/brand/wakatime-dark.svg"
+                              src="https://assets.devparty.io/images/brands/wakatime-dark.svg"
                               alt="Wakatime Logo"
                             />
                           )}

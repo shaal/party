@@ -1,28 +1,28 @@
 import { useTheme } from 'next-themes'
 
-import { Profile } from '~/__generated__/schema.generated'
+import { Product } from '~/__generated__/schema.generated'
 
 interface Props {
-  profile: Profile
+  product: Product
 }
 
-const Social: React.FC<Props> = ({ profile }) => {
+const Social: React.FC<Props> = ({ product }) => {
   const { resolvedTheme } = useTheme()
   return (
     <div className="space-y-2">
-      {profile?.website && (
+      {product?.website && (
         <div className="flex items-center gap-2">
           <img
-            src={`https://www.google.com/s2/favicons?domain=${profile?.website}`}
+            src={`https://www.google.com/s2/favicons?domain=${product?.website}`}
             className="w-4"
             alt="Website"
           />
-          <a href={profile?.website} target="_blank" rel="noreferrer">
-            {profile?.website}
+          <a href={product?.website} target="_blank" rel="noreferrer">
+            {product?.website}
           </a>
         </div>
       )}
-      {profile?.twitter && (
+      {product?.twitter && (
         <div className="flex items-center gap-2">
           <img
             src="https://assets.devparty.io/images/brands/twitter.svg"
@@ -30,15 +30,15 @@ const Social: React.FC<Props> = ({ profile }) => {
             alt="Twitter Logo"
           />
           <a
-            href={`https://twitter.com/${profile?.twitter}`}
+            href={`https://twitter.com/${product?.twitter}`}
             target="_blank"
             rel="noreferrer"
           >
-            {profile?.twitter}
+            {product?.twitter}
           </a>
         </div>
       )}
-      {profile?.github && (
+      {product?.github && (
         <div className="flex items-center gap-2">
           {resolvedTheme === 'dark' ? (
             <img
@@ -54,15 +54,15 @@ const Social: React.FC<Props> = ({ profile }) => {
             />
           )}
           <a
-            href={`https://github.com/${profile?.github}`}
+            href={`https://github.com/${product?.github}`}
             target="_blank"
             rel="noreferrer"
           >
-            {profile?.github}
+            {product?.github}
           </a>
         </div>
       )}
-      {profile?.discord && (
+      {product?.discord && (
         <div className="flex items-center gap-2">
           <img
             src="https://assets.devparty.io/images/brands/discord.svg"
@@ -70,11 +70,27 @@ const Social: React.FC<Props> = ({ profile }) => {
             alt="Discord Logo"
           />
           <a
-            href={`https://discord.com/${profile?.discord}`}
+            href={`https://discord.com/${product?.discord}`}
             target="_blank"
             rel="noreferrer"
           >
-            {profile?.discord}
+            {product?.discord}
+          </a>
+        </div>
+      )}
+      {product?.producthunt && (
+        <div className="flex items-center gap-2">
+          <img
+            src="https://assets.devparty.io/images/brands/producthunt.svg"
+            className="w-4"
+            alt="ProductHunt Logo"
+          />
+          <a
+            href={`https://producthunt.com/posts/${product?.producthunt}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {product?.producthunt}
           </a>
         </div>
       )}
