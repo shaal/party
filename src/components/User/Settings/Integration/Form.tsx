@@ -22,7 +22,7 @@ import {
   IntegrationSettingsMutationVariables
 } from './__generated__/Form.generated'
 
-const editProfileSchema = object({
+const editIntegrationSchema = object({
   wakatimeAPIKey: string().max(100).nullable()
 })
 
@@ -54,7 +54,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   )
 
   const form = useZodForm({
-    schema: editProfileSchema,
+    schema: editIntegrationSchema,
     defaultValues: {
       wakatimeAPIKey: integration?.wakatimeAPIKey as string
     }
