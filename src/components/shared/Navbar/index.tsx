@@ -60,12 +60,6 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
         current={router.pathname == '/products'}
         isMobile={isMobile}
       />
-      <NavItem
-        url="/discover"
-        name="Discover"
-        current={false}
-        isMobile={isMobile}
-      />
     </Fragment>
   )
 }
