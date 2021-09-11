@@ -1,12 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
 import { PlusIcon } from '@heroicons/react/outline'
-import { useContext } from 'react'
+import { Fragment, useContext, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 
 import { Button } from '../ui/Button'
+import { Modal } from '../ui/Modal'
 import AppContext from '../utils/AppContext'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
+import AddBadgesModal from './AddBadgesModal'
 
 export const USER_PRODUCTS_QUERY = gql`
   query UserProductsQuery($where: WhereProductsInput) {
@@ -29,6 +31,7 @@ interface Props {
 
 const Badges: React.FC<Props> = ({ user }) => {
   const { currentUser } = useContext(AppContext)
+  const [showAddBadgesModal, setShowBadgesModal] = useState<boolean>(false)
   const { data, loading } = useQuery<UserProductsQuery>(USER_PRODUCTS_QUERY, {
     variables: {
       where: { userId: user?.id }
@@ -40,9 +43,24 @@ const Badges: React.FC<Props> = ({ user }) => {
       <div className="font-bold">Badges</div>
       <div>
         {currentUser?.id === user?.id && (
-          <Button variant="secondary" outline>
-            <PlusIcon className="h-5 w-5" />
-          </Button>
+          <Fragment>
+            <Button
+              variant="secondary"
+              outline
+              onClick={() => setShowBadgesModal(!showAddBadgesModal)}
+            >
+              <PlusIcon className="h-5 w-5" />
+            </Button>
+            {showAddBadgesModal && (
+              <Modal
+                onClose={() => setShowBadgesModal(!showAddBadgesModal)}
+                title="Add badges"
+                show={showAddBadgesModal}
+              >
+                <AddBadgesModal />
+              </Modal>
+            )}
+          </Fragment>
         )}
       </div>
     </div>
