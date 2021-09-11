@@ -17,7 +17,9 @@ const Social: React.FC<Props> = ({ profile }) => {
             className="w-4"
             alt="Website"
           />
-          <div>{profile?.website}</div>
+          <a href={profile?.website} target="_blank" rel="noreferrer">
+            {profile?.website}
+          </a>
         </div>
       )}
       {profile?.twitter && (
@@ -27,7 +29,13 @@ const Social: React.FC<Props> = ({ profile }) => {
             className="w-4"
             alt="Twitter Logo"
           />
-          <div>{profile?.twitter}</div>
+          <a
+            href={`https://twitter.com/${profile?.twitter}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile?.twitter}
+          </a>
         </div>
       )}
       {profile?.github && (
@@ -45,7 +53,13 @@ const Social: React.FC<Props> = ({ profile }) => {
               alt="GitHub Logo"
             />
           )}
-          <div>{profile?.github}</div>
+          <a
+            href={`https://github.com/${profile?.github}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile?.github}
+          </a>
         </div>
       )}
       {profile?.discord && (
@@ -55,7 +69,13 @@ const Social: React.FC<Props> = ({ profile }) => {
             className="w-4"
             alt="Discord Logo"
           />
-          <div>{profile?.discord}</div>
+          <a
+            href={`https://discord.com/${profile?.discord}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {profile?.discord}
+          </a>
         </div>
       )}
     </div>
