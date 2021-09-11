@@ -82,7 +82,7 @@ const About: React.FC = () => {
                         <img
                           className="w-16"
                           src={`https://cloudflare-ipfs.com/ipfs/${image}`}
-                          alt=""
+                          alt={title}
                         />
                       </div>
                     </div>
