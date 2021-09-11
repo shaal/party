@@ -112,14 +112,12 @@ const About: React.FC = () => {
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever.
                 </p>
-                <ul>
-                  <li className="flex items-center py-2 space-x-2 xl:py-3">
-                    <QrcodeIcon className="w-5 h-5" />
-                    <span className="font-medium text-gray-500 dark:text-gray-400">
-                      Get your invite code and access the community.
-                    </span>
-                  </li>
-                </ul>
+                <div className="flex items-center py-2 space-x-2 xl:py-3">
+                  <QrcodeIcon className="w-5 h-5" />
+                  <span className="font-medium text-gray-500 dark:text-gray-400">
+                    Get your invite code and access the community.
+                  </span>
+                </div>
                 <div className="md:mt-10 mt-6">
                   <Link href="/signup">
                     <a className="inline-flex items-center justify-center w-full px-6 py-3 mt-6 no-underline bg-indigo-600 border border-indigo-600 rounded-lg cursor-pointer md:w-auto lg:mt-0 hover:bg-indigo-700 hover:border-indigo-700 text-white hover:text-white focus-within:bg-indigo-700 sm:text-lg md:text-xl">
