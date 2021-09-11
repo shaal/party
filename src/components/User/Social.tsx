@@ -40,7 +40,7 @@ const Social: React.FC<Props> = ({ profile }) => {
             />
           ) : (
             <img
-              src="/brand/github-dark.svg"
+              src="https://assets.devparty.io/images/brands/github-dark.svg"
               className="w-4"
               alt="GitHub Logo"
             />
@@ -50,7 +50,11 @@ const Social: React.FC<Props> = ({ profile }) => {
       )}
       {profile?.discord && (
         <div className="flex items-center gap-2">
-          <img src="/brand/discord.svg" className="w-4" alt="Discord Logo" />
+          <img
+            src="https://assets.devparty.io/images/brands/discord.svg"
+            className="w-4"
+            alt="Discord Logo"
+          />
           <div>{profile?.discord}</div>
         </div>
       )}
