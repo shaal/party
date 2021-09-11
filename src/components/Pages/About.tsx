@@ -141,7 +141,7 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
-      <div className="my-4 mx-4 flex justify-center">
+      <div className="m-4 pb-4 flex justify-center">
         <Footer />
       </div>
     </Fragment>
