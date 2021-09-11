@@ -17,7 +17,11 @@ const AddBadgesModal: React.FC = () => {
           {showCreate ? 'Back' : 'Add new badge'}
         </Button>
       </div>
-      {showCreate ? <NewBadge /> : <div>Badges list</div>}
+      {showCreate ? (
+        <NewBadge setShowCreate={setShowCreate} />
+      ) : (
+        <div>Badges list</div>
+      )}
     </div>
   )
 }

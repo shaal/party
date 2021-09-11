@@ -1,5 +1,7 @@
+import { gql, useMutation } from '@apollo/client'
 import { BadgeCheckIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { Button } from '~/components/ui/Button'
@@ -7,19 +9,68 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
 
+import {
+  CreateBadgeMutation,
+  CreateBadgeMutationVariables
+} from './__generated__/New.generated'
+
 const createBadgeSchema = object({
   name: string().max(100),
+  slug: string().max(100),
   icon: string().max(100)
 })
 
-const NewBadge: React.FC = () => {
+interface Props {
+  setShowCreate: any
+}
+
+const NewBadge: React.FC<Props> = ({ setShowCreate }) => {
   const [color, setColor] = useState<string>('A78BFA')
+  const [createBadge, createBadgeResult] = useMutation<
+    CreateBadgeMutation,
+    CreateBadgeMutationVariables
+  >(
+    gql`
+      mutation CreateBadgeMutation($input: CreateBadgeInput!) {
+        createBadge(input: $input) {
+          id
+          slug
+          name
+          icon
+          hex
+        }
+      }
+    `,
+    {
+      onCompleted() {
+        toast.success('Badge created successfully!')
+        form.reset()
+        setShowCreate(false)
+      }
+    }
+  )
+
   const form = useZodForm({
     schema: createBadgeSchema
   })
 
   return (
-    <Form form={form} className="space-y-4" onSubmit={() => {}}>
+    <Form
+      form={form}
+      className="space-y-4"
+      onSubmit={({ name, slug, icon }) =>
+        createBadge({
+          variables: {
+            input: {
+              name,
+              slug,
+              icon,
+              hex: color
+            }
+          }
+        })
+      }
+    >
       <ErrorMessage title="Error creating badge" />
       <div>
         <div className="font-medium text-gray-800 dark:text-gray-200 mb-1">
@@ -42,6 +93,12 @@ const NewBadge: React.FC = () => {
         type="text"
         placeholder="Typescript Dev"
         {...form.register('name')}
+      />
+      <Input
+        label="Give your badge a unique slug"
+        type="text"
+        placeholder="Typescript Dev"
+        {...form.register('slug')}
       />
       <Input
         label="Set your badge icon"
