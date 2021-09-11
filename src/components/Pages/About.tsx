@@ -30,7 +30,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-black dark:text-white mx-4 md:mx-0">
+      <section className="py-20 bg-white dark:bg-black dark:text-white px-4">
         <div className="container max-w-6xl mx-auto">
           <span className="opacity-60 font-bold tracking-tight text-left uppercase">
             Features
