@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client'
-import { PlusIcon } from '@heroicons/react/outline'
 import { Fragment, useContext, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -49,12 +48,12 @@ const Badges: React.FC<Props> = ({ user }) => {
               outline
               onClick={() => setShowBadgesModal(!showAddBadgesModal)}
             >
-              <PlusIcon className="h-5 w-5" />
+              Edit
             </Button>
             {showAddBadgesModal && (
               <Modal
                 onClose={() => setShowBadgesModal(!showAddBadgesModal)}
-                title="Add badges"
+                title="Your badges"
                 show={showAddBadgesModal}
               >
                 <AddBadgesModal />
