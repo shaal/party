@@ -13,6 +13,7 @@ import AppContext from '~/components/utils/AppContext'
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import PostMod from './Mod'
+import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
@@ -63,10 +64,15 @@ const ViewPost: React.FC = () => {
         </div>
       </GridItemEight>
       <GridItemFour>
-        <UserCard user={data?.post?.user as User} />
-        {currentUser?.isStaff && staffMode && (
-          <PostMod post={data?.post as Post} />
-        )}
+        <div className="space-y-5">
+          <UserCard user={data?.post?.user as User} />
+          {currentUser?.isStaff && staffMode && (
+            <PostMod post={data?.post as Post} />
+          )}
+          {data?.post?.type === 'QUESTION' && (
+            <MorePosts post={data?.post as Post} />
+          )}
+        </div>
       </GridItemFour>
     </GridLayout>
   )
