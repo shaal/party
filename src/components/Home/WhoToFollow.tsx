@@ -12,7 +12,7 @@ import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
 const WHO_TO_FOLLOW_QUERY = gql`
   query WhoToFollowQuery {
-    users(first: 5) {
+    whoToFollow {
       edges {
         node {
           id
@@ -65,7 +65,7 @@ const WhoToFollow: React.FC = () => {
     <WhoToFollowCard>
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
-        {data?.users?.edges?.map((user: any) => (
+        {data?.whoToFollow?.edges?.map((user: any) => (
           <UserProfile
             key={user?.node?.id}
             user={user?.node as User}
