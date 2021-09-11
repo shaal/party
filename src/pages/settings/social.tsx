@@ -6,9 +6,7 @@ import { authenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {
   const auth = await authenticatedRoute(ctx)
-  if ('redirect' in auth) {
-    return auth
-  }
+  if ('redirect' in auth) return auth
 
   return preloadQuery(ctx, { query })
 }

@@ -6,9 +6,7 @@ import { staffRoute } from '~/utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {
   const staff = await staffRoute(ctx)
-  if ('redirect' in staff) {
-    return staff
-  }
+  if ('redirect' in staff) return staff
 
   return preloadQuery(ctx, { query })
 }
