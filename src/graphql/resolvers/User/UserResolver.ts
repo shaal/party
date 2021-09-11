@@ -112,8 +112,8 @@ builder.queryField('whoToFollow', (t) =>
   t.prismaConnection({
     type: 'User',
     cursor: 'id',
-    resolve: async (query) => {
-      return await getWhoToFollow(query)
+    resolve: async (query, root, args, { session }) => {
+      return await getWhoToFollow(query, session)
     }
   })
 )
