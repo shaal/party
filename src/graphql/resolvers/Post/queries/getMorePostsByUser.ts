@@ -1,5 +1,3 @@
-import { PostType } from '@prisma/client'
-
 import { WhereMorePostsByUserInput } from '~/__generated__/schema.generated'
 import { db } from '~/utils/prisma'
 
@@ -11,7 +9,7 @@ export const getMorePostsByUser = async (
     ...query,
     take: 5,
     where: {
-      type: where?.type === 'ALL' ? undefined : (where?.type as PostType),
+      type: where?.type,
       user: {
         id: where?.userId as string,
         spammy: false

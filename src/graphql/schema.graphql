@@ -232,7 +232,7 @@ type Query {
   integration(userId: ID): Integration
   invite(code: String!): Invite
   me: User
-  morePostsByUser(after: String, before: String, first: Int, last: Int, where: WhereMorePostsByUserInput): QueryMorePostsByUserConnection!
+  morePostsByUser(after: String, before: String, first: Int, last: Int, where: WhereMorePostsByUserInput!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
@@ -470,8 +470,8 @@ input WhereHomeFeedInput {
 }
 
 input WhereMorePostsByUserInput {
-  type: String
-  userId: ID
+  type: String!
+  userId: ID!
 }
 
 input WherePostsInput {

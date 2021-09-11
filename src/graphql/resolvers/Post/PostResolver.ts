@@ -76,8 +76,8 @@ const WhereMorePostsByUserInput = builder.inputType(
   'WhereMorePostsByUserInput',
   {
     fields: (t) => ({
-      userId: t.id({ required: false }),
-      type: t.string({ required: false })
+      userId: t.id(),
+      type: t.string()
     })
   }
 )
@@ -87,7 +87,7 @@ builder.queryField('morePostsByUser', (t) =>
     type: 'Post',
     cursor: 'id',
     args: {
-      where: t.arg({ type: WhereMorePostsByUserInput, required: false })
+      where: t.arg({ type: WhereMorePostsByUserInput })
     },
     resolve: async (query, root, { where }) => {
       return await getMorePostsByUser(query, where)
