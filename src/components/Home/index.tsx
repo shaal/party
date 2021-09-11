@@ -11,7 +11,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import NewPost from '../Post/NewPost'
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
-import RecentUsers from './RecentUsers'
+import WhoToFollow from './WhoToFollow'
 
 export const HOME_QUERY = CURRENT_USER_QUERY
 
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
           </div>
         </GridItemEight>
         <GridItemFour>
-          <RecentUsers />
+          <WhoToFollow />
           <RecentProducts />
           <Footer />
         </GridItemFour>
