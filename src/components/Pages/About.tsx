@@ -24,7 +24,7 @@ const About: React.FC = () => {
         </div>
         <div className="container items-center max-w-4xl px-5 mx-auto mt-16 text-center">
           <img
-            alt=""
+            alt="Hero Illustration"
             src="https://cloudflare-ipfs.com/ipfs/QmcDpJhD72Bk7SJ2sD6mnW4h7p8wf7CCy5UHHLtvh7WtW9"
           />
         </div>
