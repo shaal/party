@@ -21,6 +21,7 @@ const Invite: React.FC = () => {
         <Modal
           onClose={() => setShowModal(!showModal)}
           title="Your Invite Code"
+          show={showModal}
         >
           <InviteDetails />
         </Modal>

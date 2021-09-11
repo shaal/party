@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 
 interface Props {
   title: string
+  show: boolean
   children: React.ReactChild[] | React.ReactChild
   onClose: () => void
   onEnter?: () => boolean
@@ -33,6 +34,8 @@ export const Modal: React.FC<Props> = (props) => {
       window.removeEventListener('keydown', handler)
     }
   })
+
+  if (!props.show) return null
 
   return (
     <div className="fixed top-0 left-0 bg-black bg-opacity-70 z-50 h-screen">
