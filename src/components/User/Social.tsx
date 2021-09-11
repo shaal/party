@@ -22,7 +22,11 @@ const Social: React.FC<Props> = ({ profile }) => {
       )}
       {profile?.twitter && (
         <div className="flex items-center gap-2">
-          <img src="/brand/twitter.svg" className="w-4" alt="Twitter Logo" />
+          <img
+            src="https://assets.devparty.io/images/brands/twitter.svg"
+            className="w-4"
+            alt="Twitter Logo"
+          />
           <div>{profile?.twitter}</div>
         </div>
       )}
@@ -30,7 +34,7 @@ const Social: React.FC<Props> = ({ profile }) => {
         <div className="flex items-center gap-2">
           {resolvedTheme === 'dark' ? (
             <img
-              src="/brand/github-light.svg"
+              src="https://assets.devparty.io/images/brands/github-light.svg"
               className="w-4"
               alt="GitHub Logo"
             />
