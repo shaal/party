@@ -1,8 +1,9 @@
-import { ArrowRightIcon, QrcodeIcon } from '@heroicons/react/outline'
+import { ArrowCircleRightIcon, QrcodeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import Footer from '../shared/Footer'
+import { Button } from '../ui/Button'
 
 const About: React.FC = () => {
   return (
@@ -119,12 +120,14 @@ const About: React.FC = () => {
                   </span>
                 </div>
                 <div className="md:mt-10 mt-6">
-                  <Link href="/signup">
-                    <a className="inline-flex items-center justify-center w-full px-6 py-3 mt-6 no-underline bg-indigo-600 border border-indigo-600 rounded-lg cursor-pointer md:w-auto lg:mt-0 hover:bg-indigo-700 hover:border-indigo-700 text-white hover:text-white focus-within:bg-indigo-700 sm:text-lg md:text-xl">
-                      Get Started
-                      <ArrowRightIcon className="h-5 w-5 ml-3" />
-                    </a>
-                  </Link>
+                  <Button size="lg" variant="primary">
+                    <Link href="/signup">
+                      <a className="flex items-center space-x-1.5">
+                        <ArrowCircleRightIcon className="h-5 w-5" />
+                        <div>Get started</div>
+                      </a>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
