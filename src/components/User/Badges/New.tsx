@@ -1,5 +1,5 @@
 import { BadgeCheckIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import { object, string } from 'zod'
 
 import { Button } from '~/components/ui/Button'
@@ -13,6 +13,7 @@ const createBadgeSchema = object({
 })
 
 const NewBadge: React.FC = () => {
+  const [color, setColor] = useState<string>('A78BFA')
   const form = useZodForm({
     schema: createBadgeSchema
   })
@@ -24,11 +25,14 @@ const NewBadge: React.FC = () => {
         <div className="font-medium text-gray-800 dark:text-gray-200 mb-1">
           Preview
         </div>
-        <div className="border rounded-lg w-28 h-28 flex justify-center items-center">
+        <div
+          className="border rounded-lg w-28 h-28 flex justify-center items-center"
+          style={{ backgroundColor: `#${color}` }}
+        >
           {form.watch('icon') ? (
             <div>WIP</div>
           ) : (
-            <BadgeCheckIcon className="h-5 w-5" />
+            <BadgeCheckIcon className="h-7 w-7 text-white" />
           )}
           <div>{form.watch('name')}</div>
         </div>
@@ -56,6 +60,7 @@ const NewBadge: React.FC = () => {
             id="A78BFA"
             value="A78BFA"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-red-400 bg-red-400"
@@ -63,6 +68,7 @@ const NewBadge: React.FC = () => {
             id="F87171"
             value="F87171"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-green-400 bg-green-400"
@@ -70,6 +76,7 @@ const NewBadge: React.FC = () => {
             id="34D399"
             value="34D399"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-blue-400 bg-blue-400"
@@ -77,6 +84,7 @@ const NewBadge: React.FC = () => {
             id="60A5FA"
             value="60A5FA"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-indigo-400 bg-indigo-400"
@@ -84,6 +92,7 @@ const NewBadge: React.FC = () => {
             id="818CF8"
             value="818CF8"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-pink-400 bg-pink-400"
@@ -91,6 +100,7 @@ const NewBadge: React.FC = () => {
             id="F472B6"
             value="F472B6"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-yellow-400 bg-yellow-400"
@@ -98,6 +108,7 @@ const NewBadge: React.FC = () => {
             id="FBBF24"
             value="FBBF24"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
           <input
             className="p-3 text-gray-400 bg-gray-400"
@@ -105,6 +116,7 @@ const NewBadge: React.FC = () => {
             id="9CA3AF"
             value="9CA3AF"
             name="color"
+            onChange={(evt) => setColor(evt.target.value)}
           />
         </div>
       </div>
