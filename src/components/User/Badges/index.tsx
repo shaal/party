@@ -4,10 +4,10 @@ import { Fragment, useContext, useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 
-import { Button } from '../ui/Button'
-import { Modal } from '../ui/Modal'
-import AppContext from '../utils/AppContext'
-import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
+import { Button } from '../../ui/Button'
+import { Modal } from '../../ui/Modal'
+import AppContext from '../../utils/AppContext'
+import { UserProductsQuery } from '../__generated__/OwnedProducts.generated'
 import AddBadgesModal from './AddBadgesModal'
 
 export const USER_PRODUCTS_QUERY = gql`
