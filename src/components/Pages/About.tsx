@@ -133,9 +133,9 @@ const About: React.FC = () => {
             </div>
             <div className="w-full mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
               <img
-                className="mx-auto sm:max-w-sm lg:max-w-full h-80"
+                className="mx-auto max-w-sm"
                 src="https://cloudflare-ipfs.com/ipfs/QmR7TPhoTk8LqxqjCmcADXpieDHZwp3aEJcUxh4dn3Wu9n"
-                alt="feature"
+                alt="Invite"
               />
             </div>
           </div>
