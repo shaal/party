@@ -17,7 +17,9 @@ const Social: React.FC<Props> = ({ product }) => {
             className="w-4"
             alt="Website"
           />
-          <div>{product?.website}</div>
+          <a href={product?.website} target="_blank" rel="noreferrer">
+            {product?.website}
+          </a>
         </div>
       )}
       {product?.twitter && (
@@ -27,7 +29,13 @@ const Social: React.FC<Props> = ({ product }) => {
             className="w-4"
             alt="Twitter Logo"
           />
-          <div>{product?.twitter}</div>
+          <a
+            href={`https://twitter.com/${product?.twitter}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {product?.twitter}
+          </a>
         </div>
       )}
       {product?.github && (
@@ -45,7 +53,13 @@ const Social: React.FC<Props> = ({ product }) => {
               alt="GitHub Logo"
             />
           )}
-          <div>{product?.github}</div>
+          <a
+            href={`https://github.com/${product?.github}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {product?.github}
+          </a>
         </div>
       )}
       {product?.discord && (
@@ -55,7 +69,13 @@ const Social: React.FC<Props> = ({ product }) => {
             className="w-4"
             alt="Discord Logo"
           />
-          <div>{product?.discord}</div>
+          <a
+            href={`https://discord.com/${product?.discord}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {product?.discord}
+          </a>
         </div>
       )}
       {product?.producthunt && (
@@ -65,7 +85,13 @@ const Social: React.FC<Props> = ({ product }) => {
             className="w-4"
             alt="ProductHunt Logo"
           />
-          <div>{product?.producthunt}</div>
+          <a
+            href={`https://producthunt.com/posts/${product?.producthunt}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {product?.producthunt}
+          </a>
         </div>
       )}
     </div>
