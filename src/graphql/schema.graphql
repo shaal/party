@@ -246,6 +246,7 @@ type Query {
   user(id: ID, username: String): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
+  whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
 }
 
 type QueryHomeFeedConnection {
@@ -324,6 +325,16 @@ type QueryUsersConnection {
 }
 
 type QueryUsersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
+type QueryWhoToFollowConnection {
+  edges: [QueryWhoToFollowConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryWhoToFollowConnectionEdge {
   cursor: String!
   node: User!
 }
