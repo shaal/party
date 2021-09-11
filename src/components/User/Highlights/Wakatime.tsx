@@ -46,7 +46,7 @@ const Wakatime: React.FC<Props> = ({ user }) => {
               >
                 <img
                   className="h-4 w-4"
-                  src="/brand/wakatime-dark.svg"
+                  src="https://assets.devparty.io/images/brands/wakatime-dark.svg"
                   alt="Wakatime Logo"
                 />
               </a>

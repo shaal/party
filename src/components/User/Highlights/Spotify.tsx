@@ -50,7 +50,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
               >
                 <img
                   className="h-4 w-4"
-                  src="/brand/spotify.svg"
+                  src="https://assets.devparty.io/images/brands/spotify.svg"
                   alt="Spotify Logo"
                 />
               </a>
