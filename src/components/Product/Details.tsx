@@ -6,6 +6,8 @@ import { Product } from '~/__generated__/schema.generated'
 import { Button } from '~/components/ui/Button'
 import AppContext from '~/components/utils/AppContext'
 
+import UserProfileLarge from '../shared/UserProfileLarge'
+import { Card, CardBody } from '../ui/Card'
 import ProductMod from './Mod'
 import Social from './Social'
 
@@ -45,6 +47,14 @@ const Details: React.FC<Props> = ({ product }) => {
           </div>
         )}
         <Social product={product} />
+        <div className="space-y-2">
+          <div className="font-bold">Owned by</div>
+          <Card>
+            <CardBody>
+              <UserProfileLarge user={product?.user} />
+            </CardBody>
+          </Card>
+        </div>
       </div>
       {currentUser?.isStaff && staffMode && <ProductMod product={product} />}
     </div>

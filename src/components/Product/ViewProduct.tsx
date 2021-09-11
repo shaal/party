@@ -26,6 +26,13 @@ export const PRODUCT_QUERY = gql`
       discord
       user {
         id
+        username
+        profile {
+          id
+          name
+          avatar
+          bio
+        }
       }
     }
   }
