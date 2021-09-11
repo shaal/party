@@ -5,6 +5,7 @@ import {
   CubeIcon,
   HashtagIcon,
   HeartIcon,
+  IdentificationIcon,
   LoginIcon,
   UserGroupIcon,
   UsersIcon
@@ -27,6 +28,7 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
       posts
       likes
       topics
+      badges
       notifications
       sessions
     }
@@ -88,6 +90,13 @@ const StaffToolsDashboard: React.FC = () => {
                 <div>
                   <span className="font-bold">{data?.stats?.topics}</span>{' '}
                   Topics
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <IdentificationIcon className="h-4 w-4" />
+                <div>
+                  <span className="font-bold">{data?.stats?.badges}</span>{' '}
+                  Badges
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
