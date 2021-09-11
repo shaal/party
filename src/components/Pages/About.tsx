@@ -80,7 +80,7 @@ const About: React.FC = () => {
                     <div>
                       <div className="rounded-full mr-4">
                         <img
-                          className="h-14 w-14"
+                          className="w-16"
                           src={`https://cloudflare-ipfs.com/ipfs/${image}`}
                           alt=""
                         />
@@ -131,7 +131,7 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
+            <div className="w-full mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
               <img
                 className="mx-auto sm:max-w-sm lg:max-w-full h-80"
                 src="https://cloudflare-ipfs.com/ipfs/QmR7TPhoTk8LqxqjCmcADXpieDHZwp3aEJcUxh4dn3Wu9n"
