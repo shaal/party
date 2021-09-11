@@ -7,9 +7,13 @@ import NewBadge from './New'
 const AddBadgesModal: React.FC = () => {
   const [showCreate, setShowCreate] = useState<boolean>(false)
   return (
-    <div className="px-5 py-3.5">
+    <div className="px-5 py-3.5 space-y-5">
       <div>
-        <Button className="w-full" onClick={() => setShowCreate(!showCreate)}>
+        <Button
+          className="w-full"
+          onClick={() => setShowCreate(!showCreate)}
+          outline={showCreate}
+        >
           {showCreate ? 'Back' : 'Add new badge'}
         </Button>
       </div>
