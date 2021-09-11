@@ -1,4 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
+import { CollectionIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
 import React from 'react'
 
 import { Post } from '~/__generated__/schema.generated'
@@ -32,9 +34,22 @@ export const MORE_POSTS_BY_USER_QUERY = gql`
 interface Props {
   post: Post
 }
+const MorePostsCard = ({ title, children }: any) => {
+  return (
+    <div className="mb-4">
+      <div className="mb-2 flex items-center gap-2">
+        <CollectionIcon className="h-4 w-4" />
+        <div>More by {title}</div>
+      </div>
+      <Card>
+        <CardBody className="space-y-5">{children}</CardBody>
+      </Card>
+    </div>
+  )
+}
 
 const MorePosts: React.FC<Props> = ({ post }) => {
-  const { data, loading, error } = useQuery<MorePostsByUserQuery>(
+  const { data, error } = useQuery<MorePostsByUserQuery>(
     MORE_POSTS_BY_USER_QUERY,
     {
       variables: {
@@ -48,27 +63,25 @@ const MorePosts: React.FC<Props> = ({ post }) => {
   )
   const posts = data?.morePostsByUser?.edges?.map((edge) => edge?.node)
 
-  if (loading) return <div>Loading More Posts</div>
-
   return (
-    <Card>
-      <CardBody className="space-y-5">
-        <ErrorMessage title="Failed to load more posts" error={error} />
-        {posts?.map((post: any) => (
-          <div key={post?.id} className="space-y-2">
-            <div className="font-bold">{post?.title}</div>
-            <div className="flex items-start space-x-1 text-sm">
-              <img
-                className="h-5 w-5 rounded-full"
-                src={post?.user?.profile?.avatar}
-                alt={`@${post?.user?.profile?.avatar}'s avatar'`}
-              />
-              <div>{post?.user?.profile?.name}</div>
-            </div>
+    <MorePostsCard title={post?.user?.profile?.name}>
+      <ErrorMessage title="Failed to load more posts" error={error} />
+      {posts?.map((post: any) => (
+        <div key={post?.id} className="space-y-2">
+          <div className="font-bold">{post?.title}</div>
+          <div className="flex items-start space-x-1 text-sm">
+            <img
+              className="h-5 w-5 rounded-full"
+              src={post?.user?.profile?.avatar}
+              alt={`@${post?.user?.profile?.avatar}'s avatar'`}
+            />
+            <Link href={`/@/${post?.user?.username}`}>
+              <a>{post?.user?.profile?.name}</a>
+            </Link>
           </div>
-        ))}
-      </CardBody>
-    </Card>
+        </div>
+      ))}
+    </MorePostsCard>
   )
 }
 
