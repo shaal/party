@@ -22,7 +22,7 @@ import {
   SocialSettingsMutationVariables
 } from './__generated__/Form.generated'
 
-const editProfileSchema = object({
+const editSocialSchema = object({
   website: string().max(100).nullable(),
   twitter: string().max(50).nullable(),
   github: string().max(50).nullable(),
@@ -61,7 +61,7 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   )
 
   const form = useZodForm({
-    schema: editProfileSchema,
+    schema: editSocialSchema,
     defaultValues: {
       website: currentUser.profile.website as string,
       twitter: currentUser.profile.twitter as string,
