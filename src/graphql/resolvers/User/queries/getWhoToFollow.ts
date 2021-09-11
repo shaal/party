@@ -21,6 +21,6 @@ export const getWhoToFollow = async (
         notIn: [...following.following.map((user) => user.id), session?.userId]
       }
     },
-    orderBy: { createdAt: 'desc' }
+    orderBy: [{ followedBy: { _count: 'asc' } }, { posts: { _count: 'asc' } }]
   })
 }
