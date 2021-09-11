@@ -12,6 +12,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
 import { Tooltip } from '../ui/Tooltip'
+import Badges from './Badges'
 import Follow from './Follow'
 import Followerings from './Followerings'
 import Spotify from './Highlights/Spotify'
@@ -77,6 +78,7 @@ const Details: React.FC<Props> = ({ user }) => {
         <OwnedProducts user={user} />
         {user?.hasWakatimeIntegration && <Wakatime user={user} />}
         {user?.hasSpotifyIntegration && <Spotify user={user} />}
+        <Badges user={user} />
       </div>
       {currentUser?.isStaff && staffMode && (
         <Fragment>
