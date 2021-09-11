@@ -43,7 +43,7 @@ const InviteSignup: React.FC = () => {
             <img
               src="https://assets.devparty.io/images/invite.png"
               className="w-20"
-              alt="Hero"
+              alt="Invite Emoji"
             />
             <div className="space-y-2">
               <div className="font-extrabold text-4xl">Signup</div>

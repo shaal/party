@@ -20,7 +20,7 @@ const Login: React.FC = () => {
             <img
               src="https://assets.devparty.io/images/victory.png"
               className="w-20"
-              alt="Hero"
+              alt="Victory Emoji"
             />
             <div className="space-y-2">
               <div className="font-extrabold text-4xl">Login</div>

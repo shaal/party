@@ -16,7 +16,7 @@ const Landing: React.FC = () => {
             <img
               src="https://assets.devparty.io/images/wave.png"
               className="w-20"
-              alt="Hero"
+              alt="Waving Emoji"
             />
             <div className="font-extrabold text-4xl">
               Welcome, To the social media for developers

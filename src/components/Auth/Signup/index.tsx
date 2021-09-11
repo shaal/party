@@ -20,7 +20,7 @@ const Signup: React.FC = () => {
             <img
               src="https://assets.devparty.io/images/handshake.png"
               className="w-20"
-              alt="Hero"
+              alt="Handshake Emoji"
             />
             <div className="space-y-2">
               <div className="font-extrabold text-4xl">Join Waitlist</div>
