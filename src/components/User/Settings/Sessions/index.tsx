@@ -56,7 +56,7 @@ const SessionsSettings: React.FC = () => {
       </GridItemFour>
       <GridItemEight>
         <Card className="mb-4">
-          <CardBody>
+          <CardBody className="space-y-3">
             {sessions?.map((session: any) => (
               <SingleSession key={session?.id} session={session} />
             ))}
