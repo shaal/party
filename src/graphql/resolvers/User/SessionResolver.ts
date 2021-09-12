@@ -3,7 +3,7 @@ import { builder } from '~/graphql/builder'
 import { getSessions } from './queries/getSessions'
 
 builder.prismaObject('Session', {
-  findUnique: (user) => ({ id: user.id }),
+  findUnique: (session) => ({ id: session.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
