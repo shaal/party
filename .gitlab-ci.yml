@@ -2,6 +2,7 @@ image: node:latest
 
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
 
 cache:
   paths:
