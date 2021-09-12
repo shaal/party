@@ -36,12 +36,12 @@ export const sessionOptions: SessionOptions = {
 }
 
 export async function createSession(request: IncomingMessage, user: User) {
-  console.log(request.headers['user-agent'])
   const session = await db.session.create({
     data: {
       userId: user.id,
       isStaff: user.isStaff,
-      expiresAt: addSeconds(new Date(), SESSION_TTL)
+      expiresAt: addSeconds(new Date(), SESSION_TTL),
+      userAgent: request.headers['user-agent']
     }
   })
 
