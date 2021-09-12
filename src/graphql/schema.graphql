@@ -257,6 +257,7 @@ type Query {
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
+  sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
   topic(name: String!): Topic!
@@ -346,6 +347,16 @@ type QuerySearchUsersConnectionEdge {
   node: User!
 }
 
+type QuerySessionsConnection {
+  edges: [QuerySessionsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySessionsConnectionEdge {
+  cursor: String!
+  node: Session!
+}
+
 type QueryUsersConnection {
   edges: [QueryUsersConnectionEdge]!
   pageInfo: PageInfo!
@@ -368,6 +379,16 @@ type QueryWhoToFollowConnectionEdge {
 
 enum Result {
   SUCCESS
+}
+
+type Session {
+  createdAt: DateTime!
+  expiresAt: DateTime!
+  id: ID!
+  isStaff: Boolean!
+  updatedAt: DateTime!
+  user: User!
+  userAgent: String
 }
 
 input SignupInput {

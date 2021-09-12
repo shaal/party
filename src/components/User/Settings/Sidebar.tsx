@@ -1,6 +1,7 @@
 import {
   BeakerIcon,
   ClipboardListIcon,
+  IdentificationIcon,
   LockClosedIcon,
   PuzzleIcon,
   ShareIcon,
@@ -65,6 +66,13 @@ const Sidebar: React.FC = () => {
       >
         <PuzzleIcon className="h-4 w-4" />
         <div>Integrations</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/settings/sessions'}
+        url="/settings/sessions"
+      >
+        <IdentificationIcon className="h-4 w-4" />
+        <div>Sessions</div>
       </Menu>
       {currentUser?.isStaff && staffMode && (
         <Fragment>

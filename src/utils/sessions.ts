@@ -40,7 +40,8 @@ export async function createSession(request: IncomingMessage, user: User) {
     data: {
       userId: user.id,
       isStaff: user.isStaff,
-      expiresAt: addSeconds(new Date(), SESSION_TTL)
+      expiresAt: addSeconds(new Date(), SESSION_TTL),
+      userAgent: request.headers['user-agent']
     }
   })
 
