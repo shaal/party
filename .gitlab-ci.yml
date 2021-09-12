@@ -1,10 +1,5 @@
 image: node:latest
 
-stages:
-  - test
-  - build
-  - deploy
-
 include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
@@ -23,33 +18,27 @@ before_script:
   - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
-  stage: build
   script:
     - yarn lint
 
 Prettier 📚:
-  stage: build
   script:
     - yarn prettier:check
 
 Generate 🧞‍♂️:
-  stage: build
   script:
     - yarn generate
 
 Typecheck 🧐:
-  stage: build
   script:
     - yarn generate
     - yarn typecheck
 
 Build 👷‍♂️:
-  stage: build
   script:
     - yarn build
 
 Migrate 🚚:
-  stage: deploy
   script:
     - yarn prisma migrate reset --force
     - yarn prisma migrate deploy
@@ -58,7 +47,6 @@ Migrate 🚚:
   when: manual
 
 Housekeeping ✨:
-  stage: deploy
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
