@@ -22,9 +22,10 @@ export const getWhoToFollow = async (
       }
     },
     orderBy: [
-      { followedBy: { _count: 'asc' } },
-      { posts: { _count: 'asc' } },
-      { updatedAt: 'asc' }
+      { followedBy: { _count: 'desc' } },
+      { posts: { _count: 'desc' } },
+      { isVerified: 'desc' },
+      { updatedAt: 'desc' }
     ]
   })
 }
