@@ -9,8 +9,7 @@ builder.prismaObject('Badge', {
     id: t.exposeID('id', {}),
     slug: t.exposeString('slug', {}),
     name: t.exposeString('name', {}),
-    hex: t.exposeString('hex', {}),
-    icon: t.exposeString('icon', {}),
+    image: t.exposeString('image', {}),
 
     // Relations
     users: t.relatedConnection('users', { cursor: 'id', totalCount: true })
@@ -33,8 +32,7 @@ const CreateBadgeInput = builder.inputType('CreateBadgeInput', {
   fields: (t) => ({
     name: t.string({}),
     slug: t.string({}),
-    icon: t.string({}),
-    hex: t.string({})
+    image: t.string({})
   })
 })
 
@@ -49,8 +47,7 @@ builder.mutationField('createBadge', (t) =>
         data: {
           name: input.name,
           slug: input.slug,
-          icon: input.icon,
-          hex: input.hex
+          image: input.image
         }
       })
     }
