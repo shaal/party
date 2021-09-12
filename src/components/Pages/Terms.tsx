@@ -20,7 +20,7 @@ const Terms: React.FC = () => {
       </div>
       <div className="relative">
         <div className="flex justify-center">
-          <Card className="relative mx-auto -top-14 rounded-lg max-w-3/4 md:w-3/4">
+          <Card className="relative mx-auto -mt-14 rounded-lg max-w-3/4 md:w-3/4">
             <CardBody className="!p-8 prose max-w-none text-gray-900 dark:text-gray-200">
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -113,7 +113,7 @@ const Terms: React.FC = () => {
             </CardBody>
           </Card>
         </div>
-        <div className="flex justify-center pb-4">
+        <div className="flex justify-center pt-2 pb-6">
           <Footer />
         </div>
       </div>
