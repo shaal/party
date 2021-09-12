@@ -10,7 +10,6 @@ type Badge {
   id: ID!
   image: String!
   name: String!
-  slug: String!
   users(after: String, before: String, first: Int, last: Int): BadgeUsersConnection!
 }
 
@@ -31,9 +30,9 @@ input ChangePasswordInput {
 }
 
 input CreateBadgeInput {
+  description: String!
   image: String!
   name: String!
-  slug: String!
 }
 
 input CreatePostInput {

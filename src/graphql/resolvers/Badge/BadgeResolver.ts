@@ -7,7 +7,6 @@ builder.prismaObject('Badge', {
   findUnique: (badge) => ({ id: badge.id }),
   fields: (t) => ({
     id: t.exposeID('id', {}),
-    slug: t.exposeString('slug', {}),
     name: t.exposeString('name', {}),
     description: t.exposeString('description', { nullable: true }),
     image: t.exposeString('image', {}),
@@ -32,8 +31,8 @@ builder.queryField('badges', (t) =>
 const CreateBadgeInput = builder.inputType('CreateBadgeInput', {
   fields: (t) => ({
     name: t.string({}),
-    slug: t.string({}),
-    image: t.string({})
+    image: t.string({}),
+    description: t.string({})
   })
 })
 
@@ -47,8 +46,8 @@ builder.mutationField('createBadge', (t) =>
       return await db.badge.create({
         data: {
           name: input.name,
-          slug: input.slug,
-          image: input.image
+          image: input.image,
+          description: input.description
         }
       })
     }
