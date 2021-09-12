@@ -45,11 +45,11 @@ Build 👷‍♂️:
     - yarn build
 
 Migrate 🚚:
-  stage: deploy
+  stage: build
   script:
     - yarn prisma migrate deploy
   only:
-    - build
+    - main
   when: manual
 
 Housekeeping ✨:
