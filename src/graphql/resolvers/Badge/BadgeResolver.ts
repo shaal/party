@@ -53,3 +53,30 @@ builder.mutationField('createBadge', (t) =>
     }
   })
 )
+
+const AttachBadgeToUserInput = builder.inputType('AttachBadgeToUserInput', {
+  fields: (t) => ({
+    userId: t.id({}),
+    badgeId: t.id({})
+  })
+})
+
+builder.mutationField('attachBadge', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: {
+      input: t.arg({ type: AttachBadgeToUserInput })
+    },
+    resolve: async (query, root, { input }) => {
+      return await db.user.update({
+        ...query,
+        where: { id: input.userId },
+        data: {
+          badges: {
+            connect: { id: input.badgeId }
+          }
+        }
+      })
+    }
+  })
+)
