@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import Footer from '../shared/Footer'
 
 const Terms: React.FC = () => {
   return (
-    <div>
+    <Fragment>
       <div className="flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full">
         <div className="relative text-center">
           <h1 className="text-3xl md:text-4xl font-semibold -mt-5 text-white">
@@ -102,7 +102,7 @@ const Terms: React.FC = () => {
           <Footer />
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
