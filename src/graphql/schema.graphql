@@ -141,6 +141,7 @@ type Mutation {
   modUser(input: ModUserInput!): User
   onboardUser(userId: ID!): User
   regenerateInvite: Invite!
+  revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
@@ -379,6 +380,10 @@ type QueryWhoToFollowConnectionEdge {
 
 enum Result {
   SUCCESS
+}
+
+input RevokeSessionInput {
+  id: ID!
 }
 
 type Session {
