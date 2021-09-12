@@ -8,8 +8,8 @@ import {
 } from '~/components/GridLayout'
 import { Card, CardBody } from '~/components/ui/Card'
 import { PageLoading } from '~/components/ui/PageLoading'
-import Sidebar from '~/components/User/Settings/Sidebar'
 
+import Sidebar from '../Sidebar'
 import { SessionsSettingsQuery } from './__generated__/index.generated'
 
 export const SESSION_SETTINGS_QUERY = gql`
