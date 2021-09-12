@@ -124,7 +124,6 @@ type Like {
   createdAt: DateTime!
   id: ID!
   post: Post!
-  updatedAt: DateTime!
   user: User!
 }
 
@@ -419,7 +418,6 @@ type Session {
   expiresAt: DateTime!
   id: ID!
   isStaff: Boolean!
-  updatedAt: DateTime!
   user: User!
   userAgent: String
 }
