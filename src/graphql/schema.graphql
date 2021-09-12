@@ -245,6 +245,7 @@ type Profile {
 }
 
 type Query {
+  badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
@@ -266,6 +267,16 @@ type Query {
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
   whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
+}
+
+type QueryBadgesConnection {
+  edges: [QueryBadgesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryBadgesConnectionEdge {
+  cursor: String!
+  node: Badge!
 }
 
 type QueryHomeFeedConnection {

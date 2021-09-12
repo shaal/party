@@ -1,6 +1,8 @@
 import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
+import { getBadges } from './queries/getBadges'
+
 builder.prismaObject('Badge', {
   findUnique: (badge) => ({ id: badge.id }),
   fields: (t) => ({
@@ -11,6 +13,18 @@ builder.prismaObject('Badge', {
     icon: t.exposeString('icon', {})
   })
 })
+
+builder.queryField('badges', (t) =>
+  t.prismaConnection({
+    type: 'Badge',
+    cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
+    resolve: async (query) => {
+      return await getBadges(query)
+    }
+  })
+)
 
 const CreateBadgeInput = builder.inputType('CreateBadgeInput', {
   fields: (t) => ({
