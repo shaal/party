@@ -11,6 +11,7 @@ import { PageLoading } from '~/components/ui/PageLoading'
 
 import Sidebar from '../Sidebar'
 import { SessionsSettingsQuery } from './__generated__/index.generated'
+import SingleSession from './SingleSession'
 
 export const SESSION_SETTINGS_QUERY = gql`
   query SessionsSettingsQuery {
@@ -56,7 +57,7 @@ const SessionsSettings: React.FC = () => {
         <Card className="mb-4">
           <CardBody>
             {sessions?.map((session: any) => (
-              <div key={session?.id}>{session?.id}</div>
+              <SingleSession key={session?.id} session={session} />
             ))}
           </CardBody>
         </Card>
