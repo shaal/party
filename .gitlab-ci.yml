@@ -15,7 +15,6 @@ cache:
 
 before_script:
   - cp .env.example .env
-  - npm i -g yarn
   - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
