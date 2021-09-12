@@ -13,6 +13,7 @@ stages:
 
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, yarn.lock'
+  SECRET_DETECTION_EXCLUDED_PATHS: 'node_modules, yarn.lock'
 
 cache:
   paths:
