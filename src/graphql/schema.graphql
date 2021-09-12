@@ -480,6 +480,7 @@ type TopicPostsConnectionEdge {
 }
 
 type User {
+  badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
   createdAt: DateTime!
   email: String!
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
@@ -498,6 +499,17 @@ type User {
   spammy: Boolean!
   updatedAt: DateTime!
   username: String!
+}
+
+type UserBadgesConnection {
+  edges: [UserBadgesConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserBadgesConnectionEdge {
+  cursor: String!
+  node: Badge!
 }
 
 type UserFollowersConnection {

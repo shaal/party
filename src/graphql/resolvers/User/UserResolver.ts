@@ -49,6 +49,10 @@ builder.prismaObject('User', {
         }
       })
     }),
+    badges: t.relatedConnection('badges', {
+      cursor: 'id',
+      totalCount: true
+    }),
     followers: t.relatedConnection('followedBy', {
       cursor: 'id',
       totalCount: true
