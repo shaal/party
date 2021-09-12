@@ -35,7 +35,7 @@ const SingleSession: React.FC<Props> = ({ session }) => {
   )
 
   return (
-    <div className="border p-3 rounded-lg flex items-center justify-between">
+    <div className="border dark:border-gray-700 p-3 rounded-lg flex items-center justify-between">
       <div className="space-y-1">
         <div className="font-bold">User agent</div>
         <div className="text-gray-600 dark:text-gray-300 text-sm">
