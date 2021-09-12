@@ -49,7 +49,7 @@ Migrate 🚚:
   script:
     - yarn prisma migrate deploy
   only:
-    - main
+    - build
   when: manual
 
 Housekeeping ✨:
