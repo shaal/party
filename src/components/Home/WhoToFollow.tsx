@@ -58,7 +58,7 @@ const WhoToFollow: React.FC = () => {
   if (loading)
     return (
       <WhoToFollowCard>
-        <div className="space-y-3">
+        <div className="space-y-4">
           <UserProfileShimmer showFollow />
           <UserProfileShimmer showFollow />
           <UserProfileShimmer showFollow />
