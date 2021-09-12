@@ -13,7 +13,8 @@ export const USER_BADGES_QUERY = gql`
           node {
             id
             name
-            icon
+            description
+            image
           }
         }
       }

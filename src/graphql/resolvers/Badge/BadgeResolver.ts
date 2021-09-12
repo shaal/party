@@ -9,6 +9,7 @@ builder.prismaObject('Badge', {
     id: t.exposeID('id', {}),
     slug: t.exposeString('slug', {}),
     name: t.exposeString('name', {}),
+    description: t.exposeString('description', { nullable: true }),
     image: t.exposeString('image', {}),
 
     // Relations
