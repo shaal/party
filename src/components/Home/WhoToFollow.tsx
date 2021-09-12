@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { SparklesIcon } from '@heroicons/react/outline'
+import { RefreshIcon, SparklesIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
@@ -30,12 +30,17 @@ const WHO_TO_FOLLOW_QUERY = gql`
   }
 `
 
-const WhoToFollowCard = ({ children }: any) => {
+const WhoToFollowCard = ({ children, refetch }: any) => {
   return (
     <div className="mb-4">
-      <div className="mb-2 flex items-center gap-2">
-        <SparklesIcon className="h-4 w-4" />
-        <div>Who to follow</div>
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <SparklesIcon className="h-4 w-4" />
+          <div>Who to follow</div>
+        </div>
+        <button onClick={() => refetch()}>
+          <RefreshIcon className="h-5 w-5" />
+        </button>
       </div>
       <Card>
         <CardBody>{children}</CardBody>
@@ -45,8 +50,10 @@ const WhoToFollowCard = ({ children }: any) => {
 }
 
 const WhoToFollow: React.FC = () => {
-  const { data, loading, error } =
-    useQuery<WhoToFollowQuery>(WHO_TO_FOLLOW_QUERY)
+  const { data, loading, error, refetch, networkStatus } =
+    useQuery<WhoToFollowQuery>(WHO_TO_FOLLOW_QUERY, {
+      notifyOnNetworkStatusChange: true
+    })
 
   if (loading)
     return (
@@ -62,7 +69,7 @@ const WhoToFollow: React.FC = () => {
     )
 
   return (
-    <WhoToFollowCard>
+    <WhoToFollowCard refetch={refetch}>
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
         {data?.whoToFollow?.edges?.map((user: any) => (
