@@ -1,8 +1,9 @@
-import IntegrationSettings, {
-  INTEGRATION_SETTINGS_QUERY as query
-} from '~/components/User/Settings/Integration'
 import { preloadQuery } from '~/utils/apollo'
 import { authenticatedRoute } from '~/utils/redirects'
+
+import SessionsSettings, {
+  SESSION_SETTINGS_QUERY as query
+} from '../../components/User/Settings/Sessions'
 
 export const getServerSideProps = async (ctx: any) => {
   const auth = await authenticatedRoute(ctx)
@@ -11,4 +12,4 @@ export const getServerSideProps = async (ctx: any) => {
   return preloadQuery(ctx, { query })
 }
 
-export default IntegrationSettings
+export default SessionsSettings
