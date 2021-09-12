@@ -1,5 +1,4 @@
 import { Session, User } from '@prisma/client'
-import { getClientIp } from '@supercharge/request-ip/dist'
 import { addSeconds, differenceInSeconds } from 'date-fns'
 import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
@@ -38,7 +37,6 @@ export const sessionOptions: SessionOptions = {
 
 export async function createSession(request: IncomingMessage, user: User) {
   console.log(request.headers['user-agent'])
-  console.log(getClientIp(request))
   const session = await db.session.create({
     data: {
       userId: user.id,
