@@ -1,3 +1,8 @@
+input AttachBadgeToUserInput {
+  badgeId: ID!
+  userId: ID!
+}
+
 scalar Attachments
 
 type Badge {
@@ -6,6 +11,18 @@ type Badge {
   id: ID!
   name: String!
   slug: String!
+  users(after: String, before: String, first: Int, last: Int): BadgeUsersConnection!
+}
+
+type BadgeUsersConnection {
+  edges: [BadgeUsersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BadgeUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 input ChangePasswordInput {
@@ -125,6 +142,7 @@ input ModUserInput {
 }
 
 type Mutation {
+  attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
   createBadge(input: CreateBadgeInput!): Badge!
   createPost(input: CreatePostInput!): Post!

@@ -10,7 +10,10 @@ builder.prismaObject('Badge', {
     slug: t.exposeString('slug', {}),
     name: t.exposeString('name', {}),
     hex: t.exposeString('hex', {}),
-    icon: t.exposeString('icon', {})
+    icon: t.exposeString('icon', {}),
+
+    // Relations
+    users: t.relatedConnection('users', { cursor: 'id', totalCount: true })
   })
 })
 
