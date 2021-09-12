@@ -41,10 +41,10 @@ model User {
   profile          Profile?
   invite           Invite?
   integrations     Integration?
-  following        User[]         @relation("follows")
-  followedBy       User[]         @relation("follows")
   likes            Like[]
   badges           Badge[]
+  following        User[]         @relation("follows")
+  followedBy       User[]         @relation("follows")
   myNotification   Notification[] @relation("receiver")
   sentNotification Notification[] @relation("dispatcher")
 
