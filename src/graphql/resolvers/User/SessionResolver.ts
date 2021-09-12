@@ -13,7 +13,6 @@ builder.prismaObject('Session', {
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
     expiresAt: t.expose('expiresAt', { type: 'DateTime' }),
 
     // Relations
