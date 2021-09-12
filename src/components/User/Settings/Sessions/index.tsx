@@ -20,6 +20,7 @@ export const SESSION_SETTINGS_QUERY = gql`
         node {
           id
           isStaff
+          userAgent
           createdAt
           expiresAt
           user {
