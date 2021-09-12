@@ -6,7 +6,7 @@ import { applySession, SessionOptions } from 'next-iron-session'
 
 import { db } from './prisma'
 
-const SESSION_TTL = 15 * 24 * 3600
+const SESSION_TTL = 365 * 24 * 3600
 const IRON_SESSION_ID_KEY = 'sessionID'
 
 interface RequestWithSession extends IncomingMessage {

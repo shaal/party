@@ -45,6 +45,9 @@ const SingleSession: React.FC<Props> = ({ session }) => {
           <div className="text-sm">
             Created: {timeago.format(session?.createdAt)}
           </div>
+          <div className="text-sm">
+            Expires: {timeago.format(session?.expiresAt)}
+          </div>
         </div>
       </div>
       <Button
