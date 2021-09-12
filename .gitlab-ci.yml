@@ -48,6 +48,8 @@ Migrate 🚚:
   stage: deploy
   script:
     - yarn prisma:migrate
+  only:
+    - main
   when: manual
 
 Housekeeping ✨:
