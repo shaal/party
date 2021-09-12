@@ -47,7 +47,7 @@ Build 👷‍♂️:
 Migrate 🚚:
   stage: deploy
   script:
-    - yarn prisma:migrate
+    - yarn prisma migrate deploy
   only:
     - main
   when: manual
