@@ -1,3 +1,3 @@
-import Terms from '~/components/Pages/terms'
+import Terms from '~/components/Pages/Terms'
 
 export default Terms
