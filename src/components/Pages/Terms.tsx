@@ -21,7 +21,7 @@ const Terms: React.FC = () => {
       <div className="relative">
         <div className="flex justify-center">
           <Card className="relative mx-auto -top-14 rounded-lg max-w-3/4 md:w-3/4 shadow-lg">
-            <CardBody className="!p-8">
+            <CardBody className="!p-8 prose max-w-none">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -32,7 +32,7 @@ const Terms: React.FC = () => {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-              <div className="mt-5 font-semibold text-xl">1. Terms</div>
+              <h2>1. Terms</h2>
               <p className="mt-2">
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
@@ -52,7 +52,7 @@ const Terms: React.FC = () => {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-              <div className="mt-5 font-semibold text-xl">1. Terms</div>
+              <h2>1. Terms</h2>
               <p className="my-2">
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
@@ -72,7 +72,7 @@ const Terms: React.FC = () => {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-              <div className="mt-5 font-semibold text-xl">1. Terms</div>
+              <h2>1. Terms</h2>
               <p className="my-2">
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
@@ -92,7 +92,7 @@ const Terms: React.FC = () => {
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-              <div className="mt-5 font-semibold text-xl">1. Terms</div>
+              <h2>1. Terms</h2>
               <p className="my-2">
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
