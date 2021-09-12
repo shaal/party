@@ -33,6 +33,8 @@ const Badges: React.FC<Props> = ({ user }) => {
     skip: !user?.id
   })
 
+  if (loading) return null
+
   return (
     <div className="space-y-2">
       <div className="font-bold">Badges</div>
