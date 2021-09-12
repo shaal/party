@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 
 import { Button } from '~/components/ui/Button'
 
-import NewBadge from './New'
+const NewBadge = dynamic(() => import('./New'))
 
 const AddBadgesModal: React.FC = () => {
   const [showCreate, setShowCreate] = useState<boolean>(false)
