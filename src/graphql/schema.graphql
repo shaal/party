@@ -388,6 +388,7 @@ type Session {
   isStaff: Boolean!
   updatedAt: DateTime!
   user: User!
+  userAgent: Boolean
 }
 
 input SignupInput {

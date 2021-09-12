@@ -7,6 +7,7 @@ builder.prismaObject('Session', {
   fields: (t) => ({
     id: t.exposeID('id', {}),
     isStaff: t.exposeBoolean('isStaff', {}),
+    userAgent: t.exposeString('userAgent', { nullable: true }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
