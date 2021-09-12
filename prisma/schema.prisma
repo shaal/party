@@ -50,6 +50,7 @@ model User {
 
   // Attributes
   @@index([username, email])
+  @@map("users")
 }
 
 model Session {
@@ -65,6 +66,9 @@ model Session {
   // Relations
   user   User   @relation(fields: [userId], references: [id])
   userId String
+
+  // Attributes
+  @@map("sessions")
 }
 
 model Profile {
@@ -85,6 +89,7 @@ model Profile {
 
   // Attributes
   @@index([userId])
+  @@map("profiles")
 }
 
 model Invite {
@@ -98,6 +103,9 @@ model Invite {
   // Relations
   user   User   @relation(fields: [userId], references: [id])
   userId String
+  
+  // Attributes
+  @@map("invites")
 }
 
 model Post {
@@ -118,7 +126,7 @@ model Post {
   product   Product?     @relation(fields: [productId], references: [id])
   productId String?
   likes     Like[]
-  topics    PostTopics[]
+  topics    PostTopic[]
 
   parentId String?
   parent   Post?   @relation("replies", fields: [parentId], references: [id])
@@ -126,9 +134,10 @@ model Post {
 
   // Attributes
   @@index([userId, parentId])
+  @@map("posts")
 }
 
-model PostTopics {
+model PostTopic {
   id String @id @default(cuid())
 
   // Relations
@@ -139,6 +148,7 @@ model PostTopics {
 
   // Attributes
   @@index([postId, topicId])
+  @@map("post_topics")
 }
 
 model Topic {
@@ -152,7 +162,10 @@ model Topic {
   updatedAt DateTime @updatedAt
 
   // Relations
-  posts PostTopics[]
+  posts PostTopic[]
+
+  // Attributes
+  @@map("topics")
 }
 
 model Like {
@@ -171,6 +184,7 @@ model Like {
 
   // Attributes
   @@unique([userId, postId], name: "likeIdentifier")
+  @@map("likes")
 }
 
 model Product {
@@ -195,6 +209,9 @@ model Product {
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
   posts  Post[]
+
+  // Attributes
+  @@map("products")
 }
 
 model Community {
@@ -210,6 +227,9 @@ model Community {
 
   // Relations
   users User[]
+
+  // Attributes
+  @@map("communities")
 }
 
 model Badge {
@@ -225,6 +245,9 @@ model Badge {
 
   // Relations
   users User[]
+
+  // Attributes
+  @@map("badges")
 }
 
 model Notification {
@@ -243,6 +266,9 @@ model Notification {
   dispatcherId String
   like         Like?   @relation("like", fields: [likeId], references: [id])
   likeId       String?
+
+  // Attributes
+  @@map("notifications")
 }
 
 model Integration {
@@ -257,6 +283,9 @@ model Integration {
   // Relations
   user   User   @relation(fields: [userId], references: [id])
   userId String
+
+  // Attributes
+  @@map("integrations")
 }
 
 // Types

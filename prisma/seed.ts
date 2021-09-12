@@ -13,7 +13,7 @@ const db = new PrismaClient()
 async function main() {
   await db.topic.deleteMany()
   console.log('All topics are deleted 🗑️')
-  await db.postTopics.deleteMany()
+  await db.postTopic.deleteMany()
   console.log('All post topics are deleted 🗑️')
   await db.like.deleteMany()
   console.log('All likes are deleted 🗑️')

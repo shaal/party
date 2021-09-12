@@ -5,7 +5,7 @@ interface Params {
 }
 
 export const purgeTopics = async ({ postId }: Params) => {
-  return await db.postTopics.deleteMany({
+  return await db.postTopic.deleteMany({
     where: { postId }
   })
 }
