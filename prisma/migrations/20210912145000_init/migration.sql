@@ -23,7 +23,6 @@ CREATE TABLE `sessions` (
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
     `userAgent` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
     `expiresAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
@@ -96,7 +95,6 @@ CREATE TABLE `topics` (
     `image` VARCHAR(191),
     `description` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `topics_name_key`(`name`),
     PRIMARY KEY (`id`)
@@ -106,7 +104,6 @@ CREATE TABLE `topics` (
 CREATE TABLE `likes` (
     `id` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
