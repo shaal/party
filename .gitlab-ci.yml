@@ -6,11 +6,6 @@ include:
 
 image: node:latest
 
-stages:
-  - test
-  - build
-  - deploy
-
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, yarn.lock'
   SECRET_DETECTION_EXCLUDED_PATHS: 'node_modules, yarn.lock'
@@ -26,38 +21,32 @@ cache:
     - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
-  stage: build
   extends: .setup
   script:
     - yarn lint
 
 Prettier 📚:
-  stage: build
   extends: .setup
   script:
     - yarn prettier:check
 
 Generate 🧞‍♂️:
-  stage: build
   extends: .setup
   script:
     - yarn generate
 
 Typecheck 🧐:
-  stage: build
   extends: .setup
   script:
     - yarn generate
     - yarn typecheck
 
 Build 👷‍♂️:
-  stage: build
   extends: .setup
   script:
     - yarn build
 
 Migrate 🚚:
-  stage: deploy
   extends: .setup
   script:
     - yarn prisma migrate reset --force
@@ -67,7 +56,6 @@ Migrate 🚚:
   when: manual
 
 Housekeeping ✨:
-  stage: deploy
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
