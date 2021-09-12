@@ -67,6 +67,7 @@ model Session {
   userId String
 
   // Attributes
+  @@index([userAgent, userId])
   @@map("sessions")
 }
 
@@ -105,6 +106,7 @@ model Invite {
   
   // Attributes
   @@map("invites")
+  @@index([code, userId])
 }
 
 model Post {
@@ -132,7 +134,7 @@ model Post {
   replies  Post[]  @relation("replies")
 
   // Attributes
-  @@index([userId, parentId])
+  @@index([userId, productId, parentId])
   @@map("posts")
 }
 
@@ -163,6 +165,7 @@ model Topic {
   posts PostTopic[]
 
   // Attributes
+  @@index([name])
   @@map("topics")
 }
 
@@ -181,6 +184,7 @@ model Like {
 
   // Attributes
   @@unique([userId, postId], name: "likeIdentifier")
+  @@index([postId, userId])
   @@map("likes")
 }
 
@@ -209,6 +213,7 @@ model Product {
 
   // Attributes
   @@map("products")
+  @@index([slug, userId])
 }
 
 model Community {
@@ -227,11 +232,11 @@ model Community {
 
   // Attributes
   @@map("communities")
+  @@index([slug])
 }
 
 model Badge {
   id          String  @id @default(cuid())
-  slug        String  @unique
   name        String
   image       String
   description String?
@@ -266,6 +271,7 @@ model Notification {
 
   // Attributes
   @@map("notifications")
+  @@index([receiverId, dispatcherId, likeId])
 }
 
 model Integration {
@@ -283,6 +289,7 @@ model Integration {
 
   // Attributes
   @@map("integrations")
+  @@index([userId])
 }
 
 // Types
