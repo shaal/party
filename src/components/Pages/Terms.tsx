@@ -57,7 +57,7 @@ const Terms: React.FC = () => {
                 Lorem Ipsum.
               </p>
               <h2>1. Terms</h2>
-              <p className="my-2">
+              <p>
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
                 Website Terms and Conditions of Use and agree that you are
@@ -79,7 +79,7 @@ const Terms: React.FC = () => {
                 Lorem Ipsum.
               </p>
               <h2>1. Terms</h2>
-              <p className="my-2">
+              <p>
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
                 Website Terms and Conditions of Use and agree that you are
@@ -101,7 +101,7 @@ const Terms: React.FC = () => {
                 Lorem Ipsum.
               </p>
               <h2>1. Terms</h2>
-              <p className="my-2">
+              <p>
                 Terms By accessing this Website, accessible from taskord.com
                 and/or www.taskord.com, you are agreeing to be bound by these
                 Website Terms and Conditions of Use and agree that you are
