@@ -77,7 +77,7 @@ const WhoToFollow: React.FC = () => {
         {data?.whoToFollow?.edges?.length === 0 && (
           <div className="grid justify-items-center space-y-2">
             <div>
-              <UsersIcon className="h-6 w-6" />
+              <UsersIcon className="h-5 w-5" />
             </div>
             <div>Nothing to suggest</div>
           </div>
