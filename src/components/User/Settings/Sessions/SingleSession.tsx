@@ -51,7 +51,7 @@ const SingleSession: React.FC<Props> = ({ session }) => {
         </div>
       </div>
       <Button
-        className="text-sm"
+        className="text-sm ml-10"
         size="sm"
         variant="danger"
         onClick={() =>
