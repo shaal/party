@@ -1,8 +1,5 @@
 image: node:latest
 
-include:
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-
 cache:
   paths:
     - node_modules/
@@ -10,7 +7,6 @@ cache:
 
 stages:
   - build
-  - test
   - deploy
   - clean
 
