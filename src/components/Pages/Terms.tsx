@@ -29,7 +29,7 @@ const Terms: React.FC = () => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-            <h1 className="mt-5 font-semibold">1. Terms</h1>
+            <div className="mt-5 font-semibold text-xl">1. Terms</div>
             <p className="mt-2">
               Terms By accessing this Website, accessible from taskord.com
               and/or www.taskord.com, you are agreeing to be bound by these
@@ -48,7 +48,7 @@ const Terms: React.FC = () => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-            <h1 className="mt-5 font-semibold">1. Terms</h1>
+            <div className="mt-5 font-semibold text-xl">1. Terms</div>
             <p className="my-2">
               Terms By accessing this Website, accessible from taskord.com
               and/or www.taskord.com, you are agreeing to be bound by these
@@ -67,7 +67,7 @@ const Terms: React.FC = () => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-            <h1 className="mt-5 font-semibold">1. Terms</h1>
+            <div className="mt-5 font-semibold text-xl">1. Terms</div>
             <p className="my-2">
               Terms By accessing this Website, accessible from taskord.com
               and/or www.taskord.com, you are agreeing to be bound by these
@@ -86,7 +86,7 @@ const Terms: React.FC = () => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-            <h1 className="mt-5 font-semibold">1. Terms</h1>
+            <div className="mt-5 font-semibold text-xl">1. Terms</div>
             <p className="my-2">
               Terms By accessing this Website, accessible from taskord.com
               and/or www.taskord.com, you are agreeing to be bound by these
