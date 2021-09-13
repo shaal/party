@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
