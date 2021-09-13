@@ -38,7 +38,7 @@ const ViewTopic: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading topic..." />
+  if (!loading) return <PageLoading message="Loading topic..." />
 
   return (
     <GridLayout>
