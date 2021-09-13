@@ -22,17 +22,21 @@ interface Props {
 }
 
 const TopicMod: React.FC<Props> = ({ topic }) => {
-  const [modTopic] = useMutation<
-    ModTopicMutation,
-    ModTopicMutationVariables
-  >(gql`
-    mutation ModTopicMutation($input: EditTopicInput!) {
-      modTopic(input: $input) {
-        id
-        description
+  const [modTopic] = useMutation<ModTopicMutation, ModTopicMutationVariables>(
+    gql`
+      mutation ModTopicMutation($input: EditTopicInput!) {
+        modTopic(input: $input) {
+          id
+          description
+        }
+      }
+    `,
+    {
+      onCompleted() {
+        form.reset()
       }
     }
-  `)
+  )
 
   const form = useZodForm({
     schema: modTopicSchema,
