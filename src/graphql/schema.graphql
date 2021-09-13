@@ -160,6 +160,7 @@ type Mutation {
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
+  toggleTopicStar(input: ToggleTopicStarInput!): Topic
 }
 
 type Notification {
@@ -467,6 +468,10 @@ input TogglePostLikeInput {
   postId: ID!
 }
 
+input ToggleTopicStarInput {
+  topicId: ID!
+}
+
 type Topic {
   description: String
   id: ID!
@@ -474,6 +479,7 @@ type Topic {
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
   postsCount: Int!
+  users(after: String, before: String, first: Int, last: Int): TopicUsersConnection!
 }
 
 type TopicPostsConnection {
@@ -484,6 +490,17 @@ type TopicPostsConnection {
 type TopicPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type TopicUsersConnection {
+  edges: [TopicUsersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TopicUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type User {

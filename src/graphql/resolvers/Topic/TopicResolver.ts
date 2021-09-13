@@ -2,6 +2,7 @@ import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
+import { toggleStar } from './mutations/toggleStar'
 
 builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
@@ -15,6 +16,7 @@ builder.prismaObject('Topic', {
     postsCount: t.relationCount('posts'),
 
     // Relations
+    users: t.relatedConnection('users', { cursor: 'id', totalCount: true }),
     posts: t.prismaConnection({
       type: 'Post',
       cursor: 'id',
@@ -44,6 +46,25 @@ builder.queryField('topic', (t) =>
         where: { name },
         rejectOnNotFound: true
       })
+    }
+  })
+)
+
+const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
+  fields: (t) => ({
+    topicId: t.id({})
+  })
+})
+
+builder.mutationField('toggleTopicStar', (t) =>
+  t.prismaField({
+    type: 'Topic',
+    args: {
+      input: t.arg({ type: ToggleTopicStarInput })
+    },
+    nullable: true,
+    resolve: async (query, root, { input }, { session }) => {
+      return await toggleStar(session?.userId as string, input.topicId)
     }
   })
 )
