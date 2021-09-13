@@ -1,11 +1,10 @@
 import { HomeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
-import { Fragment } from 'react'
 
 export default function Custom404() {
   return (
-    <Fragment>
+    <>
       <NextSeo title="Page Not Found" />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img
@@ -24,6 +23,6 @@ export default function Custom404() {
           </Link>
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }
