@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   const { data, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
 
   return (
-    <Fragment>
+    <>
       <GridLayout>
         <GridItemEight>
           <div className="space-y-3">
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
           <Footer />
         </GridItemFour>
       </GridLayout>
-    </Fragment>
+    </>
   )
 }
 

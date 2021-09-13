@@ -95,7 +95,7 @@ const QuestionType: React.FC = () => {
           </div>
         </div>
       ) : (
-        <Fragment>
+        <>
           <Input
             {...form.register('title')}
             className="mb-2"
@@ -105,7 +105,7 @@ const QuestionType: React.FC = () => {
             {...form.register('body')}
             placeholder="Ask anything about code"
           />
-        </Fragment>
+        </>
       )}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

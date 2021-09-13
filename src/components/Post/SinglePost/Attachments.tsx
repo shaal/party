@@ -33,7 +33,7 @@ const Attachments: React.FC<Props> = ({
   }
 
   return (
-    <Fragment>
+    <>
       {attachments?.length !== 0 && (
         <div className={getGridRows(attachments?.length)}>
           {attachments?.map((attachment: any) => (
@@ -66,7 +66,7 @@ const Attachments: React.FC<Props> = ({
           ))}
         </div>
       )}
-    </Fragment>
+    </>
   )
 }
 
