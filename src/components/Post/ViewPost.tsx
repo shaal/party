@@ -19,8 +19,8 @@ import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
 
 export const POST_QUERY = gql`
-  query PostQuery($id: ID!) {
-    post(id: $id) {
+  query PostQuery($where: WherePostInput!) {
+    post(where: $where) {
       ...PostFragment
     }
   }
@@ -32,7 +32,7 @@ const ViewPost: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
     variables: {
-      id: router.query.postId
+      where: { id: router.query.postId }
     },
     skip: !router.isReady
   })

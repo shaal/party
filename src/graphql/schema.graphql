@@ -269,7 +269,7 @@ type Query {
   me: User
   morePostsByUser(after: String, before: String, first: Int, last: Int, where: WhereMorePostsByUserInput!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
-  post(id: ID!): Post!
+  post(where: WherePostInput!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(id: ID, slug: String): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
@@ -592,6 +592,10 @@ input WhereHomeFeedInput {
 input WhereMorePostsByUserInput {
   type: String!
   userId: ID!
+}
+
+input WherePostInput {
+  id: ID!
 }
 
 input WherePostsInput {

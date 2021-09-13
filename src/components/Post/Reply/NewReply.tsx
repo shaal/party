@@ -46,7 +46,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         {
           query: REPLIES_QUERY,
           variables: {
-            postId: post?.id
+            where: { id: post?.id }
           }
         }
       ],

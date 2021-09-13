@@ -12,8 +12,8 @@ import SinglePost, { PostFragment } from '../SinglePost'
 import { RepliesQuery } from './__generated__/Replies.generated'
 
 export const REPLIES_QUERY = gql`
-  query RepliesQuery($after: String, $postId: ID!) {
-    post(id: $postId) {
+  query RepliesQuery($after: String, $where: WherePostInput!) {
+    post(where: $where) {
       id
       replies(first: 10, after: $after) {
         pageInfo {
@@ -41,7 +41,7 @@ const Replies: React.FC<Props> = ({ post }) => {
     {
       variables: {
         after: null,
-        postId: post?.id
+        where: { id: post?.id }
       }
     }
   )
