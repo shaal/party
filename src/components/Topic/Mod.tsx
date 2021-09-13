@@ -37,7 +37,7 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
   const form = useZodForm({
     schema: modTopicSchema,
     defaultValues: {
-      description: topic.description
+      description: topic?.description
     }
   })
 

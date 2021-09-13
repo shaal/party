@@ -59,7 +59,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }

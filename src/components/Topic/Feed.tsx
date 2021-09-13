@@ -41,7 +41,8 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
       variables: {
         name: topic,
         after: null
-      }
+      },
+      skip: !topic
     }
   )
   const posts = data?.topic?.posts?.edges?.map((edge) => edge?.node)
@@ -57,7 +58,7 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }

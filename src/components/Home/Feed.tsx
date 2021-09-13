@@ -56,7 +56,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }
