@@ -47,6 +47,7 @@ Build 👷‍♂️:
     - yarn build
 
 Migrate 🚚:
+  needs: ["Build 👷‍♂️"]
   extends: .prepare
   script:
     - yarn prisma migrate reset --force
