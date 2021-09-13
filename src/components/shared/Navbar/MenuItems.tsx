@@ -33,7 +33,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
   return (
     <Menu as="div">
       {({ open }) => (
-        <Fragment>
+        <>
           <Menu.Button className="flex items-center gap-2">
             <img
               className="h-10 w-10 rounded-full bg-gray-200"
@@ -120,7 +120,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 />
               </div>
               {currentUser?.isStaff && (
-                <Fragment>
+                <>
                   <div className="border-b dark:border-gray-800"></div>
                   <Menu.Item
                     as="div"
@@ -144,11 +144,11 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                       </div>
                     )}
                   </Menu.Item>
-                </Fragment>
+                </>
               )}
             </Menu.Items>
           </Transition>
-        </Fragment>
+        </>
       )}
     </Menu>
   )
