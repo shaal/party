@@ -48,8 +48,8 @@ export const UserFragment = gql`
 `
 
 export const VIEW_USER_QUERY = gql`
-  query ViewUserQuery($username: String!) {
-    user(username: $username) {
+  query ViewUserQuery($where: WhereUserInput!) {
+    user(where: $where) {
       ...UserFragment
     }
   }
@@ -61,7 +61,7 @@ const ViewUser: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
-      username: router.query.username
+      where: { username: router.query.username }
     },
     skip: !router.isReady
   })

@@ -13,8 +13,8 @@ import { EmptyState } from '../../ui/EmptyState'
 import { FollowingQuery } from './__generated__/list.generated'
 
 export const FOLLOWING_QUERY = gql`
-  query FollowingQuery($after: String, $username: String!) {
-    user(username: $username) {
+  query FollowingQuery($after: String, $where: WhereUserInput!) {
+    user(where: $where) {
       following(first: 10, after: $after) {
         totalCount
         pageInfo {
@@ -47,7 +47,7 @@ const FollowingList: React.FC = () => {
     {
       variables: {
         after: null,
-        username: router.query.username
+        where: { username: router.query.username }
       },
       skip: !router.isReady
     }

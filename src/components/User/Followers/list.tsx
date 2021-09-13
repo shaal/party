@@ -13,8 +13,8 @@ import { EmptyState } from '../../ui/EmptyState'
 import { FollowersQuery } from './__generated__/list.generated'
 
 export const FOLLOWERS_QUERY = gql`
-  query FollowersQuery($after: String, $username: String!) {
-    user(username: $username) {
+  query FollowersQuery($after: String, $where: WhereUserInput!) {
+    user(where: $where) {
       followers(first: 10, after: $after) {
         totalCount
         pageInfo {
@@ -47,7 +47,7 @@ const FollowersList: React.FC = () => {
     {
       variables: {
         after: null,
-        username: router.query.username
+        where: { username: router.query.username }
       },
       skip: !router.isReady
     }

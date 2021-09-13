@@ -12,8 +12,8 @@ import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
 const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $username: String!) {
-    user(username: $username) {
+  query UserFeedQuery($after: String, $where: WhereUserInput!) {
+    user(where: $where) {
       id
       posts(first: 10, after: $after) {
         totalCount
@@ -43,7 +43,7 @@ const UserFeed: React.FC<Props> = ({ feedType }) => {
     {
       variables: {
         after: null,
-        username: router.query.username
+        where: { username: router.query.username }
       },
       skip: !router.isReady
     }
