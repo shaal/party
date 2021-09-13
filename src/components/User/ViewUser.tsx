@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -69,7 +69,7 @@ const ViewUser: React.FC = () => {
   if (loading) return <PageLoading message="Loading user..." />
 
   return (
-    <Fragment>
+    <>
       <NextSeo
         title={`${data?.user?.username} (${data?.user?.profile?.name})`}
         description={data?.user?.profile?.bio as string}
@@ -95,7 +95,7 @@ const ViewUser: React.FC = () => {
           </div>
         </GridItemEight>
       </GridLayout>
-    </Fragment>
+    </>
   )
 }
 
