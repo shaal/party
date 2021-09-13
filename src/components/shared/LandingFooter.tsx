@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 
 const LandingFooter: React.FC = () => {
   return (
-    <Fragment>
+    <>
       <footer className="leading-7 flex flex-wrap">
         <span className="text-gray-500 dark:text-gray-300 font-bold pr-3">
           © Devparty
@@ -33,7 +33,7 @@ const LandingFooter: React.FC = () => {
       >
         ▲ Powered by Vercel
       </a>
-    </Fragment>
+    </>
   )
 }
 
