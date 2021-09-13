@@ -40,6 +40,7 @@ Typecheck 🧐:
     - yarn typecheck
 
 Build 👷‍♂️:
+  parallel: 3
   script:
     - yarn install --frozen-lockfile --silent
     - yarn build
