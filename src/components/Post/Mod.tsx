@@ -9,7 +9,7 @@ interface Props {
 
 const PostMod: React.FC<Props> = ({ post }) => {
   return (
-    <Card className="border-yellow-400">
+    <Card className="mt-5 border-yellow-400 !bg-yellow-300 !bg-opacity-20">
       <CardBody>
         <div className="font-bold text-lg">Details</div>
         <div className="space-y-1 mt-3 text-sm">
