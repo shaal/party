@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
@@ -29,7 +29,7 @@ const Followers: React.FC = () => {
   if (loading) return <PageLoading message="Loading followers..." />
 
   return (
-    <Fragment>
+    <>
       {data?.user?.profile?.cover ? (
         <img
           className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
@@ -48,7 +48,7 @@ const Followers: React.FC = () => {
           <FollowersList />
         </GridItemEight>
       </GridLayout>
-    </Fragment>
+    </>
   )
 }
 
