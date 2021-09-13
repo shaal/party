@@ -26,7 +26,7 @@ const Following: React.FC = () => {
     }
   )
 
-  if (loading) return <PageLoading message="Loading following..." />
+  if (loading) return <PageLoading message="Loading following" />
 
   return (
     <>

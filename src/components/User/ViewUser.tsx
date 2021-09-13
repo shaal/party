@@ -50,7 +50,7 @@ export const UserFragment = gql`
 export const VIEW_USER_QUERY = gql`
   query ViewUserQuery($username: String!) {
     user(username: $username) {
-      ...UserFragment
+      UserFragment
     }
   }
   ${UserFragment}
@@ -66,7 +66,7 @@ const ViewUser: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading user..." />
+  if (loading) return <PageLoading message="Loading user" />
 
   return (
     <>

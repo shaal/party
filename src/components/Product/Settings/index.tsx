@@ -33,7 +33,7 @@ const Settings: React.FC = () => {
   )
 
   if (loading) {
-    return <PageLoading message="Loading settings..." />
+    return <PageLoading message="Loading settings" />
   }
 
   return <ProductSettings product={data?.product as Product} />

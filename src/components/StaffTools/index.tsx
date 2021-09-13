@@ -40,7 +40,7 @@ const StaffToolsDashboard: React.FC = () => {
     STAFF_TOOLS_DASHBOARD_QUERY
   )
 
-  if (loading) return <PageLoading message="Loading dashboard..." />
+  if (loading) return <PageLoading message="Loading dashboard" />
 
   return (
     <GridLayout>

@@ -31,7 +31,7 @@ const ProfileSettings: React.FC = () => {
   )
 
   if (loading) {
-    return <PageLoading message="Loading settings..." />
+    return <PageLoading message="Loading settings" />
   }
 
   return <ProfileSettingsForm currentUser={data?.me as User} />

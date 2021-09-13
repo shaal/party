@@ -23,7 +23,7 @@ const IntegrationSettings: React.FC = () => {
   )
 
   if (loading) {
-    return <PageLoading message="Loading settings..." />
+    return <PageLoading message="Loading settings" />
   }
 
   return (

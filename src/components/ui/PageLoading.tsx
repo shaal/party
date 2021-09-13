@@ -11,8 +11,8 @@ export const PageLoading: React.FC<Props> = ({ message }) => {
   return (
     <div className="flex flex-grow items-center justify-center">
       <NextSeo title="Loading..." />
-      <div className="space-y-4">
-        <Spinner color="text-brand-500" className="mx-auto" size="lg" />
+      <div className="space-y-3">
+        <Spinner className="mx-auto" />
         <div>{message}</div>
       </div>
     </div>
