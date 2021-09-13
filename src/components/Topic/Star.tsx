@@ -55,9 +55,7 @@ const Star: React.FC<Props> = ({ topic }) => {
   const handleToggleFollow = () => {
     toggleTopicStar({
       variables: {
-        input: {
-          topicId: topic?.id
-        }
+        input: { id: topic?.id }
       }
     })
   }

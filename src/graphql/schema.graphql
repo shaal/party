@@ -469,7 +469,7 @@ input TogglePostLikeInput {
 }
 
 input ToggleTopicStarInput {
-  topicId: ID!
+  id: ID!
 }
 
 type Topic {

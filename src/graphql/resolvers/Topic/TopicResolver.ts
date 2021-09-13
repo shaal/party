@@ -60,7 +60,7 @@ builder.queryField('topic', (t) =>
 
 const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
   fields: (t) => ({
-    topicId: t.id()
+    id: t.id()
   })
 })
 
@@ -72,7 +72,7 @@ builder.mutationField('toggleTopicStar', (t) =>
     },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return await toggleStar(session?.userId as string, input.topicId)
+      return await toggleStar(session?.userId as string, input.id)
     }
   })
 )
