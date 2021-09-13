@@ -55,6 +55,14 @@ migrate:
     - main
   when: manual
 
+review_app:
+  script: echo 'Deployed to Vercel'
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
+  except:
+    - main
+
 housekeeping:
   before_script: []
   script:
