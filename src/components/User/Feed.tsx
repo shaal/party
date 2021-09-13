@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { EmptyState } from '~/components/ui/EmptyState'
@@ -72,7 +72,7 @@ const UserFeed: React.FC<Props> = ({ feedType }) => {
   if (loading) return <PostsShimmer />
 
   return (
-    <Fragment>
+    <>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
         {data?.user?.posts?.totalCount === 0 ? (
@@ -92,7 +92,7 @@ const UserFeed: React.FC<Props> = ({ feedType }) => {
         )}
         {pageInfo?.hasNextPage && <span ref={observe}></span>}
       </div>
-    </Fragment>
+    </>
   )
 }
 
