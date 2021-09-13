@@ -4,7 +4,7 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
 
-image: node:alpine
+image: node:latest
 
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
