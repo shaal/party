@@ -474,6 +474,7 @@ input ToggleTopicStarInput {
 
 type Topic {
   description: String
+  hasStarted: Boolean!
   id: ID!
   image: String
   name: String!

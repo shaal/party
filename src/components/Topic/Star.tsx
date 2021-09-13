@@ -1,0 +1,92 @@
+import { gql, useMutation } from '@apollo/client'
+import { Switch } from '@headlessui/react'
+import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+
+import { Topic } from '~/__generated__/schema.generated'
+import { Button } from '~/components/ui/Button'
+
+import {
+  ToggleTopicStarMutation,
+  ToggleTopicStarMutationVariables
+} from './__generated__/Star.generated'
+
+interface Props {
+  topic: Topic
+  showText: boolean
+}
+
+const Star: React.FC<Props> = ({ topic, showText }) => {
+  const [isStarted, setIsStarted] = useState<boolean>(false)
+  const [toggleTopicStar] = useMutation<
+    ToggleTopicStarMutation,
+    ToggleTopicStarMutationVariables
+  >(
+    gql`
+      mutation ToggleTopicStarMutation($input: ToggleTopicStarInput!) {
+        toggleTopicStar(input: $input) {
+          id
+          name
+          hasStarted
+        }
+      }
+    `,
+    {
+      onError() {
+        toast.error('Something went wrong!')
+      },
+      onCompleted(data) {
+        if (data?.toggleTopicStar?.hasStarted) {
+          toast.success(`Successfully starred #${data?.toggleTopicStar?.name}`)
+        } else {
+          toast.success(
+            `Successfully unstarred #${data?.toggleTopicStar?.name}`
+          )
+        }
+      }
+    }
+  )
+
+  useEffect(() => {
+    if (topic?.hasStarted) setIsStarted(topic?.hasStarted)
+  }, [topic])
+
+  const handleToggleFollow = () => {
+    toggleTopicStar({
+      variables: {
+        input: {
+          topicId: topic?.id
+        }
+      }
+    })
+  }
+
+  return (
+    <Switch
+      as={Button}
+      checked={isStarted}
+      onChange={() => {
+        setIsStarted(!isStarted)
+        handleToggleFollow()
+      }}
+      size="md"
+      variant={isStarted ? 'danger' : 'success'}
+      outline
+    >
+      {isStarted ? (
+        <div className="flex items-center space-x-1">
+          <UserRemoveIcon className="h-4 w-4" />
+          {showText && <div>Unstar</div>}
+        </div>
+      ) : (
+        <div className="flex items-center space-x-1">
+          <UserAddIcon className="h-4 w-4" />
+          {showText && <div>Star</div>}
+        </div>
+      )}
+    </Switch>
+  )
+}
+
+export default Star

@@ -12,6 +12,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
 import TopicMod from './Mod'
+import Star from './Star'
 
 export const TOPIC_QUERY = gql`
   query TopicQuery($name: String!) {
@@ -21,6 +22,7 @@ export const TOPIC_QUERY = gql`
       image
       description
       postsCount
+      hasStarted
     }
   }
 `
@@ -61,6 +63,7 @@ const ViewTopic: React.FC = () => {
               {data?.topic?.description && (
                 <div>{data?.topic?.description}</div>
               )}
+              <Star topic={data?.topic as Topic} showText />
             </div>
           </CardBody>
         </Card>
