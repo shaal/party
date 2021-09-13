@@ -1,5 +1,4 @@
 import {
-  BeakerIcon,
   ClipboardListIcon,
   IdentificationIcon,
   LockClosedIcon,
@@ -82,13 +81,6 @@ const Sidebar: React.FC = () => {
           >
             <ClipboardListIcon className="h-4 w-4" />
             <div>Audit Logs</div>
-          </Menu>
-          <Menu
-            current={router.pathname == '/settings/labs'}
-            url="/settings/labs"
-          >
-            <BeakerIcon className="h-4 w-4" />
-            <div>Labs</div>
           </Menu>
         </>
       )}
