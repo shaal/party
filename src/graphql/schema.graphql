@@ -271,7 +271,7 @@ type Query {
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(where: WherePostInput!): Post!
   posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
-  product(id: ID, slug: String): Product!
+  product(where: WhereProductInput!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
@@ -602,6 +602,11 @@ input WherePostsInput {
   productId: ID
   type: String
   userId: ID
+}
+
+input WhereProductInput {
+  id: ID
+  slug: String
 }
 
 input WhereProductsInput {

@@ -12,8 +12,8 @@ import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
 const PRODUCT_FEED_QUERY = gql`
-  query ProductFeedQuery($after: String, $slug: String!) {
-    product(slug: $slug) {
+  query ProductFeedQuery($after: String, $where: WhereProductInput!) {
+    product(where: $where) {
       id
       posts(first: 10, after: $after) {
         pageInfo {
@@ -41,7 +41,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
     {
       variables: {
         after: null,
-        slug: product?.slug
+        where: { slug: product?.slug }
       }
     }
   )

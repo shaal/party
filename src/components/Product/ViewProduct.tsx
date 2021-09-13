@@ -12,8 +12,8 @@ import Details from './Details'
 import ProductFeed from './Feed'
 
 export const PRODUCT_QUERY = gql`
-  query ProductQuery($slug: String!) {
-    product(slug: $slug) {
+  query ProductQuery($where: WhereProductInput!) {
+    product(where: $where) {
       id
       name
       slug
@@ -42,7 +42,7 @@ const ViewProduct: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
     variables: {
-      slug: router.query.slug
+      where: { slug: router.query.slug }
     },
     skip: !router.isReady
   })

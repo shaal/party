@@ -9,8 +9,8 @@ import { ProductSettingsQuery } from './__generated__/index.generated'
 import ProductSettings from './ProductSettings'
 
 export const PRODUCT_SETTINGS_QUERY = gql`
-  query ProductSettingsQuery($slug: String!) {
-    product(slug: $slug) {
+  query ProductSettingsQuery($where: WhereProductInput!) {
+    product(where: $where) {
       id
       slug
       name
@@ -26,7 +26,7 @@ const Settings: React.FC = () => {
     PRODUCT_SETTINGS_QUERY,
     {
       variables: {
-        slug: router.query.slug
+        where: { slug: router.query.slug }
       },
       skip: !router.isReady
     }
