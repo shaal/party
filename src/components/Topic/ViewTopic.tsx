@@ -23,6 +23,9 @@ export const TOPIC_QUERY = gql`
       description
       postsCount
       hasStarted
+      users {
+        totalCount
+      }
     }
   }
 `
