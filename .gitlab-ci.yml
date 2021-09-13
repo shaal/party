@@ -64,7 +64,7 @@ deploy_review:
     name: review/$CI_COMMIT_REF_NAME
     url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
   after_script:
-    - vercel inspect "devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app" --token=$VERCEL_TOKEN --scope=devparty
+    - vercel inspect "devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app" --token="$VERCEL_TOKEN" --scope=devparty
   only:
     - branches
   except:
