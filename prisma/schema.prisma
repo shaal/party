@@ -43,7 +43,7 @@ model User {
   integrations     Integration?
   likes            Like[]
   badges           Badge[]
-  topic            Topic[]
+  topics           Topic[]
   following        User[]         @relation("follows")
   followedBy       User[]         @relation("follows")
   myNotification   Notification[] @relation("receiver")
@@ -164,7 +164,7 @@ model Topic {
 
   // Relations
   posts PostTopic[]
-  user  User[]
+  users User[]
 
   // Attributes
   @@index([name])
