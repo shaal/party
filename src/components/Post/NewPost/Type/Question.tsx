@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
@@ -95,7 +95,7 @@ const QuestionType: React.FC = () => {
           </div>
         </div>
       ) : (
-        <Fragment>
+        <>
           <Input
             {...form.register('title')}
             className="mb-2"
@@ -105,7 +105,7 @@ const QuestionType: React.FC = () => {
             {...form.register('body')}
             placeholder="Ask anything about code"
           />
-        </Fragment>
+        </>
       )}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

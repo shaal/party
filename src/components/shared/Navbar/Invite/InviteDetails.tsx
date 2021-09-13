@@ -1,6 +1,5 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { RefreshIcon } from '@heroicons/react/outline'
-import { Fragment } from 'react'
 import toast from 'react-hot-toast'
 
 import { Tooltip } from '~/components/ui/Tooltip'
@@ -56,7 +55,7 @@ const InviteDetails: React.FC = () => {
     return <div className="px-5 py-3.5">Loading invite details...</div>
 
   return (
-    <Fragment>
+    <>
       <div className="bg-brand-300 py-2">
         <img
           className="object-cover h-60 w-60 mx-auto"
@@ -109,7 +108,7 @@ const InviteDetails: React.FC = () => {
           You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }
 

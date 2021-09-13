@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { Fragment } from 'react'
 
 import { Button } from '~/components/ui/Button'
 import AppContext from '~/components/utils/AppContext'
@@ -47,7 +46,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
   const router = useRouter()
 
   return (
-    <Fragment>
+    <>
       <NavItem
         url="/"
         name="Home"
@@ -60,7 +59,7 @@ const NavItems = ({ isMobile = false }: NavItemsProps) => {
         current={router.pathname == '/products'}
         isMobile={isMobile}
       />
-    </Fragment>
+    </>
   )
 }
 
@@ -73,7 +72,7 @@ const Navbar: React.FC = () => {
       className="bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50"
     >
       {({ open }) => (
-        <Fragment>
+        <>
           {currentUser?.isStaff && staffMode && <StaffBar />}
           <div className="container mx-auto max-w-screen-2xl px-5">
             <div className="relative flex items-center justify-between h-16">
@@ -151,7 +150,7 @@ const Navbar: React.FC = () => {
               <NavItems isMobile />
             </div>
           </Disclosure.Panel>
-        </Fragment>
+        </>
       )}
     </Disclosure>
   )

@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client'
-import { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import { Tooltip } from '~/components/ui/Tooltip'
@@ -36,7 +35,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
   )
 
   return (
-    <Fragment>
+    <>
       {data?.spotify?.isPlaying && (
         <Card className="p-3 space-y-1 !bg-green-100 border-green-300">
           <div className="flex items-center justify-between">
@@ -76,7 +75,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
           </div>
         </Card>
       )}
-    </Fragment>
+    </>
   )
 }
 

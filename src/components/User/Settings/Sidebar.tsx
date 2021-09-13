@@ -10,7 +10,7 @@ import {
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import AppContext from '~/components/utils/AppContext'
 
@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
         <div>Sessions</div>
       </Menu>
       {currentUser?.isStaff && staffMode && (
-        <Fragment>
+        <>
           <Menu
             current={router.pathname == '/settings/logs'}
             url="/settings/logs"
@@ -90,7 +90,7 @@ const Sidebar: React.FC = () => {
             <BeakerIcon className="h-4 w-4" />
             <div>Labs</div>
           </Menu>
-        </Fragment>
+        </>
       )}
     </div>
   )

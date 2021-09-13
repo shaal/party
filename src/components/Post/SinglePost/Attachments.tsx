@@ -1,6 +1,6 @@
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Button } from '~/components/ui/Button'
 
@@ -33,7 +33,7 @@ const Attachments: React.FC<Props> = ({
   }
 
   return (
-    <Fragment>
+    <>
       {attachments?.length !== 0 && (
         <div className={getGridRows(attachments?.length)}>
           {attachments?.map((attachment: any) => (
@@ -66,7 +66,7 @@ const Attachments: React.FC<Props> = ({
           ))}
         </div>
       )}
-    </Fragment>
+    </>
   )
 }
 

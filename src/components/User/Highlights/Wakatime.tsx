@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import { ClockIcon } from '@heroicons/react/outline'
-import { Fragment } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import { Tooltip } from '~/components/ui/Tooltip'
@@ -32,7 +31,7 @@ const Wakatime: React.FC<Props> = ({ user }) => {
   )
 
   return (
-    <Fragment>
+    <>
       {data?.wakatime?.hours && (
         <Card className="p-3 space-y-1 !bg-blue-100 border-blue-300">
           <div className="flex items-center justify-between">
@@ -58,7 +57,7 @@ const Wakatime: React.FC<Props> = ({ user }) => {
           </div>
         </Card>
       )}
-    </Fragment>
+    </>
   )
 }
 

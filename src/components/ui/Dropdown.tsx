@@ -24,7 +24,7 @@ export const Dropdown: React.FC<Props> = ({
   return (
     <Listbox value={value} onChange={onChange} disabled={disabled}>
       {({ open }) => (
-        <Fragment>
+        <>
           <div className={`relative ${className}`}>
             <Listbox.Button className="flex items-center justify-between bg-white dark:bg-gray-900 relative w-full border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-2 cursor-default focus:outline-none sm:text-sm space-x-2">
               <span className="block truncate dark:text-gray-400 flex-1 text-left font-medium">
@@ -57,7 +57,7 @@ export const Dropdown: React.FC<Props> = ({
               </Listbox.Options>
             </Transition>
           </div>
-        </Fragment>
+        </>
       )}
     </Listbox>
   )

@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Integration } from '~/__generated__/schema.generated'
 import { PageLoading } from '~/components/ui/PageLoading'
@@ -27,9 +27,7 @@ const IntegrationSettings: React.FC = () => {
   }
 
   return (
-    <Fragment>
-      <IntegrationSettingsForm integration={data?.integration as Integration} />
-    </Fragment>
+    <IntegrationSettingsForm integration={data?.integration as Integration} />
   )
 }
 

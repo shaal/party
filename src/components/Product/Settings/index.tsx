@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
 import { PageLoading } from '~/components/ui/PageLoading'
@@ -36,11 +36,7 @@ const Settings: React.FC = () => {
     return <PageLoading message="Loading settings..." />
   }
 
-  return (
-    <Fragment>
-      <ProductSettings product={data?.product as Product} />
-    </Fragment>
-  )
+  return <ProductSettings product={data?.product as Product} />
 }
 
 export default Settings

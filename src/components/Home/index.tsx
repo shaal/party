@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 import FeedType from '~/components/Home/FeedType'
 import Footer from '~/components/shared/Footer'
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   const { data, error } = useQuery<CurrentUserQuery>(HOME_QUERY)
 
   return (
-    <Fragment>
+    <>
       <GridLayout>
         <GridItemEight>
           <div className="space-y-3">
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
           <Footer />
         </GridItemFour>
       </GridLayout>
-    </Fragment>
+    </>
   )
 }
 
