@@ -71,10 +71,12 @@ deploy_review:
   before_script: []
   script:
     - echo 'Deploying review app to Vercel'
-    - vercel inspect "devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app" --token=$VERCEL_TOKEN
+    - yarn global add vercel
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
+  after_script:
+    - vercel inspect "devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app" --token=$VERCEL_TOKEN
   rules:
     - if: $CI_MERGE_REQUEST_ID
 
