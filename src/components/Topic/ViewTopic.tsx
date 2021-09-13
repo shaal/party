@@ -9,6 +9,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import { PageLoading } from '../ui/PageLoading'
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
 import TopicMod from './Mod'
@@ -37,6 +38,8 @@ const ViewTopic: React.FC = () => {
     skip: !router.isReady
   })
 
+  if (loading) return <PageLoading message="Loading topic..." />
+
   return (
     <GridLayout>
       <GridItemEight>
@@ -55,23 +58,17 @@ const ViewTopic: React.FC = () => {
                 />
               )}
               <div>
-                {loading ? (
-                  <div className="shimmer h-6 w-full rounded-md" />
-                ) : (
-                  <>
-                    <div className="flex items-center space-x-3">
-                      <Slug
-                        slug={data?.topic?.name}
-                        prefix="#"
-                        className="text-xl"
-                      />
-                      <Star topic={data?.topic as Topic} />
-                    </div>
-                    <div className="text-gray-600 dark:text-gray-300">
-                      {data?.topic?.postsCount} Posts
-                    </div>
-                  </>
-                )}
+                <div className="flex items-center space-x-3">
+                  <Slug
+                    slug={data?.topic?.name}
+                    prefix="#"
+                    className="text-xl"
+                  />
+                  <Star topic={data?.topic as Topic} />
+                </div>
+                <div className="text-gray-600 dark:text-gray-300">
+                  {data?.topic?.postsCount} Posts
+                </div>
               </div>
               {data?.topic?.description && (
                 <div>{data?.topic?.description}</div>
