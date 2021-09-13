@@ -8,13 +8,13 @@ const LandingFooter: React.FC = () => {
           © Devparty
         </span>
         <span className="pr-3">
-          <Link href="/">About</Link>
+          <Link href="/about">About</Link>
         </span>
         <span className="pr-3">
-          <Link href="/">Terms</Link>
+          <Link href="/terms">Terms</Link>
         </span>
         <span className="pr-3">
-          <Link href="/">Privacy</Link>
+          <Link href="/privacy">Privacy</Link>
         </span>
         <a
           href="https://gitlab.com/yo/devparty"
