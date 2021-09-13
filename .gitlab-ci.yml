@@ -6,11 +6,6 @@ include:
 
 image: node:latest
 
-stages:
-  - test
-  - build
-  - deploy
-
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
   SECRET_DETECTION_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
@@ -26,38 +21,32 @@ cache:
     - yarn install --frozen-lockfile --silent
 
 lint:
-  stage: test
   extends: .prepare
   script:
     - yarn lint
 
 prettier:
-  stage: test
   extends: .prepare
   script:
     - yarn prettier:check
 
 generate:
-  stage: test
   extends: .prepare
   script:
     - yarn generate
 
 typecheck:
-  stage: test
   extends: .prepare
   script:
     - yarn generate
     - yarn typecheck
 
 build:
-  stage: build
   extends: .prepare
   script:
     - yarn build
 
 migrate:
-  stage: deploy
   extends: .prepare
   script:
     - yarn prisma migrate reset --force
@@ -67,7 +56,6 @@ migrate:
   when: manual
 
 deploy_review:
-  stage: deploy
   before_script: []
   script:
     - echo 'Deploying review app to Vercel'
@@ -83,7 +71,6 @@ deploy_review:
     - main
 
 housekeeping:
-  stage: deploy
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
