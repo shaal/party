@@ -12,7 +12,7 @@ import { HomeFeedQuery } from './__generated__/Feed.generated'
 
 export const HOME_FEED_QUERY = gql`
   query HomeFeedQuery($after: String, $where: WhereHomeFeedInput) {
-    homeFeed(first: 10, after: $after, where: $where) {
+    posts: homeFeed(first: 10, after: $after, where: $where) {
       pageInfo {
         endCursor
         hasNextPage
@@ -43,8 +43,8 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       }
     }
   )
-  const posts = data?.homeFeed?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.homeFeed?.pageInfo
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -56,7 +56,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       if (pageInfo?.hasNextPage) {
         fetchMore({
           variables: {
-            after: pageInfo?.endCursor
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
           }
         })
       }

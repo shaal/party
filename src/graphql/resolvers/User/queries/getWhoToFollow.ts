@@ -25,7 +25,8 @@ export const getWhoToFollow = async (
       { followedBy: { _count: 'desc' } },
       { posts: { _count: 'desc' } },
       { isVerified: 'desc' },
-      { updatedAt: 'desc' }
+      { updatedAt: 'desc' },
+      { following: { _count: 'desc' } }
     ]
   })
 }

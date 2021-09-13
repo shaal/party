@@ -3,27 +3,23 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Product } from '~/__generated__/schema.generated'
 import { EmptyState } from '~/components/ui/EmptyState'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import PostsShimmer from '../shared/Shimmer/PostsShimmer'
-import { ProductFeedQuery } from './__generated__/Feed.generated'
+import { ExploreFeedQuery } from './__generated__/Feed.generated'
 
-const PRODUCT_FEED_QUERY = gql`
-  query ProductFeedQuery($after: String, $slug: String!) {
-    product(slug: $slug) {
-      id
-      posts(first: 10, after: $after) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        edges {
-          node {
-            ...PostFragment
-          }
+export const EXPLORE_FEED_QUERY = gql`
+  query ExploreFeedQuery($after: String) {
+    posts: exploreFeed(first: 10, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          ...PostFragment
         }
       }
     }
@@ -31,23 +27,13 @@ const PRODUCT_FEED_QUERY = gql`
   ${PostFragment}
 `
 
-interface Props {
-  product: Product
-}
-
-const ProductFeed: React.FC<Props> = ({ product }) => {
-  const { data, loading, error, fetchMore } = useQuery<ProductFeedQuery>(
-    PRODUCT_FEED_QUERY,
-    {
-      variables: {
-        after: null,
-        slug: product?.slug
-      }
-    }
+const ExploreFeed: React.FC = () => {
+  const { data, loading, error, fetchMore } = useQuery<ExploreFeedQuery>(
+    EXPLORE_FEED_QUERY,
+    { variables: { after: null } }
   )
-
-  const posts = data?.product?.posts?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.product?.posts?.pageInfo
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -74,12 +60,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
       <div className="space-y-3">
         {posts?.length === 0 ? (
           <EmptyState
-            message={
-              <div>
-                <span>No posts found in</span>
-                <span className="font-bold ml-1">{product?.name}</span>
-              </div>
-            }
+            message="No posts found, follow some users!"
             icon={<CollectionIcon className="h-8 w-8" />}
           />
         ) : (
@@ -93,4 +74,4 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default ProductFeed
+export default ExploreFeed

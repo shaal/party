@@ -12,6 +12,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
 import TopicMod from './Mod'
+import Star from './Star'
 
 export const TOPIC_QUERY = gql`
   query TopicQuery($name: String!) {
@@ -21,6 +22,7 @@ export const TOPIC_QUERY = gql`
       image
       description
       postsCount
+      hasStarted
     }
   }
 `
@@ -53,7 +55,14 @@ const ViewTopic: React.FC = () => {
                 />
               )}
               <div>
-                <Slug slug={data?.topic?.name} prefix="#" className="text-xl" />
+                <div className="flex items-center space-x-3">
+                  <Slug
+                    slug={data?.topic?.name}
+                    prefix="#"
+                    className="text-xl"
+                  />
+                  <Star topic={data?.topic as Topic} />
+                </div>
                 <div className="text-gray-600 dark:text-gray-300">
                   {data?.topic?.postsCount} Posts
                 </div>

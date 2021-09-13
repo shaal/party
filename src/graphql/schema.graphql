@@ -160,6 +160,7 @@ type Mutation {
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
+  toggleTopicStar(input: ToggleTopicStarInput!): Topic
 }
 
 type Notification {
@@ -261,6 +262,7 @@ type Profile {
 
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
+  exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
@@ -292,6 +294,16 @@ type QueryBadgesConnection {
 type QueryBadgesConnectionEdge {
   cursor: String!
   node: Badge!
+}
+
+type QueryExploreFeedConnection {
+  edges: [QueryExploreFeedConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryExploreFeedConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type QueryHomeFeedConnection {
@@ -456,13 +468,19 @@ input TogglePostLikeInput {
   postId: ID!
 }
 
+input ToggleTopicStarInput {
+  topicId: ID!
+}
+
 type Topic {
   description: String
+  hasStarted: Boolean!
   id: ID!
   image: String
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
   postsCount: Int!
+  users(after: String, before: String, first: Int, last: Int): TopicUsersConnection!
 }
 
 type TopicPostsConnection {
@@ -473,6 +491,17 @@ type TopicPostsConnection {
 type TopicPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type TopicUsersConnection {
+  edges: [TopicUsersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TopicUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type User {
@@ -493,6 +522,7 @@ type User {
   products: [Product!]!
   profile: Profile!
   spammy: Boolean!
+  topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!
 }
@@ -539,6 +569,17 @@ type UserPostsConnection {
 type UserPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type UserTopicsConnection {
+  edges: [UserTopicsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserTopicsConnectionEdge {
+  cursor: String!
+  node: Topic!
 }
 
 type Wakatime {

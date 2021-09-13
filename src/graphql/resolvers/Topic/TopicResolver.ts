@@ -2,6 +2,8 @@ import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
+import { toggleStar } from './mutations/toggleStar'
+import { hasStarted } from './queries/hasStarted'
 
 builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
@@ -10,11 +12,19 @@ builder.prismaObject('Topic', {
     name: t.exposeString('name'),
     image: t.exposeString('image', { nullable: true }),
     description: t.exposeString('description', { nullable: true }),
+    hasStarted: t.field({
+      type: 'Boolean',
+      resolve: async (root, args, { session }) => {
+        if (!session) return false
+        return await hasStarted(session?.userId as string, root.id)
+      }
+    }),
 
     // Count
     postsCount: t.relationCount('posts'),
 
     // Relations
+    users: t.relatedConnection('users', { cursor: 'id', totalCount: true }),
     posts: t.prismaConnection({
       type: 'Post',
       cursor: 'id',
@@ -44,6 +54,25 @@ builder.queryField('topic', (t) =>
         where: { name },
         rejectOnNotFound: true
       })
+    }
+  })
+)
+
+const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
+  fields: (t) => ({
+    topicId: t.id({})
+  })
+})
+
+builder.mutationField('toggleTopicStar', (t) =>
+  t.prismaField({
+    type: 'Topic',
+    args: {
+      input: t.arg({ type: ToggleTopicStarInput })
+    },
+    nullable: true,
+    resolve: async (query, root, { input }, { session }) => {
+      return await toggleStar(session?.userId as string, input.topicId)
     }
   })
 )
