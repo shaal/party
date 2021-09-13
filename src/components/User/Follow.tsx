@@ -76,7 +76,6 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
             setIsFollowed(!isFollowed)
             handleToggleFollow()
           }}
-          size="md"
           variant={isFollowed ? 'danger' : 'success'}
           outline
         >

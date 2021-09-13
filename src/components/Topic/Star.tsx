@@ -70,7 +70,6 @@ const Star: React.FC<Props> = ({ topic, showText }) => {
         setIsStarted(!isStarted)
         handleToggleFollow()
       }}
-      size="md"
       variant={isStarted ? 'danger' : 'success'}
       outline
     >
