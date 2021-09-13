@@ -71,7 +71,6 @@ const Star: React.FC<Props> = ({ topic }) => {
         handleToggleFollow()
       }}
       size="sm"
-      className="flex items-center space-x-1.5 font-sm"
       variant={isStarted ? 'danger' : 'success'}
       outline
     >
@@ -80,7 +79,6 @@ const Star: React.FC<Props> = ({ topic }) => {
       ) : (
         <StarIcon className="h-4 w-4" />
       )}
-      <div>{topic?.users?.totalCount}</div>
     </Switch>
   )
 }
