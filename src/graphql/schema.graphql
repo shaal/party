@@ -279,7 +279,7 @@ type Query {
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
-  topic(name: String!): Topic!
+  topic(where: WhereTopicInput!): Topic!
   user(where: WhereUserInput!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
@@ -611,6 +611,10 @@ input WhereProductInput {
 
 input WhereProductsInput {
   userId: String
+}
+
+input WhereTopicInput {
+  name: String!
 }
 
 input WhereUserInput {

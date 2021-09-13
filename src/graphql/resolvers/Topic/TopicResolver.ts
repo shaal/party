@@ -42,16 +42,22 @@ builder.prismaObject('Topic', {
   })
 })
 
+const WhereTopicInput = builder.inputType('WhereTopicInput', {
+  fields: (t) => ({
+    name: t.string()
+  })
+})
+
 builder.queryField('topic', (t) =>
   t.prismaField({
     type: 'Topic',
     args: {
-      name: t.arg.string()
+      where: t.arg({ type: WhereTopicInput })
     },
-    resolve: async (query, root, { name }) => {
+    resolve: async (query, root, { where }) => {
       return await db.topic.findUnique({
         ...query,
-        where: { name },
+        where: { name: where.name },
         rejectOnNotFound: true
       })
     }
