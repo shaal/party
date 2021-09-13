@@ -61,6 +61,8 @@ review_app:
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
+  only:
+    - branches
   except:
     - main
 
