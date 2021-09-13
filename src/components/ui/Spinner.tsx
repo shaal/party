@@ -1,11 +1,28 @@
+import clsx from 'clsx'
+
 interface Props {
   color?: string
+  className?: string
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export const Spinner: React.FC<Props> = ({ color = 'text-white' }) => {
+export const Spinner: React.FC<Props> = ({
+  color = 'text-white',
+  className = '',
+  size = 'md'
+}) => {
   return (
     <svg
-      className={`animate-spin h-5 w-5 ${color}`}
+      className={clsx(
+        {
+          'h-5 w-5': size === 'sm',
+          'h-8 w-8': size === 'md',
+          'h-10 w-10': size === 'lg'
+        },
+        'animate-spin',
+        className,
+        color
+      )}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

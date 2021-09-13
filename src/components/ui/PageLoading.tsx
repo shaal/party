@@ -12,7 +12,7 @@ export const PageLoading: React.FC<Props> = ({ message }) => {
     <div className="flex flex-grow items-center justify-center">
       <NextSeo title="Loading..." />
       <div className="space-y-4">
-        <Spinner color="text-brand-500" />
+        <Spinner color="text-brand-500" className="mx-auto" size="lg" />
         <div>{message}</div>
       </div>
     </div>
