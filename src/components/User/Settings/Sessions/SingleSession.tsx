@@ -17,7 +17,7 @@ interface Props {
 }
 
 const SingleSession: React.FC<Props> = ({ session }) => {
-  const [revokeSession, revokeSessionResult] = useMutation<
+  const [revokeSession] = useMutation<
     RevokeSessionMutation,
     RevokeSessionMutationVariables
   >(

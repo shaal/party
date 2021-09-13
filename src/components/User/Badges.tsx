@@ -27,7 +27,7 @@ interface Props {
 }
 
 const Badges: React.FC<Props> = ({ user }) => {
-  const { data, loading } = useQuery<UserBadgesQuery>(USER_BADGES_QUERY, {
+  const { loading } = useQuery<UserBadgesQuery>(USER_BADGES_QUERY, {
     variables: {
       id: user?.id
     },

@@ -46,12 +46,11 @@ export const SEARCH_PRODUCTS_QUERY = gql`
 `
 
 const Search: React.FC = () => {
-  const [searchPosts, { loading: postsLoading, data: posts }] =
-    useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
-  const [searchUsers, { loading: usersLoading, data: users }] =
-    useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
-  const [searchProducts, { loading: productsLoading, data: products }] =
-    useLazyQuery<SearchProductsQuery>(SEARCH_PRODUCTS_QUERY)
+  const [searchPosts, {}] = useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
+  const [searchUsers, {}] = useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
+  const [searchProducts, {}] = useLazyQuery<SearchProductsQuery>(
+    SEARCH_PRODUCTS_QUERY
+  )
 
   const handleSearch = (evt: any) => {
     console.log(evt.target.value)

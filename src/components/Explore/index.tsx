@@ -12,7 +12,7 @@ import ExploreFeed from './Feed'
 export const EXPLORE_QUERY = CURRENT_USER_QUERY
 
 const Explore: React.FC = () => {
-  const { data, error } = useQuery<CurrentUserQuery>(EXPLORE_QUERY)
+  const { error } = useQuery<CurrentUserQuery>(EXPLORE_QUERY)
 
   return (
     <>
