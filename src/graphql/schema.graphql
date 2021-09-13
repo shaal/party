@@ -522,6 +522,7 @@ type User {
   products: [Product!]!
   profile: Profile!
   spammy: Boolean!
+  topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!
 }
@@ -568,6 +569,17 @@ type UserPostsConnection {
 type UserPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type UserTopicsConnection {
+  edges: [UserTopicsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserTopicsConnectionEdge {
+  cursor: String!
+  node: Topic!
 }
 
 type Wakatime {
