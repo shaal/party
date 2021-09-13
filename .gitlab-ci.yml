@@ -55,16 +55,27 @@ migrate:
     - main
   when: manual
 
-review_app:
+deploy_review:
   before_script: []
-  script: echo 'Deployed to Vercel'
+  script: echo 'Deploying review app to Vercel'
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
-  only:
-    - branches
-  except:
-    - main
+    on_stop: stop_review
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+
+stop_review:
+  script:
+    - yarn global add vercel
+    - echo 'Removing review app from Vercel'
+    - vercel remove devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app --token=$VERCEL_TOKEN
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: manual
 
 housekeeping:
   before_script: []
