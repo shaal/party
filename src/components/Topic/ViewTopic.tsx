@@ -30,7 +30,7 @@ export const TOPIC_QUERY = gql`
 const ViewTopic: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
-  const { data, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
+  const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
     variables: {
       name: router.query.topic
     },
@@ -55,17 +55,23 @@ const ViewTopic: React.FC = () => {
                 />
               )}
               <div>
-                <div className="flex items-center space-x-3">
-                  <Slug
-                    slug={data?.topic?.name}
-                    prefix="#"
-                    className="text-xl"
-                  />
-                  <Star topic={data?.topic as Topic} />
-                </div>
-                <div className="text-gray-600 dark:text-gray-300">
-                  {data?.topic?.postsCount} Posts
-                </div>
+                {loading ? (
+                  <div className="shimmer h-6 w-full rounded-md" />
+                ) : (
+                  <>
+                    <div className="flex items-center space-x-3">
+                      <Slug
+                        slug={data?.topic?.name}
+                        prefix="#"
+                        className="text-xl"
+                      />
+                      <Star topic={data?.topic as Topic} />
+                    </div>
+                    <div className="text-gray-600 dark:text-gray-300">
+                      {data?.topic?.postsCount} Posts
+                    </div>
+                  </>
+                )}
               </div>
               {data?.topic?.description && (
                 <div>{data?.topic?.description}</div>
