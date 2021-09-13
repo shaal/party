@@ -21,7 +21,7 @@ export const WakatimeObject = builder
 builder.queryField('wakatime', (t) =>
   t.field({
     type: WakatimeObject,
-    args: { userId: t.arg.id({}) },
+    args: { userId: t.arg.id() },
     nullable: true,
     resolve: async (root, { userId }) => {
       return await wakatime(userId)

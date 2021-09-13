@@ -26,7 +26,7 @@ const Followers: React.FC = () => {
     }
   )
 
-  if (loading) return <PageLoading message="Loading followers..." />
+  if (loading) return <PageLoading message="Loading followers" />
 
   return (
     <>

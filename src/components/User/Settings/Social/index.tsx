@@ -26,7 +26,7 @@ const SocialSettings: React.FC = () => {
   const { data, loading } = useQuery<SocialSettingsQuery>(SOCIAL_SETTINGS_QUERY)
 
   if (loading) {
-    return <PageLoading message="Loading settings..." />
+    return <PageLoading message="Loading settings" />
   }
 
   return <SocialSettingsForm currentUser={data?.me as User} />

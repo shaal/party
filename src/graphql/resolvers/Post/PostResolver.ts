@@ -133,7 +133,7 @@ builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
     args: {
-      id: t.arg.id({})
+      id: t.arg.id()
     },
     resolve: async (query, root, { id }) => {
       return await db.post.findUnique({
@@ -176,7 +176,7 @@ builder.mutationField('createPost', (t) =>
 
 const EditPostInput = builder.inputType('EditPostInput', {
   fields: (t) => ({
-    id: t.id({}),
+    id: t.id(),
     body: t.string({ required: false }),
     done: t.boolean({ required: false })
   })
@@ -196,7 +196,7 @@ builder.mutationField('editPost', (t) =>
 
 const DeletePostInput = builder.inputType('DeletePostInput', {
   fields: (t) => ({
-    id: t.id({})
+    id: t.id()
   })
 })
 

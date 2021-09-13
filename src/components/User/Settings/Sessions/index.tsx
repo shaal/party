@@ -46,7 +46,7 @@ const SessionsSettings: React.FC = () => {
   const sessions = data?.sessions?.edges?.map((edge) => edge?.node)
 
   if (loading) {
-    return <PageLoading message="Loading sessions..." />
+    return <PageLoading message="Loading sessions" />
   }
 
   return (

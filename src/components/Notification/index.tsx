@@ -72,7 +72,7 @@ const Notifications: React.FC = () => {
     }
   })
 
-  if (loading) return <PageLoading message="Loading notifications..." />
+  if (loading) return <PageLoading message="Loading notifications" />
 
   return (
     <div className="flex flex-grow justify-center px-4 sm:px-6 lg:px-8 py-8">

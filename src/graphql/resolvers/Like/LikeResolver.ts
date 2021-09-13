@@ -18,7 +18,7 @@ builder.prismaObject('Like', {
 
 const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
   fields: (t) => ({
-    postId: t.id({})
+    postId: t.id()
   })
 })
 

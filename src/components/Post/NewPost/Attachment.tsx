@@ -30,7 +30,7 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
       <button type="button">
         <label className="flex items-center gap-1 cursor-pointer">
           {loading ? (
-            <Spinner color="text-brand-500" />
+            <Spinner size="sm" />
           ) : (
             <Tooltip content="Media">
               <PhotographIcon className="h-5 w-5 text-brand-500" />

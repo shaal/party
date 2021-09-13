@@ -46,7 +46,7 @@ builder.queryField('topic', (t) =>
   t.prismaField({
     type: 'Topic',
     args: {
-      name: t.arg.string({})
+      name: t.arg.string()
     },
     resolve: async (query, root, { name }) => {
       return await db.topic.findUnique({
@@ -60,7 +60,7 @@ builder.queryField('topic', (t) =>
 
 const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
   fields: (t) => ({
-    topicId: t.id({})
+    topicId: t.id()
   })
 })
 
@@ -79,7 +79,7 @@ builder.mutationField('toggleTopicStar', (t) =>
 
 const EditTopicInput = builder.inputType('EditTopicInput', {
   fields: (t) => ({
-    id: t.id({}),
+    id: t.id(),
     description: t.string({ required: false })
   })
 })

@@ -47,7 +47,7 @@ const ViewProduct: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading Product..." />
+  if (loading) return <PageLoading message="Loading product" />
 
   return (
     <GridLayout>

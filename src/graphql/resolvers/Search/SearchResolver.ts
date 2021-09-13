@@ -5,7 +5,7 @@ builder.queryField('searchPosts', (t) =>
   t.prismaConnection({
     type: 'Post',
     args: {
-      keyword: t.arg.string({})
+      keyword: t.arg.string()
     },
     cursor: 'id',
     defaultSize: 20,
@@ -27,7 +27,7 @@ builder.queryField('searchUsers', (t) =>
   t.prismaConnection({
     type: 'User',
     args: {
-      keyword: t.arg.string({})
+      keyword: t.arg.string()
     },
     cursor: 'id',
     defaultSize: 20,
@@ -49,7 +49,7 @@ builder.queryField('searchProduct', (t) =>
   t.prismaConnection({
     type: 'Product',
     args: {
-      keyword: t.arg.string({})
+      keyword: t.arg.string()
     },
     cursor: 'id',
     defaultSize: 20,

@@ -9,6 +9,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import AppContext from '~/components/utils/AppContext'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
+import { PageLoading } from '../ui/PageLoading'
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
 import TopicMod from './Mod'
@@ -30,12 +31,14 @@ export const TOPIC_QUERY = gql`
 const ViewTopic: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
-  const { data, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
+  const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
     variables: {
       name: router.query.topic
     },
     skip: !router.isReady
   })
+
+  if (loading) return <PageLoading message="Loading topic" />
 
   return (
     <GridLayout>

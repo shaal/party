@@ -176,7 +176,7 @@ builder.mutationField('editUser', (t) =>
 
 const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
   fields: (t) => ({
-    userId: t.id({})
+    userId: t.id()
   })
 })
 
@@ -197,7 +197,7 @@ builder.mutationField('toggleFollow', (t) =>
 // Staff Ops
 const ModUserInput = builder.inputType('ModUserInput', {
   fields: (t) => ({
-    userId: t.id({}),
+    userId: t.id(),
     isVerified: t.boolean({ required: false }),
     isStaff: t.boolean({ required: false }),
     spammy: t.boolean({ required: false })
