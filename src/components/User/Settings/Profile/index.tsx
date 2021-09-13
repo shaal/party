@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
 import { PageLoading } from '~/components/ui/PageLoading'
@@ -34,11 +34,7 @@ const ProfileSettings: React.FC = () => {
     return <PageLoading message="Loading settings..." />
   }
 
-  return (
-    <Fragment>
-      <ProfileSettingsForm currentUser={data?.me as User} />
-    </Fragment>
-  )
+  return <ProfileSettingsForm currentUser={data?.me as User} />
 }
 
 export default ProfileSettings
