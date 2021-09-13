@@ -50,7 +50,7 @@ export const UserFragment = gql`
 export const VIEW_USER_QUERY = gql`
   query ViewUserQuery($username: String!) {
     user(username: $username) {
-      UserFragment
+      ...UserFragment
     }
   }
   ${UserFragment}
