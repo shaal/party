@@ -1,6 +1,6 @@
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { Button } from '~/components/ui/Button'
 
