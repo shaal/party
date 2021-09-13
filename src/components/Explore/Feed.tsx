@@ -12,7 +12,7 @@ import { ExploreFeedQuery } from './__generated__/Feed.generated'
 
 export const EXPLORE_FEED_QUERY = gql`
   query ExploreFeedQuery {
-    post: exploreFeed {
+    posts: exploreFeed {
       pageInfo {
         endCursor
         hasNextPage
@@ -30,8 +30,8 @@ export const EXPLORE_FEED_QUERY = gql`
 const ExploreFeed: React.FC = () => {
   const { data, loading, error, fetchMore } =
     useQuery<ExploreFeedQuery>(EXPLORE_FEED_QUERY)
-  const posts = data?.post?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.post?.pageInfo
+  const posts = data?.posts?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.posts?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
