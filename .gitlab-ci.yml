@@ -77,8 +77,10 @@ deploy_review:
     url: https://devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app
   after_script:
     - vercel inspect "devparty-git-$CI_COMMIT_REF_NAME-devparty.vercel.app" --token=$VERCEL_TOKEN
-  rules:
-    - if: $CI_MERGE_REQUEST_ID
+  only:
+    - branches
+  except:
+    - main
 
 housekeeping:
   stage: deploy
