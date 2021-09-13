@@ -15,38 +15,40 @@ cache:
     - node_modules/
     - .next/cache/
 
-before_script:
-  - cp .env.example .env
+.prepare:
+  before_script:
+    - cp .env.example .env
+    - yarn install --frozen-lockfile --silent
 
 Lint 🌟:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn lint
 
 Prettier 📚:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn prettier:check
 
 Generate 🧞‍♂️:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn generate
 
 Typecheck 🧐:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn generate
     - yarn typecheck
 
 Build 👷‍♂️:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn build
 
 Migrate 🚚:
+  extends: .prepare
   script:
-    - yarn install --frozen-lockfile --silent
     - yarn prisma migrate reset --force
     - yarn prisma migrate deploy
   only:
