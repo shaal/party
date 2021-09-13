@@ -3,7 +3,7 @@ import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Linkify from 'linkifyjs/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Fragment, useContext } from 'react'
+import { useContext } from 'react'
 
 import { Profile, User } from '~/__generated__/schema.generated'
 import Slug from '~/components/shared/Slug'
@@ -81,7 +81,7 @@ const Details: React.FC<Props> = ({ user }) => {
         <Badges user={user} />
       </div>
       {currentUser?.isStaff && staffMode && (
-        <Fragment>
+        <>
           {user?.spammy && (
             <ErrorMessage
               title="Oops!"
@@ -89,7 +89,7 @@ const Details: React.FC<Props> = ({ user }) => {
             />
           )}
           <UserMod user={user} />
-        </Fragment>
+        </>
       )}
     </div>
   )
