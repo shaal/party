@@ -30,9 +30,9 @@ builder.queryField('badges', (t) =>
 
 const CreateBadgeInput = builder.inputType('CreateBadgeInput', {
   fields: (t) => ({
-    name: t.string({}),
-    image: t.string({}),
-    description: t.string({})
+    name: t.string(),
+    image: t.string(),
+    description: t.string()
   })
 })
 
@@ -56,8 +56,8 @@ builder.mutationField('createBadge', (t) =>
 
 const AttachBadgeToUserInput = builder.inputType('AttachBadgeToUserInput', {
   fields: (t) => ({
-    userId: t.id({}),
-    badgeId: t.id({})
+    userId: t.id(),
+    badgeId: t.id()
   })
 })
 
