@@ -5,6 +5,7 @@ import { hasLiked } from '../Like/queries/hasLiked'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
+import { exploreFeed } from './queries/exploreFeed'
 import { getMorePostsByUser } from './queries/getMorePostsByUser'
 import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
@@ -112,6 +113,18 @@ builder.queryField('homeFeed', (t) =>
     },
     resolve: async (query, root, { where }, { session }) => {
       return await homeFeed(query, where, session)
+    }
+  })
+)
+
+builder.queryField('exploreFeed', (t) =>
+  t.prismaConnection({
+    type: 'Post',
+    cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
+    resolve: async (query) => {
+      return await exploreFeed(query)
     }
   })
 )

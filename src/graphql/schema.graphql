@@ -261,6 +261,7 @@ type Profile {
 
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
+  exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
@@ -292,6 +293,16 @@ type QueryBadgesConnection {
 type QueryBadgesConnectionEdge {
   cursor: String!
   node: Badge!
+}
+
+type QueryExploreFeedConnection {
+  edges: [QueryExploreFeedConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryExploreFeedConnectionEdge {
+  cursor: String!
+  node: Post!
 }
 
 type QueryHomeFeedConnection {

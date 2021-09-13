@@ -11,8 +11,8 @@ import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { ExploreFeedQuery } from './__generated__/Feed.generated'
 
 export const EXPLORE_FEED_QUERY = gql`
-  query ExploreFeedQuery($after: String, $where: WhereHomeFeedInput) {
-    homeFeed(first: 10, after: $after, where: $where) {
+  query ExploreFeedQuery {
+    post: exploreFeed {
       pageInfo {
         endCursor
         hasNextPage
@@ -27,24 +27,11 @@ export const EXPLORE_FEED_QUERY = gql`
   ${PostFragment}
 `
 
-interface Props {
-  feedType?: string
-}
-
-const ExploreFeed: React.FC<Props> = ({ feedType }) => {
-  const { data, loading, error, fetchMore } = useQuery<ExploreFeedQuery>(
-    EXPLORE_FEED_QUERY,
-    {
-      variables: {
-        after: null,
-        where: {
-          type: feedType
-        }
-      }
-    }
-  )
-  const posts = data?.homeFeed?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.homeFeed?.pageInfo
+const ExploreFeed: React.FC = () => {
+  const { data, loading, error, fetchMore } =
+    useQuery<ExploreFeedQuery>(EXPLORE_FEED_QUERY)
+  const posts = data?.post?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.post?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
