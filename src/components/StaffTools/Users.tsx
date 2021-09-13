@@ -77,8 +77,8 @@ const StaffToolsUsers: React.FC = () => {
     OnboardUserMutationVariables
   >(
     gql`
-      mutation OnboardUserMutation($userId: ID!) {
-        onboardUser(userId: $userId) {
+      mutation OnboardUserMutation($input: OnboardUserInput!) {
+        onboardUser(input: $input) {
           id
           inWaitlist
         }
@@ -181,7 +181,9 @@ const StaffToolsUsers: React.FC = () => {
                         size="sm"
                         className="text-sm"
                         onClick={() =>
-                          onboardUser({ variables: { userId: user?.id } })
+                          onboardUser({
+                            variables: { input: { userId: user?.id } }
+                          })
                         }
                       >
                         Onboard user

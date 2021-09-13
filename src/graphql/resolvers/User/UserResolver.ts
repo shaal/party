@@ -226,16 +226,22 @@ builder.mutationField('modUser', (t) =>
   })
 )
 
+const OnboardUserInput = builder.inputType('OnboardUserInput', {
+  fields: (t) => ({
+    userId: t.id()
+  })
+})
+
 builder.mutationField('onboardUser', (t) =>
   t.prismaField({
     type: 'User',
     args: {
-      userId: t.arg.id()
+      input: t.arg({ type: OnboardUserInput })
     },
     nullable: true,
-    resolve: async (query, root, { userId }) => {
+    resolve: async (query, root, { input }) => {
       return await db.user.update({
-        where: { id: userId },
+        where: { id: input.userId },
         data: { inWaitlist: false }
       })
     }
