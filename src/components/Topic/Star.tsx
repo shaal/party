@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Switch } from '@headlessui/react'
-import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
+import { StarIcon } from '@heroicons/react/outline'
+import { StarIcon as StarIconSolid } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -14,10 +15,9 @@ import {
 
 interface Props {
   topic: Topic
-  showText: boolean
 }
 
-const Star: React.FC<Props> = ({ topic, showText }) => {
+const Star: React.FC<Props> = ({ topic }) => {
   const [isStarted, setIsStarted] = useState<boolean>(false)
   const [toggleTopicStar] = useMutation<
     ToggleTopicStarMutation,
@@ -70,19 +70,14 @@ const Star: React.FC<Props> = ({ topic, showText }) => {
         setIsStarted(!isStarted)
         handleToggleFollow()
       }}
+      size="sm"
       variant={isStarted ? 'danger' : 'success'}
       outline
     >
       {isStarted ? (
-        <div className="flex items-center space-x-1">
-          <UserRemoveIcon className="h-4 w-4" />
-          {showText && <div>Unstar</div>}
-        </div>
+        <StarIconSolid className="h-4 w-4" />
       ) : (
-        <div className="flex items-center space-x-1">
-          <UserAddIcon className="h-4 w-4" />
-          {showText && <div>Star</div>}
-        </div>
+        <StarIcon className="h-4 w-4" />
       )}
     </Switch>
   )

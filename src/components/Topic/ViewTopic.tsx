@@ -55,7 +55,14 @@ const ViewTopic: React.FC = () => {
                 />
               )}
               <div>
-                <Slug slug={data?.topic?.name} prefix="#" className="text-xl" />
+                <div className="flex items-center space-x-2">
+                  <Slug
+                    slug={data?.topic?.name}
+                    prefix="#"
+                    className="text-xl"
+                  />
+                  <Star topic={data?.topic as Topic} />
+                </div>
                 <div className="text-gray-600 dark:text-gray-300">
                   {data?.topic?.postsCount} Posts
                 </div>
@@ -63,7 +70,6 @@ const ViewTopic: React.FC = () => {
               {data?.topic?.description && (
                 <div>{data?.topic?.description}</div>
               )}
-              <Star topic={data?.topic as Topic} showText />
             </div>
           </CardBody>
         </Card>
