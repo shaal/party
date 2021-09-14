@@ -202,9 +202,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
 builder.mutationField('modUser', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: ModUserInput })
-    },
+    args: { input: t.arg({ type: ModUserInput }) },
     nullable: true,
     authScopes: {
       isStaff: true
@@ -224,9 +222,7 @@ const OnboardUserInput = builder.inputType('OnboardUserInput', {
 builder.mutationField('onboardUser', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: OnboardUserInput })
-    },
+    args: { input: t.arg({ type: OnboardUserInput }) },
     nullable: true,
     resolve: async (query, root, { input }) => {
       return await db.user.update({
