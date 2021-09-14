@@ -44,9 +44,8 @@ builder.prismaObject('User', {
       cursor: 'id',
       totalCount: true,
       query: () => ({
-        orderBy: {
-          createdAt: 'desc'
-        }
+        where: { hidden: false },
+        orderBy: { createdAt: 'desc' }
       })
     }),
     badges: t.relatedConnection('badges', {
