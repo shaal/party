@@ -50,6 +50,12 @@ interface GraphQLRequest {
 }
 
 const handler: NextApiHandler = async (req, res) => {
+  if (req.method === 'POST' && req.headers['x-csrf-trick'] !== 'devparty') {
+    res.status(400)
+    res.end('Missing CSRF verification.')
+    return
+  }
+
   const session = await resolveSession({ req, res })
 
   try {
@@ -85,7 +91,7 @@ const handler: NextApiHandler = async (req, res) => {
     }
   } catch (error: any) {
     res.status(500)
-    res.end(error.toString())
+    res.end(String(error))
   }
 }
 
