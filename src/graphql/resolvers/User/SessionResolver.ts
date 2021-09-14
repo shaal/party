@@ -43,9 +43,7 @@ const RevokeSessionInput = builder.inputType('RevokeSessionInput', {
 builder.mutationField('revokeSession', (t) =>
   t.field({
     type: Result,
-    args: {
-      input: t.arg({ type: RevokeSessionInput })
-    },
+    args: { input: t.arg({ type: RevokeSessionInput }) },
     authScopes: { user: true, $granted: 'currentUser' },
     resolve: async (root, { input }) => {
       await db.session.delete({
