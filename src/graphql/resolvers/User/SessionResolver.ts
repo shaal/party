@@ -28,7 +28,7 @@ builder.queryField('sessions', (t) =>
     maxSize: 100,
     authScopes: { user: true },
     nullable: true,
-    resolve: async (query, root, args, { session }) => {
+    resolve: async (query, parent, args, { session }) => {
       return await getSessions(query, session)
     }
   })
@@ -45,7 +45,7 @@ builder.mutationField('revokeSession', (t) =>
     type: Result,
     args: { input: t.arg({ type: RevokeSessionInput }) },
     authScopes: { user: true, $granted: 'currentUser' },
-    resolve: async (root, { input }) => {
+    resolve: async (parent, { input }) => {
       await db.session.delete({
         where: { id: input!.id }
       })
