@@ -7,7 +7,6 @@ import { Button } from '~/components/ui/Button'
 import { ErrorMessage } from '~/components/ui/ErrorMessage'
 import { Form, useZodForm } from '~/components/ui/Form'
 import { Input } from '~/components/ui/Input'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
 
 import {
   LoginFormMutation,
@@ -20,7 +19,6 @@ const loginSchema = object({
 })
 
 const LoginForm: React.FC = () => {
-  const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
     LoginFormMutation,
     LoginFormMutationVariables
@@ -34,7 +32,7 @@ const LoginForm: React.FC = () => {
     `,
     {
       onCompleted() {
-        authRedirect()
+        window.location.replace('/')
       }
     }
   )
