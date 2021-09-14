@@ -16,9 +16,7 @@ builder.prismaObject('Invite', {
 builder.queryField('invite', (t) =>
   t.prismaField({
     type: 'Invite',
-    args: {
-      code: t.arg.string()
-    },
+    args: { code: t.arg.string() },
     nullable: true,
     resolve: async (query, root, { code }) => {
       return await db.invite.findFirst({
