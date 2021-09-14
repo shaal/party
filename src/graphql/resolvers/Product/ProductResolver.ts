@@ -58,7 +58,7 @@ builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
     args: { where: t.arg({ type: WhereProductInput }) },
-    resolve: async (query, root, { where }) => {
+    resolve: async (query, parent, { where }) => {
       return await db.product.findUnique({
         ...query,
         where: { id: where.id!, slug: where.slug! },
@@ -84,7 +84,7 @@ builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: 'Product',
     args: { input: t.arg({ type: CreateProductInput }) },
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await createProduct(query, input, session)
     }
   })
@@ -112,12 +112,10 @@ builder.mutationField('editProduct', (t) =>
     type: 'Product',
     args: { input: t.arg({ type: EditProductInput }) },
     authScopes: { user: true },
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return await db.product.update({
         ...query,
-        where: {
-          id: input?.id
-        },
+        where: { id: input?.id },
         data: {
           slug: input.slug,
           name: input.name,
