@@ -60,7 +60,7 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
     toggleFollow({
       variables: {
         input: {
-          userId: user?.id
+          id: user?.id
         }
       }
     })

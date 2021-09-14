@@ -465,7 +465,7 @@ type Stats {
 }
 
 input ToggleFollowInput {
-  userId: ID!
+  id: ID!
 }
 
 input TogglePostLikeInput {

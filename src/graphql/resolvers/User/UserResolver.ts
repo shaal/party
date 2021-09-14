@@ -182,7 +182,7 @@ builder.mutationField('editUser', (t) =>
 
 const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
   fields: (t) => ({
-    userId: t.id()
+    id: t.id()
   })
 })
 
@@ -195,7 +195,7 @@ builder.mutationField('toggleFollow', (t) =>
     },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return await toggleFollow(session?.userId as string, input?.userId)
+      return await toggleFollow(session?.userId as string, input?.id)
     }
   })
 )
