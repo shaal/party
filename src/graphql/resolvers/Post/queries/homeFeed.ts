@@ -27,7 +27,8 @@ export const homeFeed = async (
           ]
         },
         spammy: false
-      }
+      },
+      hidden: false
     },
     orderBy: {
       createdAt: 'desc'
