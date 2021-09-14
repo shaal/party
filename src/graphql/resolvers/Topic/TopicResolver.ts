@@ -48,9 +48,7 @@ builder.prismaObject('Topic', {
 builder.queryField('topic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      name: t.arg.string()
-    },
+    args: { name: t.arg.string() },
     resolve: async (query, root, { name }) => {
       return await db.topic.findUnique({
         ...query,
@@ -70,9 +68,7 @@ const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
 builder.mutationField('toggleTopicStar', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      input: t.arg({ type: ToggleTopicStarInput })
-    },
+    args: { input: t.arg({ type: ToggleTopicStarInput }) },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await toggleStar(session?.userId as string, input.id)
@@ -90,9 +86,7 @@ const EditTopicInput = builder.inputType('EditTopicInput', {
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      input: t.arg({ type: EditTopicInput })
-    },
+    args: { input: t.arg({ type: EditTopicInput }) },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await modTopic(query, input, session)
