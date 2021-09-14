@@ -12,7 +12,7 @@ generator client {
 }
 
 generator giraphql {
-  provider     = "prisma-giraphql-types"
+  provider = "prisma-giraphql-types"
 }
 
 model User {
@@ -115,6 +115,7 @@ model Post {
   done        Boolean  @default(false)
   type        PostType @default(POST)
   attachments Json?
+  isDeleted   Boolean  @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -194,6 +195,7 @@ model Product {
   slug        String  @unique
   description String?
   avatar      String?
+  isDeleted   Boolean @default(false)
 
   // Social
   website     String?
@@ -222,6 +224,7 @@ model Community {
   slug        String  @unique
   description String?
   avatar      String?
+  isDeleted   Boolean @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())
