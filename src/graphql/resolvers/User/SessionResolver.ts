@@ -7,8 +7,8 @@ import { getSessions } from './queries/getSessions'
 builder.prismaObject('Session', {
   findUnique: (session) => ({ id: session.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    isStaff: t.exposeBoolean('isStaff', {}),
+    id: t.exposeID('id'),
+    isStaff: t.exposeBoolean('isStaff'),
     userAgent: t.exposeString('userAgent', { nullable: true }),
 
     // Timestamps
