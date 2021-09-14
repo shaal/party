@@ -275,7 +275,7 @@ type Query {
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   product(where: WhereProductInput!): Product!
-  products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
+  products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
@@ -511,7 +511,7 @@ type User {
   isStaff: Boolean!
   isVerified: Boolean!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
-  products: [Product!]!
+  products(after: String, before: String, first: Int, last: Int): UserProductsConnection!
   profile: Profile!
   spammy: Boolean!
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
@@ -563,6 +563,17 @@ type UserPostsConnectionEdge {
   node: Post!
 }
 
+type UserProductsConnection {
+  edges: [UserProductsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserProductsConnectionEdge {
+  cursor: String!
+  node: Product!
+}
+
 type UserTopicsConnection {
   edges: [UserTopicsConnectionEdge]!
   pageInfo: PageInfo!
@@ -581,10 +592,6 @@ type Wakatime {
 input WhereProductInput {
   id: ID
   slug: String
-}
-
-input WhereProductsInput {
-  userId: String
 }
 
 input WhereTopicInput {

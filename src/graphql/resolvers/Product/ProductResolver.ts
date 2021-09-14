@@ -35,25 +35,14 @@ builder.prismaObject('Product', {
   })
 })
 
-const WhereProductsInput = builder.inputType('WhereProductsInput', {
-  fields: (t) => ({
-    userId: t.string({
-      required: false
-    })
-  })
-})
-
 builder.queryField('products', (t) =>
   t.prismaConnection({
     type: 'Product',
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    args: {
-      where: t.arg({ type: WhereProductsInput, required: false })
-    },
-    resolve: async (query, root, { where }) => {
-      return await getProducts(query, where)
+    resolve: async (query) => {
+      return await getProducts(query)
     }
   })
 )

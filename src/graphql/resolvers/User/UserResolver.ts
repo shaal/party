@@ -35,7 +35,6 @@ builder.prismaObject('User', {
 
     // Relations
     profile: t.relation('profile'),
-    products: t.relation('products'),
     invite: t.relation('invite', {
       nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
@@ -47,6 +46,10 @@ builder.prismaObject('User', {
         where: { hidden: false },
         orderBy: { createdAt: 'desc' }
       })
+    }),
+    products: t.relatedConnection('products', {
+      cursor: 'id',
+      totalCount: true
     }),
     badges: t.relatedConnection('badges', {
       cursor: 'id',

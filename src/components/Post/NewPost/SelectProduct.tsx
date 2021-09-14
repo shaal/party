@@ -11,14 +11,16 @@ import AppContext from '~/components/utils/AppContext'
 import { SelectProductQuery } from './__generated__/SelectProduct.generated'
 
 export const SELECT_PRODUCT_QUERY = gql`
-  query SelectProductQuery($where: WhereProductsInput) {
-    products(where: $where) {
-      edges {
-        node {
-          id
-          name
-          slug
-          avatar
+  query SelectProductQuery($username: ID!) {
+    user(username: $username) {
+      products {
+        edges {
+          node {
+            id
+            name
+            slug
+            avatar
+          }
         }
       }
     }
@@ -33,12 +35,9 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
   const [product, setProduct] = useState<Product | null>()
   const { currentUser } = useContext(AppContext)
   const { data } = useQuery<SelectProductQuery>(SELECT_PRODUCT_QUERY, {
-    variables: {
-      where: {
-        userId: currentUser?.id
-      }
-    }
+    variables: { username: currentUser?.username }
   })
+  const products = data?.user?.products?.edges?.map((edge) => edge?.node)
 
   const handleSelectProduct = (product: Product) => {
     setProduct(product)
@@ -61,7 +60,7 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
               static
               className="z-10 absolute mt-1 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-md rounded-lg py-1 px-2 text-base focus:outline-none sm:text-sm"
             >
-              {data?.products?.edges?.map((product: any) => (
+              {products?.map((product: any) => (
                 <Listbox.Option
                   key={product?.node?.id}
                   className={({ active }) =>
