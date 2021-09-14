@@ -67,10 +67,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
       credentials: 'include',
       link: new HttpLink({
         uri: '/api/graphql',
-        headers: {
-          ...headers,
-          'X-CSRF-Trick': 'devparty'
-        }
+        headers: headers
       }),
       cache: new InMemoryCache({
         typePolicies: {
