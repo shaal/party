@@ -4,8 +4,8 @@ import { db } from '~/utils/prisma'
 builder.prismaObject('Profile', {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
     bio: t.exposeString('bio', { nullable: true }),
     location: t.exposeString('location', { nullable: true }),
     avatar: t.exposeString('avatar', { nullable: true }),

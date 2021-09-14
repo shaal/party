@@ -8,7 +8,7 @@ import { hasStarted } from './queries/hasStarted'
 builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     name: t.exposeString('name'),
     image: t.exposeString('image', { nullable: true }),
     description: t.exposeString('description', { nullable: true }),
