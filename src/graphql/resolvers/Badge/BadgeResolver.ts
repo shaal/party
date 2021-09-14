@@ -6,10 +6,10 @@ import { getBadges } from './queries/getBadges'
 builder.prismaObject('Badge', {
   findUnique: (badge) => ({ id: badge.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
     description: t.exposeString('description', { nullable: true }),
-    image: t.exposeString('image', {}),
+    image: t.exposeString('image'),
 
     // Relations
     users: t.relatedConnection('users', { cursor: 'id', totalCount: true })
