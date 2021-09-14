@@ -267,7 +267,7 @@ type Profile {
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
-  homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
+  homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
   me: User
@@ -576,10 +576,6 @@ type UserTopicsConnectionEdge {
 
 type Wakatime {
   hours: String
-}
-
-input WhereHomeFeedInput {
-  type: String = "ALL"
 }
 
 input WherePostInput {

@@ -64,12 +64,6 @@ builder.queryField('morePostsByUser', (t) =>
   })
 )
 
-const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
-  fields: (t) => ({
-    type: t.string({ required: false, defaultValue: 'ALL' })
-  })
-})
-
 builder.queryField('homeFeed', (t) =>
   t.prismaConnection({
     type: 'Post',
@@ -77,10 +71,10 @@ builder.queryField('homeFeed', (t) =>
     defaultSize: 20,
     maxSize: 100,
     args: {
-      where: t.arg({ type: WhereHomeFeedInput, required: false })
+      type: t.arg.string({ defaultValue: 'ALL' })
     },
-    resolve: async (query, root, { where }, { session }) => {
-      return await homeFeed(query, where, session)
+    resolve: async (query, root, { type }, { session }) => {
+      return await homeFeed(query, type, session)
     }
   })
 )
