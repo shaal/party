@@ -26,7 +26,7 @@ builder.queryField('notifications', (t) =>
     defaultSize: 20,
     maxSize: 100,
     authScopes: { user: true },
-    resolve: async (query, root, args, { session }) => {
+    resolve: async (query, parent, args, { session }) => {
       return await getNotifications(query, session)
     }
   })
