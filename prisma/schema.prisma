@@ -115,6 +115,7 @@ model Post {
   done        Boolean  @default(false)
   type        PostType @default(POST)
   attachments Json?
+  hidden      Boolean  @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())
