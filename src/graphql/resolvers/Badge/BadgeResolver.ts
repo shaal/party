@@ -40,7 +40,7 @@ builder.mutationField('createBadge', (t) =>
   t.prismaField({
     type: 'Badge',
     args: { input: t.arg({ type: CreateBadgeInput }) },
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return await db.badge.create({
         data: {
           name: input.name,
@@ -63,7 +63,7 @@ builder.mutationField('attachBadge', (t) =>
   t.prismaField({
     type: 'User',
     args: { input: t.arg({ type: AttachBadgeToUserInput }) },
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return await db.user.update({
         ...query,
         where: { id: input.userId },
