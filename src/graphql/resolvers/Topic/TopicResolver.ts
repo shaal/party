@@ -14,13 +14,11 @@ builder.prismaObject('Topic', {
     description: t.exposeString('description', { nullable: true }),
     hasStarted: t.field({
       type: 'Boolean',
-      resolve: async (root, args, { session }) => {
+      resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasStarted(session?.userId as string, root.id)
+        return await hasStarted(session?.userId as string, parent.id)
       }
     }),
-
-    // Count
     postsCount: t.relationCount('posts'),
 
     // Relations
@@ -30,16 +28,14 @@ builder.prismaObject('Topic', {
       cursor: 'id',
       defaultSize: 20,
       maxSize: 100,
-      resolve: (query, root) =>
+      resolve: (query, parent) =>
         db.post.findMany({
           ...query,
           where: {
-            topics: { some: { topic: { name: root.name } } },
+            topics: { some: { topic: { name: parent.name } } },
             hidden: false
           },
-          orderBy: {
-            createdAt: 'desc'
-          }
+          orderBy: { createdAt: 'desc' }
         })
     })
   })
@@ -49,7 +45,7 @@ builder.queryField('topic', (t) =>
   t.prismaField({
     type: 'Topic',
     args: { name: t.arg.string() },
-    resolve: async (query, root, { name }) => {
+    resolve: async (query, parent, { name }) => {
       return await db.topic.findUnique({
         ...query,
         where: { name },
@@ -70,7 +66,7 @@ builder.mutationField('toggleTopicStar', (t) =>
     type: 'Topic',
     args: { input: t.arg({ type: ToggleTopicStarInput }) },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await toggleStar(session?.userId as string, input.id)
     }
   })
@@ -88,7 +84,7 @@ builder.mutationField('modTopic', (t) =>
     type: 'Topic',
     args: { input: t.arg({ type: EditTopicInput }) },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await modTopic(query, input, session)
     }
   })
