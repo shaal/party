@@ -10,11 +10,11 @@ import { hasFollowed } from './queries/hasFollowed'
 builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    username: t.exposeString('username', {}),
-    spammy: t.exposeBoolean('spammy', {}),
-    isVerified: t.exposeBoolean('isVerified', {}),
-    isStaff: t.exposeBoolean('isStaff', {}),
+    id: t.exposeID('id'),
+    username: t.exposeString('username'),
+    spammy: t.exposeBoolean('spammy'),
+    isVerified: t.exposeBoolean('isVerified'),
+    isStaff: t.exposeBoolean('isStaff'),
     inWaitlist: t.exposeBoolean('inWaitlist', {
       authScopes: { isStaff: true }
     }),
