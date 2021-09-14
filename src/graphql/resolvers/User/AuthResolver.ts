@@ -50,9 +50,7 @@ builder.mutationField('login', (t) =>
     authScopes: {
       unauthenticated: false
     },
-    args: {
-      input: t.arg({ type: LoginInput })
-    },
+    args: { input: t.arg({ type: LoginInput }) },
     resolve: async (_query, root, { input }, { req }) => {
       const user = await authenticateUser(input.email, input.password)
       if (user.inWaitlist) {
@@ -99,9 +97,7 @@ builder.mutationField('joinWaitlist', (t) =>
     authScopes: {
       unauthenticated: true
     },
-    args: {
-      input: t.arg({ type: JoinWaitlistInput })
-    },
+    args: { input: t.arg({ type: JoinWaitlistInput }) },
     resolve: async (query, root, { input }) => {
       return joinWaitlist(query, input)
     }
@@ -142,9 +138,7 @@ builder.mutationField('signUp', (t) =>
     authScopes: {
       unauthenticated: true
     },
-    args: {
-      input: t.arg({ type: SignupInput })
-    },
+    args: { input: t.arg({ type: SignupInput }) },
     resolve: async (query, root, { input }, { req }) => {
       return signUp(query, input, req)
     }
@@ -165,9 +159,7 @@ const ChangePasswordInput = builder.inputType('ChangePasswordInput', {
 builder.mutationField('changePassword', (t) =>
   t.field({
     type: Result,
-    args: {
-      input: t.arg({ type: ChangePasswordInput })
-    },
+    args: { input: t.arg({ type: ChangePasswordInput }) },
     resolve: async (root, { input }, { session }) => {
       return changePassword(input, session)
     }
