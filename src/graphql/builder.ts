@@ -1,12 +1,12 @@
 import SchemaBuilder from '@giraphql/core'
 import PrismaPlugin from '@giraphql/plugin-prisma'
+import PrismaTypes from '@giraphql/plugin-prisma/generated'
 import RelayPlugin from '@giraphql/plugin-relay'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
 import { IncomingMessage, OutgoingMessage } from 'http'
-import PrismaTypes from 'prisma/giraphql-types'
 
 import { db } from '~/utils/prisma'
 

@@ -13,8 +13,6 @@ generator client {
 
 generator giraphql {
   provider     = "prisma-giraphql-types"
-  clientOutput = "@prisma/client"
-  output       = "./giraphql-types.ts"
 }
 
 model User {
