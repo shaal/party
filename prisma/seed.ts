@@ -1,5 +1,3 @@
-import 'tsconfig-paths/register'
-
 import { PrismaClient } from '@prisma/client'
 import faker from 'faker'
 import { md5 } from 'hash-wasm'
