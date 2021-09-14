@@ -273,7 +273,7 @@ type Query {
   me: User
   morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
-  post(where: WherePostInput!): Post!
+  post(id: ID!): Post!
   product(where: WhereProductInput!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
@@ -576,10 +576,6 @@ type UserTopicsConnectionEdge {
 
 type Wakatime {
   hours: String
-}
-
-input WherePostInput {
-  id: ID!
 }
 
 input WhereProductInput {

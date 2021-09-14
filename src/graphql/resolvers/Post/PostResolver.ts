@@ -91,22 +91,16 @@ builder.queryField('exploreFeed', (t) =>
   })
 )
 
-const WherePostInput = builder.inputType('WherePostInput', {
-  fields: (t) => ({
-    id: t.id()
-  })
-})
-
 builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
     args: {
-      where: t.arg({ type: WherePostInput })
+      id: t.arg.id()
     },
-    resolve: async (query, root, { where }) => {
+    resolve: async (query, root, { id }) => {
       return await db.post.findFirst({
         ...query,
-        where: { id: where.id, hidden: false },
+        where: { id, hidden: false },
         rejectOnNotFound: true
       })
     }
