@@ -70,6 +70,7 @@ CREATE TABLE `posts` (
     `done` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST', 'TASK', 'QUESTION', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
+    `isDeleted` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
@@ -122,6 +123,7 @@ CREATE TABLE `products` (
     `slug` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191),
     `avatar` VARCHAR(191),
+    `isDeleted` BOOLEAN NOT NULL DEFAULT false,
     `website` VARCHAR(191),
     `producthunt` VARCHAR(191),
     `discord` VARCHAR(191),
@@ -143,6 +145,7 @@ CREATE TABLE `communities` (
     `slug` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191),
     `avatar` VARCHAR(191),
+    `isDeleted` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
