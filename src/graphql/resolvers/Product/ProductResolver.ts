@@ -96,7 +96,7 @@ builder.mutationField('createProduct', (t) =>
 
 const EditProductInput = builder.inputType('EditProductInput', {
   fields: (t) => ({
-    id: t.id({ required: true }),
+    id: t.id(),
     slug: t.string({
       required: true,
       validate: { minLength: 1, maxLength: 20 }

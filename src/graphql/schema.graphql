@@ -282,7 +282,7 @@ type Query {
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
-  topic(where: WhereTopicInput!): Topic!
+  topic(name: String!): Topic!
   user(username: ID!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
@@ -592,8 +592,4 @@ type Wakatime {
 input WhereProductInput {
   id: ID
   slug: String
-}
-
-input WhereTopicInput {
-  name: String!
 }
