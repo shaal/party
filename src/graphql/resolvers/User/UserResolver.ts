@@ -35,10 +35,8 @@ builder.prismaObject('User', {
 
     // Relations
     profile: t.relation('profile'),
-    invite: t.relation('invite', {
-      nullable: true,
-      authScopes: { isStaff: true, $granted: 'currentUser' }
-    }),
+    badges: t.relatedConnection('badges', { cursor: 'id', totalCount: true }),
+    topics: t.relatedConnection('topics', { cursor: 'id', totalCount: true }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,
@@ -46,20 +44,6 @@ builder.prismaObject('User', {
         where: { hidden: false },
         orderBy: { createdAt: 'desc' }
       })
-    }),
-    products: t.relatedConnection('products', {
-      cursor: 'id',
-      totalCount: true
-    }),
-    badges: t.relatedConnection('badges', { cursor: 'id', totalCount: true }),
-    topics: t.relatedConnection('topics', { cursor: 'id', totalCount: true }),
-    followers: t.relatedConnection('followedBy', {
-      cursor: 'id',
-      totalCount: true
-    }),
-    following: t.relatedConnection('following', {
-      cursor: 'id',
-      totalCount: true
     }),
     hasWakatimeIntegration: t.field({
       type: 'Boolean',
@@ -78,6 +62,22 @@ builder.prismaObject('User', {
         })
         return integration?.spotifyRefreshToken ? true : false
       }
+    }),
+    invite: t.relation('invite', {
+      nullable: true,
+      authScopes: { isStaff: true, $granted: 'currentUser' }
+    }),
+    products: t.relatedConnection('products', {
+      cursor: 'id',
+      totalCount: true
+    }),
+    followers: t.relatedConnection('followedBy', {
+      cursor: 'id',
+      totalCount: true
+    }),
+    following: t.relatedConnection('following', {
+      cursor: 'id',
+      totalCount: true
     })
   })
 })
