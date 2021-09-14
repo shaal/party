@@ -5,7 +5,7 @@ import { togglePostLike } from '../Post/mutations/togglePostLike'
 builder.prismaObject('Like', {
   findUnique: (like) => ({ id: like.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),

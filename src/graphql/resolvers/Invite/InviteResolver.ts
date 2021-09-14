@@ -6,7 +6,7 @@ import { regenerateInvite } from './mutations/regenerateInvite'
 builder.prismaObject('Invite', {
   findUnique: (invite) => ({ id: invite.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     code: t.exposeString('code', { nullable: true }),
     usedTimes: t.exposeInt('usedTimes', { nullable: true }),
     user: t.relation('user')
