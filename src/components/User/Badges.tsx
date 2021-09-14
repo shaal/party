@@ -5,8 +5,8 @@ import { User } from '~/__generated__/schema.generated'
 import { UserBadgesQuery } from './__generated__/Badges.generated'
 
 export const USER_BADGES_QUERY = gql`
-  query UserBadgesQuery($where: WhereUserInput!) {
-    user(where: $where) {
+  query UserBadgesQuery($username: ID!) {
+    user(username: $username) {
       id
       badges {
         edges {
@@ -28,10 +28,8 @@ interface Props {
 
 const Badges: React.FC<Props> = ({ user }) => {
   const { loading } = useQuery<UserBadgesQuery>(USER_BADGES_QUERY, {
-    variables: {
-      where: { id: user?.id }
-    },
-    skip: !user?.id
+    variables: { username: user?.username },
+    skip: !user?.username
   })
 
   if (loading) return null

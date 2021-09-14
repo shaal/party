@@ -85,24 +85,17 @@ builder.prismaObject('User', {
   })
 })
 
-const WhereUserInput = builder.inputType('WhereUserInput', {
-  fields: (t) => ({
-    id: t.id({ required: false }),
-    username: t.id({ required: false })
-  })
-})
-
 builder.queryField('user', (t) =>
   t.prismaField({
     type: 'User',
     args: {
-      where: t.arg({ type: WhereUserInput })
+      username: t.arg.id()
     },
     nullable: true,
-    resolve: async (query, root, { where }) => {
+    resolve: async (query, root, { username }) => {
       return await db.user.findUnique({
         ...query,
-        where: { id: where.id!, username: where.username! },
+        where: { username },
         rejectOnNotFound: true
       })
     }

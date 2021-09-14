@@ -284,7 +284,7 @@ type Query {
   spotify(userId: ID!): Spotify
   stats: Stats
   topic(where: WhereTopicInput!): Topic!
-  user(where: WhereUserInput!): User
+  user(username: ID!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
   whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
@@ -619,9 +619,4 @@ input WhereProductsInput {
 
 input WhereTopicInput {
   name: String!
-}
-
-input WhereUserInput {
-  id: ID
-  username: ID
 }
