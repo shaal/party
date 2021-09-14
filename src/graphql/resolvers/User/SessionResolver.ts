@@ -7,8 +7,8 @@ import { getSessions } from './queries/getSessions'
 builder.prismaObject('Session', {
   findUnique: (session) => ({ id: session.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    isStaff: t.exposeBoolean('isStaff', {}),
+    id: t.exposeID('id'),
+    isStaff: t.exposeBoolean('isStaff'),
     userAgent: t.exposeString('userAgent', { nullable: true }),
 
     // Timestamps
@@ -28,7 +28,7 @@ builder.queryField('sessions', (t) =>
     maxSize: 100,
     authScopes: { user: true },
     nullable: true,
-    resolve: async (query, root, args, { session }) => {
+    resolve: async (query, parent, args, { session }) => {
       return await getSessions(query, session)
     }
   })
@@ -43,11 +43,9 @@ const RevokeSessionInput = builder.inputType('RevokeSessionInput', {
 builder.mutationField('revokeSession', (t) =>
   t.field({
     type: Result,
-    args: {
-      input: t.arg({ type: RevokeSessionInput })
-    },
+    args: { input: t.arg({ type: RevokeSessionInput }) },
     authScopes: { user: true, $granted: 'currentUser' },
-    resolve: async (root, { input }) => {
+    resolve: async (parent, { input }) => {
       await db.session.delete({
         where: { id: input!.id }
       })

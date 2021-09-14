@@ -14,7 +14,7 @@ builder.queryField('me', (t) =>
     nullable: true,
     skipTypeScopes: true,
     grantScopes: ['currentUser'],
-    resolve: async (query, root, args, { session }) => {
+    resolve: async (query, parent, args, { session }) => {
       if (!session?.userId) {
         return null
       }
@@ -50,10 +50,8 @@ builder.mutationField('login', (t) =>
     authScopes: {
       unauthenticated: false
     },
-    args: {
-      input: t.arg({ type: LoginInput })
-    },
-    resolve: async (_query, root, { input }, { req }) => {
+    args: { input: t.arg({ type: LoginInput }) },
+    resolve: async (_query, parent, { input }, { req }) => {
       const user = await authenticateUser(input.email, input.password)
       if (user.inWaitlist) {
         // Don't allow users in waitlist
@@ -99,10 +97,8 @@ builder.mutationField('joinWaitlist', (t) =>
     authScopes: {
       unauthenticated: true
     },
-    args: {
-      input: t.arg({ type: JoinWaitlistInput })
-    },
-    resolve: async (query, root, { input }) => {
+    args: { input: t.arg({ type: JoinWaitlistInput }) },
+    resolve: async (query, parent, { input }) => {
       return joinWaitlist(query, input)
     }
   })
@@ -142,10 +138,8 @@ builder.mutationField('signUp', (t) =>
     authScopes: {
       unauthenticated: true
     },
-    args: {
-      input: t.arg({ type: SignupInput })
-    },
-    resolve: async (query, root, { input }, { req }) => {
+    args: { input: t.arg({ type: SignupInput }) },
+    resolve: async (query, parent, { input }, { req }) => {
       return signUp(query, input, req)
     }
   })
@@ -165,10 +159,8 @@ const ChangePasswordInput = builder.inputType('ChangePasswordInput', {
 builder.mutationField('changePassword', (t) =>
   t.field({
     type: Result,
-    args: {
-      input: t.arg({ type: ChangePasswordInput })
-    },
-    resolve: async (root, { input }, { session }) => {
+    args: { input: t.arg({ type: ChangePasswordInput }) },
+    resolve: async (parent, { input }, { session }) => {
       return changePassword(input, session)
     }
   })

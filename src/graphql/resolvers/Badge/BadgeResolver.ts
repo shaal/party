@@ -6,10 +6,10 @@ import { getBadges } from './queries/getBadges'
 builder.prismaObject('Badge', {
   findUnique: (badge) => ({ id: badge.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
     description: t.exposeString('description', { nullable: true }),
-    image: t.exposeString('image', {}),
+    image: t.exposeString('image'),
 
     // Relations
     users: t.relatedConnection('users', { cursor: 'id', totalCount: true })
@@ -39,10 +39,8 @@ const CreateBadgeInput = builder.inputType('CreateBadgeInput', {
 builder.mutationField('createBadge', (t) =>
   t.prismaField({
     type: 'Badge',
-    args: {
-      input: t.arg({ type: CreateBadgeInput })
-    },
-    resolve: async (query, root, { input }) => {
+    args: { input: t.arg({ type: CreateBadgeInput }) },
+    resolve: async (query, parent, { input }) => {
       return await db.badge.create({
         data: {
           name: input.name,
@@ -64,10 +62,8 @@ const AttachBadgeToUserInput = builder.inputType('AttachBadgeToUserInput', {
 builder.mutationField('attachBadge', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: AttachBadgeToUserInput })
-    },
-    resolve: async (query, root, { input }) => {
+    args: { input: t.arg({ type: AttachBadgeToUserInput }) },
+    resolve: async (query, parent, { input }) => {
       return await db.user.update({
         ...query,
         where: { id: input.userId },

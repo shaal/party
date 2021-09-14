@@ -11,8 +11,8 @@ import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { TopicFeedQuery } from './__generated__/Feed.generated'
 
 export const TOPIC_FEED_QUERY = gql`
-  query TopicFeedQuery($after: String, $where: WhereTopicInput!) {
-    topic(where: $where) {
+  query TopicFeedQuery($after: String, $name: String!) {
+    topic(name: $name) {
       id
       posts(first: 10, after: $after) {
         pageInfo {
@@ -40,7 +40,7 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
     {
       variables: {
         after: null,
-        where: { name: topic }
+        name: topic
       },
       skip: !topic
     }

@@ -11,8 +11,8 @@ import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
 export const HOME_FEED_QUERY = gql`
-  query HomeFeedQuery($after: String, $where: WhereHomeFeedInput) {
-    posts: homeFeed(first: 10, after: $after, where: $where) {
+  query HomeFeedQuery($after: String, $type: String!) {
+    posts: homeFeed(first: 10, after: $after, type: $type) {
       pageInfo {
         endCursor
         hasNextPage
@@ -37,9 +37,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
     {
       variables: {
         after: null,
-        where: {
-          type: feedType
-        }
+        type: feedType
       }
     }
   )

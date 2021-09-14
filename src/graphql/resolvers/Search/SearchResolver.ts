@@ -4,20 +4,14 @@ import { db } from '~/utils/prisma'
 builder.queryField('searchPosts', (t) =>
   t.prismaConnection({
     type: 'Post',
-    args: {
-      keyword: t.arg.string()
-    },
+    args: { keyword: t.arg.string() },
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.post.findMany({
         ...query,
-        where: {
-          body: {
-            contains: keyword
-          }
-        }
+        where: { body: { contains: keyword } }
       })
     }
   })
@@ -26,20 +20,14 @@ builder.queryField('searchPosts', (t) =>
 builder.queryField('searchUsers', (t) =>
   t.prismaConnection({
     type: 'User',
-    args: {
-      keyword: t.arg.string()
-    },
+    args: { keyword: t.arg.string() },
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.user.findMany({
         ...query,
-        where: {
-          username: {
-            contains: keyword
-          }
-        }
+        where: { username: { contains: keyword } }
       })
     }
   })
@@ -48,20 +36,14 @@ builder.queryField('searchUsers', (t) =>
 builder.queryField('searchProduct', (t) =>
   t.prismaConnection({
     type: 'Product',
-    args: {
-      keyword: t.arg.string()
-    },
+    args: { keyword: t.arg.string() },
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.product.findMany({
         ...query,
-        where: {
-          slug: {
-            contains: keyword
-          }
-        }
+        where: { slug: { contains: keyword } }
       })
     }
   })

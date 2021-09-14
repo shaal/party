@@ -16,8 +16,8 @@ import TopicMod from './Mod'
 import Star from './Star'
 
 export const TOPIC_QUERY = gql`
-  query TopicQuery($where: WhereTopicInput!) {
-    topic(where: $where) {
+  query TopicQuery($name: String!) {
+    topic(name: $name) {
       id
       name
       image
@@ -32,9 +32,7 @@ const ViewTopic: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
   const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
-    variables: {
-      where: { name: router.query.topic }
-    },
+    variables: { name: router.query.topic },
     skip: !router.isReady
   })
 

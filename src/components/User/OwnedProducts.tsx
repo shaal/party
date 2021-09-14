@@ -7,14 +7,16 @@ import { Tooltip } from '../ui/Tooltip'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
-  query UserProductsQuery($where: WhereProductsInput) {
-    products(where: $where) {
-      edges {
-        node {
-          id
-          slug
-          name
-          avatar
+  query UserProductsQuery($username: ID!) {
+    user(username: $username) {
+      products {
+        edges {
+          node {
+            id
+            slug
+            name
+            avatar
+          }
         }
       }
     }
@@ -27,10 +29,9 @@ interface Props {
 
 const OwnedProducts: React.FC<Props> = ({ user }) => {
   const { data, loading } = useQuery<UserProductsQuery>(USER_PRODUCTS_QUERY, {
-    variables: {
-      where: { userId: user?.id }
-    }
+    variables: { username: user?.username }
   })
+  const products = data?.user?.products?.edges?.map((edge) => edge?.node)
 
   const Product = ({ product }: any) => {
     return (
@@ -62,12 +63,10 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
 
   return (
     <div className="space-y-2">
-      {data?.products?.edges?.length !== 0 && (
-        <div className="font-bold">Products</div>
-      )}
+      {products?.length !== 0 && <div className="font-bold">Products</div>}
       <div className="flex flex-wrap gap-1.5 w-3/4">
-        {data?.products?.edges?.map((product: any) => (
-          <Product product={product?.node} key={product?.node?.id} />
+        {products?.map((product: any) => (
+          <Product product={product} key={product?.id} />
         ))}
       </div>
     </div>

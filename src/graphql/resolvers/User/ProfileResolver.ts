@@ -4,8 +4,8 @@ import { db } from '~/utils/prisma'
 builder.prismaObject('Profile', {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
     bio: t.exposeString('bio', { nullable: true }),
     location: t.exposeString('location', { nullable: true }),
     avatar: t.exposeString('avatar', { nullable: true }),
@@ -34,10 +34,8 @@ const EditSocialInput = builder.inputType('EditSocialInput', {
 builder.mutationField('editSocial', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: EditSocialInput })
-    },
-    resolve: async (query, root, { input }, { session }) => {
+    args: { input: t.arg({ type: EditSocialInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
       return await db.user.update({
         ...query,
         where: {

@@ -39,7 +39,7 @@ builder.queryField('spotify', (t) =>
     type: SpotifyObject,
     args: { userId: t.arg.id() },
     nullable: true,
-    resolve: async (root, { userId }) => {
+    resolve: async (parent, { userId }) => {
       return await spotify(userId)
     }
   })

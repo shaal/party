@@ -8,19 +8,17 @@ import { hasStarted } from './queries/hasStarted'
 builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     name: t.exposeString('name'),
     image: t.exposeString('image', { nullable: true }),
     description: t.exposeString('description', { nullable: true }),
     hasStarted: t.field({
       type: 'Boolean',
-      resolve: async (root, args, { session }) => {
+      resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasStarted(session?.userId as string, root.id)
+        return await hasStarted(session?.userId as string, parent.id)
       }
     }),
-
-    // Count
     postsCount: t.relationCount('posts'),
 
     // Relations
@@ -30,37 +28,27 @@ builder.prismaObject('Topic', {
       cursor: 'id',
       defaultSize: 20,
       maxSize: 100,
-      resolve: (query, root) =>
+      resolve: (query, parent) =>
         db.post.findMany({
           ...query,
           where: {
-            topics: { some: { topic: { name: root.name } } },
+            topics: { some: { topic: { name: parent.name } } },
             hidden: false
           },
-          orderBy: {
-            createdAt: 'desc'
-          }
+          orderBy: { createdAt: 'desc' }
         })
     })
-  })
-})
-
-const WhereTopicInput = builder.inputType('WhereTopicInput', {
-  fields: (t) => ({
-    name: t.string()
   })
 })
 
 builder.queryField('topic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      where: t.arg({ type: WhereTopicInput })
-    },
-    resolve: async (query, root, { where }) => {
+    args: { name: t.arg.string() },
+    resolve: async (query, parent, { name }) => {
       return await db.topic.findUnique({
         ...query,
-        where: { name: where.name },
+        where: { name },
         rejectOnNotFound: true
       })
     }
@@ -76,11 +64,9 @@ const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
 builder.mutationField('toggleTopicStar', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      input: t.arg({ type: ToggleTopicStarInput })
-    },
+    args: { input: t.arg({ type: ToggleTopicStarInput }) },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await toggleStar(session?.userId as string, input.id)
     }
   })
@@ -96,11 +82,9 @@ const EditTopicInput = builder.inputType('EditTopicInput', {
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: {
-      input: t.arg({ type: EditTopicInput })
-    },
+    args: { input: t.arg({ type: EditTopicInput }) },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await modTopic(query, input, session)
     }
   })

@@ -267,24 +267,23 @@ type Profile {
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
-  homeFeed(after: String, before: String, first: Int, last: Int, where: WhereHomeFeedInput): QueryHomeFeedConnection!
+  homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
   me: User
-  morePostsByUser(after: String, before: String, first: Int, last: Int, where: WhereMorePostsByUserInput!): QueryMorePostsByUserConnection!
+  morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
-  post(where: WherePostInput!): Post!
-  posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
+  post(id: ID!): Post!
   product(where: WhereProductInput!): Product!
-  products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
+  products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
   searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
-  topic(where: WhereTopicInput!): Topic!
-  user(where: WhereUserInput!): User
+  topic(name: String!): Topic!
+  user(username: ID!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
   whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
@@ -338,16 +337,6 @@ type QueryNotificationsConnection {
 type QueryNotificationsConnectionEdge {
   cursor: String!
   node: Notification!
-}
-
-type QueryPostsConnection {
-  edges: [QueryPostsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-
-type QueryPostsConnectionEdge {
-  cursor: String!
-  node: Post!
 }
 
 type QueryProductsConnection {
@@ -465,11 +454,11 @@ type Stats {
 }
 
 input ToggleFollowInput {
-  id: ID!
+  userId: ID!
 }
 
 input TogglePostLikeInput {
-  postId: ID!
+  id: ID!
 }
 
 input ToggleTopicStarInput {
@@ -522,7 +511,7 @@ type User {
   isStaff: Boolean!
   isVerified: Boolean!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
-  products: [Product!]!
+  products(after: String, before: String, first: Int, last: Int): UserProductsConnection!
   profile: Profile!
   spammy: Boolean!
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
@@ -574,6 +563,17 @@ type UserPostsConnectionEdge {
   node: Post!
 }
 
+type UserProductsConnection {
+  edges: [UserProductsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserProductsConnectionEdge {
+  cursor: String!
+  node: Product!
+}
+
 type UserTopicsConnection {
   edges: [UserTopicsConnectionEdge]!
   pageInfo: PageInfo!
@@ -589,39 +589,7 @@ type Wakatime {
   hours: String
 }
 
-input WhereHomeFeedInput {
-  type: String = "ALL"
-}
-
-input WhereMorePostsByUserInput {
-  type: String!
-  userId: ID!
-}
-
-input WherePostInput {
-  id: ID!
-}
-
-input WherePostsInput {
-  productId: ID
-  type: String
-  userId: ID
-}
-
 input WhereProductInput {
   id: ID
   slug: String
-}
-
-input WhereProductsInput {
-  userId: String
-}
-
-input WhereTopicInput {
-  name: String!
-}
-
-input WhereUserInput {
-  id: ID
-  username: ID
 }

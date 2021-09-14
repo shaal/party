@@ -7,26 +7,25 @@ import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
 import { exploreFeed } from './queries/exploreFeed'
 import { getMorePostsByUser } from './queries/getMorePostsByUser'
-import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
 
 builder.prismaObject('Post', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     title: t.exposeString('title', { nullable: true }),
-    body: t.exposeString('body', {}),
-    type: t.exposeString('type', {}),
-    done: t.exposeBoolean('done', {}),
+    body: t.exposeString('body'),
+    type: t.exposeString('type'),
+    done: t.exposeBoolean('done'),
     attachments: t.expose('attachments', {
       type: 'Attachments',
       nullable: true
     }),
     hasLiked: t.field({
       type: 'Boolean',
-      resolve: async (root, args, { session }) => {
+      resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasLiked(session?.userId as string, root.id)
+        return await hasLiked(session?.userId as string, parent.id)
       }
     }),
 
@@ -36,71 +35,33 @@ builder.prismaObject('Post', {
 
     // Relations
     user: t.relation('user'),
-    parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true }),
+    parent: t.relation('parent', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,
       query: () => ({
-        orderBy: {
-          createdAt: 'desc'
-        }
+        where: { user: { spammy: false }, hidden: false },
+        orderBy: { createdAt: 'desc' }
       })
     }),
     likes: t.relatedConnection('likes', { cursor: 'id', totalCount: true })
   })
 })
 
-const WherePostsInput = builder.inputType('WherePostsInput', {
-  fields: (t) => ({
-    userId: t.id({ required: false }),
-    productId: t.id({ required: false }),
-    type: t.string({ required: false })
-  })
-})
-
-builder.queryField('posts', (t) =>
-  t.prismaConnection({
-    type: 'Post',
-    cursor: 'id',
-    defaultSize: 20,
-    maxSize: 100,
-    args: {
-      where: t.arg({ type: WherePostsInput, required: false })
-    },
-    resolve: async (query, root, { where }) => {
-      return await getPosts(query, where)
-    }
-  })
-)
-const WhereMorePostsByUserInput = builder.inputType(
-  'WhereMorePostsByUserInput',
-  {
-    fields: (t) => ({
-      userId: t.id(),
-      type: t.string()
-    })
-  }
-)
-
 builder.queryField('morePostsByUser', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
     args: {
-      where: t.arg({ type: WhereMorePostsByUserInput })
+      userId: t.arg.id(),
+      type: t.arg.string()
     },
-    resolve: async (query, root, { where }) => {
-      return await getMorePostsByUser(query, where)
+    resolve: async (query, parent, { userId, type }) => {
+      return await getMorePostsByUser(query, userId, type)
     }
   })
 )
-
-const WhereHomeFeedInput = builder.inputType('WhereHomeFeedInput', {
-  fields: (t) => ({
-    type: t.string({ required: false, defaultValue: 'ALL' })
-  })
-})
 
 builder.queryField('homeFeed', (t) =>
   t.prismaConnection({
@@ -108,11 +69,9 @@ builder.queryField('homeFeed', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    args: {
-      where: t.arg({ type: WhereHomeFeedInput, required: false })
-    },
-    resolve: async (query, root, { where }, { session }) => {
-      return await homeFeed(query, where, session)
+    args: { type: t.arg.string({ defaultValue: 'ALL' }) },
+    resolve: async (query, parent, { type }, { session }) => {
+      return await homeFeed(query, type, session)
     }
   })
 )
@@ -129,22 +88,14 @@ builder.queryField('exploreFeed', (t) =>
   })
 )
 
-const WherePostInput = builder.inputType('WherePostInput', {
-  fields: (t) => ({
-    id: t.id()
-  })
-})
-
 builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      where: t.arg({ type: WherePostInput })
-    },
-    resolve: async (query, root, { where }) => {
+    args: { id: t.arg.id() },
+    resolve: async (query, parent, { id }) => {
       return await db.post.findFirst({
         ...query,
-        where: { id: where.id, hidden: false },
+        where: { id, hidden: false },
         rejectOnNotFound: true
       })
     }
@@ -169,10 +120,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 builder.mutationField('createPost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: CreatePostInput })
-    },
-    resolve: async (query, root, { input }, { session }) => {
+    args: { input: t.arg({ type: CreatePostInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
       return await createPost(query, input, session)
     }
   })
@@ -189,10 +138,8 @@ const EditPostInput = builder.inputType('EditPostInput', {
 builder.mutationField('editPost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: EditPostInput })
-    },
-    resolve: async (query, root, { input }, { session }) => {
+    args: { input: t.arg({ type: EditPostInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
       return await editPost(query, input, session)
     }
   })
@@ -207,10 +154,8 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: DeletePostInput })
-    },
-    resolve: async (query, root, { input }, { session }) => {
+    args: { input: t.arg({ type: DeletePostInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
       return await deletePost(query, input, session)
     }
   })

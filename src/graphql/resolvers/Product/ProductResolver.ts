@@ -7,9 +7,9 @@ import { getProducts } from './queries/getProducts'
 builder.prismaObject('Product', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
-    slug: t.exposeString('slug', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
+    slug: t.exposeString('slug'),
     description: t.exposeString('description', { nullable: true }),
     avatar: t.exposeString('avatar', { nullable: true }),
     website: t.exposeString('website', { nullable: true }),
@@ -35,25 +35,14 @@ builder.prismaObject('Product', {
   })
 })
 
-const WhereProductsInput = builder.inputType('WhereProductsInput', {
-  fields: (t) => ({
-    userId: t.string({
-      required: false
-    })
-  })
-})
-
 builder.queryField('products', (t) =>
   t.prismaConnection({
     type: 'Product',
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    args: {
-      where: t.arg({ type: WhereProductsInput, required: false })
-    },
-    resolve: async (query, root, { where }) => {
-      return await getProducts(query, where)
+    resolve: async (query) => {
+      return await getProducts(query)
     }
   })
 )
@@ -68,10 +57,8 @@ const WhereProductInput = builder.inputType('WhereProductInput', {
 builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      where: t.arg({ type: WhereProductInput })
-    },
-    resolve: async (query, root, { where }) => {
+    args: { where: t.arg({ type: WhereProductInput }) },
+    resolve: async (query, parent, { where }) => {
       return await db.product.findUnique({
         ...query,
         where: { id: where.id!, slug: where.slug! },
@@ -96,10 +83,8 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      input: t.arg({ type: CreateProductInput })
-    },
-    resolve: async (query, root, { input }, { session }) => {
+    args: { input: t.arg({ type: CreateProductInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
       return await createProduct(query, input, session)
     }
   })
@@ -107,7 +92,7 @@ builder.mutationField('createProduct', (t) =>
 
 const EditProductInput = builder.inputType('EditProductInput', {
   fields: (t) => ({
-    id: t.id({ required: true }),
+    id: t.id(),
     slug: t.string({
       required: true,
       validate: { minLength: 1, maxLength: 20 }
@@ -125,16 +110,12 @@ const EditProductInput = builder.inputType('EditProductInput', {
 builder.mutationField('editProduct', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      input: t.arg({ type: EditProductInput })
-    },
+    args: { input: t.arg({ type: EditProductInput }) },
     authScopes: { user: true },
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return await db.product.update({
         ...query,
-        where: {
-          id: input?.id
-        },
+        where: { id: input?.id },
         data: {
           slug: input.slug,
           name: input.name,

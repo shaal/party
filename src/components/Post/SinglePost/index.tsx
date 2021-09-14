@@ -115,9 +115,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   const handleLike = (post: any) => {
     togglePostLike({
       variables: {
-        input: {
-          postId: post?.id
-        }
+        input: { id: post?.id }
       }
     })
   }
