@@ -34,9 +34,7 @@ const EditSocialInput = builder.inputType('EditSocialInput', {
 builder.mutationField('editSocial', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: EditSocialInput })
-    },
+    args: { input: t.arg({ type: EditSocialInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await db.user.update({
         ...query,
