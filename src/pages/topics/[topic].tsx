@@ -4,9 +4,7 @@ import { preloadQuery } from '~/utils/apollo'
 export const getServerSideProps = async (ctx: any) => {
   return preloadQuery(ctx, {
     query,
-    variables: {
-      name: ctx.params!.topic
-    }
+    variables: { where: { name: ctx.params!.topic } }
   })
 }
 
