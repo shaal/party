@@ -13,11 +13,7 @@ builder.queryField('searchPosts', (t) =>
     resolve: async (query, root, { keyword }) => {
       return await db.post.findMany({
         ...query,
-        where: {
-          body: {
-            contains: keyword
-          }
-        }
+        where: { body: { contains: keyword } }
       })
     }
   })
@@ -35,11 +31,7 @@ builder.queryField('searchUsers', (t) =>
     resolve: async (query, root, { keyword }) => {
       return await db.user.findMany({
         ...query,
-        where: {
-          username: {
-            contains: keyword
-          }
-        }
+        where: { username: { contains: keyword } }
       })
     }
   })
@@ -57,11 +49,7 @@ builder.queryField('searchProduct', (t) =>
     resolve: async (query, root, { keyword }) => {
       return await db.product.findMany({
         ...query,
-        where: {
-          slug: {
-            contains: keyword
-          }
-        }
+        where: { slug: { contains: keyword } }
       })
     }
   })
