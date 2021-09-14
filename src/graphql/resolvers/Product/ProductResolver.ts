@@ -57,9 +57,7 @@ const WhereProductInput = builder.inputType('WhereProductInput', {
 builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      where: t.arg({ type: WhereProductInput })
-    },
+    args: { where: t.arg({ type: WhereProductInput }) },
     resolve: async (query, root, { where }) => {
       return await db.product.findUnique({
         ...query,
@@ -85,9 +83,7 @@ const CreateProductInput = builder.inputType('CreateProductInput', {
 builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      input: t.arg({ type: CreateProductInput })
-    },
+    args: { input: t.arg({ type: CreateProductInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await createProduct(query, input, session)
     }
@@ -114,9 +110,7 @@ const EditProductInput = builder.inputType('EditProductInput', {
 builder.mutationField('editProduct', (t) =>
   t.prismaField({
     type: 'Product',
-    args: {
-      input: t.arg({ type: EditProductInput })
-    },
+    args: { input: t.arg({ type: EditProductInput }) },
     authScopes: { user: true },
     resolve: async (query, root, { input }) => {
       return await db.product.update({
