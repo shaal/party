@@ -23,11 +23,13 @@ const Oembed: React.FC<Props> = ({ loading, oembed }) => {
       <CardBody className="flex items-center justify-between space-x-5">
         <div className="text-sm space-y-2">
           <div className="font-bold flex items-center space-x-2">
-            <img
-              className="h-4 w-4 rounded-md"
-              src={oembed?.favicon}
-              alt="Favicon"
-            />
+            {oembed?.favicon && (
+              <img
+                className="h-4 w-4 rounded-md"
+                src={oembed?.favicon}
+                alt="Favicon"
+              />
+            )}
             <div className="line-clamp-1">{oembed?.title}</div>
           </div>
           <div className="line-clamp-2 text-gray-500">
