@@ -12,11 +12,11 @@ import { homeFeed } from './queries/homeFeed'
 builder.prismaObject('Post', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     title: t.exposeString('title', { nullable: true }),
-    body: t.exposeString('body', {}),
-    type: t.exposeString('type', {}),
-    done: t.exposeBoolean('done', {}),
+    body: t.exposeString('body'),
+    type: t.exposeString('type'),
+    done: t.exposeBoolean('done'),
     attachments: t.expose('attachments', {
       type: 'Attachments',
       nullable: true
