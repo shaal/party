@@ -70,9 +70,7 @@ builder.queryField('homeFeed', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    args: {
-      type: t.arg.string({ defaultValue: 'ALL' })
-    },
+    args: { type: t.arg.string({ defaultValue: 'ALL' }) },
     resolve: async (query, root, { type }, { session }) => {
       return await homeFeed(query, type, session)
     }
@@ -94,9 +92,7 @@ builder.queryField('exploreFeed', (t) =>
 builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      id: t.arg.id()
-    },
+    args: { id: t.arg.id() },
     resolve: async (query, root, { id }) => {
       return await db.post.findFirst({
         ...query,
@@ -125,9 +121,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
 builder.mutationField('createPost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: CreatePostInput })
-    },
+    args: { input: t.arg({ type: CreatePostInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await createPost(query, input, session)
     }
@@ -145,9 +139,7 @@ const EditPostInput = builder.inputType('EditPostInput', {
 builder.mutationField('editPost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: EditPostInput })
-    },
+    args: { input: t.arg({ type: EditPostInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await editPost(query, input, session)
     }
@@ -163,9 +155,7 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 builder.mutationField('deletePost', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: DeletePostInput })
-    },
+    args: { input: t.arg({ type: DeletePostInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await deletePost(query, input, session)
     }
