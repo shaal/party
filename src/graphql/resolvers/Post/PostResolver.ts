@@ -142,7 +142,7 @@ builder.queryField('post', (t) =>
       where: t.arg({ type: WherePostInput })
     },
     resolve: async (query, root, { where }) => {
-      return await db.post.findUnique({
+      return await db.post.findFirst({
         ...query,
         where: { id: where.id, hidden: false },
         rejectOnNotFound: true
