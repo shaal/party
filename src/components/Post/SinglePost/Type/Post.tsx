@@ -20,7 +20,7 @@ const PostType: React.FC<Props> = ({ post }) => {
   const [oembedLoading, setOembedLoading] = useState<boolean>(false)
   useEffect(() => {
     setOembedLoading(true)
-    fetch('/api/oembed?url=https://github.com/Noovolari/leapp')
+    fetch(`/api/oembed?url=${post?.oembedUrl}`)
       .then((response) => response.json())
       .then((data) => setOembed(data))
       .finally(() => setOembedLoading(false))
@@ -31,7 +31,7 @@ const PostType: React.FC<Props> = ({ post }) => {
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
       </div>
       {post?.attachments && <Attachments attachments={post?.attachments} />}
-      <Oembed loading={oembedLoading} oembed={oembed} />
+      {post?.oembedUrl && <Oembed loading={oembedLoading} oembed={oembed} />}
     </div>
   )
 }
