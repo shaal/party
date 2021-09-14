@@ -271,10 +271,9 @@ type Query {
   integration(userId: ID): Integration
   invite(code: String!): Invite
   me: User
-  morePostsByUser(after: String, before: String, first: Int, last: Int, where: WhereMorePostsByUserInput!): QueryMorePostsByUserConnection!
+  morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
   post(where: WherePostInput!): Post!
-  posts(after: String, before: String, first: Int, last: Int, where: WherePostsInput): QueryPostsConnection!
   product(where: WhereProductInput!): Product!
   products(after: String, before: String, first: Int, last: Int, where: WhereProductsInput): QueryProductsConnection!
   searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
@@ -338,16 +337,6 @@ type QueryNotificationsConnection {
 type QueryNotificationsConnectionEdge {
   cursor: String!
   node: Notification!
-}
-
-type QueryPostsConnection {
-  edges: [QueryPostsConnectionEdge]!
-  pageInfo: PageInfo!
-}
-
-type QueryPostsConnectionEdge {
-  cursor: String!
-  node: Post!
 }
 
 type QueryProductsConnection {
@@ -593,19 +582,8 @@ input WhereHomeFeedInput {
   type: String = "ALL"
 }
 
-input WhereMorePostsByUserInput {
-  type: String!
-  userId: ID!
-}
-
 input WherePostInput {
   id: ID!
-}
-
-input WherePostsInput {
-  productId: ID
-  type: String
-  userId: ID
 }
 
 input WhereProductInput {

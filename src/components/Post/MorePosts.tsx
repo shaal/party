@@ -10,8 +10,8 @@ import { ErrorMessage } from '../ui/ErrorMessage'
 import { MorePostsByUserQuery } from './__generated__/MorePosts.generated'
 
 export const MORE_POSTS_BY_USER_QUERY = gql`
-  query MorePostsByUserQuery($where: WhereMorePostsByUserInput!) {
-    morePostsByUser(where: $where) {
+  query MorePostsByUserQuery($userId: ID!, $type: String!) {
+    morePostsByUser(userId: $userId, type: $type) {
       edges {
         node {
           id
@@ -53,10 +53,8 @@ const MorePosts: React.FC<Props> = ({ post }) => {
     MORE_POSTS_BY_USER_QUERY,
     {
       variables: {
-        where: {
-          userId: post?.user?.id,
-          type: 'QUESTION'
-        }
+        userId: post?.user?.id,
+        type: 'QUESTION'
       },
       skip: !post?.user?.id
     }
