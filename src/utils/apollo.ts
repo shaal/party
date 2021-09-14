@@ -39,9 +39,7 @@ export async function preloadQuery(
       })
 
       if (notFoundError) {
-        return {
-          notFound: true
-        }
+        return { notFound: true }
       }
     }
 
@@ -66,7 +64,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
       ssrMode: typeof window === 'undefined',
       credentials: 'include',
       link: new HttpLink({
-        uri: '/api/graphql',
+        uri:
+          typeof window === 'undefined'
+            ? 'http://localhost:3000/api/graphql'
+            : '/api/graphql',
         headers: headers
       }),
       cache: new InMemoryCache({
