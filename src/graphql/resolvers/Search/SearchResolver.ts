@@ -8,7 +8,7 @@ builder.queryField('searchPosts', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.post.findMany({
         ...query,
         where: { body: { contains: keyword } }
@@ -24,7 +24,7 @@ builder.queryField('searchUsers', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.user.findMany({
         ...query,
         where: { username: { contains: keyword } }
@@ -40,7 +40,7 @@ builder.queryField('searchProduct', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
-    resolve: async (query, root, { keyword }) => {
+    resolve: async (query, parent, { keyword }) => {
       return await db.product.findMany({
         ...query,
         where: { slug: { contains: keyword } }
