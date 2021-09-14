@@ -7,9 +7,9 @@ import { getProducts } from './queries/getProducts'
 builder.prismaObject('Product', {
   findUnique: (post) => ({ id: post.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
-    name: t.exposeString('name', {}),
-    slug: t.exposeString('slug', {}),
+    id: t.exposeID('id'),
+    name: t.exposeString('name'),
+    slug: t.exposeString('slug'),
     description: t.exposeString('description', { nullable: true }),
     avatar: t.exposeString('avatar', { nullable: true }),
     website: t.exposeString('website', { nullable: true }),
