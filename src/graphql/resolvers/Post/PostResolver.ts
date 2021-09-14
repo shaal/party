@@ -144,7 +144,7 @@ builder.queryField('post', (t) =>
     resolve: async (query, root, { where }) => {
       return await db.post.findUnique({
         ...query,
-        where: { id: where.id },
+        where: { id: where.id, hidden: false },
         rejectOnNotFound: true
       })
     }
