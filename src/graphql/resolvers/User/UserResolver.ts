@@ -23,9 +23,9 @@ builder.prismaObject('User', {
     }),
     hasFollowed: t.field({
       type: 'Boolean',
-      resolve: async (root, args, { session }) => {
+      resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasFollowed(session?.userId as string, root.id)
+        return await hasFollowed(session?.userId as string, parent.id)
       }
     }),
 
@@ -47,18 +47,18 @@ builder.prismaObject('User', {
     }),
     hasWakatimeIntegration: t.field({
       type: 'Boolean',
-      resolve: async (root) => {
+      resolve: async (parent) => {
         const integration = await db.integration.findFirst({
-          where: { userId: root.id }
+          where: { userId: parent.id }
         })
         return integration?.wakatimeAPIKey ? true : false
       }
     }),
     hasSpotifyIntegration: t.field({
       type: 'Boolean',
-      resolve: async (root) => {
+      resolve: async (parent) => {
         const integration = await db.integration.findFirst({
-          where: { userId: root.id }
+          where: { userId: parent.id }
         })
         return integration?.spotifyRefreshToken ? true : false
       }
@@ -87,7 +87,7 @@ builder.queryField('user', (t) =>
     type: 'User',
     args: { username: t.arg.id() },
     nullable: true,
-    resolve: async (query, root, { username }) => {
+    resolve: async (query, parent, { username }) => {
       return await db.user.findUnique({
         ...query,
         where: { username },
@@ -113,7 +113,7 @@ builder.queryField('whoToFollow', (t) =>
   t.prismaConnection({
     type: 'User',
     cursor: 'id',
-    resolve: async (query, root, args, { session }) => {
+    resolve: async (query, parent, args, { session }) => {
       return await getWhoToFollow(query, session)
     }
   })
@@ -142,7 +142,7 @@ builder.mutationField('editUser', (t) =>
     type: 'User',
     args: { input: t.arg({ type: EditUserInput }) },
     authScopes: { user: true },
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await db.user.update({
         ...query,
         where: {
@@ -177,7 +177,7 @@ builder.mutationField('toggleFollow', (t) =>
     type: 'User',
     args: { input: t.arg({ type: ToggleFollowInput }) },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await toggleFollow(session?.userId as string, input?.userId)
     }
   })
@@ -201,7 +201,7 @@ builder.mutationField('modUser', (t) =>
     authScopes: {
       isStaff: true
     },
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return modUser(query, input)
     }
   })
@@ -218,7 +218,7 @@ builder.mutationField('onboardUser', (t) =>
     type: 'User',
     args: { input: t.arg({ type: OnboardUserInput }) },
     nullable: true,
-    resolve: async (query, root, { input }) => {
+    resolve: async (query, parent, { input }) => {
       return await db.user.update({
         where: { id: input.userId },
         data: { inWaitlist: false }
