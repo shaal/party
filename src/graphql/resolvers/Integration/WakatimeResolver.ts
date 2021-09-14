@@ -23,7 +23,7 @@ builder.queryField('wakatime', (t) =>
     type: WakatimeObject,
     args: { userId: t.arg.id() },
     nullable: true,
-    resolve: async (root, { userId }) => {
+    resolve: async (parent, { userId }) => {
       return await wakatime(userId)
     }
   })
