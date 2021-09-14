@@ -28,7 +28,7 @@ builder.mutationField('togglePostLike', (t) =>
     args: { input: t.arg({ type: TogglePostLikeInput }) },
     authScopes: { user: true },
     nullable: true,
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await togglePostLike(query, session?.userId as string, input?.id)
     }
   })
