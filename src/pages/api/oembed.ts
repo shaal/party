@@ -6,9 +6,9 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
   const { url } = req.query
   if (url) {
     const stringifiedURL = url.toString()
-    const value = cacheData.get(url)
-    if (value) {
-      return res.status(200).send(value)
+    const oembedData = cacheData.get(url)
+    if (oembedData) {
+      return res.status(200).send(oembedData)
     } else {
       const hours = 24
       const data = await unfurl(stringifiedURL)
