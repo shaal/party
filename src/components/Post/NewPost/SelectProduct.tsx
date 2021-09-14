@@ -62,23 +62,23 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
             >
               {products?.map((product: any) => (
                 <Listbox.Option
-                  key={product?.node?.id}
+                  key={product?.id}
                   className={({ active }) =>
                     clsx(
                       { 'bg-gray-100 dark:bg-gray-800': active },
                       'block px-3 py-1.5 my-1 text-sm text-gray-700 dark:text-gray-200 rounded-lg cursor-pointer'
                     )
                   }
-                  value={product?.node}
+                  value={product}
                 >
                   <div className="flex items-center gap-2">
                     <img
                       className="h-5 w-5 rounded-md"
-                      src={product?.node?.avatar}
-                      alt={`#${product?.node?.slug}'s avatar`}
+                      src={product?.avatar}
+                      alt={`#${product?.slug}'s avatar`}
                     />
                     <div className="block truncate font-medium">
-                      {product?.node?.name}
+                      {product?.name}
                     </div>
                   </div>
                 </Listbox.Option>

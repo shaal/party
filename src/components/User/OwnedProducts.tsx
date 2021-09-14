@@ -66,7 +66,7 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
       {products?.length !== 0 && <div className="font-bold">Products</div>}
       <div className="flex flex-wrap gap-1.5 w-3/4">
         {products?.map((product: any) => (
-          <Product product={product?.node} key={product?.node?.id} />
+          <Product product={product} key={product?.id} />
         ))}
       </div>
     </div>
