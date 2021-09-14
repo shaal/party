@@ -53,6 +53,7 @@
     "spotify-web-api-node": "^5.0.2",
     "timeago.js": "^4.0.2",
     "unfurl.js": "^5.6.2",
+    "url-regex-safe": "^2.0.2",
     "zod": "^3.8.2"
   },
   "devDependencies": {
@@ -69,6 +70,7 @@
     "@types/react": "^17.0.21",
     "@types/react-dom": "^17.0.9",
     "@types/spotify-web-api-node": "^5.0.3",
+    "@types/url-regex-safe": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "autoprefixer": "^10.3.4",
     "eslint": "^7.32.0",
