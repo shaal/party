@@ -18,7 +18,7 @@ builder.prismaObject('Like', {
 
 const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
   fields: (t) => ({
-    postId: t.id()
+    id: t.id()
   })
 })
 
@@ -31,11 +31,7 @@ builder.mutationField('togglePostLike', (t) =>
     authScopes: { user: true },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
-      return await togglePostLike(
-        query,
-        session?.userId as string,
-        input?.postId
-      )
+      return await togglePostLike(query, session?.userId as string, input?.id)
     }
   })
 )

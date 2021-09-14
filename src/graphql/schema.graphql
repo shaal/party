@@ -458,7 +458,7 @@ input ToggleFollowInput {
 }
 
 input TogglePostLikeInput {
-  postId: ID!
+  id: ID!
 }
 
 input ToggleTopicStarInput {
