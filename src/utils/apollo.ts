@@ -1,5 +1,6 @@
 import {
   ApolloClient,
+  ApolloError,
   HttpLink,
   InMemoryCache,
   QueryOptions
@@ -32,13 +33,15 @@ export async function preloadQuery(
       }
     }
   } catch (error: any) {
-    const notFoundError = error.graphQLErrors.find((error: Error) => {
-      return (error as any)?.extensions.code === 404
-    })
+    if (error instanceof ApolloError) {
+      const notFoundError = error.graphQLErrors.find((error: Error) => {
+        return (error as any)?.extensions.code === 404
+      })
 
-    if (notFoundError) {
-      return {
-        notFound: true
+      if (notFoundError) {
+        return {
+          notFound: true
+        }
       }
     }
 
@@ -64,7 +67,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
       credentials: 'include',
       link: new HttpLink({
         uri: '/api/graphql',
-        headers: headers
+        headers: {
+          ...headers,
+          'X-CSRF-Trick': 'devparty'
+        }
       }),
       cache: new InMemoryCache({
         typePolicies: {
