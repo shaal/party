@@ -6,7 +6,7 @@ import { editIntegration } from './mutations/editIntegration'
 builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
   fields: (t) => ({
-    id: t.exposeID('id', {}),
+    id: t.exposeID('id'),
     wakatimeAPIKey: t.field({
       type: 'String',
       nullable: true,
