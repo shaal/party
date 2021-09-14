@@ -42,9 +42,7 @@ builder.prismaObject('Integration', {
 builder.queryField('integration', (t) =>
   t.prismaField({
     type: 'Integration',
-    args: {
-      userId: t.arg.id({ required: false })
-    },
+    args: { userId: t.arg.id({ required: false }) },
     nullable: true,
     resolve: async (query, root, { userId }, { session }) => {
       return await db.integration.findFirst({
@@ -64,9 +62,7 @@ const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
 builder.mutationField('editIntegration', (t) =>
   t.prismaField({
     type: 'Integration',
-    args: {
-      input: t.arg({ type: EditIntegrationInput })
-    },
+    args: { input: t.arg({ type: EditIntegrationInput }) },
     resolve: async (query, root, { input }, { session }) => {
       return await editIntegration(input, session)
     }
