@@ -91,9 +91,7 @@ builder.prismaObject('User', {
 builder.queryField('user', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      username: t.arg.id()
-    },
+    args: { username: t.arg.id() },
     nullable: true,
     resolve: async (query, root, { username }) => {
       return await db.user.findUnique({
@@ -148,9 +146,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
 builder.mutationField('editUser', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: EditUserInput })
-    },
+    args: { input: t.arg({ type: EditUserInput }) },
     authScopes: { user: true },
     resolve: async (query, root, { input }, { session }) => {
       return await db.user.update({
@@ -185,9 +181,7 @@ const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
 builder.mutationField('toggleFollow', (t) =>
   t.prismaField({
     type: 'User',
-    args: {
-      input: t.arg({ type: ToggleFollowInput })
-    },
+    args: { input: t.arg({ type: ToggleFollowInput }) },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
       return await toggleFollow(session?.userId as string, input?.userId)
