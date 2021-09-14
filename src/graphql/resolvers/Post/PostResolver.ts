@@ -23,9 +23,9 @@ builder.prismaObject('Post', {
     }),
     hasLiked: t.field({
       type: 'Boolean',
-      resolve: async (root, args, { session }) => {
+      resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasLiked(session?.userId as string, root.id)
+        return await hasLiked(session?.userId as string, parent.id)
       }
     }),
 
@@ -35,15 +35,14 @@ builder.prismaObject('Post', {
 
     // Relations
     user: t.relation('user'),
-    parent: t.relation('parent', { nullable: true }),
     product: t.relation('product', { nullable: true }),
+    parent: t.relation('parent', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,
       query: () => ({
-        orderBy: {
-          createdAt: 'desc'
-        }
+        where: { user: { spammy: false }, hidden: false },
+        orderBy: { createdAt: 'desc' }
       })
     }),
     likes: t.relatedConnection('likes', { cursor: 'id', totalCount: true })
@@ -58,7 +57,7 @@ builder.queryField('morePostsByUser', (t) =>
       userId: t.arg.id(),
       type: t.arg.string()
     },
-    resolve: async (query, root, { userId, type }) => {
+    resolve: async (query, parent, { userId, type }) => {
       return await getMorePostsByUser(query, userId, type)
     }
   })
@@ -71,7 +70,7 @@ builder.queryField('homeFeed', (t) =>
     defaultSize: 20,
     maxSize: 100,
     args: { type: t.arg.string({ defaultValue: 'ALL' }) },
-    resolve: async (query, root, { type }, { session }) => {
+    resolve: async (query, parent, { type }, { session }) => {
       return await homeFeed(query, type, session)
     }
   })
@@ -93,7 +92,7 @@ builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
     args: { id: t.arg.id() },
-    resolve: async (query, root, { id }) => {
+    resolve: async (query, parent, { id }) => {
       return await db.post.findFirst({
         ...query,
         where: { id, hidden: false },
@@ -122,7 +121,7 @@ builder.mutationField('createPost', (t) =>
   t.prismaField({
     type: 'Post',
     args: { input: t.arg({ type: CreatePostInput }) },
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await createPost(query, input, session)
     }
   })
@@ -140,7 +139,7 @@ builder.mutationField('editPost', (t) =>
   t.prismaField({
     type: 'Post',
     args: { input: t.arg({ type: EditPostInput }) },
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await editPost(query, input, session)
     }
   })
@@ -156,7 +155,7 @@ builder.mutationField('deletePost', (t) =>
   t.prismaField({
     type: 'Post',
     args: { input: t.arg({ type: DeletePostInput }) },
-    resolve: async (query, root, { input }, { session }) => {
+    resolve: async (query, parent, { input }, { session }) => {
       return await deletePost(query, input, session)
     }
   })
