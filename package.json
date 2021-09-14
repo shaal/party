@@ -92,9 +92,6 @@
       "prettier --write"
     ]
   },
-  "prisma": {
-    "seed": "ts-node --transpile-only -r tsconfig-paths/register ./prisma/seed.ts"
-	},
   "engines": {
     "node": ">=14"
   },
