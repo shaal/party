@@ -25,9 +25,7 @@ const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
 builder.mutationField('togglePostLike', (t) =>
   t.prismaField({
     type: 'Post',
-    args: {
-      input: t.arg({ type: TogglePostLikeInput })
-    },
+    args: { input: t.arg({ type: TogglePostLikeInput }) },
     authScopes: { user: true },
     nullable: true,
     resolve: async (query, root, { input }, { session }) => {
