@@ -1,11 +1,11 @@
 import { PostType, Session } from '@prisma/client'
 
-import { WherePostsInput } from '~/__generated__/schema.generated'
+import { WhereHomeFeedInput } from '~/__generated__/schema.generated'
 import { db } from '~/utils/prisma'
 
 export const homeFeed = async (
   query: any,
-  where: WherePostsInput | null | undefined,
+  where: WhereHomeFeedInput | null | undefined,
   session: Session | null | undefined
 ) => {
   const following = await db.user.findUnique({

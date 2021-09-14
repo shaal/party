@@ -7,7 +7,6 @@ import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
 import { exploreFeed } from './queries/exploreFeed'
 import { getMorePostsByUser } from './queries/getMorePostsByUser'
-import { getPosts } from './queries/getPosts'
 import { homeFeed } from './queries/homeFeed'
 
 builder.prismaObject('Post', {
@@ -51,47 +50,16 @@ builder.prismaObject('Post', {
   })
 })
 
-const WherePostsInput = builder.inputType('WherePostsInput', {
-  fields: (t) => ({
-    userId: t.id({ required: false }),
-    productId: t.id({ required: false }),
-    type: t.string({ required: false })
-  })
-})
-
-builder.queryField('posts', (t) =>
-  t.prismaConnection({
-    type: 'Post',
-    cursor: 'id',
-    defaultSize: 20,
-    maxSize: 100,
-    args: {
-      where: t.arg({ type: WherePostsInput, required: false })
-    },
-    resolve: async (query, root, { where }) => {
-      return await getPosts(query, where)
-    }
-  })
-)
-const WhereMorePostsByUserInput = builder.inputType(
-  'WhereMorePostsByUserInput',
-  {
-    fields: (t) => ({
-      userId: t.id(),
-      type: t.string()
-    })
-  }
-)
-
 builder.queryField('morePostsByUser', (t) =>
   t.prismaConnection({
     type: 'Post',
     cursor: 'id',
     args: {
-      where: t.arg({ type: WhereMorePostsByUserInput })
+      userId: t.arg.id(),
+      type: t.arg.string()
     },
-    resolve: async (query, root, { where }) => {
-      return await getMorePostsByUser(query, where)
+    resolve: async (query, root, { userId, type }) => {
+      return await getMorePostsByUser(query, userId, type)
     }
   })
 )
