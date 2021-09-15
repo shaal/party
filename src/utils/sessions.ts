@@ -94,9 +94,7 @@ export async function resolveSession({
       if (shouldRefreshSession) {
         await db.session.update({
           where: { id: session.id },
-          data: {
-            expiresAt: addSeconds(new Date(), SESSION_TTL)
-          }
+          data: { expiresAt: addSeconds(new Date(), SESSION_TTL) }
         })
 
         await requestWithSession.session.save()
