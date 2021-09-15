@@ -11,6 +11,6 @@ export const useOembed = (url: string | null | undefined) => {
   return {
     oembed: data,
     isLoading: !error && !data,
-    isError: error
+    isError: error || data?.status === 'error'
   }
 }

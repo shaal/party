@@ -25,7 +25,7 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(data)
       }
     } catch (error: any) {
-      return res.status(500).send({
+      return res.status(200).send({
         status: 'error',
         message: error
       })

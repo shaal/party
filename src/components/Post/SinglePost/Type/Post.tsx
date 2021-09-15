@@ -17,7 +17,7 @@ interface Props {
 hashtag(linkify)
 
 const PostType: React.FC<Props> = ({ post }) => {
-  const { oembed, isLoading } = useOembed(post?.oembedUrl)
+  const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
 
   return (
     <div className="space-y-3">
@@ -25,7 +25,9 @@ const PostType: React.FC<Props> = ({ post }) => {
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
       </div>
       {post?.attachments && <Attachments attachments={post?.attachments} />}
-      {post?.oembedUrl && <Oembed loading={isLoading} oembed={oembed} />}
+      {post?.oembedUrl && !isError && (
+        <Oembed loading={isLoading} oembed={oembed} />
+      )}
     </div>
   )
 }
