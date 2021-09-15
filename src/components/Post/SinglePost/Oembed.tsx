@@ -21,14 +21,14 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
       {twitter_card?.card === 'summary_large_image' && (
         <img
           className="rounded-t-lg border-b border-gray-200 dark:border-gray-800"
-          src={open_graph?.images[0]?.url}
+          src={`https://ik.imagekit.io/devparty/${open_graph?.images[0]?.url}`}
           alt="Image"
         />
       )}
       {twitter_card?.card === 'summary' && (
         <img
           className="rounded-l-lg h-28 w-28 border-r border-gray-200 dark:border-gray-800 bg-cover bg-center bg-no-repeat"
-          src={open_graph?.images[0]?.url}
+          src={`https://ik.imagekit.io/devparty/${open_graph?.images[0]?.url}`}
           alt="Image"
         />
       )}
@@ -43,7 +43,7 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
             {favicon && (
               <img
                 className="h-4 w-4 rounded-sm text-gray-400"
-                src={favicon}
+                src={`https://ik.imagekit.io/devparty/${favicon}`}
                 onError={(evt: any) =>
                   (evt.target.src =
                     'https://assets.devparty.io/images/icons/link.svg')
