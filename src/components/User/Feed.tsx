@@ -36,6 +36,7 @@ interface Props {
   feedType: string
 }
 
+// eslint-disable-next-line no-unused-vars
 const UserFeed: React.FC<Props> = ({ feedType }) => {
   const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(

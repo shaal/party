@@ -51,7 +51,7 @@ export async function authenticateUser(email: string, password: string) {
     })
   }
 
-  const [, _algo, costFactorString] = user.hashedPassword.split('$')
+  const costFactorString = user.hashedPassword.split('$')[2]
 
   if (!costFactorString) {
     throw new Error('Unknown password format.')
