@@ -51,7 +51,13 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
                 alt="Favicon"
               />
             )}
-            <div className="line-clamp-1">{title}</div>
+            <div className="line-clamp-1">
+              {title
+                ? title
+                : open_graph?.title
+                ? open_graph?.title
+                : twitter_card?.title}
+            </div>
           </div>
           <div className="line-clamp-2 text-gray-500">
             {description
