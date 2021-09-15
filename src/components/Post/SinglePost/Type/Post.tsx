@@ -25,7 +25,9 @@ const PostType: React.FC<Props> = ({ post }) => {
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
       </div>
       {post?.attachments && <Attachments attachments={post?.attachments} />}
-      {post?.oembedUrl && !isLoading && !isError && <Oembed oembed={oembed} />}
+      {post?.oembedUrl && !isLoading && !isError && (
+        <Oembed url={post?.oembedUrl} oembed={oembed} />
+      )}
     </div>
   )
 }
