@@ -9,15 +9,19 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
   if (url) {
     try {
       const stringifiedURL = url.toString()
-      let cache: any = await redis.get(stringifiedURL)
+      let parsedUrl = stringifiedURL
+      if (!/^https?:\/\//i.test(stringifiedURL)) {
+        parsedUrl = 'https://' + url
+      }
+      let cache: any = await redis.get(parsedUrl)
       cache = JSON.parse(cache)
       let oembedData = {}
       if (cache) {
         oembedData = cache
         return res.status(200).json(oembedData)
       } else {
-        const data = await unfurl(stringifiedURL)
-        redis.set(stringifiedURL, JSON.stringify(data), 'EX', 60)
+        const data = await unfurl(parsedUrl)
+        redis.set(parsedUrl, JSON.stringify(data), 'EX', 60)
         return res.status(200).json(data)
       }
     } catch (error: any) {
