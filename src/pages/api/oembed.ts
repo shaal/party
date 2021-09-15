@@ -1,19 +1,24 @@
-import cacheData from 'memory-cache'
+import Redis from 'ioredis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { unfurl } from 'unfurl.js'
+
+let redis = new Redis(process.env.REDIS_URL)
 
 const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
   const { url } = req.query
   if (url) {
     const stringifiedURL = url.toString()
-    const oembedData = cacheData.get(url)
-    if (oembedData) {
-      return res.status(200).send(oembedData)
+
+    let cache: any = await redis.get(stringifiedURL)
+    cache = JSON.parse(cache)
+    let oembedData = {}
+    if (cache) {
+      oembedData = cache
+      return res.status(200).json(oembedData)
     } else {
-      const hours = 24
       const data = await unfurl(stringifiedURL)
-      cacheData.put(url, data, hours * 1000 * 60 * 60)
-      return res.status(200).send(data)
+      redis.set(stringifiedURL, JSON.stringify(data), 'EX', 60)
+      return res.status(200).json(data)
     }
   } else {
     return res.status(400).send({
