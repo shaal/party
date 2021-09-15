@@ -192,6 +192,7 @@ type Post {
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
+  oembedUrl: String
   parent: Post
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!

@@ -31,6 +31,7 @@ export const PostFragment = gql`
     done
     attachments
     type
+    oembedUrl
     hasLiked
     createdAt
     parent {

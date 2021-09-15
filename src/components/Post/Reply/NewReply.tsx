@@ -45,9 +45,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
       refetchQueries: [
         {
           query: REPLIES_QUERY,
-          variables: {
-            where: { id: post?.id }
-          }
+          variables: { id: post?.id }
         }
       ],
       onError() {

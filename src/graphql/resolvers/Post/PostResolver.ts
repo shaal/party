@@ -1,3 +1,5 @@
+import urlRegexSafe from 'url-regex-safe'
+
 import { builder } from '~/graphql/builder'
 import { db } from '~/utils/prisma'
 
@@ -26,6 +28,18 @@ builder.prismaObject('Post', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await hasLiked(session?.userId as string, parent.id)
+      }
+    }),
+    oembedUrl: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (parent) => {
+        try {
+          // @ts-ignore
+          return parent.body.match(urlRegexSafe())[0]
+        } catch {
+          return null
+        }
       }
     }),
 
