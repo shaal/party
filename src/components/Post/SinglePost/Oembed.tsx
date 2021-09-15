@@ -11,6 +11,17 @@ interface Props {
 const Oembed: React.FC<Props> = ({ url, oembed }) => {
   const { title, description, favicon, open_graph, twitter_card } = oembed
 
+  const finalTitle = title
+    ? title
+    : open_graph?.title
+    ? open_graph?.title
+    : twitter_card?.title
+  const finalDescription = description
+    ? description
+    : open_graph?.description
+    ? open_graph?.description
+    : twitter_card?.description
+
   return (
     <Card
       className={clsx(
@@ -51,21 +62,9 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
                 alt="Favicon"
               />
             )}
-            <div className="line-clamp-1">
-              {title
-                ? title
-                : open_graph?.title
-                ? open_graph?.title
-                : twitter_card?.title}
-            </div>
+            <div className="line-clamp-1">{finalTitle}</div>
           </div>
-          <div className="line-clamp-2 text-gray-500">
-            {description
-              ? description
-              : open_graph?.description
-              ? open_graph?.description
-              : twitter_card?.description}
-          </div>
+          <div className="line-clamp-2 text-gray-500">{finalDescription}</div>
         </a>
       </CardBody>
     </Card>
