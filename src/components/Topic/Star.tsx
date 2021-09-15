@@ -52,7 +52,7 @@ const Star: React.FC<Props> = ({ topic }) => {
     if (topic?.hasStarted) setIsStarted(topic?.hasStarted)
   }, [topic])
 
-  const handleToggleFollow = () => {
+  const handleToggleStar = () => {
     toggleTopicStar({
       variables: {
         input: { id: topic?.id }
@@ -66,7 +66,7 @@ const Star: React.FC<Props> = ({ topic }) => {
       checked={isStarted}
       onChange={() => {
         setIsStarted(!isStarted)
-        handleToggleFollow()
+        handleToggleStar()
       }}
       size="sm"
       variant={isStarted ? 'danger' : 'success'}
