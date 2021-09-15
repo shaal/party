@@ -16,11 +16,21 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
     : open_graph?.title
     ? open_graph?.title
     : twitter_card?.title
+
   const finalDescription = description
     ? description
     : open_graph?.description
     ? open_graph?.description
     : twitter_card?.description
+
+  let finalImage
+  if (open_graph?.images) {
+    finalImage = `https://ik.imagekit.io/devparty/${open_graph?.images[0]?.url}`
+  } else if (twitter_card?.images) {
+    finalImage = `https://ik.imagekit.io/devparty/${twitter_card?.images[0]?.url}`
+  } else {
+    finalImage = null
+  }
 
   return (
     <Card
@@ -29,17 +39,17 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
         '!rounded-lg w-full sm:w-[70%]'
       )}
     >
-      {twitter_card?.card === 'summary_large_image' && (
+      {twitter_card?.card === 'summary_large_image' && finalImage && (
         <img
           className="rounded-t-lg border-b border-gray-200 dark:border-gray-800"
-          src={`https://ik.imagekit.io/devparty/${open_graph?.images[0]?.url}`}
+          src={finalImage}
           alt="Image"
         />
       )}
-      {twitter_card?.card === 'summary' && (
+      {twitter_card?.card === 'summary' && finalImage && (
         <img
           className="rounded-l-lg h-28 w-28 border-r border-gray-200 dark:border-gray-800 bg-cover bg-center bg-no-repeat"
-          src={`https://ik.imagekit.io/devparty/${open_graph?.images[0]?.url}`}
+          src={finalImage}
           alt="Image"
         />
       )}
