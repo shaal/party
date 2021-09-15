@@ -83,9 +83,7 @@ export async function resolveSession({
     session = await db.session.findFirst({
       where: {
         id: sessionID,
-        expiresAt: {
-          gte: new Date()
-        }
+        expiresAt: { gte: new Date() }
       }
     })
 
@@ -95,9 +93,7 @@ export async function resolveSession({
 
       if (shouldRefreshSession) {
         await db.session.update({
-          where: {
-            id: session.id
-          },
+          where: { id: session.id },
           data: {
             expiresAt: addSeconds(new Date(), SESSION_TTL)
           }
