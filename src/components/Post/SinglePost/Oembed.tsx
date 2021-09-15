@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 
 import { Card, CardBody } from '~/components/ui/Card'
@@ -12,19 +13,21 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
 
   return (
     <Card
-      className={`${twitter_card?.card === 'summary' ? 'flex' : ''} w-[70%]`}
+      className={clsx(
+        { flex: twitter_card?.card === 'summary' },
+        'w-[70%] !rounded-lg'
+      )}
     >
-      {twitter_card?.card === 'summary_large_image' &&
-        twitter_card?.images[0]?.url && (
-          <img
-            className="rounded-t-lg border-b"
-            src={twitter_card?.images[0]?.url}
-            alt="Image"
-          />
-        )}
-      {twitter_card?.card === 'summary' && twitter_card?.images[0]?.url && (
+      {twitter_card?.card === 'summary_large_image' && (
         <img
-          className="rounded-l-lg h-28 w-28 border-r bg-cover bg-center bg-no-repeat"
+          className="rounded-t-lg border-b border-gray-300 dark:border-gray-800"
+          src={open_graph?.images[0]?.url}
+          alt="Image"
+        />
+      )}
+      {twitter_card?.card === 'summary' && (
+        <img
+          className="rounded-l-lg h-28 w-28 border-r border-gray-300 dark:border-gray-800 bg-cover bg-center bg-no-repeat"
           src={open_graph?.images[0]?.url}
           alt="Image"
         />
@@ -38,7 +41,15 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
         >
           <div className="font-bold flex items-center space-x-2">
             {favicon && (
-              <img className="h-4 w-4 rounded-md" src={favicon} alt="Favicon" />
+              <img
+                className="h-4 w-4 rounded-sm text-gray-400"
+                src={favicon}
+                onError={(evt: any) =>
+                  (evt.target.src =
+                    'https://assets.devparty.io/images/icons/link.svg')
+                }
+                alt="Favicon"
+              />
             )}
             <div className="line-clamp-1">{title}</div>
           </div>
