@@ -1,23 +1,12 @@
 import React from 'react'
 
 import { Card, CardBody } from '~/components/ui/Card'
-import { Spinner } from '~/components/ui/Spinner'
 
 interface Props {
-  loading: boolean
   oembed: any
 }
 
-const Oembed: React.FC<Props> = ({ loading, oembed }) => {
-  if (loading)
-    return (
-      <Card>
-        <CardBody>
-          <Spinner className="mx-auto" size="sm" />
-        </CardBody>
-      </Card>
-    )
-
+const Oembed: React.FC<Props> = ({ oembed }) => {
   return (
     <Card>
       <CardBody className="flex items-center justify-between space-x-5">
