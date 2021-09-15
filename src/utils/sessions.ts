@@ -76,7 +76,6 @@ export async function resolveSession({
   await applySession(req, res, sessionOptions)
 
   let session: Session | null = null
-
   const requestWithSession = req as unknown as RequestWithSession
   const sessionID = requestWithSession.session.get(IRON_SESSION_ID_KEY)
 
