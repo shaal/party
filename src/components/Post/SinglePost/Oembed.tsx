@@ -15,19 +15,19 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
     <Card
       className={clsx(
         { flex: twitter_card?.card === 'summary' },
-        'w-[70%] !rounded-lg'
+        '!rounded-lg w-full sm:w-[70%]'
       )}
     >
       {twitter_card?.card === 'summary_large_image' && (
         <img
-          className="rounded-t-lg border-b border-gray-300 dark:border-gray-800"
+          className="rounded-t-lg border-b border-gray-200 dark:border-gray-800"
           src={open_graph?.images[0]?.url}
           alt="Image"
         />
       )}
       {twitter_card?.card === 'summary' && (
         <img
-          className="rounded-l-lg h-28 w-28 border-r border-gray-300 dark:border-gray-800 bg-cover bg-center bg-no-repeat"
+          className="rounded-l-lg h-28 w-28 border-r border-gray-200 dark:border-gray-800 bg-cover bg-center bg-no-repeat"
           src={open_graph?.images[0]?.url}
           alt="Image"
         />
