@@ -53,7 +53,13 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
             )}
             <div className="line-clamp-1">{title}</div>
           </div>
-          <div className="line-clamp-2 text-gray-500">{description}</div>
+          <div className="line-clamp-2 text-gray-500">
+            {description
+              ? description
+              : open_graph?.description
+              ? open_graph?.description
+              : twitter_card?.description}
+          </div>
         </a>
       </CardBody>
     </Card>
