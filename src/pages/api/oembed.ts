@@ -18,10 +18,12 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
       let oembedData = {}
       if (cache) {
         oembedData = cache
+        res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
         return res.status(200).json(oembedData)
       } else {
         const data = await unfurl(parsedUrl)
         redis.set(parsedUrl, JSON.stringify(data), 'EX', 60)
+        res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
         return res.status(200).json(data)
       }
     } catch (error: any) {
