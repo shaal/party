@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { UserAddIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
@@ -24,6 +25,7 @@ const signUpSchema = object({
 const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'
 
 const SignupForm: React.FC = () => {
+  const router = useRouter()
   const [signUp, signUpResult] = useMutation<
     JoinWaitlistFormMutation,
     JoinWaitlistFormMutationVariables
@@ -38,6 +40,7 @@ const SignupForm: React.FC = () => {
     {
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
+        router.push('/waitlist')
       }
     }
   )
