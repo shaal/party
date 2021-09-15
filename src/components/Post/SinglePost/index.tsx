@@ -11,6 +11,7 @@ import Slug from '~/components/shared/Slug'
 import UserProfile from '~/components/shared/UserProfile'
 import { Card, CardBody } from '~/components/ui/Card'
 import AppContext from '~/components/utils/AppContext'
+import { useOembed } from '~/components/utils/useOembed'
 
 import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
@@ -18,6 +19,7 @@ import {
   TogglePostLikeMutation,
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
+import Oembed from './Oembed'
 import SelectedProduct from './SelectedProduct'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
@@ -87,6 +89,7 @@ interface Props {
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   const { currentUser } = useContext(AppContext)
+  const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
     TogglePostLikeMutationVariables
@@ -148,6 +151,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'REPLY' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
+        {post?.oembedUrl && !isLoading && !isError && (
+          <Oembed url={post?.oembedUrl} oembed={oembed} />
+        )}
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
