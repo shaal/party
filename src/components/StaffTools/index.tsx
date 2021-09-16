@@ -5,8 +5,11 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import {
   BellIcon,
+  ChipIcon,
   CollectionIcon,
   CubeIcon,
+  DatabaseIcon,
+  ExternalLinkIcon,
   HashtagIcon,
   HeartIcon,
   IdentificationIcon,
@@ -113,6 +116,38 @@ const StaffToolsDashboard: React.FC = () => {
                 <div>
                   <span className="font-bold">{data?.stats?.sessions}</span>{' '}
                   Sessions
+                </div>
+              </div>
+            </div>
+            <div className="border-b my-3" />
+            <div className="text-xl font-bold mb-1.5">Services</div>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div className="flex items-center space-x-1.5">
+                <DatabaseIcon className="h-4 w-4" />
+                <div className="flex items-center space-x-1">
+                  <a
+                    href="https://app.planetscale.com/yo/devparty"
+                    className="font-bold"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    PlanetScale
+                  </a>
+                  <ExternalLinkIcon className="h-3 w-3" />
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <ChipIcon className="h-4 w-4" />
+                <div className="flex items-center space-x-1">
+                  <a
+                    href="https://console.upstash.com/redis/21cb559e-de14-44b9-a67f-05c67f2c8376"
+                    className="font-bold"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Upstash
+                  </a>
+                  <ExternalLinkIcon className="h-3 w-3" />
                 </div>
               </div>
             </div>
