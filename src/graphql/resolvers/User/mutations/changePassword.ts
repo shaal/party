@@ -1,9 +1,8 @@
+import { Result } from '@graphql/resolvers/ResultResolver'
 import { Session } from '@prisma/client'
 import { hashPassword, verifyPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { ChangePasswordInput } from 'src/__generated__/schema.generated'
-
-import { Result } from '../../ResultResolver'
 
 export const changePassword = async (
   input: ChangePasswordInput,
