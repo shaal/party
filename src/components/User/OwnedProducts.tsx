@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
+import { Tooltip } from '@components/ui/Tooltip'
 import Link from 'next/link'
 import { User } from 'src/__generated__/schema.generated'
 
-import { Tooltip } from '../ui/Tooltip'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
