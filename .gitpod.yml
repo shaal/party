@@ -3,7 +3,6 @@ image:
 
 tasks:
   - name: Setup
-    before: printf "\n[settings]\napi_key = $WAKA_TIME_API_KEY\n" > ~/.wakatime.cfg
     init: >
       yarn --network-timeout 100000;
       cp .env.example .env;
@@ -48,5 +47,4 @@ vscode:
     - github.github-vscode-theme
     - gitlab.gitlab-workflow
     - bradlc.vscode-tailwindcss
-    - wakatime.vscode-wakatime
     - bierner.markdown-preview-github-styles
