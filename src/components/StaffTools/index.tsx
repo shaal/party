@@ -14,7 +14,6 @@ import {
   HeartIcon,
   IdentificationIcon,
   LoginIcon,
-  UserGroupIcon,
   UsersIcon
 } from '@heroicons/react/outline'
 import React from 'react'
@@ -27,7 +26,6 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
     stats {
       users
       products
-      communities
       posts
       likes
       topics
@@ -67,13 +65,6 @@ const StaffToolsDashboard: React.FC = () => {
                 <div>
                   <span className="font-bold">{data?.stats?.products}</span>{' '}
                   Products
-                </div>
-              </div>
-              <div className="flex items-center space-x-1.5">
-                <UserGroupIcon className="h-4 w-4" />
-                <div>
-                  <span className="font-bold">{data?.stats?.communities}</span>{' '}
-                  Communities
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">

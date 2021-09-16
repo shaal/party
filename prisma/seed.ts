@@ -20,8 +20,6 @@ async function main() {
   console.log('All posts are deleted 🗑️')
   await db.product.deleteMany()
   console.log('All products are deleted 🗑️')
-  await db.community.deleteMany()
-  console.log('All communities are deleted 🗑️')
   await db.notification.deleteMany()
   console.log('All notifications are deleted 🗑️')
   await db.session.deleteMany()
