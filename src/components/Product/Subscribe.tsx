@@ -1,9 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
-import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Product } from 'src/__generated__/schema.generated'
 
@@ -18,7 +17,6 @@ interface Props {
 }
 
 const Subscribe: React.FC<Props> = ({ product, showText }) => {
-  const { currentUser } = useContext(AppContext)
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
   const [toggleProductSubscribe] = useMutation<
     ToggleProductSubscribeMutation,
