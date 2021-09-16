@@ -1,9 +1,8 @@
+import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { CreateProductInput } from 'src/__generated__/schema.generated'
-
-import { reservedSlugs } from '../../Common/queries/reservedSlugs'
 
 export const createProduct = async (
   query: any,
