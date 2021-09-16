@@ -1,10 +1,9 @@
+import Hero from '@components/shared/Hero'
+import LandingFooter from '@components/shared/LandingFooter'
+import { Button } from '@components/ui/Button'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-
-import Hero from '../shared/Hero'
-import LandingFooter from '../shared/LandingFooter'
-import { Button } from '../ui/Button'
 
 const Landing: React.FC = () => {
   return (
