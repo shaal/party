@@ -9,6 +9,7 @@ import { Product } from 'src/__generated__/schema.generated'
 
 import ProductMod from './Mod'
 import Social from './Social'
+import Subscribe from './Subscribe'
 
 interface Props {
   product: Product
@@ -32,7 +33,7 @@ const Details: React.FC<Props> = ({ product }) => {
           <div className="text-xl">{product?.slug}</div>
         </div>
         {currentUser?.id !== product?.user?.id ? (
-          <div>Follow</div>
+          <Subscribe product={product} showText />
         ) : (
           <Link href={`/products/${product?.slug}/settings`} passHref>
             <Button size="md" variant="success">

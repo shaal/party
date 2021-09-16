@@ -23,6 +23,7 @@ export const PRODUCT_QUERY = gql`
       producthunt
       github
       discord
+      hasSubscribed
       user {
         id
         username

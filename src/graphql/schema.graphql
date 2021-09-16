@@ -160,6 +160,7 @@ type Mutation {
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
+  toggleProductSubscribe(input: ToggleProductSubscribeInput!): Product
   toggleTopicStar(input: ToggleTopicStarInput!): Topic
 }
 
@@ -230,6 +231,7 @@ type Product {
   description: String
   discord: String
   github: String
+  hasSubscribed: Boolean!
   id: ID!
   name: String!
   posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
@@ -459,6 +461,10 @@ input ToggleFollowInput {
 }
 
 input TogglePostLikeInput {
+  id: ID!
+}
+
+input ToggleProductSubscribeInput {
   id: ID!
 }
 
