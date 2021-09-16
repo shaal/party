@@ -1,12 +1,12 @@
+import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Product } from 'src/__generated__/schema.generated'
 
-import UserProfileLarge from '../shared/UserProfileLarge'
-import { Card, CardBody } from '../ui/Card'
 import ProductMod from './Mod'
 import Social from './Social'
 
