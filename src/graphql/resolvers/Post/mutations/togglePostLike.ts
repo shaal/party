@@ -1,7 +1,6 @@
+import { hasLiked } from '@graphql/resolvers/Like/queries/hasLiked'
+import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { db } from '@utils/prisma'
-
-import { hasLiked } from '../../Like/queries/hasLiked'
-import { createNotification } from '../../Notification/mutations/createNotification'
 
 export const togglePostLike = async (
   query: any,
