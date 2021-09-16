@@ -7,7 +7,7 @@ import { ThemeProvider } from 'next-themes'
 
 import DefaultLayout from '~/components/DefaultLayout'
 import { NProgress } from '~/components/ui/NProgress'
-import { useApollo } from '~/utils/apollo'
+import { useApollo } from '@utils/apollo'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const client = useApollo(pageProps.initialClientState)

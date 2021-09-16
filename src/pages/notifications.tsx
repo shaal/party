@@ -1,7 +1,7 @@
 import Notifications, {
   NOTIFICATIONS_QUERY as query
 } from '~/components/Notification'
-import { preloadQuery } from '~/utils/apollo'
+import { preloadQuery } from '@utils/apollo'
 import { authenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {

@@ -1,7 +1,7 @@
 import StaffToolsDashboard, {
   STAFF_TOOLS_DASHBOARD_QUERY as query
 } from '~/components/StaffTools'
-import { preloadQuery } from '~/utils/apollo'
+import { preloadQuery } from '@utils/apollo'
 import { staffRoute } from '~/utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {

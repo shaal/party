@@ -1,5 +1,5 @@
 import Home, { HOME_QUERY as query } from '~/components/Home'
-import { preloadQuery } from '~/utils/apollo'
+import { preloadQuery } from '@utils/apollo'
 import { authenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {

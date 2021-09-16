@@ -1,4 +1,4 @@
-import { preloadQuery } from '~/utils/apollo'
+import { preloadQuery } from '@utils/apollo'
 import { authenticatedRoute } from '~/utils/redirects'
 
 import SessionsSettings, {

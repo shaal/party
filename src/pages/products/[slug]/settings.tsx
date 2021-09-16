@@ -1,7 +1,7 @@
 import Settings, {
   PRODUCT_SETTINGS_QUERY as query
 } from '~/components/Product/Settings'
-import { preloadQuery } from '~/utils/apollo'
+import { preloadQuery } from '@utils/apollo'
 import { db } from '@utils/prisma'
 import { resolveSession } from '~/utils/sessions'
 
