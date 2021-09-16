@@ -31,7 +31,6 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
   })
 
   if (userId !== currentUserId) {
-    console.log('sfs')
     createNotification(currentUserId, userId, userId, 'FOLLOW')
   }
 

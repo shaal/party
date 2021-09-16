@@ -53,7 +53,6 @@ const Search: React.FC = () => {
   )
 
   const handleSearch = (evt: any) => {
-    console.log(evt.target.value)
     searchPosts({
       variables: {
         keyword: evt.target.value
