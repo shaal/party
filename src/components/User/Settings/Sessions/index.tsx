@@ -15,6 +15,7 @@ export const SESSION_SETTINGS_QUERY = gql`
         node {
           id
           isStaff
+          ipAddress
           userAgent
           createdAt
           expiresAt
