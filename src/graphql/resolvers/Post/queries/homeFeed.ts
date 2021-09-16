@@ -17,22 +17,34 @@ export const homeFeed = async (
 
   // Required user data
   let userFollowing: any
+  let userProducts: any
   let userTopics: any
 
   if (cache) {
     userFollowing = cache.following
+    userProducts = cache.products
     userTopics = cache.topics
   } else {
     const following = await db.user.findUnique({
       where: { id: session?.userId },
       select: { following: { select: { id: true } } }
     })
+    const products = await db.user.findUnique({
+      where: { id: session?.userId },
+      select: { subscribedProducts: { select: { id: true } } }
+    })
     const topics = await db.user.findUnique({
       where: { id: session?.userId },
       select: { topics: { select: { id: true } } }
     })
-    redis.set(cacheKey, JSON.stringify({ following, topics }), 'EX', 60)
+    redis.set(
+      cacheKey,
+      JSON.stringify({ following, products, topics }),
+      'EX',
+      60
+    )
     userFollowing = following
+    userProducts = products
     userTopics = topics
   }
 
@@ -50,6 +62,17 @@ export const homeFeed = async (
               ]
             },
             spammy: false
+          }
+        },
+        {
+          product: {
+            id: {
+              in: [
+                ...userProducts.subscribedProducts.map(
+                  (product: any) => product.id
+                )
+              ]
+            }
           }
         },
         {
