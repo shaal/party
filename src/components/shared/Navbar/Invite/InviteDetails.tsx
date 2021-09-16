@@ -1,9 +1,9 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
+import Slug from '@components/shared/Slug'
 import { Tooltip } from '@components/ui/Tooltip'
 import { RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
 
-import Slug from '../../Slug'
 import {
   InviteCodeQuery,
   RegenerateInviteMutation,
