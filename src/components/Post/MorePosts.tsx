@@ -1,11 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
-import { ErrorMessage } from '../ui/ErrorMessage'
 import { MorePostsByUserQuery } from './__generated__/MorePosts.generated'
 
 export const MORE_POSTS_BY_USER_QUERY = gql`
