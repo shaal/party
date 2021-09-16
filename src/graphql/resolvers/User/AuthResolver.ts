@@ -55,7 +55,7 @@ builder.mutationField('login', (t) =>
       const user = await authenticateUser(input.email, input.password)
       if (user.inWaitlist) {
         // Don't allow users in waitlist
-        throw new Error('Your account is still in waitlist!')
+        return user
       }
 
       if (user.spammy) {
