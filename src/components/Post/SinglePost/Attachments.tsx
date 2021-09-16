@@ -1,8 +1,15 @@
+import { Button } from '@components/ui/Button'
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
 import React from 'react'
 
-import { Button } from '~/components/ui/Button'
+const getGridRows = (attachments: number) => {
+  if (attachments > 2) {
+    return 'grid grid-flow-col grid-cols-2 grid-rows-2 gap-2'
+  } else {
+    return 'grid grid-flow-col grid-cols-2 grid-rows1 gap-2'
+  }
+}
 
 interface Props {
   attachments: Prisma.JsonArray
@@ -22,14 +29,6 @@ const Attachments: React.FC<Props> = ({
         return ele != attachment
       })
     )
-  }
-
-  const getGridRows = (attachments: number) => {
-    if (attachments > 2) {
-      return 'grid grid-flow-col grid-cols-2 grid-rows-2 gap-2'
-    } else {
-      return 'grid grid-flow-col grid-cols-2 grid-rows1 gap-2'
-    }
   }
 
   return (

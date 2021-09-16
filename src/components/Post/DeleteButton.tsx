@@ -1,8 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { TrashIcon } from '@heroicons/react/outline'
 import React from 'react'
-
-import { Post } from '~/__generated__/schema.generated'
+import { Post } from 'src/__generated__/schema.generated'
 
 import {
   DeletePostMutation,

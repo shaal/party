@@ -1,17 +1,16 @@
 import { gql, useMutation } from '@apollo/client'
+import Attachments from '@components/Post/SinglePost/Attachments'
+import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { boolean, object, string } from 'zod'
 
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
-
-import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {

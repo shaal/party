@@ -1,11 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
+import Hero from '@components/shared/Hero'
+import Slug from '@components/shared/Slug'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import React from 'react'
-
-import Hero from '~/components/shared/Hero'
-import Slug from '~/components/shared/Slug'
 
 import { GetInviteQuery } from './__generated__/index.generated'
 import SignupForm from './Form'

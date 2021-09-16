@@ -1,7 +1,6 @@
 import { Session } from '@prisma/client'
+import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
-
-import { db } from '~/utils/prisma'
 
 export const regenerateInvite = async (
   query: any,

@@ -1,8 +1,10 @@
-import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 
 import { createProduct } from './mutations/createProduct'
+import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
+import { hasSubscribed } from './queries/hasSubscribed'
 
 builder.prismaObject('Product', {
   findUnique: (post) => ({ id: post.id }),
@@ -17,6 +19,13 @@ builder.prismaObject('Product', {
     discord: t.exposeString('discord', { nullable: true }),
     github: t.exposeString('github', { nullable: true }),
     twitter: t.exposeString('twitter', { nullable: true }),
+    hasSubscribed: t.field({
+      type: 'Boolean',
+      resolve: async (parent, args, { session }) => {
+        if (!session) return false
+        return await hasSubscribed(session?.userId as string, parent.id)
+      }
+    }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
@@ -123,6 +132,26 @@ builder.mutationField('editProduct', (t) =>
           avatar: input.avatar
         }
       })
+    }
+  })
+)
+
+const ToggleProductSubscribeInput = builder.inputType(
+  'ToggleProductSubscribeInput',
+  {
+    fields: (t) => ({
+      id: t.id()
+    })
+  }
+)
+
+builder.mutationField('toggleProductSubscribe', (t) =>
+  t.prismaField({
+    type: 'Product',
+    args: { input: t.arg({ type: ToggleProductSubscribeInput }) },
+    nullable: true,
+    resolve: async (query, parent, { input }, { session }) => {
+      return await toggleSubscribe(session?.userId as string, input.id)
     }
   })
 )

@@ -1,12 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { Form, useZodForm } from '@components/ui/Form'
+import { TextArea } from '@components/ui/TextArea'
 import { HashtagIcon } from '@heroicons/react/outline'
+import { Topic } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
-
-import { Topic } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { TextArea } from '~/components/ui/TextArea'
 
 import {
   ModTopicMutation,

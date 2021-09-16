@@ -1,3 +1,4 @@
+import AppContext from '@components/utils/AppContext'
 import {
   ClipboardListIcon,
   IdentificationIcon,
@@ -10,8 +11,6 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-
-import AppContext from '~/components/utils/AppContext'
 
 interface MenuProps {
   children: React.ReactNode

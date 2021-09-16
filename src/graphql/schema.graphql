@@ -160,6 +160,7 @@ type Mutation {
   signUp(input: SignupInput!): User!
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
+  toggleProductSubscribe(input: ToggleProductSubscribeInput!): Product
   toggleTopicStar(input: ToggleTopicStarInput!): Topic
 }
 
@@ -192,6 +193,7 @@ type Post {
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
+  oembedUrl: String
   parent: Post
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
@@ -229,6 +231,7 @@ type Product {
   description: String
   discord: String
   github: String
+  hasSubscribed: Boolean!
   id: ID!
   name: String!
   posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
@@ -461,6 +464,10 @@ input TogglePostLikeInput {
   id: ID!
 }
 
+input ToggleProductSubscribeInput {
+  id: ID!
+}
+
 input ToggleTopicStarInput {
   id: ID!
 }
@@ -473,7 +480,7 @@ type Topic {
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
   postsCount: Int!
-  users(after: String, before: String, first: Int, last: Int): TopicUsersConnection!
+  starrers(after: String, before: String, first: Int, last: Int): TopicStarrersConnection!
 }
 
 type TopicPostsConnection {
@@ -486,12 +493,12 @@ type TopicPostsConnectionEdge {
   node: Post!
 }
 
-type TopicUsersConnection {
-  edges: [TopicUsersConnectionEdge]!
+type TopicStarrersConnection {
+  edges: [TopicStarrersConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type TopicUsersConnectionEdge {
+type TopicStarrersConnectionEdge {
   cursor: String!
   node: User!
 }
@@ -510,8 +517,8 @@ type User {
   invite: Invite
   isStaff: Boolean!
   isVerified: Boolean!
+  ownedProducts(after: String, before: String, first: Int, last: Int): UserOwnedProductsConnection!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
-  products(after: String, before: String, first: Int, last: Int): UserProductsConnection!
   profile: Profile!
   spammy: Boolean!
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
@@ -552,6 +559,17 @@ type UserFollowingConnectionEdge {
   node: User!
 }
 
+type UserOwnedProductsConnection {
+  edges: [UserOwnedProductsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserOwnedProductsConnectionEdge {
+  cursor: String!
+  node: Product!
+}
+
 type UserPostsConnection {
   edges: [UserPostsConnectionEdge]!
   pageInfo: PageInfo!
@@ -561,17 +579,6 @@ type UserPostsConnection {
 type UserPostsConnectionEdge {
   cursor: String!
   node: Post!
-}
-
-type UserProductsConnection {
-  edges: [UserProductsConnectionEdge]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type UserProductsConnectionEdge {
-  cursor: String!
-  node: Product!
 }
 
 type UserTopicsConnection {

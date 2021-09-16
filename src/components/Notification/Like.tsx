@@ -1,12 +1,10 @@
+import SinglePost from '@components/Post/SinglePost'
+import UserProfile from '@components/shared/UserProfile'
+import { Card, CardBody } from '@components/ui/Card'
 import Link from 'next/link'
 import React from 'react'
+import { Notification, Post } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
-
-import { Notification, Post } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
-
-import SinglePost from '../Post/SinglePost'
-import UserProfile from '../shared/UserProfile'
 
 interface Props {
   notification: Notification

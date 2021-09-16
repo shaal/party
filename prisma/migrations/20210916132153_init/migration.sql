@@ -73,6 +73,7 @@ CREATE TABLE `posts` (
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
+    `deletedAt` DATETIME(3),
     `userId` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),
@@ -138,21 +139,6 @@ CREATE TABLE `products` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `communities` (
-    `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `slug` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191),
-    `avatar` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
-
-    UNIQUE INDEX `communities_slug_key`(`slug`),
-    INDEX `communities_slug_idx`(`slug`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `badges` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
@@ -194,12 +180,12 @@ CREATE TABLE `integrations` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_CommunityToUser` (
+CREATE TABLE `_subscribed` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_CommunityToUser_AB_unique`(`A`, `B`),
-    INDEX `_CommunityToUser_B_index`(`B`)
+    UNIQUE INDEX `_subscribed_AB_unique`(`A`, `B`),
+    INDEX `_subscribed_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable

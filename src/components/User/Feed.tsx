@@ -1,14 +1,13 @@
 import { gql, useQuery } from '@apollo/client'
+import SinglePost, { PostFragment } from '@components/Post/SinglePost'
+import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
+import { EmptyState } from '@components/ui/EmptyState'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { EmptyState } from '~/components/ui/EmptyState'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-
-import SinglePost, { PostFragment } from '../Post/SinglePost'
-import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
 const USER_FEED_QUERY = gql`
@@ -36,6 +35,7 @@ interface Props {
   feedType: string
 }
 
+// eslint-disable-next-line no-unused-vars
 const UserFeed: React.FC<Props> = ({ feedType }) => {
   const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(

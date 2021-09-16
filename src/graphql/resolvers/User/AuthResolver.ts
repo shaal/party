@@ -1,7 +1,7 @@
-import { builder } from '~/graphql/builder'
-import { authenticateUser } from '~/utils/auth'
-import { db } from '~/utils/prisma'
-import { createSession } from '~/utils/sessions'
+import { builder } from '@graphql/builder'
+import { authenticateUser } from '@utils/auth'
+import { db } from '@utils/prisma'
+import { createSession } from '@utils/sessions'
 
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
@@ -55,7 +55,7 @@ builder.mutationField('login', (t) =>
       const user = await authenticateUser(input.email, input.password)
       if (user.inWaitlist) {
         // Don't allow users in waitlist
-        throw new Error('Your account is still in waitlist!')
+        return user
       }
 
       if (user.spammy) {

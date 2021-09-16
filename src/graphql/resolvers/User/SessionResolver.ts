@@ -1,5 +1,5 @@
-import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 
 import { Result } from '../ResultResolver'
 import { getSessions } from './queries/getSessions'

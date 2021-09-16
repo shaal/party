@@ -1,15 +1,15 @@
+import UserProfileLarge from '@components/shared/UserProfileLarge'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import AppContext from '@components/utils/AppContext'
 import Linkify from 'linkifyjs/react'
 import Link from 'next/link'
 import { useContext } from 'react'
+import { Product } from 'src/__generated__/schema.generated'
 
-import { Product } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
-
-import UserProfileLarge from '../shared/UserProfileLarge'
-import { Card, CardBody } from '../ui/Card'
 import ProductMod from './Mod'
 import Social from './Social'
+import Subscribe from './Subscribe'
 
 interface Props {
   product: Product
@@ -33,7 +33,7 @@ const Details: React.FC<Props> = ({ product }) => {
           <div className="text-xl">{product?.slug}</div>
         </div>
         {currentUser?.id !== product?.user?.id ? (
-          <div>Follow</div>
+          <Subscribe product={product} showText />
         ) : (
           <Link href={`/products/${product?.slug}/settings`} passHref>
             <Button size="md" variant="success">

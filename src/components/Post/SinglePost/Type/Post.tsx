@@ -1,10 +1,9 @@
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 import * as linkify from 'linkifyjs'
 import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
-
-import { Post } from '~/__generated__/schema.generated'
-import { linkifyOptions } from '~/components/utils/linkifyOptions'
+import { Post } from 'src/__generated__/schema.generated'
 
 import Attachments from '../Attachments'
 
@@ -17,7 +16,7 @@ hashtag(linkify)
 const PostType: React.FC<Props> = ({ post }) => {
   return (
     <div className="space-y-3">
-      <div className="linkify space-y-3 inline-flex">
+      <div className="linkify space-y-3 inline-flex max-w-full">
         <Linkify options={linkifyOptions}>{post?.body}</Linkify>
       </div>
       {post?.attachments && <Attachments attachments={post?.attachments} />}

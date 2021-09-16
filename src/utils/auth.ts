@@ -1,7 +1,6 @@
+import { ValidationError } from '@graphql/errors'
 import crypto from 'crypto'
 import { bcrypt, bcryptVerify } from 'hash-wasm'
-
-import { ValidationError } from '~/graphql/errors'
 
 import { db } from './prisma'
 
@@ -51,7 +50,7 @@ export async function authenticateUser(email: string, password: string) {
     })
   }
 
-  const [, _algo, costFactorString] = user.hashedPassword.split('$')
+  const costFactorString = user.hashedPassword.split('$')[2]
 
   if (!costFactorString) {
     throw new Error('Unknown password format.')

@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const getProducts = async (query: any) => {
   return await db.product.findMany({

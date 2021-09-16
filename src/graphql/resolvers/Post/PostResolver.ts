@@ -1,5 +1,6 @@
-import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
+import urlRegexSafe from 'url-regex-safe'
 
 import { hasLiked } from '../Like/queries/hasLiked'
 import { createPost } from './mutations/createPost'
@@ -26,6 +27,18 @@ builder.prismaObject('Post', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await hasLiked(session?.userId as string, parent.id)
+      }
+    }),
+    oembedUrl: t.field({
+      type: 'String',
+      nullable: true,
+      resolve: async (parent) => {
+        try {
+          // @ts-ignore
+          return parent.body.match(urlRegexSafe())[0]
+        } catch {
+          return null
+        }
       }
     }),
 

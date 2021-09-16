@@ -1,5 +1,5 @@
-import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
@@ -15,9 +15,7 @@ builder.prismaObject('User', {
     spammy: t.exposeBoolean('spammy'),
     isVerified: t.exposeBoolean('isVerified'),
     isStaff: t.exposeBoolean('isStaff'),
-    inWaitlist: t.exposeBoolean('inWaitlist', {
-      authScopes: { isStaff: true }
-    }),
+    inWaitlist: t.exposeBoolean('inWaitlist'),
     email: t.exposeString('email', {
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
@@ -67,7 +65,7 @@ builder.prismaObject('User', {
       nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
-    products: t.relatedConnection('products', {
+    ownedProducts: t.relatedConnection('ownedProducts', {
       cursor: 'id',
       totalCount: true
     }),

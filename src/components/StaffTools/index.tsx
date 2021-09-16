@@ -1,21 +1,23 @@
 import { gql, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { PageLoading } from '@components/ui/PageLoading'
 import {
   BellIcon,
+  ChipIcon,
   CollectionIcon,
   CubeIcon,
+  DatabaseIcon,
+  ExternalLinkIcon,
   HashtagIcon,
   HeartIcon,
   IdentificationIcon,
   LoginIcon,
-  UserGroupIcon,
   UsersIcon
 } from '@heroicons/react/outline'
 import React from 'react'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { PageLoading } from '../ui/PageLoading'
 import { StaffToolsDashboardQuery } from './__generated__/index.generated'
 import Sidebar from './Sidebar'
 
@@ -24,7 +26,6 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
     stats {
       users
       products
-      communities
       posts
       likes
       topics
@@ -67,13 +68,6 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <UserGroupIcon className="h-4 w-4" />
-                <div>
-                  <span className="font-bold">{data?.stats?.communities}</span>{' '}
-                  Communities
-                </div>
-              </div>
-              <div className="flex items-center space-x-1.5">
                 <CollectionIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{data?.stats?.posts}</span> Posts
@@ -113,6 +107,38 @@ const StaffToolsDashboard: React.FC = () => {
                 <div>
                   <span className="font-bold">{data?.stats?.sessions}</span>{' '}
                   Sessions
+                </div>
+              </div>
+            </div>
+            <div className="border-b dark:border-gray-800 my-3" />
+            <div className="text-xl font-bold mb-1.5">Services</div>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1">
+              <div className="flex items-center space-x-1.5">
+                <DatabaseIcon className="h-4 w-4" />
+                <div className="flex items-center space-x-1">
+                  <a
+                    href="https://app.planetscale.com/yo/devparty"
+                    className="font-bold"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    PlanetScale
+                  </a>
+                  <ExternalLinkIcon className="h-3 w-3" />
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <ChipIcon className="h-4 w-4" />
+                <div className="flex items-center space-x-1">
+                  <a
+                    href="https://console.upstash.com/redis/21cb559e-de14-44b9-a67f-05c67f2c8376"
+                    className="font-bold"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Upstash
+                  </a>
+                  <ExternalLinkIcon className="h-3 w-3" />
                 </div>
               </div>
             </div>

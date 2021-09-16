@@ -43,6 +43,7 @@ The party hub for developers
 - 📦 **Product:** TBD
 - 💌 **Post:** TBD
 - 🍔 **Topic:** TBD
+- 👥 **Communities:** TBD
 
 ## 🤝 Contributing
 

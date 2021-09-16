@@ -76,7 +76,6 @@ export async function resolveSession({
   await applySession(req, res, sessionOptions)
 
   let session: Session | null = null
-
   const requestWithSession = req as unknown as RequestWithSession
   const sessionID = requestWithSession.session.get(IRON_SESSION_ID_KEY)
 
@@ -84,9 +83,7 @@ export async function resolveSession({
     session = await db.session.findFirst({
       where: {
         id: sessionID,
-        expiresAt: {
-          gte: new Date()
-        }
+        expiresAt: { gte: new Date() }
       }
     })
 
@@ -96,12 +93,8 @@ export async function resolveSession({
 
       if (shouldRefreshSession) {
         await db.session.update({
-          where: {
-            id: session.id
-          },
-          data: {
-            expiresAt: addSeconds(new Date(), SESSION_TTL)
-          }
+          where: { id: session.id },
+          data: { expiresAt: addSeconds(new Date(), SESSION_TTL) }
         })
 
         await requestWithSession.session.save()

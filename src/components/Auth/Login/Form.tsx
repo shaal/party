@@ -1,14 +1,14 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import { object, string } from 'zod'
 
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
-
+import Waitlist from '../Waitlist'
 import {
   LoginFormMutation,
   LoginFormMutationVariables
@@ -20,6 +20,7 @@ const loginSchema = object({
 })
 
 const LoginForm: React.FC = () => {
+  const [showModal, setShowModal] = useState<boolean>(false)
   const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
     LoginFormMutation,
@@ -29,12 +30,17 @@ const LoginForm: React.FC = () => {
       mutation LoginFormMutation($input: LoginInput!) {
         login(input: $input) {
           id
+          inWaitlist
         }
       }
     `,
     {
-      onCompleted() {
-        authRedirect()
+      onCompleted(data) {
+        if (data?.login?.inWaitlist) {
+          setShowModal(true)
+        } else {
+          authRedirect()
+        }
       }
     }
   )
@@ -55,6 +61,9 @@ const LoginForm: React.FC = () => {
         error={loginResult.error}
         className="mb-3"
       />
+      {showModal && (
+        <Waitlist showModal={showModal} setShowModal={setShowModal} />
+      )}
       <div className="space-y-4">
         <div>
           <Input

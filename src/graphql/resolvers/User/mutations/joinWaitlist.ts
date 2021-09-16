@@ -1,10 +1,8 @@
+import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
+import { hashPassword } from '@utils/auth'
+import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
-
-import { JoinWaitlistInput } from '~/__generated__/schema.generated'
-import { hashPassword } from '~/utils/auth'
-import { db } from '~/utils/prisma'
-
-import { reservedSlugs } from '../../Common/queries/reservedSlugs'
+import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
 
 export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
   if (reservedSlugs.includes(input.username)) {

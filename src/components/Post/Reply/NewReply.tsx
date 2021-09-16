@@ -1,15 +1,14 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { TextArea } from '@components/ui/TextArea'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { Post } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
-
-import { Post } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { TextArea } from '~/components/ui/TextArea'
 
 import Attachment from '../NewPost/Attachment'
 import Attachments from '../SinglePost/Attachments'
@@ -45,9 +44,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
       refetchQueries: [
         {
           query: REPLIES_QUERY,
-          variables: {
-            where: { id: post?.id }
-          }
+          variables: { id: post?.id }
         }
       ],
       onError() {

@@ -1,15 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
+import { Tooltip } from '@components/ui/Tooltip'
 import Link from 'next/link'
+import { User } from 'src/__generated__/schema.generated'
 
-import { User } from '~/__generated__/schema.generated'
-
-import { Tooltip } from '../ui/Tooltip'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
   query UserProductsQuery($username: ID!) {
     user(username: $username) {
-      products {
+      ownedProducts {
         edges {
           node {
             id
@@ -31,7 +30,7 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
   const { data, loading } = useQuery<UserProductsQuery>(USER_PRODUCTS_QUERY, {
     variables: { username: user?.username }
   })
-  const products = data?.user?.products?.edges?.map((edge) => edge?.node)
+  const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
 
   const Product = ({ product }: any) => {
     return (

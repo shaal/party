@@ -1,10 +1,9 @@
 import 'tsconfig-paths/register'
 
 import { PrismaClient } from '@prisma/client'
+import { hashPassword } from '@utils/auth'
 import faker from 'faker'
 import { md5 } from 'hash-wasm'
-
-import { hashPassword } from '~/utils/auth'
 
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
@@ -21,8 +20,6 @@ async function main() {
   console.log('All posts are deleted 🗑️')
   await db.product.deleteMany()
   console.log('All products are deleted 🗑️')
-  await db.community.deleteMany()
-  console.log('All communities are deleted 🗑️')
   await db.notification.deleteMany()
   console.log('All notifications are deleted 🗑️')
   await db.session.deleteMany()
@@ -142,7 +139,6 @@ async function main() {
 main()
   .catch((error) => {
     console.error(error)
-    // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1)
   })
   .finally(async () => {

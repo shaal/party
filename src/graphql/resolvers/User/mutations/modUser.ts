@@ -1,5 +1,5 @@
-import { ModUserInput } from '~/__generated__/schema.generated'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
+import { ModUserInput } from 'src/__generated__/schema.generated'
 
 export const modUser = async (query: any, input: ModUserInput) => {
   if (input.spammy) {

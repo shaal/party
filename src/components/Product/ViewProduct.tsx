@@ -1,12 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { Product } from 'src/__generated__/schema.generated'
 
-import { Product } from '~/__generated__/schema.generated'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { PageLoading } from '../ui/PageLoading'
 import { ProductQuery } from './__generated__/ViewProduct.generated'
 import Details from './Details'
 import ProductFeed from './Feed'
@@ -24,6 +23,7 @@ export const PRODUCT_QUERY = gql`
       producthunt
       github
       discord
+      hasSubscribed
       user {
         id
         username

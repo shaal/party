@@ -1,6 +1,6 @@
-import { db } from '~/utils/prisma'
+import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
+import { db } from '@utils/prisma'
 
-import { createNotification } from '../../Notification/mutations/createNotification'
 import { hasFollowed } from '../queries/hasFollowed'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {
@@ -31,7 +31,6 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
   })
 
   if (userId !== currentUserId) {
-    console.log('sfs')
     createNotification(currentUserId, userId, userId, 'FOLLOW')
   }
 

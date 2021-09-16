@@ -1,10 +1,9 @@
+import { Card, CardBody } from '@components/ui/Card'
+import Follow from '@components/User/Follow'
+import AppContext from '@components/utils/AppContext'
 import React, { useContext } from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
-import { User } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
-import AppContext from '~/components/utils/AppContext'
-
-import Follow from '../User/Follow'
 import UserProfile from './UserProfile'
 
 interface Props {
