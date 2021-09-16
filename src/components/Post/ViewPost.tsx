@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserCard from '@components/shared/UserCard'
@@ -9,7 +10,6 @@ import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import PostMod from './Mod'
 import MorePosts from './MorePosts'
