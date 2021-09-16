@@ -6,8 +6,8 @@ export const getWhoToFollow = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const following = await db.user.findUnique({
-    where: { id: session?.userId },
+  const following = await db.user.findFirst({
+    where: { id: session?.userId, inWaitlist: false },
     select: { following: { select: { id: true } } }
   })
 
