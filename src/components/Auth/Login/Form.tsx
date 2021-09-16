@@ -3,7 +3,6 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
-import { Modal } from '@components/ui/Modal'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
@@ -63,13 +62,7 @@ const LoginForm: React.FC = () => {
         className="mb-3"
       />
       {showModal && (
-        <Modal
-          onClose={() => setShowModal(!showModal)}
-          title="You are in the waitlist 🎉"
-          show={showModal}
-        >
-          <Waitlist />
-        </Modal>
+        <Waitlist showModal={showModal} setShowModal={setShowModal} />
       )}
       <div className="space-y-4">
         <div>

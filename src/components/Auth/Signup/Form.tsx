@@ -5,11 +5,10 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { UserAddIcon } from '@heroicons/react/outline'
-import { useRouter } from 'next/router'
-import React from 'react'
-import toast from 'react-hot-toast'
+import React, { useState } from 'react'
 import { object, string } from 'zod'
 
+import Waitlist from '../Waitlist'
 import {
   JoinWaitlistFormMutation,
   JoinWaitlistFormMutationVariables
@@ -24,7 +23,7 @@ const signUpSchema = object({
 const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'
 
 const SignupForm: React.FC = () => {
-  const router = useRouter()
+  const [showModal, setShowModal] = useState<boolean>(false)
   const [signUp, signUpResult] = useMutation<
     JoinWaitlistFormMutation,
     JoinWaitlistFormMutationVariables
@@ -33,13 +32,13 @@ const SignupForm: React.FC = () => {
       mutation JoinWaitlistFormMutation($input: JoinWaitlistInput!) {
         joinWaitlist(input: $input) {
           id
+          inWaitlist
         }
       }
     `,
     {
       onCompleted() {
-        toast.success(SUCCESS_MESSAGE)
-        router.push('/waitlist')
+        setShowModal(true)
       }
     }
   )
@@ -66,6 +65,9 @@ const SignupForm: React.FC = () => {
       />
       {signUpResult.data && (
         <SuccessMessage className="mb-3">{SUCCESS_MESSAGE}</SuccessMessage>
+      )}
+      {showModal && (
+        <Waitlist showModal={showModal} setShowModal={setShowModal} />
       )}
       <div className="space-y-4">
         <div>
