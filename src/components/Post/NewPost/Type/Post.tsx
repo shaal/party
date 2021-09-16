@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import Attachments from '@components/Post/SinglePost/Attachments'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
@@ -9,7 +10,6 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {
