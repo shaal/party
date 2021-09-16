@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Switch } from '@headlessui/react'
-import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
+import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Product } from 'src/__generated__/schema.generated'
@@ -76,12 +76,12 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
     >
       {isSubscribed ? (
         <div className="flex items-center space-x-1">
-          <UserRemoveIcon className="h-4 w-4" />
+          <MinusIcon className="h-4 w-4" />
           {showText && <div>Unsubscribe</div>}
         </div>
       ) : (
         <div className="flex items-center space-x-1">
-          <UserAddIcon className="h-4 w-4" />
+          <PlusIcon className="h-4 w-4" />
           {showText && <div>Subscribe</div>}
         </div>
       )}
