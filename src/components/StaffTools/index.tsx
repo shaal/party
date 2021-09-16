@@ -119,7 +119,7 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="border-b my-3" />
+            <div className="border-b dark:border-gray-800 my-3" />
             <div className="text-xl font-bold mb-1.5">Services</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
