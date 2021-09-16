@@ -16,6 +16,7 @@ export const getWhoToFollow = async (
     take: 5,
     where: {
       spammy: false,
+      inWaitlist: false,
       id: {
         // @ts-ignore
         notIn: [...following.following.map((user) => user.id), session?.userId]
