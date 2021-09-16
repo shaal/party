@@ -1,4 +1,4 @@
-import { builder } from '~/graphql/builder'
+import { builder } from 'src/graphql/builder'
 import { db } from '@utils/prisma'
 
 import { modUser } from './mutations/modUser'

@@ -1,4 +1,4 @@
-import { builder } from '~/graphql/builder'
+import { builder } from 'src/graphql/builder'
 import { authenticateUser } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
