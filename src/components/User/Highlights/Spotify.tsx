@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
+import { Card } from '@components/ui/Card'
 import { Tooltip } from '@components/ui/Tooltip'
 import { User } from 'src/__generated__/schema.generated'
 
-import { Card } from '../../ui/Card'
 import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
 
 const SPOTIFY_INTEGRATIONS_QUERY = gql`
