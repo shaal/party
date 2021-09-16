@@ -1,8 +1,8 @@
+import { getTopics } from '@graphql/utils/getTopics'
+import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
-import { getTopics } from 'src/graphql/utils/getTopics'
-import { parseTopics } from 'src/graphql/utils/parseTopics'
 
 export const createPost = async (
   query: any,

@@ -1,4 +1,4 @@
-import { builder } from 'src/graphql/builder'
+import { builder } from '@graphql/builder'
 
 import { togglePostLike } from '../Post/mutations/togglePostLike'
 

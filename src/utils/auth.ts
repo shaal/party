@@ -1,6 +1,6 @@
+import { ValidationError } from '@graphql/errors'
 import crypto from 'crypto'
 import { bcrypt, bcryptVerify } from 'hash-wasm'
-import { ValidationError } from 'src/graphql/errors'
 
 import { db } from './prisma'
 

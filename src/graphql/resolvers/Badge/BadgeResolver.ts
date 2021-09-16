@@ -1,5 +1,5 @@
+import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
-import { builder } from 'src/graphql/builder'
 
 import { getBadges } from './queries/getBadges'
 

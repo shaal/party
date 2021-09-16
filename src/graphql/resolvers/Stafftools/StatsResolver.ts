@@ -1,5 +1,5 @@
+import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
-import { builder } from 'src/graphql/builder'
 
 export class Stats {
   users: number
