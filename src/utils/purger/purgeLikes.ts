@@ -1,4 +1,4 @@
-import { db } from '../prisma'
+import { db } from '@utils/prisma'
 
 interface Params {
   postId?: string
