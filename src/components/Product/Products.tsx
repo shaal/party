@@ -1,18 +1,17 @@
 import { gql, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import Footer from '@components/shared/Footer'
+import ProductProfileLarge from '@components/shared/ProductProfileLarge'
+import PostShimmer from '@components/shared/Shimmer/PostShimmer'
+import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
+import { Product } from 'src/__generated__/schema.generated'
 
-import { Product } from '~/__generated__/schema.generated'
-import Footer from '~/components/shared/Footer'
-import ProductProfileLarge from '~/components/shared/ProductProfileLarge'
-import PostShimmer from '~/components/shared/Shimmer/PostShimmer'
-import UserProfileShimmer from '~/components/shared/Shimmer/UserProfileShimmer'
-import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { ProductsQuery } from './__generated__/Products.generated'
 
 export const PRODUCTS_QUERY = gql`

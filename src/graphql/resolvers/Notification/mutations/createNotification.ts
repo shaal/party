@@ -1,6 +1,5 @@
 import { NotificationType } from '@prisma/client'
-
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const createNotification = async (
   dispatcherId: any,

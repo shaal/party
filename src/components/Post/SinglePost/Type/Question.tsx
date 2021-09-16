@@ -1,7 +1,6 @@
 import Markdown from 'markdown-to-jsx'
 import React from 'react'
-
-import { Post } from '~/__generated__/schema.generated'
+import { Post } from 'src/__generated__/schema.generated'
 
 import Attachments from '../Attachments'
 

@@ -1,4 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { PageLoading } from '@components/ui/PageLoading'
 import {
   BellIcon,
   CollectionIcon,
@@ -12,10 +16,6 @@ import {
 } from '@heroicons/react/outline'
 import React from 'react'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { PageLoading } from '../ui/PageLoading'
 import { StaffToolsDashboardQuery } from './__generated__/index.generated'
 import Sidebar from './Sidebar'
 

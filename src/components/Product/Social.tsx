@@ -1,6 +1,5 @@
 import { useTheme } from 'next-themes'
-
-import { Product } from '~/__generated__/schema.generated'
+import { Product } from 'src/__generated__/schema.generated'
 
 interface Props {
   product: Product

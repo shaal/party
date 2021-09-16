@@ -1,12 +1,11 @@
+import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { LightningBoltIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
 
 import Invite from './Invite'
 import MenuItems from './MenuItems'

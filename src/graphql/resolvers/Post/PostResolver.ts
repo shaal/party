@@ -1,7 +1,6 @@
+import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 import urlRegexSafe from 'url-regex-safe'
-
-import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
 
 import { hasLiked } from '../Like/queries/hasLiked'
 import { createPost } from './mutations/createPost'

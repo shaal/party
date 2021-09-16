@@ -1,16 +1,16 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import UserProfileLarge from '@components/shared/UserProfileLarge'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { PageLoading } from '@components/ui/PageLoading'
+import { Tooltip } from '@components/ui/Tooltip'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
 import * as timeago from 'timeago.js'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
-import UserProfileLarge from '../shared/UserProfileLarge'
-import { Button } from '../ui/Button'
-import { Card, CardBody } from '../ui/Card'
-import { ErrorMessage } from '../ui/ErrorMessage'
-import { PageLoading } from '../ui/PageLoading'
-import { Tooltip } from '../ui/Tooltip'
 import {
   OnboardUserMutation,
   OnboardUserMutationVariables,

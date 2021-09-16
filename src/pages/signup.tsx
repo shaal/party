@@ -1,7 +1,6 @@
+import Signup from '@components/Auth/Signup'
+import { unauthenticatedRoute } from '@utils/redirects'
 import { GetServerSideProps } from 'next'
-
-import Signup from '~/components/Auth/Signup'
-import { unauthenticatedRoute } from '~/utils/redirects'
 
 export const getServerSideProps: GetServerSideProps = unauthenticatedRoute
 

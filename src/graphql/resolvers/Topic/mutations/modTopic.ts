@@ -1,7 +1,6 @@
 import { Session } from '@prisma/client'
-
-import { EditTopicInput } from '~/__generated__/schema.generated'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
+import { EditTopicInput } from 'src/__generated__/schema.generated'
 
 export const modTopic = async (
   query: any,

@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const exploreFeed = async (query: any) => {
   return await db.post.findMany({

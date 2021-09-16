@@ -1,15 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
+import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
+import UserProfileLarge from '@components/shared/UserProfileLarge'
+import { Card, CardBody } from '@components/ui/Card'
+import { EmptyState } from '@components/ui/EmptyState'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import UserProfileLargeShimmer from '~/components/shared/Shimmer/UserProfileLargeShimmer'
-import UserProfileLarge from '~/components/shared/UserProfileLarge'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-
-import { Card, CardBody } from '../../ui/Card'
-import { EmptyState } from '../../ui/EmptyState'
 import { FollowingQuery } from './__generated__/list.generated'
 
 export const FOLLOWING_QUERY = gql`

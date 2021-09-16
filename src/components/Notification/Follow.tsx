@@ -1,11 +1,9 @@
+import Slug from '@components/shared/Slug'
+import UserProfileLarge from '@components/shared/UserProfileLarge'
+import { Card, CardBody } from '@components/ui/Card'
 import React from 'react'
+import { Notification } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
-
-import { Notification } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
-
-import Slug from '../shared/Slug'
-import UserProfileLarge from '../shared/UserProfileLarge'
 
 interface Props {
   notification: Notification

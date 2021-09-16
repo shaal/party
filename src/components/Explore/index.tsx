@@ -1,12 +1,11 @@
 import { useQuery } from '@apollo/client'
+import { CurrentUserQuery } from '@components/__generated__/DefaultLayout.generated'
+import { CURRENT_USER_QUERY } from '@components/DefaultLayout'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import Footer from '@components/shared/Footer'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import React from 'react'
 
-import Footer from '~/components/shared/Footer'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-
-import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
-import { CURRENT_USER_QUERY } from '../DefaultLayout'
-import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import ExploreFeed from './Feed'
 
 export const EXPLORE_QUERY = CURRENT_USER_QUERY

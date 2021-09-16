@@ -1,12 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { Form, useZodForm } from '@components/ui/Form'
 import { HashtagIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
+import { User } from 'src/__generated__/schema.generated'
 import { boolean, object } from 'zod'
-
-import { User } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
-import { Form, useZodForm } from '~/components/ui/Form'
 
 import {
   ModUserMutation,

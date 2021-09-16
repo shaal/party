@@ -1,11 +1,9 @@
+import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
+import { hashPassword } from '@utils/auth'
+import { db } from '@utils/prisma'
+import { createSession } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
-
-import { SignupInput } from '~/__generated__/schema.generated'
-import { hashPassword } from '~/utils/auth'
-import { db } from '~/utils/prisma'
-import { createSession } from '~/utils/sessions'
-
-import { reservedSlugs } from '../../Common/queries/reservedSlugs'
+import { SignupInput } from 'src/__generated__/schema.generated'
 
 export const signUp = async (query: any, input: SignupInput, req: any) => {
   if (reservedSlugs.includes(input.username)) {

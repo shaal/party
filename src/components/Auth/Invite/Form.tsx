@@ -1,14 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { UserAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
-
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
 
 import {
   SignupMutation,

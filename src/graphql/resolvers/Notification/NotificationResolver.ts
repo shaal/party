@@ -1,4 +1,4 @@
-import { builder } from '~/graphql/builder'
+import { builder } from '@graphql/builder'
 
 import { getNotifications } from './queries/getNotifications'
 

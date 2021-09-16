@@ -1,7 +1,6 @@
 import { Session } from '@prisma/client'
+import { removeSession, resolveSession } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
-
-import { removeSession, resolveSession } from '~/utils/sessions'
 
 const logout = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
