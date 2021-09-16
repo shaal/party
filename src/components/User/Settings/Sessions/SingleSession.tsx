@@ -44,7 +44,7 @@ const SingleSession: React.FC<Props> = ({ session }) => {
           <div className="text-sm">
             IP:{' '}
             <span className="text-xs font-bold bg-gray-300 dark:bg-gray-900 py-0.5 px-1.5 rounded-md">
-              {session?.ipAddress}
+              {session?.ipAddress === '::1' ? 'localhost' : session?.ipAddress}
             </span>
           </div>
           <div className="text-sm">
