@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
+import Details from '@components/User/Details'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
-import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { ViewUserQuery } from '../__generated__/ViewUser.generated'
-import Details from '../Details'
 import { VIEW_USER_QUERY } from '../ViewUser'
 import FollowingList from './list'
 
