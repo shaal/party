@@ -5,19 +5,15 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import { User } from '~/__generated__/schema.generated'
-import {
-  GridItemEight,
-  GridItemFour,
-  GridLayout
-} from '~/components/GridLayout'
-import { Button } from '~/components/ui/Button'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { SuccessMessage } from '~/components/ui/SuccessMessage'
-import { TextArea } from '~/components/ui/TextArea'
-import { uploadToIPFS } from '~/components/utils/uploadToIPFS'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { SuccessMessage } from '@components/ui/SuccessMessage'
+import { TextArea } from '@components/ui/TextArea'
+import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 
 import ChooseFile from '../../ChooseFile'
 import Sidebar from '../Sidebar'

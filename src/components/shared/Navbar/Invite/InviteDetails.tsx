@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
 
-import { Tooltip } from '~/components/ui/Tooltip'
+import { Tooltip } from '@components/ui/Tooltip'
 
 import Slug from '../../Slug'
 import {

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import SpotifyWebApi from 'spotify-web-api-node'
 
 import { db } from '@utils/prisma'
-import { resolveSession } from '~/utils/sessions'
+import { resolveSession } from '@utils/sessions'
 
 const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })

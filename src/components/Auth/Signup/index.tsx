@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import Hero from '~/components/shared/Hero'
+import Hero from '@components/shared/Hero'
 
 import SignupForm from './Form'
 

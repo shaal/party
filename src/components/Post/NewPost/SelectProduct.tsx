@@ -6,7 +6,7 @@ import { Fragment, useState } from 'react'
 import { useContext } from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
-import AppContext from '~/components/utils/AppContext'
+import AppContext from '@components/utils/AppContext'
 
 import { SelectProductQuery } from './__generated__/SelectProduct.generated'
 

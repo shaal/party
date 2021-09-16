@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import { PageLoading } from '~/components/ui/PageLoading'
+import { PageLoading } from '@components/ui/PageLoading'
 
 import { SocialSettingsQuery } from './__generated__/index.generated'
 import SocialSettingsForm from './Form'

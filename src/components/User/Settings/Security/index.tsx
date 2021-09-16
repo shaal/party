@@ -1,11 +1,7 @@
 import React from 'react'
 
-import {
-  GridItemEight,
-  GridItemFour,
-  GridLayout
-} from '~/components/GridLayout'
-import { Card, CardBody } from '~/components/ui/Card'
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { Card, CardBody } from '@components/ui/Card'
 
 import Sidebar from '../Sidebar'
 import ChangePasswordForm from './Form'

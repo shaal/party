@@ -2,7 +2,7 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
 import React from 'react'
 
-import { Button } from '~/components/ui/Button'
+import { Button } from '@components/ui/Button'
 
 const getGridRows = (attachments: number) => {
   if (attachments > 2) {

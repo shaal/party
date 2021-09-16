@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 import { Topic } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
+import { Button } from '@components/ui/Button'
 
 import {
   ToggleTopicStarMutation,

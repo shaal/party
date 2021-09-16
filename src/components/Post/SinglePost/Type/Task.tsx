@@ -6,8 +6,8 @@ import React from 'react'
 import toast from 'react-hot-toast'
 
 import { Post } from '~/__generated__/schema.generated'
-import { TaskCheckbox } from '~/components/ui/TaskCheckbox'
-import { linkifyOptions } from '~/components/utils/linkifyOptions'
+import { TaskCheckbox } from '@components/ui/TaskCheckbox'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 
 import Attachments from '../Attachments'
 import {

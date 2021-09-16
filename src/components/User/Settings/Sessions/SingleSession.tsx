@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import * as timeago from 'timeago.js'
 
 import { Session } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
+import { Button } from '@components/ui/Button'
 
 import {
   RevokeSessionMutation,

@@ -1,8 +1,8 @@
 import StaffToolsUsers, {
   STAFF_TOOLS_USERS_QUERY as query
-} from '~/components/StaffTools/Users'
+} from '@components/StaffTools/Users'
 import { preloadQuery } from '@utils/apollo'
-import { staffRoute } from '~/utils/redirects'
+import { staffRoute } from '@utils/redirects'
 
 export const getServerSideProps = async (ctx: any) => {
   const staff = await staffRoute(ctx)

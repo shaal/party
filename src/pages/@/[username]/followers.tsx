@@ -1,6 +1,6 @@
 import Followers, {
   USER_FOLLOWERS_QUERY as query
-} from '~/components/User/Followers'
+} from '@components/User/Followers'
 import { preloadQuery } from '@utils/apollo'
 
 export const getServerSideProps = async (ctx: any) => {

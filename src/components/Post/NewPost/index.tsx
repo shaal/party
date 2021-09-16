@@ -8,8 +8,8 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import { Card, CardBody } from '~/components/ui/Card'
-import { Tooltip } from '~/components/ui/Tooltip'
+import { Card, CardBody } from '@components/ui/Card'
+import { Tooltip } from '@components/ui/Tooltip'
 
 import PostType from './Type/Post'
 

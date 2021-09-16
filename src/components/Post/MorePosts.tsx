@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Post } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
+import { Card, CardBody } from '@components/ui/Card'
 
 import { ErrorMessage } from '../ui/ErrorMessage'
 import { MorePostsByUserQuery } from './__generated__/MorePosts.generated'

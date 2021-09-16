@@ -3,10 +3,10 @@ import { CubeIcon } from '@heroicons/react/outline'
 import React from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
-import ProductProfile from '~/components/shared/ProductProfile'
-import ProductProfileShimmer from '~/components/shared/Shimmer/ProductProfileShimmer'
-import { Card, CardBody } from '~/components/ui/Card'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import ProductProfile from '@components/shared/ProductProfile'
+import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
+import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 

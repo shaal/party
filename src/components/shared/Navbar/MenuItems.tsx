@@ -6,8 +6,8 @@ import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import { Dropdown } from '~/components/ui/Dropdown'
-import AppContext from '~/components/utils/AppContext'
+import { Dropdown } from '@components/ui/Dropdown'
+import AppContext from '@components/utils/AppContext'
 
 import Slug from '../Slug'
 

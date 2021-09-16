@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { useContext } from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
+import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 
 import UserProfileLarge from '../shared/UserProfileLarge'
 import { Card, CardBody } from '../ui/Card'

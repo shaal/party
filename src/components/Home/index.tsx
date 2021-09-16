@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
 import React, { useState } from 'react'
 
-import FeedType from '~/components/Home/FeedType'
-import Footer from '~/components/shared/Footer'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import FeedType from '@components/Home/FeedType'
+import Footer from '@components/shared/Footer'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import { CurrentUserQuery } from '../__generated__/DefaultLayout.generated'
 import { CURRENT_USER_QUERY } from '../DefaultLayout'

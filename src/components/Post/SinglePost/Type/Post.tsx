@@ -4,7 +4,7 @@ import Linkify from 'linkifyjs/react'
 import React from 'react'
 
 import { Post } from '~/__generated__/schema.generated'
-import { linkifyOptions } from '~/components/utils/linkifyOptions'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 
 import Attachments from '../Attachments'
 

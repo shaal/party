@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import { Button } from '~/components/ui/Button'
-import AppContext from '~/components/utils/AppContext'
+import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 
 import Invite from './Invite'
 import MenuItems from './MenuItems'

@@ -4,9 +4,9 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { Post } from '~/__generated__/schema.generated'
-import PostsShimmer from '~/components/shared/Shimmer/PostsShimmer'
-import { EmptyState } from '~/components/ui/EmptyState'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
+import { EmptyState } from '@components/ui/EmptyState'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../SinglePost'
 import { RepliesQuery } from './__generated__/Replies.generated'

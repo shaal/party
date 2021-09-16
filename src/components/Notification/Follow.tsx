@@ -2,7 +2,7 @@ import React from 'react'
 import * as timeago from 'timeago.js'
 
 import { Notification } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
+import { Card, CardBody } from '@components/ui/Card'
 
 import Slug from '../shared/Slug'
 import UserProfileLarge from '../shared/UserProfileLarge'

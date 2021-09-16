@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 
 import { User } from '~/__generated__/schema.generated'
-import { Tooltip } from '~/components/ui/Tooltip'
+import { Tooltip } from '@components/ui/Tooltip'
 
 import { Card } from '../../ui/Card'
 import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'

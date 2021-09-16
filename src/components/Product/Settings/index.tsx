@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
-import { PageLoading } from '~/components/ui/PageLoading'
+import { PageLoading } from '@components/ui/PageLoading'
 
 import { ProductSettingsQuery } from './__generated__/index.generated'
 import ProductSettings from './ProductSettings'

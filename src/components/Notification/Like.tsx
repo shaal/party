@@ -3,7 +3,7 @@ import React from 'react'
 import * as timeago from 'timeago.js'
 
 import { Notification, Post } from '~/__generated__/schema.generated'
-import { Card, CardBody } from '~/components/ui/Card'
+import { Card, CardBody } from '@components/ui/Card'
 
 import SinglePost from '../Post/SinglePost'
 import UserProfile from '../shared/UserProfile'

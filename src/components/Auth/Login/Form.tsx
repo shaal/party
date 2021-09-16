@@ -3,11 +3,11 @@ import { LogoutIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { object, string } from 'zod'
 
-import { Button } from '~/components/ui/Button'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { Form, useZodForm } from '~/components/ui/Form'
-import { Input } from '~/components/ui/Input'
-import { useAuthRedirect } from '~/components/utils/useAuthRedirect'
+import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { Input } from '@components/ui/Input'
+import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 
 import {
   LoginFormMutation,

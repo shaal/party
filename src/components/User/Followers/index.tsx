@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import { User } from '~/__generated__/schema.generated'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
-import { PageLoading } from '~/components/ui/PageLoading'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { PageLoading } from '@components/ui/PageLoading'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../../GridLayout'
 import { ViewUserQuery } from '../__generated__/ViewUser.generated'

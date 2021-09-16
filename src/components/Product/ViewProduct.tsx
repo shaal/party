@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import { Product } from '~/__generated__/schema.generated'
-import { ErrorMessage } from '~/components/ui/ErrorMessage'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PageLoading } from '../ui/PageLoading'
