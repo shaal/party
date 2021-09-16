@@ -9,8 +9,8 @@ export default function Custom404() {
       <NextSeo title="Page Not Found" />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img
-          src="https://cloudflare-ipfs.com/ipfs/QmcK19jxKgs6EwX7mMXtQoYqqNBfDe7wT99WtSfqdq8sTE"
-          alt="Not found"
+          src="https://assets.devparty.io/images/gifs/nyan-cat.gif"
+          alt="Nyan Cat"
           className="h-60"
         />
         <div className="py-10 text-center">
