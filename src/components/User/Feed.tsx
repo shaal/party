@@ -1,11 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
+import { EmptyState } from '@components/ui/EmptyState'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
-
-import { EmptyState } from '@components/ui/EmptyState'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import SinglePost, { PostFragment } from '../Post/SinglePost'
 import PostsShimmer from '../shared/Shimmer/PostsShimmer'

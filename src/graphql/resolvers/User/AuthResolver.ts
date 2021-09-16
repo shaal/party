@@ -1,7 +1,7 @@
-import { builder } from 'src/graphql/builder'
 import { authenticateUser } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
+import { builder } from 'src/graphql/builder'
 
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'

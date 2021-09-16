@@ -1,5 +1,4 @@
 import { PostType, Session } from '@prisma/client'
-
 import { db } from '@utils/prisma'
 
 export const homeFeed = async (

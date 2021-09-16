@@ -1,11 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
+import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
-
-import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import UserProfile from '../../shared/UserProfile'
 import { Card, CardBody } from '../../ui/Card'

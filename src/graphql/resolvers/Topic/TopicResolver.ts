@@ -1,5 +1,5 @@
-import { builder } from 'src/graphql/builder'
 import { db } from '@utils/prisma'
+import { builder } from 'src/graphql/builder'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'

@@ -1,7 +1,6 @@
+import { Card, CardBody } from '@components/ui/Card'
 import clsx from 'clsx'
 import React from 'react'
-
-import { Card, CardBody } from '@components/ui/Card'
 
 interface Props {
   url: string

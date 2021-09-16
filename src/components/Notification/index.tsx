@@ -1,9 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { BellIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 
 import { PostFragment } from '../Post/SinglePost'
 import { EmptyState } from '../ui/EmptyState'

@@ -1,8 +1,7 @@
-import { TicketIcon } from '@heroicons/react/outline'
-import { useState } from 'react'
-
 import { Button } from '@components/ui/Button'
 import { Modal } from '@components/ui/Modal'
+import { TicketIcon } from '@heroicons/react/outline'
+import { useState } from 'react'
 
 import InviteDetails from './InviteDetails'
 

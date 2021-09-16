@@ -1,6 +1,5 @@
-import SpotifyWebApi from 'spotify-web-api-node'
-
 import { db } from '@utils/prisma'
+import SpotifyWebApi from 'spotify-web-api-node'
 
 import { Spotify } from '../SpotifyResolver'
 

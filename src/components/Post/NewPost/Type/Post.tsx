@@ -1,14 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Form, useZodForm } from '@components/ui/Form'
+import { TextArea } from '@components/ui/TextArea'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
-
-import { Button } from '@components/ui/Button'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { Form, useZodForm } from '@components/ui/Form'
-import { TextArea } from '@components/ui/TextArea'
 
 import Attachments from '../../SinglePost/Attachments'
 import Attachment from '../Attachment'

@@ -1,9 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
-import React from 'react'
-
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Card, CardBody } from '@components/ui/Card'
 import { PageLoading } from '@components/ui/PageLoading'
+import React from 'react'
 
 import Sidebar from '../Sidebar'
 import { SessionsSettingsQuery } from './__generated__/index.generated'
