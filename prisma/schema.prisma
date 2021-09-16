@@ -55,6 +55,7 @@ model User {
 model Session {
   id        String  @id @default(cuid())
   isStaff   Boolean @default(false)
+  ipAddress String?
   userAgent String?
 
   // Timestamps
