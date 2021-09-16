@@ -1,12 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
+import SinglePost, { PostFragment } from '@components/Post/SinglePost'
+import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import SinglePost, { PostFragment } from '../Post/SinglePost'
-import PostsShimmer from '../shared/Shimmer/PostsShimmer'
 import { ExploreFeedQuery } from './__generated__/Feed.generated'
 
 export const EXPLORE_FEED_QUERY = gql`
