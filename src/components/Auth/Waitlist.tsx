@@ -2,7 +2,7 @@ import React from 'react'
 
 const Waitlist: React.FC = () => {
   return (
-    <div className="text-center space-y-5 p-5">
+    <div className="p-5 text-center space-y-5">
       <img
         className="mx-auto"
         src="https://assets.devparty.io/images/emojis/unicorn.png"
