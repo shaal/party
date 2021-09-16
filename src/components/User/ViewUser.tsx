@@ -1,10 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import React, { useState } from 'react'
-
-import { User } from '~/__generated__/schema.generated'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { User } from 'src/__generated__/schema.generated'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PageLoading } from '../ui/PageLoading'

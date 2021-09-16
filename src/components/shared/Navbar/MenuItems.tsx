@@ -1,13 +1,12 @@
+import { Dropdown } from '@components/ui/Dropdown'
+import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
-
-import { User } from '~/__generated__/schema.generated'
-import { Dropdown } from '@components/ui/Dropdown'
-import AppContext from '@components/utils/AppContext'
+import { User } from 'src/__generated__/schema.generated'
 
 import Slug from '../Slug'
 

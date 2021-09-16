@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
-import { User } from '~/__generated__/schema.generated'
+import { User } from 'src/__generated__/schema.generated'
 
 interface Props {
   user: User

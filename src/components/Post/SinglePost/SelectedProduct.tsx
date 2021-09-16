@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
-import { Product } from '~/__generated__/schema.generated'
+import { Product } from 'src/__generated__/schema.generated'
 
 interface Props {
   product: Product

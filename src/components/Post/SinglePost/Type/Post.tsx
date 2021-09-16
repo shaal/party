@@ -1,10 +1,9 @@
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 import * as linkify from 'linkifyjs'
 import hashtag from 'linkifyjs/plugins/hashtag'
 import Linkify from 'linkifyjs/react'
 import React from 'react'
-
-import { Post } from '~/__generated__/schema.generated'
-import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { Post } from 'src/__generated__/schema.generated'
 
 import Attachments from '../Attachments'
 

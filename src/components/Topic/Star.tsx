@@ -1,12 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
 import { Switch } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/outline'
 import { StarIcon as StarIconSolid } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-
-import { Topic } from '~/__generated__/schema.generated'
-import { Button } from '@components/ui/Button'
+import { Topic } from 'src/__generated__/schema.generated'
 
 import {
   ToggleTopicStarMutation,

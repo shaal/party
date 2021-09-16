@@ -1,10 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@components/ui/Button'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { Session } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
-
-import { Session } from '~/__generated__/schema.generated'
-import { Button } from '@components/ui/Button'
 
 import {
   RevokeSessionMutation,

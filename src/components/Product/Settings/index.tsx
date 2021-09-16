@@ -1,9 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
+import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
-
-import { Product } from '~/__generated__/schema.generated'
-import { PageLoading } from '@components/ui/PageLoading'
+import { Product } from 'src/__generated__/schema.generated'
 
 import { ProductSettingsQuery } from './__generated__/index.generated'
 import ProductSettings from './ProductSettings'

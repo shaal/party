@@ -1,10 +1,4 @@
 import { gql, useMutation } from '@apollo/client'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import { object, string } from 'zod'
-
-import { Product } from '~/__generated__/schema.generated'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import SettingsHelper from '@components/shared/SettingsHelper'
 import { Button } from '@components/ui/Button'
@@ -14,6 +8,11 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import { Product } from 'src/__generated__/schema.generated'
+import { object, string } from 'zod'
 
 import {
   ProductSettingsMutation,

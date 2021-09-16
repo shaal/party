@@ -1,8 +1,7 @@
 import { Session } from '@prisma/client'
-import { md5 } from 'hash-wasm'
-
-import { CreateProductInput } from '~/__generated__/schema.generated'
 import { db } from '@utils/prisma'
+import { md5 } from 'hash-wasm'
+import { CreateProductInput } from 'src/__generated__/schema.generated'
 
 import { reservedSlugs } from '../../Common/queries/reservedSlugs'
 

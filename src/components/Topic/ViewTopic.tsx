@@ -1,12 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
-
-import { Topic } from '~/__generated__/schema.generated'
 import Slug from '@components/shared/Slug'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
+import { useRouter } from 'next/router'
+import React, { useContext } from 'react'
+import { Topic } from 'src/__generated__/schema.generated'
 
 import { GridItemEight, GridItemFour, GridLayout } from '../GridLayout'
 import { PageLoading } from '../ui/PageLoading'

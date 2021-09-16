@@ -1,8 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
-import React from 'react'
-
-import { Integration } from '~/__generated__/schema.generated'
 import { PageLoading } from '@components/ui/PageLoading'
+import React from 'react'
+import { Integration } from 'src/__generated__/schema.generated'
 
 import { IntegrationSettingsQuery } from './__generated__/index.generated'
 import IntegrationSettingsForm from './Form'

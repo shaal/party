@@ -1,8 +1,7 @@
 import { Session } from '@prisma/client'
-
-import { ChangePasswordInput } from '~/__generated__/schema.generated'
 import { hashPassword, verifyPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
+import { ChangePasswordInput } from 'src/__generated__/schema.generated'
 
 import { Result } from '../../ResultResolver'
 

@@ -1,12 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
-import { RefreshIcon, SparklesIcon, UsersIcon } from '@heroicons/react/outline'
-import React from 'react'
-
-import { User } from '~/__generated__/schema.generated'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { RefreshIcon, SparklesIcon, UsersIcon } from '@heroicons/react/outline'
+import React from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
 import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 

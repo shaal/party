@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-
-import { User } from '~/__generated__/schema.generated'
+import { User } from 'src/__generated__/schema.generated'
 
 import { UserBadgesQuery } from './__generated__/Badges.generated'
 
