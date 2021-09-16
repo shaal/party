@@ -7,6 +7,7 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
+import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
@@ -14,7 +15,6 @@ import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
 
-import ChooseFile from '../../ChooseFile'
 import Sidebar from '../Sidebar'
 import {
   ProfileSettingsMutation,
