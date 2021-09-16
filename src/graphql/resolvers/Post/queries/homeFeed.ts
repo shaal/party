@@ -17,33 +17,54 @@ export const homeFeed = async (
 
   // Required user data
   let userFollowing: any
+  let userTopics: any
 
   if (cache) {
     userFollowing = cache.following
+    userTopics = cache.topics
   } else {
     const following = await db.user.findUnique({
       where: { id: session?.userId },
       select: { following: { select: { id: true } } }
     })
-    redis.set(cacheKey, JSON.stringify({ following }), 'EX', 60)
+    const topics = await db.user.findUnique({
+      where: { id: session?.userId },
+      select: { topics: { select: { id: true } } }
+    })
+    redis.set(cacheKey, JSON.stringify({ following, topics }), 'EX', 60)
     userFollowing = following
+    userTopics = topics
   }
 
   return await db.post.findMany({
     ...query,
     where: {
       type: type === 'ALL' ? undefined : (type as PostType),
-      AND: {
-        user: {
-          id: {
-            in: [
-              ...userFollowing.following.map((user: any) => user.id),
-              session?.userId
-            ]
-          },
-          spammy: false
+      OR: [
+        {
+          user: {
+            id: {
+              in: [
+                ...userFollowing.following.map((user: any) => user.id),
+                session?.userId
+              ]
+            },
+            spammy: false
+          }
+        },
+        {
+          topics: {
+            some: {
+              topic: {
+                id: {
+                  in: [...userTopics?.topics.map((topic: any) => topic.id)]
+                }
+              }
+            }
+          }
         }
-      },
+      ],
+
       hidden: false
     },
     orderBy: { createdAt: 'desc' }
