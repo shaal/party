@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
+import { Card } from '@components/ui/Card'
 import { Tooltip } from '@components/ui/Tooltip'
 import { ClockIcon } from '@heroicons/react/outline'
 import { User } from 'src/__generated__/schema.generated'
 
-import { Card } from '../../ui/Card'
 import { WakatimeIntegrationsQuery } from './__generated__/Wakatime.generated'
 
 const WAKATIME_INTEGRATIONS_QUERY = gql`
