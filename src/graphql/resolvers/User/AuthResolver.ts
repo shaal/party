@@ -1,6 +1,6 @@
 import { builder } from '~/graphql/builder'
 import { authenticateUser } from '~/utils/auth'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 import { createSession } from '~/utils/sessions'
 
 import { Result } from '../ResultResolver'

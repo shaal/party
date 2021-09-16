@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const hasStarted = async (currentUserId: string, topicId: string) => {
   const user = await db.topic.findUnique({

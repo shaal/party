@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 import { hasStarted } from '../queries/hasStarted'
 

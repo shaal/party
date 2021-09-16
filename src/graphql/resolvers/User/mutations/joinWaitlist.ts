@@ -2,7 +2,7 @@ import { md5 } from 'hash-wasm'
 
 import { JoinWaitlistInput } from '~/__generated__/schema.generated'
 import { hashPassword } from '~/utils/auth'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 import { reservedSlugs } from '../../Common/queries/reservedSlugs'
 

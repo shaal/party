@@ -2,7 +2,7 @@ import { md5 } from 'hash-wasm'
 
 import { SignupInput } from '~/__generated__/schema.generated'
 import { hashPassword } from '~/utils/auth'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 import { createSession } from '~/utils/sessions'
 
 import { reservedSlugs } from '../../Common/queries/reservedSlugs'

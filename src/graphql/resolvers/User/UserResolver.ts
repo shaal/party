@@ -1,5 +1,5 @@
 import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'

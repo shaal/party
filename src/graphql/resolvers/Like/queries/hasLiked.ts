@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const hasLiked = async (userId: string, postId: string | null) => {
   const count: number = await db.like.count({

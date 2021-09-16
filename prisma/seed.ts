@@ -1,10 +1,9 @@
 import 'tsconfig-paths/register'
 
 import { PrismaClient } from '@prisma/client'
+import { hashPassword } from '@utils/auth'
 import faker from 'faker'
 import { md5 } from 'hash-wasm'
-
-import { hashPassword } from '~/utils/auth'
 
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'

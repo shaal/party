@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 import { createNotification } from '../../Notification/mutations/createNotification'
 import { hasFollowed } from '../queries/hasFollowed'

@@ -1,7 +1,7 @@
 import { Session } from '@prisma/client'
 
 import { EditIntegrationInput } from '~/__generated__/schema.generated'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 export const editIntegration = async (
   input: EditIntegrationInput,

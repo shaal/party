@@ -1,5 +1,5 @@
 import { builder } from '~/graphql/builder'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 
 builder.queryField('searchPosts', (t) =>
   t.prismaConnection({

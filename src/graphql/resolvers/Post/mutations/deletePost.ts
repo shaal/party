@@ -1,7 +1,7 @@
 import { Session } from '@prisma/client'
 
 import { EditPostInput } from '~/__generated__/schema.generated'
-import { db } from '~/utils/prisma'
+import { db } from '@utils/prisma'
 import { purgeLikes } from '~/utils/purger/purgeLikes'
 import { purgeReplies } from '~/utils/purger/purgeReplies'
 import { purgeTopics } from '~/utils/purger/purgeTopics'
