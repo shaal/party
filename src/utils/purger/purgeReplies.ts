@@ -1,4 +1,4 @@
-import { db } from '~/utils/prisma'
+import { db } from '../prisma'
 
 interface Params {
   parentId?: string
