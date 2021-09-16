@@ -3,7 +3,7 @@ import { db } from '@utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'
-import { hasStarted } from './queries/hasStarted'
+import { hasStarred } from './queries/hasStarred'
 
 builder.prismaObject('Topic', {
   findUnique: (topic) => ({ id: topic.id }),
@@ -16,7 +16,7 @@ builder.prismaObject('Topic', {
       type: 'Boolean',
       resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasStarted(session?.userId as string, parent.id)
+        return await hasStarred(session?.userId as string, parent.id)
       }
     }),
     postsCount: t.relationCount('posts'),
