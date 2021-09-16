@@ -67,7 +67,7 @@ builder.prismaObject('User', {
       nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
-    products: t.relatedConnection('products', {
+    ownedProducts: t.relatedConnection('ownedProducts', {
       cursor: 'id',
       totalCount: true
     }),

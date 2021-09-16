@@ -8,7 +8,7 @@ export const toggleStar = async (currentUserId: string, topicId: string) => {
     return await db.topic.update({
       where: { id: topicId },
       data: {
-        users: {
+        starrers: {
           disconnect: {
             id: currentUserId
           }
@@ -21,7 +21,7 @@ export const toggleStar = async (currentUserId: string, topicId: string) => {
   const topic = await db.topic.update({
     where: { id: topicId },
     data: {
-      users: {
+      starrers: {
         connect: {
           id: currentUserId
         }

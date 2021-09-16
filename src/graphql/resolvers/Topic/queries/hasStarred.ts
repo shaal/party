@@ -4,7 +4,7 @@ export const hasStarred = async (currentUserId: string, topicId: string) => {
   const user = await db.topic.findUnique({
     where: { id: topicId },
     include: {
-      users: {
+      starrers: {
         where: {
           id: currentUserId
         }
@@ -12,5 +12,5 @@ export const hasStarred = async (currentUserId: string, topicId: string) => {
     }
   })
 
-  return user?.users?.length === 0 ? false : true
+  return user?.starrers?.length === 0 ? false : true
 }

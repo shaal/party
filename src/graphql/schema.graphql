@@ -511,8 +511,8 @@ type User {
   invite: Invite
   isStaff: Boolean!
   isVerified: Boolean!
+  ownedProducts(after: String, before: String, first: Int, last: Int): UserOwnedProductsConnection!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
-  products(after: String, before: String, first: Int, last: Int): UserProductsConnection!
   profile: Profile!
   spammy: Boolean!
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
@@ -553,6 +553,17 @@ type UserFollowingConnectionEdge {
   node: User!
 }
 
+type UserOwnedProductsConnection {
+  edges: [UserOwnedProductsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserOwnedProductsConnectionEdge {
+  cursor: String!
+  node: Product!
+}
+
 type UserPostsConnection {
   edges: [UserPostsConnectionEdge]!
   pageInfo: PageInfo!
@@ -562,17 +573,6 @@ type UserPostsConnection {
 type UserPostsConnectionEdge {
   cursor: String!
   node: Post!
-}
-
-type UserProductsConnection {
-  edges: [UserProductsConnectionEdge]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type UserProductsConnectionEdge {
-  cursor: String!
-  node: Product!
 }
 
 type UserTopicsConnection {

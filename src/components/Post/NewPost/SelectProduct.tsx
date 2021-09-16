@@ -12,7 +12,7 @@ import { SelectProductQuery } from './__generated__/SelectProduct.generated'
 export const SELECT_PRODUCT_QUERY = gql`
   query SelectProductQuery($username: ID!) {
     user(username: $username) {
-      products {
+      ownedProducts {
         edges {
           node {
             id
@@ -36,7 +36,7 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
   const { data } = useQuery<SelectProductQuery>(SELECT_PRODUCT_QUERY, {
     variables: { username: currentUser?.username }
   })
-  const products = data?.user?.products?.edges?.map((edge) => edge?.node)
+  const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
 
   const handleSelectProduct = (product: Product) => {
     setProduct(product)
