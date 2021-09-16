@@ -1,6 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import Sidebar from '@components/StaffTools/Sidebar'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
@@ -12,6 +11,7 @@ import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
 
+import Sidebar from '../Sidebar'
 import {
   IntegrationSettingsMutation,
   IntegrationSettingsMutationVariables
