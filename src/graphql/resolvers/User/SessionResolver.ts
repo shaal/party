@@ -9,6 +9,7 @@ builder.prismaObject('Session', {
   fields: (t) => ({
     id: t.exposeID('id'),
     isStaff: t.exposeBoolean('isStaff'),
+    ipAddress: t.exposeString('ipAddress', { nullable: true }),
     userAgent: t.exposeString('userAgent', { nullable: true }),
 
     // Timestamps

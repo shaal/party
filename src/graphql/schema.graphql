@@ -424,6 +424,7 @@ type Session {
   createdAt: DateTime!
   expiresAt: DateTime!
   id: ID!
+  ipAddress: String
   isStaff: Boolean!
   user: User!
   userAgent: String
