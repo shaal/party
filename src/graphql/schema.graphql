@@ -474,7 +474,7 @@ type Topic {
   name: String!
   posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
   postsCount: Int!
-  users(after: String, before: String, first: Int, last: Int): TopicUsersConnection!
+  starrers(after: String, before: String, first: Int, last: Int): TopicStarrersConnection!
 }
 
 type TopicPostsConnection {
@@ -487,12 +487,12 @@ type TopicPostsConnectionEdge {
   node: Post!
 }
 
-type TopicUsersConnection {
-  edges: [TopicUsersConnectionEdge]!
+type TopicStarrersConnection {
+  edges: [TopicStarrersConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type TopicUsersConnectionEdge {
+type TopicStarrersConnectionEdge {
   cursor: String!
   node: User!
 }

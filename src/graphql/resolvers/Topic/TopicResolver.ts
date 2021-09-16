@@ -22,7 +22,7 @@ builder.prismaObject('Topic', {
     postsCount: t.relationCount('posts'),
 
     // Relations
-    users: t.relatedConnection('users', { cursor: 'id' }),
+    starrers: t.relatedConnection('starrers', { cursor: 'id' }),
     posts: t.prismaConnection({
       type: 'Post',
       cursor: 'id',
