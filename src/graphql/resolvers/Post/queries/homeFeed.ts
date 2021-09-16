@@ -13,28 +13,20 @@ export const homeFeed = async (
   // Redis cache
   const cacheKey = `${session?.userId}-homefeed`
   let cache: any = await redis.get(cacheKey)
-  console.log('yoginth', cache)
   cache = JSON.parse(cache)
 
   // Required user data
   let userFollowing: any
-  let userTopics: any
 
   if (cache) {
     userFollowing = cache.following
-    userTopics = cache.topics
   } else {
     const following = await db.user.findUnique({
       where: { id: session?.userId },
       select: { following: { select: { id: true } } }
     })
-    const topics = await db.user.findUnique({
-      where: { id: session?.userId },
-      select: { topics: { select: { id: true } } }
-    })
-    redis.set(cacheKey, JSON.stringify({ following, topics }), 'EX', 60)
+    redis.set(cacheKey, JSON.stringify({ following }), 'EX', 60)
     userFollowing = following
-    userTopics = topics
   }
 
   return await db.post.findMany({
@@ -50,13 +42,6 @@ export const homeFeed = async (
             ]
           },
           spammy: false
-        },
-        topics: {
-          every: {
-            topic: {
-              id: { in: [...userTopics.topics.map((topic: any) => topic.id)] }
-            }
-          }
         }
       },
       hidden: false
