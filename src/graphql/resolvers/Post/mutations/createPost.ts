@@ -68,7 +68,9 @@ export const createPost = async (
     }
   })
 
-  await processMentions(post)
+  if (getMentions(input.body)?.length > 0) {
+    await processMentions(post, session)
+  }
 
   return post
 }

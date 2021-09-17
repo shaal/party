@@ -7,7 +7,7 @@ export const getMentions = (postBody: string) => {
     })
 
     var processedArr = arr.map((item) => {
-      return item.replace('#', '')
+      return item.replace('@', '')
     })
 
     return processedArr

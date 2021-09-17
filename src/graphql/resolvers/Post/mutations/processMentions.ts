@@ -1,7 +1,11 @@
 import { getMentions } from '@graphql/utils/getMentions'
 
-import { Post } from '.prisma/client'
+import { Post, Session } from '.prisma/client'
 
-export const processMentions = async (post: Post) => {
-  console.log(getMentions(post.body))
+export const processMentions = async (
+  post: Post,
+  session: Session | undefined | null
+) => {
+  const users = getMentions(post?.body)
+  console.log(users)
 }
