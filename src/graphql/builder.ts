@@ -6,7 +6,7 @@ import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
 import { Prisma, Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
 export interface Context {
@@ -51,7 +51,7 @@ export const builder = new SchemaBuilder<{
     PrismaPlugin,
     RelayPlugin
   ],
-  prisma: { client: prisma },
+  prisma: { client: db },
   authScopes: async ({ session }) => ({
     public: true,
     user: !!session,

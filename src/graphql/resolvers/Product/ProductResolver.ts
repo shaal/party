@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { reservedSlugs } from '../Common/queries/reservedSlugs'
 import { createProduct } from './mutations/createProduct'
@@ -69,7 +69,7 @@ builder.queryField('product', (t) =>
     type: 'Product',
     args: { where: t.arg({ type: WhereProductInput }) },
     resolve: async (query, parent, { where }) => {
-      return await prisma.product.findUnique({
+      return await db.product.findUnique({
         ...query,
         where: { id: where.id!, slug: where.slug! },
         rejectOnNotFound: true
@@ -128,7 +128,7 @@ builder.mutationField('editProduct', (t) =>
       }
 
       try {
-        return await prisma.product.update({
+        return await db.product.update({
           ...query,
           where: { id: input?.id },
           data: {

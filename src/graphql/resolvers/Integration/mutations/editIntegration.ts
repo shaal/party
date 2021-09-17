@@ -1,16 +1,16 @@
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { EditIntegrationInput } from 'src/__generated__/schema.generated'
 
 export const editIntegration = async (
   input: EditIntegrationInput,
   session: Session | null | undefined
 ) => {
-  const integration = await prisma.integration.findFirst({
+  const integration = await db.integration.findFirst({
     where: { userId: session?.userId }
   })
 
-  return await prisma.integration.update({
+  return await db.integration.update({
     where: {
       id: integration?.id
     },

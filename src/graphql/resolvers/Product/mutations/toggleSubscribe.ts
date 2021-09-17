@@ -1,4 +1,4 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { hasSubscribed } from '../queries/hasSubscribed'
 
@@ -8,7 +8,7 @@ export const toggleSubscribe = async (
 ) => {
   // Unstar
   if (await hasSubscribed(currentUserId, productId)) {
-    return await prisma.product.update({
+    return await db.product.update({
       where: { id: productId },
       data: {
         subscribers: {
@@ -21,7 +21,7 @@ export const toggleSubscribe = async (
   }
 
   // Star
-  const topic = await prisma.product.update({
+  const topic = await db.product.update({
     where: { id: productId },
     data: {
       subscribers: {

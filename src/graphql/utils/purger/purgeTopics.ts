@@ -1,11 +1,11 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 interface Params {
   postId?: string
 }
 
 export const purgeTopics = async ({ postId }: Params) => {
-  return await prisma.postTopic.deleteMany({
+  return await db.postTopic.deleteMany({
     where: { postId }
   })
 }

@@ -1,5 +1,5 @@
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { EditTopicInput } from 'src/__generated__/schema.generated'
 
 export const modTopic = async (
@@ -7,13 +7,13 @@ export const modTopic = async (
   input: EditTopicInput | null | undefined,
   session: Session | null | undefined
 ) => {
-  const actionUser = await prisma.user.findUnique({
+  const actionUser = await db.user.findUnique({
     ...query,
     where: { id: session!.userId }
   })
 
   if (actionUser?.isStaff) {
-    return await prisma.topic.update({
+    return await db.topic.update({
       ...query,
       where: { id: input?.id },
       data: {

@@ -1,6 +1,6 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { hashPassword } from '@utils/auth'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
 
@@ -10,7 +10,7 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
   }
 
   try {
-    const user = await prisma.user.create({
+    const user = await db.user.create({
       ...query,
       data: {
         username: input.username,

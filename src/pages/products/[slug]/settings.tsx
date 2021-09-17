@@ -2,12 +2,12 @@ import Settings, {
   PRODUCT_SETTINGS_QUERY as query
 } from '@components/Product/Settings'
 import { preloadQuery } from '@utils/apollo'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 
 export const getServerSideProps = async (ctx: any) => {
   const session = await resolveSession(ctx)
-  const product = await prisma.product.findUnique({
+  const product = await db.product.findUnique({
     where: { slug: ctx.params!.slug as string }
   })
 

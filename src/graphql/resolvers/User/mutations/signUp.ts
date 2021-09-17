@@ -1,6 +1,6 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { hashPassword } from '@utils/auth'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
 import { SignupInput } from 'src/__generated__/schema.generated'
@@ -10,7 +10,7 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
-  const invite = await prisma.invite.findFirst({
+  const invite = await db.invite.findFirst({
     where: { code: input.invite }
   })
 
@@ -19,7 +19,7 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
   }
 
   try {
-    const user = await prisma.user.create({
+    const user = await db.user.create({
       ...query,
       data: {
         username: input.username,
@@ -46,7 +46,7 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
 
     await createSession(req, user)
 
-    await prisma.invite.updateMany({
+    await db.invite.updateMany({
       where: { code: input.invite },
       data: { usedTimes: { increment: 1 } }
     })

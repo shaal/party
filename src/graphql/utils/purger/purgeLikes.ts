@@ -1,4 +1,4 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 interface Params {
   postId?: string
@@ -6,7 +6,7 @@ interface Params {
 }
 
 export const purgeLikes = async ({ postId, userId }: Params) => {
-  return await prisma.like.deleteMany({
+  return await db.like.deleteMany({
     where: { postId, userId }
   })
 }

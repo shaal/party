@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { regenerateInvite } from './mutations/regenerateInvite'
 
@@ -21,7 +21,7 @@ builder.queryField('invite', (t) =>
     args: { code: t.arg.string() },
     nullable: true,
     resolve: async (query, parent, { code }) => {
-      return await prisma.invite.findFirst({
+      return await db.invite.findFirst({
         ...query,
         where: { code },
         rejectOnNotFound: true

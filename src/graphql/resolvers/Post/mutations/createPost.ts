@@ -2,7 +2,7 @@ import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
 
 export const createPost = async (
@@ -23,7 +23,7 @@ export const createPost = async (
   }
 
   if (input.productId) {
-    const product = await prisma.product.findUnique({
+    const product = await db.product.findUnique({
       ...query,
       where: { id: input.productId }
     })
@@ -38,7 +38,7 @@ export const createPost = async (
   let parentId = null
 
   if (input.parentId) {
-    const parent = await prisma.post.findUnique({
+    const parent = await db.post.findUnique({
       ...query,
       where: { id: input.parentId }
     })
@@ -49,7 +49,7 @@ export const createPost = async (
     }
   }
 
-  return await prisma.post.create({
+  return await db.post.create({
     ...query,
     data: {
       userId: session!.userId,

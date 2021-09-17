@@ -1,7 +1,7 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 export const getBadges = async (query: any) => {
-  return await prisma.badge.findMany({
+  return await db.badge.findMany({
     ...query,
     orderBy: { createdAt: 'desc' }
   })

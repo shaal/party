@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'
@@ -29,7 +29,7 @@ builder.prismaObject('Topic', {
       defaultSize: 20,
       maxSize: 100,
       resolve: (query, parent) =>
-        prisma.post.findMany({
+        db.post.findMany({
           ...query,
           where: {
             topics: { some: { topic: { name: parent.name } } },
@@ -46,7 +46,7 @@ builder.queryField('topic', (t) =>
     type: 'Topic',
     args: { name: t.arg.string() },
     resolve: async (query, parent, { name }) => {
-      return await prisma.topic.findUnique({
+      return await db.topic.findUnique({
         ...query,
         where: { name },
         rejectOnNotFound: true

@@ -1,6 +1,6 @@
 import { builder } from '@graphql/builder'
 import { authenticateUser } from '@utils/auth'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 
 import { Result } from '../ResultResolver'
@@ -19,7 +19,7 @@ builder.queryField('me', (t) =>
         return null
       }
 
-      return await prisma.user.findUnique({
+      return await db.user.findUnique({
         ...query,
         where: { id: session.userId },
         rejectOnNotFound: true

@@ -1,6 +1,6 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { CreateProductInput } from 'src/__generated__/schema.generated'
 
@@ -14,7 +14,7 @@ export const createProduct = async (
   }
 
   try {
-    return await prisma.product.create({
+    return await db.product.create({
       ...query,
       data: {
         userId: session!.userId,

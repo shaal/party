@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
 import requestIp from 'request-ip'
 
-import { prisma } from './prisma'
+import { db } from './prisma'
 
 const SESSION_TTL = 365 * 24 * 3600
 const IRON_SESSION_ID_KEY = 'sessionID'
@@ -37,7 +37,7 @@ export const sessionOptions: SessionOptions = {
 }
 
 export async function createSession(request: IncomingMessage, user: User) {
-  const session = await prisma.session.create({
+  const session = await db.session.create({
     data: {
       userId: user.id,
       isStaff: user.isStaff,
@@ -63,7 +63,7 @@ export async function removeSession(
 
   requestWithSession.session.destroy()
 
-  await prisma.session.delete({ where: { id: session!.id } })
+  await db.session.delete({ where: { id: session!.id } })
 }
 
 const sessionCache = new WeakMap<IncomingMessage, Session | null>()
@@ -82,7 +82,7 @@ export async function resolveSession({
   const sessionID = requestWithSession.session.get(IRON_SESSION_ID_KEY)
 
   if (sessionID) {
-    session = await prisma.session.findFirst({
+    session = await db.session.findFirst({
       where: {
         id: sessionID,
         expiresAt: { gte: new Date() }
@@ -94,7 +94,7 @@ export async function resolveSession({
         differenceInSeconds(session.expiresAt, new Date()) < 0.75 * SESSION_TTL
 
       if (shouldRefreshSession) {
-        await prisma.session.update({
+        await db.session.update({
           where: { id: session.id },
           data: { expiresAt: addSeconds(new Date(), SESSION_TTL) }
         })

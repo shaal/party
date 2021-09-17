@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import urlRegexSafe from 'url-regex-safe'
 
 import { hasLiked } from '../Like/queries/hasLiked'
@@ -107,7 +107,7 @@ builder.queryField('post', (t) =>
     type: 'Post',
     args: { id: t.arg.id() },
     resolve: async (query, parent, { id }) => {
-      return await prisma.post.findFirst({
+      return await db.post.findFirst({
         ...query,
         where: { id, hidden: false },
         rejectOnNotFound: true

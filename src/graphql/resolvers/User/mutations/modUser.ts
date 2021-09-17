@@ -1,15 +1,15 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { ModUserInput } from 'src/__generated__/schema.generated'
 
 export const modUser = async (query: any, input: ModUserInput) => {
   if (input.spammy) {
-    await prisma.session.deleteMany({
+    await db.session.deleteMany({
       ...query,
       where: { userId: input.userId }
     })
   }
 
-  return await prisma.user.update({
+  return await db.user.update({
     ...query,
     where: { id: input.userId },
     data: {

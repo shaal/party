@@ -1,7 +1,7 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 export const getProducts = async (query: any) => {
-  return await prisma.product.findMany({
+  return await db.product.findMany({
     ...query,
     orderBy: {
       createdAt: 'desc'

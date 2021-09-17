@@ -1,11 +1,11 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import SpotifyWebApi from 'spotify-web-api-node'
 
 import { Spotify } from '../SpotifyResolver'
 
 export const spotify = async (userId: string) => {
   try {
-    const integration = await prisma.integration.findFirst({
+    const integration = await db.integration.findFirst({
       where: { userId }
     })
     const credentials = {

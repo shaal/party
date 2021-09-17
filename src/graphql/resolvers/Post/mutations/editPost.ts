@@ -1,5 +1,5 @@
 import { Session } from '@prisma/client'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { EditPostInput } from 'src/__generated__/schema.generated'
 
 export const editPost = async (
@@ -7,7 +7,7 @@ export const editPost = async (
   input: EditPostInput | null | undefined,
   session: Session | null | undefined
 ) => {
-  const post = await prisma.post.findFirst({
+  const post = await db.post.findFirst({
     ...query,
     where: {
       id: input?.id,
@@ -17,7 +17,7 @@ export const editPost = async (
     rejectOnNotFound: true
   })
 
-  return await prisma.post.update({
+  return await db.post.update({
     where: { id: post?.id },
     data: { body: input?.body as string, done: input?.done as boolean }
   })

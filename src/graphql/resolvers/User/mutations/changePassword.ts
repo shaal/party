@@ -1,14 +1,14 @@
 import { Result } from '@graphql/resolvers/ResultResolver'
 import { Session } from '@prisma/client'
 import { hashPassword, verifyPassword } from '@utils/auth'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 import { ChangePasswordInput } from 'src/__generated__/schema.generated'
 
 export const changePassword = async (
   input: ChangePasswordInput,
   session: Session | null | undefined
 ) => {
-  const user = await prisma.user.findUnique({ where: { id: session!.userId } })
+  const user = await db.user.findUnique({ where: { id: session!.userId } })
 
   const passwordValid = await verifyPassword(
     user!.hashedPassword,
@@ -19,7 +19,7 @@ export const changePassword = async (
     throw new Error('Current password was not correct.')
   }
 
-  await prisma.user.update({
+  await db.user.update({
     where: { id: user!.id },
     data: {
       hashedPassword: await hashPassword(input.newPassword),
@@ -34,7 +34,7 @@ export const changePassword = async (
   })
 
   // Logout everywhere
-  await prisma.session.deleteMany({
+  await db.session.deleteMany({
     where: { userId: user!.id }
   })
 

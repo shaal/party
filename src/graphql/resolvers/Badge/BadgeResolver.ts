@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { getBadges } from './queries/getBadges'
 
@@ -41,7 +41,7 @@ builder.mutationField('createBadge', (t) =>
     type: 'Badge',
     args: { input: t.arg({ type: CreateBadgeInput }) },
     resolve: async (query, parent, { input }) => {
-      return await prisma.badge.create({
+      return await db.badge.create({
         data: {
           name: input.name,
           image: input.image,
@@ -64,7 +64,7 @@ builder.mutationField('attachBadge', (t) =>
     type: 'User',
     args: { input: t.arg({ type: AttachBadgeToUserInput }) },
     resolve: async (query, parent, { input }) => {
-      return await prisma.user.update({
+      return await db.user.update({
         ...query,
         where: { id: input.userId },
         data: {

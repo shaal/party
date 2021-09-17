@@ -1,10 +1,10 @@
-import { prisma } from '@utils/prisma'
+import { db } from '@utils/prisma'
 
 import { Wakatime } from '../WakatimeResolver'
 
 export const wakatime = async (userId: string) => {
   try {
-    const integration = await prisma.integration.findFirst({
+    const integration = await db.integration.findFirst({
       where: { userId }
     })
     const response = await fetch(
