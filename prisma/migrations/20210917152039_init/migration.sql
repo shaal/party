@@ -154,7 +154,7 @@ CREATE TABLE `badges` (
 CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
     `message` VARCHAR(191),
-    `type` ENUM('POSTLIKE', 'FOLLOW') NOT NULL,
+    `type` ENUM('POSTLIKE', 'MENTION', 'FOLLOW') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `receiverId` VARCHAR(191) NOT NULL,

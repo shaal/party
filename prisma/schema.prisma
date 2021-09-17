@@ -119,8 +119,8 @@ model Post {
   hidden      Boolean  @default(false)
 
   // Timestamps
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   user      User        @relation(fields: [userId], references: [id])
@@ -286,5 +286,6 @@ enum PostType {
 
 enum NotificationType {
   POSTLIKE
+  MENTION
   FOLLOW
 }
