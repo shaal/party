@@ -6,6 +6,7 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 import { LocationMarkerIcon, SupportIcon } from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Linkify from 'linkify-react'
@@ -73,7 +74,7 @@ const Details: React.FC<Props> = ({ user }) => {
         )}
         {user?.profile?.bio && (
           <div className="linkify">
-            <Linkify>{user?.profile?.bio}</Linkify>
+            <Linkify options={linkifyOptions}>{user?.profile?.bio}</Linkify>
           </div>
         )}
         {user?.profile?.location && (

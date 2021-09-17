@@ -5,6 +5,7 @@ import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -46,7 +47,7 @@ const Details: React.FC<Props> = ({ product }) => {
         )}
         {product?.description && (
           <div className="linkify">
-            <Linkify>{product?.description}</Linkify>
+            <Linkify options={linkifyOptions}>{product?.description}</Linkify>
           </div>
         )}
         <Social product={product} />
