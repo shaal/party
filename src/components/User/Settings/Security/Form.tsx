@@ -14,11 +14,17 @@ import {
 } from './__generated__/Form.generated'
 
 const changePasswordSchema = object({
-  currentPassword: string().min(6),
-  newPassword: string().min(6),
-  confirmNewPassword: string().min(6)
+  currentPassword: string().min(6, {
+    message: '👀 Password should atleast have 6 characters'
+  }),
+  newPassword: string().min(6, {
+    message: '👀 Password should atleast have 6 characters'
+  }),
+  confirmNewPassword: string().min(6, {
+    message: '👀 Password should atleast have 6 characters'
+  })
 }).refine((data) => data.newPassword === data.confirmNewPassword, {
-  message: 'Passwords do not match',
+  message: '👀 Passwords do not match',
   path: ['confirmNewPassword']
 })
 
