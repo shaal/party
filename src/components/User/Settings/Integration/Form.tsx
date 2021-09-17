@@ -18,7 +18,9 @@ import {
 } from './__generated__/Form.generated'
 
 const editIntegrationSchema = object({
-  wakatimeAPIKey: string().max(100).nullable()
+  wakatimeAPIKey: string()
+    .max(100, { message: '🔑 API key should not exceed 100 characters' })
+    .nullable()
 })
 
 interface Props {

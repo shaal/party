@@ -13,7 +13,9 @@ import {
 } from './__generated__/Mod.generated'
 
 const modTopicSchema = object({
-  description: string().max(1000).nullable()
+  description: string()
+    .max(1000, { message: '📜 Description should not exceed 1000 characters' })
+    .nullable()
 })
 
 interface Props {

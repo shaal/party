@@ -17,10 +17,16 @@ import {
 } from './__generated__/New.generated'
 
 const newProductSchema = object({
-  name: string().min(1),
-  slug: string().min(1), // TODO: Don't allow space
-  website: string().url(),
-  description: string().max(255)
+  name: string()
+    .min(2, { message: '🍀 Name should be atleast 2 characters' })
+    .max(100, { message: '🍀 Name should not exceed 100 characters' }),
+  slug: string()
+    .min(2, { message: '📦 Slug should be atleast 2 characters' })
+    .max(100, { message: '📦 Slug should not exceed 100 characters' }),
+  website: string().url({ message: '🔗 Invalid URL' }),
+  description: string()
+    .max(190, { message: '📦 Description should not exceed 190 characters' })
+    .nullable()
 })
 
 const NewProduct: React.FC = () => {
