@@ -22,10 +22,19 @@ import {
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
-  username: string().min(1),
-  name: string().min(1),
-  bio: string().max(255).nullable(),
-  location: string().max(50).nullable(),
+  username: string()
+    .min(2, { message: '👤 Username should atleast have 2 characters' })
+    .max(50, { message: '👤 Useranme should be within 50 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid username' }),
+  name: string()
+    .min(2, { message: '👤 Name should atleast have 2 characters' })
+    .max(50, { message: '👤 Name should be within 50 characters' }),
+  bio: string()
+    .max(190, { message: '👤 Bio should not exceed 190 characters' })
+    .nullable(),
+  location: string()
+    .max(50, { message: '📍 Location should not exceed 50 characters' })
+    .nullable(),
   avatar: string()
 })
 
