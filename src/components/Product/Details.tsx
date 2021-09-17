@@ -1,8 +1,11 @@
+import 'linkifyjs/plugins/hashtag'
+import 'linkifyjs/plugins/mention'
+
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Product } from 'src/__generated__/schema.generated'

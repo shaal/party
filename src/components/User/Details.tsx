@@ -1,3 +1,6 @@
+import 'linkifyjs/plugins/hashtag'
+import 'linkifyjs/plugins/mention'
+
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
@@ -5,7 +8,7 @@ import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
 import { LocationMarkerIcon, SupportIcon } from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -18,7 +21,6 @@ import Spotify from './Highlights/Spotify'
 import Wakatime from './Highlights/Wakatime'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
-
 const UserMod = dynamic(() => import('./Mod'))
 
 interface Props {
