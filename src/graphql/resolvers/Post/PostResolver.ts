@@ -3,6 +3,7 @@ import { db } from '@utils/prisma'
 import urlRegexSafe from 'url-regex-safe'
 
 import { hasLiked } from '../Like/queries/hasLiked'
+import { Result } from '../ResultResolver'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
@@ -165,11 +166,11 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 })
 
 builder.mutationField('deletePost', (t) =>
-  t.prismaField({
-    type: 'Post',
+  t.field({
+    type: Result,
     args: { input: t.arg({ type: DeletePostInput }) },
-    resolve: async (query, parent, { input }, { session }) => {
-      return await deletePost(query, input, session)
+    resolve: async (parent, { input }, { session }) => {
+      return await deletePost(input, session)
     }
   })
 )

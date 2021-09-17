@@ -19,9 +19,7 @@ const DeleteButton: React.FC<Props> = ({ post }) => {
   >(
     gql`
       mutation DeletePostMutation($input: DeletePostInput!) {
-        deletePost(input: $input) {
-          id
-        }
+        deletePost(input: $input)
       }
     `,
     {
