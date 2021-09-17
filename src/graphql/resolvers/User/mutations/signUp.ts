@@ -50,10 +50,12 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
     })
 
     return user
-  } catch (error: PrismaClientKnownRequestError | any) {
-    console.log(error)
+  } catch (error: any) {
     if (error.code === 'P2002') {
-      throw new Error('Username is already taken!')
+      if (error.meta.target === 'users_username_key')
+        throw new Error('Username is already taken!')
+      if (error.meta.target === 'users_email_key')
+        throw new Error('Email is already taken!')
     }
 
     throw new Error('Something went wrong!')

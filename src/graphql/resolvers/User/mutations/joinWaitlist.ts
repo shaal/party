@@ -35,7 +35,7 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
     })
 
     return user
-  } catch (error: PrismaClientKnownRequestError | any) {
+  } catch (error: any) {
     if (error.code === 'P2002') {
       if (error.meta.target === 'users_username_key')
         throw new Error('Username is already taken!')
