@@ -14,10 +14,15 @@ import {
   JoinWaitlistFormMutationVariables
 } from './__generated__/Form.generated'
 
-const signUpSchema = object({
-  username: string().min(2).max(30),
-  email: string().email(),
-  password: string().min(6)
+export const signUpSchema = object({
+  username: string()
+    .min(2, { message: 'Username should atleast have 2 characters' })
+    .max(30, { message: 'Useranme should be within 30 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: 'Invalid username' }),
+  email: string().email({ message: 'Invalid email' }),
+  password: string().min(6, {
+    message: 'Password should atleast have 6 characters'
+  })
 })
 
 const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'

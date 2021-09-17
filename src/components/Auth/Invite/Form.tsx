@@ -7,18 +7,12 @@ import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { UserAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { object, string } from 'zod'
 
+import { signUpSchema } from '../Signup/Form'
 import {
   SignupMutation,
   SignupMutationVariables
 } from './__generated__/Form.generated'
-
-const signUpSchema = object({
-  username: string().min(2).max(30),
-  email: string().email(),
-  password: string().min(6)
-})
 
 const InviteSignupForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
