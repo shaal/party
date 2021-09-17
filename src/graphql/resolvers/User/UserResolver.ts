@@ -121,14 +121,14 @@ const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
     username: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 20 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     name: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 50 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
-    bio: t.string({ required: false, validate: { maxLength: 255 } }),
-    location: t.string({ required: false, validate: { maxLength: 50 } }),
+    bio: t.string({ required: false, validate: { maxLength: 190 } }),
+    location: t.string({ required: false, validate: { maxLength: 100 } }),
     avatar: t.string({ required: false }),
     cover: t.string({ required: false })
   })
