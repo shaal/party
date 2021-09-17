@@ -73,6 +73,7 @@ const JoinWaitlistInput = builder.inputType('JoinWaitlistInput', {
   fields: (t) => ({
     username: t.string({
       validate: {
+        regex: /^[a-z0-9_\.]+$/,
         minLength: 1,
         maxLength: 30
       }
@@ -108,6 +109,7 @@ const SignupInput = builder.inputType('SignupInput', {
   fields: (t) => ({
     username: t.string({
       validate: {
+        regex: /^[a-z0-9_\.]+$/,
         minLength: 1,
         maxLength: 30
       }
