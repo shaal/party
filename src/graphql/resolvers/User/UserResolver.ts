@@ -141,24 +141,32 @@ builder.mutationField('editUser', (t) =>
     args: { input: t.arg({ type: EditUserInput }) },
     authScopes: { user: true },
     resolve: async (query, parent, { input }, { session }) => {
-      return await db.user.update({
-        ...query,
-        where: {
-          id: session!.userId
-        },
-        data: {
-          username: input.username,
-          profile: {
-            update: {
-              name: input.name,
-              bio: input.bio,
-              location: input.location,
-              avatar: input.avatar,
-              cover: input.cover
+      try {
+        return await db.user.update({
+          ...query,
+          where: {
+            id: session!.userId
+          },
+          data: {
+            username: input.username,
+            profile: {
+              update: {
+                name: input.name,
+                bio: input.bio,
+                location: input.location,
+                avatar: input.avatar,
+                cover: input.cover
+              }
             }
           }
+        })
+      } catch (error: any) {
+        if (error.code === 'P2002') {
+          throw new Error('Username is already taken!')
         }
-      })
+
+        throw new Error('Something went wrong!')
+      }
     }
   })
 )

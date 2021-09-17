@@ -140,7 +140,7 @@ builder.mutationField('editProduct', (t) =>
         })
       } catch (error: any) {
         if (error.code === 'P2002') {
-          throw new Error('Product Slug should be unique!')
+          throw new Error('Product slug is already taken!')
         }
 
         throw new Error('Something went wrong!')
