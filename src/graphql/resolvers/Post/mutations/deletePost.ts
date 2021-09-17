@@ -1,8 +1,8 @@
+import { purgeLikes } from '@graphql/utils/purger/purgeLikes'
+import { purgeReplies } from '@graphql/utils/purger/purgeReplies'
+import { purgeTopics } from '@graphql/utils/purger/purgeTopics'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { purgeLikes } from '@utils/purger/purgeLikes'
-import { purgeReplies } from '@utils/purger/purgeReplies'
-import { purgeTopics } from '@utils/purger/purgeTopics'
 import { EditPostInput } from 'src/__generated__/schema.generated'
 
 export const deletePost = async (
