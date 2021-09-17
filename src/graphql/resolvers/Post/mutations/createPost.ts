@@ -5,6 +5,8 @@ import { PostType, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
 
+import { processMentions } from './processMentions'
+
 export const createPost = async (
   query: any,
   input: CreatePostInput,
@@ -49,7 +51,7 @@ export const createPost = async (
     }
   }
 
-  return await db.post.create({
+  const post = await db.post.create({
     ...query,
     data: {
       userId: session!.userId,
@@ -65,4 +67,8 @@ export const createPost = async (
       parentId
     }
   })
+
+  await processMentions(post)
+
+  return post
 }
