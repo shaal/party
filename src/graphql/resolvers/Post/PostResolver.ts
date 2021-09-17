@@ -119,7 +119,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
     title: t.string({
       required: false,
-      validate: { minLength: 1, maxLength: 255 }
+      validate: { minLength: 1, maxLength: 190 }
     }),
     parentId: t.id({ required: false }),
     productId: t.id({ required: false }),

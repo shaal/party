@@ -25,9 +25,13 @@ import {
   NewPostMutationVariables
 } from './__generated__/Post.generated'
 
-const newPostSchema = object({
-  title: string().min(1).max(255),
-  body: string().min(1).max(10_000)
+const newQuestionSchema = object({
+  title: string()
+    .min(1, { message: '❓ Title should not be empty' })
+    .max(190, { message: '❓ Title should not exceed 190 characters' }),
+  body: string()
+    .min(1, { message: '❓ Question should not be empty' })
+    .max(10000, { message: '❓ Question should not exceed 10000 characters' })
 })
 
 const QuestionType: React.FC = () => {
@@ -58,7 +62,7 @@ const QuestionType: React.FC = () => {
   )
 
   const form = useZodForm({
-    schema: newPostSchema
+    schema: newQuestionSchema
   })
 
   return (
