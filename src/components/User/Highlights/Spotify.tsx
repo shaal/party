@@ -29,7 +29,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
         userId: user?.id
       },
       skip: !user?.id,
-      pollInterval: 10_000
+      pollInterval: 10000
     }
   )
 

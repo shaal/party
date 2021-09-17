@@ -66,7 +66,7 @@ const StaffToolsUsers: React.FC = () => {
       variables: {
         after: null
       },
-      pollInterval: 10_000
+      pollInterval: 10000
     }
   )
   const users = data?.users?.edges?.map((edge) => edge?.node)
