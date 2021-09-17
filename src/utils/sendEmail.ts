@@ -1,42 +1,60 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { SentMessageInfo } from 'nodemailer'
 
-const MAIL_FROM = process.env.MAIL_FROM_ADDRESS
-const MAIL_HOST = process.env.MAIL_HOST
-const MAIL_USERNAME = process.env.MAIL_USERNAME
-const MAIL_PASSWORD = process.env.MAIL_PASSWORD
+import { db } from './prisma'
 
 interface SendEmailInput {
-  to: string
+  receiverId: string
   subject: string
   text: string
 }
 
-export const sendEmail = async (input: SendEmailInput) => {
-  if (process.env.NODE_ENV === `development`) {
-    console.log()
-    console.log(`To: ${input.to}`)
-    console.log(`Subject: ${input.subject}`)
-    console.log()
-    console.log(input.text)
-    console.log()
-    return
-  }
+export const sendEmail = async (
+  input: SendEmailInput
+): Promise<string | SentMessageInfo> => {
+  const receiver = await db.user.findUnique({
+    where: { id: input.receiverId },
+    select: { email: true }
+  })
 
-  const transporter = nodemailer.createTransport({
-    host: MAIL_HOST,
+  const transport = {
+    host: process.env.MAIL_HOST,
     port: 587,
     secure: false,
     auth: {
-      user: MAIL_USERNAME,
-      pass: MAIL_PASSWORD
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD
     }
-  })
+  }
 
-  return await transporter.sendMail({
-    from: `"Devparty" ${MAIL_FROM}`,
-    to: input.to,
-    subject: input.subject,
-    text: input.text,
-    html: input.text
+  new Promise((resolve, reject) => {
+    if (process.env.NODE_ENV === `development`) {
+      console.log()
+      console.log(`To: ${receiver?.email}`)
+      console.log(`Subject: ${input.subject}`)
+      console.log()
+      console.log(input.text)
+      console.log()
+      return
+    }
+
+    if (!receiver?.email || !input.subject || !input.text) {
+      return reject('Missing required elements to send email.')
+    }
+
+    nodemailer.createTransport(transport).sendMail(
+      {
+        from: `Devparty ${process.env.MAIL_FROM_ADDRESS}`,
+        to: receiver?.email,
+        subject: input?.subject,
+        text: input?.text,
+        html: input?.text
+      },
+      (error, info) => {
+        if (error) {
+          return reject(error.message)
+        }
+        return resolve(info)
+      }
+    )
   })
 }
