@@ -40,9 +40,11 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
             </div>
             <div className="flex items-center space-x-2">
               <Slug slug={user?.username} prefix="@" />
-              <span className="text-xs bg-gray-200 dark:bg-gray-800 border py-0.5 px-1.5 rounded-md">
-                Follows you
-              </span>
+              {user?.isFollowing && (
+                <span className="text-xs bg-gray-200 dark:bg-gray-800 border py-0.5 px-1.5 rounded-md">
+                  Follows you
+                </span>
+              )}
             </div>
           </div>
           <div>{user?.profile?.bio}</div>
