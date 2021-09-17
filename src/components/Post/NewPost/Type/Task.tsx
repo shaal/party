@@ -19,7 +19,9 @@ import {
 } from './__generated__/Post.generated'
 
 const newPostSchema = object({
-  body: string().min(1).max(1000),
+  body: string()
+    .min(1, { message: '✅ Task should not be empty' })
+    .max(10000, { message: '✅ Task should not exceed 10000 characters' }),
   done: boolean().default(true)
 })
 
