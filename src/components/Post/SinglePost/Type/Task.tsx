@@ -1,9 +1,10 @@
+import 'linkifyjs/plugins/hashtag'
+import 'linkifyjs/plugins/mention'
+
 import { gql, useMutation } from '@apollo/client'
 import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import * as linkify from 'linkifyjs'
-import hashtag from 'linkifyjs/plugins/hashtag'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
@@ -17,8 +18,6 @@ import {
 interface Props {
   task: Post
 }
-
-hashtag(linkify)
 
 const TaskType: React.FC<Props> = ({ task }) => {
   const [editPost] = useMutation<EditPostMutation, EditPostMutationVariables>(
@@ -49,7 +48,9 @@ const TaskType: React.FC<Props> = ({ task }) => {
     <div className="linkify space-y-3 inline-flex">
       <div className="flex items-center gap-2.5">
         <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
-        <Linkify options={linkifyOptions}>{task?.body}</Linkify>
+        <Linkify tagName="div" options={linkifyOptions}>
+          {task?.body}
+        </Linkify>
       </div>
       {task?.attachments && <Attachments attachments={task?.attachments} />}
     </div>
