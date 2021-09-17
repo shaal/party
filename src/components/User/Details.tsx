@@ -41,6 +41,7 @@ const Details: React.FC<Props> = ({ user }) => {
         <div>
           <div className="text-2xl font-bold flex items-center gap-1.5">
             {user?.profile?.name}
+            {user?.isFollowing.toString()}
             {user?.isVerified && (
               <Tooltip content={'Verified'}>
                 <BadgeCheckIcon className="h-6 w-6 text-brand-500" />

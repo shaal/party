@@ -6,6 +6,7 @@ import { toggleFollow } from './mutations/toggleFollow'
 import { getUsers } from './queries/getUsers'
 import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
+import { isFollowing } from './queries/isFollowing'
 
 builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
@@ -24,6 +25,13 @@ builder.prismaObject('User', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await hasFollowed(session?.userId as string, parent.id)
+      }
+    }),
+    isFollowing: t.field({
+      type: 'Boolean',
+      resolve: async (parent, args, { session }) => {
+        if (!session) return false
+        return await isFollowing(session?.userId as string, parent.id)
       }
     }),
 
