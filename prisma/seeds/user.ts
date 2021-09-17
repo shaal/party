@@ -8,7 +8,7 @@ export const userData = [
     bio: '요기 • Creator of @Taskord • Mod at @thepracticaldev • BTS Fanboi ⟬⟭ • he/him 🏳️‍🌈🌳'
   },
   {
-    email: 'filip+yoginth@hey.com',
+    email: 'yoginth+filip@hey.com',
     username: 'filip',
     name: 'Filip Troníček',
     isStaff: true,
@@ -16,7 +16,7 @@ export const userData = [
     bio: 'A weird 16-year old who loves JavaScript and Python for a better world with OSS'
   },
   {
-    email: 'svobodavl+yoginth@hey.com',
+    email: 'yoginth+svobodavl@hey.com',
     username: 'svobodavl',
     name: 'Vláďa Svoboda',
     isStaff: false,
@@ -24,7 +24,7 @@ export const userData = [
     bio: '“Dark mode everything”'
   },
   {
-    email: 'aellopos+yoginth@hey.com',
+    email: 'yoginth+aellopos@hey.com',
     username: 'aellopos',
     name: 'Michal Kučera',
     isStaff: false,
@@ -32,7 +32,7 @@ export const userData = [
     bio: 'Czechitas Senior lecturer | Microsoft STC Learning & Development Lead | Microsoft MLSA Country Lead of Czech Republic'
   },
   {
-    email: 'kahy+yoginth@hey.com',
+    email: 'yoginth+kahy@hey.com',
     username: 'kahy',
     name: 'Josef Kahoun',
     isStaff: false,
