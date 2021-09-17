@@ -15,8 +15,10 @@ import {
 } from './__generated__/Form.generated'
 
 const loginSchema = object({
-  email: string().email(),
-  password: string().min(6)
+  email: string().email({ message: 'Invalid email' }),
+  password: string().min(6, {
+    message: 'Password should atleast have 6 characters'
+  })
 })
 
 const LoginForm: React.FC = () => {
