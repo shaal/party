@@ -19,7 +19,9 @@ import {
 import { REPLIES_QUERY } from './Replies'
 
 const newReplySchema = object({
-  body: string().min(1).max(1000)
+  body: string()
+    .min(1, { message: '💬 Reply should not be empty' })
+    .max(10000, { message: '💬 Reply should not exceed 10000 characters' })
 })
 
 interface Props {
