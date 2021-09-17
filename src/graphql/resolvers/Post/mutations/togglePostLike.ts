@@ -1,6 +1,6 @@
 import { hasLiked } from '@graphql/resolvers/Like/queries/hasLiked'
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const togglePostLike = async (
   query: any,
@@ -9,11 +9,11 @@ export const togglePostLike = async (
 ) => {
   let like
   if (await hasLiked(userId, postId)) {
-    await db.like.deleteMany({
+    await prisma.like.deleteMany({
       where: { userId, postId }
     })
   } else {
-    like = await db.like.create({
+    like = await prisma.like.create({
       data: {
         post: { connect: { id: postId } },
         user: { connect: { id: userId } }
@@ -21,7 +21,7 @@ export const togglePostLike = async (
     })
   }
 
-  const post = await db.post.findFirst({
+  const post = await prisma.post.findFirst({
     ...query,
     where: { id: postId }
   })

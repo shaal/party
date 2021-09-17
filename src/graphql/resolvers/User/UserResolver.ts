@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
@@ -54,7 +54,7 @@ builder.prismaObject('User', {
     hasWakatimeIntegration: t.field({
       type: 'Boolean',
       resolve: async (parent) => {
-        const integration = await db.integration.findFirst({
+        const integration = await prisma.integration.findFirst({
           where: { userId: parent.id }
         })
         return integration?.wakatimeAPIKey ? true : false
@@ -63,7 +63,7 @@ builder.prismaObject('User', {
     hasSpotifyIntegration: t.field({
       type: 'Boolean',
       resolve: async (parent) => {
-        const integration = await db.integration.findFirst({
+        const integration = await prisma.integration.findFirst({
           where: { userId: parent.id }
         })
         return integration?.spotifyRefreshToken ? true : false
@@ -94,7 +94,7 @@ builder.queryField('user', (t) =>
     args: { username: t.arg.id() },
     nullable: true,
     resolve: async (query, parent, { username }) => {
-      return await db.user.findFirst({
+      return await prisma.user.findFirst({
         ...query,
         where: { username, inWaitlist: false },
         rejectOnNotFound: true
@@ -150,7 +150,7 @@ builder.mutationField('editUser', (t) =>
     authScopes: { user: true },
     resolve: async (query, parent, { input }, { session }) => {
       try {
-        return await db.user.update({
+        return await prisma.user.update({
           ...query,
           where: {
             id: session!.userId
@@ -233,7 +233,7 @@ builder.mutationField('onboardUser', (t) =>
     args: { input: t.arg({ type: OnboardUserInput }) },
     nullable: true,
     resolve: async (query, parent, { input }) => {
-      return await db.user.update({
+      return await prisma.user.update({
         where: { id: input.userId },
         data: { inWaitlist: false }
       })

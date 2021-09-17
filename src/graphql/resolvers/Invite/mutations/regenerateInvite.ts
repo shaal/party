@@ -1,18 +1,18 @@
 import { Session } from '@prisma/client'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 
 export const regenerateInvite = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const invite = await db.invite.findFirst({
+  const invite = await prisma.invite.findFirst({
     where: {
       userId: session?.userId
     }
   })
 
-  return await db.invite.update({
+  return await prisma.invite.update({
     ...query,
     where: { id: invite?.id },
     data: {

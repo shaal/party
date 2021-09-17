@@ -1,11 +1,11 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const getMorePostsByUser = async (
   query: any,
   userId: string,
   type: string
 ) => {
-  return await db.post.findMany({
+  return await prisma.post.findMany({
     ...query,
     take: 5,
     where: {

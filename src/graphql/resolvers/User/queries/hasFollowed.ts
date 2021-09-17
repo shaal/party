@@ -1,7 +1,7 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const hasFollowed = async (currentUserId: string, userId: string) => {
-  const user = await db.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: { id: userId },
     include: {
       followedBy: { where: { id: currentUserId } }

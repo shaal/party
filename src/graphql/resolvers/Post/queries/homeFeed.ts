@@ -1,5 +1,5 @@
 import { PostType, Session } from '@prisma/client'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 import Redis from 'ioredis'
 
 export const homeFeed = async (
@@ -25,15 +25,15 @@ export const homeFeed = async (
     userProducts = cache.products
     userTopics = cache.topics
   } else {
-    const following = await db.user.findUnique({
+    const following = await prisma.user.findUnique({
       where: { id: session?.userId },
       select: { following: { select: { id: true } } }
     })
-    const products = await db.user.findUnique({
+    const products = await prisma.user.findUnique({
       where: { id: session?.userId },
       select: { subscribedProducts: { select: { id: true } } }
     })
-    const topics = await db.user.findUnique({
+    const topics = await prisma.user.findUnique({
       where: { id: session?.userId },
       select: { topics: { select: { id: true } } }
     })
@@ -48,7 +48,7 @@ export const homeFeed = async (
     userTopics = topics
   }
 
-  return await db.post.findMany({
+  return await prisma.post.findMany({
     ...query,
     where: {
       type: type === 'ALL' ? undefined : (type as PostType),

@@ -1,5 +1,5 @@
 import { NotificationType } from '@prisma/client'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const createNotification = async (
   dispatcherId: any,
@@ -7,7 +7,7 @@ export const createNotification = async (
   entityId: any,
   type: NotificationType
 ) => {
-  return await db.notification.create({
+  return await prisma.notification.create({
     data: {
       dispatcher: { connect: { id: dispatcherId } },
       receiver: { connect: { id: receiverId } },

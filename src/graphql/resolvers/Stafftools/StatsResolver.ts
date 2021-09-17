@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export class Stats {
   users: number
@@ -51,14 +51,14 @@ builder.queryField('stats', (t) =>
     nullable: true,
     authScopes: { isStaff: true },
     resolve: async () => {
-      const users = await db.user.count()
-      const products = await db.product.count()
-      const posts = await db.post.count()
-      const likes = await db.like.count()
-      const topics = await db.topic.count()
-      const badges = await db.badge.count()
-      const notifications = await db.notification.count()
-      const sessions = await db.session.count()
+      const users = await prisma.user.count()
+      const products = await prisma.product.count()
+      const posts = await prisma.post.count()
+      const likes = await prisma.like.count()
+      const topics = await prisma.topic.count()
+      const badges = await prisma.badge.count()
+      const notifications = await prisma.notification.count()
+      const sessions = await prisma.session.count()
 
       return new Stats(
         users,

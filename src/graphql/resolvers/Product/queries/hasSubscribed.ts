@@ -1,10 +1,10 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const hasSubscribed = async (
   currentUserId: string,
   productId: string
 ) => {
-  const user = await db.product.findUnique({
+  const user = await prisma.product.findUnique({
     where: { id: productId },
     include: {
       subscribers: {

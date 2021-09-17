@@ -1,11 +1,11 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 import { hasStarred } from '../queries/hasStarred'
 
 export const toggleStar = async (currentUserId: string, topicId: string) => {
   // Unstar
   if (await hasStarred(currentUserId, topicId)) {
-    return await db.topic.update({
+    return await prisma.topic.update({
       where: { id: topicId },
       data: {
         starrers: {
@@ -18,7 +18,7 @@ export const toggleStar = async (currentUserId: string, topicId: string) => {
   }
 
   // Star
-  const topic = await db.topic.update({
+  const topic = await prisma.topic.update({
     where: { id: topicId },
     data: {
       starrers: {

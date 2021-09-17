@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 import { editIntegration } from './mutations/editIntegration'
 
@@ -14,7 +14,7 @@ builder.prismaObject('Integration', {
         if (!session || session.userId !== parent.userId) {
           return null
         }
-        const integration = await db.integration.findUnique({
+        const integration = await prisma.integration.findUnique({
           where: { id: parent.id }
         })
         return integration?.wakatimeAPIKey
@@ -27,7 +27,7 @@ builder.prismaObject('Integration', {
         if (!session || session.userId !== parent.userId) {
           return null
         }
-        const integration = await db.integration.findUnique({
+        const integration = await prisma.integration.findUnique({
           where: { id: parent.id }
         })
         return integration?.spotifyRefreshToken
@@ -46,7 +46,7 @@ builder.queryField('integration', (t) =>
     args: { userId: t.arg.id({ required: false }) },
     nullable: true,
     resolve: async (query, parent, { userId }, { session }) => {
-      return await db.integration.findFirst({
+      return await prisma.integration.findFirst({
         where: { userId: userId ? userId : session?.userId }
       })
     }

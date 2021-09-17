@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 builder.queryField('searchPosts', (t) =>
   t.prismaConnection({
@@ -9,7 +9,7 @@ builder.queryField('searchPosts', (t) =>
     defaultSize: 20,
     maxSize: 100,
     resolve: async (query, parent, { keyword }) => {
-      return await db.post.findMany({
+      return await prisma.post.findMany({
         ...query,
         where: { body: { contains: keyword } }
       })
@@ -25,7 +25,7 @@ builder.queryField('searchUsers', (t) =>
     defaultSize: 20,
     maxSize: 100,
     resolve: async (query, parent, { keyword }) => {
-      return await db.user.findMany({
+      return await prisma.user.findMany({
         ...query,
         where: { username: { contains: keyword }, inWaitlist: false }
       })
@@ -41,7 +41,7 @@ builder.queryField('searchProduct', (t) =>
     defaultSize: 20,
     maxSize: 100,
     resolve: async (query, parent, { keyword }) => {
-      return await db.product.findMany({
+      return await prisma.product.findMany({
         ...query,
         where: { slug: { contains: keyword } }
       })

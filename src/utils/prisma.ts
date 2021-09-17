@@ -4,10 +4,10 @@ declare global {
   var __globalPrisma__: PrismaClient
 }
 
-export let db: PrismaClient
+export let prisma: PrismaClient
 
 if (process.env.NODE_ENV === 'production') {
-  db = new PrismaClient({
+  prisma = new PrismaClient({
     log: ['error', 'warn']
   })
 } else {
@@ -17,5 +17,5 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
 
-  db = global.__globalPrisma__
+  prisma = global.__globalPrisma__
 }

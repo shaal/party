@@ -1,7 +1,7 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 export const hasStarred = async (currentUserId: string, topicId: string) => {
-  const user = await db.topic.findUnique({
+  const user = await prisma.topic.findUnique({
     where: { id: topicId },
     include: {
       starrers: {

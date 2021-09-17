@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 import { Result } from '../ResultResolver'
 import { getSessions } from './queries/getSessions'
@@ -47,7 +47,7 @@ builder.mutationField('revokeSession', (t) =>
     args: { input: t.arg({ type: RevokeSessionInput }) },
     authScopes: { user: true, $granted: 'currentUser' },
     resolve: async (parent, { input }) => {
-      await db.session.delete({
+      await prisma.session.delete({
         where: { id: input!.id }
       })
 

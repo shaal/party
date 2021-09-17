@@ -1,5 +1,5 @@
 import { builder } from '@graphql/builder'
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 builder.prismaObject('Profile', {
   findUnique: (profile) => ({ id: profile.id }),
@@ -36,7 +36,7 @@ builder.mutationField('editSocial', (t) =>
     type: 'User',
     args: { input: t.arg({ type: EditSocialInput }) },
     resolve: async (query, parent, { input }, { session }) => {
-      return await db.user.update({
+      return await prisma.user.update({
         ...query,
         where: {
           id: session!.userId

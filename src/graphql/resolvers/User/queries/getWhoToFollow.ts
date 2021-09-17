@@ -1,4 +1,4 @@
-import { db } from '@utils/prisma'
+import { prisma } from '@utils/prisma'
 
 import { Session } from '.prisma/client'
 
@@ -6,12 +6,12 @@ export const getWhoToFollow = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const following = await db.user.findFirst({
+  const following = await prisma.user.findFirst({
     where: { id: session?.userId, inWaitlist: false },
     select: { following: { select: { id: true } } }
   })
 
-  return await db.user.findMany({
+  return await prisma.user.findMany({
     ...query,
     take: 5,
     where: {
