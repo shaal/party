@@ -21,13 +21,13 @@ export const togglePostLike = async (
     })
   }
 
-  const post = await db.post.findUnique({
+  const post = await db.post.findFirst({
     ...query,
     where: { id: postId }
   })
 
   if (like && userId !== post?.userId) {
-    createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
+    await createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
   }
 
   return post
