@@ -18,10 +18,22 @@ import {
 } from './__generated__/Form.generated'
 
 const editSocialSchema = object({
-  website: string().max(100).nullable(),
-  twitter: string().max(50).nullable(),
-  github: string().max(50).nullable(),
-  discord: string().max(50).nullable()
+  website: string()
+    .max(100, { message: '🔗 Website url should be within 30 characters' })
+    .url({ message: '🔗 Invalid URL' })
+    .nullable(),
+  twitter: string()
+    .max(50, { message: '👤 Username should be within 50 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Twitter username' })
+    .nullable(),
+  github: string()
+    .max(50, { message: '👤 Username should be within 50 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid GitHub username' })
+    .nullable(),
+  discord: string()
+    .max(50, { message: '👤 Username should be within 50 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Discord username' })
+    .nullable()
 })
 
 interface Props {
