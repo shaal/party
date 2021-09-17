@@ -25,12 +25,14 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
         username: input.username,
         email: input.email,
         hashedPassword: await hashPassword(input.password),
+        inWaitlist: false,
         profile: {
           create: {
             name: input.username,
             avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
           }
         },
+        following: { connect: { id: invite.userId } },
         invite: {
           create: {
             code: await (await md5(input.email + Math.random()))
