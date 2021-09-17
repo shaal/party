@@ -20,7 +20,7 @@ export const deletePost = async (
     rejectOnNotFound: true
   })
 
-  // Purge all related data
+  // Purge all related data to the post
   await purgeLikes({ postId: post?.id })
   await purgeReplies({ parentId: post?.id })
   await purgeTopics({ postId: post?.id })
