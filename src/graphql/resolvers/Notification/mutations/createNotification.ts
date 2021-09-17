@@ -1,5 +1,6 @@
 import { NotificationType } from '@prisma/client'
 import { db } from '@utils/prisma'
+import { sendEmail } from '@utils/sendEmail'
 
 export const createNotification = async (
   dispatcherId: any,
@@ -7,7 +8,7 @@ export const createNotification = async (
   entityId: any,
   type: NotificationType
 ) => {
-  return await db.notification.create({
+  const notification = await db.notification.create({
     data: {
       dispatcher: { connect: { id: dispatcherId } },
       receiver: { connect: { id: receiverId } },
@@ -15,4 +16,12 @@ export const createNotification = async (
       type
     }
   })
+
+  await sendEmail({
+    receiverId: notification?.receiverId,
+    subject: 'Someone liked your post',
+    text: 'Someone liked your post'
+  })
+
+  return
 }
