@@ -1,3 +1,4 @@
+import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
@@ -11,6 +12,10 @@ export const createPost = async (
 ) => {
   if (getTopics(input.body)?.length > 5) {
     throw new Error('Oops! Your post should not contain more than 5 topics')
+  }
+
+  if (getMentions(input.body)?.length > 5) {
+    throw new Error('Oops! Your post should not contain more than 5 mentions')
   }
 
   if (input.parentId && input.type !== 'REPLY') {
