@@ -147,7 +147,7 @@ type Mutation {
   deletePost(input: DeletePostInput!): Post!
   editIntegration(input: EditIntegrationInput!): Integration!
   editPost(input: EditPostInput!): Post!
-  editProduct(input: EditProductInput!): Product!
+  editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!

@@ -1,6 +1,7 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 
+import { reservedSlugs } from '../Common/queries/reservedSlugs'
 import { createProduct } from './mutations/createProduct'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
@@ -120,17 +121,30 @@ builder.mutationField('editProduct', (t) =>
     type: 'Product',
     args: { input: t.arg({ type: EditProductInput }) },
     authScopes: { user: true },
+    nullable: true,
     resolve: async (query, parent, { input }) => {
-      return await db.product.update({
-        ...query,
-        where: { id: input?.id },
-        data: {
-          slug: input.slug,
-          name: input.name,
-          description: input.description,
-          avatar: input.avatar
+      if (reservedSlugs.includes(input.slug)) {
+        throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
+      }
+
+      try {
+        return await db.product.update({
+          ...query,
+          where: { id: input?.id },
+          data: {
+            slug: input.slug,
+            name: input.name,
+            description: input.description,
+            avatar: input.avatar
+          }
+        })
+      } catch (error: any) {
+        if (error.code === 'P2002') {
+          throw new Error('Product Slug should be unique!')
         }
-      })
+
+        throw new Error('Something went wrong!')
+      }
     }
   })
 )
