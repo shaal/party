@@ -42,10 +42,7 @@ export const FieldError: React.FC<FieldErrorProps> = ({ name }) => {
   if (!error) return null
 
   return (
-    <div className="text-sm mt-1 flex items-center space-x-1 text-red-500 font-bold">
-      <div className="text-xs">😱</div>
-      <div>{error.message}</div>
-    </div>
+    <div className="text-sm mt-1 text-red-500 font-bold">{error.message}</div>
   )
 }
 

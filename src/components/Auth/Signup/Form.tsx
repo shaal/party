@@ -18,10 +18,10 @@ export const signUpSchema = object({
   username: string()
     .min(2, { message: 'Username should atleast have 2 characters' })
     .max(30, { message: 'Useranme should be within 30 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: 'Invalid username' }),
-  email: string().email({ message: 'Invalid email' }),
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid username' }),
+  email: string().email({ message: '📧 Invalid email' }),
   password: string().min(6, {
-    message: 'Password should atleast have 6 characters'
+    message: '👀 Password should atleast have 6 characters'
   })
 })
 

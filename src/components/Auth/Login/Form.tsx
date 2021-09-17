@@ -15,9 +15,9 @@ import {
 } from './__generated__/Form.generated'
 
 const loginSchema = object({
-  email: string().email({ message: 'Invalid email' }),
+  email: string().email({ message: '📧 Invalid email' }),
   password: string().min(6, {
-    message: 'Password should atleast have 6 characters'
+    message: '👀 Password should atleast have 6 characters'
   })
 })
 
