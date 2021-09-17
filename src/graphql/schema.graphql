@@ -49,7 +49,7 @@ input CreateProductInput {
   description: String
   name: String!
   slug: String!
-  website: String
+  website: String!
 }
 
 scalar DateTime

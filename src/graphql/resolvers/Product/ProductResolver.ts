@@ -103,11 +103,11 @@ const EditProductInput = builder.inputType('EditProductInput', {
     id: t.id(),
     slug: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 20 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     name: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 50 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     description: t.string({ required: false, validate: { maxLength: 255 } }),
     avatar: t.string({ required: false })
