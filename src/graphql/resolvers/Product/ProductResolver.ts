@@ -79,13 +79,12 @@ builder.queryField('product', (t) =>
 
 const CreateProductInput = builder.inputType('CreateProductInput', {
   fields: (t) => ({
-    name: t.string({ validate: { minLength: 1, maxLength: 50 } }),
-    slug: t.string({ validate: { minLength: 1, maxLength: 50 } }),
+    name: t.string({ validate: { minLength: 2, maxLength: 50 } }),
+    slug: t.string({ validate: { minLength: 2, maxLength: 50 } }),
     website: t.string({
-      required: false,
-      validate: { maxLength: 100, url: true }
+      validate: { minLength: 2, maxLength: 100, url: true }
     }),
-    description: t.string({ required: false, validate: { maxLength: 255 } })
+    description: t.string({ required: false, validate: { maxLength: 190 } })
   })
 })
 
