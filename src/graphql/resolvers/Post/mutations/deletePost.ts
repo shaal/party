@@ -23,9 +23,7 @@ export const deletePost = async (
   await purgeLikes({ postId: post?.id })
   await purgeReplies({ parentId: post?.id })
   await purgeTopics({ postId: post?.id })
-  await db.post.delete({
-    where: { id: post?.id }
-  })
+  await db.post.delete({ where: { id: post?.id } })
 
   return Result.SUCCESS
 }
