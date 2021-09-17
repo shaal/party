@@ -123,7 +123,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     }),
     parentId: t.id({ required: false }),
     productId: t.id({ required: false }),
-    body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
+    body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
     type: t.string({ defaultValue: 'POST' })

@@ -67,7 +67,7 @@ CREATE TABLE `invites` (
 CREATE TABLE `posts` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191),
-    `body` VARCHAR(191) NOT NULL,
+    `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST', 'TASK', 'QUESTION', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,

@@ -112,7 +112,7 @@ model Invite {
 model Post {
   id          String   @id @default(cuid())
   title       String?
-  body        String
+  body        String   @db.Text
   done        Boolean  @default(false)
   type        PostType @default(POST)
   attachments Json?

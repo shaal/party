@@ -18,7 +18,9 @@ import {
 } from './__generated__/Post.generated'
 
 const newPostSchema = object({
-  body: string().min(1).max(1000)
+  body: string()
+    .min(1, { message: '📜 Post should not be empty' })
+    .max(10000, { message: '📜 Post should not exceed 10000 characters' })
 })
 
 const PostType: React.FC = () => {
