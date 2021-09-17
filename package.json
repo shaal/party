@@ -38,7 +38,7 @@
     "graphql-helix": "^1.7.0",
     "hash-wasm": "^4.9.0",
     "ioredis": "^4.27.9",
-    "ipfs-http-client": "^52.0.3",
+    "ipfs-http-client": "^52.0.4",
     "linkify-react": "^3.0.1",
     "linkifyjs": "^3.0.1",
     "markdown-to-jsx": "^7.1.3",
