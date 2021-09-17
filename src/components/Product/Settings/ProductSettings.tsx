@@ -23,7 +23,8 @@ import {
 const editProductSchema = object({
   slug: string()
     .min(2, { message: '📦 Slug should be atleast 2 characters' })
-    .max(50, { message: '📦 Slug should not exceed 100 characters' }),
+    .max(50, { message: '📦 Slug should not exceed 100 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '📦 Invalid slug' }),
   name: string()
     .min(2, { message: '🍀 Name should be atleast 2 characters' })
     .max(50, { message: '🍀 Name should not exceed 100 characters' }),
