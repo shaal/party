@@ -121,7 +121,6 @@ model Post {
   // Timestamps
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 
   // Relations
   user      User        @relation(fields: [userId], references: [id])

@@ -74,7 +74,6 @@ CREATE TABLE `posts` (
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `deletedAt` DATETIME(3),
     `userId` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),

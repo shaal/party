@@ -21,7 +21,9 @@ const PostType: React.FC<Props> = ({ post }) => {
         <Disclosure>
           {({ open }) => (
             <>
-              {open ? (
+              {post?.body.length <= 500 ? (
+                <div>{post?.body}</div>
+              ) : open ? (
                 <div>{post?.body}</div>
               ) : (
                 <div>{post?.body.slice(0, 500)}...</div>
