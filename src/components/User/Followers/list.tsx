@@ -25,6 +25,7 @@ export const FOLLOWERS_QUERY = gql`
             id
             username
             isVerified
+            isFollowing
             hasFollowed
             profile {
               id
