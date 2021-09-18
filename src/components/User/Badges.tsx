@@ -4,7 +4,7 @@ import { User } from 'src/__generated__/schema.generated'
 import { UserBadgesQuery } from './__generated__/Badges.generated'
 
 export const USER_BADGES_QUERY = gql`
-  query UserBadgesQuery($username: ID!) {
+  query UserBadgesQuery($username: String!) {
     user(username: $username) {
       id
       badges {

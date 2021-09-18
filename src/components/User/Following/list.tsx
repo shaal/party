@@ -12,7 +12,7 @@ import useInView from 'react-cool-inview'
 import { FollowingQuery } from './__generated__/list.generated'
 
 export const FOLLOWING_QUERY = gql`
-  query FollowingQuery($after: String, $username: ID!) {
+  query FollowingQuery($after: String, $username: String!) {
     user(username: $username) {
       following(first: 10, after: $after) {
         totalCount

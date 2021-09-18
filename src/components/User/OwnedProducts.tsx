@@ -6,7 +6,7 @@ import { User } from 'src/__generated__/schema.generated'
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
-  query UserProductsQuery($username: ID!) {
+  query UserProductsQuery($username: String!) {
     user(username: $username) {
       ownedProducts {
         edges {

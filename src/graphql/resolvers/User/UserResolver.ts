@@ -91,7 +91,7 @@ builder.prismaObject('User', {
 builder.queryField('user', (t) =>
   t.prismaField({
     type: 'User',
-    args: { username: t.arg.id() },
+    args: { username: t.arg.string() },
     nullable: true,
     resolve: async (query, parent, { username }) => {
       return await db.user.findFirst({

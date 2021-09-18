@@ -286,7 +286,7 @@ type Query {
   spotify(userId: ID!): Spotify
   stats: Stats
   topic(name: String!): Topic!
-  user(username: ID!): User
+  user(username: String!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
   whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
