@@ -1,4 +1,5 @@
 import { HeartIcon } from '@heroicons/react/outline'
+import { useTheme } from 'next-themes'
 import React, { Fragment } from 'react'
 
 import Footer from '../shared/Footer'
@@ -10,17 +11,27 @@ interface Props {
   children: React.ReactNode
 }
 
-const Sponsor: React.FC<Props> = ({ name, logo, url, children }) => (
-  <div className="space-y-5 pt-10">
-    <img className="h-14 mx-auto" src={logo} alt={`${name}'s Logo`} />
-    <div className="pt-2">{children}</div>
-    <div>
-      <a className="font-bold" href={url} target="_blank" rel="noreferrer">
-        ➜ Go to {name}
-      </a>
+const Sponsor: React.FC<Props> = ({ name, logo, url, children }) => {
+  const { resolvedTheme } = useTheme()
+
+  return (
+    <div className="space-y-5 pt-10">
+      <img
+        className="h-14 mx-auto"
+        src={`https://assets.devparty.io/images/sponsors/${logo}-${
+          resolvedTheme === 'dark' ? 'dark' : 'light'
+        }.svg`}
+        alt={`${name}'s Logo`}
+      />
+      <div className="pt-2">{children}</div>
+      <div>
+        <a className="font-bold" href={url} target="_blank" rel="noreferrer">
+          ➜ Go to {name}
+        </a>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 const Sponsors: React.FC = () => {
   return (
@@ -40,27 +51,19 @@ const Sponsors: React.FC = () => {
             <div className="pb-10 px-5 max-w-none text-gray-900 dark:text-gray-200 text-center space-y-10 divide-y">
               <Sponsor
                 name="Vercel"
-                logo="https://assets.devparty.io/images/sponsors/vercel-dark.svg"
+                logo="vercel"
                 url="https://vercel.com/?utm_source=Devparty&utm_campaign=oss"
               >
                 Vercel combines the best developer experience with an obsessive
                 focus on end-user performance. Vercel platform enables frontend
                 teams to do their best work.
               </Sponsor>
-              <Sponsor
-                name="Upstash"
-                logo="https://assets.devparty.io/images/sponsors/upstash-light.svg"
-                url="https://upstash.com"
-              >
+              <Sponsor name="Upstash" logo="upstash" url="https://upstash.com">
                 Upstash has REST API that enables access to Redis from
                 serverless and Edge functions like Cloudflare Workers and Fastly
                 Compute@Edge.
               </Sponsor>
-              <Sponsor
-                name="Netlify"
-                logo="https://assets.devparty.io/images/sponsors/netlify-light.svg"
-                url="https://netlify.com"
-              >
+              <Sponsor name="Netlify" logo="netlify" url="https://netlify.com">
                 An intuitive Git-based workflow and powerful serverless platform
                 to build, deploy, and collaborate on web apps
               </Sponsor>
