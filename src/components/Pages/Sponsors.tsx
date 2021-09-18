@@ -17,7 +17,7 @@ const Sponsor: React.FC<Props> = ({ name, logo, url, children }) => {
   return (
     <div className="space-y-5 pt-10">
       <img
-        className="h-14 mx-auto"
+        className="h-12 mx-auto"
         src={`https://assets.devparty.io/images/sponsors/${logo}-${
           resolvedTheme === 'dark' ? 'dark' : 'light'
         }.svg`}
