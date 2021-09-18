@@ -11,8 +11,8 @@ import { Product } from 'src/__generated__/schema.generated'
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
 const PRODUCT_FEED_QUERY = gql`
-  query ProductFeedQuery($after: String, $where: WhereProductInput!) {
-    product(where: $where) {
+  query ProductFeedQuery($after: String, $slug: String!) {
+    product(slug: $slug) {
       id
       posts(first: 10, after: $after) {
         pageInfo {
@@ -40,7 +40,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
     {
       variables: {
         after: null,
-        where: { slug: product?.slug }
+        slug: product?.slug
       }
     }
   )

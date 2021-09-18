@@ -57,21 +57,14 @@ builder.queryField('products', (t) =>
   })
 )
 
-const WhereProductInput = builder.inputType('WhereProductInput', {
-  fields: (t) => ({
-    id: t.id({ required: false }),
-    slug: t.string({ required: false })
-  })
-})
-
 builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
-    args: { where: t.arg({ type: WhereProductInput }) },
-    resolve: async (query, parent, { where }) => {
+    args: { slug: t.arg.string() },
+    resolve: async (query, parent, { slug }) => {
       return await db.product.findUnique({
         ...query,
-        where: { id: where.id!, slug: where.slug! },
+        where: { slug },
         rejectOnNotFound: true
       })
     }
