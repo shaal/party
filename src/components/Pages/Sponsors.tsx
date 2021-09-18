@@ -8,16 +8,18 @@ interface Props {
   name: string
   logo: string
   url: string
+  size: number
   children: React.ReactNode
 }
 
-const Sponsor: React.FC<Props> = ({ name, logo, url, children }) => {
+const Sponsor: React.FC<Props> = ({ name, logo, url, size, children }) => {
   const { resolvedTheme } = useTheme()
 
   return (
     <div className="space-y-5 pt-10">
       <img
-        className="h-12 mx-auto"
+        className="mx-auto"
+        style={{ height: size }}
         src={`https://assets.devparty.io/images/sponsors/${logo}-${
           resolvedTheme === 'dark' ? 'dark' : 'light'
         }.svg`}
@@ -53,17 +55,28 @@ const Sponsors: React.FC = () => {
                 name="Vercel"
                 logo="vercel"
                 url="https://vercel.com/?utm_source=Devparty&utm_campaign=oss"
+                size={40}
               >
                 Vercel combines the best developer experience with an obsessive
                 focus on end-user performance. Vercel platform enables frontend
                 teams to do their best work.
               </Sponsor>
-              <Sponsor name="Upstash" logo="upstash" url="https://upstash.com">
+              <Sponsor
+                name="Upstash"
+                logo="upstash"
+                url="https://upstash.com"
+                size={55}
+              >
                 Upstash has REST API that enables access to Redis from
                 serverless and Edge functions like Cloudflare Workers and Fastly
                 Compute@Edge.
               </Sponsor>
-              <Sponsor name="Netlify" logo="netlify" url="https://netlify.com">
+              <Sponsor
+                name="Netlify"
+                logo="netlify"
+                url="https://netlify.com"
+                size={50}
+              >
                 An intuitive Git-based workflow and powerful serverless platform
                 to build, deploy, and collaborate on web apps
               </Sponsor>
