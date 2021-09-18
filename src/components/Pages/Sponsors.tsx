@@ -48,7 +48,7 @@ const Sponsors: React.FC = () => {
       <div className="relative">
         <div className="flex justify-center">
           <div className="relative mx-auto rounded-lg max-w-3/4 lg:w-2/4">
-            <div className="pb-10 px-5 max-w-none text-gray-900 dark:text-gray-200 text-center space-y-10 divide-y">
+            <div className="pb-10 px-5 max-w-none text-gray-900 dark:text-gray-200 text-center space-y-10 divide-y dark:divide-gray-800">
               <Sponsor
                 name="Vercel"
                 logo="vercel"
