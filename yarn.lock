@@ -4693,10 +4693,10 @@ install-artifact-from-github@^1.2.0:
   resolved "https://registry.yarnpkg.com/install-artifact-from-github/-/install-artifact-from-github-1.2.0.tgz#adcbd123c16a4337ec44ea76d0ebf253cc16b074"
   integrity sha512-3OxCPcY55XlVM3kkfIpeCgmoSKnMsz2A3Dbhsq0RXpIknKQmrX1YiznCeW9cD2ItFmDxziA3w6Eg8d80AoL3oA==
 
-interface-datastore@^5.0.0:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/interface-datastore/-/interface-datastore-5.1.3.tgz#8ee310743f26efab1a7c5e7968d2f34c3103e439"
-  integrity sha512-OVJ2wXg4wuR8kGI9r+09UponEQl/oEtiPaMKiS8QnAKSOf/NTOGnnpmtQPy00UOp3vvbFOvocF6G7HnV76Fmpw==
+interface-datastore@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/interface-datastore/-/interface-datastore-5.2.0.tgz#9341b13a8babbfb23961ca7c732c0263f85e5007"
+  integrity sha512-nthO4C4BMJM2j9x/mT2KFa/g/sbcY8yf9j/kOBgli3u5mq9ZdPvQyDxi0OhKzr4JmoM81OYh5xcFjyebquqwvA==
   dependencies:
     err-code "^3.0.1"
     interface-store "^1.0.2"
@@ -4756,25 +4756,25 @@ ip@^1.1.5:
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
   integrity sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
 
-ipfs-core-types@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/ipfs-core-types/-/ipfs-core-types-0.7.2.tgz#20d7cca654a207d9f795f664e14ce1c49f6a987c"
-  integrity sha512-cyD4fOZ3lvahJWvjtPrWfldhNXN9VJNHPXUY5RRhxoXkuHGrMnTV2t5W3RtBOqRcTB6iRPtdjq7VervVDUlr6w==
+ipfs-core-types@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/ipfs-core-types/-/ipfs-core-types-0.7.3.tgz#b7cdbeed513ee5c2810b971081ed52e1ec590f2b"
+  integrity sha512-FkmOlqhEf3yG0K8Qt7We7kqA0xKjj8pe0dmNK593I3cgMP0MQS/xjMj1CXVdGeZc5Nn5CJ+TsuQydPbJ+7Y8eQ==
   dependencies:
-    interface-datastore "^5.0.0"
+    interface-datastore "^5.2.0"
     multiaddr "^10.0.0"
     multiformats "^9.4.1"
 
-ipfs-core-utils@^0.10.4:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/ipfs-core-utils/-/ipfs-core-utils-0.10.4.tgz#bcccbbf92d163297d6c84a280534c63d9e86ee4d"
-  integrity sha512-B6iQ7ZWsTTuNmjEl/mgoUdgsYgT38M5r6VRdLDgOxGWp82z6Urxzq/5SysaojW3Eo8Nf2jqpPGR3sCqhOY/DpQ==
+ipfs-core-utils@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/ipfs-core-utils/-/ipfs-core-utils-0.10.5.tgz#e5530c42d98e7a5fa1e5e85a099321280fece695"
+  integrity sha512-WPRbMkbn/99pKMF3h8x1/c19+eTXVWOZu1+cmlc3NLR6gMlCd8KNpcq9OCAvs9G1JHx3w/FbEWHnqJm0TJMvrw==
   dependencies:
     any-signal "^2.1.2"
     blob-to-it "^1.0.1"
     browser-readablestream-to-it "^1.0.1"
     err-code "^3.0.1"
-    ipfs-core-types "^0.7.2"
+    ipfs-core-types "^0.7.3"
     ipfs-unixfs "^6.0.3"
     ipfs-utils "^8.1.4"
     it-all "^1.0.4"
@@ -4787,10 +4787,10 @@ ipfs-core-utils@^0.10.4:
     timeout-abort-controller "^1.1.1"
     uint8arrays "^3.0.0"
 
-ipfs-http-client@^52.0.4:
-  version "52.0.4"
-  resolved "https://registry.yarnpkg.com/ipfs-http-client/-/ipfs-http-client-52.0.4.tgz#33b24beb91106ad920859fd1e1d072d974da1581"
-  integrity sha512-HdW0Zs5q8mUhxHIb0D1UYnbX/7r+RMeIibv8DvjSjRNAW3i+k+EsH4Jtjr+cU77dq+6GLmq1S2Zoo4wuWLWVIQ==
+ipfs-http-client@^52.0.5:
+  version "52.0.5"
+  resolved "https://registry.yarnpkg.com/ipfs-http-client/-/ipfs-http-client-52.0.5.tgz#df11e3ddcf21f681d5bc664154b823605d4c2800"
+  integrity sha512-vQ2z6JdBcIJvf6N1Bh/ZdpYBa7fgl0jFV8Rn3HaADhHnIZ/dou8e6nSxHkBPpw2OUyR4ljjjsDvmy2SIIQXohA==
   dependencies:
     "@ipld/dag-cbor" "^6.0.5"
     "@ipld/dag-pb" "^2.1.3"
@@ -4799,8 +4799,8 @@ ipfs-http-client@^52.0.4:
     debug "^4.1.1"
     err-code "^3.0.1"
     form-data "^4.0.0"
-    ipfs-core-types "^0.7.2"
-    ipfs-core-utils "^0.10.4"
+    ipfs-core-types "^0.7.3"
+    ipfs-core-utils "^0.10.5"
     ipfs-utils "^8.1.4"
     it-first "^1.0.6"
     it-last "^1.0.4"
