@@ -5,9 +5,10 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
+import React from 'react'
 
 interface Props {
-  setFeedType: any
+  setFeedType: React.Dispatch<React.SetStateAction<string>>
   feedType: string
 }
 

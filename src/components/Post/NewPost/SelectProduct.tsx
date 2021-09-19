@@ -27,7 +27,7 @@ export const SELECT_PRODUCT_QUERY = gql`
 `
 
 interface Props {
-  setSelectedProduct: any
+  setSelectedProduct: React.Dispatch<React.SetStateAction<string>>
 }
 
 const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
