@@ -48,6 +48,8 @@ export async function preloadQuery(
 }
 
 export function useApollo(initialState?: Record<string, any>) {
+  console.log(initialState)
+
   const client = useMemo(
     () => createApolloClient({ initialState }),
     [initialState]
@@ -59,8 +61,6 @@ export function useApollo(initialState?: Record<string, any>) {
 export function createApolloClient({ initialState, headers }: ClientOptions) {
   const ssrMode = typeof window === 'undefined'
   let nextClient = apolloClient
-
-  console.log(!nextClient)
 
   if (!nextClient) {
     nextClient = new ApolloClient({
@@ -115,8 +115,6 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     const existingCache = nextClient.extract()
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
-
-  console.log(initialState)
 
   // For SSG and SSR always create a new Apollo Client
   if (ssrMode) return nextClient
