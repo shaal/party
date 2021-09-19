@@ -3,10 +3,10 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { resolveSession } from './sessions'
 
 export async function unauthenticatedRoute(
-  ctx: GetServerSidePropsContext,
+  context: GetServerSidePropsContext,
   redirect: string = '/home'
 ) {
-  const session = await resolveSession(ctx)
+  const session = await resolveSession(context)
 
   if (session) {
     return {
@@ -23,16 +23,16 @@ export async function unauthenticatedRoute(
 }
 
 export async function authenticatedRoute(
-  ctx: GetServerSidePropsContext,
+  context: GetServerSidePropsContext,
   redirect = '/login'
 ): Promise<GetServerSidePropsResult<{}>> {
-  const session = await resolveSession(ctx)
+  const session = await resolveSession(context)
 
   if (!session) {
     return {
       redirect: {
         destination: `${redirect}?redirect=${encodeURIComponent(
-          ctx.resolvedUrl
+          context.resolvedUrl
         )}`,
         permanent: false
       }
@@ -45,10 +45,10 @@ export async function authenticatedRoute(
 }
 
 export async function staffRoute(
-  ctx: GetServerSidePropsContext,
+  context: GetServerSidePropsContext,
   redirect = '/'
 ): Promise<GetServerSidePropsResult<{}>> {
-  const session = await resolveSession(ctx)
+  const session = await resolveSession(context)
 
   if (!session?.isStaff) {
     return {

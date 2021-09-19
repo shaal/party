@@ -6,10 +6,12 @@ import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const session = await resolveSession(ctx)
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const session = await resolveSession(context)
   const product = await db.product.findUnique({
-    where: { slug: ctx.params!.slug as string }
+    where: { slug: context.params!.slug as string }
   })
 
   if (session?.userId !== product?.userId) {
@@ -21,7 +23,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     }
   }
 
-  return preloadQuery(ctx, { query })
+  return preloadQuery(context, { query })
 }
 
 export default Settings

@@ -4,10 +4,12 @@ import ViewProduct, {
 import { preloadQuery } from '@utils/apollo'
 import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return preloadQuery(ctx, {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  return preloadQuery(context, {
     query,
-    variables: { slug: ctx.params!.slug }
+    variables: { slug: context.params!.slug }
   })
 }
 
