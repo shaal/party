@@ -40,11 +40,11 @@ The party hub for developers
 
 - 👤 **User:** TBD
 - 📦 **Product:** TBD
-- 💌 **Post:** TBD
-  - **📜 Post:** TBD
-  - **✅ Tasks:** TBD
-  - **❓ Question:** TBD
-- 🍔 **Topic:** TBD
+- 💌 **Post**
+  - **📜 Post:** Post what's happening in your desk or in your life and even post the desk pics.
+  - **✅ Tasks:** All tasks are public and added to your profile.
+  - **❓ Question:** Get your questions answered and use this feature as discussion too.
+- 🍔 **Topic:** Create and Follow topic to stay updated on particular one.
 - 👥 **Communities:** TBD
 
 ## ✅ Community
