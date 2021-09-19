@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import DevpartySEO from '@components/shared/SEO'
 import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserCard from '@components/shared/UserCard'
@@ -54,6 +55,14 @@ const ViewPost: React.FC = () => {
 
   return (
     <GridLayout>
+      <DevpartySEO
+        title={`${data?.post?.user?.profile?.name} on Devparty: ${
+          data?.post?.title ? data?.post?.title : data?.post?.body.slice(0, 255)
+        }`}
+        description={data?.post?.body.slice(0, 255) as string}
+        image={data?.post?.user?.profile?.avatar as string}
+        path={`/posts/${data?.post?.id}`}
+      />
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
