@@ -38,7 +38,7 @@ The party hub for developers
 
 ## ✨ Feature Highlights
 
-- 👤 **Users:** TBD
+- 👤 **Users:** Community of developers who ships or creates constantly.
 - 📦 **Products:** Ship your products to Devparty and make regular updates about the product.
 - 💌 **Posts**
   - **📜 Post:** Post what's happening in your desk or in your life and even post the desk pics.
