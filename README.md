@@ -41,6 +41,9 @@ The party hub for developers
 - 👤 **User:** TBD
 - 📦 **Product:** TBD
 - 💌 **Post:** TBD
+  - **📜 Post:** TBD
+  - **✅ Tasks:** TBD
+  - **❓ Question:** TBD
 - 🍔 **Topic:** TBD
 - 👥 **Communities:** TBD
 
