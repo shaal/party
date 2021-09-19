@@ -20,7 +20,7 @@ export async function preloadQuery(
   context: GetServerSidePropsContext,
   ...queries: QueryOptions[]
 ): Promise<GetServerSidePropsResult<{}>> {
-  const client = initializeApollo({
+  const client = createApolloClient({
     headers: context.req.headers as Record<string, string>
   })
 
@@ -47,83 +47,76 @@ export async function preloadQuery(
   }
 }
 
-function createIsomorphLink(headers: any) {
-  return new HttpLink({
-    uri:
-      typeof window === 'undefined'
-        ? 'http://localhost:3000/api/graphql'
-        : '/api/graphql',
-    credentials: 'include',
-    headers: headers
-  })
-}
-
-function createApolloClient(headers: any) {
-  return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: createIsomorphLink(headers),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            posts: relayStylePagination([]),
-            users: relayStylePagination([]),
-            homeFeed: relayStylePagination(['type']),
-            exploreFeed: relayStylePagination([]),
-            replies: relayStylePagination([]),
-            notifications: relayStylePagination([])
-          }
-        },
-        Topic: {
-          fields: {
-            posts: relayStylePagination()
-          }
-        },
-        User: {
-          fields: {
-            posts: relayStylePagination([]),
-            following: relayStylePagination([]),
-            followers: relayStylePagination([])
-          }
-        },
-        Product: {
-          fields: {
-            posts: relayStylePagination([])
-          }
-        },
-        Post: {
-          fields: {
-            replies: relayStylePagination([])
-          }
-        }
-      }
-    })
-  })
-}
-
 export function useApollo(initialState?: Record<string, any>) {
-  const store = useMemo(
-    () => initializeApollo({ initialState }),
+  const client = useMemo(
+    () => createApolloClient({ initialState }),
     [initialState]
   )
 
-  return store
+  return client
 }
 
-export function initializeApollo({ initialState, headers }: ClientOptions) {
-  const _apolloClient = apolloClient ?? createApolloClient(headers)
+export function createApolloClient({ initialState, headers }: ClientOptions) {
+  let nextClient = apolloClient
 
-  // If your page has Next.js data fetching methods that use Apollo Client, the initial state
-  // gets hydrated here
-  if (initialState) {
-    _apolloClient.cache.restore(initialState)
+  if (!nextClient) {
+    nextClient = new ApolloClient({
+      ssrMode: typeof window === 'undefined',
+      credentials: 'include',
+      link: new HttpLink({
+        uri:
+          typeof window === 'undefined'
+            ? 'http://localhost:3000/api/graphql'
+            : '/api/graphql',
+        headers: headers
+      }),
+      cache: new InMemoryCache({
+        typePolicies: {
+          Query: {
+            fields: {
+              posts: relayStylePagination([]),
+              users: relayStylePagination([]),
+              homeFeed: relayStylePagination(['type']),
+              exploreFeed: relayStylePagination([]),
+              replies: relayStylePagination([]),
+              notifications: relayStylePagination([])
+            }
+          },
+          Topic: {
+            fields: {
+              posts: relayStylePagination()
+            }
+          },
+          User: {
+            fields: {
+              posts: relayStylePagination([]),
+              following: relayStylePagination([]),
+              followers: relayStylePagination([])
+            }
+          },
+          Product: {
+            fields: {
+              posts: relayStylePagination([])
+            }
+          },
+          Post: {
+            fields: {
+              replies: relayStylePagination([])
+            }
+          }
+        }
+      })
+    })
   }
 
-  // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient
+  if (initialState) {
+    const existingCache = nextClient.extract()
+    nextClient.cache.restore({ ...existingCache, ...initialState })
+  }
 
-  // Create the Apollo Client once in the client
-  if (!apolloClient) apolloClient = _apolloClient
+  if (typeof window === 'undefined') return nextClient
 
-  return _apolloClient
+  if (!apolloClient) apolloClient = nextClient
+
+  return nextClient
 }

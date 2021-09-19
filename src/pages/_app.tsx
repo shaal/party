@@ -9,7 +9,7 @@ import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const client = useApollo(pageProps.initialClientState)
+  const client = useApollo(pageProps.initialApolloState)
 
   return (
     <ApolloProvider client={client}>
