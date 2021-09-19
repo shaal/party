@@ -4,7 +4,7 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
 
-image: node:latest
+image: node:alpine
 
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
@@ -61,7 +61,3 @@ housekeeping:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
   only:
     - main
-
-terminal:
-  image: node:alpine
-  script: sleep 60
