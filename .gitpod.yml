@@ -49,3 +49,4 @@ vscode:
     - bradlc.vscode-tailwindcss
     - bierner.markdown-preview-github-styles
     - editorconfig.editorconfig
+    - pkief.material-icon-theme

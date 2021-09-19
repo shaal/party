@@ -14,6 +14,7 @@
     "gitlab.gitlab-workflow",
     "bradlc.vscode-tailwindcss",
     "bierner.markdown-preview-github-styles",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "pkief.material-icon-theme"
   ]
 }
