@@ -38,13 +38,13 @@ The party hub for developers
 
 ## ✨ Feature Highlights
 
-- 👤 **User:** TBD
-- 📦 **Product:** TBD
-- 💌 **Post**
+- 👤 **Users:** TBD
+- 📦 **Products:** Ship your products to Devparty and make regular updates about the product.
+- 💌 **Posts**
   - **📜 Post:** Post what's happening in your desk or in your life and even post the desk pics.
-  - **✅ Tasks:** All tasks are public and added to your profile.
+  - **✅ Task:** All tasks are public and added to your profile.
   - **❓ Question:** Get your questions answered and use this feature as discussion too.
-- 🍔 **Topic:** Create and Follow topic to stay updated on particular one.
+- 🍔 **Topics:** Create and Follow topic to stay updated on particular one.
 - 👥 **Communities:** TBD
 
 ## ✅ Community
