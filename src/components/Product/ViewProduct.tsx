@@ -52,8 +52,8 @@ const ViewProduct: React.FC = () => {
     <GridLayout>
       <DevpartySEO
         title={`${data?.product?.slug} (${data?.product?.name}) · Devparty`}
-        description={data?.product?.description}
-        image={data?.product?.avatar}
+        description={data?.product?.description as string}
+        image={data?.product?.avatar as string}
         path={`/products/${data?.product?.slug}`}
       />
       <GridItemFour>
