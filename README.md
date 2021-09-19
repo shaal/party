@@ -59,3 +59,16 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 ## ⚖️ License
 
 Devparty is open-sourced software licensed under the © [MIT license](LICENSE).
+
+## Acknowledgements
+
+Special thanks to these amazing projects which help power Devparty:
+
+[<img src="https://assets.devparty.io/images/powered-by-vercel.svg">](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
+
+- [Vercel](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Prisma](https://prisma.io)
+- [PlanetScale](https://planetscale.com)
+- [Upstash](https://upstash.com)
