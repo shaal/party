@@ -22,7 +22,12 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(oembedData)
       } else {
         const data = await unfurl(parsedUrl)
-        redis.set(parsedUrl, JSON.stringify(data), 'EX', 864000)
+        redis.set(
+          parsedUrl,
+          JSON.stringify(data),
+          'EX',
+          process.env.NODE_ENV === 'development' ? 10 : 864000
+        )
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
         return res.status(200).json(data)
       }

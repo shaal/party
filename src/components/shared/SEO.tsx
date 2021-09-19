@@ -14,7 +14,7 @@ const DevpartySEO: React.FC<Props> = ({
   description,
   path,
   image,
-  cardType
+  cardType = 'summary'
 }) => {
   return (
     <Head>
