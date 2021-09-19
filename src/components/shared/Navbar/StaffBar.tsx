@@ -25,7 +25,7 @@ const StaffBar: React.FC = () => {
         {process.env.VERCEL_URL && (
           <a
             className="flex items-center space-x-1"
-            href={process.env.VERCEL_URL}
+            href={`https://${process.env.VERCEL_URL}`}
             title="Vercel Deployment URL"
             target="_blank"
             rel="noreferrer"
