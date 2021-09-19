@@ -1,7 +1,7 @@
 FROM gitpod/workspace-mysql
 
 # Install Node and Yarn
-ENV NODE_VERSION=latest
+ENV NODE_VERSION=16.9.1
 RUN bash -c ". .nvm/nvm.sh && \
         nvm install ${NODE_VERSION} && \
         nvm alias default ${NODE_VERSION} && \
