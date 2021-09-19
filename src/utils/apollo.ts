@@ -109,7 +109,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     })
   }
 
-  console.log(nextClient.cache)
+  console.log(nextClient)
 
   const existingCache = nextClient.extract()
   nextClient.cache.restore({ ...existingCache, ...initialState })
