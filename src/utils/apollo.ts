@@ -7,7 +7,6 @@ import {
 } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
-import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<any>
 
@@ -48,10 +47,7 @@ export async function preloadQuery(
 }
 
 export function useApollo(initialState?: Record<string, any>) {
-  const client = useMemo(
-    () => createApolloClient({ initialState }),
-    [initialState]
-  )
+  const client = createApolloClient({ initialState })
 
   return client
 }
@@ -109,10 +105,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     })
   }
 
-  console.log(nextClient)
-
-  const existingCache = nextClient.extract()
-  nextClient.cache.restore({ ...existingCache, ...initialState })
+  if (initialState) {
+    const existingCache = nextClient.extract()
+    nextClient.cache.restore({ ...existingCache, ...initialState })
+  }
 
   if (typeof window === 'undefined') return nextClient
 
