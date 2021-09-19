@@ -54,16 +54,6 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
-#### Tests
-
-🚧 WIP
-
-## Sponsors
-
-<a href="https://vercel.com/?utm_source=Devparty&utm_campaign=oss">
-    <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" height="35" alt="Vercel">
-</a>
-
 ## ⚖️ License
 
 Devparty is open-sourced software licensed under the © [MIT license](LICENSE).
