@@ -4,8 +4,9 @@ import Settings, {
 import { preloadQuery } from '@utils/apollo'
 import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const session = await resolveSession(ctx)
   const product = await db.product.findUnique({
     where: { slug: ctx.params!.slug as string }

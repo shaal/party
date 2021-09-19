@@ -3,8 +3,9 @@ import SessionsSettings, {
 } from '@components/User/Settings/Sessions'
 import { preloadQuery } from '@utils/apollo'
 import { authenticatedRoute } from '@utils/redirects'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const auth = await authenticatedRoute(ctx)
   if ('redirect' in auth) return auth
 
