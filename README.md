@@ -54,7 +54,7 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 ## ⚙️ Setup
 
-[![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/yo/devparty)
+[<img src="https://gitpod.io/button/open-in-gitpod.svg" height="40">](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
 ## 💡 Acknowledgements
 
