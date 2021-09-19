@@ -56,7 +56,7 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
-## Acknowledgements
+## 💡 Acknowledgements
 
 Special thanks to these amazing projects which help power Devparty:
 
