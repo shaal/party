@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
@@ -49,6 +50,12 @@ const ViewProduct: React.FC = () => {
 
   return (
     <GridLayout>
+      <DevpartySEO
+        title={`${data?.product?.slug} (${data?.product?.name}) · Devparty`}
+        description={data?.product?.description}
+        image={data?.product?.avatar}
+        path={`/products/${data?.product?.slug}`}
+      />
       <GridItemFour>
         <Details product={data?.product as Product} />
       </GridItemFour>

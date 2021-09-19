@@ -71,7 +71,7 @@ const ViewUser: React.FC = () => {
   return (
     <>
       <DevpartySEO
-        title={`${data?.user?.username} (${data?.user?.profile?.name})`}
+        title={`${data?.user?.username} (${data?.user?.profile?.name}) · Devparty`}
         description={data?.user?.profile?.bio as string}
         image={data?.user?.profile?.avatar as string}
         path={`/@/${data?.user?.username}`}
