@@ -4,7 +4,7 @@ export const hasSubscribed = async (
   currentUserId: string,
   productId: string
 ) => {
-  const user = await db.product.findUnique({
+  const product = await db.product.findUnique({
     where: { id: productId },
     include: {
       subscribers: {
@@ -15,5 +15,5 @@ export const hasSubscribed = async (
     }
   })
 
-  return user?.subscribers?.length === 0 ? false : true
+  return product?.subscribers?.length === 0 ? false : true
 }
