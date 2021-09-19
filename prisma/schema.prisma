@@ -1,7 +1,7 @@
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
-  planetScaleMode   = true
+  provider        = "mysql"
+  url             = env("DATABASE_URL")
+  planetScaleMode = true
 }
 
 generator client {
@@ -31,20 +31,20 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  posts              Post[]
-  ownedProducts      Product[]      @relation("owner")
-  subscribedProducts Product[]      @relation("subscribed")
-  sessions           Session[]
-  profile            Profile?
-  invite             Invite?
-  integrations       Integration?
-  likes              Like[]
-  badges             Badge[]
-  topics             Topic[]
-  following          User[]         @relation("follows")
-  followedBy         User[]         @relation("follows")
-  myNotification     Notification[] @relation("receiver")
-  sentNotification   Notification[] @relation("dispatcher")
+  posts                  Post[]
+  ownedProducts          Product[]      @relation("owner")
+  subscribedProducts     Product[]      @relation("subscribed")
+  sessions               Session[]
+  profile                Profile?
+  invite                 Invite?
+  integrations           Integration?
+  likes                  Like[]
+  badges                 Badge[]
+  topics                 Topic[]
+  following              User[]         @relation("follows")
+  followedBy             User[]         @relation("follows")
+  receivedNotification   Notification[] @relation("receiver")
+  dispatchedNotification Notification[] @relation("dispatcher")
 
   // Attributes
   @@index([username, email])
