@@ -114,5 +114,13 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
 
+  console.log(ssrMode, !apolloClient)
+
+  // For SSG and SSR always create a new Apollo Client
+  if (ssrMode) return nextClient
+
+  // Create the Apollo Client once in the client
+  if (!apolloClient) apolloClient = nextClient
+
   return nextClient
 }
