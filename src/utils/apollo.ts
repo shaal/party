@@ -48,8 +48,6 @@ export async function preloadQuery(
 }
 
 export function useApollo(initialState?: Record<string, any>) {
-  console.log(initialState)
-
   const client = useMemo(
     () => createApolloClient({ initialState }),
     [initialState]

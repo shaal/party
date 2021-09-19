@@ -11,6 +11,8 @@ import { ThemeProvider } from 'next-themes'
 const App = ({ Component, pageProps }: AppProps) => {
   const client = useApollo(pageProps.initialClientState)
 
+  console.log(pageProps)
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider defaultTheme="light" attribute="class">
