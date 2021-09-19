@@ -2,6 +2,7 @@ import { createNotification } from '@graphql/resolvers/Notification/mutations/cr
 import { db } from '@utils/prisma'
 
 import { hasFollowed } from '../queries/hasFollowed'
+import { User } from '.prisma/client'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {
   // Unfollow
@@ -19,7 +20,7 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
   }
 
   // Follow
-  const user = await db.user.update({
+  const user: User = await db.user.update({
     where: { id: userId },
     data: {
       followedBy: {

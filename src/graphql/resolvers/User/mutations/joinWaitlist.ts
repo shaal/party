@@ -4,13 +4,15 @@ import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
 
+import { User } from '.prisma/client'
+
 export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
   if (reservedSlugs.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 
   try {
-    const user = await db.user.create({
+    const user: User = await db.user.create({
       ...query,
       data: {
         username: input.username,
