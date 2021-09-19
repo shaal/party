@@ -115,7 +115,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   }
 
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return nextClient
+  if (ssrMode) return nextClient
 
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = nextClient
