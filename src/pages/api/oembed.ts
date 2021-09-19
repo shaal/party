@@ -26,7 +26,7 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
           parsedUrl,
           JSON.stringify(data),
           'EX',
-          process.env.NODE_ENV === 'production' ? 864000 : 0
+          process.env.NODE_ENV === 'production' ? 864000 : 5
         )
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
         return res.status(200).json(data)
