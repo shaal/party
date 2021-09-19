@@ -1,7 +1,7 @@
 <div align="center">
     <img src="public/logo.svg" height="70" alt="Devparty Logo">
     <h1>Devparty</h1>
-    <strong>🥳 Social media for developers</strong>
+    <strong>The party hub for developers 🥳</strong>
 </div>
 <br>
 <div align="center">
