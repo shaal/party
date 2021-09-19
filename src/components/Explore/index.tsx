@@ -2,8 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Footer from '@components/shared/Footer'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
-import AppContext from '@components/utils/AppContext'
-import React, { useContext } from 'react'
+import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
 import { GetExploreUserQuery } from './__generated__/index.generated'
@@ -11,8 +10,8 @@ import ExploreFeed from './Feed'
 import Topics from './Topics'
 
 export const GET_EXPLORE_USER_QUERY = gql`
-  query GetExploreUserQuery($username: String!) {
-    user(username: $username) {
+  query GetExploreUserQuery {
+    me {
       id
       username
       profile {
@@ -20,18 +19,23 @@ export const GET_EXPLORE_USER_QUERY = gql`
         name
         avatar
       }
+      topics(first: 5) {
+        totalCount
+        edges {
+          node {
+            id
+            name
+            image
+          }
+        }
+      }
     }
   }
 `
 
 const Explore: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
   const { data, loading, error } = useQuery<GetExploreUserQuery>(
-    GET_EXPLORE_USER_QUERY,
-    {
-      variables: { username: currentUser?.username },
-      skip: !currentUser
-    }
+    GET_EXPLORE_USER_QUERY
   )
 
   return (
@@ -46,7 +50,7 @@ const Explore: React.FC = () => {
         </div>
       </GridItemEight>
       <GridItemFour>
-        <Topics currentUser={currentUser} user={data?.user as User} />
+        <Topics user={data?.me as User} />
         <Footer />
       </GridItemFour>
     </GridLayout>

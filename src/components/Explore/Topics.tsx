@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
@@ -7,31 +6,16 @@ import Link from 'next/link'
 import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
-export const GET_EXPLORE_USER_QUERY = gql`
-  query GetExploreUserQuery($username: String!) {
-    user(username: $username) {
-      id
-      username
-      profile {
-        id
-        name
-        avatar
-      }
-    }
-  }
-`
-
 interface Props {
-  currentUser: User
   user: User
 }
 
-const Topics: React.FC<Props> = ({ currentUser, user }) => {
+const Topics: React.FC<Props> = ({ user }) => {
   return (
-    <Card>
-      <CardBody className="space-y-3">
-        {currentUser ? (
-          <div className="space-y-3 text-center">
+    <>
+      {user ? (
+        <Card>
+          <div className="space-y-3 text-center p-5">
             <img
               className="h-16 w-16 rounded-full mx-auto"
               src={user?.profile?.avatar as string}
@@ -42,8 +26,35 @@ const Topics: React.FC<Props> = ({ currentUser, user }) => {
               <Slug slug={user?.username} prefix="@" />
             </div>
           </div>
-        ) : (
-          <>
+          <div className="border-b dark:border-gray-800" />
+          <div className="p-5 space-y-3">
+            <div className="font-bold">
+              {user?.topics?.totalCount} starred topics
+            </div>
+            {user?.topics?.totalCount > 0 && (
+              <div className="space-y-3">
+                {user?.topics?.edges?.map((topic: any) => (
+                  <div
+                    key={topic?.node?.id}
+                    className="flex items-center space-x-2"
+                  >
+                    {topic?.node?.image ? (
+                      <div>#</div>
+                    ) : (
+                      <div className="bg-gray-300 px-2 text-gray-700 rounded-md">
+                        #
+                      </div>
+                    )}
+                    <div>{topic?.node?.name}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </Card>
+      ) : (
+        <Card>
+          <CardBody className="space-y-3">
             <div>Join Devparty today!</div>
             <div className="flex space-x-1.5">
               <Link href="/login" passHref>
@@ -62,10 +73,10 @@ const Topics: React.FC<Props> = ({ currentUser, user }) => {
                 </Button>
               </Link>
             </div>
-          </>
-        )}
-      </CardBody>
-    </Card>
+          </CardBody>
+        </Card>
+      )}
+    </>
   )
 }
 
