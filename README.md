@@ -50,15 +50,9 @@ For a place to have open discussions on features, voice your ideas, or get help 
 
 We encourage you to contribute to Devparty! Please check out the [Contributing guide](CONTRIBUTING.md) for guidelines about how to proceed.
 
-## 💡 Support
-
-🚧 WIP
-
 ## ⚙️ Setup
 
-### Development
-
-#### Prerequisites
+[![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
 🚧 WIP
 
