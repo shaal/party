@@ -60,6 +60,8 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   const ssrMode = typeof window === 'undefined'
   let nextClient = apolloClient
 
+  console.log(!nextClient)
+
   if (!nextClient) {
     nextClient = new ApolloClient({
       ssrMode,
