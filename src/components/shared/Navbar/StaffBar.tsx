@@ -1,5 +1,4 @@
 import {
-  ChipIcon,
   HashtagIcon,
   ServerIcon,
   ShieldCheckIcon,
@@ -45,12 +44,6 @@ const StaffBar: React.FC = () => {
             <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
           </div>
         )}
-        <div className="flex items-center space-x-1" title="React.js Version">
-          <ChipIcon className="h-4 w-4" />
-          <span>
-            React.js <Badge>v{React.version}</Badge>
-          </span>
-        </div>
       </div>
       <div className="flex items-center gap-4">
         <Link href="/stafftools">
