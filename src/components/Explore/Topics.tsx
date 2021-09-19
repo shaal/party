@@ -49,7 +49,9 @@ const Topics: React.FC<Props> = ({ user }) => {
                         <div>#</div>
                       </div>
                     )}
-                    <div>{topic?.node?.name}</div>
+                    <Link href={`/topics/${topic?.node?.name}`}>
+                      <a>{topic?.node?.name}</a>
+                    </Link>
                   </div>
                 ))}
               </div>
