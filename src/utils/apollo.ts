@@ -57,17 +57,15 @@ export function useApollo(initialState?: Record<string, any>) {
 }
 
 export function createApolloClient({ initialState, headers }: ClientOptions) {
+  const ssrMode = typeof window === 'undefined'
   let nextClient = apolloClient
 
   if (!nextClient) {
     nextClient = new ApolloClient({
-      ssrMode: typeof window === 'undefined',
+      ssrMode,
       credentials: 'include',
       link: new HttpLink({
-        uri:
-          typeof window === 'undefined'
-            ? 'http://localhost:3000/api/graphql'
-            : '/api/graphql',
+        uri: ssrMode ? 'http://localhost:3000/api/graphql' : '/api/graphql',
         headers: headers
       }),
       cache: new InMemoryCache({
@@ -109,11 +107,17 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     })
   }
 
+  // If your page has Next.js data fetching methods that use Apollo Client,
+  // the initial state gets hydrated here
   if (initialState) {
     const existingCache = nextClient.extract()
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
+
+  // For SSG and SSR always create a new Apollo Client
   if (typeof window === 'undefined') return nextClient
+
+  // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = nextClient
 
   return nextClient
