@@ -10,6 +10,9 @@ const StaffBar: React.FC = () => {
         <span className="text-xs font-bold bg-gray-300 dark:bg-gray-900 py-0.5 px-1.5 rounded-md">
           v{React.version}
         </span>
+        <span className="text-xs font-bold bg-gray-300 dark:bg-gray-900 py-0.5 px-1.5 rounded-md">
+          {process.env.VERCEL_GIT_COMMIT_SHA}
+        </span>
       </div>
       <div className="flex items-center gap-4">
         <Link href="/stafftools">
