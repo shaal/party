@@ -54,14 +54,6 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
-🚧 WIP
-
-#### Setup
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgitlab.com%2Fyo%2Fdevparty&env=COOKIE_SECRET,DATABASE_URL&project-name=devparty&repo-name=main&demo-title=Devparty&demo-description=The%20party%20hub%20for%20developers%20%F0%9F%A5%B3&demo-url=https%3A%2F%2Fdevparty.io&demo-image=https%3A%2F%2Fi.ibb.co%2FjJDnkVy%2Fvercel.png)
-
-🚧 WIP
-
 #### Tests
 
 🚧 WIP
