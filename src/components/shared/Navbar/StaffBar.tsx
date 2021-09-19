@@ -20,19 +20,7 @@ const Badge: React.FC<Props> = ({ children }) => (
 const StaffBar: React.FC = () => {
   return (
     <div className="bg-gray-200 dark:bg-black px-3 py-1 flex justify-between text-sm">
-      <div className="flex items-center space-x-2" title="Git commit ref">
-        {process.env.GIT_COMMIT_REF && (
-          <div className="flex items-center space-x-1">
-            <TerminalIcon className="h-4 w-4" />
-            <Badge>{process.env.GIT_COMMIT_REF}</Badge>
-          </div>
-        )}
-        {process.env.GIT_COMMIT_SHA && (
-          <div className="flex items-center space-x-1" title="Git commit SHA">
-            <HashtagIcon className="h-4 w-4" />
-            <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
-          </div>
-        )}
+      <div className="flex items-center space-x-2">
         {process.env.VERCEL_URL && (
           <a
             className="flex items-center space-x-1"
@@ -43,6 +31,18 @@ const StaffBar: React.FC = () => {
           >
             <ServerIcon className="h-4 w-4" />
           </a>
+        )}
+        {process.env.GIT_COMMIT_REF && (
+          <div className="flex items-center space-x-1" title="Git commit ref">
+            <TerminalIcon className="h-4 w-4" />
+            <Badge>{process.env.GIT_COMMIT_REF}</Badge>
+          </div>
+        )}
+        {process.env.GIT_COMMIT_SHA && (
+          <div className="flex items-center space-x-1" title="Git commit SHA">
+            <HashtagIcon className="h-4 w-4" />
+            <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
+          </div>
         )}
         <div>
           React.js <Badge>v{React.version}</Badge>
