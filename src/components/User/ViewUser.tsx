@@ -63,6 +63,7 @@ const ViewUser: React.FC = () => {
     variables: {
       username: router.query.username
     },
+    ssr: true,
     skip: !router.isReady
   })
 
