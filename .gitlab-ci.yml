@@ -61,3 +61,7 @@ housekeeping:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
   only:
     - main
+
+terminal:
+  image: node:alpine
+  script: sleep 60
