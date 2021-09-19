@@ -25,9 +25,11 @@
     <br>
     <a href="https://devparty.io"><b>devparty.io »</b></a>
     <br><br>
-    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Report Bug</b></a>
+    <a href="https://discord.gg/zxHM7uwDmk"><b>Discord</b></a>
     •
-    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Request Feature</b></a>
+    <a href="https://devparty.io"><b>Website</b></a>
+    •
+    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Issues</b></a>
 </div>
 
 ## 🍭 About Devparty
