@@ -12,13 +12,11 @@ tasks:
       yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
-  - name: Redis Server
-    init: gp sync-await setup
-    command: redis-server
   - name: Prisma Studio
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
+    before: redis-server &
     init: gp sync-await setup
     command: yarn dev
 
