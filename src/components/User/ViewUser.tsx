@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo'
 import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
@@ -70,9 +70,11 @@ const ViewUser: React.FC = () => {
 
   return (
     <>
-      <NextSeo
+      <DevpartySEO
         title={`${data?.user?.username} (${data?.user?.profile?.name})`}
         description={data?.user?.profile?.bio as string}
+        image={data?.user?.profile?.avatar as string}
+        path={`/@/${data?.user?.username}`}
       />
       {data?.user?.profile?.cover ? (
         <img
