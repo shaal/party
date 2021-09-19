@@ -46,6 +46,7 @@ The party hub for developers
   - **❓ Question:** Get your questions answered and use this feature as discussion too.
 - 🍔 **Topics:** Create and Follow topic to stay updated on particular one.
 - 👥 **Communities:** TBD
+- 🌑 **Dark Mode:** A built-in light and dark color scheme.
 
 ## ✅ Community
 
