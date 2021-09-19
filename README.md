@@ -40,10 +40,9 @@ The party hub for developers
 
 - 👤 **Users:** Community of developers who ships or creates constantly.
 - 📦 **Products:** Ship your products to Devparty and make regular updates about the product.
-- 💌 **Posts**
-  - **📜 Post:** Post what's happening in your desk or in your life and even post the desk pics.
-  - **✅ Task:** All tasks are public and added to your profile.
-  - **❓ Question:** Get your questions answered and use this feature as discussion too.
+- 📜 **Posts:** Post what's happening in your desk or in your life and even post the desk pics.
+- ✅ **Tasks:** All tasks are public and added to your profile.
+- ❓ **Questions:** Get your questions answered and use this feature as discussion too.
 - 🍔 **Topics:** Create and follow topic to stay updated on particular one.
 - 👥 **Communities:** Join the public communities and keep yourself engaged and help others.
 - 🌑 **Dark Mode:** A built-in light and dark color scheme.
