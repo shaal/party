@@ -39,10 +39,14 @@ const Topics: React.FC<Props> = ({ user }) => {
                     className="flex items-center space-x-2"
                   >
                     {topic?.node?.image ? (
-                      <div>#</div>
+                      <img
+                        className="h-7 w-7 rounded-md"
+                        src={topic?.node?.image}
+                        alt={`#${topic?.node?.name}'s image'`}
+                      />
                     ) : (
-                      <div className="bg-gray-300 px-2 text-gray-700 rounded-md">
-                        #
+                      <div className="flex items-center justify-around h-7 w-7 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md">
+                        <div>#</div>
                       </div>
                     )}
                     <div>{topic?.node?.name}</div>
