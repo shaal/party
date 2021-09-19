@@ -1,23 +1,38 @@
-import { useQuery } from '@apollo/client'
-import { CurrentUserQuery } from '@components/__generated__/DefaultLayout.generated'
-import { CURRENT_USER_QUERY } from '@components/DefaultLayout'
+import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Footer from '@components/shared/Footer'
-import { Button } from '@components/ui/Button'
-import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
-import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 import React, { useContext } from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
+import { GetExploreUserQuery } from './__generated__/index.generated'
 import ExploreFeed from './Feed'
+import Topics from './Topics'
 
-export const EXPLORE_QUERY = CURRENT_USER_QUERY
+export const GET_EXPLORE_USER_QUERY = gql`
+  query GetExploreUserQuery($username: String!) {
+    user(username: $username) {
+      id
+      username
+      profile {
+        id
+        name
+        avatar
+      }
+    }
+  }
+`
 
 const Explore: React.FC = () => {
   const { currentUser } = useContext(AppContext)
-  const { error } = useQuery<CurrentUserQuery>(EXPLORE_QUERY)
+  const { data, loading, error } = useQuery<GetExploreUserQuery>(
+    GET_EXPLORE_USER_QUERY,
+    {
+      variables: { username: currentUser?.username },
+      skip: !currentUser
+    }
+  )
 
   return (
     <GridLayout>
@@ -31,34 +46,7 @@ const Explore: React.FC = () => {
         </div>
       </GridItemEight>
       <GridItemFour>
-        <Card>
-          <CardBody className="space-y-3">
-            {currentUser ? (
-              <div>Hello</div>
-            ) : (
-              <>
-                <div>Join Devparty today!</div>
-                <div className="flex space-x-1.5">
-                  <Link href="/login" passHref>
-                    <Button className="flex items-center space-x-1">
-                      <LoginIcon className="h-4 w-4" />
-                      <div>Login</div>
-                    </Button>
-                  </Link>
-                  <Link href="/signup" passHref>
-                    <Button
-                      className="flex items-center space-x-1"
-                      variant="success"
-                    >
-                      <UserAddIcon className="h-4 w-4" />
-                      <div>Signup</div>
-                    </Button>
-                  </Link>
-                </div>
-              </>
-            )}
-          </CardBody>
-        </Card>
+        <Topics currentUser={currentUser} user={data?.user as User} />
         <Footer />
       </GridItemFour>
     </GridLayout>

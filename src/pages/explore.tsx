@@ -1,4 +1,4 @@
-import Explore, { EXPLORE_QUERY as query } from '@components/Explore'
+import Explore, { GET_EXPLORE_USER_QUERY as query } from '@components/Explore'
 import { preloadQuery } from '@utils/apollo'
 import { GetServerSidePropsContext } from 'next'
 
