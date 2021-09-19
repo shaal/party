@@ -12,6 +12,8 @@ const StaffBar: React.FC = () => {
         </span>
         <span className="text-xs font-bold bg-gray-300 dark:bg-gray-900 py-0.5 px-1.5 rounded-md">
           {process.env.GIT_COMMIT_REF}
+          {process.env.GIT_COMMIT_SHA}
+          {process.env.VERCEL_URL}
         </span>
       </div>
       <div className="flex items-center gap-4">
