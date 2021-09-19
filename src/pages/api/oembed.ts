@@ -2,7 +2,7 @@ import Redis from 'ioredis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { unfurl } from 'unfurl.js'
 
-let redis = new Redis(process.env.REDIS_URL)
+const redis = new Redis(process.env.REDIS_URL)
 
 const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
   const { url } = req.query
