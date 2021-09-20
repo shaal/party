@@ -63,7 +63,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
         uri:
           typeof window === 'undefined'
             ? `https://${process.env.VERCEL_URL}/api/graphql`
-            : 'http://localhost:3000/api/graphql',
+            : '/api/graphql',
         headers: headers
       }),
       cache: new InMemoryCache({
