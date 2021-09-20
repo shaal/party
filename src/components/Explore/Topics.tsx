@@ -1,39 +1,65 @@
+import { gql, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
-interface Props {
-  user: User
-}
+import { GetExploreUserQuery } from './__generated__/Topics.generated'
 
-const Topics: React.FC<Props> = ({ user }) => {
+export const GET_EXPLORE_USER_QUERY = gql`
+  query GetExploreUserQuery {
+    me {
+      id
+      username
+      profile {
+        id
+        name
+        avatar
+      }
+      topics(first: 5) {
+        totalCount
+        edges {
+          node {
+            id
+            name
+            image
+          }
+        }
+      }
+    }
+  }
+`
+
+const Topics: React.FC = () => {
+  const { data, loading, error } = useQuery<GetExploreUserQuery>(
+    GET_EXPLORE_USER_QUERY
+  )
+
   return (
     <>
-      {user ? (
+      {data?.me ? (
         <Card>
           <div className="space-y-3 text-center p-5">
             <img
               className="h-16 w-16 rounded-full mx-auto"
-              src={user?.profile?.avatar as string}
-              alt={`@${user?.username}'s avatar`}
+              src={data?.me?.profile?.avatar as string}
+              alt={`@${data?.me?.username}'s avatar`}
             />
             <div>
-              <div className="font-bold text-lg">{user?.profile?.name}</div>
-              <Slug slug={user?.username} prefix="@" />
+              <div className="font-bold text-lg">{data?.me?.profile?.name}</div>
+              <Slug slug={data?.me?.username} prefix="@" />
             </div>
           </div>
           <div className="border-b dark:border-gray-800" />
           <div className="p-5 space-y-3">
             <div className="font-bold">
-              {user?.topics?.totalCount} starred topics
+              {data?.me?.topics?.totalCount} starred topics
             </div>
-            {user?.topics?.totalCount > 0 && (
+            {data?.me?.topics?.totalCount > 0 && (
               <div className="space-y-3">
-                {user?.topics?.edges?.map((topic: any) => (
+                {data?.me?.topics?.edges?.map((topic: any) => (
                   <div
                     key={topic?.node?.id}
                     className="flex items-center space-x-2"
