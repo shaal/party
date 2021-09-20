@@ -1,7 +1,7 @@
 import {
   ApolloClient,
   ApolloError,
-  HttpLink,
+  createHttpLink,
   InMemoryCache,
   QueryOptions
 } from '@apollo/client'
@@ -59,10 +59,14 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   if (!nextClient) {
     nextClient = new ApolloClient({
       ssrMode,
-      credentials: 'include',
-      link: new HttpLink({
-        uri: 'https://devparty.graphcdn.app',
-        headers: headers
+      link: createHttpLink({
+        uri: ssrMode
+          ? process.env.VERCEL
+            ? `https://${process.env.VERCEL_URL}/api/graphql`
+            : `http://localhost:3000/api/graphql`
+          : '/api/graphql',
+        headers: headers,
+        credentials: 'same-origin'
       }),
       cache: new InMemoryCache({
         typePolicies: {
