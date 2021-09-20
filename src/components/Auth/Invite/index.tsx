@@ -15,10 +15,6 @@ export const GET_INVITE_QUERY = gql`
       user {
         id
         username
-        profile {
-          id
-          name
-        }
       }
     }
   }
@@ -36,9 +32,7 @@ const InviteSignup: React.FC = () => {
   return (
     <div className="flex flex-grow">
       <Head>
-        <title>
-          {data?.invite?.user?.profile?.name} invited you to Devparty
-        </title>
+        <title>Join Devparty</title>
       </Head>
       <div className="grid grid-cols-12 w-full">
         <Hero />
