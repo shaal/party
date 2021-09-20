@@ -61,11 +61,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
       ssrMode,
       credentials: 'include',
       link: new HttpLink({
-        uri: ssrMode
-          ? process.env.VERCEL
-            ? `https://devparty.graphcdn.app`
-            : `http://localhost:3000/api/graphql`
-          : '/api/graphql',
+        uri: 'https://devparty.graphcdn.app',
         headers: headers
       }),
       cache: new InMemoryCache({
