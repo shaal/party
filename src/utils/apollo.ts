@@ -54,16 +54,16 @@ export function useApollo(initialState?: Record<string, any>) {
 
 export function createApolloClient({ initialState, headers }: ClientOptions) {
   let nextClient = apolloClient
+  const ssrMode = typeof window === 'undefined'
 
   if (!nextClient) {
     nextClient = new ApolloClient({
-      ssrMode: typeof window === 'undefined',
+      ssrMode,
       credentials: 'include',
       link: new HttpLink({
-        uri:
-          typeof window === 'undefined'
-            ? `https://${process.env.VERCEL_URL}/api/graphql`
-            : '/api/graphql',
+        uri: ssrMode
+          ? `https://${process.env.VERCEL_URL}/api/graphql`
+          : '/api/graphql',
         headers: headers
       }),
       cache: new InMemoryCache({
@@ -110,7 +110,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
 
-  if (typeof window === 'undefined') return nextClient
+  if (ssrMode) return nextClient
 
   if (!apolloClient) apolloClient = nextClient
 
