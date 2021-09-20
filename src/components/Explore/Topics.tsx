@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
@@ -37,10 +38,24 @@ const Topics: React.FC = () => {
     GET_EXPLORE_USER_QUERY
   )
 
+  if (loading)
+    return (
+      <Card>
+        <CardBody>
+          <div className="shimmer h-5 rounded-lg"></div>
+        </CardBody>
+      </Card>
+    )
+
   return (
     <>
       {data?.me ? (
         <Card>
+          <ErrorMessage
+            title="Failed to load topics"
+            error={error}
+            className="p-5"
+          />
           <div className="space-y-3 text-center p-5">
             <img
               className="h-16 w-16 rounded-full mx-auto"
