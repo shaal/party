@@ -10,8 +10,8 @@ import Document, {
 type Props = Record<string, unknown> & DocumentProps
 
 class DevpartyDocument extends Document<Props> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
+  static async getInitialProps(context: DocumentContext) {
+    const initialProps = await Document.getInitialProps(context)
     return { ...initialProps }
   }
 
