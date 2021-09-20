@@ -9,7 +9,7 @@ import Document, {
 
 type Props = Record<string, unknown> & DocumentProps
 
-class MyDocument extends Document<Props> {
+class DevpartyDocument extends Document<Props> {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
@@ -31,4 +31,4 @@ class MyDocument extends Document<Props> {
   }
 }
 
-export default MyDocument
+export default DevpartyDocument
