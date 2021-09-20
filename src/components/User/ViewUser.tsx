@@ -62,8 +62,7 @@ const ViewUser: React.FC = () => {
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
-    },
-    skip: !router.isReady
+    }
   })
 
   if (loading) return <PageLoading message="Loading user" />
