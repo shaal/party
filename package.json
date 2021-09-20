@@ -46,6 +46,7 @@
     "next-iron-session": "^4.2.0",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
+    "preact": "^10.5.14",
     "react": "latest",
     "react-cool-inview": "^2.0.7",
     "react-dom": "latest",
