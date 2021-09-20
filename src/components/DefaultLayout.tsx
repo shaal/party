@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client'
-import { NextSeo } from 'next-seo'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
@@ -69,14 +68,6 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   return (
     <AppContext.Provider value={injectedGlobalContext}>
       <Toaster position="top-right" toastOptions={toastOptions} />
-      <NextSeo
-        additionalLinkTags={[
-          {
-            rel: 'icon',
-            href: '/favicon.svg'
-          }
-        ]}
-      />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
