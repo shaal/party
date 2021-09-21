@@ -36,7 +36,7 @@ const Attachments: React.FC<Props> = ({
       {attachments?.length !== 0 && (
         <div className={getGridRows(attachments?.length)}>
           {attachments?.map((attachment: any) => (
-            <div className="aspect-w-16 aspect-h-12" key={attachment}>
+            <div className="aspect-w-16 aspect-h-12" key={attachment.url}>
               {attachment.type === 'video/mp4' ? (
                 <video
                   controls
