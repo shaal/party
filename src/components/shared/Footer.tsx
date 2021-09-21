@@ -39,14 +39,9 @@ const Footer: React.FC = () => {
       >
         Status
       </a>
-      <a
-        className="pr-3"
-        href="https://kinopio.club/-devparty-roadmap-SxWTMtzJ6jhQwTszij6-h"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Roadmap
-      </a>
+      <span className="pr-3">
+        <Link href="/sponsors">Sponsors</Link>
+      </span>
       <a
         className="pr-3"
         href="https://gitlab.com/yo/devparty"
