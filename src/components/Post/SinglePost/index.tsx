@@ -1,31 +1,31 @@
-import { gql, useMutation } from "@apollo/client";
-import Slug from "@components/shared/Slug";
-import UserProfile from "@components/shared/UserProfile";
-import { Card, CardBody } from "@components/ui/Card";
-import AppContext from "@components/utils/AppContext";
-import { useOembed } from "@components/utils/useOembed";
-import { ChatIcon } from "@heroicons/react/outline";
-import Link from "next/link";
-import React from "react";
-import { useContext } from "react";
-import toast from "react-hot-toast";
-import { Post, User } from "src/__generated__/schema.generated";
-import * as timeago from "timeago.js";
+import { gql, useMutation } from '@apollo/client'
+import Slug from '@components/shared/Slug'
+import UserProfile from '@components/shared/UserProfile'
+import { Card, CardBody } from '@components/ui/Card'
+import AppContext from '@components/utils/AppContext'
+import { useOembed } from '@components/utils/useOembed'
+import { ChatIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
+import React from 'react'
+import { useContext } from 'react'
+import toast from 'react-hot-toast'
+import { Post, User } from 'src/__generated__/schema.generated'
+import * as timeago from 'timeago.js'
 
-import DeleteButton from "../DeleteButton";
-import LikeButton from "../LikeButton";
+import DeleteButton from '../DeleteButton'
+import LikeButton from '../LikeButton'
 import {
   TogglePostLikeMutation,
-  TogglePostLikeMutationVariables,
-} from "./__generated__/index.generated";
-import Oembed from "./Oembed";
-import SelectedProduct from "./SelectedProduct";
-import PostType from "./Type/Post";
-import QuestionType from "./Type/Question";
-import TaskType from "./Type/Task";
-import dynamic from "next/dynamic";
+  TogglePostLikeMutationVariables
+} from './__generated__/index.generated'
+import Oembed from './Oembed'
+import SelectedProduct from './SelectedProduct'
+import PostType from './Type/Post'
+import QuestionType from './Type/Question'
+import TaskType from './Type/Task'
+import dynamic from 'next/dynamic'
 
-const PostSentiment = dynamic(() => import("./Sentiment"));
+const PostSentiment = dynamic(() => import('./Sentiment'))
 
 export const PostFragment = gql`
   fragment PostFragment on Post {
@@ -82,16 +82,16 @@ export const PostFragment = gql`
       avatar
     }
   }
-`;
+`
 
 interface Props {
-  post: Post;
-  showParent?: boolean;
+  post: Post
+  showParent?: boolean
 }
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
-  const { currentUser, staffMode } = useContext(AppContext);
-  const { oembed, isLoading, isError } = useOembed(post?.oembedUrl);
+  const { currentUser, staffMode } = useContext(AppContext)
+  const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
     TogglePostLikeMutationVariables
@@ -106,25 +106,25 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
     `,
     {
       onError() {
-        toast.error("Something went wrong!");
+        toast.error('Something went wrong!')
       },
       onCompleted(data) {
         if (data?.togglePostLike?.hasLiked) {
-          toast.success("Post liked successfully");
+          toast.success('Post liked successfully')
         } else {
-          toast.success("Post disliked successfully");
+          toast.success('Post disliked successfully')
         }
-      },
+      }
     }
-  );
+  )
 
   const handleLike = (post: any) => {
     togglePostLike({
       variables: {
-        input: { id: post?.id },
-      },
-    });
-  };
+        input: { id: post?.id }
+      }
+    })
+  }
 
   return (
     <Card>
@@ -149,10 +149,10 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             </a>
           </Link>
         </div>
-        {post?.type === "POST" && <PostType post={post} />}
-        {post?.type === "REPLY" && <PostType post={post} />}
-        {post?.type === "TASK" && <TaskType task={post} />}
-        {post?.type === "QUESTION" && <QuestionType question={post} />}
+        {post?.type === 'POST' && <PostType post={post} />}
+        {post?.type === 'REPLY' && <PostType post={post} />}
+        {post?.type === 'TASK' && <TaskType task={post} />}
+        {post?.type === 'QUESTION' && <QuestionType question={post} />}
         {post?.oembedUrl && !isLoading && !isError && (
           <Oembed url={post?.oembedUrl} oembed={oembed} />
         )}
@@ -193,11 +193,13 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        {post?.product && <SelectedProduct product={post?.product} />}
-        {staffMode && <PostSentiment post={post} />}
+        <div className="ml-auto flex items-center space-x-3">
+          {post?.product && <SelectedProduct product={post?.product} />}
+          {staffMode && <PostSentiment post={post} />}
+        </div>
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default SinglePost;
+export default SinglePost
