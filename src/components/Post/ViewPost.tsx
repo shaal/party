@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import Footer from '@components/shared/Footer'
 import DevpartySEO from '@components/shared/SEO'
 import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
@@ -82,7 +81,6 @@ const ViewPost: React.FC = () => {
             <MorePosts post={data?.post as Post} />
           )}
         </div>
-        <Footer />
       </GridItemFour>
     </GridLayout>
   )
