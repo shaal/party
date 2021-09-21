@@ -87,7 +87,7 @@ interface Props {
 }
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
-  const { currentUser, staffMode } = useContext(AppContext)
+  const { currentUser } = useContext(AppContext)
   const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
