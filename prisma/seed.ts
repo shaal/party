@@ -7,6 +7,7 @@ import { md5 } from 'hash-wasm'
 
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
+const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
 async function main() {
@@ -117,7 +118,7 @@ async function main() {
 
   // Post
   for (let i = 0; i < 200; i++) {
-    const post = faker.lorem.sentence(20)
+    const post = hplipsum(10)
     const done = faker.datatype.boolean()
     console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({
