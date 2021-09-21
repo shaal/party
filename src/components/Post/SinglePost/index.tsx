@@ -5,6 +5,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import { useOembed } from '@components/utils/useOembed'
 import { ChatIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
@@ -23,7 +24,6 @@ import SelectedProduct from './SelectedProduct'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
-import dynamic from 'next/dynamic'
 
 const PostSentiment = dynamic(() => import('./Sentiment'))
 
