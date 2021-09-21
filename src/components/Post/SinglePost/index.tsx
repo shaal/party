@@ -190,7 +190,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        <div className="ml-auto flex items-center">
+        <div className="ml-auto">
           {post?.product && <SelectedProduct product={post?.product} />}
         </div>
       </div>
