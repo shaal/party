@@ -12,7 +12,7 @@
     "generate": "prisma generate && yarn codegen",
     "prisma:migrate": "prisma migrate dev --preview-feature",
     "prisma:seed": "ts-node prisma/seed.ts",
-    "codegen": "run-s -l \"codegen:*\"",
+    "codegen": "yarn codegen:schema && yarn codegen:graphql",
     "codegen:schema": "ts-node --transpile-only -r tsconfig-paths/register src/graphql/index.ts",
     "codegen:graphql": "graphql-codegen",
     "prepare": "husky install"
@@ -90,7 +90,6 @@
     "hplipsum": "^1.0.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.1",
-    "npm-run-all": "^4.1.5",
     "postcss": "^8.3.6",
     "prettier": "^2.4.1",
     "prisma": "3.0.2",
