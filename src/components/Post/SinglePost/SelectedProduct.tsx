@@ -8,7 +8,7 @@ interface Props {
 
 const SelectedProduct: React.FC<Props> = ({ product }) => {
   return (
-    <div className="text-sm flex items-center space-x-2 ml-auto">
+    <div className="text-sm flex items-center space-x-2">
       <div>Posted in</div>
       <Link href={`/products/${product?.slug}`} passHref>
         <a className="flex items-center space-x-1 cursor-pointer">

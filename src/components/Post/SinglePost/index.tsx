@@ -5,6 +5,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import { useOembed } from '@components/utils/useOembed'
 import { ChatIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
@@ -23,6 +24,8 @@ import SelectedProduct from './SelectedProduct'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
+
+const PostSentiment = dynamic(() => import('./Sentiment'))
 
 export const PostFragment = gql`
   fragment PostFragment on Post {
@@ -87,7 +90,7 @@ interface Props {
 }
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
-  const { currentUser } = useContext(AppContext)
+  const { currentUser, staffMode } = useContext(AppContext)
   const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
@@ -190,7 +193,10 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        {post?.product && <SelectedProduct product={post?.product} />}
+        <div className="ml-auto flex items-center">
+          {post?.product && <SelectedProduct product={post?.product} />}
+          {staffMode && <PostSentiment post={post} />}
+        </div>
       </div>
     </Card>
   )
