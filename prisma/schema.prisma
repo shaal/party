@@ -62,7 +62,7 @@ model Session {
   expiresAt DateTime @default(now())
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
@@ -82,7 +82,7 @@ model Profile {
   twitter  String?
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
@@ -98,7 +98,7 @@ model Invite {
   createdAt DateTime @default(now())
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
@@ -119,15 +119,15 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User        @relation(fields: [userId], references: [id])
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  product   Product?    @relation(fields: [productId], references: [id])
+  product   Product?    @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
   topics    PostTopic[]
 
   parentId String?
-  parent   Post?   @relation("replies", fields: [parentId], references: [id])
+  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: Cascade)
   replies  Post[]  @relation("replies")
 
   // Attributes
@@ -138,9 +138,9 @@ model PostTopic {
   id String @id @default(cuid())
 
   // Relations
-  post    Post?   @relation(fields: [postId], references: [id])
+  post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  String?
-  topic   Topic?  @relation(fields: [topicId], references: [id])
+  topic   Topic?  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId String?
 
   // Attributes
@@ -171,9 +171,9 @@ model Like {
   createdAt DateTime @default(now())
 
   // Relations
-  user         User           @relation(fields: [userId], references: [id])
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
-  post         Post?          @relation(fields: [postId], references: [id])
+  post         Post?          @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId       String?
   notification Notification[] @relation("like")
 
@@ -201,7 +201,7 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user        User?   @relation("owner", fields: [userId], references: [id])
+  user        User?   @relation("owner", fields: [userId], references: [id], onDelete: Cascade)
   userId      String?
   subscribers User[]  @relation("subscribed")
   posts       Post[]
@@ -238,11 +238,11 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User    @relation("receiver", fields: [receiverId], references: [id])
+  receiver     User    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId   String
-  dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id])
+  dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
-  like         Like?   @relation("like", fields: [likeId], references: [id])
+  like         Like?   @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
   likeId       String?
 
   // Attributes
@@ -259,7 +259,7 @@ model Integration {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
