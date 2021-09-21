@@ -14,7 +14,6 @@ CREATE TABLE `users` (
 
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
-    INDEX `users_username_email_idx`(`username`, `email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -28,7 +27,6 @@ CREATE TABLE `sessions` (
     `expiresAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `sessions_userAgent_userId_idx`(`userAgent`, `userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -46,7 +44,6 @@ CREATE TABLE `profiles` (
     `twitter` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `profiles_userId_idx`(`userId`),
     UNIQUE INDEX `profiles_userId_unique`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -59,7 +56,6 @@ CREATE TABLE `invites` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `invites_code_userId_idx`(`code`, `userId`),
     UNIQUE INDEX `invites_userId_unique`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -79,7 +75,6 @@ CREATE TABLE `posts` (
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),
 
-    INDEX `posts_userId_productId_parentId_idx`(`userId`, `productId`, `parentId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -89,7 +84,6 @@ CREATE TABLE `post_topics` (
     `postId` VARCHAR(191),
     `topicId` VARCHAR(191),
 
-    INDEX `post_topics_postId_topicId_idx`(`postId`, `topicId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -102,7 +96,6 @@ CREATE TABLE `topics` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `topics_name_key`(`name`),
-    INDEX `topics_name_idx`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -113,7 +106,6 @@ CREATE TABLE `likes` (
     `userId` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
-    INDEX `likes_postId_userId_idx`(`postId`, `userId`),
     UNIQUE INDEX `likes_userId_postId_key`(`userId`, `postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -135,7 +127,6 @@ CREATE TABLE `products` (
     `userId` VARCHAR(191),
 
     UNIQUE INDEX `products_slug_key`(`slug`),
-    INDEX `products_slug_userId_idx`(`slug`, `userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -155,6 +146,7 @@ CREATE TABLE `badges` (
 CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
     `message` VARCHAR(191),
+    `isRead` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POSTLIKE', 'MENTION', 'FOLLOW') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -162,7 +154,6 @@ CREATE TABLE `notifications` (
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
 
-    INDEX `notifications_receiverId_dispatcherId_likeId_idx`(`receiverId`, `dispatcherId`, `likeId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -175,7 +166,6 @@ CREATE TABLE `integrations` (
     `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `integrations_userId_idx`(`userId`),
     UNIQUE INDEX `integrations_userId_unique`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

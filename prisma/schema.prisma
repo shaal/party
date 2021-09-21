@@ -48,7 +48,6 @@ model User {
   dispatchedNotification Notification[] @relation("dispatcher")
 
   // Attributes
-  @@index([username, email])
   @@map("users")
 }
 
@@ -67,7 +66,6 @@ model Session {
   userId String
 
   // Attributes
-  @@index([userAgent, userId])
   @@map("sessions")
 }
 
@@ -88,7 +86,6 @@ model Profile {
   userId String
 
   // Attributes
-  @@index([userId])
   @@map("profiles")
 }
 
@@ -105,7 +102,6 @@ model Invite {
   userId String
 
   // Attributes
-  @@index([code, userId])
   @@map("invites")
 }
 
@@ -135,7 +131,6 @@ model Post {
   replies  Post[]  @relation("replies")
 
   // Attributes
-  @@index([userId, productId, parentId])
   @@map("posts")
 }
 
@@ -149,7 +144,6 @@ model PostTopic {
   topicId String?
 
   // Attributes
-  @@index([postId, topicId])
   @@map("post_topics")
 }
 
@@ -167,7 +161,6 @@ model Topic {
   starrers User[]
 
   // Attributes
-  @@index([name])
   @@map("topics")
 }
 
@@ -186,7 +179,6 @@ model Like {
 
   // Attributes
   @@unique([userId, postId], name: "likeIdentifier")
-  @@index([postId, userId])
   @@map("likes")
 }
 
@@ -215,7 +207,6 @@ model Product {
   posts       Post[]
 
   // Attributes
-  @@index([slug, userId])
   @@map("products")
 }
 
@@ -239,6 +230,7 @@ model Badge {
 model Notification {
   id      String           @id @default(cuid())
   message String?
+  isRead  Boolean          @default(false)
   type    NotificationType
 
   // Timestamps
@@ -254,7 +246,6 @@ model Notification {
   likeId       String?
 
   // Attributes
-  @@index([receiverId, dispatcherId, likeId])
   @@map("notifications")
 }
 
@@ -272,7 +263,6 @@ model Integration {
   userId String
 
   // Attributes
-  @@index([userId])
   @@map("integrations")
 }
 
