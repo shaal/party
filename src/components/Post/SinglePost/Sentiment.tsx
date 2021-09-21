@@ -1,7 +1,7 @@
-import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
-import Sentiment from 'sentiment'
 import { Tooltip } from '@components/ui/Tooltip'
+import React from 'react'
+import Sentiment from 'sentiment'
+import { Post } from 'src/__generated__/schema.generated'
 
 interface Props {
   post: Post
