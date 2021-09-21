@@ -11,29 +11,6 @@ const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
 async function main() {
-  await db.topic.deleteMany()
-  console.log('All topics are deleted 🗑️')
-  await db.postTopic.deleteMany()
-  console.log('All post topics are deleted 🗑️')
-  await db.like.deleteMany()
-  console.log('All likes are deleted 🗑️')
-  await db.post.deleteMany()
-  console.log('All posts are deleted 🗑️')
-  await db.product.deleteMany()
-  console.log('All products are deleted 🗑️')
-  await db.notification.deleteMany()
-  console.log('All notifications are deleted 🗑️')
-  await db.session.deleteMany()
-  console.log('All sessions are deleted 🗑️')
-  await db.integration.deleteMany()
-  console.log('All integrations are deleted 🗑️')
-  await db.profile.deleteMany()
-  console.log('All profiles are deleted 🗑️')
-  await db.invite.deleteMany()
-  console.log('All invites are deleted 🗑️')
-  await db.user.deleteMany()
-  console.log('All users are deleted 🗑️')
-
   // Fake User
   for (let i = 0; i < 50; i++) {
     const username =
