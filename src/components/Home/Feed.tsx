@@ -9,7 +9,7 @@ import useInView from 'react-cool-inview'
 
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
-const HOME_FEED_QUERY = gql`
+export const HOME_FEED_QUERY = gql`
   query HomeFeedQuery($after: String, $type: String!) {
     posts: homeFeed(first: 10, after: $after, type: $type) {
       pageInfo {
