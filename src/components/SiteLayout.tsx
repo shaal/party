@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
-import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
+import { CurrentUserQuery } from './__generated__/SiteLayout.generated'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
