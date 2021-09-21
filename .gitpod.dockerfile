@@ -9,7 +9,4 @@ RUN bash -c ". .nvm/nvm.sh && \
 ENV PATH=/home/gitpod/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
 
 # Install Redis.
-RUN sudo apt-get update \
-  && sudo apt-get install -y \
-  redis-server \
-  && sudo rm -rf /var/lib/apt/lists/*
+RUN brew install redis
