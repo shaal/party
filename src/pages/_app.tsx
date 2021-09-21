@@ -1,7 +1,7 @@
 import '../styles.css'
 
 import { ApolloProvider } from '@apollo/client'
-import DefaultLayout from '@components/DefaultLayout'
+import SiteLayout from '@components/SiteLayout'
 import { NProgress } from '@components/ui/NProgress'
 import { useApollo } from '@utils/apollo'
 import { AppProps } from 'next/app'
@@ -18,9 +18,9 @@ const App = ({ Component, pageProps }: AppProps) => {
           <title>Devparty</title>
         </Head>
         <NProgress />
-        <DefaultLayout>
+        <SiteLayout>
           <Component {...pageProps} />
-        </DefaultLayout>
+        </SiteLayout>
       </ThemeProvider>
     </ApolloProvider>
   )

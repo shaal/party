@@ -1,5 +1,5 @@
 import Signup from '@components/Auth/Signup'
-import { CURRENT_USER_QUERY } from '@components/DefaultLayout'
+import { CURRENT_USER_QUERY } from '@components/SiteLayout'
 import { preloadQuery } from '@utils/apollo'
 import { unauthenticatedRoute } from '@utils/redirects'
 import { GetServerSidePropsContext } from 'next'

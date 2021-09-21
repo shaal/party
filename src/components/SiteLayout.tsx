@@ -26,7 +26,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const DefaultLayout: React.FC<Props> = ({ children }) => {
+const SiteLayout: React.FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
   const toastOptions = {
     style: {
@@ -76,4 +76,4 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   )
 }
 
-export default DefaultLayout
+export default SiteLayout
