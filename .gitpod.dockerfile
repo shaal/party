@@ -1,5 +1,5 @@
 FROM gitpod/workspace-mysql
 
 # Install Packages
-RUN brew install node
-RUN brew install redis
+RUN brew install node@latest
+RUN brew install redis@latest
