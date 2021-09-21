@@ -1672,6 +1672,11 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.2.3.tgz#5798ecf1bec94eaa64db39ee52808ec0693315aa"
   integrity sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==
 
+"@types/sentiment@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/sentiment/-/sentiment-5.0.1.tgz#b64e2dcb107b603a617217d2b45bfda63262ca09"
+  integrity sha512-EDqF8DFWaVVlEUZ35y+4B3dxI7JCKj0l35umQzi1NksqEihFexvGiMTE7Jd/R7Ottc0eicfgjskWkuBcDQRuuQ==
+
 "@types/spotify-api@*":
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/@types/spotify-api/-/spotify-api-0.0.11.tgz#5cc45ad6341b5233f4617601dc4826b9e6370473"
@@ -7701,6 +7706,11 @@ sentence-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
+
+sentiment@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/sentiment/-/sentiment-5.0.2.tgz#01e4396d9b5b17b1176f16c9d1a8be87b16cc1d6"
+  integrity sha512-ZeC3y0JsOYTdwujt5uOd7ILJNilbgFzUtg/LEG4wUv43LayFNLZ28ec8+Su+h3saHlJmIwYxBzfDHHZuiMA15g==
 
 serialize-javascript@5.0.1:
   version "5.0.1"
