@@ -193,7 +193,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        <div className="ml-auto flex items-center space-x-3">
+        <div className="ml-auto flex items-center">
           {post?.product && <SelectedProduct product={post?.product} />}
           {staffMode && <PostSentiment post={post} />}
         </div>
