@@ -8,7 +8,8 @@ export const getNotifications = async (
   return await db.notification.findMany({
     ...query,
     where: {
-      receiverId: session?.userId
+      receiverId: session?.userId,
+      isRead: false
     },
     orderBy: {
       createdAt: 'desc'
