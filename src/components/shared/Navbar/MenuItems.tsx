@@ -20,7 +20,7 @@ interface Props {
 }
 
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
-  const { theme, themes, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
 
   const toggleStaffMode = () => {
@@ -106,10 +106,25 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 Logout
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>
-              <div className="px-5 py-3 text-lg flex items-center gap-2">
-                <button onClick={() => setTheme('light')}>🌞</button>
-                <button onClick={() => setTheme('dark')}>🌚</button>
-                <button onClick={() => setTheme('system')}>💻</button>
+              <div className="px-5 py-3 flex items-center space-x-3">
+                <button
+                  onClick={() => setTheme('light')}
+                  className={theme === 'light' ? 'text-xl' : ''}
+                >
+                  🌞
+                </button>
+                <button
+                  onClick={() => setTheme('dark')}
+                  className={theme === 'dark' ? 'text-xl' : ''}
+                >
+                  🌚
+                </button>
+                <button
+                  onClick={() => setTheme('system')}
+                  className={theme === 'system' ? 'text-xl' : ''}
+                >
+                  💻
+                </button>
               </div>
               {currentUser?.isStaff && (
                 <>
