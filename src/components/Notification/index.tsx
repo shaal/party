@@ -4,7 +4,7 @@ import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { BellIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import { NotificationsQuery } from './__generated__/index.generated'
@@ -47,9 +47,13 @@ export const NOTIFICATIONS_QUERY = gql`
 `
 
 const Notifications: React.FC = () => {
+  const [isRead, setIsRead] = useState<boolean>(false)
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    { variables: { after: null, isRead: false }, pollInterval: 10000 }
+    {
+      variables: { after: null, isRead },
+      pollInterval: 10000
+    }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
