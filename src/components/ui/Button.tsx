@@ -14,6 +14,7 @@ interface Props
   variant?: 'primary' | 'secondary' | 'success' | 'danger'
   outline?: boolean
   loading?: boolean
+  icon?: React.ReactNode
   children: React.ReactNode
   className?: string
 }
@@ -25,6 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     variant = 'primary',
     outline,
     loading,
+    icon,
     children,
     ...rest
   },
@@ -55,13 +57,14 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
           'px-3 py-1': size === 'md',
           'px-4 py-1.5': size === 'lg'
         },
-        'rounded-lg font-bold disabled:opacity-50 shadow-sm focus:ring-2 focus:ring-opacity-50 focus:ring-offset-1 outline-none',
+        'rounded-lg font-bold disabled:opacity-50 shadow-sm focus:ring-2 focus:ring-opacity-50 focus:ring-offset-1 outline-none flex items-center space-x-1.5',
         className
       )}
       disabled={loading}
       {...rest}
     >
-      {children}
+      {icon}
+      <div>{children}</div>
     </button>
   )
 })

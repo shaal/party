@@ -9,6 +9,7 @@ import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
+import { CheckCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -198,7 +199,12 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
 
               <div className="flex items-center justify-between pt-3">
                 <Link href="/settings/password">Change password?</Link>
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  icon={<CheckCircleIcon className="h-4 w-4" />}
+                >
+                  Save
+                </Button>
               </div>
             </Form>
           </CardBody>
