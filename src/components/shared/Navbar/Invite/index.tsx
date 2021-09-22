@@ -16,15 +16,13 @@ const Invite: React.FC = () => {
         <TicketIcon className="h-4 w-4" />
         <div>Invite</div>
       </Button>
-      {showModal && (
-        <Modal
-          onClose={() => setShowModal(!showModal)}
-          title="Your Invite Code"
-          show={showModal}
-        >
-          <InviteDetails />
-        </Modal>
-      )}
+      <Modal
+        onClose={() => setShowModal(!showModal)}
+        title="Your Invite Code"
+        show={showModal}
+      >
+        <InviteDetails />
+      </Modal>
     </div>
   )
 }
