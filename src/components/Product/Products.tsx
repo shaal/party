@@ -71,8 +71,7 @@ const Products: React.FC = () => {
               Launch a new product to Devparty and get noticed by peoples
             </div>
             <Link href="/products/new" passHref>
-              <Button className="flex items-center space-x-1">
-                <CubeIcon className="h-4 w-4" />
+              <Button icon={<CubeIcon className="h-4 w-4" />}>
                 <div>Create new Product</div>
               </Button>
             </Link>
