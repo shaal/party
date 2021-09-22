@@ -73,7 +73,7 @@
     "@types/ioredis": "^4.27.4",
     "@types/linkifyjs": "^2.1.4",
     "@types/nprogress": "^0.2.0",
-    "@types/react": "^17.0.22",
+    "@types/react": "^17.0.23",
     "@types/react-dom": "^17.0.9",
     "@types/request-ip": "^0.0.37",
     "@types/sentiment": "^5.0.1",
