@@ -6,6 +6,8 @@ import React from 'react'
 import { Notification, Post } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
+import MarkAsRead from './Read'
+
 interface Props {
   notification: Notification
 }
@@ -17,8 +19,11 @@ const LikeNotification: React.FC<Props> = ({ notification }) => {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <UserProfile user={notification?.dispatcher} />
-            <div className="text-sm cursor-pointer">
-              {timeago.format(notification?.createdAt)}
+            <div className="flex items-center space-x-3">
+              <div className="text-sm cursor-pointer">
+                {timeago.format(notification?.createdAt)}
+              </div>
+              <MarkAsRead notification={notification} />
             </div>
           </div>
           <div className="linkify">
