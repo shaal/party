@@ -15,7 +15,7 @@ interface Props
   outline?: boolean
   loading?: boolean
   icon?: React.ReactNode
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
 }
 

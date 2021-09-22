@@ -124,14 +124,15 @@ const QuestionType: React.FC = () => {
               variant="success"
               size="sm"
               outline
+              icon={
+                preview ? (
+                  <EyeOffIcon className="h-5 w-5" />
+                ) : (
+                  <EyeIcon className="h-5 w-5" />
+                )
+              }
               onClick={() => setPreview(!preview)}
-            >
-              {preview ? (
-                <EyeOffIcon className="h-5 w-5" />
-              ) : (
-                <EyeIcon className="h-5 w-5" />
-              )}
-            </Button>
+            />
           </Tooltip>
         </div>
         <Button
