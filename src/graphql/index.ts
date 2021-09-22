@@ -2,11 +2,14 @@ import './resolvers'
 
 import fs from 'fs'
 import { GraphQLSchema, lexicographicSortSchema, printSchema } from 'graphql'
+import { createRateLimitDirective } from 'graphql-rate-limit-directive'
 import path from 'path'
 
 import { builder } from './builder'
 
-export const schema = builder.toSchema({})
+const schema = builder.toSchema({})
+createRateLimitDirective().visitSchemaDirectives(schema, {})
+export default schema
 
 function writeSchema(schema: GraphQLSchema) {
   const schemaAsString = printSchema(lexicographicSortSchema(schema))
