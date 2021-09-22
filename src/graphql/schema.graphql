@@ -155,6 +155,7 @@ type Mutation {
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User
+  readNotification(input: ReadNotificationInput!): Result!
   regenerateInvite: Invite!
   revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
@@ -410,6 +411,10 @@ type QueryWhoToFollowConnection {
 type QueryWhoToFollowConnectionEdge {
   cursor: String!
   node: User!
+}
+
+input ReadNotificationInput {
+  id: ID!
 }
 
 enum Result {

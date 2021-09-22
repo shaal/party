@@ -1,5 +1,7 @@
 import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 
+import { Result } from '../ResultResolver'
 import { getNotifications } from './queries/getNotifications'
 
 builder.prismaObject('Notification', {
@@ -28,6 +30,28 @@ builder.queryField('notifications', (t) =>
     authScopes: { user: true },
     resolve: async (query, parent, args, { session }) => {
       return await getNotifications(query, session)
+    }
+  })
+)
+
+const ReadNotificationInput = builder.inputType('ReadNotificationInput', {
+  fields: (t) => ({
+    id: t.id()
+  })
+})
+
+builder.mutationField('readNotification', (t) =>
+  t.field({
+    type: Result,
+    args: { input: t.arg({ type: ReadNotificationInput }) },
+    authScopes: { user: true, $granted: 'currentUser' },
+    resolve: async (parent, { input }) => {
+      await db.notification.update({
+        where: { id: input!.id },
+        data: { isRead: true }
+      })
+
+      return Result.SUCCESS
     }
   })
 )
