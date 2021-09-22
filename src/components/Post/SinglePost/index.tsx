@@ -106,13 +106,6 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
     {
       onError() {
         toast.error('Something went wrong!')
-      },
-      onCompleted(data) {
-        if (data?.togglePostLike?.hasLiked) {
-          toast.success('Post liked successfully')
-        } else {
-          toast.success('Post disliked successfully')
-        }
       }
     }
   )
