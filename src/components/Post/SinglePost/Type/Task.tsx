@@ -1,5 +1,5 @@
-import 'linkifyjs/plugins/hashtag'
-import 'linkifyjs/plugins/mention'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
 
 import { gql, useMutation } from '@apollo/client'
 import { TaskCheckbox } from '@components/ui/TaskCheckbox'

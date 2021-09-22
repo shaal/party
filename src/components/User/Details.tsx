@@ -1,5 +1,5 @@
-import 'linkifyjs/plugins/hashtag'
-import 'linkifyjs/plugins/mention'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
 
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'

@@ -1,5 +1,5 @@
-import 'linkifyjs/plugins/hashtag'
-import 'linkifyjs/plugins/mention'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
 
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
