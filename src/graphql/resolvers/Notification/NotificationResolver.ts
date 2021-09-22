@@ -28,8 +28,11 @@ builder.queryField('notifications', (t) =>
     defaultSize: 20,
     maxSize: 100,
     authScopes: { user: true },
-    resolve: async (query, parent, args, { session }) => {
-      return await getNotifications(query, session)
+    args: {
+      isRead: t.arg.boolean({ defaultValue: false })
+    },
+    resolve: async (query, parent, { isRead }, { session }) => {
+      return await getNotifications(query, isRead, session)
     }
   })
 )

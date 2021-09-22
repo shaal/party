@@ -276,7 +276,7 @@ type Query {
   invite(code: String!): Invite
   me: User
   morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
-  notifications(after: String, before: String, first: Int, last: Int): QueryNotificationsConnection!
+  notifications(after: String, before: String, first: Int, isRead: Boolean! = false, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!

@@ -36,6 +36,7 @@ const MarkAsRead: React.FC<Props> = ({ notification }) => {
 
   return (
     <button
+      disabled={markingAsRead}
       onClick={() =>
         readNotification({ variables: { input: { id: notification?.id } } })
       }

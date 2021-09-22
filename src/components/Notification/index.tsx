@@ -12,8 +12,8 @@ import FollowNotification from './Follow'
 import LikeNotification from './Like'
 
 export const NOTIFICATIONS_QUERY = gql`
-  query NotificationsQuery($after: String) {
-    notifications(first: 5, after: $after) {
+  query NotificationsQuery($after: String, $isRead: Boolean) {
+    notifications(first: 5, after: $after, isRead: $isRead) {
       pageInfo {
         hasNextPage
         endCursor
@@ -49,7 +49,7 @@ export const NOTIFICATIONS_QUERY = gql`
 const Notifications: React.FC = () => {
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    { variables: { after: null }, pollInterval: 10000 }
+    { variables: { after: null, isRead: false }, pollInterval: 10000 }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
