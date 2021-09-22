@@ -20,7 +20,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.13",
     "@changesets/cli": "^2.17.0",
-    "@giraphql/core": "^2.15.1",
+    "@giraphql/core": "^2.15.2",
     "@giraphql/plugin-prisma": "^0.9.1",
     "@giraphql/plugin-relay": "^2.15.1",
     "@giraphql/plugin-scope-auth": "^2.10.1",
