@@ -105,16 +105,10 @@ const Topics: React.FC = () => {
             <div>Join Devparty today!</div>
             <div className="flex space-x-1.5">
               <Link href="/login" passHref>
-                <Button
-                  className="flex items-center space-x-1"
-                  icon={<LoginIcon className="h-4 w-4" />}
-                >
-                  Login
-                </Button>
+                <Button icon={<LoginIcon className="h-4 w-4" />}>Login</Button>
               </Link>
               <Link href="/signup" passHref>
                 <Button
-                  className="flex items-center space-x-1"
                   variant="success"
                   icon={<UserAddIcon className="h-4 w-4" />}
                 >

@@ -107,7 +107,7 @@ const SignupForm: React.FC = () => {
         <Button
           size="lg"
           type="submit"
-          className=" w-full flex items-center justify-center space-x-1.5"
+          className=" w-full justify-center"
           icon={
             form.formState.isSubmitting ? (
               <Spinner size="xs" />
