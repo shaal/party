@@ -5,6 +5,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
@@ -201,7 +202,13 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 <Link href="/settings/password">Change password?</Link>
                 <Button
                   type="submit"
-                  icon={<CheckCircleIcon className="h-4 w-4" />}
+                  icon={
+                    form.formState.isSubmitting ? (
+                      <Spinner size="xs" />
+                    ) : (
+                      <CheckCircleIcon className="h-4 w-4" />
+                    )
+                  }
                 >
                   Save
                 </Button>
