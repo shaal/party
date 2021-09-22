@@ -4,6 +4,7 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
 import { Tooltip } from '@components/ui/Tooltip'
 import {
@@ -134,7 +135,11 @@ const QuestionType: React.FC = () => {
           </Tooltip>
         </div>
         <Button type="submit" className="flex items-center gap-1.5">
-          <QuestionMarkCircleIcon className="h-4 w-4" />
+          {form.formState.isSubmitting ? (
+            <Spinner size="xs" />
+          ) : (
+            <QuestionMarkCircleIcon className="h-4 w-4" />
+          )}
           <div>Ask</div>
         </Button>
       </div>
