@@ -5,7 +5,9 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
+import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -133,7 +135,18 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 {...form.register('discord')}
               />
               <div className="ml-auto pt-3">
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  icon={
+                    form.formState.isSubmitting ? (
+                      <Spinner size="xs" />
+                    ) : (
+                      <CheckCircleIcon className="h-4 w-4" />
+                    )
+                  }
+                >
+                  Save
+                </Button>
               </div>
             </Form>
           </CardBody>
