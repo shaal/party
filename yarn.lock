@@ -728,9 +728,9 @@
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
 "@giraphql/core@^2.15.1":
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.15.1.tgz#8a5632742500385a3b346f14f4c404f0c6df6222"
-  integrity sha512-MAkeUL3pBAg34LD+3oFxBGvoPOc+rNcXUDl40LfcZojDfrnKqgPqH2vKApiOD++/0SPdHooIlUYp+rZ1lu+e3g==
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.15.2.tgz#5dd26276d924be02170fb077e5befe35991b0ce8"
+  integrity sha512-xJJpX3Poau6wihRXYc/gNkLt7PZxdDIuoQLFTeY21KQSVEKS3Ah59ZU/jE3NnaQ0fDGNZCw/dsWvX4CFKJ89hQ==
 
 "@giraphql/plugin-prisma@^0.9.2":
   version "0.9.2"
@@ -740,9 +740,9 @@
     "@prisma/generator-helper" "^3.1.1"
 
 "@giraphql/plugin-relay@^2.15.1":
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-relay/-/plugin-relay-2.15.1.tgz#c22f7ed232b8eafd6f1e609bb2432ccc108f9d03"
-  integrity sha512-E0H7NR5TgBcW/uRcyNoVdWiB+blkpdl3oC3n9z8rMkhJGwyQFh+kPgAnuPeTHe/k/6dL3h0vB8tnu3C1yaQ/MA==
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-relay/-/plugin-relay-2.15.2.tgz#9dc12d763884fd6c98f1014af8521f544c8714bc"
+  integrity sha512-dUH/77hmnnv5mHssBv3VyGo3Ad4QZd64zPc1ydln8P/U+i7JhfKn9y3n7EQuPVV+HPihSX/BwsENOo/043l55Q==
 
 "@giraphql/plugin-scope-auth@^2.10.2":
   version "2.10.2"
@@ -750,9 +750,9 @@
   integrity sha512-h1d9BLF5/bpZdPn4wSfRjlEORHbBLTOtJrt37MN7rLCXVVPTOk8wvgmvI3BAM0wHvNuE7dIQgTfCsjQVP/4HiQ==
 
 "@giraphql/plugin-simple-objects@^2.8.1":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-simple-objects/-/plugin-simple-objects-2.8.1.tgz#bbb341cd3dc4d0b26c170cc5f1c60fd3756a8ee7"
-  integrity sha512-pk/GWTiIPSSzKz7StVp+r6tl7+y4dvIg5Pvb/Qh+pAUGr2ECZO1b+8pCUHaJeNN5TxWG8/U9R6G9f6CgXb6OEQ==
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-simple-objects/-/plugin-simple-objects-2.8.2.tgz#67cc61ce899c2adc0c0840791f1b3bbff81ca604"
+  integrity sha512-X1K8BrvNgWnjevd5h/GGnw35Hbaq4C0SV83vm5DWzNYP5IGZ7Wlml0NN9dnY+IiyeLY3xhqz8h85Fn72hpTIBA==
 
 "@giraphql/plugin-validation@^2.10.2":
   version "2.10.2"
@@ -1617,14 +1617,14 @@
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*", "@types/node@>=13.7.0":
-  version "16.9.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.4.tgz#a12f0ee7847cf17a97f6fdf1093cb7a9af23cca4"
-  integrity sha512-KDazLNYAGIuJugdbULwFZULF9qQ13yNWEBFnfVpqlpgAAo6H/qnM9RjBgh0A0kmHf3XxAKLdN5mTIng9iUvVLA==
+  version "16.9.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.6.tgz#040a64d7faf9e5d9e940357125f0963012e66f04"
+  integrity sha512-YHUZhBOMTM3mjFkXVcK+WwAcYmyhe1wL4lfqNtzI0b3qAy7yuSetnM7QJazgE5PFmgVTNGiLOgRFfJMqW7XpSQ==
 
 "@types/node@^12.7.1":
-  version "12.20.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.25.tgz#882bea2ca0d2ec22126b92b4dd2dc24b35a07469"
-  integrity sha512-hcTWqk7DR/HrN9Xe7AlJwuCaL13Vcd9/g/T54YrJz4Q3ESM5mr33YCzW2bOfzSIc3aZMeGBvbLGvgN6mIJ0I5Q==
+  version "12.20.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.26.tgz#a6db0d0577e40844f0b28c2a9289c09e5b44b541"
+  integrity sha512-gIt+h4u2uTho2bsH1K250fUv5fHU71ET1yWT7bM4523zV/XrFb9jlWBOV4DO8FpscY+Sz/WEr1EEjIP2H4yumQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -1654,9 +1654,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.23":
-  version "17.0.23"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.23.tgz#d01c06de3a7cf857b11f511b31e47659eb8c93fc"
-  integrity sha512-e0kgY3VjXSLFqPHqZdfYNhv3WW3bP6e4xd3Xqt27bmOKK5EX2f0CY5eTYKckAEqTmnOnuKshtlG936MbHlxyFw==
+  version "17.0.24"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.24.tgz#7e1b3f78d0fc53782543f9bce6d949959a5880bd"
+  integrity sha512-eIpyco99gTH+FTI3J7Oi/OH8MZoFMJuztNRimDOJwH4iGIsKV2qkGnk4M9VzlaVWeEEWLWSQRy0FEA0Kz218cg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3424,12 +3424,7 @@ electron-fetch@^1.7.2:
   dependencies:
     encoding "^0.1.13"
 
-electron-to-chromium@^1.3.723:
-  version "1.3.845"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.845.tgz#326d3be3ee5d2c065f689119d441c997f9fd41d8"
-  integrity sha512-y0RorqmExFDI4RjLEC6j365bIT5UAXf9WIRcknvSFHVhbC/dRnCgJnPA3DUUW6SCC85QGKEafgqcHJ6uPdEP1Q==
-
-electron-to-chromium@^1.3.846:
+electron-to-chromium@^1.3.723, electron-to-chromium@^1.3.846:
   version "1.3.846"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.846.tgz#a55fd59613dbcaed609e965e3e88f42b08c401d3"
   integrity sha512-2jtSwgyiRzybHRxrc2nKI+39wH3AwQgn+sogQ+q814gv8hIFwrcZbV07Ea9f8AmK0ufPVZUvvAG1uZJ+obV4Jw==
