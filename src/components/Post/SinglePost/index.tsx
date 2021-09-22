@@ -126,6 +126,11 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   return (
     <Card>
       <CardBody className="space-y-4">
+        {!post?.parent && post?.type === 'REPLY' && (
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Post author deleted the parent post
+          </div>
+        )}
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
             <Link href={`/posts/${post?.parent?.id}`} passHref>
