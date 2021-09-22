@@ -14,6 +14,7 @@ export const SESSION_SETTINGS_QUERY = gql`
       edges {
         node {
           id
+          current
           isStaff
           ipAddress
           userAgent

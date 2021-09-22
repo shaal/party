@@ -60,17 +60,19 @@ const SingleSession: React.FC<Props> = ({ session }) => {
           </div>
         </div>
       </div>
-      <Button
-        className="text-sm ml-10"
-        size="sm"
-        variant="danger"
-        icon={<TrashIcon className="h-4 w-4" />}
-        onClick={() =>
-          revokeSession({ variables: { input: { id: session?.id } } })
-        }
-      >
-        {revoking ? 'Revoking...' : 'Revoke'}
-      </Button>
+      {!session?.current && (
+        <Button
+          className="text-sm ml-10"
+          size="sm"
+          variant="danger"
+          icon={<TrashIcon className="h-4 w-4" />}
+          onClick={() =>
+            revokeSession({ variables: { input: { id: session?.id } } })
+          }
+        >
+          {revoking ? 'Revoking...' : 'Revoke'}
+        </Button>
+      )}
     </div>
   )
 }
