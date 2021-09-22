@@ -98,6 +98,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
             <div className="flex space-x-2">
               <Button
                 type="button"
+                variant="danger"
                 outline
                 className="flex items-center gap-1.5"
                 onClick={() => {
@@ -106,13 +107,17 @@ const NewReply: React.FC<Props> = ({ post }) => {
               >
                 <div>Cancel</div>
               </Button>
-              <Button type="submit" className="flex items-center gap-1.5">
-                {form.formState.isSubmitting ? (
-                  <Spinner size="xs" />
-                ) : (
-                  <ReplyIcon className="h-4 w-4" />
-                )}
-                <div>Reply</div>
+              <Button
+                type="submit"
+                icon={
+                  form.formState.isSubmitting ? (
+                    <Spinner size="xs" />
+                  ) : (
+                    <ReplyIcon className="h-4 w-4" />
+                  )
+                }
+              >
+                Reply
               </Button>
             </div>
           </div>
