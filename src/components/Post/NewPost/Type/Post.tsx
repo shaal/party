@@ -82,13 +82,17 @@ const PostType: React.FC = () => {
           />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
         </div>
-        <Button type="submit" className="flex items-center gap-1.5">
-          {form.formState.isSubmitting ? (
-            <Spinner size="xs" />
-          ) : (
-            <PencilAltIcon className="h-4 w-4" />
-          )}
-          <div>Post</div>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <PencilAltIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Post
         </Button>
       </div>
       <Attachments

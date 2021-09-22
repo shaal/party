@@ -134,13 +134,17 @@ const QuestionType: React.FC = () => {
             </Button>
           </Tooltip>
         </div>
-        <Button type="submit" className="flex items-center gap-1.5">
-          {form.formState.isSubmitting ? (
-            <Spinner size="xs" />
-          ) : (
-            <QuestionMarkCircleIcon className="h-4 w-4" />
-          )}
-          <div>Ask</div>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <QuestionMarkCircleIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Ask
         </Button>
       </div>
       <Attachments

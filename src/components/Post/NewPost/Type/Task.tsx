@@ -94,13 +94,17 @@ const TaskType: React.FC = () => {
           />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
         </div>
-        <Button type="submit" className="flex items-center gap-1.5">
-          {form.formState.isSubmitting ? (
-            <Spinner size="xs" />
-          ) : (
-            <CheckCircleIcon className="h-4 w-4" />
-          )}
-          <div>Create Task</div>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <CheckCircleIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Create Task
         </Button>
       </div>
       <Attachments
