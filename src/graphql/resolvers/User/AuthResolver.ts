@@ -13,12 +13,6 @@ builder.queryField('me', (t) =>
     type: 'User',
     nullable: true,
     skipTypeScopes: true,
-    directives: {
-      rateLimit: {
-        limit: 5,
-        duration: 60
-      }
-    },
     grantScopes: ['currentUser'],
     resolve: async (query, parent, args, { session }) => {
       if (!session?.userId) {

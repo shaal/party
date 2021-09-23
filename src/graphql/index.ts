@@ -8,7 +8,12 @@ import path from 'path'
 import { builder } from './builder'
 
 const schema = builder.toSchema({})
-createRateLimitDirective().visitSchemaDirectives(schema, {})
+const rateLimitDirective = createRateLimitDirective()
+
+rateLimitDirective.visitSchemaDirectives(schema, {
+  rateLimit: rateLimitDirective
+})
+
 export default schema
 
 function writeSchema(schema: GraphQLSchema) {

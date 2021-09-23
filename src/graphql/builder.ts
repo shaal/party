@@ -31,10 +31,7 @@ export function createGraphQLContext(
 type DirectiveTypes = {
   rateLimit: {
     locations: 'FIELD_DEFINITION' | 'OBJECT'
-    args: {
-      limit: number
-      duration: number
-    }
+    args: { limit: number; duration: number }
   }
 }
 
@@ -56,6 +53,7 @@ export const builder = new SchemaBuilder<{
   }
 }>({
   defaultInputFieldRequiredness: true,
+  useGraphQLToolsUnorderedDirectives: true,
   plugins: [
     SimpleObjectsPlugin,
     ScopeAuthPlugin,
