@@ -104,8 +104,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       ${PostFragment}
     `,
     {
-      onError() {
-        toast.error('Something went wrong!')
+      onError(error) {
+        toast.error(error.message)
       }
     }
   )

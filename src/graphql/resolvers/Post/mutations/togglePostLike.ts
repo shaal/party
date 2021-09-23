@@ -7,28 +7,32 @@ export const togglePostLike = async (
   userId: string,
   postId: string
 ) => {
-  let like
-  if (await hasLiked(userId, postId)) {
-    await db.like.deleteMany({
-      where: { userId, postId }
+  try {
+    let like
+    if (await hasLiked(userId, postId)) {
+      await db.like.deleteMany({
+        where: { userId, postId }
+      })
+    } else {
+      like = await db.like.create({
+        data: {
+          post: { connect: { id: postId } },
+          user: { connect: { id: userId } }
+        }
+      })
+    }
+
+    const post = await db.post.findFirst({
+      ...query,
+      where: { id: postId }
     })
-  } else {
-    like = await db.like.create({
-      data: {
-        post: { connect: { id: postId } },
-        user: { connect: { id: userId } }
-      }
-    })
+
+    if (like && userId !== post?.userId) {
+      await createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
+    }
+
+    return post
+  } catch (error) {
+    throw new Error('Something went wrong!')
   }
-
-  const post = await db.post.findFirst({
-    ...query,
-    where: { id: postId }
-  })
-
-  if (like && userId !== post?.userId) {
-    await createNotification(userId, post?.userId, like?.id, 'POSTLIKE')
-  }
-
-  return post
 }
