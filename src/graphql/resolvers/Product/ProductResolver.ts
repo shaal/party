@@ -33,7 +33,7 @@ builder.prismaObject('Product', {
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
 
     // Relations
-    user: t.relation('user'),
+    owner: t.relation('owner'),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,

@@ -37,7 +37,7 @@ const Details: React.FC<Props> = ({ product }) => {
           </div>
           <div className="text-xl">{product?.slug}</div>
         </div>
-        {currentUser?.id !== product?.user?.id ? (
+        {currentUser?.id !== product?.owner?.id ? (
           <Subscribe product={product} showText />
         ) : (
           <Link href={`/products/${product?.slug}/settings`} passHref>
@@ -60,7 +60,7 @@ const Details: React.FC<Props> = ({ product }) => {
           <div className="font-bold">Owned by</div>
           <Card>
             <CardBody>
-              <UserProfileLarge user={product?.user} />
+              <UserProfileLarge user={product?.owner} />
             </CardBody>
           </Card>
         </div>

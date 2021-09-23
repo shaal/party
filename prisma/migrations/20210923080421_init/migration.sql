@@ -124,7 +124,7 @@ CREATE TABLE `products` (
     `twitter` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `userId` VARCHAR(191),
+    `ownerId` VARCHAR(191),
 
     UNIQUE INDEX `products_slug_key`(`slug`),
     PRIMARY KEY (`id`)
@@ -147,7 +147,7 @@ CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
     `message` VARCHAR(191),
     `isRead` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POSTLIKE', 'MENTION', 'FOLLOW') NOT NULL,
+    `type` ENUM('POST_LIKE', 'USER_MENTION', 'USER_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `receiverId` VARCHAR(191) NOT NULL,
@@ -173,7 +173,7 @@ CREATE TABLE `integrations` (
 -- CreateTable
 CREATE TABLE `logs` (
     `id` VARCHAR(191) NOT NULL,
-    `action` ENUM('POSTLIKE') NOT NULL,
+    `action` ENUM('POST_LIKE') NOT NULL,
     `entityId` VARCHAR(191),
     `ipAddress` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

@@ -202,8 +202,8 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user        User?   @relation("owner", fields: [userId], references: [id], onDelete: Cascade)
-  userId      String?
+  owner       User?   @relation("owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId     String?
   subscribers User[]  @relation("subscribed")
   posts       Post[]
 
@@ -293,11 +293,17 @@ enum PostType {
 }
 
 enum NotificationType {
-  POSTLIKE
-  MENTION
-  FOLLOW
+  // Post
+  POST_LIKE
+
+  // User
+  USER_MENTION
+  USER_FOLLOW
+
+  // Product
+  PRODUCT_SUBSCRIBE
 }
 
 enum LogActionType {
-  POSTLIKE
+  POST_LIKE
 }

@@ -107,7 +107,7 @@ async function main() {
         slug: product.slug,
         avatar: product.avatar,
         description: product.description,
-        user: {
+        owner: {
           connect: {
             username: product.username
           }

@@ -33,7 +33,7 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
     })
 
     if (userId !== currentUserId) {
-      createNotification(currentUserId, userId, userId, 'FOLLOW')
+      createNotification(currentUserId, userId, userId, 'USER_FOLLOW')
     }
 
     return user

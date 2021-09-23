@@ -235,12 +235,12 @@ type Product {
   hasSubscribed: Boolean!
   id: ID!
   name: String!
+  owner: User!
   posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
   producthunt: String
   slug: String!
   twitter: String
   updatedAt: DateTime!
-  user: User!
   website: String
 }
 

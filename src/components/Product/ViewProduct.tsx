@@ -25,7 +25,7 @@ export const PRODUCT_QUERY = gql`
       github
       discord
       hasSubscribed
-      user {
+      owner {
         id
         username
         profile {

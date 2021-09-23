@@ -93,10 +93,10 @@ const Notifications: React.FC = () => {
             <div className="space-y-4">
               {notifications?.map((notification: any) => (
                 <div key={notification?.id}>
-                  {notification?.type === 'POSTLIKE' && (
+                  {notification?.type === 'POST_LIKE' && (
                     <LikeNotification notification={notification} />
                   )}
-                  {notification?.type === 'FOLLOW' && (
+                  {notification?.type === 'USER_FOLLOW' && (
                     <FollowNotification notification={notification} />
                   )}
                 </div>

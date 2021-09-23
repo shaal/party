@@ -14,7 +14,7 @@ export const getServerSideProps = async (
     where: { slug: context.params!.slug as string }
   })
 
-  if (session?.userId !== product?.userId) {
+  if (session?.userId !== product?.ownerId) {
     return {
       redirect: {
         destination: `/products/${product?.slug}`,

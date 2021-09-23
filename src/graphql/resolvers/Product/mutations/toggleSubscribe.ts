@@ -1,3 +1,4 @@
+import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { db } from '@utils/prisma'
 
 import { hasSubscribed } from '../queries/hasSubscribed'
@@ -32,6 +33,15 @@ export const toggleSubscribe = async (
         }
       }
     })
+
+    if (currentUserId !== product?.ownerId) {
+      await createNotification(
+        currentUserId,
+        product?.ownerId,
+        product?.id,
+        'PRODUCT_SUBSCRIBE'
+      )
+    }
 
     return product
   } catch (error) {
