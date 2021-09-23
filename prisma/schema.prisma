@@ -42,6 +42,7 @@ model User {
   likes                  Like[]
   badges                 Badge[]
   topics                 Topic[]
+  logs                   Log[]
   following              User[]         @relation("follows")
   followedBy             User[]         @relation("follows")
   receivedNotification   Notification[] @relation("receiver")
@@ -266,6 +267,23 @@ model Integration {
   @@map("integrations")
 }
 
+model Log {
+  id        String        @id @default(uuid())
+  action    LogActionType
+  entityId  String?
+  ipAddress String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId String
+
+  // Attributes
+  @@map("logs")
+}
+
 // Types
 enum PostType {
   POST
@@ -278,4 +296,8 @@ enum NotificationType {
   POSTLIKE
   MENTION
   FOLLOW
+}
+
+enum LogActionType {
+  POSTLIKE
 }
