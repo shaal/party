@@ -17,7 +17,8 @@ builder.prismaObject('Notification', {
     // Relations
     receiver: t.relation('receiver'),
     dispatcher: t.relation('dispatcher'),
-    like: t.relation('like', { nullable: true })
+    like: t.relation('like', { nullable: true }),
+    product: t.relation('product', { nullable: true })
   })
 })
 
