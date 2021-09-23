@@ -21,7 +21,7 @@ const Notification: React.FC = () => {
     <Link href="/notifications">
       <a className="flex items-start">
         <LightningBoltIcon className="h-6 w-6" />
-        {data?.me?.notificationsCount > 0 && (
+        {(data?.me?.notificationsCount as number) > 0 && (
           <div className="h-2 w-2 rounded-full bg-red-500" />
         )}
       </a>
