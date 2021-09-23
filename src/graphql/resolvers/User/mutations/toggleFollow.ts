@@ -38,7 +38,6 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
 
     return user
   } catch (error) {
-    console.log(error)
     throw new Error('Something went wrong!')
   }
 }
