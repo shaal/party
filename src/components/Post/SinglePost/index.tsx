@@ -6,6 +6,7 @@ import AppContext from '@components/utils/AppContext'
 import { useOembed } from '@components/utils/useOembed'
 import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
@@ -87,6 +88,7 @@ interface Props {
 }
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
+  const router = useRouter()
   const { currentUser } = useContext(AppContext)
   const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
@@ -104,13 +106,6 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
     {
       onError() {
         toast.error('Something went wrong!')
-      },
-      onCompleted(data) {
-        if (data?.togglePostLike?.hasLiked) {
-          toast.success('Post liked successfully')
-        } else {
-          toast.success('Post disliked successfully')
-        }
       }
     }
   )
@@ -126,6 +121,13 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   return (
     <Card>
       <CardBody className="space-y-4">
+        {!post?.parent &&
+          post?.type === 'REPLY' &&
+          router.pathname === '/posts/[postId]' && (
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              Post author deleted the parent post
+            </div>
+          )}
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
             <Link href={`/posts/${post?.parent?.id}`} passHref>

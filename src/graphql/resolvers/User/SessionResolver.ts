@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { resolveSession } from '@utils/sessions'
 
 import { Result } from '../ResultResolver'
 import { getSessions } from './queries/getSessions'
@@ -11,6 +12,15 @@ builder.prismaObject('Session', {
     isStaff: t.exposeBoolean('isStaff'),
     ipAddress: t.exposeString('ipAddress', { nullable: true }),
     userAgent: t.exposeString('userAgent', { nullable: true }),
+    current: t.field({
+      type: 'Boolean',
+      resolve: async (parent, args, { session, req, res }) => {
+        if (!session) return false
+        // @ts-ignore
+        const resolve = await resolveSession({ req, res })
+        return parent.id === resolve?.id
+      }
+    }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),

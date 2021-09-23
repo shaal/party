@@ -3,7 +3,9 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
+import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
@@ -86,7 +88,18 @@ const ChangePasswordForm: React.FC = () => {
         {...form.register('confirmNewPassword')}
       />
       <div className="ml-auto">
-        <Button type="submit">Change Password</Button>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <CheckCircleIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Change Password
+        </Button>
       </div>
     </Form>
   )

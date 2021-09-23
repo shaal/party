@@ -127,7 +127,7 @@ model Post {
   topics    PostTopic[]
 
   parentId String?
-  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: Cascade)
+  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies  Post[]  @relation("replies")
 
   // Attributes

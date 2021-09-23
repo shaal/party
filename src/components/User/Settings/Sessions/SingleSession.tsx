@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import { TrashIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Session } from 'src/__generated__/schema.generated'
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const SingleSession: React.FC<Props> = ({ session }) => {
-  const [revokeSession] = useMutation<
+  const [revokeSession, { loading: revoking }] = useMutation<
     RevokeSessionMutation,
     RevokeSessionMutationVariables
   >(
@@ -59,16 +60,19 @@ const SingleSession: React.FC<Props> = ({ session }) => {
           </div>
         </div>
       </div>
-      <Button
-        className="text-sm ml-10"
-        size="sm"
-        variant="danger"
-        onClick={() =>
-          revokeSession({ variables: { input: { id: session?.id } } })
-        }
-      >
-        Revoke
-      </Button>
+      {!session?.current && (
+        <Button
+          className="text-sm ml-10"
+          size="sm"
+          variant="danger"
+          icon={<TrashIcon className="h-4 w-4" />}
+          onClick={() =>
+            revokeSession({ variables: { input: { id: session?.id } } })
+          }
+        >
+          {revoking ? 'Revoking...' : 'Revoke'}
+        </Button>
+      )}
     </div>
   )
 }

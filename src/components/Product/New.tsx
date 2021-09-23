@@ -6,7 +6,9 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
+import { PlusIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
@@ -114,7 +116,18 @@ const NewProduct: React.FC = () => {
                 {...form.register('description')}
               />
               <div className="ml-auto">
-                <Button type="submit">Create</Button>
+                <Button
+                  type="submit"
+                  icon={
+                    form.formState.isSubmitting ? (
+                      <Spinner size="xs" />
+                    ) : (
+                      <PlusIcon className="h-4 w-4" />
+                    )
+                  }
+                >
+                  Create
+                </Button>
               </div>
             </Form>
           </CardBody>

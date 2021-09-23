@@ -1,4 +1,3 @@
-import { Dropdown } from '@components/ui/Dropdown'
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
@@ -21,7 +20,7 @@ interface Props {
 }
 
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
-  const { theme, themes, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
 
   const toggleStaffMode = () => {
@@ -107,16 +106,25 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 Logout
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>
-              <div className="px-5 py-3 text-sm flex items-center gap-2">
-                <Dropdown
-                  className="w-full block"
-                  options={themes.map((t) => ({
-                    value: t,
-                    label: t.charAt(0).toUpperCase() + t.slice(1)
-                  }))}
-                  value={theme}
-                  onChange={setTheme}
-                />
+              <div className="px-5 py-3 flex items-center space-x-3">
+                <button
+                  onClick={() => setTheme('light')}
+                  className={theme === 'light' ? 'text-xl' : ''}
+                >
+                  🌞
+                </button>
+                <button
+                  onClick={() => setTheme('dark')}
+                  className={theme === 'dark' ? 'text-xl' : ''}
+                >
+                  🌚
+                </button>
+                <button
+                  onClick={() => setTheme('system')}
+                  className={theme === 'system' ? 'text-xl' : ''}
+                >
+                  💻
+                </button>
               </div>
               {currentUser?.isStaff && (
                 <>

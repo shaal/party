@@ -4,16 +4,17 @@ import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { BellIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import { NotificationsQuery } from './__generated__/index.generated'
 import FollowNotification from './Follow'
 import LikeNotification from './Like'
+import NotificationType from './NotificationType'
 
 export const NOTIFICATIONS_QUERY = gql`
-  query NotificationsQuery($after: String) {
-    notifications(first: 5, after: $after) {
+  query NotificationsQuery($after: String, $isRead: Boolean) {
+    notifications(first: 5, after: $after, isRead: $isRead) {
       pageInfo {
         hasNextPage
         endCursor
@@ -47,9 +48,13 @@ export const NOTIFICATIONS_QUERY = gql`
 `
 
 const Notifications: React.FC = () => {
+  const [isRead, setIsRead] = useState<boolean>(false)
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    { variables: { after: null }, pollInterval: 10000 }
+    {
+      variables: { after: null, isRead },
+      pollInterval: 10000
+    }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
@@ -75,7 +80,8 @@ const Notifications: React.FC = () => {
 
   return (
     <div className="flex flex-grow justify-center px-4 sm:px-6 lg:px-8 py-8">
-      <div className="max-w-5xl w-full space-y-8">
+      <div className="max-w-5xl w-full space-y-3">
+        <NotificationType isRead={isRead} setIsRead={setIsRead} />
         <div className="space-y-5">
           <ErrorMessage title="Failed to notifications" error={error} />
           {notifications?.length === 0 ? (

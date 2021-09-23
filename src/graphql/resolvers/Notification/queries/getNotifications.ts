@@ -3,12 +3,14 @@ import { db } from '@utils/prisma'
 
 export const getNotifications = async (
   query: any,
+  isRead: boolean,
   session: Session | null | undefined
 ) => {
   return await db.notification.findMany({
     ...query,
     where: {
-      receiverId: session?.userId
+      receiverId: session?.userId,
+      isRead
     },
     orderBy: {
       createdAt: 'desc'

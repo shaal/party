@@ -67,16 +67,16 @@ const Star: React.FC<Props> = ({ topic }) => {
         setIsStarted(!isStarted)
         handleToggleStar()
       }}
-      size="sm"
       variant={isStarted ? 'danger' : 'success'}
+      icon={
+        isStarted ? (
+          <StarIconSolid className="h-4 w-4" />
+        ) : (
+          <StarIcon className="h-4 w-4" />
+        )
+      }
       outline
-    >
-      {isStarted ? (
-        <StarIconSolid className="h-4 w-4" />
-      ) : (
-        <StarIcon className="h-4 w-4" />
-      )}
-    </Switch>
+    />
   )
 }
 

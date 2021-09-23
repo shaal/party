@@ -1,5 +1,5 @@
-import 'linkifyjs/plugins/hashtag'
-import 'linkifyjs/plugins/mention'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
 
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'

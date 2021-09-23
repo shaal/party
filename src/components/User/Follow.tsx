@@ -74,19 +74,16 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
             handleToggleFollow()
           }}
           variant={isFollowed ? 'danger' : 'success'}
+          icon={
+            isFollowed ? (
+              <UserRemoveIcon className="h-4 w-4" />
+            ) : (
+              <UserAddIcon className="h-4 w-4" />
+            )
+          }
           outline
         >
-          {isFollowed ? (
-            <div className="flex items-center space-x-1">
-              <UserRemoveIcon className="h-4 w-4" />
-              {showText && <div>Unfollow</div>}
-            </div>
-          ) : (
-            <div className="flex items-center space-x-1">
-              <UserAddIcon className="h-4 w-4" />
-              {showText && <div>Follow</div>}
-            </div>
-          )}
+          {isFollowed ? showText && 'Unfollow' : showText && 'Follow'}
         </Switch>
       )}
     </>

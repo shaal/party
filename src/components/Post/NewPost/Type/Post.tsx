@@ -3,6 +3,7 @@ import Attachments from '@components/Post/SinglePost/Attachments'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
+import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -81,9 +82,17 @@ const PostType: React.FC = () => {
           />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
         </div>
-        <Button type="submit" className="flex items-center gap-1.5">
-          <PencilAltIcon className="h-4 w-4" />
-          <div>Post</div>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <PencilAltIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Post
         </Button>
       </div>
       <Attachments

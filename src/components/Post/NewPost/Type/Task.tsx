@@ -4,6 +4,7 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -93,9 +94,17 @@ const TaskType: React.FC = () => {
           />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
         </div>
-        <Button type="submit" className="flex items-center gap-1.5">
-          <CheckCircleIcon className="h-4 w-4" />
-          <div>Create Task</div>
+        <Button
+          type="submit"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <CheckCircleIcon className="h-4 w-4" />
+            )
+          }
+        >
+          Create Task
         </Button>
       </div>
       <Attachments

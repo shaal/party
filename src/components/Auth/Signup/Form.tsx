@@ -3,8 +3,9 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
-import { UserAddIcon } from '@heroicons/react/outline'
+import { CollectionIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { object, string } from 'zod'
 
@@ -106,10 +107,16 @@ const SignupForm: React.FC = () => {
         <Button
           size="lg"
           type="submit"
-          className=" w-full flex items-center justify-center space-x-1.5"
+          className=" w-full justify-center"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <CollectionIcon className="h-5 w-5" />
+            )
+          }
         >
-          <UserAddIcon className="h-5 w-5" />
-          <div>Join Waitlist</div>
+          Join Waitlist
         </Button>
       </div>
     </Form>

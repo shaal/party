@@ -28,10 +28,9 @@ const Landing: React.FC = () => {
                 <Button
                   size="lg"
                   variant="primary"
-                  className="flex items-center space-x-1.5"
+                  icon={<ArrowCircleRightIcon className="h-5 w-5" />}
                 >
-                  <ArrowCircleRightIcon className="h-5 w-5" />
-                  <div>Get started</div>
+                  Get started
                 </Button>
               </Link>
             </div>

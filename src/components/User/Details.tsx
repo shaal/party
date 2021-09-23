@@ -1,5 +1,5 @@
-import 'linkifyjs/plugins/hashtag'
-import 'linkifyjs/plugins/mention'
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
 
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
@@ -7,7 +7,11 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import { LocationMarkerIcon, SupportIcon } from '@heroicons/react/outline'
+import {
+  LocationMarkerIcon,
+  PencilIcon,
+  SupportIcon
+} from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Linkify from 'linkify-react'
 import dynamic from 'next/dynamic'
@@ -67,7 +71,11 @@ const Details: React.FC<Props> = ({ user }) => {
           <Follow user={user} showText={true} />
         ) : (
           <Link href="/settings/profile" passHref>
-            <Button size="md" variant="success">
+            <Button
+              size="md"
+              variant="success"
+              icon={<PencilIcon className="h-4 w-4" />}
+            >
               Edit Profile
             </Button>
           </Link>
