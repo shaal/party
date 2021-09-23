@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
         Status
       </a>
       <span className="pr-3">
-        <Link href="/sponsors">Sponsors</Link>
+        <Link href="/thanks">Thanks</Link>
       </span>
       <a
         className="pr-3"

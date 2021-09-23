@@ -12,7 +12,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const Sponsor: React.FC<Props> = ({ name, logo, url, size, children }) => {
+const Brand: React.FC<Props> = ({ name, logo, url, size, children }) => {
   const { resolvedTheme } = useTheme()
 
   return (
@@ -20,7 +20,7 @@ const Sponsor: React.FC<Props> = ({ name, logo, url, size, children }) => {
       <img
         className="mx-auto"
         style={{ height: size }}
-        src={`https://assets.devparty.io/images/sponsors/${logo}-${
+        src={`https://assets.devparty.io/images/thanks/${logo}-${
           resolvedTheme === 'dark' ? 'dark' : 'light'
         }.svg`}
         alt={`${name}'s Logo`}
@@ -35,7 +35,7 @@ const Sponsor: React.FC<Props> = ({ name, logo, url, size, children }) => {
   )
 }
 
-const Sponsors: React.FC = () => {
+const Thanks: React.FC = () => {
   return (
     <Fragment>
       <div className="flex items-center justify-center bg-brand-400 h-44 w-full">
@@ -51,7 +51,7 @@ const Sponsors: React.FC = () => {
         <div className="flex justify-center">
           <div className="relative mx-auto rounded-lg max-w-3/4 lg:w-2/4">
             <div className="pb-10 px-5 max-w-none text-gray-900 dark:text-gray-200 text-center space-y-10 divide-y dark:divide-gray-800">
-              <Sponsor
+              <Brand
                 name="Vercel"
                 logo="vercel"
                 url="https://vercel.com/?utm_source=Devparty&utm_campaign=oss"
@@ -60,8 +60,8 @@ const Sponsors: React.FC = () => {
                 Vercel combines the best developer experience with an obsessive
                 focus on end-user performance. Vercel platform enables frontend
                 teams to do their best work.
-              </Sponsor>
-              <Sponsor
+              </Brand>
+              <Brand
                 name="Upstash"
                 logo="upstash"
                 url="https://upstash.com"
@@ -70,8 +70,8 @@ const Sponsors: React.FC = () => {
                 Upstash has REST API that enables access to Redis from
                 serverless and Edge functions like Cloudflare Workers and Fastly
                 Compute@Edge.
-              </Sponsor>
-              <Sponsor
+              </Brand>
+              <Brand
                 name="Gitpod"
                 logo="gitpod"
                 url="https://gitpod.io"
@@ -80,8 +80,8 @@ const Sponsors: React.FC = () => {
                 Gitpod streamlines developer workflows by providing prebuilt,
                 collaborative developer environments in your browser - powered
                 by VS Code.
-              </Sponsor>
-              <Sponsor
+              </Brand>
+              <Brand
                 name="Netlify"
                 logo="netlify"
                 url="https://netlify.com"
@@ -89,7 +89,7 @@ const Sponsors: React.FC = () => {
               >
                 An intuitive Git-based workflow and powerful serverless platform
                 to build, deploy, and collaborate on web apps
-              </Sponsor>
+              </Brand>
             </div>
           </div>
         </div>
@@ -101,4 +101,4 @@ const Sponsors: React.FC = () => {
   )
 }
 
-export default Sponsors
+export default Thanks
