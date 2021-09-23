@@ -299,6 +299,7 @@ enum PostType {
 enum NotificationType {
   // Post
   POST_LIKE
+  POST_REPLY
 
   // User
   USER_MENTION
