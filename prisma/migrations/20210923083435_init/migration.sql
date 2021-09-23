@@ -148,6 +148,7 @@ CREATE TABLE `notifications` (
     `message` VARCHAR(191),
     `isRead` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST_LIKE', 'USER_MENTION', 'USER_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
+    `entityId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `receiverId` VARCHAR(191) NOT NULL,
@@ -155,6 +156,7 @@ CREATE TABLE `notifications` (
     `likeId` VARCHAR(191),
     `productId` VARCHAR(191),
 
+    UNIQUE INDEX `notifications_entityId_key`(`entityId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
