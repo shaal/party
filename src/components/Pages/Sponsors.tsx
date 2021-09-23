@@ -72,6 +72,16 @@ const Sponsors: React.FC = () => {
                 Compute@Edge.
               </Sponsor>
               <Sponsor
+                name="Gitpod"
+                logo="gitpod"
+                url="https://gitpod.io"
+                size={50}
+              >
+                Gitpod streamlines developer workflows by providing prebuilt,
+                collaborative developer environments in your browser - powered
+                by VS Code.
+              </Sponsor>
+              <Sponsor
                 name="Netlify"
                 logo="netlify"
                 url="https://netlify.com"
