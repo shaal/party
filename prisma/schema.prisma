@@ -45,8 +45,10 @@ model User {
   logs                   Log[]
   following              User[]         @relation("follows")
   followedBy             User[]         @relation("follows")
-  receivedNotification   Notification[] @relation("receiver")
-  dispatchedNotification Notification[] @relation("dispatcher")
+  receivedNotification   Notification[] @relation("notificationReceiver")
+  dispatchedNotification Notification[] @relation("notificationDispatcher")
+  receivedMessages       Message[]      @relation("messageReceiver")
+  sentMessages           Message[]      @relation("messageSender")
 
   // Attributes
   @@map("users")
@@ -241,9 +243,9 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User     @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiver     User     @relation("notificationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId   String
-  dispatcher   User     @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
+  dispatcher   User     @relation("notificationDispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
   like         Like?    @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
   likeId       String?
@@ -286,6 +288,23 @@ model Log {
 
   // Attributes
   @@map("logs")
+}
+
+model Message {
+  id      String @id @default(uuid())
+  message String
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  sender     User   @relation("messageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId   String
+  receiver   User   @relation("messageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId String
+
+  // Attributes
+  @@map("messages")
 }
 
 // Types
