@@ -12,6 +12,10 @@ export const createNotification = async (
       dispatcher: { connect: { id: dispatcherId } },
       receiver: { connect: { id: receiverId } },
       like: type === 'POST_LIKE' ? { connect: { id: entityId } } : undefined,
+      product:
+        type === 'PRODUCT_SUBSCRIBE'
+          ? { connect: { id: entityId } }
+          : undefined,
       type
     }
   })
