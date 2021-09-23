@@ -153,6 +153,7 @@ CREATE TABLE `notifications` (
     `receiverId` VARCHAR(191) NOT NULL,
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
+    `productId` VARCHAR(191),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

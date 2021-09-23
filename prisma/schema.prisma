@@ -202,10 +202,11 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  owner       User?   @relation("owner", fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId     String?
-  subscribers User[]  @relation("subscribed")
-  posts       Post[]
+  owner        User?          @relation("owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId      String?
+  subscribers  User[]         @relation("subscribed")
+  posts        Post[]
+  notification Notification[] @relation("product")
 
   // Attributes
   @@map("products")
@@ -239,12 +240,14 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User    @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiver     User     @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId   String
-  dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
+  dispatcher   User     @relation("dispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
-  like         Like?   @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
+  like         Like?    @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
   likeId       String?
+  product      Product? @relation("product", fields: [productId], references: [id], onDelete: Cascade)
+  productId    String?
 
   // Attributes
   @@map("notifications")
