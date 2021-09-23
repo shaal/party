@@ -1,9 +1,9 @@
-import SinglePost from '@components/Post/SinglePost'
+import ProductProfileLarge from '@components/shared/ProductProfileLarge'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import Link from 'next/link'
 import React from 'react'
-import { Notification, Post } from 'src/__generated__/schema.generated'
+import { Notification, Product } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 import MarkAsRead from '../Read'
@@ -12,7 +12,7 @@ interface Props {
   notification: Notification
 }
 
-const LikeNotification: React.FC<Props> = ({ notification }) => {
+const ProductSubscribe: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
       <CardBody className="space-y-3">
@@ -27,16 +27,16 @@ const LikeNotification: React.FC<Props> = ({ notification }) => {
             </div>
           </div>
           <div className="linkify">
-            Liked your{' '}
-            <Link href={`/posts/${notification?.like?.post?.id}`}>
-              <a>post</a>
+            Subscribed to your{' '}
+            <Link href={`/products/${notification?.product?.slug}`}>
+              <a>product</a>
             </Link>
           </div>
         </div>
-        <SinglePost post={notification?.like?.post as Post} />
+        <ProductProfileLarge product={notification?.product as Product} />
       </CardBody>
     </Card>
   )
 }
 
-export default LikeNotification
+export default ProductSubscribe

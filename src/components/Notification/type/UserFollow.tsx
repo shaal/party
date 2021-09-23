@@ -11,7 +11,7 @@ interface Props {
   notification: Notification
 }
 
-const FollowNotification: React.FC<Props> = ({ notification }) => {
+const UserFollow: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
       <CardBody className="space-y-5">
@@ -33,4 +33,4 @@ const FollowNotification: React.FC<Props> = ({ notification }) => {
   )
 }
 
-export default FollowNotification
+export default UserFollow
