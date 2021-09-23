@@ -75,11 +75,7 @@ export const builder = new SchemaBuilder<{
   }
 })
 
-builder.queryType({
-  directives: {
-    rateLimit: { limit: 100, duration: 60 }
-  }
-})
+builder.queryType({})
 builder.mutationType({
   directives: {
     rateLimit: { limit: 100, duration: 60 }
