@@ -6,31 +6,35 @@ export const toggleSubscribe = async (
   currentUserId: string,
   productId: string
 ) => {
-  // Unstar
-  if (await hasSubscribed(currentUserId, productId)) {
-    return await db.product.update({
+  try {
+    // Unstar
+    if (await hasSubscribed(currentUserId, productId)) {
+      return await db.product.update({
+        where: { id: productId },
+        data: {
+          subscribers: {
+            disconnect: {
+              id: currentUserId
+            }
+          }
+        }
+      })
+    }
+
+    // Star
+    const topic = await db.product.update({
       where: { id: productId },
       data: {
         subscribers: {
-          disconnect: {
+          connect: {
             id: currentUserId
           }
         }
       }
     })
+
+    return topic
+  } catch (error) {
+    throw new Error('Something went wrong!')
   }
-
-  // Star
-  const topic = await db.product.update({
-    where: { id: productId },
-    data: {
-      subscribers: {
-        connect: {
-          id: currentUserId
-        }
-      }
-    }
-  })
-
-  return topic
 }
