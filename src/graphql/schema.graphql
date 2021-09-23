@@ -525,6 +525,7 @@ type User {
   isFollowing: Boolean!
   isStaff: Boolean!
   isVerified: Boolean!
+  notificationsCount: Int!
   ownedProducts(after: String, before: String, first: Int, last: Int): UserOwnedProductsConnection!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   profile: Profile!

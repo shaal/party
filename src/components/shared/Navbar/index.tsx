@@ -1,7 +1,7 @@
 import { Button } from '@components/ui/Button'
 import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
-import { LightningBoltIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -9,6 +9,7 @@ import { useContext } from 'react'
 
 import Invite from './Invite'
 import MenuItems from './MenuItems'
+import Notification from './Notification'
 import Search from './Search'
 import StaffBar from './StaffBar'
 
@@ -122,11 +123,7 @@ const Navbar: React.FC = () => {
                     <div className="hidden md:block">
                       <Invite />
                     </div>
-                    <Link href="/notifications">
-                      <a>
-                        <LightningBoltIcon className="h-6 w-6" />
-                      </a>
-                    </Link>
+                    <Notification />
                     <MenuItems currentUser={currentUser} />
                   </div>
                 ) : (
