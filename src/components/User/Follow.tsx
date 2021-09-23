@@ -34,8 +34,8 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
       }
     `,
     {
-      onError() {
-        toast.error('Something went wrong!')
+      onError(error) {
+        toast.error(error.message)
       },
       onCompleted(data) {
         if (data?.toggleFollow?.hasFollowed) {
