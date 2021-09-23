@@ -13,14 +13,17 @@ const NOTIFICATION_COUNT_QUERY = gql`
 `
 
 const Notification: React.FC = () => {
-  const { data, loading, error } = useQuery<NotificationCountQuery>(
-    NOTIFICATION_COUNT_QUERY
-  )
+  const { data } = useQuery<NotificationCountQuery>(NOTIFICATION_COUNT_QUERY, {
+    pollInterval: 5000
+  })
 
   return (
     <Link href="/notifications">
-      <a>
+      <a className="flex items-start">
         <LightningBoltIcon className="h-6 w-6" />
+        {data?.me?.notificationsCount > 0 && (
+          <div className="h-2 w-2 rounded-full bg-red-500" />
+        )}
       </a>
     </Link>
   )
