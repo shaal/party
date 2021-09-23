@@ -22,7 +22,7 @@ export const toggleSubscribe = async (
     }
 
     // Star
-    const topic = await db.product.update({
+    const product = await db.product.update({
       where: { id: productId },
       data: {
         subscribers: {
@@ -33,7 +33,7 @@ export const toggleSubscribe = async (
       }
     })
 
-    return topic
+    return product
   } catch (error) {
     throw new Error('Something went wrong!')
   }
