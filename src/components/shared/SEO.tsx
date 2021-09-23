@@ -13,7 +13,7 @@ const DevpartySEO: React.FC<Props> = ({
   title,
   description,
   path,
-  image = 'https://assets.devparty.io/images/devparty.png',
+  image = 'https://assets.devparty.io/images/og/logo.png',
   cardType = 'summary'
 }) => {
   return (
