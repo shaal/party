@@ -1,4 +1,5 @@
 import SchemaBuilder from '@giraphql/core'
+import DirectivePlugin from '@giraphql/plugin-directives'
 import PrismaPlugin from '@giraphql/plugin-prisma'
 import PrismaTypes from '@giraphql/plugin-prisma/generated'
 import RelayPlugin from '@giraphql/plugin-relay'
@@ -27,8 +28,16 @@ export function createGraphQLContext(
   }
 }
 
+type DirectiveTypes = {
+  rateLimit: {
+    locations: 'FIELD_DEFINITION' | 'OBJECT'
+    args: { limit: number; duration: number }
+  }
+}
+
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes
+  Directives: DirectiveTypes
   DefaultInputFieldRequiredness: true
   Context: Context
   Scalars: {
@@ -44,12 +53,14 @@ export const builder = new SchemaBuilder<{
   }
 }>({
   defaultInputFieldRequiredness: true,
+  useGraphQLToolsUnorderedDirectives: true,
   plugins: [
     SimpleObjectsPlugin,
     ScopeAuthPlugin,
     ValidationPlugin,
     PrismaPlugin,
-    RelayPlugin
+    RelayPlugin,
+    DirectivePlugin
   ],
   prisma: { client: db },
   authScopes: async ({ session }) => ({
@@ -64,8 +75,15 @@ export const builder = new SchemaBuilder<{
   }
 })
 
-builder.queryType({})
+builder.queryType({
+  directives: {
+    rateLimit: { limit: 100, duration: 60 }
+  }
+})
 builder.mutationType({
+  directives: {
+    rateLimit: { limit: 100, duration: 60 }
+  },
   authScopes: { user: true }
 })
 
