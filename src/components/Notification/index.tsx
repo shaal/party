@@ -8,9 +8,9 @@ import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
 
 import { NotificationsQuery } from './__generated__/index.generated'
-import FollowNotification from './Follow'
-import LikeNotification from './Like'
 import NotificationType from './NotificationType'
+import FollowNotification from './type/Follow'
+import LikeNotification from './type/Like'
 
 export const NOTIFICATIONS_QUERY = gql`
   query NotificationsQuery($after: String, $isRead: Boolean) {
@@ -107,6 +107,9 @@ const Notifications: React.FC = () => {
                     <LikeNotification notification={notification} />
                   )}
                   {notification?.type === 'USER_FOLLOW' && (
+                    <FollowNotification notification={notification} />
+                  )}
+                  {notification?.type === 'PRODUCT_SUBSCRIBE' && (
                     <FollowNotification notification={notification} />
                   )}
                 </div>

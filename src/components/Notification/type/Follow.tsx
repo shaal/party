@@ -5,7 +5,7 @@ import React from 'react'
 import { Notification } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
-import MarkAsRead from './Read'
+import MarkAsRead from '../Read'
 
 interface Props {
   notification: Notification
