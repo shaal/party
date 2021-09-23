@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props {
   title: string
-  description: string
+  description?: string
   path: string
   image?: string
   cardType?: 'summary_large_image' | 'summary'
@@ -13,7 +13,7 @@ const DevpartySEO: React.FC<Props> = ({
   title,
   description,
   path,
-  image,
+  image = 'https://assets.devparty.io/images/devparty.png',
   cardType = 'summary'
 }) => {
   return (

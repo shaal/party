@@ -1,3 +1,4 @@
+import DevpartySEO from '@components/shared/SEO'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useTheme } from 'next-themes'
 import React, { Fragment } from 'react'
@@ -38,6 +39,11 @@ const Brand: React.FC<Props> = ({ name, logo, url, size, children }) => {
 const Thanks: React.FC = () => {
   return (
     <Fragment>
+      <DevpartySEO
+        title="Thanks! · Devparty"
+        description="Thank you for supporting our community 🙏"
+        path="/thanks"
+      />
       <div className="flex items-center justify-center bg-brand-400 h-44 w-full">
         <div className="relative text-center">
           <div className="flex items-center space-x-2 text-3xl md:text-4xl font-semibold text-white">
