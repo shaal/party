@@ -41,8 +41,8 @@ const InviteDetails: React.FC = () => {
       }
     `,
     {
-      onError() {
-        toast.error('Something went wrong!')
+      onError(error) {
+        toast.error(error.message)
       },
       onCompleted() {
         toast.success('Invite code regenerated successfully!')

@@ -82,7 +82,7 @@ builder.queryType({
 })
 builder.mutationType({
   directives: {
-    rateLimit: { limit: 100, duration: 60 }
+    rateLimit: { limit: 5, duration: 60 }
   },
   authScopes: { user: true }
 })
