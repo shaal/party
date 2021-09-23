@@ -7,8 +7,10 @@ export const createNotification = async (
   entityId: any,
   type: NotificationType
 ) => {
-  return await db.notification.create({
-    data: {
+  return await db.notification.upsert({
+    where: { entityId },
+    update: { isRead: false, createdAt: new Date(), updatedAt: new Date() },
+    create: {
       dispatcher: { connect: { id: dispatcherId } },
       receiver: { connect: { id: receiverId } },
       like: type === 'POST_LIKE' ? { connect: { id: entityId } } : undefined,
@@ -16,6 +18,7 @@ export const createNotification = async (
         type === 'PRODUCT_SUBSCRIBE'
           ? { connect: { id: entityId } }
           : undefined,
+      entityId,
       type
     }
   })
