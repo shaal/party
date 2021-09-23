@@ -1,10 +1,21 @@
-import AppContext from '@components/utils/AppContext'
+import { gql, useQuery } from '@apollo/client'
 import { LightningBoltIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useContext } from 'react'
+
+import { NotificationCountQuery } from './__generated__/Notification.generated'
+
+const NOTIFICATION_COUNT_QUERY = gql`
+  query NotificationCountQuery {
+    me {
+      notificationsCount
+    }
+  }
+`
 
 const Notification: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
+  const { data, loading, error } = useQuery<NotificationCountQuery>(
+    NOTIFICATION_COUNT_QUERY
+  )
 
   return (
     <Link href="/notifications">
