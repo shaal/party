@@ -170,6 +170,7 @@ type Notification {
   dispatcher: User!
   id: ID!
   like: Like
+  product: Product
   receiver: User!
   type: String!
   updatedAt: DateTime!

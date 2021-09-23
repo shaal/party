@@ -23,6 +23,8 @@ export const NOTIFICATIONS_QUERY = gql`
         node {
           id
           type
+          createdAt
+          # User
           dispatcher {
             id
             username
@@ -33,13 +35,21 @@ export const NOTIFICATIONS_QUERY = gql`
               avatar
             }
           }
+          # Like
           like {
             id
             post {
               ...PostFragment
             }
           }
-          createdAt
+          # Product
+          product {
+            id
+            slug
+            name
+            description
+            avatar
+          }
         }
       }
     }
