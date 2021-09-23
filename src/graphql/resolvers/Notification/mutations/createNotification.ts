@@ -7,7 +7,6 @@ export const createNotification = async (
   entityId: any,
   type: NotificationType
 ) => {
-  console.log(entityId)
   return await db.notification.upsert({
     where: { entityId },
     update: { isRead: false, createdAt: new Date(), updatedAt: new Date() },
