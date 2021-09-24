@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import AppContext from '@components/utils/AppContext'
-import { ExternalLinkIcon, PencilIcon } from '@heroicons/react/outline'
+import { PencilIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { User } from 'src/__generated__/schema.generated'
@@ -35,7 +35,7 @@ interface SingleTipProps {
 }
 
 const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
-  <div className="flex items-center space-x-2">
+  <div className="flex cursor-pointer flex-col justify-center items-center text-center dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-gray-200 bg-gray-100 border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 rounded-md p-4">
     <img
       className="h-6 w-6"
       src={`https://assets.devparty.io/images/tips/${icon}.svg`}
@@ -47,8 +47,7 @@ const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
       target="_blank"
       rel="noreferrer"
     >
-      <div>{text}</div>
-      <ExternalLinkIcon className="h-4 w-4" />
+      <span className="mt-2">{text}</span>
     </a>
   </div>
 )
@@ -69,49 +68,51 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
 
   return (
     <div className="p-5">
-      <div className="font-bold space-y-4">
+      <div className="grid gap-4 md:grid-cols-4 grid-cols-2">
         {tip?.cash && (
           <SingleTip
             icon="cash"
             link={`https://cash.app/${tip?.cash}`}
-            text="Tip on Cash"
+            text="Cash"
           />
         )}
         {tip?.paypal && (
           <SingleTip
             icon="paypal"
             link={`https://paypal.me/${tip?.paypal}`}
-            text="Tip on PayPal"
+            text="PayPal"
           />
         )}
         {tip?.github && (
           <SingleTip
             icon="github"
             link={`https://github.com/sponsors/${tip?.github}`}
-            text="Sponsor on GitHub"
+            text="Github"
           />
         )}
         {tip?.buymeacoffee && (
           <SingleTip
             icon="buymeacoffee"
             link={`https://www.buymeacoffee.com//${tip?.buymeacoffee}`}
-            text="Buy Me a Coffee"
+            text="Coffee"
           />
         )}
         {tip?.bitcoin && (
           <SingleTip
             icon="bitcoin"
             link={`https://github.com/sponsors/${tip?.bitcoin}`}
-            text="Tip with Bitcoin"
+            text="Bitcoin"
           />
         )}
         {tip?.ethereum && (
           <SingleTip
             icon="ethereum"
             link={`https://github.com/sponsors/${tip?.ethereum}`}
-            text="Tip with Ethereum"
+            text="Ethereum"
           />
         )}
+      </div>
+      <div className="font-bold mt-4 flex justify-end">
         {tip?.user?.id === currentUser?.id && (
           <Link href="/settings/tips">
             <a>
