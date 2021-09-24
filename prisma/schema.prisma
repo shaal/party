@@ -110,8 +110,13 @@ model Invite {
 }
 
 model Tip {
-  id       String  @id @default(uuid())
-  paypal   String?
+  id           String  @id @default(uuid())
+  cash         String?
+  paypal       String?
+  github       String?
+  bitcoin      String?
+  ethereum     String?
+  buymeacoffee String?
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
