@@ -35,7 +35,7 @@ const editTipsSchema = object({
     })
     .nullable(),
   bitcoin: string()
-    .max(35, { message: 'Bitcoin address should be within 35 characters' })
+    .max(42, { message: 'Bitcoin address should be within 42 characters' })
     .nullable(),
   ethereum: string()
     .max(42, { message: 'Bitcoin address should be within 42 characters' })
