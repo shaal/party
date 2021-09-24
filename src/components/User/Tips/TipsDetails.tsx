@@ -87,7 +87,7 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
           <SingleTip
             icon="github"
             link={`https://github.com/sponsors/${tip?.github}`}
-            text="Github"
+            text="GitHub"
           />
         )}
         {tip?.buymeacoffee && (
