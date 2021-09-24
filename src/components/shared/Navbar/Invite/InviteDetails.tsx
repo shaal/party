@@ -1,7 +1,8 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
+import { Button } from '@components/ui/Button'
 import { Tooltip } from '@components/ui/Tooltip'
-import { RefreshIcon } from '@heroicons/react/outline'
+import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
 
 import {
@@ -73,39 +74,53 @@ const InviteDetails: React.FC = () => {
             code with friends!
           </div>
         </div>
-        <div className="mt-4 space-y-1.5">
-          <div className="text-sm font-bold">Your Invite Link</div>
-          <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-            <div>
-              {process.env.BASE_URL}/invite/{data?.me?.invite?.code}
+        {data?.me?.invite ? (
+          <>
+            <div className="mt-4 space-y-1.5">
+              <div className="text-sm font-bold">Your Invite Link</div>
+              <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
+                <div>
+                  {process.env.BASE_URL}/invite/{data?.me?.invite?.code}
+                </div>
+                <Tooltip content="Regenerate Invite">
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => regenerateInvite()}
+                  >
+                    <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                  </div>
+                </Tooltip>
+              </div>
             </div>
-            <Tooltip content="Regenerate Invite">
-              <div
-                className="cursor-pointer"
-                onClick={() => regenerateInvite()}
-              >
-                <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            <div className="mt-4 space-y-1.5">
+              <div className="text-sm font-bold">Your Invite Code</div>
+              <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
+                <div>{data?.me?.invite?.code}</div>
+                <Tooltip content="Regenerate Invite">
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => regenerateInvite()}
+                  >
+                    <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                  </div>
+                </Tooltip>
               </div>
-            </Tooltip>
+            </div>
+            <div className="mt-5 mb-1 text-center">
+              You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
+            </div>
+          </>
+        ) : (
+          <div className="mt-4 mb-1">
+            <Button
+              className="mx-auto"
+              onClick={() => regenerateInvite()}
+              icon={<CursorClickIcon className="h-4 w-4" />}
+            >
+              Generate Invite
+            </Button>
           </div>
-        </div>
-        <div className="mt-4 space-y-1.5">
-          <div className="text-sm font-bold">Your Invite Code</div>
-          <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-            <div>{data?.me?.invite?.code}</div>
-            <Tooltip content="Regenerate Invite">
-              <div
-                className="cursor-pointer"
-                onClick={() => regenerateInvite()}
-              >
-                <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-              </div>
-            </Tooltip>
-          </div>
-        </div>
-        <div className="mt-5 mb-1 text-center">
-          You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
-        </div>
+        )}
       </div>
     </>
   )

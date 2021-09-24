@@ -3,7 +3,6 @@ import 'tsconfig-paths/register'
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
-import { md5 } from 'hash-wasm'
 
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
@@ -52,13 +51,6 @@ async function main() {
             bio: faker.commerce.productDescription()
           }
         },
-        invite: {
-          create: {
-            code: await (await md5(faker.internet.email() + Math.random()))
-              .slice(0, 12)
-              .toLowerCase()
-          }
-        },
         integrations: { create: {} },
         posts: {
           create: {
@@ -84,13 +76,6 @@ async function main() {
             name: user.name,
             avatar: user.avatar,
             bio: user.bio
-          }
-        },
-        invite: {
-          create: {
-            code: await (await md5(user.email + Math.random()))
-              .slice(0, 12)
-              .toLowerCase()
           }
         },
         integrations: { create: {} }
