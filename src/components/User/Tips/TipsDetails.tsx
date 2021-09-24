@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { ExternalLinkIcon } from '@heroicons/react/outline'
 import { User } from 'src/__generated__/schema.generated'
 
 import { UserTipsQuery } from './__generated__/TipsDetails.generated'
@@ -35,7 +36,26 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
 
   return (
     <div className="p-5">
-      <div className="font-bold">{tip?.github && <div>has gh</div>}</div>
+      <div className="font-bold">
+        {tip?.github && (
+          <div className="flex items-center space-x-2">
+            <img
+              className="h-6 w-6"
+              src="https://assets.devparty.io/images/tips/github.svg"
+              alt="GitHub Sponsors"
+            />
+            <a
+              className="flex items-center space-x-2"
+              href={`https://github.com/sponsors/${tip?.github}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>Sponsor on GitHub</div>
+              <ExternalLinkIcon className="h-4 w-4" />
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
