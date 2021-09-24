@@ -94,7 +94,7 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
           <SingleTip
             icon="buymeacoffee"
             link={`https://www.buymeacoffee.com//${tip?.buymeacoffee}`}
-            text="Buy Me a Coffee"
+            text="BMC"
           />
         )}
         {tip?.bitcoin && (
@@ -112,20 +112,18 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
           />
         )}
       </div>
-      <div className="font-bold mt-4 flex justify-end">
-        {tip?.user?.id === currentUser?.id && (
-          <Link href="/settings/tips">
-            <a>
-              <Button
-                className="mt-4 text-sm"
-                icon={<PencilIcon className="h-4 w-4" />}
-              >
-                Edit Tips
-              </Button>
-            </a>
-          </Link>
-        )}
-      </div>
+      {tip?.user?.id === currentUser?.id && (
+        <Link href="/settings/tips">
+          <a>
+            <Button
+              className="mt-4 text-sm"
+              icon={<PencilIcon className="h-4 w-4" />}
+            >
+              Edit Tips
+            </Button>
+          </a>
+        </Link>
+      )}
     </div>
   )
 }
