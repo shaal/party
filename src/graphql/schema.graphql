@@ -471,6 +471,7 @@ type Stats {
 type Tip {
   id: ID!
   paypal: String
+  user: User!
 }
 
 input ToggleFollowInput {
@@ -540,6 +541,7 @@ type User {
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   profile: Profile!
   spammy: Boolean!
+  tip: Tip!
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!
