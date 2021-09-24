@@ -111,7 +111,7 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
         )}
       </div>
       {tip?.user?.id === currentUser?.id && (
-        <Link href="/settings/tips">
+        <Link href="/settings/tips" passHref>
           <Button
             className="mt-4 text-sm"
             icon={<PencilIcon className="h-4 w-4" />}
