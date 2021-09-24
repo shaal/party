@@ -44,7 +44,7 @@ CREATE TABLE `profiles` (
     `twitter` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `profiles_userId_unique`(`userId`),
+    UNIQUE INDEX `profiles_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -56,7 +56,7 @@ CREATE TABLE `invites` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `invites_userId_unique`(`userId`),
+    UNIQUE INDEX `invites_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -66,7 +66,7 @@ CREATE TABLE `tips` (
     `paypal` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `tips_userId_unique`(`userId`),
+    UNIQUE INDEX `tips_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

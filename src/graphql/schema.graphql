@@ -84,6 +84,10 @@ input EditSocialInput {
   website: String
 }
 
+input EditTipsInput {
+  paypal: String
+}
+
 input EditTopicInput {
   description: String
   id: ID!
@@ -149,6 +153,7 @@ type Mutation {
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
+  editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
@@ -461,6 +466,11 @@ type Stats {
   sessions: Int!
   topics: Int!
   users: Int!
+}
+
+type Tip {
+  id: ID!
+  paypal: String
 }
 
 input ToggleFollowInput {
