@@ -6,19 +6,14 @@ export const regenerateInvite = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const invite = await db.invite.findFirst({
-    where: {
-      userId: session?.userId
-    }
-  })
+  const code = await (await md5((session?.userId as string) + Math.random()))
+    .slice(0, 12)
+    .toLowerCase()
 
-  return await db.invite.update({
+  return await db.invite.upsert({
     ...query,
-    where: { id: invite?.id },
-    data: {
-      code: await (await md5((session?.userId as string) + Math.random()))
-        .slice(0, 12)
-        .toLowerCase()
-    }
+    where: { userId: session?.userId },
+    update: { code },
+    create: { code, user: { connect: { id: session?.userId } } }
   })
 }
