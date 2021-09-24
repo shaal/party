@@ -734,10 +734,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
-"@giraphql/core@^2.15.1":
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.15.2.tgz#5dd26276d924be02170fb077e5befe35991b0ce8"
-  integrity sha512-xJJpX3Poau6wihRXYc/gNkLt7PZxdDIuoQLFTeY21KQSVEKS3Ah59ZU/jE3NnaQ0fDGNZCw/dsWvX4CFKJ89hQ==
+"@giraphql/core@^2.15.3":
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.15.3.tgz#4a3d68b4539a68d798d11dfe68fccd45f505e8fd"
+  integrity sha512-Cz7jT3sZmAh9oAZ5eW+ZWapZzcmtAlQS1mFy0DE/ujWblpdtPvPr5hEQIip9rbrDxKVyKzgKWx0ZVNfaXGfhPA==
 
 "@giraphql/plugin-directives@^2.7.2":
   version "2.7.2"
