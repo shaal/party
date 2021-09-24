@@ -29,12 +29,13 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
     variables: { username: user?.username },
     skip: !user?.username
   })
+  const tip = data?.user?.tip
 
   if (loading) return <div className="p-5">Loading dev tips...</div>
 
   return (
     <div className="p-5">
-      <div className="font-bold">TBD</div>
+      <div className="font-bold">{tip?.github && <div>has gh</div>}</div>
     </div>
   )
 }

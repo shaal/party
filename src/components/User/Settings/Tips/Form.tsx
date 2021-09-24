@@ -135,7 +135,7 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 label="Paypal.me"
                 type="text"
                 placeholder="johndoe"
-                {...form.register('cash')}
+                {...form.register('paypal')}
               />
               <Input
                 label="GitHub"
