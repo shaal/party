@@ -85,6 +85,11 @@ input EditSocialInput {
 }
 
 input EditTipsInput {
+  bitcoin: String
+  buymeacoffee: String
+  cash: String
+  ethereum: String
+  github: String
   paypal: String
 }
 
@@ -469,6 +474,11 @@ type Stats {
 }
 
 type Tip {
+  bitcoin: String
+  buymeacoffee: String
+  cash: String
+  ethereum: String
+  github: String
   id: ID!
   paypal: String
   user: User!
