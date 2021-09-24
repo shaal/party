@@ -35,7 +35,7 @@ interface SingleTipProps {
 }
 
 const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
-  <div className="flex cursor-pointer flex-col justify-center items-center text-center dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-gray-200 bg-gray-100 border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 rounded-md p-4">
+  <div className="flex cursor-pointer flex-col justify-center items-center text-center dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-gray-200 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 rounded-md p-4 shadow-sm">
     <img
       className="h-6 w-6"
       src={`https://assets.devparty.io/images/tips/${icon}.svg`}
