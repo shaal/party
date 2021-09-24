@@ -46,7 +46,7 @@ interface Props {
   currentUser: User
 }
 
-const SUCCESS_MESSAGE = 'Social successfully updated!'
+const SUCCESS_MESSAGE = 'Tips successfully updated!'
 
 const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [editTips, editTipsResult] = useMutation<
