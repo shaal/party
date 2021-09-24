@@ -94,7 +94,7 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
           <SingleTip
             icon="buymeacoffee"
             link={`https://www.buymeacoffee.com//${tip?.buymeacoffee}`}
-            text="Coffee"
+            text="Buy Me a Coffee"
           />
         )}
         {tip?.bitcoin && (
