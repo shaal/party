@@ -15,26 +15,30 @@ import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
 import {
-  SocialSettingsMutation,
-  SocialSettingsMutationVariables
+  TipsSettingsMutation,
+  TipsSettingsMutationVariables
 } from './__generated__/Form.generated'
 
-const editSocialSchema = object({
-  website: string()
-    .max(100, { message: '🔗 Website url should be within 30 characters' })
-    .url({ message: '🔗 Invalid URL' })
+const editTipsSchema = object({
+  cash: string()
+    .max(30, { message: 'Cashtag should be within 30 characters' })
     .nullable(),
-  twitter: string()
-    .max(50, { message: '👤 Username should be within 50 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Twitter username' })
+  paypal: string()
+    .max(30, { message: 'Paypal.me username should be within 30 characters' })
     .nullable(),
   github: string()
-    .max(50, { message: '👤 Username should be within 50 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid GitHub username' })
+    .max(30, { message: 'GitHub username should be within 30 characters' })
     .nullable(),
-  discord: string()
-    .max(50, { message: '👤 Username should be within 50 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Discord username' })
+  buymeacoffee: string()
+    .max(30, {
+      message: 'Buymeacoffee username should be within 30 characters'
+    })
+    .nullable(),
+  bitcoin: string()
+    .max(35, { message: 'Bitcoin address should be within 35 characters' })
+    .nullable(),
+  ethereum: string()
+    .max(42, { message: 'Bitcoin address should be within 42 characters' })
     .nullable()
 })
 
@@ -45,20 +49,20 @@ interface Props {
 const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editSocial, editSocialResult] = useMutation<
-    SocialSettingsMutation,
-    SocialSettingsMutationVariables
+  const [editTips, editTipsResult] = useMutation<
+    TipsSettingsMutation,
+    TipsSettingsMutationVariables
   >(
     gql`
-      mutation SocialSettingsMutation($input: EditSocialInput!) {
-        editSocial(input: $input) {
-          profile {
-            id
-            website
-            twitter
-            github
-            discord
-          }
+      mutation TipsSettingsMutation($input: EditTipsInput!) {
+        editTips(input: $input) {
+          id
+          cash
+          paypal
+          github
+          buymeacoffee
+          bitcoin
+          ethereum
         }
       }
     `,
@@ -70,12 +74,14 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
   )
 
   const form = useZodForm({
-    schema: editSocialSchema,
+    schema: editTipsSchema,
     defaultValues: {
-      website: currentUser.profile.website as string,
-      twitter: currentUser.profile.twitter as string,
-      github: currentUser.profile.github as string,
-      discord: currentUser.profile.discord as string
+      cash: currentUser.tip?.cash as string,
+      paypal: currentUser.tip?.paypal as string,
+      github: currentUser.tip?.github as string,
+      buymeacoffee: currentUser.tip?.buymeacoffee as string,
+      bitcoin: currentUser.tip?.bitcoin as string,
+      ethereum: currentUser.tip?.ethereum as string
     }
   })
 
@@ -90,37 +96,46 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ website, twitter, github, discord }) =>
-                editSocial({
+              onSubmit={({
+                cash,
+                paypal,
+                github,
+                buymeacoffee,
+                bitcoin,
+                ethereum
+              }) =>
+                editTips({
                   variables: {
                     input: {
-                      website: website as string,
-                      twitter: twitter as string,
-                      github: github as string,
-                      discord: discord as string
+                      cash,
+                      paypal,
+                      github,
+                      buymeacoffee,
+                      bitcoin,
+                      ethereum
                     }
                   }
                 })
               }
             >
               <ErrorMessage
-                title="Error updating social"
-                error={editSocialResult.error}
+                title="Error updating tips"
+                error={editTipsResult.error}
               />
-              {editSocialResult.data && (
+              {editTipsResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <Input
-                label="Website"
+                label="Cashtag"
                 type="text"
-                placeholder="https://johndoe.com"
-                {...form.register('website')}
+                placeholder="$johndoe"
+                {...form.register('cash')}
               />
               <Input
-                label="Twitter"
+                label="Paypal.me"
                 type="text"
                 placeholder="johndoe"
-                {...form.register('twitter')}
+                {...form.register('cash')}
               />
               <Input
                 label="GitHub"
@@ -129,10 +144,22 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 {...form.register('github')}
               />
               <Input
-                label="Discord"
+                label="Buy Me a Coffee"
                 type="text"
-                placeholder="Johndoe#1998"
-                {...form.register('discord')}
+                placeholder="johndoe"
+                {...form.register('buymeacoffee')}
+              />
+              <Input
+                label="Bitcoin"
+                type="text"
+                placeholder="38gqtXyXUxB1mHR7mJf1bHzLSf6vHVBi6Q"
+                {...form.register('bitcoin')}
+              />
+              <Input
+                label="Ethereum"
+                type="text"
+                placeholder="0x635f595A4a0216106FA888773c0A6daCB4b3Ffc5"
+                {...form.register('ethereum')}
               />
               <div className="ml-auto pt-3">
                 <Button

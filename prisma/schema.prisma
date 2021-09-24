@@ -114,9 +114,9 @@ model Tip {
   cash         String?
   paypal       String?
   github       String?
+  buymeacoffee String?
   bitcoin      String?
   ethereum     String?
-  buymeacoffee String?
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

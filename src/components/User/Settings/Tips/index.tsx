@@ -10,12 +10,14 @@ export const TIPS_SETTINGS_QUERY = gql`
   query TipsSettingsQuery {
     me {
       id
-      profile {
+      tip {
         id
-        website
-        twitter
+        cash
+        paypal
         github
-        discord
+        buymeacoffee
+        bitcoin
+        ethereum
       }
     }
   }

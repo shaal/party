@@ -8,9 +8,9 @@ builder.prismaObject('Tip', {
     cash: t.exposeString('cash', { nullable: true }),
     paypal: t.exposeString('paypal', { nullable: true }),
     github: t.exposeString('github', { nullable: true }),
+    buymeacoffee: t.exposeString('buymeacoffee', { nullable: true }),
     bitcoin: t.exposeString('bitcoin', { nullable: true }),
     ethereum: t.exposeString('ethereum', { nullable: true }),
-    buymeacoffee: t.exposeString('buymeacoffee', { nullable: true }),
 
     // Relations
     user: t.relation('user')
@@ -22,9 +22,9 @@ const EditTipsInput = builder.inputType('EditTipsInput', {
     cash: t.string({ required: false, validate: { maxLength: 50 } }),
     paypal: t.string({ required: false, validate: { maxLength: 50 } }),
     github: t.string({ required: false, validate: { maxLength: 50 } }),
+    buymeacoffee: t.string({ required: false, validate: { maxLength: 50 } }),
     bitcoin: t.string({ required: false, validate: { maxLength: 50 } }),
-    ethereum: t.string({ required: false, validate: { maxLength: 50 } }),
-    buymeacoffee: t.string({ required: false, validate: { maxLength: 50 } })
+    ethereum: t.string({ required: false, validate: { maxLength: 50 } })
   })
 })
 
@@ -37,9 +37,9 @@ builder.mutationField('editTips', (t) =>
         cash: input.cash,
         paypal: input.paypal,
         github: input.github,
+        buymeacoffee: input.buymeacoffee,
         bitcoin: input.bitcoin,
-        ethereum: input.ethereum,
-        buymeacoffee: input.buymeacoffee
+        ethereum: input.ethereum
       }
 
       return await db.tip.upsert({
