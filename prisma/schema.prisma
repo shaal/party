@@ -94,7 +94,7 @@ model Profile {
 }
 
 model Invite {
-  id        String  @id @default(uuid())
+  id        String  @id @default(cuid())
   code      String?
   usedTimes Int     @default(0)
 
@@ -110,7 +110,7 @@ model Invite {
 }
 
 model Tip {
-  id           String  @id @default(uuid())
+  id           String  @id @default(cuid())
   cash         String?
   paypal       String?
   github       String?
@@ -275,7 +275,7 @@ model Notification {
 }
 
 model Integration {
-  id                  String  @id @default(uuid())
+  id                  String  @id @default(cuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
 
@@ -292,7 +292,7 @@ model Integration {
 }
 
 model Log {
-  id        String        @id @default(uuid())
+  id        String        @id @default(cuid())
   action    LogActionType
   entityId  String?
   ipAddress String?
@@ -309,7 +309,7 @@ model Log {
 }
 
 model Message {
-  id      String @id @default(uuid())
+  id      String @id @default(cuid())
   message String
 
   // Timestamps
