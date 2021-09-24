@@ -37,6 +37,7 @@ model User {
   subscribedProducts     Product[]      @relation("subscribed")
   sessions               Session[]
   profile                Profile?
+  tip                    Tip?
   invite                 Invite?
   integrations           Integration?
   likes                  Like[]
@@ -86,14 +87,14 @@ model Profile {
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  userId String @unique
 
   // Attributes
   @@map("profiles")
 }
 
 model Invite {
-  id        String  @id @default(uuid())
+  id        String  @id @default(cuid())
   code      String?
   usedTimes Int     @default(0)
 
@@ -102,10 +103,27 @@ model Invite {
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  userId String @unique
 
   // Attributes
   @@map("invites")
+}
+
+model Tip {
+  id           String  @id @default(cuid())
+  cash         String?
+  paypal       String?
+  github       String?
+  buymeacoffee String?
+  bitcoin      String?
+  ethereum     String?
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+
+  // Attributes
+  @@map("tips")
 }
 
 model Post {
@@ -257,7 +275,7 @@ model Notification {
 }
 
 model Integration {
-  id                  String  @id @default(uuid())
+  id                  String  @id @default(cuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
 
@@ -274,7 +292,7 @@ model Integration {
 }
 
 model Log {
-  id        String        @id @default(uuid())
+  id        String        @id @default(cuid())
   action    LogActionType
   entityId  String?
   ipAddress String?
@@ -291,7 +309,7 @@ model Log {
 }
 
 model Message {
-  id      String @id @default(uuid())
+  id      String @id @default(cuid())
   message String
 
   // Timestamps

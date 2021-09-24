@@ -41,15 +41,7 @@ builder.prismaObject('User', {
 
     // Relations
     profile: t.relation('profile'),
-    notificationsCount: t.field({
-      type: 'Int',
-      authScopes: { $granted: 'currentUser' },
-      resolve: async (parent, args, { session }) => {
-        return await db.notification.count({
-          where: { receiverId: session?.userId, isRead: false }
-        })
-      }
-    }),
+    tip: t.relation('tip', { nullable: true }),
     badges: t.relatedConnection('badges', { cursor: 'id', totalCount: true }),
     topics: t.relatedConnection('topics', { cursor: 'id', totalCount: true }),
     posts: t.relatedConnection('posts', {
@@ -76,6 +68,15 @@ builder.prismaObject('User', {
           where: { userId: parent.id }
         })
         return integration?.spotifyRefreshToken ? true : false
+      }
+    }),
+    notificationsCount: t.field({
+      type: 'Int',
+      authScopes: { $granted: 'currentUser' },
+      resolve: async (parent, args, { session }) => {
+        return await db.notification.count({
+          where: { receiverId: session?.userId, isRead: false }
+        })
       }
     }),
     invite: t.relation('invite', {

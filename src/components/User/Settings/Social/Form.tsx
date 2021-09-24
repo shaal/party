@@ -21,7 +21,7 @@ import {
 
 const editSocialSchema = object({
   website: string()
-    .max(100, { message: '🔗 Website url should be within 30 characters' })
+    .max(100, { message: '🔗 Website url should be within 100 characters' })
     .url({ message: '🔗 Invalid URL' })
     .nullable(),
   twitter: string()

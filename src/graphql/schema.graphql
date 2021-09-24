@@ -84,6 +84,15 @@ input EditSocialInput {
   website: String
 }
 
+input EditTipsInput {
+  bitcoin: String
+  buymeacoffee: String
+  cash: String
+  ethereum: String
+  github: String
+  paypal: String
+}
+
 input EditTopicInput {
   description: String
   id: ID!
@@ -149,6 +158,7 @@ type Mutation {
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
+  editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
@@ -463,6 +473,17 @@ type Stats {
   users: Int!
 }
 
+type Tip {
+  bitcoin: String
+  buymeacoffee: String
+  cash: String
+  ethereum: String
+  github: String
+  id: ID!
+  paypal: String
+  user: User!
+}
+
 input ToggleFollowInput {
   userId: ID!
 }
@@ -530,6 +551,7 @@ type User {
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   profile: Profile!
   spammy: Boolean!
+  tip: Tip
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!

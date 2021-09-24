@@ -26,6 +26,7 @@ import Spotify from './Highlights/Spotify'
 import Wakatime from './Highlights/Wakatime'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
+import Tips from './Tips'
 const UserMod = dynamic(() => import('./Mod'))
 
 interface Props {
@@ -33,7 +34,7 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ user }) => {
-  const { currentUser, staffMode } = useContext(AppContext)
+  const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
 
   return (
     <div className="mb-4">
@@ -67,18 +68,26 @@ const Details: React.FC<Props> = ({ user }) => {
           </div>
         </div>
         <Followerings user={user} />
-        {currentUser?.id !== user?.id ? (
-          <Follow user={user} showText={true} />
+        {currentUserLoading ? (
+          <div className="shimmer rounded-lg h-7 w-20" />
         ) : (
-          <Link href="/settings/profile" passHref>
-            <Button
-              size="md"
-              variant="success"
-              icon={<PencilIcon className="h-4 w-4" />}
-            >
-              Edit Profile
-            </Button>
-          </Link>
+          <div className="flex items-center space-x-2">
+            {currentUser?.id !== user?.id ? (
+              <Follow user={user} showText={true} />
+            ) : (
+              <Link href="/settings/profile" passHref>
+                <Button
+                  size="md"
+                  variant="success"
+                  className="text-sm"
+                  icon={<PencilIcon className="h-4 w-4" />}
+                >
+                  Edit Profile
+                </Button>
+              </Link>
+            )}
+            {user?.tip && <Tips user={user} />}
+          </div>
         )}
         {user?.profile?.bio && (
           <div className="linkify">
