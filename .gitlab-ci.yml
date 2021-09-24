@@ -51,6 +51,8 @@ migrate:
   script:
     - yarn prisma migrate reset --force
     - yarn prisma migrate deploy
+  only:
+    - main
   when: manual
 
 housekeeping:

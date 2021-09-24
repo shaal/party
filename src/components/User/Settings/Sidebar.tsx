@@ -1,5 +1,6 @@
 import AppContext from '@components/utils/AppContext'
 import {
+  CashIcon,
   ClipboardListIcon,
   IdentificationIcon,
   LockClosedIcon,
@@ -50,6 +51,10 @@ const Sidebar: React.FC = () => {
       >
         <ShareIcon className="h-4 w-4" />
         <div>Social</div>
+      </Menu>
+      <Menu current={router.pathname == '/settings/tips'} url="/settings/tips">
+        <CashIcon className="h-4 w-4" />
+        <div>Tips</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/security'}
