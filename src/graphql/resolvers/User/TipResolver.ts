@@ -5,7 +5,12 @@ builder.prismaObject('Tip', {
   findUnique: (tip) => ({ id: tip.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
+    cash: t.exposeString('cash', { nullable: true }),
     paypal: t.exposeString('paypal', { nullable: true }),
+    github: t.exposeString('github', { nullable: true }),
+    bitcoin: t.exposeString('bitcoin', { nullable: true }),
+    ethereum: t.exposeString('ethereum', { nullable: true }),
+    buymeacoffee: t.exposeString('buymeacoffee', { nullable: true }),
 
     // Relations
     user: t.relation('user')
@@ -14,7 +19,12 @@ builder.prismaObject('Tip', {
 
 const EditTipsInput = builder.inputType('EditTipsInput', {
   fields: (t) => ({
-    paypal: t.string({ required: false, validate: { maxLength: 50 } })
+    cash: t.string({ required: false, validate: { maxLength: 50 } }),
+    paypal: t.string({ required: false, validate: { maxLength: 50 } }),
+    github: t.string({ required: false, validate: { maxLength: 50 } }),
+    bitcoin: t.string({ required: false, validate: { maxLength: 50 } }),
+    ethereum: t.string({ required: false, validate: { maxLength: 50 } }),
+    buymeacoffee: t.string({ required: false, validate: { maxLength: 50 } })
   })
 })
 
@@ -23,12 +33,21 @@ builder.mutationField('editTips', (t) =>
     type: 'Tip',
     args: { input: t.arg({ type: EditTipsInput }) },
     resolve: async (query, parent, { input }, { session }) => {
+      const data = {
+        cash: input.cash,
+        paypal: input.paypal,
+        github: input.github,
+        bitcoin: input.bitcoin,
+        ethereum: input.ethereum,
+        buymeacoffee: input.buymeacoffee
+      }
+
       return await db.tip.upsert({
         ...query,
         where: { userId: session!.userId },
-        update: { paypal: input.paypal },
+        update: data,
         create: {
-          paypal: input.paypal,
+          ...data,
           user: { connect: { id: session!.userId } }
         }
       })
