@@ -13,9 +13,7 @@ const NOTIFICATION_COUNT_QUERY = gql`
 `
 
 const Notification: React.FC = () => {
-  const { data } = useQuery<NotificationCountQuery>(NOTIFICATION_COUNT_QUERY, {
-    pollInterval: 5000
-  })
+  const { data } = useQuery<NotificationCountQuery>(NOTIFICATION_COUNT_QUERY)
 
   return (
     <Link href="/notifications">
