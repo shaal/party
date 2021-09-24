@@ -35,21 +35,19 @@ interface SingleTipProps {
 }
 
 const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
-  <div className="flex cursor-pointer flex-col justify-center items-center text-center dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-gray-200 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 rounded-md p-4 shadow-sm">
+  <a
+    className="flex flex-col justify-center items-center text-center dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-gray-200 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 rounded-md p-4 shadow-sm"
+    href={link}
+    target="_blank"
+    rel="noreferrer"
+  >
     <img
       className="h-6 w-6"
       src={`https://assets.devparty.io/images/tips/${icon}.svg`}
       alt={text}
     />
-    <a
-      className="flex items-center space-x-2"
-      href={link}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <span className="mt-2">{text}</span>
-    </a>
-  </div>
+    <span className="mt-2">{text}</span>
+  </a>
 )
 
 interface Props {
@@ -114,14 +112,12 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
       </div>
       {tip?.user?.id === currentUser?.id && (
         <Link href="/settings/tips">
-          <a>
-            <Button
-              className="mt-4 text-sm"
-              icon={<PencilIcon className="h-4 w-4" />}
-            >
-              Edit Tips
-            </Button>
-          </a>
+          <Button
+            className="mt-4 text-sm"
+            icon={<PencilIcon className="h-4 w-4" />}
+          >
+            Edit Tips
+          </Button>
         </Link>
       )}
     </div>
