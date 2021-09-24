@@ -25,13 +25,6 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
             avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
           }
         },
-        invite: {
-          create: {
-            code: await (await md5(input.email + Math.random()))
-              .slice(0, 12)
-              .toLowerCase()
-          }
-        },
         integrations: { create: {} }
       }
     })

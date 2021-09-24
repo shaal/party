@@ -33,13 +33,6 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
           }
         },
         following: { connect: { id: invite.userId } },
-        invite: {
-          create: {
-            code: await (await md5(input.email + Math.random()))
-              .slice(0, 12)
-              .toUpperCase()
-          }
-        },
         integrations: { create: {} }
       }
     })
