@@ -68,6 +68,7 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
       {currentUser?.id !== user?.id && (
         <Switch
           as={Button}
+          className="text-sm"
           checked={isFollowed}
           onChange={() => {
             setIsFollowed(!isFollowed)
