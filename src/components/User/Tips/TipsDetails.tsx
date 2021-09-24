@@ -116,7 +116,7 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
           <Link href="/settings/tips">
             <a>
               <Button
-                className="mt-4"
+                className="mt-4 text-sm"
                 icon={<PencilIcon className="h-4 w-4" />}
               >
                 Edit Tips
