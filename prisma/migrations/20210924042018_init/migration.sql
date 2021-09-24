@@ -61,6 +61,16 @@ CREATE TABLE `invites` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `tips` (
+    `id` VARCHAR(191) NOT NULL,
+    `paypal` VARCHAR(191),
+    `userId` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `tips_userId_unique`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `posts` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191),

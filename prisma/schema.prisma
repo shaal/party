@@ -37,6 +37,7 @@ model User {
   subscribedProducts     Product[]      @relation("subscribed")
   sessions               Session[]
   profile                Profile?
+  tip                    Tip?
   invite                 Invite?
   integrations           Integration?
   likes                  Like[]
@@ -106,6 +107,18 @@ model Invite {
 
   // Attributes
   @@map("invites")
+}
+
+model Tip {
+  id       String  @id @default(uuid())
+  paypal   String?
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  // Attributes
+  @@map("tips")
 }
 
 model Post {
