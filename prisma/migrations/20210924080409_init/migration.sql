@@ -66,9 +66,9 @@ CREATE TABLE `tips` (
     `cash` VARCHAR(191),
     `paypal` VARCHAR(191),
     `github` VARCHAR(191),
+    `buymeacoffee` VARCHAR(191),
     `bitcoin` VARCHAR(191),
     `ethereum` VARCHAR(191),
-    `buymeacoffee` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `tips_userId_key`(`userId`),
