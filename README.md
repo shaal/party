@@ -71,6 +71,7 @@ Special thanks to these amazing projects which help power Devparty:
 - [Prisma](https://prisma.io)
 - [PlanetScale](https://planetscale.com)
 - [Upstash](https://upstash.com)
+- [IPFS](https://ipfs.io)
 
 ## ⚖️ License
 
