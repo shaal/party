@@ -5,7 +5,10 @@ builder.prismaObject('Tip', {
   findUnique: (tip) => ({ id: tip.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
-    paypal: t.exposeString('paypal', { nullable: true })
+    paypal: t.exposeString('paypal', { nullable: true }),
+
+    // Relations
+    user: t.relation('user')
   })
 })
 
