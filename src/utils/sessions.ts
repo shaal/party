@@ -3,10 +3,11 @@ import { addSeconds, differenceInSeconds } from 'date-fns'
 import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
+import requestIp from 'request-ip'
 
 import { db } from './prisma'
 
-const SESSION_TTL = 365 * 24 * 3600
+const SESSION_TTL = 182 * 24 * 3600
 const IRON_SESSION_ID_KEY = 'sessionID'
 
 interface RequestWithSession extends IncomingMessage {
@@ -41,6 +42,7 @@ export async function createSession(request: IncomingMessage, user: User) {
       userId: user.id,
       isStaff: user.isStaff,
       expiresAt: addSeconds(new Date(), SESSION_TTL),
+      ipAddress: requestIp.getClientIp(request),
       userAgent: request.headers['user-agent']
     }
   })

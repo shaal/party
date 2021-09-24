@@ -36,7 +36,7 @@ const Attachments: React.FC<Props> = ({
       {attachments?.length !== 0 && (
         <div className={getGridRows(attachments?.length)}>
           {attachments?.map((attachment: any) => (
-            <div className="aspect-w-16 aspect-h-12" key={attachment}>
+            <div className="aspect-w-16 aspect-h-12" key={attachment.url}>
               {attachment.type === 'video/mp4' ? (
                 <video
                   controls
@@ -55,10 +55,9 @@ const Attachments: React.FC<Props> = ({
                 <div className="m-3">
                   <Button
                     variant="danger"
+                    icon={<TrashIcon className="h-4 w-4" />}
                     onClick={() => removeAttachment(attachment)}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
+                  />
                 </div>
               )}
             </div>

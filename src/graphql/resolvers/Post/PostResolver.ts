@@ -3,6 +3,7 @@ import { db } from '@utils/prisma'
 import urlRegexSafe from 'url-regex-safe'
 
 import { hasLiked } from '../Like/queries/hasLiked'
+import { Result } from '../ResultResolver'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
@@ -119,11 +120,11 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
   fields: (t) => ({
     title: t.string({
       required: false,
-      validate: { minLength: 1, maxLength: 255 }
+      validate: { minLength: 1, maxLength: 190 }
     }),
     parentId: t.id({ required: false }),
     productId: t.id({ required: false }),
-    body: t.string({ validate: { minLength: 1, maxLength: 1000 } }),
+    body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
     type: t.string({ defaultValue: 'POST' })
@@ -165,11 +166,11 @@ const DeletePostInput = builder.inputType('DeletePostInput', {
 })
 
 builder.mutationField('deletePost', (t) =>
-  t.prismaField({
-    type: 'Post',
+  t.field({
+    type: Result,
     args: { input: t.arg({ type: DeletePostInput }) },
-    resolve: async (query, parent, { input }, { session }) => {
-      return await deletePost(query, input, session)
+    resolve: async (parent, { input }, { session }) => {
+      return await deletePost(input, session)
     }
   })
 )

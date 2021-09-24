@@ -11,7 +11,7 @@ import useInView from 'react-cool-inview'
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
 const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $username: ID!) {
+  query UserFeedQuery($after: String, $username: String!) {
     user(username: $username) {
       id
       posts(first: 10, after: $after) {

@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props {
   showModal: boolean
-  setShowModal: any
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Waitlist: React.FC<Props> = ({ showModal, setShowModal }) => {

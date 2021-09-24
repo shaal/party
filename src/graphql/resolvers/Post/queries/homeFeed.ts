@@ -8,7 +8,7 @@ export const homeFeed = async (
   session: Session | null | undefined
 ) => {
   // Redis connection
-  let redis = new Redis(process.env.REDIS_URL)
+  const redis = new Redis(process.env.REDIS_URL)
 
   // Redis cache
   const cacheKey = `${session?.userId}-homefeed`

@@ -72,19 +72,16 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
         handleToggleSubscribe()
       }}
       variant={isSubscribed ? 'danger' : 'success'}
+      icon={
+        isSubscribed ? (
+          <MinusIcon className="h-4 w-4" />
+        ) : (
+          <PlusIcon className="h-4 w-4" />
+        )
+      }
       outline
     >
-      {isSubscribed ? (
-        <div className="flex items-center space-x-1">
-          <MinusIcon className="h-4 w-4" />
-          {showText && <div>Unsubscribe</div>}
-        </div>
-      ) : (
-        <div className="flex items-center space-x-1">
-          <PlusIcon className="h-4 w-4" />
-          {showText && <div>Subscribe</div>}
-        </div>
-      )}
+      {isSubscribed ? showText && 'Unsubscribe' : showText && 'Subscribe'}
     </Switch>
   )
 }

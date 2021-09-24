@@ -5,10 +5,12 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
+import { CheckCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -22,10 +24,19 @@ import {
 } from './__generated__/Form.generated'
 
 const editProfileSchema = object({
-  username: string().min(1),
-  name: string().min(1),
-  bio: string().max(255).nullable(),
-  location: string().max(50).nullable(),
+  username: string()
+    .min(2, { message: '👤 Username should atleast have 2 characters' })
+    .max(50, { message: '👤 Useranme should be within 50 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid username' }),
+  name: string()
+    .min(2, { message: '👤 Name should atleast have 2 characters' })
+    .max(50, { message: '👤 Name should be within 50 characters' }),
+  bio: string()
+    .max(190, { message: '👤 Bio should not exceed 190 characters' })
+    .nullable(),
+  location: string()
+    .max(50, { message: '📍 Location should not exceed 50 characters' })
+    .nullable(),
   avatar: string()
 })
 
@@ -189,7 +200,18 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
 
               <div className="flex items-center justify-between pt-3">
                 <Link href="/settings/password">Change password?</Link>
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  icon={
+                    form.formState.isSubmitting ? (
+                      <Spinner size="xs" />
+                    ) : (
+                      <CheckCircleIcon className="h-4 w-4" />
+                    )
+                  }
+                >
+                  Save
+                </Button>
               </div>
             </Form>
           </CardBody>

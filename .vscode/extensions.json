@@ -13,7 +13,8 @@
     "github.github-vscode-theme",
     "gitlab.gitlab-workflow",
     "bradlc.vscode-tailwindcss",
-    "wakatime.vscode-wakatime",
-    "bierner.markdown-preview-github-styles"
+    "bierner.markdown-preview-github-styles",
+    "editorconfig.editorconfig",
+    "pkief.material-icon-theme"
   ]
 }

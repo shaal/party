@@ -1,8 +1,0 @@
-{
-  "name": "Devparty",
-  "dockerComposeFile": ["../docker-compose.yml"],
-  "service": "next",
-  "workspaceFolder": "/workspace",
-  "settings": {},
-  "extensions": []
-}

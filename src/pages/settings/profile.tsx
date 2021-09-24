@@ -3,12 +3,15 @@ import ProfileSettings, {
 } from '@components/User/Settings/Profile'
 import { preloadQuery } from '@utils/apollo'
 import { authenticatedRoute } from '@utils/redirects'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
-  const auth = await authenticatedRoute(ctx)
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const auth = await authenticatedRoute(context)
   if ('redirect' in auth) return auth
 
-  return preloadQuery(ctx, { query })
+  return preloadQuery(context, { query })
 }
 
 export default ProfileSettings

@@ -18,35 +18,41 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
     throw new Error('Invite code is invalid or expired.')
   }
 
-  const user = await db.user.create({
-    ...query,
-    data: {
-      username: input.username,
-      email: input.email,
-      hashedPassword: await hashPassword(input.password),
-      profile: {
-        create: {
-          name: input.username,
-          avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
-        }
-      },
-      invite: {
-        create: {
-          code: await (await md5(input.email + Math.random()))
-            .slice(0, 12)
-            .toUpperCase()
-        }
-      },
-      integrations: { create: {} }
+  try {
+    const user = await db.user.create({
+      ...query,
+      data: {
+        username: input.username,
+        email: input.email,
+        hashedPassword: await hashPassword(input.password),
+        inWaitlist: false,
+        profile: {
+          create: {
+            name: input.username,
+            avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
+          }
+        },
+        following: { connect: { id: invite.userId } },
+        integrations: { create: {} }
+      }
+    })
+
+    await createSession(req, user)
+
+    await db.invite.updateMany({
+      where: { code: input.invite },
+      data: { usedTimes: { increment: 1 } }
+    })
+
+    return user
+  } catch (error: any) {
+    if (error.code === 'P2002') {
+      if (error.meta.target === 'users_username_key')
+        throw new Error('Username is already taken!')
+      if (error.meta.target === 'users_email_key')
+        throw new Error('Email is already taken!')
     }
-  })
 
-  await createSession(req, user)
-
-  await db.invite.updateMany({
-    where: { code: input.invite },
-    data: { usedTimes: { increment: 1 } }
-  })
-
-  return user
+    throw new Error('Something went wrong!')
+  }
 }

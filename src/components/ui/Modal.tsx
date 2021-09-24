@@ -2,7 +2,7 @@ import { XIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 
 interface Props {
-  title: string
+  title: React.ReactChild
   show: boolean
   children: React.ReactChild[] | React.ReactChild
   onClose: () => void

@@ -3,6 +3,7 @@ import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
+import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
@@ -19,7 +20,9 @@ import {
 import { REPLIES_QUERY } from './Replies'
 
 const newReplySchema = object({
-  body: string().min(1).max(1000)
+  body: string()
+    .min(1, { message: '💬 Reply should not be empty' })
+    .max(10000, { message: '💬 Reply should not exceed 10000 characters' })
 })
 
 interface Props {
@@ -95,6 +98,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
             <div className="flex space-x-2">
               <Button
                 type="button"
+                variant="danger"
                 outline
                 className="flex items-center gap-1.5"
                 onClick={() => {
@@ -103,9 +107,17 @@ const NewReply: React.FC<Props> = ({ post }) => {
               >
                 <div>Cancel</div>
               </Button>
-              <Button type="submit" className="flex items-center gap-1.5">
-                <ReplyIcon className="h-4 w-4" />
-                <div>Reply</div>
+              <Button
+                type="submit"
+                icon={
+                  form.formState.isSubmitting ? (
+                    <Spinner size="xs" />
+                  ) : (
+                    <ReplyIcon className="h-4 w-4" />
+                  )
+                }
+              >
+                Reply
               </Button>
             </div>
           </div>

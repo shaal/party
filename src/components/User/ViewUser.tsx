@@ -1,9 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo'
 import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
@@ -17,6 +17,7 @@ export const UserFragment = gql`
     id
     username
     hasFollowed
+    isFollowing
     hasWakatimeIntegration
     hasSpotifyIntegration
     isVerified
@@ -43,11 +44,14 @@ export const UserFragment = gql`
       github
       discord
     }
+    tip {
+      id
+    }
   }
 `
 
 export const VIEW_USER_QUERY = gql`
-  query ViewUserQuery($username: ID!) {
+  query ViewUserQuery($username: String!) {
     user(username: $username) {
       ...UserFragment
     }
@@ -61,17 +65,18 @@ const ViewUser: React.FC = () => {
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
-    },
-    skip: !router.isReady
+    }
   })
 
   if (loading) return <PageLoading message="Loading user" />
 
   return (
     <>
-      <NextSeo
-        title={`${data?.user?.username} (${data?.user?.profile?.name})`}
+      <DevpartySEO
+        title={`${data?.user?.username} (${data?.user?.profile?.name}) · Devparty`}
         description={data?.user?.profile?.bio as string}
+        image={data?.user?.profile?.avatar as string}
+        path={`/@/${data?.user?.username}`}
       />
       {data?.user?.profile?.cover ? (
         <img

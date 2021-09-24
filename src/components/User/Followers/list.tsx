@@ -12,7 +12,7 @@ import useInView from 'react-cool-inview'
 import { FollowersQuery } from './__generated__/list.generated'
 
 export const FOLLOWERS_QUERY = gql`
-  query FollowersQuery($after: String, $username: ID!) {
+  query FollowersQuery($after: String, $username: String!) {
     user(username: $username) {
       followers(first: 10, after: $after) {
         totalCount
@@ -25,6 +25,7 @@ export const FOLLOWERS_QUERY = gql`
             id
             username
             isVerified
+            isFollowing
             hasFollowed
             profile {
               id

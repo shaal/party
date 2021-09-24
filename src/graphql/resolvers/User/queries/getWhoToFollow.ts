@@ -6,8 +6,8 @@ export const getWhoToFollow = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const following = await db.user.findUnique({
-    where: { id: session?.userId },
+  const following = await db.user.findFirst({
+    where: { id: session?.userId, inWaitlist: false },
     select: { following: { select: { id: true } } }
   })
 
@@ -16,6 +16,7 @@ export const getWhoToFollow = async (
     take: 5,
     where: {
       spammy: false,
+      inWaitlist: false,
       id: {
         // @ts-ignore
         notIn: [...following.following.map((user) => user.id), session?.userId]

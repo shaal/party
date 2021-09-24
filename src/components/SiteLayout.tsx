@@ -1,10 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
-import { NextSeo } from 'next-seo'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
-import { CurrentUserQuery } from './__generated__/DefaultLayout.generated'
+import { CurrentUserQuery } from './__generated__/SiteLayout.generated'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
@@ -27,7 +26,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const DefaultLayout: React.FC<Props> = ({ children }) => {
+const SiteLayout: React.FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
   const toastOptions = {
     style: {
@@ -69,14 +68,6 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   return (
     <AppContext.Provider value={injectedGlobalContext}>
       <Toaster position="top-right" toastOptions={toastOptions} />
-      <NextSeo
-        additionalLinkTags={[
-          {
-            rel: 'icon',
-            href: '/favicon.svg'
-          }
-        ]}
-      />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
@@ -85,4 +76,4 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
   )
 }
 
-export default DefaultLayout
+export default SiteLayout

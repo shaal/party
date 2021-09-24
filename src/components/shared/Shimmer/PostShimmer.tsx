@@ -11,8 +11,8 @@ const PostShimmer: React.FC = () => {
           <div className="shimmer h-3 w-20 rounded-md"></div>
         </div>
         <div className="space-y-2">
-          <div className="shimmer h-3 w-96 rounded-md"></div>
-          <div className="shimmer h-3 w-60 rounded-md"></div>
+          <div className="shimmer h-3 w-7/12 rounded-md"></div>
+          <div className="shimmer h-3 w-1/3 rounded-md"></div>
         </div>
       </CardBody>
       <div className="flex gap-7 p-3 border-t dark:border-gray-800">

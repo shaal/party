@@ -1,14 +1,13 @@
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
-  planetScaleMode   = true
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 generator client {
   provider        = "prisma-client-js"
   binaryTargets   = ["native", "debian-openssl-1.1.x"]
-  previewFeatures = ["filterJson", "planetScaleMode"]
+  previewFeatures = ["filterJson", "referentialIntegrity"]
 }
 
 generator giraphql {
@@ -28,33 +27,38 @@ model User {
   inWaitlist Boolean @default(true)
 
   // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  featuredAt DateTime?
 
   // Relations
-  posts              Post[]
-  ownedProducts      Product[]      @relation("owner")
-  subscribedProducts Product[]      @relation("subscribed")
-  sessions           Session[]
-  profile            Profile?
-  invite             Invite?
-  integrations       Integration?
-  likes              Like[]
-  badges             Badge[]
-  topics             Topic[]
-  following          User[]         @relation("follows")
-  followedBy         User[]         @relation("follows")
-  myNotification     Notification[] @relation("receiver")
-  sentNotification   Notification[] @relation("dispatcher")
+  posts                  Post[]
+  ownedProducts          Product[]      @relation("owner")
+  subscribedProducts     Product[]      @relation("subscribed")
+  sessions               Session[]
+  profile                Profile?
+  tip                    Tip?
+  invite                 Invite?
+  integrations           Integration?
+  likes                  Like[]
+  badges                 Badge[]
+  topics                 Topic[]
+  logs                   Log[]
+  following              User[]         @relation("follows")
+  followedBy             User[]         @relation("follows")
+  receivedNotification   Notification[] @relation("notificationReceiver")
+  dispatchedNotification Notification[] @relation("notificationDispatcher")
+  receivedMessages       Message[]      @relation("messageReceiver")
+  sentMessages           Message[]      @relation("messageSender")
 
   // Attributes
-  @@index([username, email])
   @@map("users")
 }
 
 model Session {
   id        String  @id @default(cuid())
   isStaff   Boolean @default(false)
+  ipAddress String?
   userAgent String?
 
   // Timestamps
@@ -62,11 +66,10 @@ model Session {
   expiresAt DateTime @default(now())
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
-  @@index([userAgent, userId])
   @@map("sessions")
 }
 
@@ -83,16 +86,15 @@ model Profile {
   twitter  String?
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
 
   // Attributes
-  @@index([userId])
   @@map("profiles")
 }
 
 model Invite {
-  id        String  @id @default(uuid())
+  id        String  @id @default(cuid())
   code      String?
   usedTimes Int     @default(0)
 
@@ -100,42 +102,56 @@ model Invite {
   createdAt DateTime @default(now())
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
 
   // Attributes
-  @@index([code, userId])
   @@map("invites")
+}
+
+model Tip {
+  id           String  @id @default(cuid())
+  cash         String?
+  paypal       String?
+  github       String?
+  buymeacoffee String?
+  bitcoin      String?
+  ethereum     String?
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+
+  // Attributes
+  @@map("tips")
 }
 
 model Post {
   id          String   @id @default(cuid())
   title       String?
-  body        String
+  body        String   @db.Text
   done        Boolean  @default(false)
   type        PostType @default(POST)
   attachments Json?
   hidden      Boolean  @default(false)
 
   // Timestamps
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  user      User        @relation(fields: [userId], references: [id])
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  product   Product?    @relation(fields: [productId], references: [id])
+  product   Product?    @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
   likes     Like[]
   topics    PostTopic[]
 
   parentId String?
-  parent   Post?   @relation("replies", fields: [parentId], references: [id])
+  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies  Post[]  @relation("replies")
 
   // Attributes
-  @@index([userId, productId, parentId])
   @@map("posts")
 }
 
@@ -143,13 +159,12 @@ model PostTopic {
   id String @id @default(cuid())
 
   // Relations
-  post    Post?   @relation(fields: [postId], references: [id])
+  post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId  String?
-  topic   Topic?  @relation(fields: [topicId], references: [id])
+  topic   Topic?  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId String?
 
   // Attributes
-  @@index([postId, topicId])
   @@map("post_topics")
 }
 
@@ -167,7 +182,6 @@ model Topic {
   starrers User[]
 
   // Attributes
-  @@index([name])
   @@map("topics")
 }
 
@@ -178,15 +192,14 @@ model Like {
   createdAt DateTime @default(now())
 
   // Relations
-  user         User           @relation(fields: [userId], references: [id])
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
-  post         Post?          @relation(fields: [postId], references: [id])
+  post         Post?          @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId       String?
   notification Notification[] @relation("like")
 
   // Attributes
   @@unique([userId, postId], name: "likeIdentifier")
-  @@index([postId, userId])
   @@map("likes")
 }
 
@@ -209,13 +222,13 @@ model Product {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user        User?   @relation("owner", fields: [userId], references: [id])
-  userId      String?
-  subscribers User[]  @relation("subscribed")
-  posts       Post[]
+  owner        User?          @relation("owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId      String?
+  subscribers  User[]         @relation("subscribed")
+  posts        Post[]
+  notification Notification[] @relation("product")
 
   // Attributes
-  @@index([slug, userId])
   @@map("products")
 }
 
@@ -237,29 +250,32 @@ model Badge {
 }
 
 model Notification {
-  id      String           @id @default(cuid())
-  message String?
-  type    NotificationType
+  id       String           @id @default(cuid())
+  message  String?
+  isRead   Boolean          @default(false)
+  type     NotificationType
+  entityId String           @unique
 
   // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User    @relation("receiver", fields: [receiverId], references: [id])
+  receiver     User     @relation("notificationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId   String
-  dispatcher   User    @relation("dispatcher", fields: [dispatcherId], references: [id])
+  dispatcher   User     @relation("notificationDispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
-  like         Like?   @relation("like", fields: [likeId], references: [id])
+  like         Like?    @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
   likeId       String?
+  product      Product? @relation("product", fields: [productId], references: [id], onDelete: Cascade)
+  productId    String?
 
   // Attributes
-  @@index([receiverId, dispatcherId, likeId])
   @@map("notifications")
 }
 
 model Integration {
-  id                  String  @id @default(uuid())
+  id                  String  @id @default(cuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
 
@@ -268,12 +284,45 @@ model Integration {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   // Attributes
-  @@index([userId])
   @@map("integrations")
+}
+
+model Log {
+  id        String        @id @default(cuid())
+  action    LogActionType
+  entityId  String?
+  ipAddress String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId String
+
+  // Attributes
+  @@map("logs")
+}
+
+model Message {
+  id      String @id @default(cuid())
+  message String
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  sender     User   @relation("messageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId   String
+  receiver   User   @relation("messageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId String
+
+  // Attributes
+  @@map("messages")
 }
 
 // Types
@@ -285,6 +334,18 @@ enum PostType {
 }
 
 enum NotificationType {
-  POSTLIKE
-  FOLLOW
+  // Post
+  POST_LIKE
+  POST_REPLY
+
+  // User
+  USER_MENTION
+  USER_FOLLOW
+
+  // Product
+  PRODUCT_SUBSCRIBE
+}
+
+enum LogActionType {
+  POST_LIKE
 }

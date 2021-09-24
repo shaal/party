@@ -3,10 +3,10 @@ import 'tsconfig-paths/register'
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
-import { md5 } from 'hash-wasm'
 
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
+const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
 async function main() {
@@ -40,7 +40,7 @@ async function main() {
     console.log(`Seeding User - @${username} ✅`)
     await db.user.create({
       data: {
-        email: faker.internet.email(),
+        email: `yoginth+${username}@hey.com`,
         username,
         inWaitlist: false,
         hashedPassword: await hashPassword(username),
@@ -49,13 +49,6 @@ async function main() {
             name: faker.name.firstName(),
             avatar: faker.internet.avatar(),
             bio: faker.commerce.productDescription()
-          }
-        },
-        invite: {
-          create: {
-            code: await (await md5(faker.internet.email() + Math.random()))
-              .slice(0, 12)
-              .toLowerCase()
           }
         },
         integrations: { create: {} },
@@ -85,13 +78,6 @@ async function main() {
             bio: user.bio
           }
         },
-        invite: {
-          create: {
-            code: await (await md5(user.email + Math.random()))
-              .slice(0, 12)
-              .toLowerCase()
-          }
-        },
         integrations: { create: {} }
       }
     })
@@ -106,7 +92,7 @@ async function main() {
         slug: product.slug,
         avatar: product.avatar,
         description: product.description,
-        user: {
+        owner: {
           connect: {
             username: product.username
           }
@@ -117,7 +103,7 @@ async function main() {
 
   // Post
   for (let i = 0; i < 200; i++) {
-    const post = faker.lorem.sentence(20)
+    const post = hplipsum(10)
     const done = faker.datatype.boolean()
     console.log(`Seeding Post - ${post} ✅`)
     await db.post.create({
@@ -125,6 +111,26 @@ async function main() {
         body: post,
         done,
         type: done ? 'TASK' : 'POST',
+        attachments:
+          faker.datatype.boolean() &&
+          JSON.stringify([
+            {
+              type: 'image/png',
+              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+            },
+            {
+              type: 'image/png',
+              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+            },
+            {
+              type: 'image/png',
+              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+            },
+            {
+              type: 'image/png',
+              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+            }
+          ]),
         user: {
           connect: {
             username:

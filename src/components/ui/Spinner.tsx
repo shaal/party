@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 interface Props {
   className?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
 }
 
 export const Spinner: React.FC<Props> = ({ className = '', size = 'md' }) => {
@@ -10,6 +10,7 @@ export const Spinner: React.FC<Props> = ({ className = '', size = 'md' }) => {
     <div
       className={clsx(
         {
+          'h-4 w-4 border-[2px]': size === 'xs',
           'h-5 w-5 border-2': size === 'sm',
           'h-8 w-8 border-[3px]': size === 'md',
           'h-10 w-10 border-4': size === 'lg'

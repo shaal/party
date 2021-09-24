@@ -10,7 +10,7 @@ import { Product } from 'src/__generated__/schema.generated'
 import { SelectProductQuery } from './__generated__/SelectProduct.generated'
 
 export const SELECT_PRODUCT_QUERY = gql`
-  query SelectProductQuery($username: ID!) {
+  query SelectProductQuery($username: String!) {
     user(username: $username) {
       ownedProducts {
         edges {
@@ -27,7 +27,7 @@ export const SELECT_PRODUCT_QUERY = gql`
 `
 
 interface Props {
-  setSelectedProduct: any
+  setSelectedProduct: React.Dispatch<React.SetStateAction<string>>
 }
 
 const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {

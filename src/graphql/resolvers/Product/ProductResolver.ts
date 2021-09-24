@@ -1,6 +1,7 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 
+import { reservedSlugs } from '../Common/queries/reservedSlugs'
 import { createProduct } from './mutations/createProduct'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
@@ -32,7 +33,7 @@ builder.prismaObject('Product', {
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
 
     // Relations
-    user: t.relation('user'),
+    owner: t.relation('owner'),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,
@@ -56,21 +57,14 @@ builder.queryField('products', (t) =>
   })
 )
 
-const WhereProductInput = builder.inputType('WhereProductInput', {
-  fields: (t) => ({
-    id: t.id({ required: false }),
-    slug: t.string({ required: false })
-  })
-})
-
 builder.queryField('product', (t) =>
   t.prismaField({
     type: 'Product',
-    args: { where: t.arg({ type: WhereProductInput }) },
-    resolve: async (query, parent, { where }) => {
+    args: { slug: t.arg.string() },
+    resolve: async (query, parent, { slug }) => {
       return await db.product.findUnique({
         ...query,
-        where: { id: where.id!, slug: where.slug! },
+        where: { slug },
         rejectOnNotFound: true
       })
     }
@@ -79,13 +73,12 @@ builder.queryField('product', (t) =>
 
 const CreateProductInput = builder.inputType('CreateProductInput', {
   fields: (t) => ({
-    name: t.string({ validate: { minLength: 1, maxLength: 50 } }),
-    slug: t.string({ validate: { minLength: 1, maxLength: 50 } }),
+    name: t.string({ validate: { minLength: 2, maxLength: 50 } }),
+    slug: t.string({ validate: { minLength: 2, maxLength: 50 } }),
     website: t.string({
-      required: false,
-      validate: { maxLength: 100, url: true }
+      validate: { minLength: 2, maxLength: 100, url: true }
     }),
-    description: t.string({ required: false, validate: { maxLength: 255 } })
+    description: t.string({ required: false, validate: { maxLength: 190 } })
   })
 })
 
@@ -104,11 +97,11 @@ const EditProductInput = builder.inputType('EditProductInput', {
     id: t.id(),
     slug: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 20 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     name: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 50 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     description: t.string({ required: false, validate: { maxLength: 255 } }),
     avatar: t.string({ required: false })
@@ -121,17 +114,30 @@ builder.mutationField('editProduct', (t) =>
     type: 'Product',
     args: { input: t.arg({ type: EditProductInput }) },
     authScopes: { user: true },
+    nullable: true,
     resolve: async (query, parent, { input }) => {
-      return await db.product.update({
-        ...query,
-        where: { id: input?.id },
-        data: {
-          slug: input.slug,
-          name: input.name,
-          description: input.description,
-          avatar: input.avatar
+      if (reservedSlugs.includes(input.slug)) {
+        throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
+      }
+
+      try {
+        return await db.product.update({
+          ...query,
+          where: { id: input?.id },
+          data: {
+            slug: input.slug,
+            name: input.name,
+            description: input.description,
+            avatar: input.avatar
+          }
+        })
+      } catch (error: any) {
+        if (error.code === 'P2002') {
+          throw new Error('Product slug is already taken!')
         }
-      })
+
+        throw new Error('Something went wrong!')
+      }
     }
   })
 )

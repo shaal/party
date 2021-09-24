@@ -3,7 +3,8 @@ import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { RefreshIcon, SparklesIcon, UsersIcon } from '@heroicons/react/outline'
+import { UsersIcon } from '@heroicons/react/outline'
+import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
@@ -34,7 +35,7 @@ const WhoToFollowCard = ({ children, refetch }: any) => {
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <SparklesIcon className="h-4 w-4" />
+          <SparklesIcon className="h-4 w-4 text-yellow-500" />
           <div>Who to follow</div>
         </div>
         <button onClick={() => refetch()}>

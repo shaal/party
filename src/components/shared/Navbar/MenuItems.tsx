@@ -1,6 +1,11 @@
-import { Dropdown } from '@components/ui/Dropdown'
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
+import {
+  ChatAlt2Icon,
+  CogIcon,
+  LogoutIcon,
+  UserIcon
+} from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -21,7 +26,7 @@ interface Props {
 }
 
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
-  const { theme, themes, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
 
   const toggleStaffMode = () => {
@@ -80,8 +85,28 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   )
                 }
               >
-                Your Profile
+                <div className="flex items-center space-x-1.5">
+                  <UserIcon className="h-4 w-4" />
+                  <div>Your Profile</div>
+                </div>
               </Menu.Item>
+              {staffMode && (
+                <Menu.Item
+                  as={NextLink}
+                  href="/messages"
+                  className={({ active }: any) =>
+                    clsx(
+                      { 'bg-gray-100 dark:bg-gray-800': active },
+                      'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                    )
+                  }
+                >
+                  <div className="flex items-center space-x-1.5">
+                    <ChatAlt2Icon className="h-4 w-4" />
+                    <div>Messages</div>
+                  </div>
+                </Menu.Item>
+              )}
               <Menu.Item
                 as={NextLink}
                 href="/settings/profile"
@@ -92,7 +117,10 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   )
                 }
               >
-                Settings
+                <div className="flex items-center space-x-1.5">
+                  <CogIcon className="h-4 w-4" />
+                  <div>Settings</div>
+                </div>
               </Menu.Item>
               <Menu.Item
                 as="a"
@@ -104,19 +132,31 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   )
                 }
               >
-                Logout
+                <div className="flex items-center space-x-1.5">
+                  <LogoutIcon className="h-4 w-4" />
+                  <div>Logout</div>
+                </div>
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>
-              <div className="px-5 py-3 text-sm flex items-center gap-2">
-                <Dropdown
-                  className="w-full block"
-                  options={themes.map((t) => ({
-                    value: t,
-                    label: t.charAt(0).toUpperCase() + t.slice(1)
-                  }))}
-                  value={theme}
-                  onChange={setTheme}
-                />
+              <div className="px-5 py-3 flex items-center space-x-3">
+                <button
+                  onClick={() => setTheme('light')}
+                  className={theme === 'light' ? 'text-xl' : ''}
+                >
+                  🌞
+                </button>
+                <button
+                  onClick={() => setTheme('dark')}
+                  className={theme === 'dark' ? 'text-xl' : ''}
+                >
+                  🌚
+                </button>
+                <button
+                  onClick={() => setTheme('system')}
+                  className={theme === 'system' ? 'text-xl' : ''}
+                >
+                  💻
+                </button>
               </div>
               {currentUser?.isStaff && (
                 <>

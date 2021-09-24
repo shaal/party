@@ -10,10 +10,10 @@ CREATE TABLE `users` (
     `inWaitlist` BOOLEAN NOT NULL DEFAULT true,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
+    `featuredAt` DATETIME(3),
 
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
-    INDEX `users_username_email_idx`(`username`, `email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -21,12 +21,12 @@ CREATE TABLE `users` (
 CREATE TABLE `sessions` (
     `id` VARCHAR(191) NOT NULL,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
+    `ipAddress` VARCHAR(191),
     `userAgent` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `expiresAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `sessions_userAgent_userId_idx`(`userAgent`, `userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -44,8 +44,7 @@ CREATE TABLE `profiles` (
     `twitter` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `profiles_userId_idx`(`userId`),
-    UNIQUE INDEX `profiles_userId_unique`(`userId`),
+    UNIQUE INDEX `profiles_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -57,8 +56,22 @@ CREATE TABLE `invites` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `invites_code_userId_idx`(`code`, `userId`),
-    UNIQUE INDEX `invites_userId_unique`(`userId`),
+    UNIQUE INDEX `invites_userId_key`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `tips` (
+    `id` VARCHAR(191) NOT NULL,
+    `cash` VARCHAR(191),
+    `paypal` VARCHAR(191),
+    `github` VARCHAR(191),
+    `buymeacoffee` VARCHAR(191),
+    `bitcoin` VARCHAR(191),
+    `ethereum` VARCHAR(191),
+    `userId` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `tips_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -66,19 +79,17 @@ CREATE TABLE `invites` (
 CREATE TABLE `posts` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191),
-    `body` VARCHAR(191) NOT NULL,
+    `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST', 'TASK', 'QUESTION', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `deletedAt` DATETIME(3),
     `userId` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),
 
-    INDEX `posts_userId_productId_parentId_idx`(`userId`, `productId`, `parentId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -88,7 +99,6 @@ CREATE TABLE `post_topics` (
     `postId` VARCHAR(191),
     `topicId` VARCHAR(191),
 
-    INDEX `post_topics_postId_topicId_idx`(`postId`, `topicId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -101,7 +111,6 @@ CREATE TABLE `topics` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `topics_name_key`(`name`),
-    INDEX `topics_name_idx`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -112,7 +121,6 @@ CREATE TABLE `likes` (
     `userId` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
-    INDEX `likes_postId_userId_idx`(`postId`, `userId`),
     UNIQUE INDEX `likes_userId_postId_key`(`userId`, `postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -131,10 +139,9 @@ CREATE TABLE `products` (
     `twitter` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `userId` VARCHAR(191),
+    `ownerId` VARCHAR(191),
 
     UNIQUE INDEX `products_slug_key`(`slug`),
-    INDEX `products_slug_userId_idx`(`slug`, `userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -154,14 +161,17 @@ CREATE TABLE `badges` (
 CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
     `message` VARCHAR(191),
-    `type` ENUM('POSTLIKE', 'FOLLOW') NOT NULL,
+    `isRead` BOOLEAN NOT NULL DEFAULT false,
+    `type` ENUM('POST_LIKE', 'POST_REPLY', 'USER_MENTION', 'USER_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
+    `entityId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `receiverId` VARCHAR(191) NOT NULL,
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
+    `productId` VARCHAR(191),
 
-    INDEX `notifications_receiverId_dispatcherId_likeId_idx`(`receiverId`, `dispatcherId`, `likeId`),
+    UNIQUE INDEX `notifications_entityId_key`(`entityId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -174,8 +184,30 @@ CREATE TABLE `integrations` (
     `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
-    INDEX `integrations_userId_idx`(`userId`),
     UNIQUE INDEX `integrations_userId_unique`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `logs` (
+    `id` VARCHAR(191) NOT NULL,
+    `action` ENUM('POST_LIKE') NOT NULL,
+    `entityId` VARCHAR(191),
+    `ipAddress` VARCHAR(191),
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `userId` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `messages` (
+    `id` VARCHAR(191) NOT NULL,
+    `message` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `senderId` VARCHAR(191) NOT NULL,
+    `receiverId` VARCHAR(191) NOT NULL,
+
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

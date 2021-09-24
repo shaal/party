@@ -1,7 +1,7 @@
 <div align="center">
     <img src="public/logo.svg" height="70" alt="Devparty Logo">
     <h1>Devparty</h1>
-    <strong>🥳 Social media for developers</strong>
+    <strong>The party hub for developers 🥳</strong>
 </div>
 <br>
 <div align="center">
@@ -10,9 +10,6 @@
     </a>
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
-    </a>
-    <a href="https://wakatime.com/badge/gitlab/yo/devparty">
-        <img src="https://wakatime.com/badge/gitlab/yo/devparty.svg" alt="Wakatime">
     </a>
     <a href="https://gitpod.io/#https://gitlab.com/yo/devparty/-/tree/main/">
         <img src="https://img.shields.io/badge/setup-automated-blue?logo=gitpod" alt="Gitpod">
@@ -28,9 +25,11 @@
     <br>
     <a href="https://devparty.io"><b>devparty.io »</b></a>
     <br><br>
-    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Report Bug</b></a>
+    <a href="https://discord.gg/zxHM7uwDmk"><b>Discord</b></a>
     •
-    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Request Feature</b></a>
+    <a href="https://devparty.io"><b>Website</b></a>
+    •
+    <a href="https://gitlab.com/yo/devparty/-/issues/new"><b>Issues</b></a>
 </div>
 
 ## 🍭 About Devparty
@@ -39,47 +38,40 @@ The party hub for developers
 
 ## ✨ Feature Highlights
 
-- 👤 **User:** TBD
-- 📦 **Product:** TBD
-- 💌 **Post:** TBD
-- 🍔 **Topic:** TBD
-- 👥 **Communities:** TBD
+- 👤 **Users:** Community of developers who ships or creates constantly.
+- 📦 **Products:** Ship your products to Devparty and make regular updates about the product.
+- 📜 **Posts:** Post what's happening in your desk or in your life and even post the desk pics.
+- ✅ **Tasks:** All tasks are public and added to your profile.
+- ❓ **Questions:** Get your questions answered and use this feature as discussion too.
+- 🍔 **Topics:** Create and follow topic to stay updated on particular one.
+- 👥 **Communities:** Join the public communities and keep yourself engaged and help others.
+- 🌑 **Dark Mode:** A built-in light and dark color scheme.
+
+## ✅ Community
+
+For a place to have open discussions on features, voice your ideas, or get help with general questions please visit our community at [Discord](https://discord.gg/zxHM7uwDmk).
 
 ## 🤝 Contributing
 
 We encourage you to contribute to Devparty! Please check out the [Contributing guide](CONTRIBUTING.md) for guidelines about how to proceed.
 
-## ✅ Community
-
-🚧 WIP
-
-## 💡 Support
-
-🚧 WIP
-
 ## ⚙️ Setup
 
-### Development
+[<img src="https://gitpod.io/button/open-in-gitpod.svg" height="40">](https://gitpod.io/#https://gitlab.com/yo/devparty)
 
-#### Prerequisites
+## 💡 Acknowledgements
 
-🚧 WIP
+Special thanks to these amazing projects which help power Devparty:
 
-#### Setup
+[<img src="https://assets.devparty.io/images/powered-by-vercel.svg" height="35">](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgitlab.com%2Fyo%2Fdevparty&env=COOKIE_SECRET,DATABASE_URL&project-name=devparty&repo-name=main&demo-title=Devparty&demo-description=The%20party%20hub%20for%20developers%20%F0%9F%A5%B3&demo-url=https%3A%2F%2Fdevparty.io&demo-image=https%3A%2F%2Fi.ibb.co%2FjJDnkVy%2Fvercel.png)
-
-🚧 WIP
-
-#### Tests
-
-🚧 WIP
-
-## Sponsors
-
-<a href="https://vercel.com/?utm_source=Devparty&utm_campaign=oss">
-    <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" height="35" alt="Vercel">
-</a>
+- [Vercel](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Prisma](https://prisma.io)
+- [PlanetScale](https://planetscale.com)
+- [Upstash](https://upstash.com)
+- [IPFS](https://ipfs.io)
 
 ## ⚖️ License
 

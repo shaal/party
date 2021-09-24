@@ -2,37 +2,42 @@ import { createNotification } from '@graphql/resolvers/Notification/mutations/cr
 import { db } from '@utils/prisma'
 
 import { hasFollowed } from '../queries/hasFollowed'
+import { User } from '.prisma/client'
 
 export const toggleFollow = async (currentUserId: string, userId: string) => {
-  // Unfollow
-  if (await hasFollowed(currentUserId, userId)) {
-    return await db.user.update({
+  try {
+    // Unfollow
+    if (await hasFollowed(currentUserId, userId)) {
+      return await db.user.update({
+        where: { id: userId },
+        data: {
+          followedBy: {
+            disconnect: {
+              id: currentUserId
+            }
+          }
+        }
+      })
+    }
+
+    // Follow
+    const user: User = await db.user.update({
       where: { id: userId },
       data: {
         followedBy: {
-          disconnect: {
+          connect: {
             id: currentUserId
           }
         }
       }
     })
-  }
 
-  // Follow
-  const user = await db.user.update({
-    where: { id: userId },
-    data: {
-      followedBy: {
-        connect: {
-          id: currentUserId
-        }
-      }
+    if (userId !== currentUserId) {
+      createNotification(currentUserId, userId, userId, 'USER_FOLLOW')
     }
-  })
 
-  if (userId !== currentUserId) {
-    createNotification(currentUserId, userId, userId, 'FOLLOW')
+    return user
+  } catch (error) {
+    throw new Error('Something went wrong!')
   }
-
-  return user
 }

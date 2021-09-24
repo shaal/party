@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
@@ -11,8 +12,8 @@ import Details from './Details'
 import ProductFeed from './Feed'
 
 export const PRODUCT_QUERY = gql`
-  query ProductQuery($where: WhereProductInput!) {
-    product(where: $where) {
+  query ProductQuery($slug: String!) {
+    product(slug: $slug) {
       id
       name
       slug
@@ -24,7 +25,7 @@ export const PRODUCT_QUERY = gql`
       github
       discord
       hasSubscribed
-      user {
+      owner {
         id
         username
         profile {
@@ -41,9 +42,7 @@ export const PRODUCT_QUERY = gql`
 const ViewProduct: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
-    variables: {
-      where: { slug: router.query.slug }
-    },
+    variables: { slug: router.query.slug },
     skip: !router.isReady
   })
 
@@ -51,6 +50,12 @@ const ViewProduct: React.FC = () => {
 
   return (
     <GridLayout>
+      <DevpartySEO
+        title={`${data?.product?.slug} (${data?.product?.name}) · Devparty`}
+        description={data?.product?.description as string}
+        image={data?.product?.avatar as string}
+        path={`/products/${data?.product?.slug}`}
+      />
       <GridItemFour>
         <Details product={data?.product as Product} />
       </GridItemFour>

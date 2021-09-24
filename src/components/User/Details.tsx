@@ -1,11 +1,19 @@
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
+
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
-import { LocationMarkerIcon, SupportIcon } from '@heroicons/react/outline'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
+import {
+  LocationMarkerIcon,
+  PencilIcon,
+  SupportIcon
+} from '@heroicons/react/outline'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -18,7 +26,7 @@ import Spotify from './Highlights/Spotify'
 import Wakatime from './Highlights/Wakatime'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
-
+import Tips from './Tips'
 const UserMod = dynamic(() => import('./Mod'))
 
 interface Props {
@@ -26,7 +34,7 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ user }) => {
-  const { currentUser, staffMode } = useContext(AppContext)
+  const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
 
   return (
     <div className="mb-4">
@@ -50,21 +58,40 @@ const Details: React.FC<Props> = ({ user }) => {
               </Tooltip>
             )}
           </div>
-          <Slug slug={user?.username} prefix="@" className="text-xl" />
+          <div className="flex items-center space-x-2">
+            <Slug slug={user?.username} prefix="@" className="text-xl" />
+            {user?.isFollowing && (
+              <span className="text-xs bg-gray-200 dark:bg-gray-800 border py-0.5 px-1.5 rounded-md">
+                Follows you
+              </span>
+            )}
+          </div>
         </div>
         <Followerings user={user} />
-        {currentUser?.id !== user?.id ? (
-          <Follow user={user} showText={true} />
+        {currentUserLoading ? (
+          <div className="shimmer rounded-lg h-7 w-20" />
         ) : (
-          <Link href="/settings/profile" passHref>
-            <Button size="md" variant="success">
-              Edit Profile
-            </Button>
-          </Link>
+          <div className="flex items-center space-x-2">
+            {currentUser?.id !== user?.id ? (
+              <Follow user={user} showText={true} />
+            ) : (
+              <Link href="/settings/profile" passHref>
+                <Button
+                  size="md"
+                  variant="success"
+                  className="text-sm"
+                  icon={<PencilIcon className="h-4 w-4" />}
+                >
+                  Edit Profile
+                </Button>
+              </Link>
+            )}
+            {user?.tip && <Tips user={user} />}
+          </div>
         )}
         {user?.profile?.bio && (
           <div className="linkify">
-            <Linkify>{user?.profile?.bio}</Linkify>
+            <Linkify options={linkifyOptions}>{user?.profile?.bio}</Linkify>
           </div>
         )}
         {user?.profile?.location && (

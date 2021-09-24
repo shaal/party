@@ -5,11 +5,13 @@ import React from 'react'
 import { Notification } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
+import MarkAsRead from '../Read'
+
 interface Props {
   notification: Notification
 }
 
-const FollowNotification: React.FC<Props> = ({ notification }) => {
+const UserFollow: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
       <CardBody className="space-y-5">
@@ -18,8 +20,11 @@ const FollowNotification: React.FC<Props> = ({ notification }) => {
             <Slug slug={notification?.dispatcher?.username} prefix="@" />{' '}
             <div>Followed you</div>
           </div>
-          <div className="text-sm cursor-pointer">
-            {timeago.format(notification?.createdAt)}
+          <div className="flex items-center space-x-3">
+            <div className="text-sm cursor-pointer">
+              {timeago.format(notification?.createdAt)}
+            </div>
+            <MarkAsRead notification={notification} />
           </div>
         </div>
         <UserProfileLarge user={notification?.dispatcher} showFollow />
@@ -28,4 +33,4 @@ const FollowNotification: React.FC<Props> = ({ notification }) => {
   )
 }
 
-export default FollowNotification
+export default UserFollow

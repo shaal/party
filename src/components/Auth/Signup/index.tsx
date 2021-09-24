@@ -1,6 +1,6 @@
 import Hero from '@components/shared/Hero'
+import Head from 'next/head'
 import Link from 'next/link'
-import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import SignupForm from './Form'
@@ -8,10 +8,9 @@ import SignupForm from './Form'
 const Signup: React.FC = () => {
   return (
     <div className="flex flex-grow">
-      <NextSeo
-        title="Join Devparty"
-        description="Join the social media for developers"
-      />
+      <Head>
+        <title>Join Devparty</title>
+      </Head>
       <div className="grid grid-cols-12 w-full">
         <Hero />
         <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-14 md:px-10 sm:px-5 px-5 flex flex-col">

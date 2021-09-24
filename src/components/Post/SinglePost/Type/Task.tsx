@@ -1,9 +1,11 @@
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
+
 import { gql, useMutation } from '@apollo/client'
+import { Spinner } from '@components/ui/Spinner'
 import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import * as linkify from 'linkifyjs'
-import hashtag from 'linkifyjs/plugins/hashtag'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
@@ -18,10 +20,11 @@ interface Props {
   task: Post
 }
 
-hashtag(linkify)
-
 const TaskType: React.FC<Props> = ({ task }) => {
-  const [editPost] = useMutation<EditPostMutation, EditPostMutationVariables>(
+  const [editPost, { loading }] = useMutation<
+    EditPostMutation,
+    EditPostMutationVariables
+  >(
     gql`
       mutation EditPostMutation($input: EditPostInput!) {
         editPost(input: $input) {
@@ -46,10 +49,16 @@ const TaskType: React.FC<Props> = ({ task }) => {
   }
 
   return (
-    <div className="linkify space-y-3 inline-flex">
+    <div className="linkify space-y-3">
       <div className="flex items-center gap-2.5">
-        <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
-        <Linkify options={linkifyOptions}>{task?.body}</Linkify>
+        {loading ? (
+          <Spinner size="sm" className="mr-0.5" />
+        ) : (
+          <TaskCheckbox checked={task?.done} onChange={toggleTaskStatus} />
+        )}
+        <Linkify tagName="div" options={linkifyOptions}>
+          {task?.body}
+        </Linkify>
       </div>
       {task?.attachments && <Attachments attachments={task?.attachments} />}
     </div>

@@ -3,14 +3,17 @@ import StaffToolsUsers, {
 } from '@components/StaffTools/Users'
 import { preloadQuery } from '@utils/apollo'
 import { staffRoute } from '@utils/redirects'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
-  const staff = await staffRoute(ctx)
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const staff = await staffRoute(context)
   if ('redirect' in staff) {
     return staff
   }
 
-  return preloadQuery(ctx, { query })
+  return preloadQuery(context, { query })
 }
 
 export default StaffToolsUsers

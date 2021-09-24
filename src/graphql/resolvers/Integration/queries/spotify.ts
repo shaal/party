@@ -5,7 +5,9 @@ import { Spotify } from '../SpotifyResolver'
 
 export const spotify = async (userId: string) => {
   try {
-    const integration = await db.integration.findFirst({ where: { userId } })
+    const integration = await db.integration.findFirst({
+      where: { userId }
+    })
     const credentials = {
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,

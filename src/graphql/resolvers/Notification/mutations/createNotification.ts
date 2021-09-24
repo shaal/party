@@ -7,12 +7,25 @@ export const createNotification = async (
   entityId: any,
   type: NotificationType
 ) => {
-  return await db.notification.create({
-    data: {
-      dispatcher: { connect: { id: dispatcherId } },
-      receiver: { connect: { id: receiverId } },
-      like: type === 'POSTLIKE' ? { connect: { id: entityId } } : undefined,
-      type
-    }
+  new Promise((resolve, reject) => {
+    db.notification
+      .upsert({
+        where: { entityId },
+        update: { isRead: false, createdAt: new Date(), updatedAt: new Date() },
+        create: {
+          dispatcher: { connect: { id: dispatcherId } },
+          receiver: { connect: { id: receiverId } },
+          like:
+            type === 'POST_LIKE' ? { connect: { id: entityId } } : undefined,
+          product:
+            type === 'PRODUCT_SUBSCRIBE'
+              ? { connect: { id: entityId } }
+              : undefined,
+          entityId,
+          type
+        }
+      })
+      .then((value) => resolve(value))
+      .catch((error) => reject(error))
   })
 }

@@ -1,8 +1,11 @@
+import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
+
+import { processMentions } from './processMentions'
 
 export const createPost = async (
   query: any,
@@ -11,6 +14,10 @@ export const createPost = async (
 ) => {
   if (getTopics(input.body)?.length > 5) {
     throw new Error('Oops! Your post should not contain more than 5 topics')
+  }
+
+  if (getMentions(input.body)?.length > 5) {
+    throw new Error('Oops! Your post should not contain more than 5 mentions')
   }
 
   if (input.parentId && input.type !== 'REPLY') {
@@ -23,7 +30,7 @@ export const createPost = async (
       where: { id: input.productId }
     })
 
-    if (product?.userId !== session!.userId) {
+    if (product?.ownerId !== session!.userId) {
       throw new Error(
         'Oops! Sorry you cannot post in product that is not owned'
       )
@@ -44,7 +51,7 @@ export const createPost = async (
     }
   }
 
-  return await db.post.create({
+  const post = await db.post.create({
     ...query,
     data: {
       userId: session!.userId,
@@ -60,4 +67,10 @@ export const createPost = async (
       parentId
     }
   })
+
+  if (getMentions(input.body)?.length > 0) {
+    await processMentions(post, session)
+  }
+
+  return post
 }

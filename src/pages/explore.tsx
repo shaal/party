@@ -1,8 +1,15 @@
-import Explore, { EXPLORE_QUERY as query } from '@components/Explore'
+import Explore from '@components/Explore'
+import { EXPLORE_FEED_QUERY } from '@components/Explore/Feed'
 import { preloadQuery } from '@utils/apollo'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps = async (ctx: any) => {
-  return preloadQuery(ctx, { query })
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  return preloadQuery(context, {
+    query: EXPLORE_FEED_QUERY,
+    variables: { after: null }
+  })
 }
 
 export default Explore

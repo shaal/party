@@ -3,7 +3,6 @@ image:
 
 tasks:
   - name: Setup
-    before: printf "\n[settings]\napi_key = $WAKA_TIME_API_KEY\n" > ~/.wakatime.cfg
     init: >
       yarn --network-timeout 100000;
       cp .env.example .env;
@@ -13,24 +12,24 @@ tasks:
       yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
-  - name: Redis Server
-    init: gp sync-await setup
-    command: redis-server
   - name: Prisma Studio
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
+    before: redis-server &
     init: gp sync-await setup
     command: yarn dev
 
 ports:
-  - port: 3000
+  - port: 3000 # Web app
     onOpen: open-browser
     visibility: public
-  - port: 5555
+  - port: 5555 # Prisma Studio
     onOpen: notify
     visibility: public
-  - port: 3306
+  - port: 6379 # Redis
+    onOpen: ignore
+  - port: 3306 # MySQL
     onOpen: ignore
 
 vscode:
@@ -48,5 +47,6 @@ vscode:
     - github.github-vscode-theme
     - gitlab.gitlab-workflow
     - bradlc.vscode-tailwindcss
-    - wakatime.vscode-wakatime
     - bierner.markdown-preview-github-styles
+    - editorconfig.editorconfig
+    - pkief.material-icon-theme

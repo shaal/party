@@ -52,19 +52,23 @@ builder.mutationField('login', (t) =>
     },
     args: { input: t.arg({ type: LoginInput }) },
     resolve: async (_query, parent, { input }, { req }) => {
-      const user = await authenticateUser(input.email, input.password)
-      if (user.inWaitlist) {
-        // Don't allow users in waitlist
+      try {
+        const user = await authenticateUser(input.email, input.password)
+        if (user.inWaitlist) {
+          // Don't allow users in waitlist
+          return user
+        }
+
+        if (user.spammy) {
+          // Don't allow users to login if marked as spammy 😈
+          throw new Error('Your account is suspended!')
+        }
+
+        await createSession(req, user)
         return user
+      } catch (error) {
+        throw new Error('Something went wrong!')
       }
-
-      if (user.spammy) {
-        // Don't allow users to login if marked as spammy 😈
-        throw new Error('Your account is suspended!')
-      }
-
-      await createSession(req, user)
-      return user
     }
   })
 )
@@ -73,6 +77,7 @@ const JoinWaitlistInput = builder.inputType('JoinWaitlistInput', {
   fields: (t) => ({
     username: t.string({
       validate: {
+        regex: /^[a-z0-9_\.]+$/,
         minLength: 1,
         maxLength: 30
       }
@@ -108,6 +113,7 @@ const SignupInput = builder.inputType('SignupInput', {
   fields: (t) => ({
     username: t.string({
       validate: {
+        regex: /^[a-z0-9_\.]+$/,
         minLength: 1,
         maxLength: 30
       }

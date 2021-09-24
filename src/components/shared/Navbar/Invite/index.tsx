@@ -10,21 +10,19 @@ const Invite: React.FC = () => {
   return (
     <div>
       <Button
-        className="flex items-center space-x-1 text-xs"
+        className="text-xs"
+        icon={<TicketIcon className="h-4 w-4" />}
         onClick={() => setShowModal(!showModal)}
       >
-        <TicketIcon className="h-4 w-4" />
-        <div>Invite</div>
+        Invite
       </Button>
-      {showModal && (
-        <Modal
-          onClose={() => setShowModal(!showModal)}
-          title="Your Invite Code"
-          show={showModal}
-        >
-          <InviteDetails />
-        </Modal>
-      )}
+      <Modal
+        onClose={() => setShowModal(!showModal)}
+        title="Your Invite Code"
+        show={showModal}
+      >
+        <InviteDetails />
+      </Modal>
     </div>
   )
 }

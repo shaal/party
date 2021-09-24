@@ -1,8 +1,13 @@
+import 'linkify-plugin-hashtag'
+import 'linkify-plugin-mention'
+
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
-import Linkify from 'linkifyjs/react'
+import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { PencilIcon } from '@heroicons/react/outline'
+import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Product } from 'src/__generated__/schema.generated'
@@ -32,18 +37,22 @@ const Details: React.FC<Props> = ({ product }) => {
           </div>
           <div className="text-xl">{product?.slug}</div>
         </div>
-        {currentUser?.id !== product?.user?.id ? (
+        {currentUser?.id !== product?.owner?.id ? (
           <Subscribe product={product} showText />
         ) : (
           <Link href={`/products/${product?.slug}/settings`} passHref>
-            <Button size="md" variant="success">
+            <Button
+              size="md"
+              variant="success"
+              icon={<PencilIcon className="h-4 w-4" />}
+            >
               Edit Product
             </Button>
           </Link>
         )}
         {product?.description && (
           <div className="linkify">
-            <Linkify>{product?.description}</Linkify>
+            <Linkify options={linkifyOptions}>{product?.description}</Linkify>
           </div>
         )}
         <Social product={product} />
@@ -51,7 +60,7 @@ const Details: React.FC<Props> = ({ product }) => {
           <div className="font-bold">Owned by</div>
           <Card>
             <CardBody>
-              <UserProfileLarge user={product?.user} />
+              <UserProfileLarge user={product?.owner} />
             </CardBody>
           </Card>
         </div>

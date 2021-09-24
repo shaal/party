@@ -3,22 +3,17 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Spinner } from '@components/ui/Spinner'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { UserAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { object, string } from 'zod'
 
+import { signUpSchema } from '../Signup/Form'
 import {
   SignupMutation,
   SignupMutationVariables
 } from './__generated__/Form.generated'
-
-const signUpSchema = object({
-  username: string().min(2).max(30),
-  email: string().email(),
-  password: string().min(6)
-})
 
 const InviteSignupForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
@@ -98,10 +93,16 @@ const InviteSignupForm: React.FC = () => {
         <Button
           size="lg"
           type="submit"
-          className=" w-full flex items-center justify-center space-x-1.5"
+          className=" w-full justify-center"
+          icon={
+            form.formState.isSubmitting ? (
+              <Spinner size="xs" />
+            ) : (
+              <UserAddIcon className="h-5 w-5" />
+            )
+          }
         >
-          <UserAddIcon className="h-5 w-5" />
-          <div>Sign Up</div>
+          Sign Up
         </Button>
       </div>
     </Form>

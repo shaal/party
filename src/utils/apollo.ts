@@ -7,7 +7,6 @@ import {
 } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
-import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<any>
 
@@ -48,28 +47,29 @@ export async function preloadQuery(
 }
 
 export function useApollo(initialState?: Record<string, any>) {
-  const client = useMemo(
-    () => createApolloClient({ initialState }),
-    [initialState]
-  )
+  const client = createApolloClient({ initialState })
 
   return client
 }
 
 export function createApolloClient({ initialState, headers }: ClientOptions) {
   let nextClient = apolloClient
+  const ssrMode = typeof window === 'undefined'
+
+  const httpLink = new HttpLink({
+    uri: ssrMode
+      ? process.env.VERCEL
+        ? `https://${process.env.VERCEL_URL}/api/graphql`
+        : `http://localhost:3000/api/graphql`
+      : '/api/graphql',
+    headers: headers,
+    credentials: 'include'
+  })
 
   if (!nextClient) {
     nextClient = new ApolloClient({
-      ssrMode: typeof window === 'undefined',
-      credentials: 'include',
-      link: new HttpLink({
-        uri:
-          typeof window === 'undefined'
-            ? 'http://localhost:3000/api/graphql'
-            : '/api/graphql',
-        headers: headers
-      }),
+      ssrMode,
+      link: httpLink,
       cache: new InMemoryCache({
         typePolicies: {
           Query: {
@@ -79,7 +79,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
               homeFeed: relayStylePagination(['type']),
               exploreFeed: relayStylePagination([]),
               replies: relayStylePagination([]),
-              notifications: relayStylePagination([])
+              notifications: relayStylePagination(['isRead'])
             }
           },
           Topic: {
@@ -113,7 +113,9 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     const existingCache = nextClient.extract()
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
-  if (typeof window === 'undefined') return nextClient
+
+  if (ssrMode) return nextClient
+
   if (!apolloClient) apolloClient = nextClient
 
   return nextClient

@@ -6,6 +6,7 @@ import { toggleFollow } from './mutations/toggleFollow'
 import { getUsers } from './queries/getUsers'
 import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
+import { isFollowing } from './queries/isFollowing'
 
 builder.prismaObject('User', {
   findUnique: (user) => ({ id: user.id }),
@@ -26,6 +27,13 @@ builder.prismaObject('User', {
         return await hasFollowed(session?.userId as string, parent.id)
       }
     }),
+    isFollowing: t.field({
+      type: 'Boolean',
+      resolve: async (parent, args, { session }) => {
+        if (!session) return false
+        return await isFollowing(session?.userId as string, parent.id)
+      }
+    }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
@@ -33,6 +41,7 @@ builder.prismaObject('User', {
 
     // Relations
     profile: t.relation('profile'),
+    tip: t.relation('tip', { nullable: true }),
     badges: t.relatedConnection('badges', { cursor: 'id', totalCount: true }),
     topics: t.relatedConnection('topics', { cursor: 'id', totalCount: true }),
     posts: t.relatedConnection('posts', {
@@ -61,6 +70,15 @@ builder.prismaObject('User', {
         return integration?.spotifyRefreshToken ? true : false
       }
     }),
+    notificationsCount: t.field({
+      type: 'Int',
+      authScopes: { $granted: 'currentUser' },
+      resolve: async (parent, args, { session }) => {
+        return await db.notification.count({
+          where: { receiverId: session?.userId, isRead: false }
+        })
+      }
+    }),
     invite: t.relation('invite', {
       nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
@@ -83,12 +101,12 @@ builder.prismaObject('User', {
 builder.queryField('user', (t) =>
   t.prismaField({
     type: 'User',
-    args: { username: t.arg.id() },
+    args: { username: t.arg.string() },
     nullable: true,
     resolve: async (query, parent, { username }) => {
-      return await db.user.findUnique({
+      return await db.user.findFirst({
         ...query,
-        where: { username },
+        where: { username, inWaitlist: false },
         rejectOnNotFound: true
       })
     }
@@ -121,14 +139,14 @@ const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
     username: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 20 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
     name: t.string({
       required: true,
-      validate: { minLength: 1, maxLength: 50 }
+      validate: { minLength: 2, maxLength: 50 }
     }),
-    bio: t.string({ required: false, validate: { maxLength: 255 } }),
-    location: t.string({ required: false, validate: { maxLength: 50 } }),
+    bio: t.string({ required: false, validate: { maxLength: 190 } }),
+    location: t.string({ required: false, validate: { maxLength: 100 } }),
     avatar: t.string({ required: false }),
     cover: t.string({ required: false })
   })
@@ -141,24 +159,32 @@ builder.mutationField('editUser', (t) =>
     args: { input: t.arg({ type: EditUserInput }) },
     authScopes: { user: true },
     resolve: async (query, parent, { input }, { session }) => {
-      return await db.user.update({
-        ...query,
-        where: {
-          id: session!.userId
-        },
-        data: {
-          username: input.username,
-          profile: {
-            update: {
-              name: input.name,
-              bio: input.bio,
-              location: input.location,
-              avatar: input.avatar,
-              cover: input.cover
+      try {
+        return await db.user.update({
+          ...query,
+          where: {
+            id: session!.userId
+          },
+          data: {
+            username: input.username,
+            profile: {
+              update: {
+                name: input.name,
+                bio: input.bio,
+                location: input.location,
+                avatar: input.avatar,
+                cover: input.cover
+              }
             }
           }
+        })
+      } catch (error: any) {
+        if (error.code === 'P2002') {
+          throw new Error('Username is already taken!')
         }
-      })
+
+        throw new Error('Something went wrong!')
+      }
     }
   })
 )

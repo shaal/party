@@ -1,7 +1,6 @@
 import { Button } from '@components/ui/Button'
 import { HomeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { NextSeo } from 'next-seo'
 
 export default function Custom404() {
   return (
