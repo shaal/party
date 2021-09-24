@@ -541,7 +541,7 @@ type User {
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   profile: Profile!
   spammy: Boolean!
-  tip: Tip!
+  tip: Tip
   topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!
