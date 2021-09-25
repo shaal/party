@@ -2,6 +2,7 @@ import Settings, {
   PRODUCT_SETTINGS_QUERY as query
 } from '@components/Product/Settings'
 import { preloadQuery } from '@utils/apollo'
+import { cacheRequest } from '@utils/cache'
 import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 import { GetServerSidePropsContext } from 'next'
@@ -22,6 +23,7 @@ export const getServerSideProps = async (
       }
     }
   }
+  cacheRequest(context)
 
   return preloadQuery(context, { query })
 }
