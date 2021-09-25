@@ -4,7 +4,7 @@ import React from 'react'
 interface Props {
   title: string
   description?: string
-  path: string
+  path?: string
   image?: string
   cardType?: 'summary_large_image' | 'summary'
 }
