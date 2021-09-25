@@ -3,6 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
@@ -81,7 +82,7 @@ const ViewUser: React.FC = () => {
       {data?.user?.profile?.cover ? (
         <img
           className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full"
-          src={data?.user?.profile?.cover as string}
+          src={imagekitURL(data?.user?.profile?.cover as string)}
           alt={`@${data?.user?.username}'s cover`}
         />
       ) : (
