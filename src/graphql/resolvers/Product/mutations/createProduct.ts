@@ -30,6 +30,8 @@ export const createProduct = async (
       throw new Error('Product slug is already taken!')
     }
 
-    throw new Error('Something went wrong!')
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }

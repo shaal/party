@@ -53,6 +53,8 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
         throw new Error('Email is already taken!')
     }
 
-    throw new Error('Something went wrong!')
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }

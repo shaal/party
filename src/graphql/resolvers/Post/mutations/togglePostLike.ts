@@ -32,7 +32,9 @@ export const togglePostLike = async (
     }
 
     return post
-  } catch (error) {
-    throw new Error('Something went wrong!')
+  } catch (error: any) {
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }
