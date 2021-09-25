@@ -5,6 +5,7 @@ import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import { PencilIcon } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
@@ -27,7 +28,7 @@ const Details: React.FC<Props> = ({ product }) => {
     <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
         <img
-          src={product?.avatar as string}
+          src={imagekitURL(product?.avatar as string, 200, 200)}
           className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
           alt={`#${product?.slug}'s avatar`}
         />
