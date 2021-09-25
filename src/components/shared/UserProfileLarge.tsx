@@ -1,6 +1,7 @@
 import { Tooltip } from '@components/ui/Tooltip'
 import Follow from '@components/User/Follow'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React, { useContext } from 'react'
@@ -20,7 +21,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
     <div className="flex justify-between items-center space-x-5">
       <div className="flex space-x-3 items-center">
         <img
-          src={user?.profile?.avatar as string}
+          src={imagekitURL(user?.profile?.avatar as string, 100, 100)}
           className="h-14 w-14 rounded-full bg-gray-200"
           alt={`@/${user?.username}'s avatar`}
         />
