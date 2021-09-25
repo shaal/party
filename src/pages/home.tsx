@@ -10,6 +10,11 @@ export const getServerSideProps = async (
   const auth = await authenticatedRoute(context)
   if ('redirect' in auth) return auth
 
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
   return preloadQuery(context, {
     query: HOME_FEED_QUERY,
     variables: { after: null, type: 'ALL' }
