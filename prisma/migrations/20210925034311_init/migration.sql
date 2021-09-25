@@ -170,6 +170,7 @@ CREATE TABLE `notifications` (
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
     `productId` VARCHAR(191),
+    `postId` VARCHAR(191),
 
     UNIQUE INDEX `notifications_entityId_key`(`entityId`),
     PRIMARY KEY (`id`)

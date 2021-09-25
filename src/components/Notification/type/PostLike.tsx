@@ -9,11 +9,10 @@ import * as timeago from 'timeago.js'
 import MarkAsRead from '../Read'
 
 interface Props {
-  message: string
   notification: Notification
 }
 
-const PostType: React.FC<Props> = ({ message, notification }) => {
+const PostLike: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
       <CardBody className="space-y-3">
@@ -28,7 +27,7 @@ const PostType: React.FC<Props> = ({ message, notification }) => {
             </div>
           </div>
           <div className="linkify">
-            {message}{' '}
+            Liked your{' '}
             <Link href={`/posts/${notification?.like?.post?.id}`}>
               <a>post</a>
             </Link>
@@ -40,4 +39,4 @@ const PostType: React.FC<Props> = ({ message, notification }) => {
   )
 }
 
-export default PostType
+export default PostLike

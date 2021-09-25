@@ -9,7 +9,8 @@ import useInView from 'react-cool-inview'
 
 import { NotificationsQuery } from './__generated__/index.generated'
 import NotificationType from './NotificationType'
-import PostType from './type/PostType'
+import PostLike from './type/PostLike'
+import PostReply from './type/PostReply'
 import ProductSubscribe from './type/ProductSubscribe'
 import UserFollow from './type/UserFollow'
 
@@ -43,6 +44,10 @@ export const NOTIFICATIONS_QUERY = gql`
               ...PostFragment
             }
           }
+          # Post
+          post {
+            ...PostFragment
+          }
           # Product
           product {
             id
@@ -62,10 +67,7 @@ const Notifications: React.FC = () => {
   const [isRead, setIsRead] = useState<boolean>(false)
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    {
-      variables: { after: null, isRead },
-      pollInterval: 10000
-    }
+    { variables: { after: null, isRead } }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
@@ -105,16 +107,10 @@ const Notifications: React.FC = () => {
               {notifications?.map((notification: any) => (
                 <div key={notification?.id}>
                   {notification?.type === 'POST_LIKE' && (
-                    <PostType
-                      message="Liked your"
-                      notification={notification}
-                    />
+                    <PostLike notification={notification} />
                   )}
                   {notification?.type === 'POST_REPLY' && (
-                    <PostType
-                      message="Replied to your"
-                      notification={notification}
-                    />
+                    <PostReply notification={notification} />
                   )}
                   {notification?.type === 'USER_FOLLOW' && (
                     <UserFollow notification={notification} />

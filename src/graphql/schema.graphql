@@ -180,6 +180,7 @@ type Notification {
   dispatcher: User!
   id: ID!
   like: Like
+  post: Post
   product: Product
   receiver: User!
   type: String!

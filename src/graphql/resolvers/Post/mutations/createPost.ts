@@ -69,10 +69,14 @@ export const createPost = async (
     }
   })
 
-  if (post?.type === 'REPLY' && session!.userId !== post?.userId) {
+  if (post?.type === 'REPLY' && session!.userId !== post?.parentId) {
+    const parent = await db.post.findUnique({
+      where: { id: post?.parentId! }
+    })
+
     await createNotification(
       session!.userId,
-      post?.userId,
+      parent?.userId,
       post?.id,
       'POST_REPLY'
     )

@@ -140,16 +140,16 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
-  product   Product?    @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String?
-  likes     Like[]
-  topics    PostTopic[]
-
-  parentId String?
-  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
-  replies  Post[]  @relation("replies")
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  product      Product?       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId    String?
+  likes        Like[]
+  topics       PostTopic[]
+  parentId     String?
+  parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
+  replies      Post[]         @relation("replies")
+  notification Notification[] @relation("post")
 
   // Attributes
   @@map("posts")
@@ -269,6 +269,8 @@ model Notification {
   likeId       String?
   product      Product? @relation("product", fields: [productId], references: [id], onDelete: Cascade)
   productId    String?
+  post   Post?   @relation("post", fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
 
   // Attributes
   @@map("notifications")
