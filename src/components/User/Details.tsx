@@ -6,6 +6,7 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
   LocationMarkerIcon,
@@ -40,7 +41,7 @@ const Details: React.FC<Props> = ({ user }) => {
     <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
         <img
-          src={user?.profile?.avatar as string}
+          src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
           className="rounded-full h-28 w-28 sm:h-40 sm:w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
           alt={`@${user?.username}'s avatar`}
         />

@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { Tooltip } from '@components/ui/Tooltip'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import Link from 'next/link'
 import { User } from 'src/__generated__/schema.generated'
 
@@ -39,7 +40,7 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
           <a>
             <img
               className="h-9 w-9 rounded-lg"
-              src={product?.avatar}
+              src={imagekitURL(product?.avatar, 100, 100)}
               alt={`#${product?.slug}'s avatar`}
             />
           </a>
