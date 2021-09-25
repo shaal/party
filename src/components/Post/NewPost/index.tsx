@@ -10,7 +10,10 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import PostType from './Type/Post'
+const PostType = dynamic(() => import('./Type/Post'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
 
 const QuestionType = dynamic(() => import('./Type/Question'), {
   // eslint-disable-next-line react/display-name

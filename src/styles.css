@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/circular-std');
-
 body {
   font-family: 'Circular Std', Helvetica, Arial, sans-serif;
 
