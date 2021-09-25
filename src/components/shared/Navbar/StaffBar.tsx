@@ -33,7 +33,6 @@ const StaffBar: React.FC = () => {
             <ServerIcon className="h-4 w-4" />
           </a>
         )}
-        {process.env.VERCEL_REGION && <div>{process.env.VERCEL_REGION}</div>}
         {process.env.GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
             <TerminalIcon className="h-4 w-4" />
