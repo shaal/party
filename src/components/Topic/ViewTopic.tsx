@@ -5,6 +5,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Topic } from 'src/__generated__/schema.generated'
@@ -49,7 +50,7 @@ const ViewTopic: React.FC = () => {
               <ErrorMessage title="Failed to load post" error={error} />
               {data?.topic?.image && (
                 <img
-                  src={data?.topic?.image}
+                  src={imagekitURL(data?.topic?.image, 100, 100)}
                   alt={data?.topic?.name}
                   className="h-20 w-20 rounded-lg"
                 />
