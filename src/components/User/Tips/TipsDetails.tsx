@@ -65,62 +65,67 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
   if (loading) return <div className="p-5">Loading dev tips...</div>
 
   return (
-    <div className="p-5">
-      <div className="grid gap-4 md:grid-cols-4 grid-cols-2">
-        {tip?.cash && (
-          <SingleTip
-            icon="cash"
-            link={`https://cash.app/$${tip?.cash}`}
-            text="Cash"
-          />
-        )}
-        {tip?.paypal && (
-          <SingleTip
-            icon="paypal"
-            link={`https://paypal.me/${tip?.paypal}`}
-            text="PayPal"
-          />
-        )}
-        {tip?.github && (
-          <SingleTip
-            icon="github"
-            link={`https://github.com/sponsors/${tip?.github}`}
-            text="GitHub"
-          />
-        )}
-        {tip?.buymeacoffee && (
-          <SingleTip
-            icon="buymeacoffee"
-            link={`https://www.buymeacoffee.com/${tip?.buymeacoffee}`}
-            text="BMC"
-          />
-        )}
-        {tip?.bitcoin && (
-          <SingleTip
-            icon="bitcoin"
-            link={`https://github.com/sponsors/${tip?.bitcoin}`}
-            text="Bitcoin"
-          />
-        )}
-        {tip?.ethereum && (
-          <SingleTip
-            icon="ethereum"
-            link={`https://github.com/sponsors/${tip?.ethereum}`}
-            text="Ethereum"
-          />
-        )}
+    <>
+      <div className="p-5">
+        <div className="grid gap-4 md:grid-cols-4 grid-cols-2">
+          {tip?.cash && (
+            <SingleTip
+              icon="cash"
+              link={`https://cash.app/$${tip?.cash}`}
+              text="Cash"
+            />
+          )}
+          {tip?.paypal && (
+            <SingleTip
+              icon="paypal"
+              link={`https://paypal.me/${tip?.paypal}`}
+              text="PayPal"
+            />
+          )}
+          {tip?.github && (
+            <SingleTip
+              icon="github"
+              link={`https://github.com/sponsors/${tip?.github}`}
+              text="GitHub"
+            />
+          )}
+          {tip?.buymeacoffee && (
+            <SingleTip
+              icon="buymeacoffee"
+              link={`https://www.buymeacoffee.com/${tip?.buymeacoffee}`}
+              text="BMC"
+            />
+          )}
+          {tip?.bitcoin && (
+            <SingleTip
+              icon="bitcoin"
+              link={`https://github.com/sponsors/${tip?.bitcoin}`}
+              text="Bitcoin"
+            />
+          )}
+          {tip?.ethereum && (
+            <SingleTip
+              icon="ethereum"
+              link={`https://github.com/sponsors/${tip?.ethereum}`}
+              text="Ethereum"
+            />
+          )}
+        </div>
       </div>
       {tip?.user?.id === currentUser?.id && (
-        <Link href="/settings/tips">
-          <Button
-            className="mt-4 text-sm"
-            icon={<PencilIcon className="h-4 w-4" />}
-          >
-            Edit Tips
-          </Button>
-        </Link>
+        <div className="border-t dark:border-gray-800 py-4 px-4 flex items-center justify-between">
+          <div className="text-sm">Place something here 💜</div>
+          <Link href="/settings/tips" passHref>
+            <Button
+              className="text-sm"
+              icon={<PencilIcon className="h-4 w-4" />}
+            >
+              Edit Tips
+            </Button>
+          </Link>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
