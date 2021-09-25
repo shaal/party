@@ -3,15 +3,17 @@ import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import Invite from './Invite'
 import MenuItems from './MenuItems'
 import Notification from './Notification'
 import Search from './Search'
 import StaffBar from './StaffBar'
+
+const Invite = dynamic(() => import('./Invite'))
 
 interface NavItemProps {
   url: string
