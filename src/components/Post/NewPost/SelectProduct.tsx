@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -73,7 +74,7 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
                   <div className="flex items-center gap-2">
                     <img
                       className="h-5 w-5 rounded-md"
-                      src={product?.avatar}
+                      src={imagekitURL(product?.avatar, 50, 50)}
                       alt={`#${product?.slug}'s avatar`}
                     />
                     <div className="block truncate font-medium">

@@ -83,7 +83,7 @@ const Topics: React.FC = () => {
                     {topic?.node?.image ? (
                       <img
                         className="h-7 w-7 rounded-md"
-                        src={topic?.node?.image}
+                        src={imagekitURL(topic?.node?.image, 80, 80)}
                         alt={`#${topic?.node?.name}'s image'`}
                       />
                     ) : (

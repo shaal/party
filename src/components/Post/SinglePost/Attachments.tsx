@@ -1,4 +1,5 @@
 import { Button } from '@components/ui/Button'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'
 import React from 'react'
@@ -47,7 +48,7 @@ const Attachments: React.FC<Props> = ({
               ) : (
                 <img
                   className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
-                  src={attachment.url}
+                  src={imagekitURL(attachment.url)}
                   alt={attachment.url}
                 />
               )}
