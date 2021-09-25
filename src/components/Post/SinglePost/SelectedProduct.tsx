@@ -1,3 +1,4 @@
+import { imagekitURL } from '@components/utils/imagekitURL'
 import Link from 'next/link'
 import React from 'react'
 import { Product } from 'src/__generated__/schema.generated'
@@ -14,7 +15,7 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
         <a className="flex items-center space-x-1 cursor-pointer">
           <img
             className="h-4 w-4 rounded"
-            src={product?.avatar as string}
+            src={imagekitURL(product?.avatar as string, 50, 50)}
             alt={`#${product?.slug}'s avatar'`}
           />
           <div className="font-bold text-gray-600 dark:text-gray-200">
