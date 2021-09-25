@@ -1,3 +1,4 @@
+import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
 import { parseTopics } from '@graphql/utils/parseTopics'
@@ -67,6 +68,15 @@ export const createPost = async (
       parentId
     }
   })
+
+  if (post?.type === 'REPLY' && session!.userId !== post?.userId) {
+    await createNotification(
+      session!.userId,
+      post?.userId,
+      post?.id,
+      'POST_REPLY'
+    )
+  }
 
   if (getMentions(input.body)?.length > 0) {
     await processMentions(post, session)
