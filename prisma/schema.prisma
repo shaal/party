@@ -15,8 +15,8 @@ generator giraphql {
 }
 
 model User {
-  id             String @id @default(cuid())
-  username       String @unique @default(cuid())
+  id             String @id @default(uuid())
+  username       String @unique @default(uuid())
   email          String @unique
   hashedPassword String
 
@@ -56,7 +56,7 @@ model User {
 }
 
 model Session {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   isStaff   Boolean @default(false)
   ipAddress String?
   userAgent String?
@@ -74,7 +74,7 @@ model Session {
 }
 
 model Profile {
-  id       String  @id @default(cuid())
+  id       String  @id @default(uuid())
   name     String
   avatar   String?
   cover    String?
@@ -94,7 +94,7 @@ model Profile {
 }
 
 model Invite {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   code      String?
   usedTimes Int     @default(0)
 
@@ -110,7 +110,7 @@ model Invite {
 }
 
 model Tip {
-  id           String  @id @default(cuid())
+  id           String  @id @default(uuid())
   cash         String?
   paypal       String?
   github       String?
@@ -127,7 +127,7 @@ model Tip {
 }
 
 model Post {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   title       String?
   body        String   @db.Text
   done        Boolean  @default(false)
@@ -156,7 +156,7 @@ model Post {
 }
 
 model PostTopic {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // Relations
   post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -169,7 +169,7 @@ model PostTopic {
 }
 
 model Topic {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String  @unique
   image       String?
   description String?
@@ -186,7 +186,7 @@ model Topic {
 }
 
 model Like {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -204,7 +204,7 @@ model Like {
 }
 
 model Product {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String
   slug        String  @unique
   description String?
@@ -233,7 +233,7 @@ model Product {
 }
 
 model Badge {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String
   image       String
   description String?
@@ -250,7 +250,7 @@ model Badge {
 }
 
 model Notification {
-  id       String           @id @default(cuid())
+  id       String           @id @default(uuid())
   message  String?
   isRead   Boolean          @default(false)
   type     NotificationType
@@ -277,7 +277,7 @@ model Notification {
 }
 
 model Integration {
-  id                  String  @id @default(cuid())
+  id                  String  @id @default(uuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
 
@@ -294,7 +294,7 @@ model Integration {
 }
 
 model Log {
-  id        String        @id @default(cuid())
+  id        String        @id @default(uuid())
   action    LogActionType
   entityId  String?
   ipAddress String?
@@ -311,7 +311,7 @@ model Log {
 }
 
 model Message {
-  id      String @id @default(cuid())
+  id      String @id @default(uuid())
   message String
 
   // Timestamps
