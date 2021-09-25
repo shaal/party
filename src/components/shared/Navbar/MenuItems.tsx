@@ -1,4 +1,5 @@
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { Menu, Transition } from '@headlessui/react'
 import {
   ChatAlt2Icon,
@@ -41,7 +42,11 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
           <Menu.Button className="flex items-center gap-2">
             <img
               className="h-10 w-10 rounded-full bg-gray-200"
-              src={currentUser?.profile?.avatar as string}
+              src={imagekitURL(
+                currentUser?.profile?.avatar as string,
+                100,
+                100
+              )}
               alt={`@${currentUser?.username}'s avatar`}
             />
           </Menu.Button>
