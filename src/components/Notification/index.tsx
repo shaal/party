@@ -9,7 +9,7 @@ import useInView from 'react-cool-inview'
 
 import { NotificationsQuery } from './__generated__/index.generated'
 import NotificationType from './NotificationType'
-import PostLike from './type/PostLike'
+import PostType from './type/PostType'
 import ProductSubscribe from './type/ProductSubscribe'
 import UserFollow from './type/UserFollow'
 
@@ -105,7 +105,16 @@ const Notifications: React.FC = () => {
               {notifications?.map((notification: any) => (
                 <div key={notification?.id}>
                   {notification?.type === 'POST_LIKE' && (
-                    <PostLike notification={notification} />
+                    <PostType
+                      message="Liked your"
+                      notification={notification}
+                    />
+                  )}
+                  {notification?.type === 'POST_REPLY' && (
+                    <PostType
+                      message="Replied to your"
+                      notification={notification}
+                    />
                   )}
                   {notification?.type === 'USER_FOLLOW' && (
                     <UserFollow notification={notification} />
