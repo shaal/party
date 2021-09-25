@@ -3,6 +3,7 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
@@ -59,7 +60,7 @@ const Topics: React.FC = () => {
           <div className="space-y-3 text-center p-5">
             <img
               className="h-16 w-16 rounded-full mx-auto"
-              src={data?.me?.profile?.avatar as string}
+              src={imagekitURL(data?.me?.profile?.avatar as string, 100, 100)}
               alt={`@${data?.me?.username}'s avatar`}
             />
             <div>
