@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { Card } from '@components/ui/Card'
 import { Tooltip } from '@components/ui/Tooltip'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { User } from 'src/__generated__/schema.generated'
 
 import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
@@ -56,7 +57,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
           </div>
           <div className="flex items-center space-x-2 pt-1">
             <img
-              src={data.spotify.image as string}
+              src={imagekitURL(data.spotify.image as string, 200, 200)}
               className="h-16 w-16 rounded-lg"
               alt={data.spotify.name as string}
             />
