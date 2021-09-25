@@ -1,13 +1,15 @@
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import FeedType from '@components/Home/FeedType'
 import NewPost from '@components/Post/NewPost'
-import Footer from '@components/shared/Footer'
 import AppContext from '@components/utils/AppContext'
+import dynamic from 'next/dynamic'
 import React, { useContext, useState } from 'react'
 
 import HomeFeed from './Feed'
 import RecentProducts from './RecentProducts'
 import WhoToFollow from './WhoToFollow'
+
+const Footer = dynamic(() => import('@components/shared/Footer'))
 
 const Home: React.FC = () => {
   const { currentUser } = useContext(AppContext)
