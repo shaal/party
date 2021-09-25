@@ -17,7 +17,7 @@ const UserFollow: React.FC<Props> = ({ notification }) => {
       <CardBody className="space-y-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
-            <Slug slug={notification?.dispatcher?.username} prefix="@" />{' '}
+            <Slug slug={notification?.dispatcher?.username} prefix="@" />
             <div>Followed you</div>
           </div>
           <div className="flex items-center space-x-3">
