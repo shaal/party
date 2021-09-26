@@ -27,7 +27,7 @@ export const POST_QUERY = gql`
   ${PostFragment}
 `
 
-const ViewPost: React.FC = () => {
+const ViewPost = () => {
   const router = useRouter()
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
@@ -37,7 +37,7 @@ const ViewPost: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading)
+  if (!router.isReady || loading)
     return (
       <GridLayout>
         <GridItemEight>
@@ -52,6 +52,8 @@ const ViewPost: React.FC = () => {
         </GridItemFour>
       </GridLayout>
     )
+
+  if (!data?.post) return window.location.replace('/home')
 
   return (
     <GridLayout>
