@@ -30,8 +30,8 @@ export const sessionOptions: SessionOptions = {
   cookieName: 'devparty_session',
   ttl: SESSION_TTL,
   cookieOptions: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: true,
+    sameSite: 'none',
     httpOnly: true
   }
 }
