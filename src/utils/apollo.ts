@@ -19,7 +19,11 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   const ssrMode = typeof window === 'undefined'
 
   const httpLink = new HttpLink({
-    uri: 'https://api.devparty.io',
+    uri: ssrMode
+      ? process.env.VERCEL
+        ? `https://${process.env.VERCEL_URL}/api/graphql`
+        : `http://localhost:3000/api/graphql`
+      : '/api/graphql',
     headers: headers,
     credentials: 'include'
   })
