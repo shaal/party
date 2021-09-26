@@ -84,7 +84,7 @@
     "@types/spotify-web-api-node": "^5.0.3",
     "@types/url-regex-safe": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "autoprefixer": "^10.3.5",
+    "autoprefixer": "^10.3.6",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-plugin-prettier": "^4.0.0",
