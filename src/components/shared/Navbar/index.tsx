@@ -15,64 +15,64 @@ import StaffBar from './StaffBar'
 
 const Invite = dynamic(() => import('./Invite'))
 
-interface NavItemProps {
-  url: string
-  name: string
-  current: boolean
-  isMobile: boolean
-}
-
-const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
-  return (
-    <Link href={url} passHref>
-      <a
-        className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
-          block: isMobile,
-          'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
-          'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
-            !current
-        })}
-        aria-current={current ? 'page' : undefined}
-      >
-        {name}
-      </a>
-    </Link>
-  )
-}
-
-interface NavItemsProps {
-  isMobile?: boolean
-}
-
-const NavItems = ({ isMobile = false }: NavItemsProps) => {
-  const router = useRouter()
-
-  return (
-    <>
-      <NavItem
-        url="/"
-        name="Home"
-        current={router.pathname == '/home'}
-        isMobile={isMobile}
-      />
-      <NavItem
-        url="/products"
-        name="Products"
-        current={router.pathname == '/products'}
-        isMobile={isMobile}
-      />
-      <NavItem
-        url="/explore"
-        name="Explore"
-        current={router.pathname == '/explore'}
-        isMobile={isMobile}
-      />
-    </>
-  )
-}
-
 const Navbar: React.FC = () => {
   const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
+
+  interface NavItemProps {
+    url: string
+    name: string
+    current: boolean
+    isMobile: boolean
+  }
+
+  const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
+    return (
+      <Link href={url} passHref>
+        <a
+          className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
+            block: isMobile,
+            'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
+            'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
+              !current
+          })}
+          aria-current={current ? 'page' : undefined}
+        >
+          {name}
+        </a>
+      </Link>
+    )
+  }
+
+  interface NavItemsProps {
+    isMobile?: boolean
+  }
+
+  const NavItems = ({ isMobile = false }: NavItemsProps) => {
+    const router = useRouter()
+
+    return (
+      <>
+        <NavItem
+          url={currentUser ? '/home' : '/'}
+          name="Home"
+          current={router.pathname == '/home'}
+          isMobile={isMobile}
+        />
+        <NavItem
+          url="/products"
+          name="Products"
+          current={router.pathname == '/products'}
+          isMobile={isMobile}
+        />
+        <NavItem
+          url="/explore"
+          name="Explore"
+          current={router.pathname == '/explore'}
+          isMobile={isMobile}
+        />
+      </>
+    )
+  }
 
   return (
     <Disclosure
