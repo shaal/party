@@ -32,7 +32,8 @@ export const sessionOptions: SessionOptions = {
   cookieOptions: {
     secure: true,
     sameSite: 'none',
-    httpOnly: true
+    httpOnly: true,
+    domain: 'devparty.io'
   }
 }
 
