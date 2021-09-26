@@ -14,7 +14,7 @@ import FollowingList from './list'
 
 export const USER_FOLLOWING_QUERY = VIEW_USER_QUERY
 
-const Following: React.FC = () => {
+const Following = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(
     USER_FOLLOWING_QUERY,
