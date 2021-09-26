@@ -60,16 +60,19 @@ export const VIEW_USER_QUERY = gql`
   ${UserFragment}
 `
 
-const ViewUser: React.FC = () => {
+const ViewUser = () => {
   const router = useRouter()
   const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
-    }
+    },
+    skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading user" />
+  if (!router.isReady || loading) return <PageLoading message="Loading user" />
+
+  if (!data?.user) return window.location.replace('/home')
 
   return (
     <>
