@@ -81,10 +81,6 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       result.headers.forEach(({ name, value }) => res.setHeader(name, value))
-      res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-      )
       res.status(result.status)
       res.json(formatResult(result.payload))
     }
