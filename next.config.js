@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  poweredByHeader: false,
   generateEtags: false,
   experimental: { esmExternals: true },
   env: {
