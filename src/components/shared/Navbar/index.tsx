@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:justify-start">
                 <div className="flex-shrink-0 flex items-center space-x-3">
-                  <Link href="/" passHref>
+                  <Link href={currentUser ? '/home' : '/'} passHref>
                     <a>
                       <img
                         className="block h-9 w-auto cursor-pointer"
