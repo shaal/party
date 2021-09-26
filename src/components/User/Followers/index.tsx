@@ -14,7 +14,7 @@ import FollowersList from './list'
 
 export const USER_FOLLOWERS_QUERY = VIEW_USER_QUERY
 
-const Followers: React.FC = () => {
+const Followers = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(
     USER_FOLLOWERS_QUERY,
@@ -26,7 +26,10 @@ const Followers: React.FC = () => {
     }
   )
 
-  if (loading) return <PageLoading message="Loading followers" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading followers" />
+
+  if (!data?.user) return window.location.replace('/home')
 
   return (
     <>

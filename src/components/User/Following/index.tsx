@@ -14,7 +14,7 @@ import FollowingList from './list'
 
 export const USER_FOLLOWING_QUERY = VIEW_USER_QUERY
 
-const Following: React.FC = () => {
+const Following = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(
     USER_FOLLOWING_QUERY,
@@ -26,7 +26,10 @@ const Following: React.FC = () => {
     }
   )
 
-  if (loading) return <PageLoading message="Loading following" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading following" />
+
+  if (!data?.user) return window.location.replace('/home')
 
   return (
     <>

@@ -39,14 +39,17 @@ export const PRODUCT_QUERY = gql`
   }
 `
 
-const ViewProduct: React.FC = () => {
+const ViewProduct = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
     variables: { slug: router.query.slug },
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading product" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading product" />
+
+  if (!data?.product) return window.location.replace('/home')
 
   return (
     <GridLayout>
