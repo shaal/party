@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  generateEtags: false,
   experimental: { esmExternals: true },
   env: {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
