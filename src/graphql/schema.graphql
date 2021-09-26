@@ -99,7 +99,7 @@ input EditTopicInput {
 }
 
 input EditUserInput {
-  avatar: String!
+  avatar: String
   bio: String
   cover: String
   location: String
