@@ -28,7 +28,7 @@ export const TOPIC_QUERY = gql`
   }
 `
 
-const ViewTopic: React.FC = () => {
+const ViewTopic = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
   const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
@@ -36,7 +36,9 @@ const ViewTopic: React.FC = () => {
     skip: !router.isReady
   })
 
-  if (loading) return <PageLoading message="Loading topic" />
+  if (!router.isReady || loading) return <PageLoading message="Loading topic" />
+
+  if (!data?.topic) return window.location.replace('/home')
 
   return (
     <GridLayout>
