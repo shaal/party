@@ -11,9 +11,9 @@ import { useContext } from 'react'
 import MenuItems from './MenuItems'
 import Notification from './Notification'
 import Search from './Search'
-import StaffBar from './StaffBar'
 
 const Invite = dynamic(() => import('./Invite'))
+const StaffBar = dynamic(() => import('./StaffBar'))
 
 const Navbar: React.FC = () => {
   const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
