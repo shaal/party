@@ -9,12 +9,8 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const auth = await authenticatedRoute(context)
-  console.log(auth)
-  if ('redirect' in auth) {
-    return auth
-  } else {
-    cacheRequest(context)
-  }
+  if ('redirect' in auth) return auth
+  cacheRequest(context)
 
   return preloadQuery(context, {
     query: HOME_FEED_QUERY,
