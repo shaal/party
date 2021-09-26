@@ -26,7 +26,10 @@ const Following: React.FC = () => {
     }
   )
 
-  if (loading) return <PageLoading message="Loading following" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading following" />
+
+  if (!data?.user) return window.location.replace('/home')
 
   return (
     <>
