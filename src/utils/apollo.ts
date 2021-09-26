@@ -1,49 +1,11 @@
-import {
-  ApolloClient,
-  ApolloError,
-  HttpLink,
-  InMemoryCache,
-  QueryOptions
-} from '@apollo/client'
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 let apolloClient: ApolloClient<any>
 
 interface ClientOptions {
   headers?: Record<string, string>
   initialState?: Record<string, any>
-}
-
-export async function preloadQuery(
-  context: GetServerSidePropsContext,
-  ...queries: QueryOptions[]
-): Promise<GetServerSidePropsResult<{}>> {
-  const client = createApolloClient({
-    headers: context.req.headers as Record<string, string>
-  })
-
-  try {
-    await Promise.all(queries.map((queryOptions) => client.query(queryOptions)))
-
-    return {
-      props: {
-        initialClientState: client.cache.extract()
-      }
-    }
-  } catch (error: any) {
-    if (error instanceof ApolloError) {
-      const notFoundError = error.graphQLErrors.find((error: Error) => {
-        return (error as any)?.extensions.code === 404
-      })
-
-      if (notFoundError) {
-        return { notFound: true }
-      }
-    }
-
-    return { props: {} }
-  }
 }
 
 export function useApollo(initialState?: Record<string, any>) {
