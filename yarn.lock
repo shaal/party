@@ -8409,7 +8409,7 @@ zen-observable@0.8.15:
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.15.tgz#96415c512d8e3ffd920afd3889604e30b9eaac15"
   integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 
-zod@^3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.9.0.tgz#5a752137b8a6bc837a9f150f33eb889513419226"
-  integrity sha512-r5c86kyjvxD+2f6E1kikc9p0nXG0bbIWFLvZzflQe/fQk4Ot+MBdnOQ+E/p6Yo8VBfjtWdYd9AmHXLuIOweh0A==
+zod@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.9.1.tgz#6cfbcc3c73a98cf2d27b2912953e9d1ebdd3e262"
+  integrity sha512-4h+26dlguuEScIYIEt8icqxVYXDbDAnOMgV2r/RO/0qpb0jJyK/VosUQWi/EF/2MB1HrtBZZxiRQrTbIqVLKeQ==
