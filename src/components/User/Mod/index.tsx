@@ -124,7 +124,9 @@ const UserMod: React.FC<Props> = ({ user }) => {
               >
                 Update Badges
               </Button>
-              <Button type="submit">Update</Button>
+              <Button type="submit">
+                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
+              </Button>
             </div>
           </Form>
         </CardBody>
