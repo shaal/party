@@ -53,7 +53,6 @@ CREATE TABLE `invites` (
     `id` VARCHAR(191) NOT NULL,
     `code` VARCHAR(191),
     `usedTimes` INTEGER NOT NULL DEFAULT 0,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `invites_userId_key`(`userId`),
@@ -108,7 +107,6 @@ CREATE TABLE `topics` (
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191),
     `description` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `topics_name_key`(`name`),
     PRIMARY KEY (`id`)
@@ -117,7 +115,6 @@ CREATE TABLE `topics` (
 -- CreateTable
 CREATE TABLE `likes` (
     `id` VARCHAR(191) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
@@ -151,8 +148,6 @@ CREATE TABLE `badges` (
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -180,8 +175,6 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `integrations_userId_unique`(`userId`),
