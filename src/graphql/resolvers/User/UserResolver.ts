@@ -147,8 +147,8 @@ const EditUserInput = builder.inputType('EditUserInput', {
     }),
     bio: t.string({ required: false, validate: { maxLength: 190 } }),
     location: t.string({ required: false, validate: { maxLength: 100 } }),
-    avatar: t.string({ required: false }),
-    cover: t.string({ required: false })
+    avatar: t.string(),
+    cover: t.string()
   })
 })
 
