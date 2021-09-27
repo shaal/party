@@ -69,7 +69,7 @@ export const createPost = async (
     }
   })
 
-  if (post?.type === 'REPLY' && session!.userId !== post?.parentId) {
+  if (post?.type === 'REPLY' && session!.userId !== post?.userId) {
     const parent = await db.post.findUnique({
       where: { id: post?.parentId! }
     })
