@@ -109,7 +109,10 @@ const UserMod: React.FC<Props> = ({ user }) => {
               </label>
             </div>
           )}
-          <div className="pt-2">
+          <div className="pt-2 space-x-2">
+            <Button type="button" variant="success">
+              Update Badges
+            </Button>
             <Button type="submit">Update</Button>
           </div>
         </Form>
