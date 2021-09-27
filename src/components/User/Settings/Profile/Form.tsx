@@ -186,7 +186,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   {cover && (
                     <div>
                       <img
-                        className="rounded-lg object-cover bg-gradient-to-r from-blue-500 to-purple-500 h-60 w-full"
+                        className="rounded-lg object-cover h-60 w-full"
+                        style={{
+                          backgroundColor: `#${currentUser?.profile?.coverBg}`
+                        }}
                         src={cover}
                         alt={cover}
                       />
