@@ -55,46 +55,46 @@ const StaffToolsDashboard: React.FC = () => {
             <div className="text-xl font-bold mb-1.5">Platform Stats</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
-                <User size={14} />
+                <User size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.users}</span> Users
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Box size={14} />
+                <Box size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.products}</span>{' '}
                   Products
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Layers size={14} />
+                <Layers size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.posts}</span> Posts
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Heart size={14} />
+                <Heart size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.likes}</span> Likes
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Hash size={14} />
+                <Hash size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.topics}</span>{' '}
                   Topics
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Award size={14} />
+                <Award size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.badges}</span>{' '}
                   Badges
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Bell size={14} />
+                <Bell size={15} />
                 <div>
                   <span className="font-bold">
                     {data?.stats?.notifications}
@@ -103,7 +103,7 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <LogIn size={14} />
+                <LogIn size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.sessions}</span>{' '}
                   Sessions
@@ -114,7 +114,7 @@ const StaffToolsDashboard: React.FC = () => {
             <div className="text-xl font-bold mb-1.5">Services</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
-                <Database size={14} />
+                <Database size={15} />
                 <div className="flex items-center space-x-1">
                   <a
                     href="https://app.planetscale.com/yo/devparty"
@@ -128,10 +128,10 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Cpu size={14} />
+                <Cpu size={15} />
                 <div className="flex items-center space-x-1">
                   <a
-                    href="https://console.upstash.com/redis/21cb559e-de14-44b9-a67f-05c67f2c8376"
+                    href="https://console.upstash.com/redis/21cb559e-de15-44b9-a67f-05c67f2c8376"
                     className="font-bold"
                     target="_blank"
                     rel="noreferrer"
