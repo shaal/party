@@ -1,8 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
+import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Form, useZodForm } from '@components/ui/Form'
+import { Modal } from '@components/ui/Modal'
 import { HashtagIcon } from '@heroicons/react/outline'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 import { boolean, object } from 'zod'
@@ -11,6 +14,7 @@ import {
   ModUserMutation,
   ModUserMutationVariables
 } from './__generated__/index.generated'
+import UpdateBadges from './UpdateBadges'
 
 const modUserSchema = object({
   isVerified: boolean(),
@@ -23,6 +27,8 @@ interface Props {
 }
 
 const UserMod: React.FC<Props> = ({ user }) => {
+  const [showUpdateBadgesModal, setShowUpdateBadgesModal] =
+    useState<boolean>(false)
   const [modUser] = useMutation<ModUserMutation, ModUserMutationVariables>(
     gql`
       mutation ModUserMutation($input: ModUserInput!) {
@@ -110,11 +116,29 @@ const UserMod: React.FC<Props> = ({ user }) => {
             </div>
           )}
           <div className="pt-2 space-x-2">
-            <Button type="button" variant="success">
+            <Button
+              type="button"
+              variant="success"
+              onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
+            >
               Update Badges
             </Button>
             <Button type="submit">Update</Button>
           </div>
+          {showUpdateBadgesModal && (
+            <Modal
+              onClose={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
+              title={
+                <div className="flex items-center space-x-1.5">
+                  <div>Send dev tips to</div>
+                  <Slug slug={user?.username} prefix="@" />
+                </div>
+              }
+              show={showUpdateBadgesModal}
+            >
+              <UpdateBadges />
+            </Modal>
+          )}
         </Form>
       </CardBody>
     </Card>
