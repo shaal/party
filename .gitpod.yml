@@ -25,7 +25,7 @@ ports:
     onOpen: open-browser
     visibility: public
   - port: 5555 # Prisma Studio
-    onOpen: notify
+    onOpen: ignore
     visibility: public
   - port: 6379 # Redis
     onOpen: ignore
