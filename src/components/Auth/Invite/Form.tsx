@@ -96,7 +96,7 @@ const InviteSignupForm: React.FC = () => {
           className=" w-full justify-center"
           icon={
             form.formState.isSubmitting ? (
-              <Spinner size="xs" className="mr-2" />
+              <Spinner size="xs" className="mr-1" />
             ) : (
               <UserAddIcon className="h-5 w-5" />
             )
