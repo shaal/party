@@ -108,10 +108,8 @@ input EditUserInput {
 }
 
 type Integration {
-  createdAt: DateTime!
   id: ID!
   spotifyRefreshToken: String
-  updatedAt: DateTime!
   wakatimeAPIKey: String
 }
 
@@ -129,7 +127,6 @@ input JoinWaitlistInput {
 }
 
 type Like {
-  createdAt: DateTime!
   id: ID!
   post: Post!
   user: User!

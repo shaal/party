@@ -7,9 +7,6 @@ builder.prismaObject('Like', {
   fields: (t) => ({
     id: t.exposeID('id'),
 
-    // Timestamps
-    createdAt: t.expose('createdAt', { type: 'DateTime' }),
-
     // Relations
     user: t.relation('user'),
     post: t.relation('post')
