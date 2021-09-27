@@ -48,8 +48,6 @@ model User {
   followedBy             User[]         @relation("follows")
   receivedNotification   Notification[] @relation("notificationReceiver")
   dispatchedNotification Notification[] @relation("notificationDispatcher")
-  receivedMessages       Message[]      @relation("messageReceiver")
-  sentMessages           Message[]      @relation("messageSender")
 
   // Attributes
   @@map("users")
@@ -291,23 +289,6 @@ model Log {
 
   // Attributes
   @@map("logs")
-}
-
-model Message {
-  id      String @id @default(uuid())
-  message String
-
-  // Timestamps
-  createdAt DateTime @default(now())
-
-  // Relations
-  sender     User   @relation("messageSender", fields: [senderId], references: [id], onDelete: Cascade)
-  senderId   String
-  receiver   User   @relation("messageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
-  receiverId String
-
-  // Attributes
-  @@map("messages")
 }
 
 // Types
