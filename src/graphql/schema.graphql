@@ -265,9 +265,10 @@ type ProductPostsConnectionEdge {
 }
 
 type Profile {
-  avatar: String
+  avatar: String!
   bio: String
-  cover: String
+  cover: String!
+  coverBg: String!
   discord: String
   github: String
   id: ID!

@@ -48,6 +48,9 @@ async function main() {
           create: {
             name: faker.name.firstName(),
             avatar: faker.internet.avatar(),
+            cover:
+              'https://assets.devparty.io/images/heropatterns/topography.svg',
+            coverBg: '8B5CF6',
             bio: faker.commerce.productDescription()
           }
         },
@@ -75,6 +78,9 @@ async function main() {
           create: {
             name: user.name,
             avatar: user.avatar,
+            cover:
+              'https://assets.devparty.io/images/heropatterns/topography.svg',
+            coverBg: '8B5CF6',
             bio: user.bio
           }
         },

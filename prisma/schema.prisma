@@ -76,9 +76,9 @@ model Session {
 model Profile {
   id       String  @id @default(uuid())
   name     String
-  avatar   String?
-  cover    String?
-  coverBg  String?
+  avatar   String
+  cover    String
+  coverBg  String
   bio      String?
   location String?
   website  String?

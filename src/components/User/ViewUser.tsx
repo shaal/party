@@ -37,6 +37,7 @@ export const UserFragment = gql`
       id
       avatar
       cover
+      coverBg
       name
       bio
       location
@@ -82,20 +83,12 @@ const ViewUser = () => {
         image={data?.user?.profile?.avatar as string}
         path={`/@/${data?.user?.username}`}
       />
-      {data?.user?.profile?.cover ? (
-        <img
-          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full"
-          src={imagekitURL(data?.user?.profile?.cover as string)}
-          alt={`@${data?.user?.username}'s cover`}
-        />
-      ) : (
-        <div
-          className="object-cover bg-purple-500 h-64 w-full"
-          style={{
-            backgroundImage: `url('https://cloudflare-ipfs.com/ipfs/bafybeicsg73girok5jgd23wau7xyoq7fquvmr5qss6ojeycxkqelmhsnlm/topography.svg')`
-          }}
-        ></div>
-      )}
+      <img
+        className="object-cover h-64 w-full"
+        style={{ backgroundColor: `#${data?.user?.profile?.coverBg}` }}
+        src={imagekitURL(data?.user?.profile?.cover as string)}
+        alt={`@${data?.user?.username}'s cover`}
+      />
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
