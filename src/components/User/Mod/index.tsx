@@ -10,7 +10,7 @@ import { boolean, object } from 'zod'
 import {
   ModUserMutation,
   ModUserMutationVariables
-} from './__generated__/Mod.generated'
+} from './__generated__/index.generated'
 
 const modUserSchema = object({
   isVerified: boolean(),
