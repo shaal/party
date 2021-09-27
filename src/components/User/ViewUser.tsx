@@ -83,11 +83,15 @@ const ViewUser = () => {
         image={data?.user?.profile?.avatar as string}
         path={`/@/${data?.user?.username}`}
       />
-      <img
-        className="object-cover h-64 w-full"
-        style={{ backgroundColor: `#${data?.user?.profile?.coverBg}` }}
-        src={imagekitURL(data?.user?.profile?.cover as string)}
-        alt={`@${data?.user?.username}'s cover`}
+      <div
+        className="h-64"
+        style={{
+          backgroundImage: `url(${imagekitURL(
+            data?.user?.profile?.cover as string
+          )})`,
+          backgroundColor: `#${data?.user?.profile?.coverBg}`,
+          backgroundSize: '60%'
+        }}
       />
       <GridLayout>
         <GridItemFour>
