@@ -1,9 +1,9 @@
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { Menu, Transition } from '@headlessui/react'
-import { CogIcon, LogoutIcon, UserIcon } from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
+import { LogOut, Settings, User as UserIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
@@ -86,7 +86,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 }
               >
                 <div className="flex items-center space-x-1.5">
-                  <UserIcon className="h-4 w-4" />
+                  <UserIcon size={16} />
                   <div>Your Profile</div>
                 </div>
               </Menu.Item>
@@ -101,7 +101,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 }
               >
                 <div className="flex items-center space-x-1.5">
-                  <CogIcon className="h-4 w-4" />
+                  <Settings size={16} />
                   <div>Settings</div>
                 </div>
               </Menu.Item>
@@ -116,7 +116,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 }
               >
                 <div className="flex items-center space-x-1.5">
-                  <LogoutIcon className="h-4 w-4" />
+                  <LogOut size={16} />
                   <div>Logout</div>
                 </div>
               </Menu.Item>
