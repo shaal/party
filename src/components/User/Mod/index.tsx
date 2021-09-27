@@ -60,88 +60,90 @@ const UserMod: React.FC<Props> = ({ user }) => {
   })
 
   return (
-    <Card className="mt-5 border-yellow-400 !bg-yellow-300 !bg-opacity-20">
-      <CardBody>
-        <div className="font-bold text-lg">Details</div>
-        <div className="space-y-1 mt-3 text-sm">
-          <div className="flex items-center gap-1">
-            <HashtagIcon className="h-4 w-4" />
-            <span className="font-mono font-bold">{user?.id}</span>
+    <>
+      <Card className="mt-5 border-yellow-400 !bg-yellow-300 !bg-opacity-20">
+        <CardBody>
+          <div className="font-bold text-lg">Details</div>
+          <div className="space-y-1 mt-3 text-sm">
+            <div className="flex items-center gap-1">
+              <HashtagIcon className="h-4 w-4" />
+              <span className="font-mono font-bold">{user?.id}</span>
+            </div>
           </div>
-        </div>
-        <div className="border-t border-yellow-400 my-3"></div>
-        <div className="font-bold text-lg">Flags</div>
-        <Form
-          form={form}
-          className="space-y-1.5 mt-3 text-sm font-bold"
-          onSubmit={({ isVerified, isStaff, spammy }) =>
-            modUser({
-              variables: {
-                input: {
-                  userId: user?.id,
-                  isVerified: isVerified as boolean,
-                  isStaff: isStaff as boolean,
-                  spammy: spammy as boolean
+          <div className="border-t border-yellow-400 my-3"></div>
+          <div className="font-bold text-lg">Flags</div>
+          <Form
+            form={form}
+            className="space-y-1.5 mt-3 text-sm font-bold"
+            onSubmit={({ isVerified, isStaff, spammy }) =>
+              modUser({
+                variables: {
+                  input: {
+                    userId: user?.id,
+                    isVerified: isVerified as boolean,
+                    isStaff: isStaff as boolean,
+                    spammy: spammy as boolean
+                  }
                 }
-              }
-            })
-          }
-        >
-          <div className="flex items-center gap-2">
-            <input
-              id="verifyUser"
-              type="checkbox"
-              {...form.register('isVerified')}
-            />
-            <label htmlFor="verifyUser">Verify the user</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <input
-              id="staffUser"
-              type="checkbox"
-              {...form.register('isStaff')}
-            />
-            <label htmlFor="staffUser">Make as staff</label>
-          </div>
-          {!user?.isStaff && (
+              })
+            }
+          >
             <div className="flex items-center gap-2">
               <input
-                id="spammyUser"
+                id="verifyUser"
                 type="checkbox"
-                {...form.register('spammy')}
+                {...form.register('isVerified')}
               />
-              <label htmlFor="spammyUser" className="text-red-500">
-                Mark as spammy
-              </label>
+              <label htmlFor="verifyUser">Verify the user</label>
             </div>
-          )}
-          <div className="pt-2 space-x-2">
-            <Button
-              type="button"
-              variant="success"
-              onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
-            >
-              Update Badges
-            </Button>
-            <Button type="submit">Update</Button>
-          </div>
-          {showUpdateBadgesModal && (
-            <Modal
-              onClose={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
-              title={
-                <div className="flex items-center space-x-1.5">
-                  <div>Send dev tips to</div>
-                  <Slug slug={user?.username} prefix="@" />
-                </div>
-              }
-              show={showUpdateBadgesModal}
-            >
-              <UpdateBadges />
-            </Modal>
-          )}
-        </Form>
-      </CardBody>
-    </Card>
+            <div className="flex items-center gap-2">
+              <input
+                id="staffUser"
+                type="checkbox"
+                {...form.register('isStaff')}
+              />
+              <label htmlFor="staffUser">Make as staff</label>
+            </div>
+            {!user?.isStaff && (
+              <div className="flex items-center gap-2">
+                <input
+                  id="spammyUser"
+                  type="checkbox"
+                  {...form.register('spammy')}
+                />
+                <label htmlFor="spammyUser" className="text-red-500">
+                  Mark as spammy
+                </label>
+              </div>
+            )}
+            <div className="pt-2 space-x-2">
+              <Button
+                type="button"
+                variant="success"
+                onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
+              >
+                Update Badges
+              </Button>
+              <Button type="submit">Update</Button>
+            </div>
+          </Form>
+        </CardBody>
+      </Card>
+      {showUpdateBadgesModal && (
+        <Modal
+          onClose={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
+          title={
+            <div className="flex items-center space-x-1.5">
+              <div>Update badges for</div>
+              <Slug slug={user?.username} prefix="@" />
+            </div>
+          }
+          show={showUpdateBadgesModal}
+        >
+          <UpdateBadges />
+        </Modal>
+      )}
+    </>
   )
 }
 
