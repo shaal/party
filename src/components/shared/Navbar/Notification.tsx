@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { LightningBoltIcon } from '@heroicons/react/outline'
+import { Zap } from 'lucide-react'
 import Link from 'next/link'
 
 import { NotificationCountQuery } from './__generated__/Notification.generated'
@@ -18,7 +18,7 @@ const Notification: React.FC = () => {
   return (
     <Link href="/notifications">
       <a className="flex items-start">
-        <LightningBoltIcon className="h-6 w-6" />
+        <Zap size={22} />
         {(data?.me?.notificationsCount as number) > 0 && (
           <div className="h-2 w-2 rounded-full bg-red-500" />
         )}
