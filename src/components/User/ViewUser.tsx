@@ -89,7 +89,12 @@ const ViewUser = () => {
           alt={`@${data?.user?.username}'s cover`}
         />
       ) : (
-        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full" />
+        <div
+          className="object-cover bg-purple-500 h-64 w-full"
+          style={{
+            backgroundImage: `url('https://cloudflare-ipfs.com/ipfs/bafybeicsg73girok5jgd23wau7xyoq7fquvmr5qss6ojeycxkqelmhsnlm/topography.svg')`
+          }}
+        ></div>
       )}
       <GridLayout>
         <GridItemFour>

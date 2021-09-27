@@ -36,6 +36,7 @@ CREATE TABLE `profiles` (
     `name` VARCHAR(191) NOT NULL,
     `avatar` VARCHAR(191),
     `cover` VARCHAR(191),
+    `coverBg` VARCHAR(191),
     `bio` VARCHAR(191),
     `location` VARCHAR(191),
     `website` VARCHAR(191),

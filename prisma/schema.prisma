@@ -78,6 +78,7 @@ model Profile {
   name     String
   avatar   String?
   cover    String?
+  coverBg  String?
   bio      String?
   location String?
   website  String?
