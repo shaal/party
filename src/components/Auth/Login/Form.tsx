@@ -93,7 +93,7 @@ const LoginForm: React.FC = () => {
           className=" w-full justify-center"
           icon={
             form.formState.isSubmitting ? (
-              <Spinner size="xs" />
+              <Spinner size="xs" className="mr-2" />
             ) : (
               <LogoutIcon className="h-5 w-5" />
             )
