@@ -261,16 +261,15 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User     @relation("notificationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
-  receiverId   String
+  receiver     User[]   @relation("notificationReceiver", onDelete: Cascade)
   dispatcher   User     @relation("notificationDispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
   like         Like?    @relation("like", fields: [likeId], references: [id], onDelete: Cascade)
   likeId       String?
   product      Product? @relation("product", fields: [productId], references: [id], onDelete: Cascade)
   productId    String?
-  post   Post?   @relation("post", fields: [postId], references: [id], onDelete: Cascade)
-  postId String?
+  post         Post?    @relation("post", fields: [postId], references: [id], onDelete: Cascade)
+  postId       String?
 
   // Attributes
   @@map("notifications")

@@ -166,7 +166,6 @@ CREATE TABLE `notifications` (
     `entityId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `receiverId` VARCHAR(191) NOT NULL,
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
     `productId` VARCHAR(191),
@@ -246,4 +245,13 @@ CREATE TABLE `_follows` (
 
     UNIQUE INDEX `_follows_AB_unique`(`A`, `B`),
     INDEX `_follows_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_notificationReceiver` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_notificationReceiver_AB_unique`(`A`, `B`),
+    INDEX `_notificationReceiver_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

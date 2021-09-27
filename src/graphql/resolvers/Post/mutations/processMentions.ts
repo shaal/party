@@ -7,5 +7,11 @@ export const processMentions = async (
   session: Session | undefined | null
 ) => {
   const users = getMentions(post?.body)
-  console.log(users)
+
+  // await db.notification.create({
+  //   data: {
+  //     dispatcher: { connect: { id: session?.userId } },
+  //     receiver: { connect: { username: [{ username: 'yoginth' }] } }
+  //   }
+  // })
 }
