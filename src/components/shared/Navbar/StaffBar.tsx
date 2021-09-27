@@ -24,23 +24,23 @@ const StaffBar: React.FC = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <ServerCrash size={15} />
+            <ServerCrash size={14} />
           </a>
         )}
         {process.env.GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
-            <GitBranch size={15} />
+            <GitBranch size={14} />
             <Badge>{process.env.GIT_COMMIT_REF}</Badge>
           </div>
         )}
         {process.env.GIT_COMMIT_SHA && (
           <div className="flex items-center space-x-1" title="Git commit SHA">
-            <Hash size={15} />
+            <Hash size={14} />
             <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
           </div>
         )}
         <div className="flex items-center space-x-1" title="React.js Version">
-          <Cpu size={15} />
+          <Cpu size={14} />
           <span>
             React.js <Badge>v{React.version}</Badge>
           </span>
@@ -49,7 +49,7 @@ const StaffBar: React.FC = () => {
       <div className="flex items-center gap-4">
         <Link href="/stafftools">
           <a title="Staff panel">
-            <ShieldCheck size={15} />
+            <ShieldCheck size={14} />
           </a>
         </Link>
       </div>
