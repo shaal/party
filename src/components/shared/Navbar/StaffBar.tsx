@@ -1,4 +1,9 @@
-import { Cpu, GitBranch, Hash, ServerCrash, ShieldCheck } from 'lucide-react'
+import {
+  ChipIcon,
+  HashtagIcon,
+  ShieldCheckIcon,
+  TerminalIcon
+} from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
@@ -16,31 +21,20 @@ const StaffBar: React.FC = () => {
   return (
     <div className="bg-gray-200 dark:bg-black px-3 py-1 flex justify-between text-sm">
       <div className="flex items-center space-x-2">
-        {process.env.VERCEL_URL && (
-          <a
-            className="flex items-center space-x-1"
-            href={`https://${process.env.VERCEL_URL}`}
-            title="Vercel Deployment URL"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ServerCrash size={14} />
-          </a>
-        )}
         {process.env.GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
-            <GitBranch size={14} />
+            <TerminalIcon className="h-4 w-4" />
             <Badge>{process.env.GIT_COMMIT_REF}</Badge>
           </div>
         )}
         {process.env.GIT_COMMIT_SHA && (
           <div className="flex items-center space-x-1" title="Git commit SHA">
-            <Hash size={14} />
+            <HashtagIcon className="h-4 w-4" />
             <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
           </div>
         )}
         <div className="flex items-center space-x-1" title="React.js Version">
-          <Cpu size={14} />
+          <ChipIcon className="h-4 w-4" />
           <span>
             React.js <Badge>v{React.version}</Badge>
           </span>
@@ -49,7 +43,7 @@ const StaffBar: React.FC = () => {
       <div className="flex items-center gap-4">
         <Link href="/stafftools">
           <a title="Staff panel">
-            <ShieldCheck size={14} />
+            <ShieldCheckIcon className="h-4 w-4" />
           </a>
         </Link>
       </div>
