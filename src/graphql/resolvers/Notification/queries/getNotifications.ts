@@ -12,8 +12,6 @@ export const getNotifications = async (
       receiver: { id: session?.userId },
       isRead
     },
-    orderBy: {
-      createdAt: 'desc'
-    }
+    orderBy: { createdAt: 'desc' }
   })
 }
