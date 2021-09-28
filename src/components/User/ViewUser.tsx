@@ -70,33 +70,34 @@ const ViewUser = () => {
     },
     skip: !router.isReady
   })
+  const user = data?.user
 
   if (!router.isReady || loading) return <PageLoading message="Loading user" />
 
-  if (!data?.user) return window.location.replace('/home')
+  if (!user) return window.location.replace('/home')
 
   return (
     <>
       <DevpartySEO
-        title={`${data?.user?.username} (${data?.user?.profile?.name}) · Devparty`}
-        description={data?.user?.profile?.bio as string}
-        image={data?.user?.profile?.avatar as string}
-        path={`/@/${data?.user?.username}`}
+        title={`${user?.username} (${user?.profile?.name}) · Devparty`}
+        description={user?.profile?.bio as string}
+        image={user?.profile?.avatar as string}
+        path={`/@/${user?.username}`}
       />
       <div
         className="h-64"
         style={{
           backgroundImage: `url(${imagekitURL(
-            data?.user?.profile?.cover as string
+            user?.profile?.cover as string
           )})`,
-          backgroundColor: `#${data?.user?.profile?.coverBg}`,
+          backgroundColor: `#${user?.profile?.coverBg}`,
           backgroundSize: '60%'
         }}
       />
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          <Details user={data?.user as User} />
+          <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">

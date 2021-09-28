@@ -36,6 +36,7 @@ const ViewPost = () => {
     },
     skip: !router.isReady
   })
+  const post = data?.post
 
   if (!router.isReady || loading)
     return (
@@ -53,35 +54,31 @@ const ViewPost = () => {
       </GridLayout>
     )
 
-  if (!data?.post) return window.location.replace('/home')
+  if (!post) return window.location.replace('/home')
 
   return (
     <GridLayout>
       <DevpartySEO
-        title={`${data?.post?.user?.profile?.name} on Devparty: ${
-          data?.post?.title ? data?.post?.title : data?.post?.body.slice(0, 255)
+        title={`${post?.user?.profile?.name} on Devparty: ${
+          post?.title ? post?.title : post?.body.slice(0, 255)
         }`}
-        description={data?.post?.body.slice(0, 255) as string}
-        image={data?.post?.user?.profile?.avatar as string}
-        path={`/posts/${data?.post?.id}`}
+        description={post?.body.slice(0, 255) as string}
+        image={post?.user?.profile?.avatar as string}
+        path={`/posts/${post?.id}`}
       />
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
-          <SinglePost post={data?.post as Post} showParent />
-          {currentUser && !loading && <NewReply post={data?.post as Post} />}
-          <Replies post={data?.post as Post} />
+          <SinglePost post={post as Post} showParent />
+          {currentUser && !loading && <NewReply post={post as Post} />}
+          <Replies post={post as Post} />
         </div>
       </GridItemEight>
       <GridItemFour>
         <div className="space-y-5">
-          <UserCard user={data?.post?.user as User} />
-          {currentUser?.isStaff && staffMode && (
-            <PostMod post={data?.post as Post} />
-          )}
-          {data?.post?.type === 'QUESTION' && (
-            <MorePosts post={data?.post as Post} />
-          )}
+          <UserCard user={post?.user as User} />
+          {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
+          {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
         </div>
       </GridItemFour>
     </GridLayout>

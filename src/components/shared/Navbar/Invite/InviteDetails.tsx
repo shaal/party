@@ -28,7 +28,6 @@ export const INVITE_CODE_QUERY = gql`
 
 const InviteDetails: React.FC = () => {
   const { data, loading } = useQuery<InviteCodeQuery>(INVITE_CODE_QUERY)
-
   const [regenerateInvite] = useMutation<
     RegenerateInviteMutation,
     RegenerateInviteMutationVariables
@@ -52,6 +51,7 @@ const InviteDetails: React.FC = () => {
       }
     }
   )
+  const user = data?.me
 
   if (loading)
     return (
@@ -76,18 +76,18 @@ const InviteDetails: React.FC = () => {
             Invite your friends & colleagues to Devparty
           </div>
           <div>
-            Hey {<Slug slug={data?.me?.username} prefix="@" />} 👋 You can
-            either share your personalized invite link or your unique invite
-            code with friends!
+            Hey {<Slug slug={user?.username} prefix="@" />} 👋 You can either
+            share your personalized invite link or your unique invite code with
+            friends!
           </div>
         </div>
-        {data?.me?.invite ? (
+        {user?.invite ? (
           <>
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Link</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
                 <div>
-                  {process.env.BASE_URL}/invite/{data?.me?.invite?.code}
+                  {process.env.BASE_URL}/invite/{user?.invite?.code}
                 </div>
                 <Tooltip content="Regenerate Invite">
                   <div
@@ -102,7 +102,7 @@ const InviteDetails: React.FC = () => {
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Code</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-                <div>{data?.me?.invite?.code}</div>
+                <div>{user?.invite?.code}</div>
                 <Tooltip content="Regenerate Invite">
                   <div
                     className="cursor-pointer"
@@ -114,7 +114,7 @@ const InviteDetails: React.FC = () => {
               </div>
             </div>
             <div className="mt-5 mb-1 text-center">
-              You've invited <b>{data?.me?.invite?.usedTimes}</b> people so far.
+              You've invited <b>{user?.invite?.usedTimes}</b> people so far.
             </div>
           </>
         ) : (
