@@ -69,17 +69,19 @@ export const createPost = async (
     }
   })
 
-  if (post?.type === 'REPLY' && session!.userId !== post?.userId) {
+  if (post?.type === 'REPLY') {
     const parent = await db.post.findUnique({
       where: { id: post?.parentId! }
     })
 
-    await createNotification(
-      session!.userId,
-      parent?.userId,
-      post?.id,
-      'POST_REPLY'
-    )
+    if (session!.userId !== parent?.userId) {
+      await createNotification(
+        session!.userId,
+        parent?.userId,
+        post?.id,
+        'POST_REPLY'
+      )
+    }
   }
 
   if (getMentions(input.body)?.length > 0) {
