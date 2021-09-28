@@ -247,7 +247,8 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   // Relations
-  receiver     User[]   @relation("notificationReceiver", onDelete: Cascade)
+  receiver     User     @relation("notificationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  receiverId   String
   dispatcher   User     @relation("notificationDispatcher", fields: [dispatcherId], references: [id], onDelete: Cascade)
   dispatcherId String
   like         Like?    @relation("like", fields: [likeId], references: [id], onDelete: Cascade)

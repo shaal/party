@@ -179,7 +179,7 @@ type Notification {
   like: Like
   post: Post
   product: Product
-  receiver: [User!]!
+  receiver: User!
   type: String!
   updatedAt: DateTime!
 }

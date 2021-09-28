@@ -8,18 +8,13 @@ export const processMentions = async (
   post: Post,
   session: Session | undefined | null
 ) => {
-  const users = await parseMentions(getMentions(post?.body))
+  const users = await parseMentions(getMentions(post?.body), session, post)
   const mentions = users.filter(function (obj) {
-    return obj.id !== session?.userId
+    return obj.receiverId !== session?.userId
   })
 
-  await db.notification.create({
-    data: {
-      dispatcher: { connect: { id: session?.userId } },
-      receiver: { connect: mentions },
-      post: { connect: { id: post?.id } },
-      type: 'USER_MENTION',
-      entityId: post?.id
-    }
+  await db.notification.createMany({
+    data: mentions,
+    skipDuplicates: true
   })
 }
