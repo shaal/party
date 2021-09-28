@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
+import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
@@ -53,7 +54,12 @@ const InviteDetails: React.FC = () => {
   )
 
   if (loading)
-    return <div className="px-5 py-3.5">Loading invite details...</div>
+    return (
+      <div className="px-5 py-3.5 font-bold text-center space-y-2">
+        <Spinner size="md" className="mx-auto" />
+        <div>Loading invite details</div>
+      </div>
+    )
 
   return (
     <>
