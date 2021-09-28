@@ -40,6 +40,7 @@ const StaffToolsDashboard: React.FC = () => {
   const { data, loading, error } = useQuery<StaffToolsDashboardQuery>(
     STAFF_TOOLS_DASHBOARD_QUERY
   )
+  const stats = data?.stats
 
   if (loading) return <PageLoading message="Loading dashboard" />
 
@@ -57,56 +58,50 @@ const StaffToolsDashboard: React.FC = () => {
               <div className="flex items-center space-x-1.5">
                 <UsersIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.users}</span> Users
+                  <span className="font-bold">{stats?.users}</span> Users
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <CubeIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.products}</span>{' '}
-                  Products
+                  <span className="font-bold">{stats?.products}</span> Products
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <CollectionIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.posts}</span> Posts
+                  <span className="font-bold">{stats?.posts}</span> Posts
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <HeartIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.likes}</span> Likes
+                  <span className="font-bold">{stats?.likes}</span> Likes
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <HashtagIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.topics}</span>{' '}
-                  Topics
+                  <span className="font-bold">{stats?.topics}</span> Topics
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <IdentificationIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.badges}</span>{' '}
-                  Badges
+                  <span className="font-bold">{stats?.badges}</span> Badges
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <BellIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">
-                    {data?.stats?.notifications}
-                  </span>{' '}
+                  <span className="font-bold">{stats?.notifications}</span>{' '}
                   Notifications
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
                 <LoginIcon className="h-4 w-4" />
                 <div>
-                  <span className="font-bold">{data?.stats?.sessions}</span>{' '}
-                  Sessions
+                  <span className="font-bold">{stats?.sessions}</span> Sessions
                 </div>
               </div>
             </div>
