@@ -1,10 +1,4 @@
-import {
-  ChipIcon,
-  HashtagIcon,
-  ServerIcon,
-  ShieldCheckIcon,
-  TerminalIcon
-} from '@heroicons/react/outline'
+import { Cpu, GitBranch, Hash, ServerCrash, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -30,23 +24,23 @@ const StaffBar: React.FC = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <ServerIcon className="h-4 w-4" />
+            <ServerCrash size={14} />
           </a>
         )}
         {process.env.GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
-            <TerminalIcon className="h-4 w-4" />
+            <GitBranch size={14} />
             <Badge>{process.env.GIT_COMMIT_REF}</Badge>
           </div>
         )}
         {process.env.GIT_COMMIT_SHA && (
           <div className="flex items-center space-x-1" title="Git commit SHA">
-            <HashtagIcon className="h-4 w-4" />
+            <Hash size={14} />
             <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
           </div>
         )}
         <div className="flex items-center space-x-1" title="React.js Version">
-          <ChipIcon className="h-4 w-4" />
+          <Cpu size={14} />
           <span>
             React.js <Badge>v{React.version}</Badge>
           </span>
@@ -55,7 +49,7 @@ const StaffBar: React.FC = () => {
       <div className="flex items-center gap-4">
         <Link href="/stafftools">
           <a title="Staff panel">
-            <ShieldCheckIcon className="h-4 w-4" />
+            <ShieldCheck size={14} />
           </a>
         </Link>
       </div>

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@apollo/client@^3.4.13":
-  version "3.4.13"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.13.tgz#81670c27b376e80e3845ecf6468e534d908fa5b5"
-  integrity sha512-/nH8z/0X6WJ+wtUREHTlKQGX4lo6u3XkF1hy+k4eCxLZzT5+VRw1rm92iIkj1H85vep/eE/KV3DdRq1x3t9NnQ==
+"@apollo/client@^3.4.14":
+  version "3.4.14"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.14.tgz#069adcaef53d96c84eea5c0022efeace5cd09afb"
+  integrity sha512-9yrxbPwQbQ3n/+TeOGtalrf8mT4XyOcBBDlRPWC1E5JJp5exrl9n2GIgrUvd2KsVZLUT876kUJY3zfyyjW5Udg==
   dependencies:
     "@graphql-typed-document-node/core" "^3.0.0"
     "@wry/context" "^0.6.0"
@@ -5433,6 +5433,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+lucide-react@^0.16.3:
+  version "0.16.3"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.16.3.tgz#7c27cfd0d4f3ea81d1b7d7216beef7643236e72b"
+  integrity sha512-r5fleIUy5IZiqnY4CsgJibdgufjLi/Q01ZCgIa3FE8NHgczXukpi9I/oSKCWLDOePALBnaXpwvSK0ez6F7X3RA==
+
 make-dir@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
@@ -8413,7 +8418,7 @@ zen-observable@0.8.15:
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.15.tgz#96415c512d8e3ffd920afd3889604e30b9eaac15"
   integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 
-zod@^3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.9.1.tgz#6cfbcc3c73a98cf2d27b2912953e9d1ebdd3e262"
-  integrity sha512-4h+26dlguuEScIYIEt8icqxVYXDbDAnOMgV2r/RO/0qpb0jJyK/VosUQWi/EF/2MB1HrtBZZxiRQrTbIqVLKeQ==
+zod@^3.9.3:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.9.3.tgz#4fbd0bcd8d7fc5b2ff93c5351284483c9eb31b9f"
+  integrity sha512-xjLdXoS9+b4Cnh/JmjvFF6pjUfrZjVYfQG3yOsN+0ZnT2n0Vi27H0LEid7oPxiP08nwGo4sqARAELVR7QIp9qw==

@@ -4,18 +4,18 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import {
-  BellIcon,
-  ChipIcon,
-  CollectionIcon,
-  CubeIcon,
-  DatabaseIcon,
-  ExternalLinkIcon,
-  HashtagIcon,
-  HeartIcon,
-  IdentificationIcon,
-  LoginIcon,
-  UsersIcon
-} from '@heroicons/react/outline'
+  Award,
+  Bell,
+  Box,
+  Cpu,
+  Database,
+  ExternalLink,
+  Hash,
+  Heart,
+  Layers,
+  LogIn,
+  User
+} from 'lucide-react'
 import React from 'react'
 
 import { StaffToolsDashboardQuery } from './__generated__/index.generated'
@@ -55,46 +55,46 @@ const StaffToolsDashboard: React.FC = () => {
             <div className="text-xl font-bold mb-1.5">Platform Stats</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
-                <UsersIcon className="h-4 w-4" />
+                <User size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.users}</span> Users
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <CubeIcon className="h-4 w-4" />
+                <Box size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.products}</span>{' '}
                   Products
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <CollectionIcon className="h-4 w-4" />
+                <Layers size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.posts}</span> Posts
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <HeartIcon className="h-4 w-4" />
+                <Heart size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.likes}</span> Likes
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <HashtagIcon className="h-4 w-4" />
+                <Hash size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.topics}</span>{' '}
                   Topics
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <IdentificationIcon className="h-4 w-4" />
+                <Award size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.badges}</span>{' '}
                   Badges
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <BellIcon className="h-4 w-4" />
+                <Bell size={15} />
                 <div>
                   <span className="font-bold">
                     {data?.stats?.notifications}
@@ -103,7 +103,7 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <LoginIcon className="h-4 w-4" />
+                <LogIn size={15} />
                 <div>
                   <span className="font-bold">{data?.stats?.sessions}</span>{' '}
                   Sessions
@@ -114,7 +114,7 @@ const StaffToolsDashboard: React.FC = () => {
             <div className="text-xl font-bold mb-1.5">Services</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
-                <DatabaseIcon className="h-4 w-4" />
+                <Database size={15} />
                 <div className="flex items-center space-x-1">
                   <a
                     href="https://app.planetscale.com/yo/devparty"
@@ -124,21 +124,21 @@ const StaffToolsDashboard: React.FC = () => {
                   >
                     PlanetScale
                   </a>
-                  <ExternalLinkIcon className="h-3 w-3" />
+                  <ExternalLink size={12} />
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <ChipIcon className="h-4 w-4" />
+                <Cpu size={15} />
                 <div className="flex items-center space-x-1">
                   <a
-                    href="https://console.upstash.com/redis/21cb559e-de14-44b9-a67f-05c67f2c8376"
+                    href="https://console.upstash.com/redis/21cb559e-de15-44b9-a67f-05c67f2c8376"
                     className="font-bold"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Upstash
                   </a>
-                  <ExternalLinkIcon className="h-3 w-3" />
+                  <ExternalLink size={12} />
                 </div>
               </div>
             </div>
