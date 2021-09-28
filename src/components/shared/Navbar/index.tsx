@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
+import BetaBadge from '../BetaBadge'
 import MenuItems from './MenuItems'
 import Notification from './Notification'
 import Search from './Search'
@@ -104,9 +105,7 @@ const Navbar: React.FC = () => {
                       />
                     </a>
                   </Link>
-                  <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-brand-500 to-pink-500">
-                    beta
-                  </div>
+                  <BetaBadge />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex items-center space-x-4">
