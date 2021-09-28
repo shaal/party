@@ -1,6 +1,7 @@
 import SinglePost from '@components/Post/SinglePost'
 import Slug from '@components/shared/Slug'
 import { Card, CardBody } from '@components/ui/Card'
+import { AtSymbolIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import { Notification, Post } from 'src/__generated__/schema.generated'
@@ -18,7 +19,10 @@ const UserMention: React.FC<Props> = ({ notification }) => {
       <CardBody className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center linkify space-x-1">
-            <Slug slug={notification?.dispatcher?.username} prefix="@" />
+            <div className="flex items-center space-x-3">
+              <AtSymbolIcon className="h-6 w-6 text-blue-500" />
+              <Slug slug={notification?.dispatcher?.username} prefix="@" />
+            </div>
             <div>mentioned you in the</div>
             <Link href={`/posts/${notification?.post?.id}`}>
               <a>post</a>
