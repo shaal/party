@@ -25,19 +25,20 @@ const Followers = () => {
       skip: !router.isReady
     }
   )
+  const user = data?.user
 
   if (!router.isReady || loading)
     return <PageLoading message="Loading followers" />
 
-  if (!data?.user) return window.location.replace('/home')
+  if (!user) return window.location.replace('/home')
 
   return (
     <>
-      {data?.user?.profile?.cover ? (
+      {user?.profile?.cover ? (
         <img
           className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
-          src={imagekitURL(data?.user?.profile?.cover as string)}
-          alt={`@${data?.user?.username}'s cover`}
+          src={imagekitURL(user?.profile?.cover as string)}
+          alt={`@${user?.username}'s cover`}
         />
       ) : (
         <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
@@ -45,7 +46,7 @@ const Followers = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          <Details user={data?.user as User} />
+          <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
           <FollowersList />
