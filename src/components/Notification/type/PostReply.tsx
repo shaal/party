@@ -4,6 +4,9 @@ import { Card, CardBody } from '@components/ui/Card'
 import Link from 'next/link'
 import React from 'react'
 import { Notification, Post } from 'src/__generated__/schema.generated'
+import * as timeago from 'timeago.js'
+
+import MarkAsRead from '../Read'
 
 interface Props {
   notification: Notification
@@ -12,16 +15,20 @@ interface Props {
 const PostReply: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
-      <CardBody className="space-y-3">
-        <div className="space-y-3">
-          <div className="flex items-center space-x-1">
+      <CardBody className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center linkify space-x-1">
             <Slug slug={notification?.dispatcher?.username} prefix="@" />
-            <div className="linkify">
-              Replied to your{' '}
-              <Link href={`/posts/${notification?.post?.id}`}>
-                <a>post</a>
-              </Link>
+            <div>replied to your</div>
+            <Link href={`/posts/${notification?.post?.id}`}>
+              <a>post</a>
+            </Link>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="text-sm cursor-pointer">
+              {timeago.format(notification?.createdAt)}
             </div>
+            <MarkAsRead notification={notification} />
           </div>
         </div>
         <SinglePost post={notification?.post as Post} />

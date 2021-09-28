@@ -9,16 +9,21 @@ import MarkAsRead from '../Read'
 
 interface Props {
   notification: Notification
+  followedVia?: 'INVITE'
 }
 
-const UserFollow: React.FC<Props> = ({ notification }) => {
+const UserFollow: React.FC<Props> = ({ notification, followedVia }) => {
   return (
     <Card>
-      <CardBody className="space-y-5">
+      <CardBody className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
             <Slug slug={notification?.dispatcher?.username} prefix="@" />
-            <div>Followed you</div>
+            {followedVia === 'INVITE' ? (
+              <div>used your invite and automatically followed you 🎉</div>
+            ) : (
+              <div>followed you</div>
+            )}
           </div>
           <div className="flex items-center space-x-3">
             <div className="text-sm cursor-pointer">

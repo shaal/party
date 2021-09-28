@@ -116,6 +116,12 @@ const Notifications: React.FC = () => {
                   {notification?.type === 'USER_FOLLOW' && (
                     <UserFollow notification={notification} />
                   )}
+                  {notification?.type === 'USER_INVITE_FOLLOW' && (
+                    <UserFollow
+                      notification={notification}
+                      followedVia="INVITE"
+                    />
+                  )}
                   {notification?.type === 'USER_MENTION' && (
                     <UserMention notification={notification} />
                   )}
