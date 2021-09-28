@@ -8,7 +8,7 @@ export const processMentions = async (
   post: Post,
   session: Session | undefined | null
 ) => {
-  const users = parseMentions(getMentions(post?.body))
+  const users = await parseMentions(getMentions(post?.body))
 
   await db.notification.create({
     data: {
