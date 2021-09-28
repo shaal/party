@@ -6,7 +6,6 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
 import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
@@ -56,6 +55,7 @@ const WhoToFollow: React.FC = () => {
       notifyOnNetworkStatusChange: true
     }
   )
+  const users = data?.whoToFollow?.edges?.map((edge) => edge?.node)
 
   if (loading)
     return (
@@ -74,7 +74,7 @@ const WhoToFollow: React.FC = () => {
     <WhoToFollowCard refetch={refetch}>
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
-        {data?.whoToFollow?.edges?.length === 0 && (
+        {users?.length === 0 && (
           <div className="grid justify-items-center space-y-2">
             <div>
               <UsersIcon className="h-5 w-5" />
@@ -82,12 +82,8 @@ const WhoToFollow: React.FC = () => {
             <div>Nothing to suggest</div>
           </div>
         )}
-        {data?.whoToFollow?.edges?.map((user: any) => (
-          <UserProfile
-            key={user?.node?.id}
-            user={user?.node as User}
-            showFollow
-          />
+        {users?.map((user: any) => (
+          <UserProfile key={user?.id} user={user} showFollow />
         ))}
       </div>
     </WhoToFollowCard>
