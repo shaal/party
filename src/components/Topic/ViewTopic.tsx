@@ -35,49 +35,44 @@ const ViewTopic = () => {
     variables: { name: router.query.topic },
     skip: !router.isReady
   })
+  const topic = data?.topic
 
   if (!router.isReady || loading) return <PageLoading message="Loading topic" />
 
-  if (!data?.topic) return window.location.replace('/home')
+  if (!topic) return window.location.replace('/home')
 
   return (
     <GridLayout>
       <GridItemEight>
-        <TopicFeed topic={data?.topic?.name as string} />
+        <TopicFeed topic={topic?.name as string} />
       </GridItemEight>
       <GridItemFour>
         <Card>
           <CardBody>
             <div className="space-y-3">
               <ErrorMessage title="Failed to load post" error={error} />
-              {data?.topic?.image && (
+              {topic?.image && (
                 <img
-                  src={imagekitURL(data?.topic?.image, 100, 100)}
-                  alt={data?.topic?.name}
+                  src={imagekitURL(topic?.image, 100, 100)}
+                  alt={topic?.name}
                   className="h-20 w-20 rounded-lg"
                 />
               )}
               <div>
                 <div className="flex items-center space-x-3">
-                  <Slug
-                    slug={data?.topic?.name}
-                    prefix="#"
-                    className="text-xl"
-                  />
-                  <Star topic={data?.topic as Topic} />
+                  <Slug slug={topic?.name} prefix="#" className="text-xl" />
+                  <Star topic={topic as Topic} />
                 </div>
                 <div className="text-gray-600 dark:text-gray-300">
-                  {data?.topic?.postsCount} Posts
+                  {topic?.postsCount} Posts
                 </div>
               </div>
-              {data?.topic?.description && (
-                <div>{data?.topic?.description}</div>
-              )}
+              {topic?.description && <div>{topic?.description}</div>}
             </div>
           </CardBody>
         </Card>
         {currentUser?.isStaff && staffMode && (
-          <TopicMod topic={data?.topic as Topic} />
+          <TopicMod topic={topic as Topic} />
         )}
       </GridItemFour>
     </GridLayout>
