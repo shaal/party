@@ -1,14 +1,14 @@
 import AppContext from '@components/utils/AppContext'
-import clsx from 'clsx'
 import {
-  ClipboardList,
-  Coins,
-  Contact,
-  Gavel,
-  Lock,
-  Share2,
-  User
-} from 'lucide-react'
+  CashIcon,
+  ClipboardListIcon,
+  IdentificationIcon,
+  LockClosedIcon,
+  PuzzleIcon,
+  ShareIcon,
+  UserIcon
+} from '@heroicons/react/outline'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
@@ -42,39 +42,39 @@ const Sidebar: React.FC = () => {
         current={router.pathname == '/settings/profile'}
         url="/settings/profile"
       >
-        <User size={16} />
+        <UserIcon className="h-4 w-4" />
         <div>Profile</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/social'}
         url="/settings/social"
       >
-        <Share2 size={16} />
+        <ShareIcon className="h-4 w-4" />
         <div>Social</div>
       </Menu>
       <Menu current={router.pathname == '/settings/tips'} url="/settings/tips">
-        <Coins size={16} />
+        <CashIcon className="h-4 w-4" />
         <div>Tips</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/security'}
         url="/settings/security"
       >
-        <Lock size={16} />
+        <LockClosedIcon className="h-4 w-4" />
         <div>Security</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/integration'}
         url="/settings/integration"
       >
-        <Gavel size={16} />
+        <PuzzleIcon className="h-4 w-4" />
         <div>Integrations</div>
       </Menu>
       <Menu
         current={router.pathname == '/settings/sessions'}
         url="/settings/sessions"
       >
-        <Contact size={16} />
+        <IdentificationIcon className="h-4 w-4" />
         <div>Sessions</div>
       </Menu>
       {currentUser?.isStaff && staffMode && (
@@ -83,7 +83,7 @@ const Sidebar: React.FC = () => {
             current={router.pathname == '/settings/logs'}
             url="/settings/logs"
           >
-            <ClipboardList size={16} />
+            <ClipboardListIcon className="h-4 w-4" />
             <div>Audit Logs</div>
           </Menu>
         </>
