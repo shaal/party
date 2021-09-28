@@ -13,6 +13,7 @@ import PostLike from './type/PostLike'
 import PostReply from './type/PostReply'
 import ProductSubscribe from './type/ProductSubscribe'
 import UserFollow from './type/UserFollow'
+import UserMention from './type/UserMention'
 
 export const NOTIFICATIONS_QUERY = gql`
   query NotificationsQuery($after: String, $isRead: Boolean) {
@@ -114,6 +115,9 @@ const Notifications: React.FC = () => {
                   )}
                   {notification?.type === 'USER_FOLLOW' && (
                     <UserFollow notification={notification} />
+                  )}
+                  {notification?.type === 'USER_MENTION' && (
+                    <UserMention notification={notification} />
                   )}
                   {notification?.type === 'PRODUCT_SUBSCRIBE' && (
                     <ProductSubscribe notification={notification} />

@@ -17,6 +17,7 @@ export const processMentions = async (
     data: {
       dispatcher: { connect: { id: session?.userId } },
       receiver: { connect: mentions },
+      post: { connect: { id: post?.id } },
       type: 'USER_MENTION',
       entityId: post?.id
     }
