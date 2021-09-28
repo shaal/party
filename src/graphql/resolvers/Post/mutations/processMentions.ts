@@ -8,12 +8,16 @@ export const processMentions = async (
   post: Post,
   session: Session | undefined | null
 ) => {
-  const users = parseMentions(getMentions(post?.body))
+  const users = await parseMentions(getMentions(post?.body))
+  const mentions = users.filter(function (obj) {
+    return obj.id !== session?.userId
+  })
 
   await db.notification.create({
     data: {
       dispatcher: { connect: { id: session?.userId } },
-      receiver: { connect: users },
+      receiver: { connect: mentions },
+      post: { connect: { id: post?.id } },
       type: 'USER_MENTION',
       entityId: post?.id
     }
