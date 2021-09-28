@@ -38,6 +38,7 @@ const Topics: React.FC = () => {
   const { data, loading, error } = useQuery<GetExploreUserQuery>(
     GET_EXPLORE_USER_QUERY
   )
+  const user = data?.me
 
   if (loading)
     return (
@@ -47,8 +48,6 @@ const Topics: React.FC = () => {
         </CardBody>
       </Card>
     )
-
-  const user = data?.me
 
   return (
     <>

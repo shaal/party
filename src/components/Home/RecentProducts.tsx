@@ -5,7 +5,6 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
 
 import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
@@ -42,6 +41,7 @@ const RecentProducts: React.FC = () => {
   const { data, loading, error } = useQuery<RecentProductsQuery>(
     RECENT_PRODUCTS_QUERY
   )
+  const products = data?.products?.edges?.map((edge) => edge?.node)
 
   if (loading)
     return (
@@ -60,11 +60,8 @@ const RecentProducts: React.FC = () => {
     <RecentProductsCard>
       <ErrorMessage title="Failed to load products" error={error} />
       <div className="space-y-3">
-        {data?.products?.edges?.map((product: any) => (
-          <ProductProfile
-            key={product?.node?.id}
-            product={product?.node as Product}
-          />
+        {products?.map((product: any) => (
+          <ProductProfile key={product?.id} product={product} />
         ))}
       </div>
     </RecentProductsCard>
