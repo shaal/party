@@ -1,4 +1,5 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
+import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
@@ -37,8 +38,8 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
       }
     })
 
+    createNotification(user?.id, invite.userId, user?.id, 'USER_INVITE_FOLLOW')
     await createSession(req, user)
-
     await db.invite.updateMany({
       where: { code: input.invite },
       data: { usedTimes: { increment: 1 } }
