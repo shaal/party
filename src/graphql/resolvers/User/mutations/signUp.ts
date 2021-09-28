@@ -1,5 +1,6 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
+import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
@@ -30,7 +31,9 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
         profile: {
           create: {
             name: input.username,
-            avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
+            avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`,
+            cover: getRandomCover().image,
+            coverBg: getRandomCover().color
           }
         },
         following: { connect: { id: invite.userId } },
