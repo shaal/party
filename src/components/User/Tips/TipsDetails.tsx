@@ -50,6 +50,10 @@ const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
   </a>
 )
 
+const SingleTipShimmer: React.FC = () => (
+  <div className="flex flex-col justify-center items-center text-center shimmer rounded-md p-4 shadow-sm h-20" />
+)
+
 interface Props {
   user: User
 }
@@ -62,7 +66,17 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
   })
   const tip = data?.user?.tip
 
-  if (loading) return <div className="p-5">Loading dev tips...</div>
+  if (loading)
+    return (
+      <div className="p-5">
+        <div className="grid gap-4 md:grid-cols-4 grid-cols-2">
+          <SingleTipShimmer />
+          <SingleTipShimmer />
+          <SingleTipShimmer />
+          <SingleTipShimmer />
+        </div>
+      </div>
+    )
 
   return (
     <>
