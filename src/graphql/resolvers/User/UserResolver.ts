@@ -75,7 +75,7 @@ builder.prismaObject('User', {
       authScopes: { $granted: 'currentUser' },
       resolve: async (parent, args, { session }) => {
         return await db.notification.count({
-          where: { receiver: { some: { id: session?.userId } }, isRead: false }
+          where: { receiver: { id: session?.userId }, isRead: false }
         })
       }
     }),
