@@ -9,6 +9,7 @@ import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
+  ClockIcon,
   LocationMarkerIcon,
   PencilIcon,
   SupportIcon
@@ -19,6 +20,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Profile, User } from 'src/__generated__/schema.generated'
+import * as timeago from 'timeago.js'
 
 import Badges from './Badges'
 import Follow from './Follow'
@@ -95,12 +97,18 @@ const Details: React.FC<Props> = ({ user }) => {
             <Linkify options={linkifyOptions}>{user?.profile?.bio}</Linkify>
           </div>
         )}
-        {user?.profile?.location && (
+        <div className="space-y-1">
+          {user?.profile?.location && (
+            <div className="flex items-center gap-2">
+              <LocationMarkerIcon className="h-4 w-4" />
+              <div>{user?.profile?.location}</div>
+            </div>
+          )}
           <div className="flex items-center gap-2">
-            <LocationMarkerIcon className="h-4 w-4" />
-            <div>{user?.profile?.location}</div>
+            <ClockIcon className="h-4 w-4" />
+            <div>{timeago.format(user?.createdAt)}</div>
           </div>
-        )}
+        </div>
         <Social profile={user?.profile as Profile} />
         <OwnedProducts user={user} />
         {user?.hasWakatimeIntegration && <Wakatime user={user} />}

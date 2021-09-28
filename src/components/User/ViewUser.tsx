@@ -24,6 +24,7 @@ export const UserFragment = gql`
     isVerified
     isStaff
     spammy
+    createdAt
     followers {
       totalCount
     }
