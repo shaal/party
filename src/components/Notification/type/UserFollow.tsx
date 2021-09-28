@@ -14,7 +14,7 @@ interface Props {
 const UserFollow: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
-      <CardBody className="space-y-5">
+      <CardBody className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
             <Slug slug={notification?.dispatcher?.username} prefix="@" />

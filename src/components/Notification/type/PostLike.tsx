@@ -15,7 +15,7 @@ interface Props {
 const PostLike: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
-      <CardBody className="space-y-3">
+      <CardBody className="space-y-4">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <UserProfile user={notification?.dispatcher} />
