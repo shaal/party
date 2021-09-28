@@ -33,15 +33,16 @@ const Settings = () => {
       skip: !router.isReady
     }
   )
+  const product = data?.product
 
   if (loading) {
     return <PageLoading message="Loading settings" />
   }
 
-  if (data?.product?.owner?.id !== currentUser?.id)
+  if (product?.owner?.id !== currentUser?.id)
     return window.location.replace('/home')
 
-  return <ProductSettings product={data?.product as Product} />
+  return <ProductSettings product={product as Product} />
 }
 
 export default Settings
