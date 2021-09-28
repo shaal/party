@@ -308,6 +308,7 @@ enum NotificationType {
   // User
   USER_MENTION
   USER_FOLLOW
+  USER_INVITE_FOLLOW
 
   // Product
   PRODUCT_SUBSCRIBE
