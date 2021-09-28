@@ -32,4 +32,4 @@ tsconfig.tsbuildinfo
 .env.production.local
 
 src/**/__generated__/**
-dump.rdb
+*.rdb
