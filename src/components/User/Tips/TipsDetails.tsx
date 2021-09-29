@@ -116,18 +116,25 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
             <CopyToClipboard
               text={tip?.bitcoin}
               onCopy={() => {
-                toast.success('Bitcoin address copied to the clipboard')
+                toast.success('Bitcoin address copied!')
               }}
             >
-              <SingleTip icon="bitcoin" text="Bitcoin" />
+              <div className="cursor-pointer">
+                <SingleTip icon="bitcoin" text="Bitcoin" />
+              </div>
             </CopyToClipboard>
           )}
           {tip?.ethereum && (
-            <SingleTip
-              icon="ethereum"
-              link={`https://github.com/sponsors/${tip?.ethereum}`}
-              text="Ethereum"
-            />
+            <CopyToClipboard
+              text={tip?.ethereum}
+              onCopy={() => {
+                toast.success('Ethereum address copied!')
+              }}
+            >
+              <div className="cursor-pointer">
+                <SingleTip icon="ethereum" text="Ethereum" />
+              </div>
+            </CopyToClipboard>
           )}
         </div>
       </div>
