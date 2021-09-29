@@ -54,13 +54,13 @@ const LogsSettings: React.FC = () => {
             icon={<ClipboardListIcon className="h-8 w-8" />}
           />
         ) : (
-          logs?.map((log: any) => (
-            <Card className="mb-4" key={log?.id}>
-              <CardBody className="space-y-4">
-                <SingleLog log={log} />
-              </CardBody>
-            </Card>
-          ))
+          <Card className="mb-4">
+            <CardBody className="space-y-4">
+              {logs?.map((log: any) => (
+                <SingleLog key={log?.id} log={log} />
+              ))}
+            </CardBody>
+          </Card>
         )}
       </GridItemEight>
     </GridLayout>
