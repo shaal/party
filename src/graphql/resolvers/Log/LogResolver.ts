@@ -8,7 +8,6 @@ builder.prismaObject('Log', {
     id: t.exposeID('id'),
     action: t.exposeString('action'),
     entityId: t.exposeString('entityId', { nullable: true }),
-    ipAddress: t.exposeString('ipAddress', { nullable: true }),
 
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
