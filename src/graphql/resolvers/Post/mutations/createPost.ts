@@ -75,7 +75,7 @@ export const createPost = async (
     })
 
     if (session!.userId !== parent?.userId) {
-      await createNotification(
+      createNotification(
         session!.userId,
         parent?.userId,
         post?.id,
