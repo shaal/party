@@ -23,7 +23,8 @@ tasks:
     command: >
       gp await-port 3000;
       printf "Waiting for local Devparty development environment to load in the browser...";
-      gp preview $(gp url 3000)
+      gp preview $(gp url 3000);
+      clear
 
 ports:
   - port: 3000 # Web app
