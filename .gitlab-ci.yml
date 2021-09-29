@@ -44,6 +44,7 @@ typecheck:
 build:
   extends: .prepare
   script:
+    - npx hardhat compile
     - yarn build
 
 migrate:
