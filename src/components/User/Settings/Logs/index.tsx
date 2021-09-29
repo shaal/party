@@ -22,7 +22,6 @@ export const LOGS_SETTINGS_QUERY = gql`
             username
             profile {
               id
-              name
               avatar
             }
           }
