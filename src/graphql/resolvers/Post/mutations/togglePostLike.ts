@@ -1,4 +1,5 @@
 import { hasLiked } from '@graphql/resolvers/Like/queries/hasLiked'
+import { createLog } from '@graphql/resolvers/Log/mutations/createLog'
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { db } from '@utils/prisma'
 
@@ -30,6 +31,7 @@ export const togglePostLike = async (
     if (like && userId !== post?.userId) {
       createNotification(userId, post?.userId, like?.id, 'POST_LIKE')
     }
+    createLog(userId, like?.id, 'POST_LIKE')
 
     return post
   } catch (error: any) {
