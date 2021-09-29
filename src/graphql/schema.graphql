@@ -137,7 +137,6 @@ type Log {
   createdAt: DateTime!
   entityId: String
   id: ID!
-  ipAddress: String
   user: User!
 }
 
