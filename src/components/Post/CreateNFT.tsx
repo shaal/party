@@ -15,11 +15,8 @@ type Props = {
 }
 
 const CreateNFT: React.FC<Props> = ({ post }) => {
-  const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({
-    price: '',
-    name: '',
-    description: ''
+    price: ''
   })
   const router = useRouter()
 
@@ -27,9 +24,7 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
     const { price } = formInput
     if (!price) return
     try {
-      createSale(
-        'https://3000-white-rooster-o585vnwt.ws-us18.gitpod.io/posts/62e431a1-d9d4-4803-81f4-ebfe3e44f27e'
-      )
+      createSale(`${process.env.BASE_URL}/posts/${post?.id}`)
     } catch (error) {
       console.log('Error uploading IPFS: ', error)
     }
