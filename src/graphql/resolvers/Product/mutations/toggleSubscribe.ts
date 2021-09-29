@@ -35,7 +35,7 @@ export const toggleSubscribe = async (
     })
 
     if (currentUserId !== product?.ownerId) {
-      await createNotification(
+      createNotification(
         currentUserId,
         product?.ownerId,
         product?.id,

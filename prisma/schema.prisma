@@ -279,7 +279,6 @@ model Log {
   id        String        @id @default(uuid())
   action    LogActionType
   entityId  String?
-  ipAddress String?
 
   // Timestamps
   createdAt DateTime @default(now())

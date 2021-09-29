@@ -132,6 +132,14 @@ type Like {
   user: User!
 }
 
+type Log {
+  action: String!
+  createdAt: DateTime!
+  entityId: String
+  id: ID!
+  user: User!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -284,6 +292,7 @@ type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
+  logs(after: String, before: String, first: Int, last: Int): QueryLogsConnection!
   me: User
   morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, isRead: Boolean! = false, last: Int): QueryNotificationsConnection!
@@ -331,6 +340,16 @@ type QueryHomeFeedConnection {
 type QueryHomeFeedConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryLogsConnection {
+  edges: [QueryLogsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryLogsConnectionEdge {
+  cursor: String!
+  node: Log!
 }
 
 type QueryMorePostsByUserConnection {
