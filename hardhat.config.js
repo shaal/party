@@ -10,13 +10,13 @@ module.exports = {
       // Infura
       // url: `https://polygon-mumbai.infura.io/v3/${infuraId}`
       url: 'https://rpc-mumbai.matic.today',
-      accounts: [privateKey]
+      accounts: process.env.METAMASK_PRIVATE_KEY
     },
     matic: {
       // Infura
       // url: `https://polygon-mainnet.infura.io/v3/${infuraId}`,
       url: 'https://rpc-mainnet.maticvigil.com',
-      accounts: [privateKey]
+      accounts: process.env.METAMASK_PRIVATE_KEY
     }
   },
   solidity: {
