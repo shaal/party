@@ -45,7 +45,6 @@ vscode:
     - christian-kohler.npm-intellisense
     - esbenp.prettier-vscode
     - prisma.prisma
-    - eamodio.gitlens
     - pflannery.vscode-versionlens
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
