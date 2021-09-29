@@ -19,10 +19,16 @@ tasks:
     before: redis-server &
     init: gp sync-await setup
     command: yarn dev
+  - name: Open Site
+    command: >
+      gp await-port 3000;
+      printf "Waiting for local Devparty development environment to load in the browser...";
+      gp preview $(gp url 3000);
+      clear
 
 ports:
   - port: 3000 # Web app
-    onOpen: open-browser
+    onOpen: ignore
     visibility: public
   - port: 5555 # Prisma Studio
     onOpen: ignore
@@ -40,7 +46,6 @@ vscode:
     - christian-kohler.npm-intellisense
     - esbenp.prettier-vscode
     - prisma.prisma
-    - eamodio.gitlens
     - pflannery.vscode-versionlens
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag

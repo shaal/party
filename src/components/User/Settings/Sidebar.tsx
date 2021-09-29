@@ -1,4 +1,3 @@
-import AppContext from '@components/utils/AppContext'
 import {
   CashIcon,
   ClipboardListIcon,
@@ -11,7 +10,7 @@ import {
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React from 'react'
 
 interface MenuProps {
   children: React.ReactNode
@@ -34,7 +33,6 @@ const Menu: React.FC<MenuProps> = ({ children, current, url }) => (
 
 const Sidebar: React.FC = () => {
   const router = useRouter()
-  const { currentUser, staffMode } = useContext(AppContext)
 
   return (
     <div className="space-y-1.5 mb-4 px-3 sm:px-0">
@@ -77,17 +75,10 @@ const Sidebar: React.FC = () => {
         <IdentificationIcon className="h-4 w-4" />
         <div>Sessions</div>
       </Menu>
-      {currentUser?.isStaff && staffMode && (
-        <>
-          <Menu
-            current={router.pathname == '/settings/logs'}
-            url="/settings/logs"
-          >
-            <ClipboardListIcon className="h-4 w-4" />
-            <div>Audit Logs</div>
-          </Menu>
-        </>
-      )}
+      <Menu current={router.pathname == '/settings/logs'} url="/settings/logs">
+        <ClipboardListIcon className="h-4 w-4" />
+        <div>Audit Logs</div>
+      </Menu>
     </div>
   )
 }

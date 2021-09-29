@@ -4,6 +4,8 @@ import AppContext from '@components/utils/AppContext'
 import { PencilIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 
 import { UserTipsQuery } from './__generated__/TipsDetails.generated'
@@ -30,7 +32,7 @@ const USER_TIPS_QUERY = gql`
 
 interface SingleTipProps {
   icon: string
-  link: string
+  link?: string
   text: string
 }
 
@@ -111,18 +113,28 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
             />
           )}
           {tip?.bitcoin && (
-            <SingleTip
-              icon="bitcoin"
-              link={`https://github.com/sponsors/${tip?.bitcoin}`}
-              text="Bitcoin"
-            />
+            <CopyToClipboard
+              text={tip?.bitcoin}
+              onCopy={() => {
+                toast.success('Bitcoin address copied!')
+              }}
+            >
+              <div className="cursor-pointer">
+                <SingleTip icon="bitcoin" text="Bitcoin" />
+              </div>
+            </CopyToClipboard>
           )}
           {tip?.ethereum && (
-            <SingleTip
-              icon="ethereum"
-              link={`https://github.com/sponsors/${tip?.ethereum}`}
-              text="Ethereum"
-            />
+            <CopyToClipboard
+              text={tip?.ethereum}
+              onCopy={() => {
+                toast.success('Ethereum address copied!')
+              }}
+            >
+              <div className="cursor-pointer">
+                <SingleTip icon="ethereum" text="Ethereum" />
+              </div>
+            </CopyToClipboard>
           )}
         </div>
       </div>
