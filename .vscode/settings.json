@@ -1,11 +1,12 @@
 {
   "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "material-icon-theme",
   "editor.formatOnSave": true,
   "editor.fontSize": 16,
+  "editor.lineHeight": 30,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "git.autofetch": true,
+  "git.confirmSync": false,
   "git.enableSmartCommit": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "editor.lineHeight": 30,
   "terminal.integrated.gpuAcceleration": "canvas"
 }
