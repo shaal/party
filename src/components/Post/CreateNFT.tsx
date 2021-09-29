@@ -1,8 +1,8 @@
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ethers } from 'ethers'
-import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import Web3Modal from 'web3modal'
 
@@ -18,7 +18,6 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
   const [formInput, updateFormInput] = useState({
     price: ''
   })
-  const router = useRouter()
 
   async function createMarket() {
     const { price } = formInput
@@ -54,8 +53,9 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
     transaction = await contract.createMarketItem(nftaddress, tokenId, price, {
       value: listingPrice
     })
+    console.log(transaction)
     await transaction.wait()
-    router.push('/')
+    toast.success('Transaction completed!')
   }
 
   return (
