@@ -1,32 +1,36 @@
 import { gql, useMutation } from '@apollo/client'
-import Attachments from '@components/Post/SinglePost/Attachments'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { TaskCheckbox } from '@components/ui/TaskCheckbox'
-import { CheckCircleIcon } from '@heroicons/react/outline'
+import { DocumentAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { boolean, object, string } from 'zod'
 
-import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {
   NewPostMutation,
   NewPostMutationVariables
 } from './__generated__/Post.generated'
 
-const newTaskSchema = object({
-  body: string()
-    .min(1, { message: '✅ Task should not be empty' })
-    .max(10000, { message: '✅ Task should not exceed 10000 characters' }),
+const newPostSchema = object({
+  url: string()
+    .regex(
+      /(?:http:\/\/)?(?:www\.)?github\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
+      { message: '🐙 Enter the valid GitHub Commit URL' }
+    )
+    .url({ message: '🐙 Enter the valid GitHub Commit URL' })
+    .min(1, { message: '🐙 Commit URL should not be empty' })
+    .max(10000, {
+      message: '🐙 Commit URL should not exceed 10000 characters'
+    }),
   done: boolean().default(true)
 })
 
-const TaskType: React.FC = () => {
+const CommitType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
@@ -53,20 +57,20 @@ const TaskType: React.FC = () => {
   )
 
   const form = useZodForm({
-    schema: newTaskSchema
+    schema: newPostSchema
   })
 
   return (
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body, done }) =>
+      onSubmit={({ url, done }) =>
         createPost({
           variables: {
             input: {
-              body,
+              body: url,
               done,
-              type: 'TASK',
+              type: 'COMMIT',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
               productId: selectedProduct as string
@@ -80,18 +84,10 @@ const TaskType: React.FC = () => {
         error={createPostResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
-        <TaskCheckbox {...form.register('done')} />
-        <Input
-          {...form.register('body')}
-          placeholder="What have you achieved?"
-        />
+        <Input {...form.register('url')} placeholder="Git Commit URL" />
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
-          <Attachment
-            attachments={attachments}
-            setAttachments={setAttachments}
-          />
           <SelectProduct setSelectedProduct={setSelectedProduct} />
         </div>
         <Button
@@ -100,20 +96,15 @@ const TaskType: React.FC = () => {
             form.formState.isSubmitting ? (
               <Spinner size="xs" />
             ) : (
-              <CheckCircleIcon className="h-4 w-4" />
+              <DocumentAddIcon className="h-4 w-4" />
             )
           }
         >
-          Create Task
+          Post Commit
         </Button>
       </div>
-      <Attachments
-        attachments={attachments}
-        setAttachments={setAttachments}
-        isNew
-      />
     </Form>
   )
 }
 
-export default TaskType
+export default CommitType

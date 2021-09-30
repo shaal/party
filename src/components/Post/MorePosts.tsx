@@ -67,7 +67,7 @@ const MorePosts: React.FC<Props> = ({ post }) => {
       {posts?.map((post: any) => (
         <div key={post?.id} className="space-y-2">
           <div>{post?.title}</div>
-          <div className="flex items-start space-x-1 text-sm">
+          <div className="flex items-center space-x-1 text-sm">
             <img
               className="h-5 w-5 rounded-full"
               src={imagekitURL(post?.user?.profile?.avatar, 50, 50)}

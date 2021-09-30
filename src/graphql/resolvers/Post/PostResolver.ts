@@ -51,6 +51,7 @@ builder.prismaObject('Post', {
     user: t.relation('user'),
     product: t.relation('product', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),
+    commit: t.relation('commit', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,

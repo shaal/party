@@ -4,6 +4,7 @@ import { Tab } from '@headlessui/react'
 import {
   CheckCircleIcon,
   CollectionIcon,
+  DocumentAddIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -20,6 +21,11 @@ const QuestionType = dynamic(() => import('./Type/Question'), {
   loading: () => <Loading />
 })
 const TaskType = dynamic(() => import('./Type/Task'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
+
+const CommitType = dynamic(() => import('./Type/Commit'), {
   // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
@@ -77,6 +83,21 @@ const NewPost: React.FC = () => {
                 </button>
               )}
             </Tab>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <button
+                  className={clsx(
+                    { 'text-brand-500': selected },
+                    { 'text-gray-400': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
+                >
+                  <Tooltip content="Git Commit">
+                    <DocumentAddIcon className="h-5 w-5" />
+                  </Tooltip>
+                </button>
+              )}
+            </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
             <Tab.Panel>
@@ -87,6 +108,9 @@ const NewPost: React.FC = () => {
             </Tab.Panel>
             <Tab.Panel>
               <QuestionType />
+            </Tab.Panel>
+            <Tab.Panel>
+              <CommitType />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
