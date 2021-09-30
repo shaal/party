@@ -226,7 +226,7 @@ type PostCommit {
   additions: Int
   authorAvatar: String
   authorUsername: String
-  chnaged: Int
+  changed: Int
   deletions: Int
   id: ID!
   message: String

@@ -16,6 +16,7 @@ export const POST_COMMIT_QUERY = gql`
       commit {
         id
         repoSlug
+        changed
         additions
         deletions
         message
@@ -75,7 +76,9 @@ const CommitType: React.FC<Props> = ({ post }) => {
               <div className="flex items-center space-x-1">
                 <DocumentIcon className="h-4 w-4" />
                 <div className="flex items-center space-x-1">
-                  <div className="font-bold">1 file</div>
+                  <div className="font-bold">
+                    {commit?.changed} {commit?.changed > 1 ? 'files' : 'file'}
+                  </div>
                   <div>changed</div>
                 </div>
               </div>
