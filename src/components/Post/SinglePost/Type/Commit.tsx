@@ -4,7 +4,11 @@ import 'linkify-plugin-mention'
 import { gql, useQuery } from '@apollo/client'
 import { Tooltip } from '@components/ui/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { DocumentAddIcon, DocumentIcon } from '@heroicons/react/outline'
+import {
+  DocumentAddIcon,
+  DocumentIcon,
+  ShieldCheckIcon
+} from '@heroicons/react/outline'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
@@ -60,8 +64,9 @@ const CommitType: React.FC<Props> = ({ post }) => {
           <div className="text-lg font-bold">{commit?.message}</div>
           {commit?.verified && (
             <Tooltip content="This commit was signed by the committer">
-              <div className="text-xs text-green-500 border border-green-500 rounded-full px-1.5 font-light">
-                Verified
+              <div className="text-xs text-green-500 border border-green-500 rounded-full px-1.5 font-light flex items-center space-x-0.5">
+                <ShieldCheckIcon className="h-3 w-4" />
+                <div>Verified</div>
               </div>
             </Tooltip>
           )}
