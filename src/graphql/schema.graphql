@@ -64,6 +64,10 @@ input EditIntegrationInput {
   wakatimeAPIKey: String
 }
 
+input EditNFTAvatarInput {
+  avatar: String!
+}
+
 input EditPostInput {
   body: String
   done: Boolean
@@ -162,6 +166,7 @@ type Mutation {
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
+  editNFTAvatar(input: EditNFTAvatarInput!): User!
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
