@@ -51,7 +51,7 @@ const CommitType: React.FC<Props> = ({ post }) => {
       <div className="linkify">
         <a
           className="text-lg font-bold"
-          href={commit?.url}
+          href={commit?.url as string}
           target="_blank"
           rel="noreferrer"
         >
@@ -61,10 +61,10 @@ const CommitType: React.FC<Props> = ({ post }) => {
       <div>
         <a
           className="flex items-center space-x-1 text-sm text-gray-600 dark:text-gray-300"
-          href={`https://github.com/${commit.repoSlug}`}
+          href={`https://github.com/${commit?.repoSlug}`}
         >
           <DocumentAddIcon className="h-4 w-4" />
-          <div>{commit.repoSlug}</div>
+          <div>{commit?.repoSlug}</div>
         </a>
       </div>
       <div className="pt-2">
@@ -81,15 +81,15 @@ const CommitType: React.FC<Props> = ({ post }) => {
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <div className="text-green-500">+{commit.additions}</div>
-              <div className="text-red-500">-{commit.deletions}</div>
+              <div className="text-green-500">+{commit?.additions}</div>
+              <div className="text-red-500">-{commit?.deletions}</div>
             </div>
           </div>
           <div className="flex items-center space-x-1.5">
             <div>
               <img
                 className="h-5 w-5 rounded-md"
-                src={imagekitURL(commit?.authorAvatar, 50, 50)}
+                src={imagekitURL(commit?.authorAvatar as string, 50, 50)}
                 alt={`@${commit?.authorUsername}'s avatar'`}
               />
             </div>
