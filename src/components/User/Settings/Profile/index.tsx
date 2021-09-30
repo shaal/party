@@ -21,6 +21,9 @@ export const PROFILE_SETTINGS_QUERY = gql`
         cover
         coverBg
       }
+      integrations {
+        ethAddress
+      }
     }
   }
 `
