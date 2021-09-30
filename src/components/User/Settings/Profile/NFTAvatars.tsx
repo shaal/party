@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/ui/Spinner'
+import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 import useSWR from 'swr'
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const NFTAvatars: React.FC<Props> = ({ user }) => {
+  const router = useRouter()
   const { data, error } = useSWR(
     `https://api.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${user?.integrations?.ethAddress}`,
     fetcher
@@ -37,7 +39,8 @@ const NFTAvatars: React.FC<Props> = ({ user }) => {
     `,
     {
       onCompleted() {
-        toast.success('Avatar Set')
+        toast.success('Avatar has been updated successfully!')
+        router.push(`/@/${user?.username}`)
       }
     }
   )

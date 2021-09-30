@@ -302,6 +302,7 @@ type Profile {
   discord: String
   github: String
   id: ID!
+  isNFTavatar: Boolean!
   location: String
   name: String!
   twitter: String
