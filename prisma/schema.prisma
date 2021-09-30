@@ -142,6 +142,7 @@ model Post {
   productId    String?
   likes        Like[]
   topics       PostTopic[]
+  commit       PostCommit?
   parentId     String?
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies      Post[]         @relation("replies")
@@ -149,6 +150,26 @@ model Post {
 
   // Attributes
   @@map("posts")
+}
+
+model PostCommit {
+  id             String   @id @default(uuid())
+  repoSlug       String?
+  message        String?
+  url            String?
+  verified       Boolean?
+  changed        Int?
+  additions      Int?
+  deletions      Int?
+  authorUsername String?
+  authorAvatar   String?
+
+  // Relations
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+
+  // Attributes
+  @@map("post_commit")
 }
 
 model PostTopic {
@@ -276,9 +297,9 @@ model Integration {
 }
 
 model Log {
-  id        String        @id @default(uuid())
-  action    LogActionType
-  entityId  String?
+  id       String        @id @default(uuid())
+  action   LogActionType
+  entityId String?
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -296,6 +317,7 @@ enum PostType {
   POST
   TASK
   QUESTION
+  COMMIT
   REPLY
 }
 
