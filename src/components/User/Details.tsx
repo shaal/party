@@ -42,11 +42,20 @@ const Details: React.FC<Props> = ({ user }) => {
   return (
     <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
-        <img
-          src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
-          className="rounded-full h-28 w-28 sm:h-40 sm:w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
-          alt={`@${user?.username}'s avatar`}
-        />
+        <div className="relative w-28 h-28 sm:h-40 sm:w-40 -mt-24">
+          <img
+            className="rounded-full ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
+            src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
+            alt={`@${user?.username}'s avatar`}
+          />
+          {user?.profile?.isNFTavatar && (
+            <img
+              className="absolute bottom-0 right-0 h-10 w-10 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
+              src="/ethereum.svg"
+              alt="Ethereum Logo"
+            />
+          )}
+        </div>
         <div>
           <div className="text-2xl font-bold flex items-center gap-1.5">
             {user?.profile?.name}
