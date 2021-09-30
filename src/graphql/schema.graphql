@@ -206,6 +206,7 @@ type PageInfo {
 type Post {
   attachments: Attachments
   body: String!
+  commit: PostCommit
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!
@@ -219,6 +220,19 @@ type Post {
   type: String!
   updatedAt: DateTime!
   user: User!
+}
+
+type PostCommit {
+  additions: Int
+  authorAvatar: String
+  authorUsername: String
+  deletions: Int
+  id: ID!
+  message: String
+  post: Post!
+  repoSlug: String
+  url: String
+  verified: Boolean
 }
 
 type PostLikesConnection {

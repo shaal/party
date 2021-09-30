@@ -94,6 +94,23 @@ CREATE TABLE `posts` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `post_commit` (
+    `id` VARCHAR(191) NOT NULL,
+    `repoSlug` VARCHAR(191),
+    `message` VARCHAR(191),
+    `url` VARCHAR(191),
+    `verified` BOOLEAN,
+    `additions` INTEGER,
+    `deletions` INTEGER,
+    `authorUsername` VARCHAR(191),
+    `authorAvatar` VARCHAR(191),
+    `postId` VARCHAR(191),
+
+    UNIQUE INDEX `post_commit_postId_unique`(`postId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `post_topics` (
     `id` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),

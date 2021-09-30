@@ -13,11 +13,9 @@ export const commit = async (
   const response = await fetch(
     `https://api.github.com/repos/${splitedURL[1]}/${splitedURL[2]}/commits/${splitedURL[4]}`
   )
-
   if (!response.ok) {
     throw new Error('Something went wrong while fetching commit data!')
   }
-
   const commitData = await response.json()
 
   const commit = await db.post.create({
