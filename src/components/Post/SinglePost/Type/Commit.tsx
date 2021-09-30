@@ -77,7 +77,8 @@ const CommitType: React.FC<Props> = ({ post }) => {
                 <DocumentIcon className="h-4 w-4" />
                 <div className="flex items-center space-x-1">
                   <div className="font-bold">
-                    {commit?.changed} {commit?.changed > 1 ? 'files' : 'file'}
+                    {commit?.changed}{' '}
+                    {(commit?.changed as number) > 1 ? 'files' : 'file'}
                   </div>
                   <div>changed</div>
                 </div>
