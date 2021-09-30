@@ -59,6 +59,7 @@ input DeletePostInput {
 }
 
 input EditIntegrationInput {
+  ethAddress: String
   spotifyRefreshToken: String
   wakatimeAPIKey: String
 }
