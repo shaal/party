@@ -22,14 +22,14 @@ export const commit = async (
     ...query,
     data: {
       userId: session!.userId,
-      body: commitData?.commit?.message,
+      body: commitData?.commit?.message?.split('\n')[0],
       type: 'COMMIT',
       productId: input.productId ? input.productId : null,
       commit: {
         create: {
           repoSlug: `${splitedURL[1]}/${splitedURL[2]}`,
-          message: commitData?.commit?.message,
-          url: commitData?.message,
+          message: commitData?.commit?.message?.split('\n')[0],
+          url: commitData?.html_url,
           verified: commitData?.commit?.verification?.verified,
           changed: commitData?.files.length,
           additions: commitData?.stats?.additions,
