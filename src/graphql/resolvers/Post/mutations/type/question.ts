@@ -10,8 +10,7 @@ import { processMentions } from '../processMentions'
 export const question = async (
   query: any,
   input: CreatePostInput,
-  session: Session | null | undefined,
-  parentId: string | null | undefined
+  session: Session | null | undefined
 ) => {
   const question = await db.post.create({
     ...query,
@@ -24,8 +23,7 @@ export const question = async (
       productId: input.productId ? input.productId : null,
       topics: {
         create: parseTopics(getTopics(input.body))
-      },
-      parentId
+      }
     }
   })
 

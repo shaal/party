@@ -57,19 +57,19 @@ export const createPost = async (
   let newPost: any
 
   if (input?.type === 'POST') {
-    newPost = await post(query, input, session, parentId)
+    newPost = await post(query, input, session)
   }
 
   if (input?.type === 'TASK') {
-    newPost = await task(query, input, session, parentId)
+    newPost = await task(query, input, session)
   }
 
   if (input?.type === 'QUESTION') {
-    newPost = await question(query, input, session, parentId)
+    newPost = await question(query, input, session)
   }
 
   if (input?.type === 'COMMIT') {
-    newPost = await commit(query, input, session, parentId)
+    newPost = await commit(query, input, session)
   }
 
   if (input?.type === 'REPLY') {
