@@ -18,8 +18,11 @@ import {
 
 const newPostSchema = object({
   url: string()
-    .min(1, { message: '✅ Task should not be empty' })
-    .max(10000, { message: '✅ Task should not exceed 10000 characters' }),
+    .url({ message: '🐙 Git Commit URL is Invalid' })
+    .min(1, { message: '🐙 Commit URL should not be empty' })
+    .max(10000, {
+      message: '🐙 Commit URL should not exceed 10000 characters'
+    }),
   done: boolean().default(true)
 })
 
