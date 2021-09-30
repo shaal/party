@@ -20,7 +20,7 @@ tasks:
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
     before: redis-server &
-    init: gp sync-await hardhat-setup
+    init: gp sync-await setup
     command: >
       npx hardhat run scripts/deploy.js --network localhost;
       yarn dev;
