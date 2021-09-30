@@ -22,6 +22,9 @@ import {
 const editIntegrationSchema = object({
   wakatimeAPIKey: string()
     .max(100, { message: '🔑 API key should not exceed 100 characters' })
+    .nullable(),
+  ethAddress: string()
+    .regex(/^0x[a-fA-F0-9]{40}$/, { message: '🔑 Ethereum address is invalid' })
     .nullable()
 })
 
@@ -42,6 +45,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
           id
           wakatimeAPIKey
           spotifyRefreshToken
+          ethAddress
         }
       }
     `,
@@ -55,7 +59,8 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const form = useZodForm({
     schema: editIntegrationSchema,
     defaultValues: {
-      wakatimeAPIKey: integration?.wakatimeAPIKey as string
+      wakatimeAPIKey: integration?.wakatimeAPIKey as string,
+      ethAddress: integration?.ethAddress as string
     }
   })
 
@@ -70,10 +75,10 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ wakatimeAPIKey }) =>
+              onSubmit={({ wakatimeAPIKey, ethAddress }) =>
                 editIntegration({
                   variables: {
-                    input: { wakatimeAPIKey: wakatimeAPIKey as string }
+                    input: { wakatimeAPIKey, ethAddress }
                   }
                 })
               }
@@ -112,6 +117,12 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 type="text"
                 placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
                 {...form.register('wakatimeAPIKey')}
+              />
+              <Input
+                label="Ethereum address"
+                type="text"
+                placeholder="0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3"
+                {...form.register('ethAddress')}
               />
               <div className="ml-auto pt-3">
                 <Button
