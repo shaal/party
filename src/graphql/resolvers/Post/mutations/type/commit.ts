@@ -24,7 +24,19 @@ export const commit = async (
       userId: session!.userId,
       body: commitData.commit.message,
       type: 'COMMIT',
-      productId: input.productId ? input.productId : null
+      productId: input.productId ? input.productId : null,
+      commit: {
+        create: {
+          repoSlug: `${splitedURL[1]}/${splitedURL[2]}`,
+          message: commitData?.commit?.message,
+          url: commitData?.message,
+          verified: commitData?.commit?.verification?.verified,
+          additions: commitData?.stats?.additions,
+          deletions: commitData?.stats?.deletions,
+          authorUsername: commitData?.author?.login,
+          authorAvatar: commitData?.author?.avatar_url
+        }
+      }
     }
   })
 
