@@ -158,6 +158,7 @@ model PostCommit {
   message        String?
   url            String?
   verified       Boolean?
+  changed        Int?
   additions      Int?
   deletions      Int?
   authorUsername String?

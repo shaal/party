@@ -100,6 +100,7 @@ CREATE TABLE `post_commit` (
     `message` VARCHAR(191),
     `url` VARCHAR(191),
     `verified` BOOLEAN,
+    `changed` INTEGER,
     `additions` INTEGER,
     `deletions` INTEGER,
     `authorUsername` VARCHAR(191),

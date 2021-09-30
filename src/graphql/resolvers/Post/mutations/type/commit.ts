@@ -31,6 +31,7 @@ export const commit = async (
           message: commitData?.commit?.message,
           url: commitData?.message,
           verified: commitData?.commit?.verification?.verified,
+          changed: commitData?.files.length,
           additions: commitData?.stats?.additions,
           deletions: commitData?.stats?.deletions,
           authorUsername: commitData?.author?.login,

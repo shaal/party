@@ -18,7 +18,11 @@ import {
 
 const newPostSchema = object({
   url: string()
-    .url({ message: '🐙 Git Commit URL is Invalid' })
+    .regex(
+      /(?:http:\/\/)?(?:www\.)?github\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
+      { message: '🐙 Enter the valid GitHub Commit URL' }
+    )
+    .url({ message: '🐙 Enter the valid GitHub Commit URL' })
     .min(1, { message: '🐙 Commit URL should not be empty' })
     .max(10000, {
       message: '🐙 Commit URL should not exceed 10000 characters'
