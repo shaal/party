@@ -193,7 +193,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                       title="Pick avatar from your collectibles"
                       show={showNFTModal}
                     >
-                      <NFTAvatars />
+                      <NFTAvatars user={currentUser} />
                     </Modal>
                   </div>
                 </div>
