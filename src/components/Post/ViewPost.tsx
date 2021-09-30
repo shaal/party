@@ -13,6 +13,7 @@ import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
+import BuyNFT from './BuyNFT'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
@@ -83,7 +84,10 @@ const ViewPost = () => {
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
           {currentUser?.isStaff && staffMode && (
-            <CreateNFT post={post as Post} />
+            <>
+              <CreateNFT post={post as Post} />
+              <BuyNFT post={post as Post} />
+            </>
           )}
         </div>
       </GridItemFour>
