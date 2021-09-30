@@ -5,13 +5,13 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
+import { Modal } from '@components/ui/Modal'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -22,6 +22,7 @@ import {
   ProfileSettingsMutation,
   ProfileSettingsMutationVariables
 } from './__generated__/Form.generated'
+import NFTAvatars from './NFTAvatars'
 
 const editProfileSchema = object({
   username: string()
@@ -49,6 +50,7 @@ const SUCCESS_MESSAGE = 'Profile successfully updated!'
 const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
+  const [showNFTModal, setShowNFTModal] = useState<boolean>(false)
   const [editUser, editUserResult] = useMutation<
     ProfileSettingsMutation,
     ProfileSettingsMutationVariables
@@ -178,6 +180,22 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
+                  <div>
+                    <Button
+                      type="button"
+                      className="text-xs"
+                      onClick={() => setShowNFTModal(!showNFTModal)}
+                    >
+                      From NFT
+                    </Button>
+                    <Modal
+                      onClose={() => setShowNFTModal(!showNFTModal)}
+                      title="Pick avatar from your collectibles"
+                      show={showNFTModal}
+                    >
+                      <NFTAvatars />
+                    </Modal>
+                  </div>
                 </div>
               </div>
               <div className="space-y-1.5">
@@ -201,8 +219,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3">
-                <Link href="/settings/password">Change password?</Link>
+              <div className="ml-auto">
                 <Button
                   type="submit"
                   icon={
