@@ -8,6 +8,7 @@ builder.prismaObject('PostCommit', {
     message: t.exposeString('message', { nullable: true }),
     url: t.exposeString('url', { nullable: true }),
     verified: t.exposeBoolean('verified', { nullable: true }),
+    changed: t.exposeInt('changed', { nullable: true }),
     additions: t.exposeInt('additions', { nullable: true }),
     deletions: t.exposeInt('deletions', { nullable: true }),
     authorUsername: t.exposeString('authorUsername', { nullable: true }),
