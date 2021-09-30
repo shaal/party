@@ -209,7 +209,9 @@ builder.mutationField('editNFTAvatar', (t) =>
         return await db.user.update({
           ...query,
           where: { id: session!.userId },
-          data: { profile: { update: { avatar: input.avatar } } }
+          data: {
+            profile: { update: { avatar: input.avatar, isNFTavatar: true } }
+          }
         })
       } catch (error: any) {
         throw new Error(

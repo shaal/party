@@ -35,6 +35,7 @@ CREATE TABLE `profiles` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `avatar` VARCHAR(191) NOT NULL,
+    `isNFTavatar` BOOLEAN NOT NULL DEFAULT false,
     `cover` VARCHAR(191) NOT NULL,
     `coverBg` VARCHAR(191) NOT NULL,
     `bio` VARCHAR(191),
