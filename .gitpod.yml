@@ -12,9 +12,6 @@ tasks:
       yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
-  - name: Prisma Studio
-    init: gp sync-await setup
-    command: BROWSER=none yarn prisma studio
   - name: Hardhat Node
     init: gp sync-await setup
     command: >
@@ -24,10 +21,14 @@ tasks:
     init: gp sync-await hardhat-setup
     command: npx hardhat run scripts/deploy.js --network localhost
     openMode: split-right
+  - name: Prisma Studio
+    init: gp sync-await setup
+    command: BROWSER=none yarn prisma studio
   - name: Dev Server
     before: redis-server &
     init: gp sync-await setup
     command: yarn dev
+    openMode: split-right
 
 ports:
   - port: 3000 # Web app
