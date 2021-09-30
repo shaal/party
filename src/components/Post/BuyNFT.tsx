@@ -72,7 +72,7 @@ const BuyNFT: React.FC<Props> = ({ post }) => {
     <Card>
       <CardBody>
         {nfts.map((nft: any, i) => (
-          <div key={i} className="p-4">
+          <div key={i}>
             <p className="text-lg mb-4 font-bold">{nft.price} ETH</p>
             <button onClick={() => buyNft(nft)}>Buy</button>
           </div>
