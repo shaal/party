@@ -1,5 +1,7 @@
+import BetaBadge from '@components/shared/BetaBadge'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
+import { Tooltip } from '@components/ui/Tooltip'
 import { ethers } from 'ethers'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -61,6 +63,15 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
   return (
     <Card>
       <CardBody className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="text-lg font-bold">Place a bid</div>
+            <BetaBadge />
+          </div>
+          <div className="font-mono font-bold">
+            <Tooltip content="Your Balance">0 ETH</Tooltip>
+          </div>
+        </div>
         <input
           type="number"
           placeholder="Asset Price in ETH"
@@ -69,6 +80,7 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
             updateFormInput({ ...formInput, price: e.target.value })
           }
         />
+        <div>Once a bid is placed, it cannot be withdrawn.</div>
         <div>
           <Button onClick={createMarket}>Create Digital Asset</Button>
         </div>
