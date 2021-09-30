@@ -577,6 +577,7 @@ type User {
   hasWakatimeIntegration: Boolean!
   id: ID!
   inWaitlist: Boolean!
+  integrations: Integration
   invite: Invite
   isFollowing: Boolean!
   isStaff: Boolean!
