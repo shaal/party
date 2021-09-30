@@ -81,7 +81,7 @@ CREATE TABLE `posts` (
     `title` VARCHAR(191),
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST', 'TASK', 'QUESTION', 'REPLY') NOT NULL DEFAULT 'POST',
+    `type` ENUM('POST', 'TASK', 'QUESTION', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

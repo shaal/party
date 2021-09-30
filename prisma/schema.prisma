@@ -296,6 +296,7 @@ enum PostType {
   POST
   TASK
   QUESTION
+  COMMIT
   REPLY
 }
 
