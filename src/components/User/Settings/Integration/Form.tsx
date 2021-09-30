@@ -11,6 +11,8 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
+import Web3 from 'web3'
+import Web3Modal from 'web3modal'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
@@ -22,9 +24,6 @@ import {
 const editIntegrationSchema = object({
   wakatimeAPIKey: string()
     .max(100, { message: '🔑 API key should not exceed 100 characters' })
-    .nullable(),
-  ethAddress: string()
-    .regex(/^0x[a-fA-F0-9]{40}$/, { message: '🔑 Ethereum address is invalid' })
     .nullable()
 })
 
@@ -59,10 +58,25 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const form = useZodForm({
     schema: editIntegrationSchema,
     defaultValues: {
-      wakatimeAPIKey: integration?.wakatimeAPIKey as string,
-      ethAddress: integration?.ethAddress as string
+      wakatimeAPIKey: integration?.wakatimeAPIKey as string
     }
   })
+
+  const connectWallet = async (type: string) => {
+    const web3Modal = new Web3Modal()
+    const connection = await web3Modal.connect()
+    const web = new Web3(connection)
+
+    editIntegration({
+      variables: {
+        input: {
+          ethAddress:
+            // @ts-ignore
+            type === 'connect' ? web?.currentProvider?.selectedAddress : null
+        }
+      }
+    })
+  }
 
   return (
     <GridLayout>
@@ -75,10 +89,10 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ wakatimeAPIKey, ethAddress }) =>
+              onSubmit={({ wakatimeAPIKey }) =>
                 editIntegration({
                   variables: {
-                    input: { wakatimeAPIKey, ethAddress }
+                    input: { wakatimeAPIKey }
                   }
                 })
               }
@@ -111,18 +125,24 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                   </Button>
                 </a>
               )}
+              {integration.ethAddress ? (
+                <Button
+                  type="button"
+                  onClick={() => connectWallet('disconnect')}
+                >
+                  Disconnect Ethereum Wallet
+                </Button>
+              ) : (
+                <Button type="button" onClick={() => connectWallet('connect')}>
+                  Connect Ethereum Wallet
+                </Button>
+              )}
               <div className="border-b"></div>
               <Input
                 label="Wakatime API Key"
                 type="text"
                 placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
                 {...form.register('wakatimeAPIKey')}
-              />
-              <Input
-                label="Ethereum address"
-                type="text"
-                placeholder="0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3"
-                {...form.register('ethAddress')}
               />
               <div className="ml-auto pt-3">
                 <Button
