@@ -2,6 +2,7 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
+import { Tooltip } from '@components/ui/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { DocumentAddIcon, DocumentIcon } from '@heroicons/react/outline'
 import React from 'react'
@@ -51,12 +52,19 @@ const CommitType: React.FC<Props> = ({ post }) => {
     <div className="space-y-2">
       <div className="linkify">
         <a
-          className="text-lg font-bold"
+          className="flex items-center space-x-2"
           href={commit?.url as string}
           target="_blank"
           rel="noreferrer"
         >
-          {commit?.message}
+          <div className="text-lg font-bold">{commit?.message}</div>
+          {commit?.verified && (
+            <Tooltip content="This commit was signed by the committer">
+              <div className="text-xs text-green-500 border border-green-500 rounded-full px-1.5 font-light">
+                Verified
+              </div>
+            </Tooltip>
+          )}
         </a>
       </div>
       <div>
