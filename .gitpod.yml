@@ -28,7 +28,7 @@ tasks:
     before: redis-server &
     init: gp sync-await setup
     command: yarn dev
-    openMode: tab-before
+    openMode: tab-after
 
 ports:
   - port: 3000 # Web app
