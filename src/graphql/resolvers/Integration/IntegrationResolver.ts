@@ -7,6 +7,7 @@ builder.prismaObject('Integration', {
   findUnique: (integration) => ({ id: integration.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
+    ethAddress: t.exposeString('ethAddress', { nullable: true }),
     wakatimeAPIKey: t.field({
       type: 'String',
       nullable: true,

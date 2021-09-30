@@ -108,6 +108,7 @@ input EditUserInput {
 }
 
 type Integration {
+  ethAddress: String
   id: ID!
   spotifyRefreshToken: String
   wakatimeAPIKey: String
