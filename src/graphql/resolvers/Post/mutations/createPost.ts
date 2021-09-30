@@ -4,6 +4,7 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
 
+import { commit } from './type/commit'
 import { post } from './type/post'
 import { question } from './type/question'
 import { reply } from './type/reply'
@@ -65,6 +66,10 @@ export const createPost = async (
 
   if (input?.type === 'QUESTION') {
     newPost = await question(query, input, session, parentId)
+  }
+
+  if (input?.type === 'COMMIT') {
+    newPost = await commit(query, input, session, parentId)
   }
 
   if (input?.type === 'REPLY') {
