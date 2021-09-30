@@ -20,13 +20,12 @@ tasks:
   - name: Hardhat Deploy
     init: gp sync-await hardhat-setup
     command: npx hardhat run scripts/deploy.js --network localhost
-    openMode: split-right
   - name: Prisma Studio
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
     before: redis-server &
-    init: gp sync-await setup
+    init: gp sync-await hardhat-setup
     command: yarn dev
 
 ports:
