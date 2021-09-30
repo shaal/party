@@ -15,7 +15,6 @@ export const commit = async (
     data: {
       userId: session!.userId,
       body: input.body,
-      attachments: input.attachments ? input.attachments : undefined,
       type: 'COMMIT',
       productId: input.productId ? input.productId : null
     }
