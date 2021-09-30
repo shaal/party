@@ -180,22 +180,24 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
-                  <div>
-                    <Button
-                      type="button"
-                      className="text-xs"
-                      onClick={() => setShowNFTModal(!showNFTModal)}
-                    >
-                      From NFT
-                    </Button>
-                    <Modal
-                      onClose={() => setShowNFTModal(!showNFTModal)}
-                      title="Pick avatar from your collectibles"
-                      show={showNFTModal}
-                    >
-                      <NFTAvatars user={currentUser} />
-                    </Modal>
-                  </div>
+                  {currentUser?.integrations?.ethAddress && (
+                    <div>
+                      <Button
+                        type="button"
+                        className="text-xs"
+                        onClick={() => setShowNFTModal(!showNFTModal)}
+                      >
+                        From NFT
+                      </Button>
+                      <Modal
+                        onClose={() => setShowNFTModal(!showNFTModal)}
+                        title="Pick avatar from your collectibles"
+                        show={showNFTModal}
+                      >
+                        <NFTAvatars user={currentUser} />
+                      </Modal>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="space-y-1.5">

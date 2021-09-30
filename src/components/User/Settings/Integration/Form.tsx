@@ -64,15 +64,20 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
 
   const connectWallet = async (type: string) => {
     const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const web = new Web3(connection)
+    let web3
+    if (type === 'connect') {
+      const connection = await web3Modal.connect()
+      web3 = new Web3(connection)
+    } else {
+      await web3Modal.clearCachedProvider()
+    }
 
     editIntegration({
       variables: {
         input: {
           ethAddress:
             // @ts-ignore
-            type === 'connect' ? web?.currentProvider?.selectedAddress : null
+            type === 'connect' ? web3?.currentProvider?.selectedAddress : null
         }
       }
     })
