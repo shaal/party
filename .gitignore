@@ -37,3 +37,4 @@ src/**/__generated__/**
 # Hardhat files
 cache
 artifacts
+config.js
