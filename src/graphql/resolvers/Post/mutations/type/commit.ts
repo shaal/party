@@ -22,7 +22,7 @@ export const commit = async (
     ...query,
     data: {
       userId: session!.userId,
-      body: commitData.commit.message,
+      body: commitData?.commit?.message,
       type: 'COMMIT',
       productId: input.productId ? input.productId : null,
       commit: {

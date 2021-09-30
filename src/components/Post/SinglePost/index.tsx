@@ -22,6 +22,7 @@ import {
 } from './__generated__/index.generated'
 import Oembed from './Oembed'
 import SelectedProduct from './SelectedProduct'
+import CommitType from './Type/Commit'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
@@ -153,6 +154,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'REPLY' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
+        {post?.type === 'COMMIT' && <CommitType post={post} />}
         {post?.oembedUrl && !isLoading && !isError && (
           <Oembed url={post?.oembedUrl} oembed={oembed} />
         )}
