@@ -1,9 +1,6 @@
-import { getMentions } from '@graphql/utils/getMentions'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
-
-import { processMentions } from '../processMentions'
 
 export const commit = async (
   query: any,
@@ -19,10 +16,6 @@ export const commit = async (
       productId: input.productId ? input.productId : null
     }
   })
-
-  if (getMentions(commit.body)?.length > 0) {
-    await processMentions(commit, session)
-  }
 
   return commit
 }
