@@ -27,7 +27,7 @@ tasks:
 
 ports:
   - port: 3000 # Web app
-    onOpen: ignore
+    onOpen: open-preview
     visibility: public
   - port: 5555 # Prisma Studio
     onOpen: ignore
