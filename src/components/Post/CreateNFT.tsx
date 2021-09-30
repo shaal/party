@@ -82,7 +82,7 @@ const CreateNFT: React.FC<Props> = ({ post }) => {
         />
         <div>Once a bid is placed, it cannot be withdrawn.</div>
         <div>
-          <Button onClick={createMarket}>Create Digital Asset</Button>
+          <Button onClick={createMarket}>Bid now</Button>
         </div>
       </CardBody>
     </Card>
