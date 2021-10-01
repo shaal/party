@@ -15,6 +15,8 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
+import Web3 from 'web3'
+import Web3Modal from 'web3modal'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
@@ -51,6 +53,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
   const [showNFTModal, setShowNFTModal] = useState<boolean>(false)
+  const [ethAddress, setEthAddress] = useState<string>()
   const [editUser, editUserResult] = useMutation<
     ProfileSettingsMutation,
     ProfileSettingsMutationVariables
@@ -93,6 +96,16 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     } finally {
       // setLoading({ type, status: false })
     }
+  }
+
+  const connectWallet = async () => {
+    const web3Modal = new Web3Modal()
+    const connection = await web3Modal.connect()
+    const web3 = new Web3(connection)
+
+    // @ts-ignore
+    setEthAddress(web3?.currentProvider?.selectedAddress)
+    setShowNFTModal(!showNFTModal)
   }
 
   const form = useZodForm({
@@ -185,7 +198,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                       <Button
                         type="button"
                         className="text-xs"
-                        onClick={() => setShowNFTModal(!showNFTModal)}
+                        onClick={connectWallet}
                       >
                         From NFT
                       </Button>
@@ -194,7 +207,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                         title="Pick avatar from your collectibles"
                         show={showNFTModal}
                       >
-                        <NFTAvatars user={currentUser} />
+                        <NFTAvatars
+                          ethAddress={ethAddress as string}
+                          user={currentUser}
+                        />
                       </Modal>
                     </div>
                   )}

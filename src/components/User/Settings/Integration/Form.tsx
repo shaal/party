@@ -11,8 +11,6 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
-import Web3 from 'web3'
-import Web3Modal from 'web3modal'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
@@ -44,7 +42,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
           id
           wakatimeAPIKey
           spotifyRefreshToken
-          ethAddress
         }
       }
     `,
@@ -61,27 +58,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
       wakatimeAPIKey: integration?.wakatimeAPIKey as string
     }
   })
-
-  const connectWallet = async (type: string) => {
-    const web3Modal = new Web3Modal()
-    let web3
-    if (type === 'connect') {
-      const connection = await web3Modal.connect()
-      web3 = new Web3(connection)
-    } else {
-      await web3Modal.clearCachedProvider()
-    }
-
-    editIntegration({
-      variables: {
-        input: {
-          ethAddress:
-            // @ts-ignore
-            type === 'connect' ? web3?.currentProvider?.selectedAddress : null
-        }
-      }
-    })
-  }
 
   return (
     <GridLayout>
@@ -129,18 +105,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                     Connect Spotify
                   </Button>
                 </a>
-              )}
-              {integration.ethAddress ? (
-                <Button
-                  type="button"
-                  onClick={() => connectWallet('disconnect')}
-                >
-                  Disconnect Ethereum Wallet
-                </Button>
-              ) : (
-                <Button type="button" onClick={() => connectWallet('connect')}>
-                  Connect Ethereum Wallet
-                </Button>
               )}
               <div className="border-b"></div>
               <Input

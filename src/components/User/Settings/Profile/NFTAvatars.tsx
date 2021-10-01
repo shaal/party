@@ -13,17 +13,16 @@ import {
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 interface Props {
+  ethAddress: string
   user: User
 }
 
-const NFTAvatars: React.FC<Props> = ({ user }) => {
+const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
   const router = useRouter()
   const { data, error } = useSWR(
     `https://${
       process.env.NODE_ENV === 'production' ? 'api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${
-      user?.integrations?.ethAddress
-    }`,
+    }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
     fetcher
   )
   const [editNFTAvatar] = useMutation<
