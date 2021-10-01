@@ -10,18 +10,13 @@ export const editIntegration = async (
     where: { userId: session?.userId }
   })
 
-  if (input.ethAddress && !/^0x[a-fA-F0-9]{40}$/.test(input.ethAddress)) {
-    throw new Error('Ethereum address is invalid!')
-  }
-
   return await db.integration.update({
     where: {
       id: integration?.id
     },
     data: {
       wakatimeAPIKey: input.wakatimeAPIKey,
-      spotifyRefreshToken: input.spotifyRefreshToken,
-      ethAddress: input.ethAddress
+      spotifyRefreshToken: input.spotifyRefreshToken
     }
   })
 }
