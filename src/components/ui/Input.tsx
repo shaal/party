@@ -23,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       )}
       <div className="flex shadow-sm">
         {prefix && (
-          <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+          <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 text-gray-500">
             {prefix}
           </span>
         )}
