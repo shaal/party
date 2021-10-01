@@ -59,7 +59,6 @@ input DeletePostInput {
 }
 
 input EditIntegrationInput {
-  ethAddress: String
   spotifyRefreshToken: String
   wakatimeAPIKey: String
 }
@@ -113,7 +112,6 @@ input EditUserInput {
 }
 
 type Integration {
-  ethAddress: String
   id: ID!
   spotifyRefreshToken: String
   wakatimeAPIKey: String

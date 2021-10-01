@@ -196,7 +196,6 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
-    `ethAddress` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `integrations_userId_unique`(`userId`),
