@@ -78,7 +78,12 @@ const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
                 className="cursor-pointer"
                 onClick={() =>
                   editNFTAvatar({
-                    variables: { input: { avatar: asset?.image_url } }
+                    variables: {
+                      input: {
+                        avatar: asset?.image_url,
+                        nftSource: asset?.permalink
+                      }
+                    }
                   })
                 }
               >
