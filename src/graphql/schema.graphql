@@ -65,6 +65,7 @@ input EditIntegrationInput {
 
 input EditNFTAvatarInput {
   avatar: String!
+  nftSource: String!
 }
 
 input EditPostInput {
@@ -302,7 +303,7 @@ type Profile {
   id: ID!
   location: String
   name: String!
-  nftSource: Boolean!
+  nftSource: String
   twitter: String
   website: String
 }
