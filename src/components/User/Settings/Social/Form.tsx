@@ -20,10 +20,6 @@ import {
 } from './__generated__/Form.generated'
 
 const editSocialSchema = object({
-  website: string()
-    .max(100, { message: '🔗 Website url should be within 100 characters' })
-    .url({ message: '🔗 Invalid URL' })
-    .nullable(),
   twitter: string()
     .max(50, { message: '👤 Username should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Twitter username' })
@@ -31,6 +27,10 @@ const editSocialSchema = object({
   github: string()
     .max(50, { message: '👤 Username should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid GitHub username' })
+    .nullable(),
+  website: string()
+    .max(100, { message: '🔗 Website url should be within 100 characters' })
+    .url({ message: '🔗 Invalid URL' })
     .nullable(),
   discord: string()
     .max(50, { message: '👤 Username should be within 50 characters' })
@@ -54,9 +54,9 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
         editSocial(input: $input) {
           profile {
             id
-            website
             twitter
             github
+            website
             discord
           }
         }
@@ -72,9 +72,9 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editSocialSchema,
     defaultValues: {
-      website: currentUser.profile.website as string,
       twitter: currentUser.profile.twitter as string,
       github: currentUser.profile.github as string,
+      website: currentUser.profile.website as string,
       discord: currentUser.profile.discord as string
     }
   })
@@ -90,15 +90,10 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ website, twitter, github, discord }) =>
+              onSubmit={({ twitter, github, website, discord }) =>
                 editSocial({
                   variables: {
-                    input: {
-                      website: website as string,
-                      twitter: twitter as string,
-                      github: github as string,
-                      discord: discord as string
-                    }
+                    input: { website, twitter, github, discord }
                   }
                 })
               }
@@ -111,22 +106,24 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <Input
-                label="Website"
-                type="text"
-                placeholder="https://johndoe.com"
-                {...form.register('website')}
-              />
-              <Input
                 label="Twitter"
                 type="text"
                 placeholder="johndoe"
+                prefix="https://twitter.com/"
                 {...form.register('twitter')}
               />
               <Input
                 label="GitHub"
                 type="text"
                 placeholder="johndoe"
+                prefix="https://github.com/"
                 {...form.register('github')}
+              />
+              <Input
+                label="Website"
+                type="text"
+                placeholder="https://johndoe.com"
+                {...form.register('website')}
               />
               <Input
                 label="Discord"
