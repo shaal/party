@@ -5,7 +5,6 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
-import { Modal } from '@components/ui/Modal'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
@@ -15,8 +14,6 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
-import Web3 from 'web3'
-import Web3Modal from 'web3modal'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
@@ -52,8 +49,6 @@ const SUCCESS_MESSAGE = 'Profile successfully updated!'
 const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
-  const [showNFTModal, setShowNFTModal] = useState<boolean>(false)
-  const [ethAddress, setEthAddress] = useState<string>()
   const [editUser, editUserResult] = useMutation<
     ProfileSettingsMutation,
     ProfileSettingsMutationVariables
@@ -96,16 +91,6 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     } finally {
       // setLoading({ type, status: false })
     }
-  }
-
-  const connectWallet = async () => {
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const web3 = new Web3(connection)
-
-    // @ts-ignore
-    setEthAddress(web3?.currentProvider?.selectedAddress)
-    setShowNFTModal(!showNFTModal)
   }
 
   const form = useZodForm({
@@ -193,25 +178,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
-                  <div>
-                    <Button
-                      type="button"
-                      className="text-xs"
-                      onClick={connectWallet}
-                    >
-                      From NFT
-                    </Button>
-                    <Modal
-                      onClose={() => setShowNFTModal(!showNFTModal)}
-                      title="Pick avatar from your collectibles"
-                      show={showNFTModal}
-                    >
-                      <NFTAvatars
-                        ethAddress={ethAddress as string}
-                        user={currentUser}
-                      />
-                    </Modal>
-                  </div>
+                  <NFTAvatars />
                 </div>
               </div>
               <div className="space-y-1.5">

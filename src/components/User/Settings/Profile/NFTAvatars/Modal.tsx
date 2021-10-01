@@ -3,22 +3,20 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import useSWR from 'swr'
 
 import {
   AvatarSettingsMutation,
   AvatarSettingsMutationVariables
-} from './__generated__/NFTAvatars.generated'
+} from './__generated__/Modal.generated'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 interface Props {
   ethAddress: string
-  user: User
 }
 
-const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
+const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
   const router = useRouter()
   const { data, error } = useSWR(
     `https://${
@@ -34,6 +32,7 @@ const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
       mutation AvatarSettingsMutation($input: EditNFTAvatarInput!) {
         editNFTAvatar(input: $input) {
           id
+          username
           profile {
             id
             avatar
@@ -42,9 +41,9 @@ const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
       }
     `,
     {
-      onCompleted() {
+      onCompleted(data) {
         toast.success('Avatar has been updated successfully!')
-        router.push(`/@/${user?.username}`)
+        router.push(`/@/${data?.editNFTAvatar?.username}`)
       }
     }
   )
@@ -103,4 +102,4 @@ const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
   )
 }
 
-export default NFTAvatars
+export default NFTAvatarsModal
