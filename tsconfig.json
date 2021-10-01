@@ -21,6 +21,6 @@
       "@graphql*": ["src/graphql*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/deploy.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "**/schema.generated"]
 }
