@@ -572,10 +572,10 @@
   resolved "https://registry.yarnpkg.com/@giraphql/plugin-relay/-/plugin-relay-2.15.2.tgz#9dc12d763884fd6c98f1014af8521f544c8714bc"
   integrity sha512-dUH/77hmnnv5mHssBv3VyGo3Ad4QZd64zPc1ydln8P/U+i7JhfKn9y3n7EQuPVV+HPihSX/BwsENOo/043l55Q==
 
-"@giraphql/plugin-scope-auth@^2.10.2":
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-scope-auth/-/plugin-scope-auth-2.10.2.tgz#cc1f9be769ef5ce58eb65b2c2cf470d640da8384"
-  integrity sha512-h1d9BLF5/bpZdPn4wSfRjlEORHbBLTOtJrt37MN7rLCXVVPTOk8wvgmvI3BAM0wHvNuE7dIQgTfCsjQVP/4HiQ==
+"@giraphql/plugin-scope-auth@^2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-scope-auth/-/plugin-scope-auth-2.11.0.tgz#297e15ef1cc360cdcb64a704558b33f1277e95ac"
+  integrity sha512-j/U1xSvfFXENTJh1/Q1Blrsk+WP4YtPW7Yrx3GVmC1daoViy1128GmC207WKYUKJu/GHsHWcfAhgu7BuVNbr2g==
 
 "@giraphql/plugin-simple-objects@^2.8.1":
   version "2.8.2"
