@@ -11,10 +11,6 @@ exclude_patterns = [
 ]
 
 [[analyzers]]
-name = "secrets"
-enabled = true
-
-[[analyzers]]
 name = "sql"
 enabled = true
 
