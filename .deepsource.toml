@@ -1,1 +1,20 @@
 version = 1
+
+exclude_patterns = [
+  "node_modules",
+  ".next",
+  ".gitlab",
+  ".husky",
+  ".vscode"
+]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["react"]
+
+[[transformers]]
+name = "prettier"
+enabled = true
