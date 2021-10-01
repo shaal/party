@@ -33,8 +33,3 @@ tsconfig.tsbuildinfo
 
 src/**/__generated__/**
 *.rdb
-
-# Hardhat files
-cache
-artifacts
-config.js

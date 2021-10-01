@@ -38,16 +38,12 @@ generate:
 typecheck:
   extends: .prepare
   script:
-    - cp config.example.js config.js
-    - npx hardhat compile
     - yarn generate
     - yarn typecheck
 
 build:
   extends: .prepare
   script:
-    - cp config.example.js config.js
-    - npx hardhat compile
     - yarn build
 
 migrate:

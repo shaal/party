@@ -13,14 +13,12 @@ import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
-import BuyNFT from './BuyNFT'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
 
 const PostMod = dynamic(() => import('./Mod'))
-const CreateNFT = dynamic(() => import('./CreateNFT'))
 
 export const POST_QUERY = gql`
   query PostQuery($id: ID!) {
@@ -83,12 +81,6 @@ const ViewPost = () => {
           <UserCard user={post?.user as User} />
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
-          {currentUser?.isStaff && staffMode && (
-            <>
-              <CreateNFT post={post as Post} />
-              <BuyNFT post={post as Post} />
-            </>
-          )}
         </div>
       </GridItemFour>
     </GridLayout>
