@@ -11,6 +11,7 @@ import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -21,7 +22,8 @@ import {
   ProfileSettingsMutation,
   ProfileSettingsMutationVariables
 } from './__generated__/Form.generated'
-import NFTAvatars from './NFTAvatars'
+
+const NFTAvatars = dynamic(() => import('./NFTAvatars'))
 
 const editProfileSchema = object({
   username: string()
