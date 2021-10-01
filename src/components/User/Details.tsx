@@ -51,7 +51,7 @@ const Details: React.FC<Props> = ({ user }) => {
           {user?.profile?.nftSource && (
             <img
               className="absolute bottom-0 right-0 h-10 w-10 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
-              src="/ethereum.svg"
+              src="https://assets.devparty.io/images/brands/ethereum.svg"
               alt="Ethereum Logo"
             />
           )}
