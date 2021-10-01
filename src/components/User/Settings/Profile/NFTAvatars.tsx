@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/ui/Spinner'
+import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -63,39 +64,40 @@ const NFTAvatars: React.FC<Props> = ({ ethAddress, user }) => {
       </div>
     )
 
+  if (data?.assets?.length === 0)
+    return (
+      <div className="p-5 font-bold text-center space-y-2">
+        <CollectionIcon className="h-8 w-8 mx-auto" />
+        <div>No collectibles found in OpenSea</div>
+      </div>
+    )
+
   return (
     <div className="p-5 space-y-2">
       <div className="grid gap-3 md:grid-cols-3 grid-cols-2">
-        {data?.assets?.length === 0 ? (
-          <div className="p-5 font-bold text-center space-y-2">
-            <Spinner size="md" className="mx-auto" />
-            <div>Loading collectibles from OpenSea</div>
-          </div>
-        ) : (
-          data?.assets?.map((asset: any) => (
-            <div key={asset?.id}>
-              <div
-                className="cursor-pointer"
-                onClick={() =>
-                  editNFTAvatar({
-                    variables: {
-                      input: {
-                        avatar: asset?.image_url,
-                        nftSource: asset?.permalink
-                      }
+        {data?.assets?.map((asset: any) => (
+          <div key={asset?.id}>
+            <div
+              className="cursor-pointer"
+              onClick={() =>
+                editNFTAvatar({
+                  variables: {
+                    input: {
+                      avatar: asset?.image_url,
+                      nftSource: asset?.permalink
                     }
-                  })
-                }
-              >
-                <img
-                  className="object-cover h-36 w-36 rounded-lg border"
-                  src={asset?.image_url}
-                  alt={asset?.name}
-                />
-              </div>
+                  }
+                })
+              }
+            >
+              <img
+                className="object-cover h-36 w-36 rounded-lg border"
+                src={asset?.image_url}
+                alt={asset?.name}
+              />
             </div>
-          ))
-        )}
+          </div>
+        ))}
       </div>
     </div>
   )

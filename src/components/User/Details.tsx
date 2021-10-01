@@ -49,11 +49,13 @@ const Details: React.FC<Props> = ({ user }) => {
             alt={`@${user?.username}'s avatar`}
           />
           {user?.profile?.nftSource && (
-            <img
-              className="absolute bottom-0 right-0 h-10 w-10 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
-              src="https://assets.devparty.io/images/brands/ethereum.svg"
-              alt="Ethereum Logo"
-            />
+            <a href={user?.profile?.nftSource} target="_blank" rel="noreferrer">
+              <img
+                className="absolute bottom-0 right-0 h-9 w-9 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
+                src="https://assets.devparty.io/images/brands/ethereum.svg"
+                alt="Ethereum Logo"
+              />
+            </a>
           )}
         </div>
         <div>
