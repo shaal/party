@@ -30,15 +30,6 @@ const Terms: React.FC = () => {
                 and collectively, the <b>"Sites"</b>) and our application
                 program interfaces (<b>"APIs"</b>).
               </p>
-              <p>
-                <b>ARBITRATION NOTICE:</b> UNLESS YOU OPT OUT OF ARBITRATION
-                WITHIN 30 DAYS OF THE DATE YOU FIRST AGREE TO THESE TERMS BY
-                FOLLOWING THE OPT-OUT PROCEDURE SPECIFIED IN THE "DISPUTE
-                RESOLUTION" SECTION BELOW, THESE TERMS WILL, WITH LIMITED
-                EXCEPTION, REQUIRE YOU TO SUBMIT CLAIMS YOU HAVE AGAINST US TO
-                BINDING AND FINAL ARBITRATION SOLELY ON AN INDIVIDUAL BASIS, AND
-                NOT AS PART OF A CLASS, REPRESENTATIVE OR CONSOLIDATED ACTION.
-              </p>
               <h2 className="text-black dark:text-white">
                 1. Agreement to these Terms
               </h2>
