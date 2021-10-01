@@ -27,7 +27,14 @@ const NFTAvatars: React.FC = () => {
       </Button>
       <Modal
         onClose={() => setShowNFTModal(!showNFTModal)}
-        title="Pick avatar from OpenSea"
+        title={
+          <div>
+            Pick avatar from OpenSea{' '}
+            {process.env.NODE_ENV === 'development' && (
+              <span className="text-red-500">(Testnet)</span>
+            )}
+          </div>
+        }
         show={showNFTModal}
       >
         <NFTAvatarsModal ethAddress={ethAddress as string} />
