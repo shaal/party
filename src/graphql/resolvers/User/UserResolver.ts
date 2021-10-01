@@ -194,7 +194,8 @@ builder.mutationField('editUser', (t) =>
 
 const EditNFTAvatarInput = builder.inputType('EditNFTAvatarInput', {
   fields: (t) => ({
-    avatar: t.string({ required: true })
+    avatar: t.string({ required: true }),
+    nftSource: t.string({ required: true })
   })
 })
 
@@ -210,7 +211,9 @@ builder.mutationField('editNFTAvatar', (t) =>
           ...query,
           where: { id: session!.userId },
           data: {
-            profile: { update: { avatar: input.avatar, isNFTavatar: true } }
+            profile: {
+              update: { avatar: input.avatar, nftSource: input.nftSource }
+            }
           }
         })
       } catch (error: any) {

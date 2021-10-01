@@ -300,9 +300,9 @@ type Profile {
   discord: String
   github: String
   id: ID!
-  isNFTavatar: Boolean!
   location: String
   name: String!
+  nftSource: Boolean!
   twitter: String
   website: String
 }

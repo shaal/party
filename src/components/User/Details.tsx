@@ -48,7 +48,7 @@ const Details: React.FC<Props> = ({ user }) => {
             src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
             alt={`@${user?.username}'s avatar`}
           />
-          {user?.profile?.isNFTavatar && (
+          {user?.profile?.nftSource && (
             <img
               className="absolute bottom-0 right-0 h-10 w-10 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
               src="/ethereum.svg"
