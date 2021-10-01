@@ -3,6 +3,7 @@ import { PostFragment } from '@components/Post/SinglePost'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
+import { Spinner } from '@components/ui/Spinner'
 import { BellIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
@@ -132,7 +133,11 @@ const Notifications: React.FC = () => {
               ))}
             </div>
           )}
-          {pageInfo?.hasNextPage && <span ref={observe}></span>}
+          {pageInfo?.hasNextPage && (
+            <span ref={observe} className="flex justify-center p-5">
+              <Spinner size="md" />
+            </span>
+          )}
         </div>
       </div>
     </div>

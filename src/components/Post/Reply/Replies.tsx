@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Spinner } from '@components/ui/Spinner'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -80,7 +81,11 @@ const Replies: React.FC<Props> = ({ post }) => {
             <SinglePost key={reply?.id} post={reply} />
           ))
         )}
-        {pageInfo?.hasNextPage && <span ref={observe}></span>}
+        {pageInfo?.hasNextPage && (
+          <span ref={observe} className="flex justify-center p-5">
+            <Spinner size="md" />
+          </span>
+        )}
       </div>
     </div>
   )

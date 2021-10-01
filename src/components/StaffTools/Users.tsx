@@ -5,6 +5,7 @@ import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
+import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -196,7 +197,11 @@ const StaffToolsUsers: React.FC = () => {
             ))}
           </CardBody>
         </Card>
-        {pageInfo?.hasNextPage && <span ref={observe}></span>}
+        {pageInfo?.hasNextPage && (
+          <span ref={observe} className="flex justify-center p-5">
+            <Spinner size="md" />
+          </span>
+        )}
       </GridItemEight>
     </GridLayout>
   )

@@ -3,6 +3,7 @@ import SinglePost, { PostFragment } from '@components/Post/SinglePost'
 import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -86,7 +87,11 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
             <SinglePost key={post?.id} post={post} showParent />
           ))
         )}
-        {pageInfo?.hasNextPage && <span ref={observe}></span>}
+        {pageInfo?.hasNextPage && (
+          <span ref={observe} className="flex justify-center p-5">
+            <Spinner size="md" />
+          </span>
+        )}
       </div>
     </div>
   )
