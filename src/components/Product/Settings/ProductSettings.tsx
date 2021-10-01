@@ -129,6 +129,7 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
                 label="Slug"
                 type="text"
                 placeholder="minecraft"
+                prefix="https://devparty.io/products/"
                 {...form.register('slug')}
               />
               <Input
