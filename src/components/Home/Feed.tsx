@@ -79,7 +79,7 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
         )}
         {pageInfo?.hasNextPage && (
           <span ref={observe} className="flex justify-center p-5">
-            <Spinner size="xs" />
+            <Spinner size="md" />
           </span>
         )}
       </div>
