@@ -129,24 +129,28 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 label="Cashtag"
                 type="text"
                 placeholder="$johndoe"
+                prefix="https://cash.app/"
                 {...form.register('cash')}
               />
               <Input
                 label="Paypal.me"
                 type="text"
                 placeholder="johndoe"
+                prefix="https://paypal.me/"
                 {...form.register('paypal')}
               />
               <Input
                 label="GitHub"
                 type="text"
                 placeholder="johndoe"
+                prefix="https://github.com/sponsors/"
                 {...form.register('github')}
               />
               <Input
                 label="Buy Me a Coffee"
                 type="text"
                 placeholder="johndoe"
+                prefix="https://www.buymeacoffee.com/"
                 {...form.register('buymeacoffee')}
               />
               <Input
