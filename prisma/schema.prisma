@@ -288,7 +288,6 @@ model Integration {
   id                  String  @id @default(uuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
-  ethAddress          String?
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
