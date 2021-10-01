@@ -14,7 +14,7 @@
     <a href="https://deepsource.io/gl/yo/devparty">
       <img src="https://deepsource.io/gl/yo/devparty.svg/?label=active+issues&show_trend=true&token=AxP-EMgofIoYWgzM4r1gOGtB" alt="DeepSource">
     </a>
-    <a href="https://gitpod.io/#https://gitlab.com/yo/devparty/-/tree/main/">
+    <a href="https://gitpod.io/from-referrer">
         <img src="https://img.shields.io/badge/setup-automated-blue?logo=gitpod" alt="Gitpod">
     </a>
     <a href="https://discord.gg/zxHM7uwDmk">
