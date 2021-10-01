@@ -19,7 +19,11 @@ interface Props {
 const NFTAvatars: React.FC<Props> = ({ user }) => {
   const router = useRouter()
   const { data, error } = useSWR(
-    `https://api.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${user?.integrations?.ethAddress}`,
+    `https://${
+      process.env.NODE_ENV === 'production' ? 'api' : 'testnets-api'
+    }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${
+      user?.integrations?.ethAddress
+    }`,
     fetcher
   )
   const [editNFTAvatar] = useMutation<
