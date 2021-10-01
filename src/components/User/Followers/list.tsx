@@ -4,6 +4,7 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Spinner } from '@components/ui/Spinner'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -116,7 +117,11 @@ const FollowersList: React.FC = () => {
             </Card>
           ))
         )}
-        {pageInfo?.hasNextPage && <span ref={observe}></span>}
+        {pageInfo?.hasNextPage && (
+          <span ref={observe} className="flex justify-center p-5">
+            <Spinner size="md" />
+          </span>
+        )}
       </div>
     </div>
   )
