@@ -5,7 +5,8 @@ exclude_patterns = [
   ".next",
   ".gitlab",
   ".husky",
-  ".vscode"
+  ".vscode",
+  "src/graphql/schema.graphql"
 ]
 
 [[analyzers]]
