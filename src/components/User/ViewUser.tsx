@@ -3,6 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
@@ -23,6 +24,7 @@ export const UserFragment = gql`
     isVerified
     isStaff
     spammy
+    createdAt
     followers {
       totalCount
     }
@@ -35,7 +37,9 @@ export const UserFragment = gql`
     profile {
       id
       avatar
+      nftSource
       cover
+      coverBg
       name
       bio
       location
@@ -59,38 +63,43 @@ export const VIEW_USER_QUERY = gql`
   ${UserFragment}
 `
 
-const ViewUser: React.FC = () => {
+const ViewUser = () => {
   const router = useRouter()
   const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
-    }
+    },
+    skip: !router.isReady
   })
+  const user = data?.user
 
-  if (loading) return <PageLoading message="Loading user" />
+  if (!router.isReady || loading) return <PageLoading message="Loading user" />
+
+  if (!user) return window.location.replace('/home')
 
   return (
     <>
       <DevpartySEO
-        title={`${data?.user?.username} (${data?.user?.profile?.name}) · Devparty`}
-        description={data?.user?.profile?.bio as string}
-        image={data?.user?.profile?.avatar as string}
-        path={`/@/${data?.user?.username}`}
+        title={`${user?.username} (${user?.profile?.name}) · Devparty`}
+        description={user?.profile?.bio as string}
+        image={user?.profile?.avatar as string}
+        path={`/@/${user?.username}`}
       />
-      {data?.user?.profile?.cover ? (
-        <img
-          className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full"
-          src={data?.user?.profile?.cover as string}
-          alt={`@${data?.user?.username}'s cover`}
-        />
-      ) : (
-        <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-64 w-full" />
-      )}
+      <div
+        className="h-64"
+        style={{
+          backgroundImage: `url(${imagekitURL(
+            user?.profile?.cover as string
+          )})`,
+          backgroundColor: `#${user?.profile?.coverBg}`,
+          backgroundSize: '60%'
+        }}
+      />
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          <Details user={data?.user as User} />
+          <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">

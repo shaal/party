@@ -3,74 +3,77 @@ import AppContext from '@components/utils/AppContext'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import Invite from './Invite'
+import BetaBadge from '../BetaBadge'
 import MenuItems from './MenuItems'
 import Notification from './Notification'
 import Search from './Search'
-import StaffBar from './StaffBar'
 
-interface NavItemProps {
-  url: string
-  name: string
-  current: boolean
-  isMobile: boolean
-}
-
-const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
-  return (
-    <Link href={url} passHref>
-      <a
-        className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
-          block: isMobile,
-          'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
-          'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
-            !current
-        })}
-        aria-current={current ? 'page' : undefined}
-      >
-        {name}
-      </a>
-    </Link>
-  )
-}
-
-interface NavItemsProps {
-  isMobile?: boolean
-}
-
-const NavItems = ({ isMobile = false }: NavItemsProps) => {
-  const router = useRouter()
-
-  return (
-    <>
-      <NavItem
-        url="/"
-        name="Home"
-        current={router.pathname == '/home'}
-        isMobile={isMobile}
-      />
-      <NavItem
-        url="/products"
-        name="Products"
-        current={router.pathname == '/products'}
-        isMobile={isMobile}
-      />
-      <NavItem
-        url="/explore"
-        name="Explore"
-        current={router.pathname == '/explore'}
-        isMobile={isMobile}
-      />
-    </>
-  )
-}
+const Invite = dynamic(() => import('./Invite'))
+const StaffBar = dynamic(() => import('./StaffBar'))
 
 const Navbar: React.FC = () => {
   const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
+
+  interface NavItemProps {
+    url: string
+    name: string
+    current: boolean
+    isMobile: boolean
+  }
+
+  const NavItem = ({ url, name, current, isMobile }: NavItemProps) => {
+    return (
+      <Link href={url} passHref>
+        <a
+          className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
+            block: isMobile,
+            'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
+            'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
+              !current
+          })}
+          aria-current={current ? 'page' : undefined}
+        >
+          {name}
+        </a>
+      </Link>
+    )
+  }
+
+  interface NavItemsProps {
+    isMobile?: boolean
+  }
+
+  const NavItems = ({ isMobile = false }: NavItemsProps) => {
+    const router = useRouter()
+
+    return (
+      <>
+        <NavItem
+          url={currentUser ? '/home' : '/'}
+          name="Home"
+          current={router.pathname == '/home'}
+          isMobile={isMobile}
+        />
+        <NavItem
+          url="/products"
+          name="Products"
+          current={router.pathname == '/products'}
+          isMobile={isMobile}
+        />
+        <NavItem
+          url="/explore"
+          name="Explore"
+          current={router.pathname == '/explore'}
+          isMobile={isMobile}
+        />
+      </>
+    )
+  }
 
   return (
     <Disclosure
@@ -93,7 +96,7 @@ const Navbar: React.FC = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:justify-start">
                 <div className="flex-shrink-0 flex items-center space-x-3">
-                  <Link href="/" passHref>
+                  <Link href={currentUser ? '/home' : '/'} passHref>
                     <a>
                       <img
                         className="block h-9 w-auto cursor-pointer"
@@ -102,9 +105,7 @@ const Navbar: React.FC = () => {
                       />
                     </a>
                   </Link>
-                  <div className="text-xs rounded-md px-1.5 py-0.5 text-white bg-gradient-to-r from-brand-500 to-pink-500">
-                    beta
-                  </div>
+                  <BetaBadge />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex items-center space-x-4">

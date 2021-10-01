@@ -1,5 +1,6 @@
 import 'tsconfig-paths/register'
 
+import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
@@ -48,6 +49,8 @@ async function main() {
           create: {
             name: faker.name.firstName(),
             avatar: faker.internet.avatar(),
+            cover: getRandomCover().image,
+            coverBg: getRandomCover().color,
             bio: faker.commerce.productDescription()
           }
         },
@@ -75,6 +78,8 @@ async function main() {
           create: {
             name: user.name,
             avatar: user.avatar,
+            cover: getRandomCover().image,
+            coverBg: getRandomCover().color,
             bio: user.bio
           }
         },

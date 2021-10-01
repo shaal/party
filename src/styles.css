@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/circular-std');
-
 body {
   font-family: 'Circular Std', Helvetica, Arial, sans-serif;
 
@@ -29,12 +27,4 @@ body {
   @apply text-xs;
   @apply text-white;
   @apply rounded-lg;
-}
-
-#nprogress {
-  @apply pointer-events-none z-50;
-}
-
-#nprogress .bar {
-  @apply bg-brand-500 fixed z-50 top-0 left-0 w-full h-0.5;
 }

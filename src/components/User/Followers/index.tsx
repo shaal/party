@@ -3,6 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import Details from '@components/User/Details'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
@@ -13,7 +14,7 @@ import FollowersList from './list'
 
 export const USER_FOLLOWERS_QUERY = VIEW_USER_QUERY
 
-const Followers: React.FC = () => {
+const Followers = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(
     USER_FOLLOWERS_QUERY,
@@ -24,16 +25,20 @@ const Followers: React.FC = () => {
       skip: !router.isReady
     }
   )
+  const user = data?.user
 
-  if (loading) return <PageLoading message="Loading followers" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading followers" />
+
+  if (!user) return window.location.replace('/home')
 
   return (
     <>
-      {data?.user?.profile?.cover ? (
+      {user?.profile?.cover ? (
         <img
           className="object-cover bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full"
-          src={data?.user?.profile?.cover as string}
-          alt={`@${data?.user?.username}'s cover`}
+          src={imagekitURL(user?.profile?.cover as string)}
+          alt={`@${user?.username}'s cover`}
         />
       ) : (
         <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-60 w-full" />
@@ -41,7 +46,7 @@ const Followers: React.FC = () => {
       <GridLayout>
         <GridItemFour>
           <ErrorMessage title="Failed to load post" error={error} />
-          <Details user={data?.user as User} />
+          <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
           <FollowersList />

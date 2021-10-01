@@ -10,8 +10,10 @@ import useInView from 'react-cool-inview'
 import { NotificationsQuery } from './__generated__/index.generated'
 import NotificationType from './NotificationType'
 import PostLike from './type/PostLike'
+import PostReply from './type/PostReply'
 import ProductSubscribe from './type/ProductSubscribe'
 import UserFollow from './type/UserFollow'
+import UserMention from './type/UserMention'
 
 export const NOTIFICATIONS_QUERY = gql`
   query NotificationsQuery($after: String, $isRead: Boolean) {
@@ -43,6 +45,10 @@ export const NOTIFICATIONS_QUERY = gql`
               ...PostFragment
             }
           }
+          # Post
+          post {
+            ...PostFragment
+          }
           # Product
           product {
             id
@@ -62,10 +68,7 @@ const Notifications: React.FC = () => {
   const [isRead, setIsRead] = useState<boolean>(false)
   const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
     NOTIFICATIONS_QUERY,
-    {
-      variables: { after: null, isRead },
-      pollInterval: 10000
-    }
+    { variables: { after: null, isRead } }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.notifications?.pageInfo
@@ -107,8 +110,20 @@ const Notifications: React.FC = () => {
                   {notification?.type === 'POST_LIKE' && (
                     <PostLike notification={notification} />
                   )}
+                  {notification?.type === 'POST_REPLY' && (
+                    <PostReply notification={notification} />
+                  )}
                   {notification?.type === 'USER_FOLLOW' && (
                     <UserFollow notification={notification} />
+                  )}
+                  {notification?.type === 'USER_INVITE_FOLLOW' && (
+                    <UserFollow
+                      notification={notification}
+                      followedVia="INVITE"
+                    />
+                  )}
+                  {notification?.type === 'USER_MENTION' && (
+                    <UserMention notification={notification} />
                   )}
                   {notification?.type === 'PRODUCT_SUBSCRIBE' && (
                     <ProductSubscribe notification={notification} />

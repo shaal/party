@@ -3,6 +3,7 @@ import Slug from '@components/shared/Slug'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useOembed } from '@components/utils/useOembed'
 import { ChatIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
@@ -21,6 +22,7 @@ import {
 } from './__generated__/index.generated'
 import Oembed from './Oembed'
 import SelectedProduct from './SelectedProduct'
+import CommitType from './Type/Commit'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
@@ -152,6 +154,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'REPLY' && <PostType post={post} />}
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
+        {post?.type === 'COMMIT' && <CommitType post={post} />}
         {post?.oembedUrl && !isLoading && !isError && (
           <Oembed url={post?.oembedUrl} oembed={oembed} />
         )}
@@ -180,7 +183,11 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                   <a>
                     <img
                       className="rounded-full border h-5 w-5"
-                      src={like?.node?.user?.profile?.avatar as string}
+                      src={imagekitURL(
+                        like?.node?.user?.profile?.avatar as string,
+                        50,
+                        50
+                      )}
                       alt={`@${like?.node?.user?.username}'s avatar`}
                     />
                   </a>

@@ -1,17 +1,7 @@
-import IntegrationSettings, {
-  INTEGRATION_SETTINGS_QUERY as query
-} from '@components/User/Settings/Integration'
-import { preloadQuery } from '@utils/apollo'
+import IntegrationSettings from '@components/User/Settings/Integration'
 import { authenticatedRoute } from '@utils/redirects'
-import { GetServerSidePropsContext } from 'next'
+import { GetServerSideProps } from 'next'
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const auth = await authenticatedRoute(context)
-  if ('redirect' in auth) return auth
-
-  return preloadQuery(context, { query })
-}
+export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
 export default IntegrationSettings

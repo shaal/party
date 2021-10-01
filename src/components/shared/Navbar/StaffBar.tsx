@@ -1,7 +1,6 @@
 import {
   ChipIcon,
   HashtagIcon,
-  ServerIcon,
   ShieldCheckIcon,
   TerminalIcon
 } from '@heroicons/react/outline'
@@ -22,17 +21,6 @@ const StaffBar: React.FC = () => {
   return (
     <div className="bg-gray-200 dark:bg-black px-3 py-1 flex justify-between text-sm">
       <div className="flex items-center space-x-2">
-        {process.env.VERCEL_URL && (
-          <a
-            className="flex items-center space-x-1"
-            href={`https://${process.env.VERCEL_URL}`}
-            title="Vercel Deployment URL"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ServerIcon className="h-4 w-4" />
-          </a>
-        )}
         {process.env.GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
             <TerminalIcon className="h-4 w-4" />

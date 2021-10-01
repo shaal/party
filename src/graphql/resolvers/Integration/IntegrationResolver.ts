@@ -32,11 +32,7 @@ builder.prismaObject('Integration', {
         })
         return integration?.spotifyRefreshToken
       }
-    }),
-
-    // Timestamps
-    createdAt: t.expose('createdAt', { type: 'DateTime' }),
-    updatedAt: t.expose('updatedAt', { type: 'DateTime' })
+    })
   })
 })
 

@@ -6,8 +6,10 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Tooltip } from '@components/ui/Tooltip'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
+  ClockIcon,
   LocationMarkerIcon,
   PencilIcon,
   SupportIcon
@@ -18,6 +20,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Profile, User } from 'src/__generated__/schema.generated'
+import * as timeago from 'timeago.js'
 
 import Badges from './Badges'
 import Follow from './Follow'
@@ -39,11 +42,22 @@ const Details: React.FC<Props> = ({ user }) => {
   return (
     <div className="mb-4">
       <div className="px-5 sm:px-0 space-y-5">
-        <img
-          src={user?.profile?.avatar as string}
-          className="rounded-full h-28 w-28 sm:h-40 sm:w-40 -mt-24 ring-8 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
-          alt={`@${user?.username}'s avatar`}
-        />
+        <div className="relative w-28 h-28 sm:h-40 sm:w-40 -mt-24">
+          <img
+            className="rounded-full ring-8 w-28 h-28 sm:h-40 sm:w-40 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
+            src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
+            alt={`@${user?.username}'s avatar`}
+          />
+          {user?.profile?.nftSource && (
+            <a href={user?.profile?.nftSource} target="_blank" rel="noreferrer">
+              <img
+                className="absolute bottom-0 right-0 h-9 w-9 my-1 border-4 border-white rounded-full bg-[#8992b1] p-1.5"
+                src="https://assets.devparty.io/images/brands/ethereum.svg"
+                alt="Ethereum Logo"
+              />
+            </a>
+          )}
+        </div>
         <div>
           <div className="text-2xl font-bold flex items-center gap-1.5">
             {user?.profile?.name}
@@ -94,12 +108,18 @@ const Details: React.FC<Props> = ({ user }) => {
             <Linkify options={linkifyOptions}>{user?.profile?.bio}</Linkify>
           </div>
         )}
-        {user?.profile?.location && (
+        <div className="space-y-1">
+          {user?.profile?.location && (
+            <div className="flex items-center gap-2">
+              <LocationMarkerIcon className="h-4 w-4" />
+              <div>{user?.profile?.location}</div>
+            </div>
+          )}
           <div className="flex items-center gap-2">
-            <LocationMarkerIcon className="h-4 w-4" />
-            <div>{user?.profile?.location}</div>
+            <ClockIcon className="h-4 w-4" />
+            <div>{timeago.format(user?.createdAt)}</div>
           </div>
-        )}
+        </div>
         <Social profile={user?.profile as Profile} />
         <OwnedProducts user={user} />
         {user?.hasWakatimeIntegration && <Wakatime user={user} />}

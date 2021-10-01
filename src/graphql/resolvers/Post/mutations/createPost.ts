@@ -1,11 +1,14 @@
 import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
-import { parseTopics } from '@graphql/utils/parseTopics'
-import { PostType, Session } from '@prisma/client'
+import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
 
-import { processMentions } from './processMentions'
+import { commit } from './type/commit'
+import { post } from './type/post'
+import { question } from './type/question'
+import { reply } from './type/reply'
+import { task } from './type/task'
 
 export const createPost = async (
   query: any,
@@ -51,26 +54,27 @@ export const createPost = async (
     }
   }
 
-  const post = await db.post.create({
-    ...query,
-    data: {
-      userId: session!.userId,
-      title: input.title,
-      body: input.body,
-      done: input.done,
-      attachments: input.attachments ? input.attachments : undefined,
-      type: input.type as PostType,
-      productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      },
-      parentId
-    }
-  })
+  let newPost: any
 
-  if (getMentions(input.body)?.length > 0) {
-    await processMentions(post, session)
+  if (input?.type === 'POST') {
+    newPost = await post(query, input, session)
   }
 
-  return post
+  if (input?.type === 'TASK') {
+    newPost = await task(query, input, session)
+  }
+
+  if (input?.type === 'QUESTION') {
+    newPost = await question(query, input, session)
+  }
+
+  if (input?.type === 'COMMIT') {
+    newPost = await commit(query, input, session)
+  }
+
+  if (input?.type === 'REPLY') {
+    newPost = await reply(query, input, session, parentId)
+  }
+
+  return newPost
 }

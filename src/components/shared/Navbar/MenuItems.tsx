@@ -1,11 +1,7 @@
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { Menu, Transition } from '@headlessui/react'
-import {
-  ChatAlt2Icon,
-  CogIcon,
-  LogoutIcon,
-  UserIcon
-} from '@heroicons/react/outline'
+import { CogIcon, LogoutIcon, UserIcon } from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -41,7 +37,11 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
           <Menu.Button className="flex items-center gap-2">
             <img
               className="h-10 w-10 rounded-full bg-gray-200"
-              src={currentUser?.profile?.avatar as string}
+              src={imagekitURL(
+                currentUser?.profile?.avatar as string,
+                100,
+                100
+              )}
               alt={`@${currentUser?.username}'s avatar`}
             />
           </Menu.Button>
@@ -90,23 +90,6 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   <div>Your Profile</div>
                 </div>
               </Menu.Item>
-              {staffMode && (
-                <Menu.Item
-                  as={NextLink}
-                  href="/messages"
-                  className={({ active }: any) =>
-                    clsx(
-                      { 'bg-gray-100 dark:bg-gray-800': active },
-                      'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
-                    )
-                  }
-                >
-                  <div className="flex items-center space-x-1.5">
-                    <ChatAlt2Icon className="h-4 w-4" />
-                    <div>Messages</div>
-                  </div>
-                </Menu.Item>
-              )}
               <Menu.Item
                 as={NextLink}
                 href="/settings/profile"

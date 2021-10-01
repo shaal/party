@@ -1,18 +1,7 @@
-import Notifications, { NOTIFICATIONS_QUERY } from '@components/Notification'
-import { preloadQuery } from '@utils/apollo'
+import Notifications from '@components/Notification'
 import { authenticatedRoute } from '@utils/redirects'
-import { GetServerSidePropsContext } from 'next'
+import { GetServerSideProps } from 'next'
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const auth = await authenticatedRoute(context)
-  if ('redirect' in auth) return auth
-
-  return preloadQuery(context, {
-    query: NOTIFICATIONS_QUERY,
-    variables: { after: null, isRead: false }
-  })
-}
+export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
 export default Notifications

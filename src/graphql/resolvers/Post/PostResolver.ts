@@ -51,6 +51,7 @@ builder.prismaObject('Post', {
     user: t.relation('user'),
     product: t.relation('product', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),
+    commit: t.relation('commit', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,
@@ -83,6 +84,7 @@ builder.queryField('homeFeed', (t) =>
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
+    authScopes: { user: true },
     args: { type: t.arg.string({ defaultValue: 'ALL' }) },
     resolve: async (query, parent, { type }, { session }) => {
       return await homeFeed(query, type, session)

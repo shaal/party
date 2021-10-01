@@ -37,7 +37,9 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
     }
 
     return user
-  } catch (error) {
-    throw new Error('Something went wrong!')
+  } catch (error: any) {
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }

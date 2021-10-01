@@ -34,8 +34,10 @@ CREATE TABLE `sessions` (
 CREATE TABLE `profiles` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `avatar` VARCHAR(191),
-    `cover` VARCHAR(191),
+    `avatar` VARCHAR(191) NOT NULL,
+    `nftSource` VARCHAR(191),
+    `cover` VARCHAR(191) NOT NULL,
+    `coverBg` VARCHAR(191) NOT NULL,
     `bio` VARCHAR(191),
     `location` VARCHAR(191),
     `website` VARCHAR(191),
@@ -53,7 +55,6 @@ CREATE TABLE `invites` (
     `id` VARCHAR(191) NOT NULL,
     `code` VARCHAR(191),
     `usedTimes` INTEGER NOT NULL DEFAULT 0,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `invites_userId_key`(`userId`),
@@ -81,7 +82,7 @@ CREATE TABLE `posts` (
     `title` VARCHAR(191),
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST', 'TASK', 'QUESTION', 'REPLY') NOT NULL DEFAULT 'POST',
+    `type` ENUM('POST', 'TASK', 'QUESTION', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -90,6 +91,24 @@ CREATE TABLE `posts` (
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `post_commit` (
+    `id` VARCHAR(191) NOT NULL,
+    `repoSlug` VARCHAR(191),
+    `message` VARCHAR(191),
+    `url` VARCHAR(191),
+    `verified` BOOLEAN,
+    `changed` INTEGER,
+    `additions` INTEGER,
+    `deletions` INTEGER,
+    `authorUsername` VARCHAR(191),
+    `authorAvatar` VARCHAR(191),
+    `postId` VARCHAR(191),
+
+    UNIQUE INDEX `post_commit_postId_unique`(`postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -108,7 +127,6 @@ CREATE TABLE `topics` (
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191),
     `description` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `topics_name_key`(`name`),
     PRIMARY KEY (`id`)
@@ -117,7 +135,6 @@ CREATE TABLE `topics` (
 -- CreateTable
 CREATE TABLE `likes` (
     `id` VARCHAR(191) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
@@ -151,8 +168,6 @@ CREATE TABLE `badges` (
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -162,7 +177,7 @@ CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
     `message` VARCHAR(191),
     `isRead` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST_LIKE', 'POST_REPLY', 'USER_MENTION', 'USER_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
+    `type` ENUM('POST_LIKE', 'POST_REPLY', 'USER_MENTION', 'USER_FOLLOW', 'USER_INVITE_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
     `entityId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -170,6 +185,7 @@ CREATE TABLE `notifications` (
     `dispatcherId` VARCHAR(191) NOT NULL,
     `likeId` VARCHAR(191),
     `productId` VARCHAR(191),
+    `postId` VARCHAR(191),
 
     UNIQUE INDEX `notifications_entityId_key`(`entityId`),
     PRIMARY KEY (`id`)
@@ -180,8 +196,6 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `integrations_userId_unique`(`userId`),
@@ -193,20 +207,8 @@ CREATE TABLE `logs` (
     `id` VARCHAR(191) NOT NULL,
     `action` ENUM('POST_LIKE') NOT NULL,
     `entityId` VARCHAR(191),
-    `ipAddress` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `messages` (
-    `id` VARCHAR(191) NOT NULL,
-    `message` VARCHAR(191) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `senderId` VARCHAR(191) NOT NULL,
-    `receiverId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

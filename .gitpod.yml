@@ -22,10 +22,10 @@ tasks:
 
 ports:
   - port: 3000 # Web app
-    onOpen: open-browser
+    onOpen: open-preview
     visibility: public
   - port: 5555 # Prisma Studio
-    onOpen: notify
+    onOpen: ignore
     visibility: public
   - port: 6379 # Redis
     onOpen: ignore
@@ -40,7 +40,6 @@ vscode:
     - christian-kohler.npm-intellisense
     - esbenp.prettier-vscode
     - prisma.prisma
-    - eamodio.gitlens
     - pflannery.vscode-versionlens
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag

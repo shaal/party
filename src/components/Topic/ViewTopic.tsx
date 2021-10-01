@@ -5,6 +5,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import AppContext from '@components/utils/AppContext'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Topic } from 'src/__generated__/schema.generated'
@@ -27,54 +28,51 @@ export const TOPIC_QUERY = gql`
   }
 `
 
-const ViewTopic: React.FC = () => {
+const ViewTopic = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
   const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
     variables: { name: router.query.topic },
     skip: !router.isReady
   })
+  const topic = data?.topic
 
-  if (loading) return <PageLoading message="Loading topic" />
+  if (!router.isReady || loading) return <PageLoading message="Loading topic" />
+
+  if (!topic) return window.location.replace('/home')
 
   return (
     <GridLayout>
       <GridItemEight>
-        <TopicFeed topic={data?.topic?.name as string} />
+        <TopicFeed topic={topic?.name as string} />
       </GridItemEight>
       <GridItemFour>
         <Card>
           <CardBody>
             <div className="space-y-3">
               <ErrorMessage title="Failed to load post" error={error} />
-              {data?.topic?.image && (
+              {topic?.image && (
                 <img
-                  src={data?.topic?.image}
-                  alt={data?.topic?.name}
+                  src={imagekitURL(topic?.image, 100, 100)}
+                  alt={topic?.name}
                   className="h-20 w-20 rounded-lg"
                 />
               )}
               <div>
                 <div className="flex items-center space-x-3">
-                  <Slug
-                    slug={data?.topic?.name}
-                    prefix="#"
-                    className="text-xl"
-                  />
-                  <Star topic={data?.topic as Topic} />
+                  <Slug slug={topic?.name} prefix="#" className="text-xl" />
+                  <Star topic={topic as Topic} />
                 </div>
                 <div className="text-gray-600 dark:text-gray-300">
-                  {data?.topic?.postsCount} Posts
+                  {topic?.postsCount} Posts
                 </div>
               </div>
-              {data?.topic?.description && (
-                <div>{data?.topic?.description}</div>
-              )}
+              {topic?.description && <div>{topic?.description}</div>}
             </div>
           </CardBody>
         </Card>
         {currentUser?.isStaff && staffMode && (
-          <TopicMod topic={data?.topic as Topic} />
+          <TopicMod topic={topic as Topic} />
         )}
       </GridItemFour>
     </GridLayout>

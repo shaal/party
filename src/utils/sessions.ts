@@ -48,7 +48,6 @@ export async function createSession(request: IncomingMessage, user: User) {
   })
 
   const requestWithSession = request as unknown as RequestWithSession
-
   requestWithSession.session.set(IRON_SESSION_ID_KEY, session.id)
   await requestWithSession.session.save()
 
@@ -60,7 +59,6 @@ export async function removeSession(
   session: Session
 ) {
   const requestWithSession = request as unknown as RequestWithSession
-
   requestWithSession.session.destroy()
 
   await db.session.delete({ where: { id: session!.id } })

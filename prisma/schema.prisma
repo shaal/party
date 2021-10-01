@@ -15,8 +15,8 @@ generator giraphql {
 }
 
 model User {
-  id             String @id @default(cuid())
-  username       String @unique @default(cuid())
+  id             String @id @default(uuid())
+  username       String @unique @default(uuid())
   email          String @unique
   hashedPassword String
 
@@ -48,15 +48,13 @@ model User {
   followedBy             User[]         @relation("follows")
   receivedNotification   Notification[] @relation("notificationReceiver")
   dispatchedNotification Notification[] @relation("notificationDispatcher")
-  receivedMessages       Message[]      @relation("messageReceiver")
-  sentMessages           Message[]      @relation("messageSender")
 
   // Attributes
   @@map("users")
 }
 
 model Session {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   isStaff   Boolean @default(false)
   ipAddress String?
   userAgent String?
@@ -74,16 +72,18 @@ model Session {
 }
 
 model Profile {
-  id       String  @id @default(cuid())
-  name     String
-  avatar   String?
-  cover    String?
-  bio      String?
-  location String?
-  website  String?
-  discord  String?
-  github   String?
-  twitter  String?
+  id        String  @id @default(uuid())
+  name      String
+  avatar    String
+  nftSource String?
+  cover     String
+  coverBg   String
+  bio       String?
+  location  String?
+  website   String?
+  discord   String?
+  github    String?
+  twitter   String?
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -94,12 +94,9 @@ model Profile {
 }
 
 model Invite {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   code      String?
   usedTimes Int     @default(0)
-
-  // Timestamps
-  createdAt DateTime @default(now())
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -110,7 +107,7 @@ model Invite {
 }
 
 model Tip {
-  id           String  @id @default(cuid())
+  id           String  @id @default(uuid())
   cash         String?
   paypal       String?
   github       String?
@@ -127,7 +124,7 @@ model Tip {
 }
 
 model Post {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   title       String?
   body        String   @db.Text
   done        Boolean  @default(false)
@@ -140,23 +137,44 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
-  product   Product?    @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String?
-  likes     Like[]
-  topics    PostTopic[]
-
-  parentId String?
-  parent   Post?   @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
-  replies  Post[]  @relation("replies")
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  product      Product?       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId    String?
+  likes        Like[]
+  topics       PostTopic[]
+  commit       PostCommit?
+  parentId     String?
+  parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
+  replies      Post[]         @relation("replies")
+  notification Notification[] @relation("post")
 
   // Attributes
   @@map("posts")
 }
 
+model PostCommit {
+  id             String   @id @default(uuid())
+  repoSlug       String?
+  message        String?
+  url            String?
+  verified       Boolean?
+  changed        Int?
+  additions      Int?
+  deletions      Int?
+  authorUsername String?
+  authorAvatar   String?
+
+  // Relations
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+
+  // Attributes
+  @@map("post_commit")
+}
+
 model PostTopic {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // Relations
   post    Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -169,13 +187,10 @@ model PostTopic {
 }
 
 model Topic {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String  @unique
   image       String?
   description String?
-
-  // Timestamps
-  createdAt DateTime @default(now())
 
   // Relations
   posts    PostTopic[]
@@ -186,10 +201,7 @@ model Topic {
 }
 
 model Like {
-  id String @id @default(cuid())
-
-  // Timestamps
-  createdAt DateTime @default(now())
+  id String @id @default(uuid())
 
   // Relations
   user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -204,7 +216,7 @@ model Like {
 }
 
 model Product {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String
   slug        String  @unique
   description String?
@@ -233,14 +245,10 @@ model Product {
 }
 
 model Badge {
-  id          String  @id @default(cuid())
+  id          String  @id @default(uuid())
   name        String
   image       String
   description String?
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   // Relations
   users User[]
@@ -250,7 +258,7 @@ model Badge {
 }
 
 model Notification {
-  id       String           @id @default(cuid())
+  id       String           @id @default(uuid())
   message  String?
   isRead   Boolean          @default(false)
   type     NotificationType
@@ -269,19 +277,17 @@ model Notification {
   likeId       String?
   product      Product? @relation("product", fields: [productId], references: [id], onDelete: Cascade)
   productId    String?
+  post         Post?    @relation("post", fields: [postId], references: [id], onDelete: Cascade)
+  postId       String?
 
   // Attributes
   @@map("notifications")
 }
 
 model Integration {
-  id                  String  @id @default(cuid())
+  id                  String  @id @default(uuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -292,10 +298,9 @@ model Integration {
 }
 
 model Log {
-  id        String        @id @default(cuid())
-  action    LogActionType
-  entityId  String?
-  ipAddress String?
+  id       String        @id @default(uuid())
+  action   LogActionType
+  entityId String?
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -308,28 +313,12 @@ model Log {
   @@map("logs")
 }
 
-model Message {
-  id      String @id @default(cuid())
-  message String
-
-  // Timestamps
-  createdAt DateTime @default(now())
-
-  // Relations
-  sender     User   @relation("messageSender", fields: [senderId], references: [id], onDelete: Cascade)
-  senderId   String
-  receiver   User   @relation("messageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
-  receiverId String
-
-  // Attributes
-  @@map("messages")
-}
-
 // Types
 enum PostType {
   POST
   TASK
   QUESTION
+  COMMIT
   REPLY
 }
 
@@ -341,6 +330,7 @@ enum NotificationType {
   // User
   USER_MENTION
   USER_FOLLOW
+  USER_INVITE_FOLLOW
 
   // Product
   PRODUCT_SUBSCRIBE

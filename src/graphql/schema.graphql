@@ -63,6 +63,11 @@ input EditIntegrationInput {
   wakatimeAPIKey: String
 }
 
+input EditNFTAvatarInput {
+  avatar: String!
+  nftSource: String!
+}
+
 input EditPostInput {
   body: String
   done: Boolean
@@ -99,19 +104,17 @@ input EditTopicInput {
 }
 
 input EditUserInput {
-  avatar: String
+  avatar: String!
   bio: String
-  cover: String
+  cover: String!
   location: String
   name: String!
   username: String!
 }
 
 type Integration {
-  createdAt: DateTime!
   id: ID!
   spotifyRefreshToken: String
-  updatedAt: DateTime!
   wakatimeAPIKey: String
 }
 
@@ -129,9 +132,16 @@ input JoinWaitlistInput {
 }
 
 type Like {
-  createdAt: DateTime!
   id: ID!
   post: Post!
+  user: User!
+}
+
+type Log {
+  action: String!
+  createdAt: DateTime!
+  entityId: String
+  id: ID!
   user: User!
 }
 
@@ -155,6 +165,7 @@ type Mutation {
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
+  editNFTAvatar(input: EditNFTAvatarInput!): User!
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
@@ -180,6 +191,7 @@ type Notification {
   dispatcher: User!
   id: ID!
   like: Like
+  post: Post
   product: Product
   receiver: User!
   type: String!
@@ -200,6 +212,7 @@ type PageInfo {
 type Post {
   attachments: Attachments
   body: String!
+  commit: PostCommit
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!
@@ -213,6 +226,20 @@ type Post {
   type: String!
   updatedAt: DateTime!
   user: User!
+}
+
+type PostCommit {
+  additions: Int
+  authorAvatar: String
+  authorUsername: String
+  changed: Int
+  deletions: Int
+  id: ID!
+  message: String
+  post: Post!
+  repoSlug: String
+  url: String
+  verified: Boolean
 }
 
 type PostLikesConnection {
@@ -267,14 +294,16 @@ type ProductPostsConnectionEdge {
 }
 
 type Profile {
-  avatar: String
+  avatar: String!
   bio: String
-  cover: String
+  cover: String!
+  coverBg: String!
   discord: String
   github: String
   id: ID!
   location: String
   name: String!
+  nftSource: String
   twitter: String
   website: String
 }
@@ -285,6 +314,7 @@ type Query {
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
+  logs(after: String, before: String, first: Int, last: Int): QueryLogsConnection!
   me: User
   morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
   notifications(after: String, before: String, first: Int, isRead: Boolean! = false, last: Int): QueryNotificationsConnection!
@@ -332,6 +362,16 @@ type QueryHomeFeedConnection {
 type QueryHomeFeedConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryLogsConnection {
+  edges: [QueryLogsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryLogsConnectionEdge {
+  cursor: String!
+  node: Log!
 }
 
 type QueryMorePostsByUserConnection {
@@ -542,6 +582,7 @@ type User {
   hasWakatimeIntegration: Boolean!
   id: ID!
   inWaitlist: Boolean!
+  integrations: Integration
   invite: Invite
   isFollowing: Boolean!
   isStaff: Boolean!

@@ -11,7 +11,7 @@ import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -22,6 +22,8 @@ import {
   ProfileSettingsMutation,
   ProfileSettingsMutationVariables
 } from './__generated__/Form.generated'
+
+const NFTAvatars = dynamic(() => import('./NFTAvatars'))
 
 const editProfileSchema = object({
   username: string()
@@ -178,6 +180,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
+                  <NFTAvatars />
                 </div>
               </div>
               <div className="space-y-1.5">
@@ -186,7 +189,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   {cover && (
                     <div>
                       <img
-                        className="rounded-lg object-cover bg-gradient-to-r from-blue-500 to-purple-500 h-60 w-full"
+                        className="rounded-lg object-cover h-60 w-full"
+                        style={{
+                          backgroundColor: `#${currentUser?.profile?.coverBg}`
+                        }}
                         src={cover}
                         alt={cover}
                       />
@@ -198,8 +204,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3">
-                <Link href="/settings/password">Change password?</Link>
+              <div className="ml-auto">
                 <Button
                   type="submit"
                   icon={

@@ -19,6 +19,7 @@ export const PROFILE_SETTINGS_QUERY = gql`
         location
         avatar
         cover
+        coverBg
       }
     }
   }

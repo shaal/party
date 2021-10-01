@@ -1,6 +1,7 @@
 import ProductProfileLarge from '@components/shared/ProductProfileLarge'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
+import { PlusCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import { Notification, Product } from 'src/__generated__/schema.generated'
@@ -15,10 +16,13 @@ interface Props {
 const ProductSubscribe: React.FC<Props> = ({ notification }) => {
   return (
     <Card>
-      <CardBody className="space-y-3">
+      <CardBody className="space-y-4">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <UserProfile user={notification?.dispatcher} />
+            <div className="flex items-center space-x-3">
+              <PlusCircleIcon className="h-6 w-6 text-green-500" />
+              <UserProfile user={notification?.dispatcher} />
+            </div>
             <div className="flex items-center space-x-3">
               <div className="text-sm cursor-pointer">
                 {timeago.format(notification?.createdAt)}
@@ -27,7 +31,7 @@ const ProductSubscribe: React.FC<Props> = ({ notification }) => {
             </div>
           </div>
           <div className="linkify">
-            Subscribed to your{' '}
+            subscribed to your{' '}
             <Link href={`/products/${notification?.product?.slug}`}>
               <a>product</a>
             </Link>

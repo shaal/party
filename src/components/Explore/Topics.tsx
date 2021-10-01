@@ -3,6 +3,7 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
@@ -37,6 +38,7 @@ const Topics: React.FC = () => {
   const { data, loading, error } = useQuery<GetExploreUserQuery>(
     GET_EXPLORE_USER_QUERY
   )
+  const user = data?.me
 
   if (loading)
     return (
@@ -49,7 +51,7 @@ const Topics: React.FC = () => {
 
   return (
     <>
-      {data?.me ? (
+      {user ? (
         <Card>
           <ErrorMessage
             title="Failed to load topics"
@@ -59,22 +61,22 @@ const Topics: React.FC = () => {
           <div className="space-y-3 text-center p-5">
             <img
               className="h-16 w-16 rounded-full mx-auto"
-              src={data?.me?.profile?.avatar as string}
-              alt={`@${data?.me?.username}'s avatar`}
+              src={imagekitURL(user?.profile?.avatar as string, 100, 100)}
+              alt={`@${user?.username}'s avatar`}
             />
             <div>
-              <div className="font-bold text-lg">{data?.me?.profile?.name}</div>
-              <Slug slug={data?.me?.username} prefix="@" />
+              <div className="font-bold text-lg">{user?.profile?.name}</div>
+              <Slug slug={user?.username} prefix="@" />
             </div>
           </div>
           <div className="border-b dark:border-gray-800" />
           <div className="p-5 space-y-3">
             <div className="font-bold">
-              {data?.me?.topics?.totalCount} starred topics
+              {user?.topics?.totalCount} starred topics
             </div>
-            {data?.me?.topics?.totalCount > 0 && (
+            {user?.topics?.totalCount > 0 && (
               <div className="space-y-3">
-                {data?.me?.topics?.edges?.map((topic: any) => (
+                {user?.topics?.edges?.map((topic: any) => (
                   <div
                     key={topic?.node?.id}
                     className="flex items-center space-x-2"
@@ -82,7 +84,7 @@ const Topics: React.FC = () => {
                     {topic?.node?.image ? (
                       <img
                         className="h-7 w-7 rounded-md"
-                        src={topic?.node?.image}
+                        src={imagekitURL(topic?.node?.image, 80, 80)}
                         alt={`#${topic?.node?.name}'s image'`}
                       />
                     ) : (

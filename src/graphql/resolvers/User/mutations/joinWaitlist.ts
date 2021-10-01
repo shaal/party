@@ -1,4 +1,5 @@
 import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
+import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
@@ -22,7 +23,9 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
         profile: {
           create: {
             name: input.username,
-            avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`
+            avatar: `https://avatar.tobi.sh/${await md5(input.email)}.svg`,
+            cover: getRandomCover().image,
+            coverBg: getRandomCover().color
           }
         },
         integrations: { create: {} }
@@ -38,6 +41,8 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
         throw new Error('Email is already taken!')
     }
 
-    throw new Error('Something went wrong!')
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }

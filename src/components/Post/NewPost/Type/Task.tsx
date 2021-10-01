@@ -19,7 +19,7 @@ import {
   NewPostMutationVariables
 } from './__generated__/Post.generated'
 
-const newPostSchema = object({
+const newTaskSchema = object({
   body: string()
     .min(1, { message: '✅ Task should not be empty' })
     .max(10000, { message: '✅ Task should not exceed 10000 characters' }),
@@ -53,7 +53,7 @@ const TaskType: React.FC = () => {
   )
 
   const form = useZodForm({
-    schema: newPostSchema
+    schema: newTaskSchema
   })
 
   return (

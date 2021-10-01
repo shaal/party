@@ -1,3 +1,4 @@
+import { imagekitURL } from '@components/utils/imagekitURL'
 import Link from 'next/link'
 import React from 'react'
 import { Product } from 'src/__generated__/schema.generated'
@@ -13,7 +14,7 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
     <div className="flex justify-between items-center">
       <div className="flex space-x-3 items-center">
         <img
-          src={product?.avatar as string}
+          src={imagekitURL(product?.avatar as string, 100, 100)}
           className="h-16 w-16 rounded-lg bg-gray-200"
           alt={`#${product?.slug}'s avatar`}
         />

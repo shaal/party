@@ -2,11 +2,11 @@ import '../styles.css'
 
 import { ApolloProvider } from '@apollo/client'
 import SiteLayout from '@components/SiteLayout'
-import { NProgress } from '@components/ui/NProgress'
 import { useApollo } from '@utils/apollo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from 'next-themes'
+import NextNprogress from 'nextjs-progressbar'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const client = useApollo(pageProps.initialClientState)
@@ -17,8 +17,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Head>
           <title>Devparty</title>
         </Head>
-        <NProgress />
         <SiteLayout>
+          <NextNprogress
+            color="#8B5CF6"
+            showOnShallow={true}
+            options={{ showSpinner: false }}
+          />
           <Component {...pageProps} />
         </SiteLayout>
       </ThemeProvider>

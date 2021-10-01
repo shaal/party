@@ -35,7 +35,7 @@ export const toggleSubscribe = async (
     })
 
     if (currentUserId !== product?.ownerId) {
-      await createNotification(
+      createNotification(
         currentUserId,
         product?.ownerId,
         product?.id,
@@ -44,7 +44,9 @@ export const toggleSubscribe = async (
     }
 
     return product
-  } catch (error) {
-    throw new Error('Something went wrong!')
+  } catch (error: any) {
+    throw new Error(
+      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
+    )
   }
 }

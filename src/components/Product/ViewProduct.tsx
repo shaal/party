@@ -39,30 +39,34 @@ export const PRODUCT_QUERY = gql`
   }
 `
 
-const ViewProduct: React.FC = () => {
+const ViewProduct = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
     variables: { slug: router.query.slug },
     skip: !router.isReady
   })
+  const product = data?.product
 
-  if (loading) return <PageLoading message="Loading product" />
+  if (!router.isReady || loading)
+    return <PageLoading message="Loading product" />
+
+  if (!product) return window.location.replace('/home')
 
   return (
     <GridLayout>
       <DevpartySEO
-        title={`${data?.product?.slug} (${data?.product?.name}) · Devparty`}
-        description={data?.product?.description as string}
-        image={data?.product?.avatar as string}
-        path={`/products/${data?.product?.slug}`}
+        title={`${product?.slug} (${product?.name}) · Devparty`}
+        description={product?.description as string}
+        image={product?.avatar as string}
+        path={`/products/${product?.slug}`}
       />
       <GridItemFour>
-        <Details product={data?.product as Product} />
+        <Details product={product as Product} />
       </GridItemFour>
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />
-          <ProductFeed product={data?.product as Product} />
+          <ProductFeed product={product as Product} />
         </div>
       </GridItemEight>
     </GridLayout>

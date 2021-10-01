@@ -8,8 +8,10 @@ builder.prismaObject('Profile', {
     name: t.exposeString('name'),
     bio: t.exposeString('bio', { nullable: true }),
     location: t.exposeString('location', { nullable: true }),
-    avatar: t.exposeString('avatar', { nullable: true }),
-    cover: t.exposeString('cover', { nullable: true }),
+    avatar: t.exposeString('avatar'),
+    nftSource: t.exposeString('nftSource', { nullable: true }),
+    cover: t.exposeString('cover'),
+    coverBg: t.exposeString('coverBg'),
 
     // Social
     website: t.exposeString('website', { nullable: true }),

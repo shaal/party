@@ -42,6 +42,7 @@ builder.prismaObject('User', {
     // Relations
     profile: t.relation('profile'),
     tip: t.relation('tip', { nullable: true }),
+    integrations: t.relation('integrations', { nullable: true }),
     badges: t.relatedConnection('badges', { cursor: 'id', totalCount: true }),
     topics: t.relatedConnection('topics', { cursor: 'id', totalCount: true }),
     posts: t.relatedConnection('posts', {
@@ -75,7 +76,7 @@ builder.prismaObject('User', {
       authScopes: { $granted: 'currentUser' },
       resolve: async (parent, args, { session }) => {
         return await db.notification.count({
-          where: { receiverId: session?.userId, isRead: false }
+          where: { receiver: { id: session?.userId }, isRead: false }
         })
       }
     }),
@@ -147,8 +148,8 @@ const EditUserInput = builder.inputType('EditUserInput', {
     }),
     bio: t.string({ required: false, validate: { maxLength: 190 } }),
     location: t.string({ required: false, validate: { maxLength: 100 } }),
-    avatar: t.string({ required: false }),
-    cover: t.string({ required: false })
+    avatar: t.string(),
+    cover: t.string()
   })
 })
 
@@ -162,9 +163,7 @@ builder.mutationField('editUser', (t) =>
       try {
         return await db.user.update({
           ...query,
-          where: {
-            id: session!.userId
-          },
+          where: { id: session!.userId },
           data: {
             username: input.username,
             profile: {
@@ -183,7 +182,46 @@ builder.mutationField('editUser', (t) =>
           throw new Error('Username is already taken!')
         }
 
-        throw new Error('Something went wrong!')
+        throw new Error(
+          process.env.NODE_ENV === 'production'
+            ? 'Something went wrong!'
+            : error
+        )
+      }
+    }
+  })
+)
+
+const EditNFTAvatarInput = builder.inputType('EditNFTAvatarInput', {
+  fields: (t) => ({
+    avatar: t.string({ required: true }),
+    nftSource: t.string({ required: true })
+  })
+})
+
+// TODO: Split to function
+builder.mutationField('editNFTAvatar', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: { input: t.arg({ type: EditNFTAvatarInput }) },
+    authScopes: { user: true },
+    resolve: async (query, parent, { input }, { session }) => {
+      try {
+        return await db.user.update({
+          ...query,
+          where: { id: session!.userId },
+          data: {
+            profile: {
+              update: { avatar: input.avatar, nftSource: input.nftSource }
+            }
+          }
+        })
+      } catch (error: any) {
+        throw new Error(
+          process.env.NODE_ENV === 'production'
+            ? 'Something went wrong!'
+            : error
+        )
       }
     }
   })

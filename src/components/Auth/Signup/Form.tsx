@@ -110,7 +110,7 @@ const SignupForm: React.FC = () => {
           className=" w-full justify-center"
           icon={
             form.formState.isSubmitting ? (
-              <Spinner size="xs" />
+              <Spinner size="xs" className="mr-1" />
             ) : (
               <CollectionIcon className="h-5 w-5" />
             )
