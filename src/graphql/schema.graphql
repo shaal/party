@@ -63,6 +63,11 @@ input EditIntegrationInput {
   wakatimeAPIKey: String
 }
 
+input EditNFTAvatarInput {
+  avatar: String!
+  nftSource: String!
+}
+
 input EditPostInput {
   body: String
   done: Boolean
@@ -160,6 +165,7 @@ type Mutation {
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
+  editNFTAvatar(input: EditNFTAvatarInput!): User!
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
@@ -297,6 +303,7 @@ type Profile {
   id: ID!
   location: String
   name: String!
+  nftSource: String
   twitter: String
   website: String
 }
@@ -575,6 +582,7 @@ type User {
   hasWakatimeIntegration: Boolean!
   id: ID!
   inWaitlist: Boolean!
+  integrations: Integration
   invite: Invite
   isFollowing: Boolean!
   isStaff: Boolean!

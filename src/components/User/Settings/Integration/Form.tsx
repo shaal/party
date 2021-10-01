@@ -73,7 +73,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               onSubmit={({ wakatimeAPIKey }) =>
                 editIntegration({
                   variables: {
-                    input: { wakatimeAPIKey: wakatimeAPIKey as string }
+                    input: { wakatimeAPIKey }
                   }
                 })
               }

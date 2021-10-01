@@ -37,6 +37,7 @@ export const UserFragment = gql`
     profile {
       id
       avatar
+      nftSource
       cover
       coverBg
       name

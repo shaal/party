@@ -7,16 +7,18 @@ import UserCard from '@components/shared/UserCard'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
-import PostMod from './Mod'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
+
+const PostMod = dynamic(() => import('./Mod'))
 
 export const POST_QUERY = gql`
   query PostQuery($id: ID!) {

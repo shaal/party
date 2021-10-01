@@ -72,17 +72,18 @@ model Session {
 }
 
 model Profile {
-  id       String  @id @default(uuid())
-  name     String
-  avatar   String
-  cover    String
-  coverBg  String
-  bio      String?
-  location String?
-  website  String?
-  discord  String?
-  github   String?
-  twitter  String?
+  id        String  @id @default(uuid())
+  name      String
+  avatar    String
+  nftSource String?
+  cover     String
+  coverBg   String
+  bio       String?
+  location  String?
+  website   String?
+  discord   String?
+  github    String?
+  twitter   String?
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

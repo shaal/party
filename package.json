@@ -63,7 +63,9 @@
     "timeago.js": "^4.0.2",
     "unfurl.js": "^5.6.2",
     "url-regex-safe": "^2.0.2",
-    "zod": "^3.9.5"
+    "web3": "^1.5.3",
+    "web3modal": "^1.9.4",
+    "zod": "^3.9.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.0",
