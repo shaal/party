@@ -555,10 +555,10 @@
   resolved "https://registry.yarnpkg.com/@giraphql/core/-/core-2.16.0.tgz#556709bc013fe52a0cf005090069bd787de9e94b"
   integrity sha512-+ZJ4xuFXCd306N1T6w9POSwyIm4LUzdIzUbsWXeLSpI/UOc4Pv7vHwqiBbMTMNYrDH6BY+YwtbP/4ZkGwLzUfw==
 
-"@giraphql/plugin-directives@^2.7.2":
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/@giraphql/plugin-directives/-/plugin-directives-2.7.2.tgz#e1a6683e7a3063566eb1e55dbc0eeb880bd30454"
-  integrity sha512-Xehfih25bF6Ob1xmfEauIMlICKzuUupSQ5ES8JeBBVkDfhny7UhMuE9DMmKXP+QxR3F2HH5WloZLdaJjDUQPdw==
+"@giraphql/plugin-directives@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@giraphql/plugin-directives/-/plugin-directives-2.8.0.tgz#a16af2642dc955e7e27ba424c7b9df12d7b81bc8"
+  integrity sha512-WLdvI6Id95+qtKYZe01SbZ18qs7k4IOlOtcxUX1DVeMwBNF1i9Ivltwdy4MuxK2xyqvRrbficdOSB9B8tnB32A==
 
 "@giraphql/plugin-prisma@^0.10.0":
   version "0.10.0"
