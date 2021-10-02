@@ -20,7 +20,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
   const router = useRouter()
   const { data, error } = useSWR(
     `https://${
-      process.env.NODE_ENV === 'production' ? 'api' : 'testnets-api'
+      process.env.NODE_ENV === 'production' ? 'testnets-api' : 'testnets-api'
     }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
     fetcher
   )
