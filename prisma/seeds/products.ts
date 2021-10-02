@@ -16,7 +16,7 @@ export const productData = [
   {
     name: 'Interclip',
     slug: 'interclip',
-    username: 'filip',
+    username: 'filiptronicek',
     avatar: 'https://i.ibb.co/WVDc1j7/iclip.png',
     description: 'A clipboard and file sharing tool'
   },
@@ -38,7 +38,7 @@ export const productData = [
   {
     name: 'Gitpod',
     slug: 'gitpod',
-    username: 'filip',
+    username: 'filiptronicek',
     avatar: 'https://avatars.githubusercontent.com/u/37021919',
     description: 'Always Ready To Code'
   },
@@ -52,7 +52,7 @@ export const productData = [
   {
     name: 'PlanetScale',
     slug: 'planetscale',
-    username: 'filip',
+    username: 'filiptronicek',
     avatar: 'https://avatars.githubusercontent.com/u/35612527',
     description: 'We help operationalize Vitess in the cloud and on premise.'
   },
