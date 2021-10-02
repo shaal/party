@@ -41,7 +41,7 @@ async function main() {
     console.log(`Seeding User - @${username} ✅`)
     await db.user.create({
       data: {
-        email: `yoginth+${username}@hey.com`,
+        email: `{username}@yogi.codes`,
         username,
         inWaitlist: false,
         hashedPassword: await hashPassword(username),
