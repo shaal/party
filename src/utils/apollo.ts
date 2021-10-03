@@ -21,8 +21,9 @@ export function useApollo(initialState?: Record<string, any>) {
 
 /**
  * Creates a new apollo client
- * @param {initialState} - Apollo's intial state
- * @param {headers} - HTTP headers
+ * @param param - createApolloClient parameters
+ * @param param.initialState - Apollo's intial state
+ * @param param.headers - HTTP headers
  * @returns the new client
  */
 export function createApolloClient({ initialState, headers }: ClientOptions) {
