@@ -5,13 +5,13 @@ export async function uploadToIPFS(data: File) {
     method: 'post',
     body: formData
   })
-  const response = await upload.json()
+  const { Hash }: { Hash: string } = await upload.json()
 
   return {
     type: data.type,
     url:
       data.type === 'video/mp4'
-        ? `https://ipfs.io/ipfs/${response.Hash}`
-        : `https://cloudflare-ipfs.com/ipfs/${response.Hash}`
+        ? `https://ipfs.io/ipfs/${Hash}`
+        : `https://cloudflare-ipfs.com/ipfs/${Hash}`
   }
 }
