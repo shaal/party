@@ -6,6 +6,11 @@ import { db } from './prisma'
 
 const COST_FACTOR = 11
 
+/**
+ * Hash a given raw text password
+ * @param password - Raw text password
+ * @returns a new hashed password
+ */
 export async function hashPassword(password: string): Promise<string> {
   const salt = crypto.randomBytes(16)
 
