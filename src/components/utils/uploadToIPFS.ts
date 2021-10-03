@@ -1,19 +1,17 @@
-import { create } from 'ipfs-http-client'
-
-export async function uploadToIPFS(data: any) {
-  const ipfs = create({
-    host: 'ipfs.infura.io',
-    port: 5001,
-    protocol: 'https'
+export async function uploadToIPFS(data: File) {
+  const formData = new FormData()
+  formData.append('file', data, 'img')
+  const upload = await fetch('https://ipfs.infura.io:5001/api/v0/add', {
+    method: 'post',
+    body: formData
   })
-
-  const { path }: { path: string } = await ipfs.add(data)
+  const { Hash }: { Hash: string } = await upload.json()
 
   return {
     type: data.type,
     url:
       data.type === 'video/mp4'
-        ? `https://ipfs.io/ipfs/${path}`
-        : `https://cloudflare-ipfs.com/ipfs/${path}`
+        ? `https://ipfs.io/ipfs/${Hash}`
+        : `https://cloudflare-ipfs.com/ipfs/${Hash}`
   }
 }
