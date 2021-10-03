@@ -11,10 +11,6 @@ exclude_patterns = [
 ]
 
 [[analyzers]]
-name = "sql"
-enabled = true
-
-[[analyzers]]
 name = "javascript"
 enabled = true
 
