@@ -24,6 +24,12 @@ export async function hashPassword(password: string): Promise<string> {
   return key
 }
 
+/**
+ * Verifies the given hashed password is correct
+ * @param hashedPassword - Hashed password
+ * @param password - Raw text password
+ * @returns the password is correct or not
+ */
 export function verifyPassword(
   hashedPassword: string,
   password: string
