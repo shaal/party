@@ -2,6 +2,12 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 import { resolveSession } from './sessions'
 
+/**
+ * Check for the route is unauthenticated
+ * @param context - Next.js server side props context
+ * @param redirect - Redirect to the target URL
+ * @returns redirect props
+ */
 export async function unauthenticatedRoute(
   context: GetServerSidePropsContext,
   redirect: string = '/home'
