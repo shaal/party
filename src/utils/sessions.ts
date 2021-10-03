@@ -60,6 +60,11 @@ export async function createSession(request: IncomingMessage, user: User) {
   return session
 }
 
+/**
+ * Remove session
+ * @param request - HTTP request
+ * @param session - Session in which need to be removed
+ */
 export async function removeSession(
   request: IncomingMessage,
   session: Session
@@ -71,6 +76,7 @@ export async function removeSession(
 }
 
 const sessionCache = new WeakMap<IncomingMessage, Session | null>()
+
 export async function resolveSession({
   req,
   res
