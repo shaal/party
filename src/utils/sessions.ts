@@ -36,6 +36,12 @@ export const sessionOptions: SessionOptions = {
   }
 }
 
+/**
+ * Create session for the given user
+ * @param request - HTTP request
+ * @param user - Session to be created for the given user
+ * @returns session of the given user
+ */
 export async function createSession(request: IncomingMessage, user: User) {
   const session = await db.session.create({
     data: {
