@@ -8,6 +8,11 @@ interface ClientOptions {
   initialState?: Record<string, any>
 }
 
+/**
+ * Helps to create a new apollo client from _app.tsx
+ * @param initialState - Apollo's intial state
+ * @returns a new apollo client
+ */
 export function useApollo(initialState?: Record<string, any>) {
   const client = createApolloClient({ initialState })
 
