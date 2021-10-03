@@ -19,6 +19,12 @@ export function useApollo(initialState?: Record<string, any>) {
   return client
 }
 
+/**
+ * Creates a new apollo client
+ * @param {initialState} - Apollo's intial state
+ * @param {headers} - HTTP headers
+ * @returns the new client
+ */
 export function createApolloClient({ initialState, headers }: ClientOptions) {
   let nextClient = apolloClient
   const ssrMode = typeof window === 'undefined'
