@@ -16,7 +16,7 @@ import {
   NewPostMutationVariables
 } from './__generated__/Post.generated'
 
-const newCommitSchema = object({
+const newPollSchema = object({
   url: string()
     .regex(
       /(?:http:\/\/)?(?:www\.)?github\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
@@ -30,7 +30,7 @@ const newCommitSchema = object({
   done: boolean().default(true)
 })
 
-const CommitType: React.FC = () => {
+const PollType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
@@ -57,7 +57,7 @@ const CommitType: React.FC = () => {
   )
 
   const form = useZodForm({
-    schema: newCommitSchema
+    schema: newPollSchema
   })
 
   return (
@@ -107,4 +107,4 @@ const CommitType: React.FC = () => {
   )
 }
 
-export default CommitType
+export default PollType
