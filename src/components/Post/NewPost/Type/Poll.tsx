@@ -5,6 +5,7 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
+import { TextArea } from '@components/ui/TextArea'
 import { ChartBarIcon, CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -18,9 +19,9 @@ import {
 } from './__generated__/Post.generated'
 
 const newPollSchema = object({
-  title: string()
-    .min(1, { message: '🗳️ Poll Title should not be empty' })
-    .max(190, { message: '🗳️ Poll Title should not exceed 190 characters' }),
+  body: string()
+    .min(1, { message: '🗳️ Poll body should not be empty' })
+    .max(190, { message: '🗳️ Poll body should not exceed 190 characters' }),
   choice1: string().min(1).max(25),
   choice2: string().min(1).max(25),
   choice3: string().max(25).optional(),
@@ -81,7 +82,10 @@ const PollType: React.FC = () => {
         error={createPostResult.error}
       />
       <div className="mb-1.5 space-y-3">
-        <Input {...form.register('title')} placeholder="Title of your poll" />
+        <TextArea
+          {...form.register('body')}
+          placeholder="Tell as about your poll"
+        />
         <Card className="!bg-gray-100 dark:!bg-gray-800">
           <CardBody className="space-y-2">
             <div>
