@@ -6,6 +6,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 
 import {
@@ -58,7 +59,13 @@ const PollType: React.FC<Props> = ({ post }) => {
           query: POST_POLL_QUERY,
           variables: { id: post?.id }
         }
-      ]
+      ],
+      onError() {
+        toast.error('You have already voted!')
+      },
+      onCompleted() {
+        toast.success('Voted successfully!')
+      }
     }
   )
   const { data, loading } = useQuery<PostPollQuery>(POST_POLL_QUERY, {
