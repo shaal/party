@@ -5,7 +5,7 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { ChartBarIcon } from '@heroicons/react/outline'
+import { ChartBarIcon, CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -78,19 +78,35 @@ const PollType: React.FC = () => {
       />
       <div className="mb-1.5 space-y-3">
         <Input {...form.register('title')} placeholder="Title of your poll" />
-        <Card>
+        <Card className="!bg-gray-100 dark:!bg-gray-800">
           <CardBody className="space-y-2">
             <div>
-              <Input {...form.register('title')} placeholder="Choice 1" />
+              <Input
+                prefix={<CheckCircleIcon className="h-5 w-5" />}
+                {...form.register('title')}
+                placeholder="Choice 1*"
+              />
             </div>
             <div>
-              <Input {...form.register('title')} placeholder="Choice 2" />
+              <Input
+                prefix={<CheckCircleIcon className="h-5 w-5" />}
+                {...form.register('title')}
+                placeholder="Choice 2*"
+              />
             </div>
             <div>
-              <Input {...form.register('title')} placeholder="Choice 3" />
+              <Input
+                prefix={<CheckCircleIcon className="h-5 w-5" />}
+                {...form.register('title')}
+                placeholder="Choice 3"
+              />
             </div>
             <div>
-              <Input {...form.register('title')} placeholder="Choice 4" />
+              <Input
+                prefix={<CheckCircleIcon className="h-5 w-5" />}
+                {...form.register('title')}
+                placeholder="Choice 4"
+              />
             </div>
           </CardBody>
         </Card>
