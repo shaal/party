@@ -224,6 +224,7 @@ type Post {
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   oembedUrl: String
   parent: Post
+  poll: PostPoll
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
   title: String
@@ -255,6 +256,27 @@ type PostLikesConnection {
 type PostLikesConnectionEdge {
   cursor: String!
   node: Like!
+}
+
+type PostPoll {
+  choice1: String!
+  choice2: String!
+  choice3: String
+  choice4: String
+  id: ID!
+  post: Post!
+  voters(after: String, before: String, first: Int, last: Int): PostPollVotersConnection!
+}
+
+type PostPollVotersConnection {
+  edges: [PostPollVotersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostPollVotersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type PostRepliesConnection {

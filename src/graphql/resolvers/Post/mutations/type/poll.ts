@@ -21,6 +21,14 @@ export const poll = async (
       productId: input.productId ? input.productId : null,
       topics: {
         create: parseTopics(getTopics(input.body))
+      },
+      poll: {
+        create: {
+          choice1: input.choice1,
+          choice2: input.choice2,
+          choice3: input.choice3,
+          choice4: input.choice4
+        }
       }
     }
   })
