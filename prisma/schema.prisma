@@ -196,6 +196,9 @@ model PollAnswer {
   pollId String
   voters User[]
 
+  // Timestamps
+  createdAt DateTime @default(now())
+
   // Attributes
   @@map("poll_answers")
 }
