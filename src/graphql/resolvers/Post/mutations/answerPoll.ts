@@ -3,11 +3,11 @@ import { db } from '@utils/prisma'
 export const answerPoll = async (
   query: any,
   userId: string,
-  postId: string
+  answerId: string
 ) => {
   try {
     const poll = db.pollAnswer.update({
-      where: { id: postId },
+      where: { id: answerId },
       data: {
         voters: {
           connect: {
