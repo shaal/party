@@ -54,6 +54,7 @@ input CreatePostInput {
   body: String!
   done: Boolean! = true
   parentId: ID
+  polls: [String!]
   productId: ID
   title: String
   type: String! = "POST"

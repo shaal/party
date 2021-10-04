@@ -6,7 +6,13 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
-import { ChartBarIcon, CheckCircleIcon } from '@heroicons/react/outline'
+import { Tooltip } from '@components/ui/Tooltip'
+import {
+  ChartBarIcon,
+  CheckCircleIcon,
+  MinusCircleIcon,
+  PlusCircleIcon
+} from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -21,15 +27,12 @@ import {
 const newPollSchema = object({
   body: string()
     .min(1, { message: '🗳️ Poll body should not be empty' })
-    .max(190, { message: '🗳️ Poll body should not exceed 190 characters' }),
-  choice1: string().min(1).max(25),
-  choice2: string().min(1).max(25),
-  choice3: string().max(25).optional(),
-  choice4: string().max(25).optional()
+    .max(190, { message: '🗳️ Poll body should not exceed 190 characters' })
 })
 
 const PollType: React.FC = () => {
   const router = useRouter()
+  const [polls, setPolls] = useState([{ title: '' }, { title: '' }])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPoll, createPollResult] = useMutation<
     CreatePollMutation,
@@ -54,6 +57,16 @@ const PollType: React.FC = () => {
   const form = useZodForm({
     schema: newPollSchema
   })
+
+  const addPoll = () => {
+    setPolls([...polls, { title: '' }])
+  }
+
+  const removePoll = (i: number) => {
+    let newPolls = [...polls]
+    newPolls.splice(i, 1)
+    setPolls(newPolls)
+  }
 
   return (
     <Form
@@ -82,34 +95,33 @@ const PollType: React.FC = () => {
         />
         <Card className="!bg-gray-100 dark:!bg-gray-800">
           <CardBody className="space-y-2">
-            <div>
-              <Input
-                prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('choice1')}
-                placeholder="Choice 1*"
-              />
-            </div>
-            <div>
-              <Input
-                prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('choice2')}
-                placeholder="Choice 2*"
-              />
-            </div>
-            <div>
-              <Input
-                prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('choice3')}
-                placeholder="Choice 3"
-              />
-            </div>
-            <div>
-              <Input
-                prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('choice4')}
-                placeholder="Choice 4"
-              />
-            </div>
+            {polls.map((element, index) => (
+              <div key={index} className="flex item-center space-x-3">
+                <Input
+                  prefix={<CheckCircleIcon className="h-5 w-5" />}
+                  placeholder={`Choice ${index + 1}`}
+                />
+                {index > 1 ? (
+                  <button type="button" onClick={() => removePoll(index)}>
+                    <Tooltip content="Remove">
+                      <MinusCircleIcon className="h-5 w-5 text-red-500" />
+                    </Tooltip>
+                  </button>
+                ) : null}
+              </div>
+            ))}
+            {polls.length < 4 && (
+              <Button
+                type="button"
+                variant="success"
+                className="text-sm"
+                onClick={() => addPoll()}
+                icon={<PlusCircleIcon className="h-5 w-4" />}
+                outline
+              >
+                New answer
+              </Button>
+            )}
           </CardBody>
         </Card>
       </div>
