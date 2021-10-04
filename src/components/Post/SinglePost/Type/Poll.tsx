@@ -16,6 +16,10 @@ export const POST_POLL_QUERY = gql`
       id
       poll {
         id
+        answers {
+          id
+          title
+        }
       }
     }
   }
@@ -58,7 +62,13 @@ const PollType: React.FC<Props> = ({ post }) => {
       </div>
       <Card className="!bg-gray-100 dark:!bg-gray-800">
         <CardBody className="space-y-3">
-          {loading ? <div>Loading Poll...</div> : <>WIP</>}
+          {loading ? (
+            <div>Loading Poll...</div>
+          ) : (
+            poll?.answers?.map((answer: any) => (
+              <Poll key={answer?.id} choice={answer?.title} />
+            ))
+          )}
         </CardBody>
       </Card>
     </div>
