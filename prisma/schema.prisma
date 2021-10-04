@@ -43,6 +43,7 @@ model User {
   likes                  Like[]
   badges                 Badge[]
   topics                 Topic[]
+  polls                  PostPoll[]
   logs                   Log[]
   following              User[]         @relation("follows")
   followedBy             User[]         @relation("follows")
@@ -144,6 +145,7 @@ model Post {
   likes        Like[]
   topics       PostTopic[]
   commit       PostCommit?
+  poll         PostPoll?
   parentId     String?
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies      Post[]         @relation("replies")
@@ -171,6 +173,22 @@ model PostCommit {
 
   // Attributes
   @@map("post_commit")
+}
+
+model PostPoll {
+  id String @id @default(uuid())
+  choice1 String
+  choice2 String
+  choice3 String?
+  choice4 String?
+
+  // Relations
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+  voters User[]
+
+  // Attributes
+  @@map("post_poll")
 }
 
 model PostTopic {
