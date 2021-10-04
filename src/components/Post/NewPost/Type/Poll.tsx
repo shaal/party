@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
@@ -75,8 +76,24 @@ const PollType: React.FC = () => {
         title="Failed to create poll"
         error={createPostResult.error}
       />
-      <div className="flex items-center mb-1.5 gap-2.5">
+      <div className="mb-1.5 space-y-3">
         <Input {...form.register('title')} placeholder="Title of your poll" />
+        <Card>
+          <CardBody className="space-y-2">
+            <div>
+              <Input {...form.register('title')} placeholder="Choice 1" />
+            </div>
+            <div>
+              <Input {...form.register('title')} placeholder="Choice 2" />
+            </div>
+            <div>
+              <Input {...form.register('title')} placeholder="Choice 3" />
+            </div>
+            <div>
+              <Input {...form.register('title')} placeholder="Choice 4" />
+            </div>
+          </CardBody>
+        </Card>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
