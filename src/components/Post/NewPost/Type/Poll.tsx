@@ -59,11 +59,15 @@ const PollType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) =>
+      onSubmit={({ body, choice1, choice2, choice3, choice4 }) =>
         createPost({
           variables: {
             input: {
               body,
+              choice1,
+              choice2,
+              choice3,
+              choice4,
               type: 'POLL',
               productId: selectedProduct as string
             }
