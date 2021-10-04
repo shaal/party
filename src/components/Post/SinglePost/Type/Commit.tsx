@@ -39,15 +39,12 @@ interface Props {
 }
 
 const CommitType: React.FC<Props> = ({ post }) => {
-  const { data, loading, error } = useQuery<PostCommitQuery>(
-    POST_COMMIT_QUERY,
-    {
-      variables: {
-        id: post.id
-      },
-      skip: !post.id
-    }
-  )
+  const { data, loading } = useQuery<PostCommitQuery>(POST_COMMIT_QUERY, {
+    variables: {
+      id: post.id
+    },
+    skip: !post.id
+  })
   const commit = data?.post?.commit
 
   if (loading) return <div>Loading Commit...</div>
