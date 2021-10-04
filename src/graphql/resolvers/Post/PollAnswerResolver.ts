@@ -5,6 +5,7 @@ builder.prismaObject('PollAnswer', {
   fields: (t) => ({
     id: t.exposeID('id'),
     title: t.exposeString('title'),
+    voters: t.relatedConnection('voters', { cursor: 'id', totalCount: true }),
 
     // Relations
     poll: t.relation('poll')
