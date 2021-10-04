@@ -38,6 +38,10 @@ input CreateBadgeInput {
 input CreatePostInput {
   attachments: String
   body: String!
+  choice1: String
+  choice2: String
+  choice3: String
+  choice4: String
   done: Boolean! = true
   parentId: ID
   productId: ID
