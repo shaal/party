@@ -31,7 +31,6 @@ const newCommitSchema = object({
 
 const CommitType: React.FC = () => {
   const router = useRouter()
-  const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -47,7 +46,6 @@ const CommitType: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        setAttachments([])
         form.reset()
         toast.success('Git Commit has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
@@ -63,15 +61,12 @@ const CommitType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ url, done }) =>
+      onSubmit={({ url }) =>
         createPost({
           variables: {
             input: {
               body: url,
-              done,
               type: 'COMMIT',
-              attachments:
-                attachments.length > 0 ? JSON.stringify(attachments) : null,
               productId: selectedProduct as string
             }
           }
