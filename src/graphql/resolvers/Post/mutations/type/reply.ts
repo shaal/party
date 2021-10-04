@@ -24,9 +24,7 @@ export const reply = async (
       attachments: input.attachments ? input.attachments : undefined,
       type: input.type as PostType,
       productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      },
+      topics: { create: parseTopics(getTopics(input.body)) },
       parentId
     }
   })

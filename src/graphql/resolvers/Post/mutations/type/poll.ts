@@ -12,6 +12,13 @@ export const poll = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
+  const answers = JSON.parse(input.polls as string)
+  var answersWithIndex = answers.map((el: any, index: number) => {
+    var o = Object.assign({}, el)
+    o.index = index
+    return o
+  })
+
   const poll = await db.post.create({
     ...query,
     data: {
@@ -19,16 +26,8 @@ export const poll = async (
       body: input.body,
       type: 'POLL',
       productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      },
-      poll: {
-        create: {
-          answers: {
-            createMany: { data: JSON.parse(input.polls as string) }
-          }
-        }
-      }
+      topics: { create: parseTopics(getTopics(input.body)) },
+      poll: { create: { answers: { createMany: { data: answersWithIndex } } } }
     }
   })
 

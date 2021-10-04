@@ -189,6 +189,7 @@ model Poll {
 
 model PollAnswer {
   id    String @id @default(uuid())
+  index Int
   title String
 
   // Relations

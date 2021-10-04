@@ -124,6 +124,7 @@ CREATE TABLE `poll` (
 -- CreateTable
 CREATE TABLE `poll_answers` (
     `id` VARCHAR(191) NOT NULL,
+    `index` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `pollId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

@@ -20,9 +20,7 @@ export const post = async (
       attachments: input.attachments ? input.attachments : undefined,
       type: 'POST',
       productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      }
+      topics: { create: parseTopics(getTopics(input.body)) }
     }
   })
 

@@ -21,9 +21,7 @@ export const question = async (
       attachments: input.attachments ? input.attachments : undefined,
       type: 'QUESTION',
       productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      }
+      topics: { create: parseTopics(getTopics(input.body)) }
     }
   })
 
