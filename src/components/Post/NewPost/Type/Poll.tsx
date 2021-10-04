@@ -14,9 +14,9 @@ import { object, string } from 'zod'
 
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/Post.generated'
+  CreatePollMutation,
+  CreatePollMutationVariables
+} from './__generated__/Poll.generated'
 
 const newPollSchema = object({
   body: string()
@@ -31,12 +31,12 @@ const newPollSchema = object({
 const PollType: React.FC = () => {
   const router = useRouter()
   const [selectedProduct, setSelectedProduct] = useState<string>('')
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+  const [createPoll, createPollResult] = useMutation<
+    CreatePollMutation,
+    CreatePollMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreatePollMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
         }
@@ -60,7 +60,7 @@ const PollType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ body, choice1, choice2, choice3, choice4 }) =>
-        createPost({
+        createPoll({
           variables: {
             input: {
               body,
@@ -77,7 +77,7 @@ const PollType: React.FC = () => {
     >
       <ErrorMessage
         title="Failed to create poll"
-        error={createPostResult.error}
+        error={createPollResult.error}
       />
       <div className="mb-1.5 space-y-3">
         <TextArea

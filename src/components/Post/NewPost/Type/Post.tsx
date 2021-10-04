@@ -14,8 +14,8 @@ import { object, string } from 'zod'
 import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
+  CreatePostMutation,
+  CreatePostMutationVariables
 } from './__generated__/Post.generated'
 
 const newPostSchema = object({
@@ -29,11 +29,11 @@ const PostType: React.FC = () => {
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+    CreatePostMutation,
+    CreatePostMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreatePostMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

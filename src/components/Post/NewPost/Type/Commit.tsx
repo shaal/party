@@ -12,9 +12,9 @@ import { object, string } from 'zod'
 
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/Post.generated'
+  CreateCommitMutation,
+  CreateCommitMutationVariables
+} from './__generated__/Commit.generated'
 
 const newCommitSchema = object({
   url: string()
@@ -32,12 +32,12 @@ const newCommitSchema = object({
 const CommitType: React.FC = () => {
   const router = useRouter()
   const [selectedProduct, setSelectedProduct] = useState<string>('')
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+  const [createCommit, createCommitResult] = useMutation<
+    CreateCommitMutation,
+    CreateCommitMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreateCommitMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -62,7 +62,7 @@ const CommitType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ url }) =>
-        createPost({
+        createCommit({
           variables: {
             input: {
               body: url,
@@ -75,7 +75,7 @@ const CommitType: React.FC = () => {
     >
       <ErrorMessage
         title="Failed to create commit"
-        error={createPostResult.error}
+        error={createCommitResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
         <Input {...form.register('url')} placeholder="Git Commit URL" />
