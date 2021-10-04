@@ -20,7 +20,11 @@ import {
 const newPollSchema = object({
   title: string()
     .min(1, { message: '🗳️ Poll Title should not be empty' })
-    .max(190, { message: '🗳️ Poll Title should not exceed 190 characters' })
+    .max(190, { message: '🗳️ Poll Title should not exceed 190 characters' }),
+  choice1: string().min(1).max(25),
+  choice2: string().min(1).max(25),
+  choice3: string().max(25).optional(),
+  choice4: string().max(25).optional()
 })
 
 const PollType: React.FC = () => {
@@ -83,28 +87,28 @@ const PollType: React.FC = () => {
             <div>
               <Input
                 prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('title')}
+                {...form.register('choice1')}
                 placeholder="Choice 1*"
               />
             </div>
             <div>
               <Input
                 prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('title')}
+                {...form.register('choice2')}
                 placeholder="Choice 2*"
               />
             </div>
             <div>
               <Input
                 prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('title')}
+                {...form.register('choice3')}
                 placeholder="Choice 3"
               />
             </div>
             <div>
               <Input
                 prefix={<CheckCircleIcon className="h-5 w-5" />}
-                {...form.register('title')}
+                {...form.register('choice4')}
                 placeholder="Choice 4"
               />
             </div>
