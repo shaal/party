@@ -1,14 +1,18 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
-import { PostPollQuery } from './__generated__/Poll.generated'
+import {
+  AnswerPollMutation,
+  AnswerPollMutationVariables,
+  PostPollQuery
+} from './__generated__/Poll.generated'
 
 export const POST_POLL_QUERY = gql`
   query PostPollQuery($id: ID!) {
@@ -25,26 +29,24 @@ export const POST_POLL_QUERY = gql`
   }
 `
 
-interface PollProps {
-  choice: string
-}
-
-const Poll: React.FC<PollProps> = ({ choice }) => (
-  <button
-    type="button"
-    className="bg-gray-200 px-3 py-2 rounded-lg flex items-center justify-between w-full"
-    onClick={() => alert(choice)}
-  >
-    <div>{choice}</div>
-    <div className="font-bold">0%</div>
-  </button>
-)
-
 interface Props {
   post: Post
 }
 
 const PollType: React.FC<Props> = ({ post }) => {
+  const [answerPoll] = useMutation<
+    AnswerPollMutation,
+    AnswerPollMutationVariables
+  >(
+    gql`
+      mutation AnswerPollMutation($input: AnswerPollInput!) {
+        answerPoll(input: $input) {
+          id
+          title
+        }
+      }
+    `
+  )
   const { data, loading } = useQuery<PostPollQuery>(POST_POLL_QUERY, {
     variables: {
       id: post.id
@@ -66,7 +68,17 @@ const PollType: React.FC<Props> = ({ post }) => {
             <div>Loading Poll...</div>
           ) : (
             poll?.answers?.map((answer: any) => (
-              <Poll key={answer?.id} choice={answer?.title} />
+              <button
+                key={answer?.id}
+                type="button"
+                className="bg-gray-200 px-3 py-2 rounded-lg flex items-center justify-between w-full"
+                onClick={() =>
+                  answerPoll({ variables: { input: { id: answer?.id } } })
+                }
+              >
+                <div>{answer?.title}</div>
+                <div className="font-bold">0%</div>
+              </button>
             ))
           )}
         </CardBody>

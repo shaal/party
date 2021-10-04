@@ -1,3 +1,7 @@
+input AnswerPollInput {
+  id: ID!
+}
+
 input AttachBadgeToUserInput {
   badgeId: ID!
   userId: ID!
@@ -173,6 +177,7 @@ input ModUserInput {
 }
 
 type Mutation {
+  answerPoll(input: AnswerPollInput!): PollAnswer
   attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
   createBadge(input: CreateBadgeInput!): Badge!
@@ -234,6 +239,18 @@ type PollAnswer {
   id: ID!
   poll: Poll!
   title: String!
+  voters(after: String, before: String, first: Int, last: Int): PollAnswerVotersConnection!
+}
+
+type PollAnswerVotersConnection {
+  edges: [PollAnswerVotersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PollAnswerVotersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type Post {
