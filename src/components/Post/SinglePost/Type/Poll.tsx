@@ -20,10 +20,11 @@ export const POST_POLL_QUERY = gql`
       id
       poll {
         id
+        hasVoted
         answers {
           id
           title
-          hasVoted
+          hasAnswered
           voters {
             totalCount
           }
@@ -85,7 +86,7 @@ const PollType: React.FC<Props> = ({ post }) => {
                 type="button"
                 className="bg-gray-200 px-3 py-2 rounded-lg flex items-center justify-between w-full"
                 style={{
-                  backgroundColor: answer?.hasVoted ? '#C4B5FD' : '#E5E7EB'
+                  backgroundColor: answer?.hasAnswered ? '#C4B5FD' : '#E5E7EB'
                 }}
                 onClick={() =>
                   answerPoll({ variables: { input: { id: answer?.id } } })

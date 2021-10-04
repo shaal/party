@@ -1,18 +1,18 @@
 import { builder } from '@graphql/builder'
 
 import { answerPoll } from './mutations/answerPoll'
-import { hasVoted } from './queries/hasVoted'
+import { hasAnswered } from './queries/hasAnswered'
 
 builder.prismaObject('PollAnswer', {
   findUnique: (answer) => ({ id: answer.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
     title: t.exposeString('title'),
-    hasVoted: t.field({
+    hasAnswered: t.field({
       type: 'Boolean',
       resolve: async (parent, args, { session }) => {
         if (!session) return false
-        return await hasVoted(session?.userId as string, parent.id)
+        return await hasAnswered(session?.userId as string, parent.id)
       }
     }),
 

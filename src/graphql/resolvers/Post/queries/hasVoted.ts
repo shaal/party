@@ -1,12 +1,22 @@
 import { db } from '@utils/prisma'
 
-export const hasVoted = async (currentUserId: string, answerId: string) => {
-  const user = await db.pollAnswer.findUnique({
-    where: { id: answerId },
+export const hasVoted = async (currentUserId: string, pollId: string) => {
+  const user = await db.poll.findUnique({
+    where: { id: pollId },
     include: {
-      voters: { where: { id: currentUserId } }
+      answers: {
+        select: {
+          voters: { where: { id: currentUserId }, select: { id: true } }
+        }
+      }
     }
   })
 
-  return user?.voters?.length === 0 ? false : true
+  const votes = user?.answers?.map((answer: any) => {
+    if (answer?.voters[0]) {
+      return true
+    }
+  })
+
+  return votes?.includes(true) ? true : false
 }

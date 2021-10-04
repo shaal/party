@@ -231,12 +231,13 @@ type PageInfo {
 
 type Poll {
   answers: [PollAnswer!]!
+  hasVoted: Boolean!
   id: ID!
   post: Post!
 }
 
 type PollAnswer {
-  hasVoted: Boolean!
+  hasAnswered: Boolean!
   id: ID!
   poll: Poll!
   title: String!
