@@ -21,6 +21,7 @@ export const POST_POLL_QUERY = gql`
       poll {
         id
         hasVoted
+        totalCount
         answers {
           id
           title
@@ -99,6 +100,9 @@ const PollType: React.FC<Props> = ({ post }) => {
               </button>
             ))
           )}
+          <div className="text-gray-500 dark:text-gray-300">
+            {poll?.totalCount} votes
+          </div>
         </CardBody>
       </Card>
     </div>

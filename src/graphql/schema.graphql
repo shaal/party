@@ -234,6 +234,7 @@ type Poll {
   hasVoted: Boolean!
   id: ID!
   post: Post!
+  totalCount: Int!
 }
 
 type PollAnswer {
