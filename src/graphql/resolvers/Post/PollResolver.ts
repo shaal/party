@@ -1,6 +1,6 @@
 import { builder } from '@graphql/builder'
 
-builder.prismaObject('PostPoll', {
+builder.prismaObject('Poll', {
   findUnique: (poll) => ({ id: poll.id }),
   fields: (t) => ({
     id: t.exposeID('id'),
