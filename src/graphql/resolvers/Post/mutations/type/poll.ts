@@ -25,7 +25,7 @@ export const poll = async (
       poll: {
         create: {
           answers: {
-            createMany: { data: input.polls }
+            createMany: { data: JSON.parse(input.polls as string) }
           }
         }
       }

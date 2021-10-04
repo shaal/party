@@ -33,6 +33,7 @@ const newPollSchema = object({
 const PollType: React.FC = () => {
   const router = useRouter()
   const [polls, setPolls] = useState([{ title: '' }, { title: '' }])
+  const [pollError, setPollError] = useState<boolean>(false)
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPoll, createPollResult] = useMutation<
     CreatePollMutation,
@@ -60,12 +61,14 @@ const PollType: React.FC = () => {
 
   const addPoll = () => {
     setPolls([...polls, { title: '' }])
+    calculateError()
   }
 
   const removePoll = (i: number) => {
     let newPolls = [...polls]
     newPolls.splice(i, 1)
     setPolls(newPolls)
+    calculateError()
   }
 
   const handleChange = (i: any, e: any) => {
@@ -75,11 +78,22 @@ const PollType: React.FC = () => {
     setPolls(newPolls)
   }
 
+  const calculateError = () => {
+    if (!polls[0].title || !polls[1].title) {
+      setPollError(true)
+      return true
+    } else {
+      setPollError(false)
+      return false
+    }
+  }
+
   return (
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) =>
+      onSubmit={({ body }) => {
+        if (calculateError()) return false
         createPoll({
           variables: {
             input: {
@@ -90,7 +104,7 @@ const PollType: React.FC = () => {
             }
           }
         })
-      }
+      }}
     >
       <ErrorMessage
         title="Failed to create poll"
@@ -132,6 +146,11 @@ const PollType: React.FC = () => {
               >
                 New answer
               </Button>
+            )}
+            {pollError && (
+              <div className="text-sm text-red-500 font-bold">
+                🗳️ Choice 1 and Choice 2 is required
+              </div>
             )}
           </CardBody>
         </Card>
