@@ -8,7 +8,7 @@ import { DocumentAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { boolean, object, string } from 'zod'
+import { object, string } from 'zod'
 
 import SelectProduct from '../SelectProduct'
 import {
@@ -26,8 +26,7 @@ const newCommitSchema = object({
     .min(1, { message: '🐙 Commit URL should not be empty' })
     .max(10000, {
       message: '🐙 Commit URL should not exceed 10000 characters'
-    }),
-  done: boolean().default(true)
+    })
 })
 
 const CommitType: React.FC = () => {
@@ -50,7 +49,7 @@ const CommitType: React.FC = () => {
       onCompleted(data) {
         setAttachments([])
         form.reset()
-        toast.success('Task has been created successfully!')
+        toast.success('Git Commit has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
       }
     }
@@ -80,7 +79,7 @@ const CommitType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create task"
+        title="Failed to create commit"
         error={createPostResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
