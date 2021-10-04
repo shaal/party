@@ -16,10 +16,6 @@ export const POST_POLL_QUERY = gql`
       id
       poll {
         id
-        choice1
-        choice2
-        choice3
-        choice4
       }
     }
   }
@@ -62,16 +58,7 @@ const PollType: React.FC<Props> = ({ post }) => {
       </div>
       <Card className="!bg-gray-100 dark:!bg-gray-800">
         <CardBody className="space-y-3">
-          {loading ? (
-            <div>Loading Poll...</div>
-          ) : (
-            <>
-              {poll?.choice1 && <Poll choice={poll?.choice1} />}
-              {poll?.choice2 && <Poll choice={poll?.choice2} />}
-              {poll?.choice3 && <Poll choice={poll?.choice3} />}
-              {poll?.choice4 && <Poll choice={poll?.choice4} />}
-            </>
-          )}
+          {loading ? <div>Loading Poll...</div> : <>WIP</>}
         </CardBody>
       </Card>
     </div>

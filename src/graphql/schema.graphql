@@ -52,10 +52,6 @@ input CreateBadgeInput {
 input CreatePostInput {
   attachments: String
   body: String!
-  choice1: String
-  choice2: String
-  choice3: String
-  choice4: String
   done: Boolean! = true
   parentId: ID
   productId: ID
@@ -228,24 +224,15 @@ type PageInfo {
 }
 
 type Poll {
-  choice1: String!
-  choice2: String!
-  choice3: String
-  choice4: String
+  answers: [PollAnswer!]!
   id: ID!
   post: Post!
-  voters(after: String, before: String, first: Int, last: Int): PollVotersConnection!
 }
 
-type PollVotersConnection {
-  edges: [PollVotersConnectionEdge]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type PollVotersConnectionEdge {
-  cursor: String!
-  node: User!
+type PollAnswer {
+  id: ID!
+  poll: Poll!
+  title: String!
 }
 
 type Post {
