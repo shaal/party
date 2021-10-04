@@ -22,9 +22,9 @@ import { object, string } from 'zod'
 import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/Post.generated'
+  CreateQuestionMutation,
+  CreateQuestionMutationVariables
+} from './__generated__/Question.generated'
 
 const newQuestionSchema = object({
   title: string()
@@ -40,12 +40,12 @@ const QuestionType: React.FC = () => {
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [preview, setPreview] = useState<boolean>(false)
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+  const [createQuestion, createQuestionResult] = useMutation<
+    CreateQuestionMutation,
+    CreateQuestionMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreateQuestionMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -71,7 +71,7 @@ const QuestionType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ title, body }) =>
-        createPost({
+        createQuestion({
           variables: {
             input: {
               title,
@@ -87,7 +87,7 @@ const QuestionType: React.FC = () => {
     >
       <ErrorMessage
         title="Failed to create question"
-        error={createPostResult.error}
+        error={createQuestionResult.error}
       />
       {preview ? (
         <div className="text-xl post">
