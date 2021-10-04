@@ -21,9 +21,7 @@ export const task = async (
       attachments: input.attachments ? input.attachments : undefined,
       type: 'TASK',
       productId: input.productId ? input.productId : null,
-      topics: {
-        create: parseTopics(getTopics(input.body))
-      }
+      topics: { create: parseTopics(getTopics(input.body)) }
     }
   })
 

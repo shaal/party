@@ -52,6 +52,7 @@ builder.prismaObject('Post', {
     product: t.relation('product', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),
     commit: t.relation('commit', { nullable: true }),
+    poll: t.relation('poll', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,
@@ -129,6 +130,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
+    polls: t.string({ required: false }),
     type: t.string({ defaultValue: 'POST' })
   })
 })

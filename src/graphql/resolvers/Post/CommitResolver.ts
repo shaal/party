@@ -1,6 +1,6 @@
 import { builder } from '@graphql/builder'
 
-builder.prismaObject('PostCommit', {
+builder.prismaObject('Commit', {
   findUnique: (commit) => ({ id: commit.id }),
   fields: (t) => ({
     id: t.exposeID('id'),

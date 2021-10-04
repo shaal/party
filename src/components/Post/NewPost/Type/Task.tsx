@@ -15,9 +15,9 @@ import { boolean, object, string } from 'zod'
 import Attachment from '../Attachment'
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/Post.generated'
+  CreateTaskMutation,
+  CreateTaskMutationVariables
+} from './__generated__/Task.generated'
 
 const newTaskSchema = object({
   body: string()
@@ -30,12 +30,12 @@ const TaskType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+  const [createTask, createTaskResult] = useMutation<
+    CreateTaskMutation,
+    CreateTaskMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreateTaskMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -61,7 +61,7 @@ const TaskType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ body, done }) =>
-        createPost({
+        createTask({
           variables: {
             input: {
               body,
@@ -77,7 +77,7 @@ const TaskType: React.FC = () => {
     >
       <ErrorMessage
         title="Failed to create task"
-        error={createPostResult.error}
+        error={createTaskResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
         <TaskCheckbox {...form.register('done')} />
