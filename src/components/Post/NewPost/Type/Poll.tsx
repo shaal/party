@@ -4,11 +4,11 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { DocumentAddIcon } from '@heroicons/react/outline'
+import { ChartBarIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { boolean, object, string } from 'zod'
+import { object, string } from 'zod'
 
 import SelectProduct from '../SelectProduct'
 import {
@@ -17,17 +17,9 @@ import {
 } from './__generated__/Post.generated'
 
 const newPollSchema = object({
-  url: string()
-    .regex(
-      /(?:http:\/\/)?(?:www\.)?github\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
-      { message: '🐙 Enter the valid GitHub Commit URL' }
-    )
-    .url({ message: '🐙 Enter the valid GitHub Commit URL' })
-    .min(1, { message: '🐙 Commit URL should not be empty' })
-    .max(10000, {
-      message: '🐙 Commit URL should not exceed 10000 characters'
-    }),
-  done: boolean().default(true)
+  title: string()
+    .min(1, { message: '🗳️ Poll Title should not be empty' })
+    .max(190, { message: '🗳️ Poll Title should not exceed 190 characters' })
 })
 
 const PollType: React.FC = () => {
@@ -50,7 +42,7 @@ const PollType: React.FC = () => {
       onCompleted(data) {
         setAttachments([])
         form.reset()
-        toast.success('Task has been created successfully!')
+        toast.success('Poll has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
       }
     }
@@ -80,11 +72,11 @@ const PollType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create task"
+        title="Failed to create poll"
         error={createPostResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
-        <Input {...form.register('url')} placeholder="Git Commit URL" />
+        <Input {...form.register('title')} placeholder="Title of your poll" />
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
@@ -96,11 +88,11 @@ const PollType: React.FC = () => {
             form.formState.isSubmitting ? (
               <Spinner size="xs" />
             ) : (
-              <DocumentAddIcon className="h-4 w-4" />
+              <ChartBarIcon className="h-4 w-4" />
             )
           }
         >
-          Post Commit
+          Create Poll
         </Button>
       </div>
     </Form>
