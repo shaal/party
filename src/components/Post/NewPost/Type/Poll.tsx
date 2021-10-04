@@ -30,7 +30,6 @@ const newPollSchema = object({
 
 const PollType: React.FC = () => {
   const router = useRouter()
-  const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
   const [createPost, createPostResult] = useMutation<
     NewPostMutation,
@@ -40,13 +39,11 @@ const PollType: React.FC = () => {
       mutation NewPostMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
-          body
         }
       }
     `,
     {
       onCompleted(data) {
-        setAttachments([])
         form.reset()
         toast.success('Poll has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
@@ -62,15 +59,12 @@ const PollType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ url, done }) =>
+      onSubmit={({ body }) =>
         createPost({
           variables: {
             input: {
-              body: url,
-              done,
-              type: 'COMMIT',
-              attachments:
-                attachments.length > 0 ? JSON.stringify(attachments) : null,
+              body,
+              type: 'POLL',
               productId: selectedProduct as string
             }
           }
