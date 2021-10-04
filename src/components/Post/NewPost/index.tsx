@@ -2,6 +2,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { Tooltip } from '@components/ui/Tooltip'
 import { Tab } from '@headlessui/react'
 import {
+  ChartBarIcon,
   CheckCircleIcon,
   CollectionIcon,
   DocumentAddIcon,
@@ -92,6 +93,21 @@ const NewPost: React.FC = () => {
                     'flex items-center gap-1.5 text-sm'
                   )}
                 >
+                  <Tooltip content="Poll">
+                    <ChartBarIcon className="h-5 w-5" />
+                  </Tooltip>
+                </button>
+              )}
+            </Tab>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <button
+                  className={clsx(
+                    { 'text-brand-500': selected },
+                    { 'text-gray-400': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
+                >
                   <Tooltip content="Git Commit">
                     <DocumentAddIcon className="h-5 w-5" />
                   </Tooltip>
@@ -108,6 +124,9 @@ const NewPost: React.FC = () => {
             </Tab.Panel>
             <Tab.Panel>
               <QuestionType />
+            </Tab.Panel>
+            <Tab.Panel>
+              <CommitType />
             </Tab.Panel>
             <Tab.Panel>
               <CommitType />
