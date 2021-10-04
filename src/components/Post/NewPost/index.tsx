@@ -12,6 +12,8 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
+import PollType from './Type/Poll'
+
 const PostType = dynamic(() => import('./Type/Post'), {
   // eslint-disable-next-line react/display-name
   loading: () => <Loading />
@@ -126,7 +128,7 @@ const NewPost: React.FC = () => {
               <QuestionType />
             </Tab.Panel>
             <Tab.Panel>
-              <CommitType />
+              <PollType />
             </Tab.Panel>
             <Tab.Panel>
               <CommitType />
