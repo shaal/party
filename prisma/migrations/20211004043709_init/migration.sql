@@ -113,6 +113,19 @@ CREATE TABLE `post_commit` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `post_poll` (
+    `id` VARCHAR(191) NOT NULL,
+    `choice1` VARCHAR(191) NOT NULL,
+    `choice2` VARCHAR(191) NOT NULL,
+    `choice3` VARCHAR(191),
+    `choice4` VARCHAR(191),
+    `postId` VARCHAR(191),
+
+    UNIQUE INDEX `post_poll_postId_unique`(`postId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `post_topics` (
     `id` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
@@ -238,6 +251,15 @@ CREATE TABLE `_TopicToUser` (
 
     UNIQUE INDEX `_TopicToUser_AB_unique`(`A`, `B`),
     INDEX `_TopicToUser_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_PostPollToUser` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_PostPollToUser_AB_unique`(`A`, `B`),
+    INDEX `_PostPollToUser_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
