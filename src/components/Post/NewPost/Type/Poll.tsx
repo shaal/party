@@ -68,6 +68,13 @@ const PollType: React.FC = () => {
     setPolls(newPolls)
   }
 
+  const handleChange = (i: any, e: any) => {
+    let newPolls = [...polls]
+    // @ts-ignore
+    newPolls[i][e.target.name] = e.target.value
+    setPolls(newPolls)
+  }
+
   return (
     <Form
       form={form}
@@ -77,6 +84,7 @@ const PollType: React.FC = () => {
           variables: {
             input: {
               body,
+              polls: JSON.stringify(polls) as string,
               type: 'POLL',
               productId: selectedProduct as string
             }
@@ -98,6 +106,9 @@ const PollType: React.FC = () => {
             {polls.map((element, index) => (
               <div key={index} className="flex item-center space-x-3">
                 <Input
+                  value={element.title}
+                  name="title"
+                  onChange={(e) => handleChange(index, e)}
                   prefix={<CheckCircleIcon className="h-5 w-5" />}
                   placeholder={`Choice ${index + 1}`}
                 />

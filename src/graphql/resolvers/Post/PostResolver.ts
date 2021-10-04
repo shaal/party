@@ -130,7 +130,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
-    polls: t.stringList({ required: false }),
+    polls: t.string({ required: false }),
     type: t.string({ defaultValue: 'POST' })
   })
 })

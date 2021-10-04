@@ -12,6 +12,7 @@ export const poll = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
+  console.log(input.polls)
   const poll = await db.post.create({
     ...query,
     data: {
@@ -21,9 +22,6 @@ export const poll = async (
       productId: input.productId ? input.productId : null,
       topics: {
         create: parseTopics(getTopics(input.body))
-      },
-      poll: {
-        create: {}
       }
     }
   })
