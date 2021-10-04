@@ -15,10 +15,10 @@ builder.prismaObject('PollAnswer', {
         return await hasVoted(session?.userId as string, parent.id)
       }
     }),
-    voters: t.relatedConnection('voters', { cursor: 'id', totalCount: true }),
 
     // Relations
-    poll: t.relation('poll')
+    poll: t.relation('poll'),
+    voters: t.relatedConnection('voters', { cursor: 'id', totalCount: true })
   })
 })
 
