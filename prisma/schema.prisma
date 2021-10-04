@@ -176,7 +176,7 @@ model PostCommit {
 }
 
 model PostPoll {
-  id String @id @default(uuid())
+  id      String  @id @default(uuid())
   choice1 String
   choice2 String
   choice3 String?
