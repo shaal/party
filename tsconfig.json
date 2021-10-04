@@ -21,6 +21,11 @@
       "@graphql*": ["src/graphql*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/graphql/resolvers/Post/PollResolverts.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/graphql/resolvers/Post/PollResolverts.ts"
+  ],
   "exclude": ["node_modules", "**/schema.generated"]
 }
