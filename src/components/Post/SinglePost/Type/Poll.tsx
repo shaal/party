@@ -23,6 +23,9 @@ export const POST_POLL_QUERY = gql`
         answers {
           id
           title
+          voters {
+            totalCount
+          }
         }
       }
     }
@@ -45,7 +48,15 @@ const PollType: React.FC<Props> = ({ post }) => {
           title
         }
       }
-    `
+    `,
+    {
+      refetchQueries: [
+        {
+          query: POST_POLL_QUERY,
+          variables: { id: post?.id }
+        }
+      ]
+    }
   )
   const { data, loading } = useQuery<PostPollQuery>(POST_POLL_QUERY, {
     variables: {
@@ -77,7 +88,7 @@ const PollType: React.FC<Props> = ({ post }) => {
                 }
               >
                 <div>{answer?.title}</div>
-                <div className="font-bold">0%</div>
+                <div className="font-bold">{answer?.voters?.totalCount}</div>
               </button>
             ))
           )}
