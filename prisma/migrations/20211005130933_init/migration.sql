@@ -82,7 +82,7 @@ CREATE TABLE `posts` (
     `title` VARCHAR(191),
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
+    `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'NFT', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -91,6 +91,17 @@ CREATE TABLE `posts` (
     `productId` VARCHAR(191),
     `parentId` VARCHAR(191),
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `nfts` (
+    `id` VARCHAR(191) NOT NULL,
+    `tokenID` VARCHAR(191) NOT NULL,
+    `address` VARCHAR(191) NOT NULL,
+    `postId` VARCHAR(191),
+
+    UNIQUE INDEX `nfts_postId_unique`(`postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

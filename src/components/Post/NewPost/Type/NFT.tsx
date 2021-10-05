@@ -32,7 +32,10 @@ const NFTType: React.FC = () => {
           <CardBody className="grid gap-3 md:grid-cols-4 grid-cols-2">
             {data?.assets?.map((asset: any) => (
               <div key={asset?.id}>
-                <div className="cursor-pointer" onClick={() => alert('WIP')}>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => alert(asset?.token_id)}
+                >
                   <img
                     className="object-cover h-38 w-38 rounded-lg border"
                     src={asset?.image_url}

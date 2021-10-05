@@ -145,6 +145,7 @@ model Post {
   likes        Like[]
   topics       PostTopic[]
   poll         Poll?
+  nft          NFT?
   parentId     String?
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies      Post[]         @relation("replies")
@@ -152,6 +153,19 @@ model Post {
 
   // Attributes
   @@map("posts")
+}
+
+model NFT {
+  id      String @id @default(uuid())
+  tokenID String
+  address String
+
+  // Relations
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+
+  // Attributes
+  @@map("nfts")
 }
 
 model Poll {
@@ -330,6 +344,7 @@ enum PostType {
   QUESTION
   POLL
   COMMIT
+  NFT
   REPLY
 }
 
