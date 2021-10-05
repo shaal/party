@@ -19,6 +19,6 @@ export const useGitCommit = (url: string) => {
     commit: data,
     slug: `${splitedURL[1]}/${splitedURL[2]}`,
     isLoading: !error && !data,
-    isError: error || data?.status === 'error'
+    isError: error || data?.message
   }
 }
