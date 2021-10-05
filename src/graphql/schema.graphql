@@ -40,6 +40,7 @@ input CreateBadgeInput {
 }
 
 input CreatePostInput {
+  address: String
   attachments: String
   body: String!
   done: Boolean! = true
@@ -47,6 +48,7 @@ input CreatePostInput {
   polls: String
   productId: ID
   title: String
+  tokenId: String
   type: String! = "POST"
 }
 
