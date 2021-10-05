@@ -157,9 +157,10 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
         {post?.type === 'POLL' && <PollType post={post} />}
         {post?.type === 'COMMIT' && <CommitType post={post} />}
-        {post?.oembedUrl && !isLoading && !isError && (
-          <Oembed url={post?.oembedUrl} oembed={oembed} />
-        )}
+        {post?.type !== 'COMMIT' &&
+          post?.oembedUrl &&
+          !isLoading &&
+          !isError && <Oembed url={post?.oembedUrl} oembed={oembed} />}
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />

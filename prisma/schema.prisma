@@ -144,7 +144,6 @@ model Post {
   productId    String?
   likes        Like[]
   topics       PostTopic[]
-  commit       Commit?
   poll         Poll?
   parentId     String?
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
@@ -153,26 +152,6 @@ model Post {
 
   // Attributes
   @@map("posts")
-}
-
-model Commit {
-  id             String   @id @default(uuid())
-  repoSlug       String?
-  message        String?
-  url            String?
-  verified       Boolean?
-  changed        Int?
-  additions      Int?
-  deletions      Int?
-  authorUsername String?
-  authorAvatar   String?
-
-  // Relations
-  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String?
-
-  // Attributes
-  @@map("commit")
 }
 
 model Poll {

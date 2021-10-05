@@ -33,20 +33,6 @@ input ChangePasswordInput {
   newPassword: String!
 }
 
-type Commit {
-  additions: Int
-  authorAvatar: String
-  authorUsername: String
-  changed: Int
-  deletions: Int
-  id: ID!
-  message: String
-  post: Post!
-  repoSlug: String
-  url: String
-  verified: Boolean
-}
-
 input CreateBadgeInput {
   description: String!
   image: String!
@@ -259,7 +245,6 @@ type PollAnswerVotersConnectionEdge {
 type Post {
   attachments: Attachments
   body: String!
-  commit: Commit
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!
