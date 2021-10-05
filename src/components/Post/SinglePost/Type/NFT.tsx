@@ -89,7 +89,7 @@ const NFTType: React.FC<Props> = ({ post }) => {
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-1.5">
                 <UsersIcon className="h-5 w-5" />
-                <div>{nft?.top_ownerships.length} owners</div>
+                <div>{nft?.top_ownerships?.length} owners</div>
               </div>
             </div>
             <div>
