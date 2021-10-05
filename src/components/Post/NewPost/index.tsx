@@ -13,9 +13,6 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
-import NFTType from './Type/NFT'
-import PollType from './Type/Poll'
-
 const PostType = dynamic(() => import('./Type/Post'), {
   // eslint-disable-next-line react/display-name
   loading: () => <Loading />
@@ -31,6 +28,16 @@ const TaskType = dynamic(() => import('./Type/Task'), {
 })
 
 const CommitType = dynamic(() => import('./Type/Commit'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
+
+const PollType = dynamic(() => import('./Type/Poll'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <Loading />
+})
+
+const NFTType = dynamic(() => import('./Type/NFT'), {
   // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
