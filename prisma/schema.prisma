@@ -157,7 +157,7 @@ model Post {
 
 model NFT {
   id      String @id @default(uuid())
-  tokenID String
+  tokenId String
   address String
 
   // Relations

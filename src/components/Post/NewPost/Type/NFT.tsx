@@ -66,6 +66,7 @@ const NFTType: React.FC = () => {
                       variables: {
                         input: {
                           body: asset?.name,
+                          type: 'NFT',
                           address: asset?.asset_contract?.address,
                           tokenId: asset?.token_id
                         }

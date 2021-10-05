@@ -23,6 +23,7 @@ import {
 import Oembed from './Oembed'
 import SelectedProduct from './SelectedProduct'
 import CommitType from './Type/Commit'
+import NFTType from './Type/NFT'
 import PollType from './Type/Poll'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
@@ -157,6 +158,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
         {post?.type === 'POLL' && <PollType post={post} />}
         {post?.type === 'COMMIT' && <CommitType post={post} />}
+        {post?.type === 'NFT' && <NFTType post={post} />}
         {post?.type !== 'COMMIT' &&
           post?.oembedUrl &&
           !isLoading &&
