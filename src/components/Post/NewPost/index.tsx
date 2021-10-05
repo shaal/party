@@ -6,12 +6,14 @@ import {
   CheckCircleIcon,
   CollectionIcon,
   DocumentAddIcon,
-  QuestionMarkCircleIcon
+  QuestionMarkCircleIcon,
+  SparklesIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
+import NFTType from './Type/NFT'
 import PollType from './Type/Poll'
 
 const PostType = dynamic(() => import('./Type/Post'), {
@@ -116,6 +118,21 @@ const NewPost: React.FC = () => {
                 </button>
               )}
             </Tab>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <button
+                  className={clsx(
+                    { 'text-brand-500': selected },
+                    { 'text-gray-400': !selected },
+                    'flex items-center gap-1.5 text-sm'
+                  )}
+                >
+                  <Tooltip content="NFT">
+                    <SparklesIcon className="h-5 w-5" />
+                  </Tooltip>
+                </button>
+              )}
+            </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
             <Tab.Panel>
@@ -132,6 +149,9 @@ const NewPost: React.FC = () => {
             </Tab.Panel>
             <Tab.Panel>
               <CommitType />
+            </Tab.Panel>
+            <Tab.Panel>
+              <NFTType />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
