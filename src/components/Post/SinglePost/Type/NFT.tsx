@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useNFT } from '@components/utils/useNFT'
-import { ExclamationCircleIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon, UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
@@ -42,13 +42,44 @@ const NFTType: React.FC<Props> = ({ post }) => {
     return (
       <div className="text-red-500 font-bold flex items-center space-x-1">
         <ExclamationCircleIcon className="h-5 w-5" />
-        <div>Error fetching commit data</div>
+        <div>Error fetching NFT data</div>
       </div>
     )
 
   return (
     <div className="space-y-2">
-      <div className="linkify">{nft?.id}</div>
+      <div className="pt-5 space-y-2">
+        <div className="grid gap-5 md:grid-cols-2 grid-cols-1">
+          <div>
+            <img className="rounded-lg" src={nft?.image_url} alt={nft?.name} />
+          </div>
+          <div className="space-y-3">
+            <div className="linkify flex items-center space-x-1.5">
+              <div>Posted in</div>
+              <a
+                className="font-bold"
+                href={`https://opensea.io/collection/${nft?.collection?.slug}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {nft?.collection?.name}
+              </a>
+            </div>
+            <div className="font-bold text-xl">{nft?.name}</div>
+            {nft?.description && (
+              <div className="text-gray-500 dark:text-gray-800 line-clamp-6">
+                {nft?.description}
+              </div>
+            )}
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-1.5">
+                <UsersIcon className="h-5 w-5" />
+                <div>{nft?.top_ownerships.length} owners</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
