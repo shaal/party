@@ -194,6 +194,13 @@ type Mutation {
   toggleTopicStar(input: ToggleTopicStarInput!): Topic
 }
 
+type NFT {
+  address: String!
+  id: ID!
+  post: Post!
+  tokenId: String!
+}
+
 type Notification {
   createdAt: DateTime!
   dispatcher: User!
@@ -252,6 +259,7 @@ type Post {
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
+  nft: NFT
   oembedUrl: String
   parent: Post
   poll: Poll

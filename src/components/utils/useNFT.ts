@@ -9,7 +9,10 @@ export const useNFT = (address: string, tokenId: string) => {
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
-      revalidateOnReconnect: false
+      revalidateOnReconnect: false,
+      isPaused: () => {
+        return !address
+      }
     }
   )
 
