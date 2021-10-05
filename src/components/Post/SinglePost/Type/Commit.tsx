@@ -1,57 +1,19 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
-import { gql, useQuery } from '@apollo/client'
-import { Tooltip } from '@components/ui/Tooltip'
-import { imagekitURL } from '@components/utils/imagekitURL'
-import {
-  DocumentAddIcon,
-  DocumentIcon,
-  ShieldCheckIcon
-} from '@heroicons/react/outline'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
-
-import { PostCommitQuery } from './__generated__/Commit.generated'
-
-export const POST_COMMIT_QUERY = gql`
-  query PostCommitQuery($id: ID!) {
-    post(id: $id) {
-      id
-      commit {
-        id
-        repoSlug
-        changed
-        additions
-        deletions
-        message
-        url
-        verified
-        authorUsername
-        authorAvatar
-      }
-    }
-  }
-`
 
 interface Props {
   post: Post
 }
 
 const CommitType: React.FC<Props> = ({ post }) => {
-  const { data, loading } = useQuery<PostCommitQuery>(POST_COMMIT_QUERY, {
-    variables: {
-      id: post.id
-    },
-    skip: !post.id
-  })
-  const commit = data?.post?.commit
-
-  if (loading) return <div>Loading Commit...</div>
+  // if (loading) return <div>Loading Commit...</div>
 
   return (
     <div className="space-y-2">
-      <div className="linkify">
+      {/* <div className="linkify">
         <a
           className="flex items-center space-x-2"
           href={commit?.url as string}
@@ -121,7 +83,7 @@ const CommitType: React.FC<Props> = ({ post }) => {
           </div>
         </div>
         <div className="border-t" />
-      </div>
+      </div> */}
     </div>
   )
 }

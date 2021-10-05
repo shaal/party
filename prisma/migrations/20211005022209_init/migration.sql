@@ -95,24 +95,6 @@ CREATE TABLE `posts` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `commit` (
-    `id` VARCHAR(191) NOT NULL,
-    `repoSlug` VARCHAR(191),
-    `message` VARCHAR(191),
-    `url` VARCHAR(191),
-    `verified` BOOLEAN,
-    `changed` INTEGER,
-    `additions` INTEGER,
-    `deletions` INTEGER,
-    `authorUsername` VARCHAR(191),
-    `authorAvatar` VARCHAR(191),
-    `postId` VARCHAR(191),
-
-    UNIQUE INDEX `commit_postId_unique`(`postId`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `poll` (
     `id` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
@@ -124,7 +106,7 @@ CREATE TABLE `poll` (
 -- CreateTable
 CREATE TABLE `poll_answers` (
     `id` VARCHAR(191) NOT NULL,
-    `index` VARCHAR(191) NOT NULL,
+    `index` INTEGER NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `pollId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

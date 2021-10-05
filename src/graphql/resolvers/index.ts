@@ -1,6 +1,5 @@
 import './User/AuthResolver'
 import './Post/PostResolver'
-import './Post/CommitResolver'
 import './Post/PollResolver'
 import './Post/PollAnswerResolver'
 import './ResultResolver'
