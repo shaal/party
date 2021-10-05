@@ -71,7 +71,7 @@ const NFTType: React.FC<Props> = ({ post }) => {
                 {nft?.description}
               </div>
             )}
-            <div className="linkify flex items-center space-x-1.5">
+            <div className="linkify flex items-center text-sm space-x-1.5">
               <div>Created by</div>
               <img
                 className="h-5 w-5 rounded-full"
@@ -91,6 +91,21 @@ const NFTType: React.FC<Props> = ({ post }) => {
                 <UsersIcon className="h-5 w-5" />
                 <div>{nft?.top_ownerships.length} owners</div>
               </div>
+            </div>
+            <div>
+              <a
+                className="flex items-center space-x-1.5 mt-5 text-[#2081e2]"
+                href={nft?.permalink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="h-6 w-6"
+                  src="https://opensea.io/static/images/logos/opensea.svg"
+                  alt="OpenSea Logo"
+                />
+                <div>View in OpenSea</div>
+              </a>
             </div>
           </div>
         </div>
