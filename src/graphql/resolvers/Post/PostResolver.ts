@@ -52,6 +52,7 @@ builder.prismaObject('Post', {
     product: t.relation('product', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),
     poll: t.relation('poll', { nullable: true }),
+    nft: t.relation('nft', { nullable: true }),
     replies: t.relatedConnection('replies', {
       cursor: 'id',
       totalCount: true,
@@ -130,6 +131,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),
     polls: t.string({ required: false }),
+    address: t.string({ required: false }),
+    tokenId: t.string({ required: false }),
     type: t.string({ defaultValue: 'POST' })
   })
 })
