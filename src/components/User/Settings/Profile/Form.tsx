@@ -181,7 +181,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
-                  <NFTAvatars />
+                  {typeof window.web3 === 'object' && <NFTAvatars />}
                 </div>
               </div>
               <div className="space-y-1.5">

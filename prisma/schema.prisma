@@ -43,6 +43,7 @@ model User {
   likes                  Like[]
   badges                 Badge[]
   topics                 Topic[]
+  polls                  PollAnswer[]
   logs                   Log[]
   following              User[]         @relation("follows")
   followedBy             User[]         @relation("follows")
@@ -143,7 +144,7 @@ model Post {
   productId    String?
   likes        Like[]
   topics       PostTopic[]
-  commit       PostCommit?
+  poll         Poll?
   parentId     String?
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies      Post[]         @relation("replies")
@@ -153,24 +154,33 @@ model Post {
   @@map("posts")
 }
 
-model PostCommit {
-  id             String   @id @default(uuid())
-  repoSlug       String?
-  message        String?
-  url            String?
-  verified       Boolean?
-  changed        Int?
-  additions      Int?
-  deletions      Int?
-  authorUsername String?
-  authorAvatar   String?
+model Poll {
+  id String @id @default(uuid())
 
   // Relations
-  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String?
+  post    Post?        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId  String?
+  answers PollAnswer[]
 
   // Attributes
-  @@map("post_commit")
+  @@map("poll")
+}
+
+model PollAnswer {
+  id    String @id @default(uuid())
+  index Int
+  title String
+
+  // Relations
+  poll   Poll   @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  pollId String
+  voters User[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Attributes
+  @@map("poll_answers")
 }
 
 model PostTopic {
@@ -318,6 +328,7 @@ enum PostType {
   POST
   TASK
   QUESTION
+  POLL
   COMMIT
   REPLY
 }

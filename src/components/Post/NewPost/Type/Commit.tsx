@@ -8,15 +8,15 @@ import { DocumentAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { boolean, object, string } from 'zod'
+import { object, string } from 'zod'
 
 import SelectProduct from '../SelectProduct'
 import {
-  NewPostMutation,
-  NewPostMutationVariables
-} from './__generated__/Post.generated'
+  CreateCommitMutation,
+  CreateCommitMutationVariables
+} from './__generated__/Commit.generated'
 
-const newPostSchema = object({
+const newCommitSchema = object({
   url: string()
     .regex(
       /(?:http:\/\/)?(?:www\.)?github\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/,
@@ -26,20 +26,18 @@ const newPostSchema = object({
     .min(1, { message: '🐙 Commit URL should not be empty' })
     .max(10000, {
       message: '🐙 Commit URL should not exceed 10000 characters'
-    }),
-  done: boolean().default(true)
+    })
 })
 
 const CommitType: React.FC = () => {
   const router = useRouter()
-  const [attachments, setAttachments] = useState<string[]>([])
   const [selectedProduct, setSelectedProduct] = useState<string>('')
-  const [createPost, createPostResult] = useMutation<
-    NewPostMutation,
-    NewPostMutationVariables
+  const [createCommit, createCommitResult] = useMutation<
+    CreateCommitMutation,
+    CreateCommitMutationVariables
   >(
     gql`
-      mutation NewPostMutation($input: CreatePostInput!) {
+      mutation CreateCommitMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -48,31 +46,27 @@ const CommitType: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        setAttachments([])
         form.reset()
-        toast.success('Task has been created successfully!')
+        toast.success('Git Commit has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
       }
     }
   )
 
   const form = useZodForm({
-    schema: newPostSchema
+    schema: newCommitSchema
   })
 
   return (
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ url, done }) =>
-        createPost({
+      onSubmit={({ url }) =>
+        createCommit({
           variables: {
             input: {
               body: url,
-              done,
               type: 'COMMIT',
-              attachments:
-                attachments.length > 0 ? JSON.stringify(attachments) : null,
               productId: selectedProduct as string
             }
           }
@@ -80,8 +74,8 @@ const CommitType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create task"
-        error={createPostResult.error}
+        title="Failed to create commit"
+        error={createCommitResult.error}
       />
       <div className="flex items-center mb-1.5 gap-2.5">
         <Input {...form.register('url')} placeholder="Git Commit URL" />

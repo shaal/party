@@ -1,3 +1,7 @@
+input AnswerPollInput {
+  id: ID!
+}
+
 input AttachBadgeToUserInput {
   badgeId: ID!
   userId: ID!
@@ -40,6 +44,7 @@ input CreatePostInput {
   body: String!
   done: Boolean! = true
   parentId: ID
+  polls: String
   productId: ID
   title: String
   type: String! = "POST"
@@ -158,6 +163,7 @@ input ModUserInput {
 }
 
 type Mutation {
+  answerPoll(input: AnswerPollInput!): PollAnswer
   attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
   createBadge(input: CreateBadgeInput!): Badge!
@@ -209,10 +215,36 @@ type PageInfo {
   startCursor: String
 }
 
+type Poll {
+  answers: [PollAnswer!]!
+  hasVoted: Boolean!
+  id: ID!
+  post: Post!
+  totalCount: Int!
+}
+
+type PollAnswer {
+  hasAnswered: Boolean!
+  id: ID!
+  poll: Poll!
+  title: String!
+  voters(after: String, before: String, first: Int, last: Int): PollAnswerVotersConnection!
+}
+
+type PollAnswerVotersConnection {
+  edges: [PollAnswerVotersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PollAnswerVotersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
 type Post {
   attachments: Attachments
   body: String!
-  commit: PostCommit
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!
@@ -220,26 +252,13 @@ type Post {
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   oembedUrl: String
   parent: Post
+  poll: Poll
   product: Product
   replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
   title: String
   type: String!
   updatedAt: DateTime!
   user: User!
-}
-
-type PostCommit {
-  additions: Int
-  authorAvatar: String
-  authorUsername: String
-  changed: Int
-  deletions: Int
-  id: ID!
-  message: String
-  post: Post!
-  repoSlug: String
-  url: String
-  verified: Boolean
 }
 
 type PostLikesConnection {

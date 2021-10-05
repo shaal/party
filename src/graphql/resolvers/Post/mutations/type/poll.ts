@@ -7,27 +7,33 @@ import { CreatePostInput } from 'src/__generated__/schema.generated'
 
 import { processMentions } from '../processMentions'
 
-export const question = async (
+export const poll = async (
   query: any,
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
-  const question = await db.post.create({
+  const answers = JSON.parse(input.polls as string)
+  var answersWithIndex = answers.map((el: any, index: number) => {
+    var o = Object.assign({}, el)
+    o.index = index
+    return o
+  })
+
+  const poll = await db.post.create({
     ...query,
     data: {
       userId: session!.userId,
-      title: input.title,
       body: input.body,
-      attachments: input.attachments ? input.attachments : undefined,
-      type: 'QUESTION',
+      type: 'POLL',
       productId: input.productId ? input.productId : null,
-      topics: { create: parseTopics(getTopics(input.body)) }
+      topics: { create: parseTopics(getTopics(input.body)) },
+      poll: { create: { answers: { createMany: { data: answersWithIndex } } } }
     }
   })
 
-  if (getMentions(question.body)?.length > 0) {
-    await processMentions(question, session)
+  if (getMentions(poll.body)?.length > 0) {
+    await processMentions(poll, session)
   }
 
-  return question
+  return poll
 }

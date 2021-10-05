@@ -82,7 +82,7 @@ CREATE TABLE `posts` (
     `title` VARCHAR(191),
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST', 'TASK', 'QUESTION', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
+    `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
     `attachments` JSON,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -95,20 +95,22 @@ CREATE TABLE `posts` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `post_commit` (
+CREATE TABLE `poll` (
     `id` VARCHAR(191) NOT NULL,
-    `repoSlug` VARCHAR(191),
-    `message` VARCHAR(191),
-    `url` VARCHAR(191),
-    `verified` BOOLEAN,
-    `changed` INTEGER,
-    `additions` INTEGER,
-    `deletions` INTEGER,
-    `authorUsername` VARCHAR(191),
-    `authorAvatar` VARCHAR(191),
     `postId` VARCHAR(191),
 
-    UNIQUE INDEX `post_commit_postId_unique`(`postId`),
+    UNIQUE INDEX `poll_postId_unique`(`postId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `poll_answers` (
+    `id` VARCHAR(191) NOT NULL,
+    `index` INTEGER NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `pollId` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -238,6 +240,15 @@ CREATE TABLE `_TopicToUser` (
 
     UNIQUE INDEX `_TopicToUser_AB_unique`(`A`, `B`),
     INDEX `_TopicToUser_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_PollAnswerToUser` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_PollAnswerToUser_AB_unique`(`A`, `B`),
+    INDEX `_PollAnswerToUser_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
