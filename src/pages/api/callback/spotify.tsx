@@ -2,6 +2,7 @@ import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
 import SpotifyWebApi from 'spotify-web-api-node'
+import { BASE_URL } from 'src/constants'
 
 const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
@@ -12,7 +13,7 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const credentials = {
     clientId: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    redirectUri: `${process.env.BASE_URL}/api/callback/spotify`
+    redirectUri: `${BASE_URL}/api/callback/spotify`
   }
 
   const spotifyApi = new SpotifyWebApi(credentials)
