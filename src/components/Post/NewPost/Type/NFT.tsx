@@ -2,7 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
-import { CollectionIcon } from '@heroicons/react/outline'
+import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -23,7 +23,7 @@ const NFTType: React.FC = () => {
   const { data } = useSWR(
     `https://${
       process.env.NODE_ENV === 'production' ? 'testnets-api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
+    }.opensea.io/api/v1/assets?format=json&limit=16&offset=0&order_direction=desc&owner=${ethAddress}`,
     fetcher,
     {
       isPaused: () => {
@@ -61,13 +61,14 @@ const NFTType: React.FC = () => {
 
   if (!ethAddress)
     return (
-      <div className="space-y-2">
-        <div>
-          Put some text here! Put some text here! Put some text here! Put some
-          text here! Put some text here! Put some text here! Put some text here!
-          Put some text here! Put some text here!
-        </div>
-        <Button type="button" onClick={connectWallet}>
+      <div className="p-5 font-bold text-center space-y-3">
+        <div>Connect your wallet that is associated with your NFTs</div>
+        <Button
+          className="mx-auto"
+          type="button"
+          onClick={connectWallet}
+          icon={<CashIcon className="h-5 w-5" />}
+        >
           Load NFTs
         </Button>
       </div>
