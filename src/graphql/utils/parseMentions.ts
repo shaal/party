@@ -2,6 +2,13 @@ import { db } from '@utils/prisma'
 
 import { NotificationType, Post, Session, User } from '.prisma/client'
 
+/**
+ * Generated the prisma compatible parsed data to inserted
+ * @param mentions - Array of mentions generated in getMentions()
+ * @param session - Current user session
+ * @param post - Post
+ * @returns prisma compatible parsed data to inserted
+ */
 export const parseMentions = async (
   mentions: string[],
   session: Session | undefined | null,
