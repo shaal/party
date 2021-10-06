@@ -36,7 +36,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
         <>
           <Menu.Button className="flex items-center gap-2">
             <img
-              className="h-10 w-10 rounded-full bg-gray-200"
+              className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gray-200"
               src={imagekitURL(
                 currentUser?.profile?.avatar as string,
                 100,
