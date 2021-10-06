@@ -4,6 +4,7 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
+import { getFeaturedUsers } from './queries/getFeaturedUsers'
 import { getUsers } from './queries/getUsers'
 import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
@@ -133,6 +134,16 @@ builder.queryField('whoToFollow', (t) =>
     cursor: 'id',
     resolve: async (query, parent, args, { session }) => {
       return await getWhoToFollow(query, session)
+    }
+  })
+)
+
+builder.queryField('featuredUsers', (t) =>
+  t.prismaConnection({
+    type: 'User',
+    cursor: 'id',
+    resolve: async (query) => {
+      return await getFeaturedUsers(query)
     }
   })
 )
