@@ -1,9 +1,15 @@
 import AppContext from '@components/utils/AppContext'
-import { CubeIcon, GlobeIcon, HomeIcon } from '@heroicons/react/outline'
+import {
+  CubeIcon,
+  GlobeIcon,
+  HomeIcon,
+  UserIcon
+} from '@heroicons/react/outline'
 import {
   CubeIcon as CubeIconSolid,
   GlobeIcon as GlobeIconSolid,
-  HomeIcon as HomeIconSolid
+  HomeIcon as HomeIconSolid,
+  UserIcon as UserIconSolid
 } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -40,6 +46,15 @@ const MobileFooter: React.FC = () => {
               <GlobeIconSolid className="h-6 w-6 text-brand-500" />
             ) : (
               <GlobeIcon className="h-6 w-6" />
+            )}
+          </a>
+        </Link>
+        <Link href={`/@/${currentUser?.username}`}>
+          <a className="py-4 px-8">
+            {router.pathname == '/@/[username]' ? (
+              <UserIconSolid className="h-6 w-6 text-brand-500" />
+            ) : (
+              <UserIcon className="h-6 w-6" />
             )}
           </a>
         </Link>
