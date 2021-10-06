@@ -2,6 +2,7 @@ import Hero from '@components/shared/Hero'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import { STATIC_ASSETS } from 'src/constants'
 
 import SignupForm from './Form'
 
@@ -16,7 +17,7 @@ const Signup: React.FC = () => {
         <div className="lg:col-span-5 md:col-span-12 col-span-12 py-8 lg:px-14 md:px-10 sm:px-5 px-5 flex flex-col">
           <div className="space-y-7 flex-grow">
             <img
-              src="https://assets.devparty.io/images/emojis/handshake.png"
+              src={`${STATIC_ASSETS}/emojis/handshake.png`}
               className="w-20"
               alt="Handshake Emoji"
             />
