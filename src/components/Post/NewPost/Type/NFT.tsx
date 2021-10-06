@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
+import { Tooltip } from '@components/ui/Tooltip'
 import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -111,11 +112,25 @@ const NFTType: React.FC = () => {
                 })
               }
             >
-              <img
-                className="object-cover h-38 w-38 rounded-lg border"
-                src={asset?.image_url}
-                alt={asset?.name}
-              />
+              <Card className="p-2 space-y-2">
+                <div>
+                  <img
+                    className="object-cover h-38 w-38 rounded-lg border"
+                    src={asset?.image_url}
+                    alt={asset?.name}
+                  />
+                </div>
+                <div className="py-1">
+                  <div className="text-xs truncate">
+                    {asset?.collection?.name}
+                  </div>
+                  <Tooltip content={asset?.name}>
+                    <div className="text-sm truncate font-bold">
+                      {asset?.name}
+                    </div>
+                  </Tooltip>
+                </div>
+              </Card>
             </div>
           </div>
         ))}
