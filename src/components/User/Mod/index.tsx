@@ -86,7 +86,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
                     userId: user?.id,
                     isVerified,
                     isStaff,
-                    featuredAt,
+                    featuredAt: featuredAt ? true : false,
                     spammy
                   }
                 }

@@ -25,6 +25,7 @@ export const UserFragment = gql`
     isStaff
     spammy
     createdAt
+    featuredAt
     followers {
       totalCount
     }

@@ -10,6 +10,7 @@ import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
   ClockIcon,
+  FireIcon,
   LocationMarkerIcon,
   PencilIcon,
   SupportIcon
@@ -65,6 +66,11 @@ const Details: React.FC<Props> = ({ user }) => {
             {user?.isVerified && (
               <Tooltip content={'Verified'}>
                 <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
+              </Tooltip>
+            )}
+            {user?.featuredAt && (
+              <Tooltip content={'Featured User'}>
+                <FireIcon className="h-6 w-6 text-yellow-500" />
               </Tooltip>
             )}
             {user?.isStaff && (
