@@ -2,6 +2,12 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 
+/**
+ * Regenerate the current user's invite code
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param session - Current user session
+ * @returns updated invite data
+ */
 export const regenerateInvite = async (
   query: any,
   session: Session | null | undefined
