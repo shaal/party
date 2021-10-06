@@ -8,6 +8,7 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import { Product } from 'src/__generated__/schema.generated'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { ProductFeedQuery } from './__generated__/Feed.generated'
 
@@ -42,7 +43,8 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
       variables: {
         after: null,
         slug: product?.slug
-      }
+      },
+      pollInterval: POLLING_INTERVAL
     }
   )
 
