@@ -10,6 +10,7 @@ import { Tooltip } from '@components/ui/Tooltip'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
+import { ERROR_MESSAGE } from 'src/constants'
 import * as timeago from 'timeago.js'
 
 import {
@@ -87,7 +88,7 @@ const StaffToolsUsers: React.FC = () => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         toast.success('Successfully onboarded the user')

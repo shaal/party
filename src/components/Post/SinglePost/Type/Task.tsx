@@ -9,6 +9,7 @@ import Linkify from 'linkify-react'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 
 import Attachments from '../Attachments'
 import {
@@ -36,7 +37,7 @@ const TaskType: React.FC<Props> = ({ task }) => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         toast.success('Task updated successfully!')

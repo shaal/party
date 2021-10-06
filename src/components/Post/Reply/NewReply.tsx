@@ -9,6 +9,7 @@ import { ReplyIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 import { object, string } from 'zod'
 
 import Attachment from '../NewPost/Attachment'
@@ -51,7 +52,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         }
       ],
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         form.reset()

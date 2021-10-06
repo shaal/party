@@ -5,6 +5,7 @@ import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Product } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 
 import {
   ToggleProductSubscribeMutation,
@@ -35,7 +36,7 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted(data) {
         if (data?.toggleProductSubscribe?.hasSubscribed) {
