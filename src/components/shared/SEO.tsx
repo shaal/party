@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-import { BASE_URL } from 'src/constants'
+import { BASE_URL, STATIC_ASSETS } from 'src/constants'
 
 interface Props {
   title: string
@@ -14,7 +14,7 @@ const DevpartySEO: React.FC<Props> = ({
   title,
   description,
   path,
-  image = 'https://assets.devparty.io/images/og/logo.png',
+  image = `${STATIC_ASSETS}/og/logo.png`,
   cardType = 'summary'
 }) => {
   return (
