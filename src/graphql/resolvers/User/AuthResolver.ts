@@ -2,7 +2,7 @@ import { builder } from '@graphql/builder'
 import { authenticateUser } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
@@ -68,7 +68,7 @@ builder.mutationField('login', (t) =>
         await createSession(req, user)
         return user
       } catch (error: any) {
-        throw new Error(IS_PRODUCTION ? 'Something went wrong!' : error)
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })

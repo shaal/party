@@ -1,6 +1,6 @@
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { db } from '@utils/prisma'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasSubscribed } from '../queries/hasSubscribed'
 
@@ -46,6 +46,6 @@ export const toggleSubscribe = async (
 
     return product
   } catch (error: any) {
-    throw new Error(IS_PRODUCTION ? 'Something went wrong!' : error)
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }

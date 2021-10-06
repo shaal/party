@@ -4,7 +4,7 @@ import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { User } from '.prisma/client'
 
@@ -42,6 +42,6 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
         throw new Error('Email is already taken!')
     }
 
-    throw new Error(IS_PRODUCTION ? 'Something went wrong!' : error)
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }

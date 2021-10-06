@@ -6,7 +6,7 @@ import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
 import { SignupInput } from 'src/__generated__/schema.generated'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 export const signUp = async (query: any, input: SignupInput, req: any) => {
   if (reservedSlugs.includes(input.username)) {
@@ -58,6 +58,6 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
         throw new Error('Email is already taken!')
     }
 
-    throw new Error(IS_PRODUCTION ? 'Something went wrong!' : error)
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }
