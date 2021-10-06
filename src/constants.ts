@@ -7,3 +7,5 @@ export const REACT_VERSION = React.version
 export const GIT_COMMIT_SHA = process.env.GIT_COMMIT_SHA?.slice(0, 7)
 export const GIT_COMMIT_REF = process.env.GIT_COMMIT_REF
 export const POLLING_INTERVAL = 1000 * 60 // 1 minute
+
+export const ERROR_MESSAGE = 'Something went wrong!'
