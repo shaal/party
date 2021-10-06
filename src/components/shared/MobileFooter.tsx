@@ -13,24 +13,24 @@ const MobileFooter: React.FC = () => {
 
   return (
     <div className="block sm:hidden">
-      <div className="bg-white border-gray-200 border-t bottom-0 fixed w-full z-40 p-4 flex items-center justify-between">
+      <div className="bg-white border-gray-200 border-t bottom-0 fixed w-full z-40 flex items-center justify-between">
         <Link href="/">
-          <a>
+          <a className="py-4 px-8">
             <HomeIcon className="h-6 w-6" />
           </a>
         </Link>
         <Link href="/">
-          <a>
+          <a className="py-4 px-8">
             <CubeIcon className="h-6 w-6" />
           </a>
         </Link>
         <Link href="/">
-          <a>
+          <a className="py-4 px-8">
             <GlobeIcon className="h-6 w-6" />
           </a>
         </Link>
         <Link href="/">
-          <a>
+          <a className="py-4 px-8">
             <UserIcon className="h-6 w-6" />
           </a>
         </Link>
