@@ -4,7 +4,7 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
-import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
+import { SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
 import { FeaturedUsersQuery } from './__generated__/FeaturedUsers.generated'
@@ -29,17 +29,12 @@ const FEATURED_USERS_QUERY = gql`
   }
 `
 
-const FeaturedUsersCard = ({ children, refetch }: any) => {
+const FeaturedUsersCard = ({ children }: any) => {
   return (
     <div className="mb-4">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <SparklesIcon className="h-4 w-4 text-yellow-500" />
-          <div>Featured users</div>
-        </div>
-        <button onClick={() => refetch()}>
-          <RefreshIcon className="h-5 w-5" />
-        </button>
+      <div className="flex items-center gap-2 mb-2">
+        <SparklesIcon className="h-4 w-4 text-yellow-500" />
+        <div>Featured users</div>
       </div>
       <Card>
         <CardBody>{children}</CardBody>
@@ -49,7 +44,7 @@ const FeaturedUsersCard = ({ children, refetch }: any) => {
 }
 
 const FeaturedUsers: React.FC = () => {
-  const { data, loading, error, refetch } = useQuery<FeaturedUsersQuery>(
+  const { data, loading, error } = useQuery<FeaturedUsersQuery>(
     FEATURED_USERS_QUERY,
     {
       notifyOnNetworkStatusChange: true
@@ -71,7 +66,7 @@ const FeaturedUsers: React.FC = () => {
     )
 
   return (
-    <FeaturedUsersCard refetch={refetch}>
+    <FeaturedUsersCard>
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
         {users?.length === 0 && (
