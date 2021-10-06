@@ -9,7 +9,7 @@ export default function Custom404() {
       <DevpartySEO title="Page Not Found · Devparty" />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img
-          src="https://assets.devparty.io/images/gifs/nyan-cat.gif"
+          src={`https://assets.devparty.io/images/gifs/nyan-cat.gif`}
           alt="Nyan Cat"
           className="h-60"
         />

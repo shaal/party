@@ -1,3 +1,5 @@
+import { STATIC_ASSETS } from 'src/constants'
+
 export const getRandomCover = () => {
   const colors = [
     '6B7280',
@@ -11,7 +13,7 @@ export const getRandomCover = () => {
   ]
 
   return {
-    image: `https://assets.devparty.io/images/patterns/${Math.floor(
+    image: `${STATIC_ASSETS}/patterns/${Math.floor(
       Math.random() * (10 - 1 + 1) + 1
     )}.svg`,
     color: colors[Math.floor(Math.random() * colors.length)]

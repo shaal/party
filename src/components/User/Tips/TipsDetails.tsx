@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
+import { STATIC_ASSETS } from 'src/constants'
 
 import { UserTipsQuery } from './__generated__/TipsDetails.generated'
 
@@ -45,7 +46,7 @@ const SingleTip: React.FC<SingleTipProps> = ({ icon, link, text }) => (
   >
     <img
       className="h-6 w-6"
-      src={`https://assets.devparty.io/images/tips/${icon}.svg`}
+      src={`${STATIC_ASSETS}/tips/${icon}.svg`}
       alt={text}
     />
     <span className="mt-2">{text}</span>

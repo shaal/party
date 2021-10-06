@@ -3,6 +3,7 @@ import { Card } from '@components/ui/Card'
 import { Tooltip } from '@components/ui/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { User } from 'src/__generated__/schema.generated'
+import { STATIC_ASSETS } from 'src/constants'
 
 import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
 
@@ -50,7 +51,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
               >
                 <img
                   className="h-4 w-4"
-                  src="https://assets.devparty.io/images/brands/spotify.svg"
+                  src={`${STATIC_ASSETS}/brands/spotify.svg`}
                   alt="Spotify Logo"
                 />
               </a>
