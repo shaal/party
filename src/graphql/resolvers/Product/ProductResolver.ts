@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { reservedSlugs } from '../Common/queries/reservedSlugs'
 import { createProduct } from './mutations/createProduct'
@@ -136,11 +137,7 @@ builder.mutationField('editProduct', (t) =>
           throw new Error('Product slug is already taken!')
         }
 
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })

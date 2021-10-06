@@ -5,6 +5,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
+import { BASE_URL, STATIC_ASSETS } from 'src/constants'
 
 import {
   InviteCodeQuery,
@@ -66,7 +67,7 @@ const InviteDetails: React.FC = () => {
       <div className="bg-brand-300 py-2">
         <img
           className="object-cover h-60 w-60 mx-auto"
-          src="https://assets.devparty.io/images/illustrations/invite.png"
+          src={`${STATIC_ASSETS}/illustrations/invite.png`}
           alt="Invite Illustration"
         />
       </div>
@@ -87,7 +88,7 @@ const InviteDetails: React.FC = () => {
               <div className="text-sm font-bold">Your Invite Link</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
                 <div>
-                  {process.env.BASE_URL}/invite/{user?.invite?.code}
+                  {BASE_URL}/invite/{user?.invite?.code}
                 </div>
                 <Tooltip content="Regenerate Invite">
                   <div

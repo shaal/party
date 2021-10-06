@@ -2,14 +2,15 @@ import DevpartySEO from '@components/shared/SEO'
 import { Button } from '@components/ui/Button'
 import { HomeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { ERROR_MESSAGE, STATIC_ASSETS } from 'src/constants'
 
 export default function Custom500() {
   return (
     <>
-      <DevpartySEO title="Something went wrong! · Devparty" />
+      <DevpartySEO title={`${ERROR_MESSAGE} · Devparty`} />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img
-          src="https://assets.devparty.io/images/gifs/nyan-cat.gif"
+          src={`${STATIC_ASSETS}/gifs/nyan-cat.gif`}
           alt="Nyan Cat"
           className="h-60"
         />

@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
@@ -182,11 +183,7 @@ builder.mutationField('editUser', (t) =>
           throw new Error('Username is already taken!')
         }
 
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })
@@ -217,11 +214,7 @@ builder.mutationField('editNFTAvatar', (t) =>
           }
         })
       } catch (error: any) {
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })

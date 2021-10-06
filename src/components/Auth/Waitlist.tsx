@@ -1,5 +1,6 @@
 import { Modal } from '@components/ui/Modal'
 import React from 'react'
+import { STATIC_ASSETS } from 'src/constants'
 
 interface Props {
   showModal: boolean
@@ -16,7 +17,7 @@ const Waitlist: React.FC<Props> = ({ showModal, setShowModal }) => {
       <div className="p-5 text-center space-y-5">
         <img
           className="mx-auto"
-          src="https://assets.devparty.io/images/emojis/unicorn.png"
+          src={`${STATIC_ASSETS}/emojis/unicorn.png`}
           alt="Unicorn emoji"
         />
         <div className="text-2xl font-bold">

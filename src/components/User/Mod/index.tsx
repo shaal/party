@@ -8,6 +8,7 @@ import { HashtagIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 import { boolean, object } from 'zod'
 
 import {
@@ -42,7 +43,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         toast.success('User staff settings updated!')

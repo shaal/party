@@ -1,4 +1,5 @@
 import { db } from '@utils/prisma'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasVoted } from '../queries/hasVoted'
 
@@ -25,8 +26,6 @@ export const answerPoll = async (
 
     return poll
   } catch (error: any) {
-    throw new Error(
-      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
-    )
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }

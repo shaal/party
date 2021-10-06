@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { LightningBoltIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { NotificationCountQuery } from './__generated__/Notification.generated'
 
@@ -13,7 +14,9 @@ const NOTIFICATION_COUNT_QUERY = gql`
 `
 
 const Notification: React.FC = () => {
-  const { data } = useQuery<NotificationCountQuery>(NOTIFICATION_COUNT_QUERY)
+  const { data } = useQuery<NotificationCountQuery>(NOTIFICATION_COUNT_QUERY, {
+    pollInterval: POLLING_INTERVAL
+  })
 
   return (
     <Link href="/notifications">
