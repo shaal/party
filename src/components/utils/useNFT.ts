@@ -4,7 +4,7 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 export const useNFT = (address: string, tokenId: string) => {
   const { data, error } = useSWR(
-    `https://testnets-api.opensea.io/api/v1/asset/${address}/${tokenId}`,
+    `/api/nft?address=${address}&tokenId=${tokenId}`,
     fetcher,
     {
       revalidateIfStale: false,
