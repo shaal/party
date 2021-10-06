@@ -1,3 +1,8 @@
+/**
+ * Extract unique topics/hashtags from the given post body
+ * @param postBody - Body of the Post
+ * @returns array of topics
+ */
 export const getTopics = (postBody: string) => {
   var regexp = /\B#\w\w+\b/g
   var result = postBody.match(regexp)
