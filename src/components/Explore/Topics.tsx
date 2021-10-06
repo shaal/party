@@ -42,7 +42,7 @@ const Topics: React.FC = () => {
 
   if (loading)
     return (
-      <Card>
+      <Card className="mb-4">
         <CardBody>
           <div className="shimmer h-5 rounded-lg"></div>
         </CardBody>
@@ -52,7 +52,7 @@ const Topics: React.FC = () => {
   return (
     <>
       {user ? (
-        <Card>
+        <Card className="mb-4">
           <ErrorMessage
             title="Failed to load topics"
             error={error}
