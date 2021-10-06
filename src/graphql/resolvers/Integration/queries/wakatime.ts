@@ -2,6 +2,11 @@ import { db } from '@utils/prisma'
 
 import { Wakatime } from '../WakatimeResolver'
 
+/**
+ * Get wakatime data for the given user
+ * @param userId - Target user id
+ * @returns wakatime object
+ */
 export const wakatime = async (userId: string) => {
   try {
     const integration = await db.integration.findFirst({
