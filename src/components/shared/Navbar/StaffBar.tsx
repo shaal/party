@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
+import { REACT_VERSION } from 'src/constants'
 
 interface Props {
   children: React.ReactNode
@@ -36,7 +37,7 @@ const StaffBar: React.FC = () => {
         <div className="flex items-center space-x-1" title="React.js Version">
           <ChipIcon className="h-4 w-4" />
           <span>
-            React.js <Badge>v{React.version}</Badge>
+            React.js <Badge>v{REACT_VERSION}</Badge>
           </span>
         </div>
       </div>
