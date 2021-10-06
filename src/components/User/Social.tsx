@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes'
 import { Profile } from 'src/__generated__/schema.generated'
+import { STATIC_ASSETS } from 'src/constants'
 
 interface Props {
   profile: Profile
@@ -24,7 +25,7 @@ const Social: React.FC<Props> = ({ profile }) => {
       {profile?.twitter && (
         <div className="flex items-center gap-2">
           <img
-            src={`https://assets.devparty.io/images/brands/twitter.svg`}
+            src={`${STATIC_ASSETS}/brands/twitter.svg`}
             className="w-4"
             alt="Twitter Logo"
           />
@@ -41,13 +42,13 @@ const Social: React.FC<Props> = ({ profile }) => {
         <div className="flex items-center gap-2">
           {resolvedTheme === 'dark' ? (
             <img
-              src={`https://assets.devparty.io/images/brands/github-light.svg`}
+              src={`${STATIC_ASSETS}/brands/github-light.svg`}
               className="w-4"
               alt="GitHub Logo"
             />
           ) : (
             <img
-              src={`https://assets.devparty.io/images/brands/github-dark.svg`}
+              src={`${STATIC_ASSETS}/brands/github-dark.svg`}
               className="w-4"
               alt="GitHub Logo"
             />
@@ -64,7 +65,7 @@ const Social: React.FC<Props> = ({ profile }) => {
       {profile?.discord && (
         <div className="flex items-center gap-2">
           <img
-            src={`https://assets.devparty.io/images/brands/discord.svg`}
+            src={`${STATIC_ASSETS}/brands/discord.svg`}
             className="w-4"
             alt="Discord Logo"
           />
