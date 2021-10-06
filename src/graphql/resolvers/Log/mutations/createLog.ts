@@ -1,6 +1,12 @@
 import { LogActionType } from '@prisma/client'
 import { db } from '@utils/prisma'
 
+/**
+ * Creates a log for the action performed by the user
+ * @param userId - Current user id
+ * @param entityId - Entity id where the action is going to perform
+ * @param action - Type of the action
+ */
 export const createLog = async (
   userId: any,
   entityId: any,
