@@ -3,6 +3,11 @@ import SpotifyWebApi from 'spotify-web-api-node'
 
 import { Spotify } from '../SpotifyResolver'
 
+/**
+ * Get spotify data for the given user
+ * @param userId - Target user id
+ * @returns spotify object
+ */
 export const spotify = async (userId: string) => {
   try {
     const integration = await db.integration.findFirst({
