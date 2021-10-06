@@ -340,6 +340,7 @@ type Profile {
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
+  featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
@@ -381,6 +382,16 @@ type QueryExploreFeedConnection {
 type QueryExploreFeedConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryFeaturedUsersConnection {
+  edges: [QueryFeaturedUsersConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryFeaturedUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type QueryHomeFeedConnection {
