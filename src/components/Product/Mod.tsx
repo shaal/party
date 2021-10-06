@@ -17,9 +17,6 @@ const ProductMod: React.FC<Props> = ({ product }) => {
             <span className="font-mono font-bold">{product?.id}</span>
           </div>
         </div>
-        <div className="border-t border-yellow-400 my-3"></div>
-        <div className="font-bold text-lg">Flags</div>
-        <div className="space-y-1.5 mt-3 text-sm font-bold">TBD</div>
       </CardBody>
     </Card>
   )
