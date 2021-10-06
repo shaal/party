@@ -2,6 +2,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import dynamic from 'next/dynamic'
 import React from 'react'
 
+import FeaturedUsers from './FeaturedUsers'
 import ExploreFeed from './Feed'
 import Topics from './Topics'
 
@@ -17,6 +18,7 @@ const Explore: React.FC = () => {
       </GridItemEight>
       <GridItemFour>
         <Topics />
+        <FeaturedUsers />
         <Footer />
       </GridItemFour>
     </GridLayout>

@@ -4,6 +4,7 @@ import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
 import requestIp from 'request-ip'
+import { IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
@@ -30,7 +31,7 @@ export const sessionOptions: SessionOptions = {
   cookieName: 'devparty_session',
   ttl: SESSION_TTL,
   cookieOptions: {
-    secure: process.env.NODE_ENV === 'production',
+    secure: IS_PRODUCTION,
     sameSite: 'strict',
     httpOnly: true
   }

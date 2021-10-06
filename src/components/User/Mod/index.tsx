@@ -8,6 +8,7 @@ import { HashtagIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 import { boolean, object } from 'zod'
 
 import {
@@ -19,6 +20,7 @@ import UpdateBadges from './UpdateBadges'
 const modUserSchema = object({
   isVerified: boolean(),
   isStaff: boolean(),
+  featuredAt: boolean(),
   spammy: boolean()
 })
 
@@ -36,13 +38,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
           id
           isVerified
           isStaff
+          featuredAt
           spammy
         }
       }
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         toast.success('User staff settings updated!')
@@ -55,6 +58,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
     defaultValues: {
       isVerified: user?.isVerified as boolean,
       isStaff: user?.isStaff as boolean,
+      featuredAt: user?.featuredAt ? true : false,
       spammy: user?.spammy as boolean
     }
   })
@@ -75,14 +79,15 @@ const UserMod: React.FC<Props> = ({ user }) => {
           <Form
             form={form}
             className="space-y-1.5 mt-3 text-sm font-bold"
-            onSubmit={({ isVerified, isStaff, spammy }) =>
+            onSubmit={({ isVerified, isStaff, featuredAt, spammy }) =>
               modUser({
                 variables: {
                   input: {
                     userId: user?.id,
-                    isVerified: isVerified as boolean,
-                    isStaff: isStaff as boolean,
-                    spammy: spammy as boolean
+                    isVerified,
+                    isStaff,
+                    featuredAt: featuredAt ? true : false,
+                    spammy
                   }
                 }
               })
@@ -104,6 +109,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
               />
               <label htmlFor="staffUser">Make as staff</label>
             </div>
+            <div className="flex items-center gap-2">
+              <input
+                id="featuredAt"
+                type="checkbox"
+                {...form.register('featuredAt')}
+              />
+              <label htmlFor="featuredAt">Feature this user</label>
+            </div>
             {!user?.isStaff && (
               <div className="flex items-center gap-2">
                 <input
@@ -117,15 +130,15 @@ const UserMod: React.FC<Props> = ({ user }) => {
               </div>
             )}
             <div className="pt-2 space-x-2">
+              <Button type="submit">
+                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
+              </Button>
               <Button
                 type="button"
                 variant="success"
                 onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
               >
                 Update Badges
-              </Button>
-              <Button type="submit">
-                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
               </Button>
             </div>
           </Form>

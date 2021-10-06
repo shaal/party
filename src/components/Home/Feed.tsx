@@ -7,6 +7,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { HomeFeedQuery } from './__generated__/Feed.generated'
 
@@ -38,7 +39,8 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       variables: {
         after: null,
         type: feedType
-      }
+      },
+      pollInterval: POLLING_INTERVAL
     }
   )
   const posts = data?.posts?.edges?.map((edge) => edge?.node)

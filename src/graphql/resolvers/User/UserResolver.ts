@@ -1,8 +1,10 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
+import { getFeaturedUsers } from './queries/getFeaturedUsers'
 import { getUsers } from './queries/getUsers'
 import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
@@ -38,6 +40,7 @@ builder.prismaObject('User', {
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),
 
     // Relations
     profile: t.relation('profile'),
@@ -136,6 +139,16 @@ builder.queryField('whoToFollow', (t) =>
   })
 )
 
+builder.queryField('featuredUsers', (t) =>
+  t.prismaConnection({
+    type: 'User',
+    cursor: 'id',
+    resolve: async (query) => {
+      return await getFeaturedUsers(query)
+    }
+  })
+)
+
 const EditUserInput = builder.inputType('EditUserInput', {
   fields: (t) => ({
     username: t.string({
@@ -182,11 +195,7 @@ builder.mutationField('editUser', (t) =>
           throw new Error('Username is already taken!')
         }
 
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })
@@ -217,11 +226,7 @@ builder.mutationField('editNFTAvatar', (t) =>
           }
         })
       } catch (error: any) {
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })
@@ -251,6 +256,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
     userId: t.id(),
     isVerified: t.boolean({ required: false }),
     isStaff: t.boolean({ required: false }),
+    featuredAt: t.boolean({ required: false }),
     spammy: t.boolean({ required: false })
   })
 })

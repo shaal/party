@@ -3,6 +3,7 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { CreateProductInput } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 export const createProduct = async (
   query: any,
@@ -30,8 +31,6 @@ export const createProduct = async (
       throw new Error('Product slug is already taken!')
     }
 
-    throw new Error(
-      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
-    )
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }

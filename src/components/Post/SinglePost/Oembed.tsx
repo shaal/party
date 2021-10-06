@@ -1,6 +1,7 @@
 import { Card, CardBody } from '@components/ui/Card'
 import clsx from 'clsx'
 import React from 'react'
+import { STATIC_ASSETS } from 'src/constants'
 
 interface Props {
   url: string
@@ -65,8 +66,7 @@ const Oembed: React.FC<Props> = ({ url, oembed }) => {
                 className="h-4 w-4 rounded-sm text-gray-400"
                 src={`https://ik.imagekit.io/devparty/${favicon}`}
                 onError={(evt: any) =>
-                  (evt.target.src =
-                    'https://assets.devparty.io/images/icons/link.svg')
+                  (evt.target.src = `${STATIC_ASSETS}/icons/link.svg`)
                 }
                 alt="Favicon"
               />

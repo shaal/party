@@ -10,6 +10,7 @@ import { Tooltip } from '@components/ui/Tooltip'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
+import { ERROR_MESSAGE, STATIC_ASSETS } from 'src/constants'
 import * as timeago from 'timeago.js'
 
 import {
@@ -87,7 +88,7 @@ const StaffToolsUsers: React.FC = () => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted() {
         toast.success('Successfully onboarded the user')
@@ -161,14 +162,14 @@ const StaffToolsUsers: React.FC = () => {
                           {user?.hasSpotifyIntegration && (
                             <img
                               className="h-4 w-4"
-                              src="https://assets.devparty.io/images/brands/spotify.svg"
+                              src={`${STATIC_ASSETS}/brands/spotify.svg`}
                               alt="Spotify Logo"
                             />
                           )}
                           {user?.hasWakatimeIntegration && (
                             <img
                               className="h-4 w-4"
-                              src="https://assets.devparty.io/images/brands/wakatime-dark.svg"
+                              src={`${STATIC_ASSETS}/brands/wakatime-dark.svg`}
                               alt="Wakatime Logo"
                             />
                           )}

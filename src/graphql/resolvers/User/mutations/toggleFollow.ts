@@ -1,5 +1,6 @@
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { db } from '@utils/prisma'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasFollowed } from '../queries/hasFollowed'
 import { User } from '.prisma/client'
@@ -38,8 +39,6 @@ export const toggleFollow = async (currentUserId: string, userId: string) => {
 
     return user
   } catch (error: any) {
-    throw new Error(
-      process.env.NODE_ENV === 'production' ? 'Something went wrong!' : error
-    )
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
   }
 }

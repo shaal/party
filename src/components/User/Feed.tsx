@@ -8,6 +8,7 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { UserFeedQuery } from './__generated__/Feed.generated'
 
@@ -46,7 +47,8 @@ const UserFeed: React.FC<Props> = ({ feedType }) => {
         after: null,
         username: router.query.username
       },
-      skip: !router.isReady
+      skip: !router.isReady,
+      pollInterval: POLLING_INTERVAL
     }
   )
 

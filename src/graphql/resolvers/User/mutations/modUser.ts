@@ -15,7 +15,8 @@ export const modUser = async (query: any, input: ModUserInput) => {
     data: {
       isVerified: input.isVerified as boolean,
       isStaff: input.isStaff as boolean,
-      spammy: input.spammy as boolean
+      spammy: input.spammy as boolean,
+      featuredAt: input.featuredAt ? new Date() : null
     }
   })
 }

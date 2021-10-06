@@ -2,6 +2,7 @@ import DevpartySEO from '@components/shared/SEO'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useTheme } from 'next-themes'
 import React, { Fragment } from 'react'
+import { STATIC_ASSETS } from 'src/constants'
 
 import Footer from '../shared/Footer'
 
@@ -21,7 +22,7 @@ const Brand: React.FC<Props> = ({ name, logo, url, size, children }) => {
       <img
         className="mx-auto"
         style={{ height: size }}
-        src={`https://assets.devparty.io/images/thanks/${logo}-${
+        src={`${STATIC_ASSETS}/thanks/${logo}-${
           resolvedTheme === 'dark' ? 'dark' : 'light'
         }.svg`}
         alt={`${name}'s Logo`}

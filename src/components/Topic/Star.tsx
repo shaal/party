@@ -6,6 +6,7 @@ import { StarIcon as StarIconSolid } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Topic } from 'src/__generated__/schema.generated'
+import { ERROR_MESSAGE } from 'src/constants'
 
 import {
   ToggleTopicStarMutation,
@@ -33,7 +34,7 @@ const Star: React.FC<Props> = ({ topic }) => {
     `,
     {
       onError() {
-        toast.error('Something went wrong!')
+        toast.error(ERROR_MESSAGE)
       },
       onCompleted(data) {
         if (data?.toggleTopicStar?.hasStarted) {

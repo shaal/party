@@ -7,6 +7,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { ExploreFeedQuery } from './__generated__/Feed.generated'
 
@@ -30,7 +31,7 @@ export const EXPLORE_FEED_QUERY = gql`
 const ExploreFeed: React.FC = () => {
   const { data, loading, error, fetchMore } = useQuery<ExploreFeedQuery>(
     EXPLORE_FEED_QUERY,
-    { variables: { after: null } }
+    { variables: { after: null }, pollInterval: POLLING_INTERVAL }
   )
   const posts = data?.posts?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.posts?.pageInfo

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { IS_PRODUCTION } from 'src/constants'
 
 declare global {
   var __globalPrisma__: PrismaClient
@@ -6,7 +7,7 @@ declare global {
 
 export let db: PrismaClient
 
-if (process.env.NODE_ENV === 'production') {
+if (IS_PRODUCTION) {
   db = new PrismaClient({
     log: ['error', 'warn']
   })

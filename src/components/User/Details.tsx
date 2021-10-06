@@ -10,6 +10,7 @@ import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
   ClockIcon,
+  FireIcon,
   LocationMarkerIcon,
   PencilIcon,
   SupportIcon
@@ -20,6 +21,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Profile, User } from 'src/__generated__/schema.generated'
+import { STATIC_ASSETS } from 'src/constants'
 import * as timeago from 'timeago.js'
 
 import Badges from './Badges'
@@ -52,7 +54,7 @@ const Details: React.FC<Props> = ({ user }) => {
             <a href={user?.profile?.nftSource} target="_blank" rel="noreferrer">
               <img
                 className="absolute bottom-0 right-0 h-9 w-9 my-1 border-4 border-white rounded-full bg-[#a4a4f2] p-1.5"
-                src="https://assets.devparty.io/images/brands/ethereum.svg"
+                src={`${STATIC_ASSETS}/brands/ethereum.svg`}
                 alt="Ethereum Logo"
               />
             </a>
@@ -64,6 +66,11 @@ const Details: React.FC<Props> = ({ user }) => {
             {user?.isVerified && (
               <Tooltip content={'Verified'}>
                 <BadgeCheckIcon className="h-6 w-6 text-brand-500" />
+              </Tooltip>
+            )}
+            {user?.featuredAt && (
+              <Tooltip content={'Featured User'}>
+                <FireIcon className="h-6 w-6 text-yellow-500" />
               </Tooltip>
             )}
             {user?.isStaff && (
