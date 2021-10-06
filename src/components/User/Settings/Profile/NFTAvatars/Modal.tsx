@@ -3,6 +3,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
+import { IS_PRODUCTION } from 'src/constants'
 import useSWR from 'swr'
 
 import {
@@ -20,7 +21,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
   const router = useRouter()
   const { data, error } = useSWR(
     `https://${
-      process.env.NODE_ENV === 'production' ? 'testnets-api' : 'testnets-api'
+      IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
     }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
     fetcher
   )

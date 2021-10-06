@@ -1,6 +1,7 @@
 import { Button } from '@components/ui/Button'
 import { Modal } from '@components/ui/Modal'
 import { useState } from 'react'
+import { IS_DEVELOPMENT } from 'src/constants'
 import Web3 from 'web3'
 import Web3Modal from 'web3modal'
 
@@ -30,9 +31,7 @@ const NFTAvatars: React.FC = () => {
         title={
           <div>
             Pick avatar from OpenSea{' '}
-            {process.env.NODE_ENV === 'development' && (
-              <span className="text-red-500">(Testnet)</span>
-            )}
+            {IS_DEVELOPMENT && <span className="text-red-500">(Testnet)</span>}
           </div>
         }
         show={showNFTModal}

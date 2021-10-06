@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { REACT_VERSION } from 'src/constants'
+import { GIT_COMMIT_REF, GIT_COMMIT_SHA, REACT_VERSION } from 'src/constants'
 
 interface Props {
   children: React.ReactNode
@@ -22,16 +22,16 @@ const StaffBar: React.FC = () => {
   return (
     <div className="bg-gray-200 dark:bg-black px-3 py-1 flex justify-between text-sm">
       <div className="flex items-center space-x-2">
-        {process.env.GIT_COMMIT_REF && (
+        {GIT_COMMIT_REF && (
           <div className="flex items-center space-x-1" title="Git commit ref">
             <TerminalIcon className="h-4 w-4" />
-            <Badge>{process.env.GIT_COMMIT_REF}</Badge>
+            <Badge>{GIT_COMMIT_REF}</Badge>
           </div>
         )}
-        {process.env.GIT_COMMIT_SHA && (
+        {GIT_COMMIT_SHA && (
           <div className="flex items-center space-x-1" title="Git commit SHA">
             <HashtagIcon className="h-4 w-4" />
-            <Badge>{process.env.GIT_COMMIT_SHA?.slice(0, 7)}</Badge>
+            <Badge>{GIT_COMMIT_SHA}</Badge>
           </div>
         )}
         <div className="flex items-center space-x-1" title="React.js Version">

@@ -4,6 +4,7 @@ import fs from 'fs'
 import { GraphQLSchema, lexicographicSortSchema, printSchema } from 'graphql'
 import { createRateLimitDirective } from 'graphql-rate-limit-directive'
 import path from 'path'
+import { IS_DEVELOPMENT } from 'src/constants'
 
 import { builder } from './builder'
 
@@ -28,6 +29,6 @@ function writeSchema(schema: GraphQLSchema) {
   }
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (IS_DEVELOPMENT) {
   writeSchema(schema)
 }
