@@ -44,6 +44,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
         after: null,
         slug: product?.slug
       },
+      skip: !product?.slug,
       pollInterval: POLLING_INTERVAL
     }
   )
