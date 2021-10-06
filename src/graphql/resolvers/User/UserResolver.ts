@@ -214,11 +214,7 @@ builder.mutationField('editNFTAvatar', (t) =>
           }
         })
       } catch (error: any) {
-        throw new Error(
-          process.env.NODE_ENV === 'production'
-            ? 'Something went wrong!'
-            : error
-        )
+        throw new Error(IS_PRODUCTION ? 'Something went wrong!' : error)
       }
     }
   })
