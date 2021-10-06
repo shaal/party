@@ -7,6 +7,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { POLLING_INTERVAL } from 'src/constants'
 
 import { TopicFeedQuery } from './__generated__/Feed.generated'
 
@@ -42,7 +43,8 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
         after: null,
         name: topic
       },
-      skip: !topic
+      skip: !topic,
+      pollInterval: POLLING_INTERVAL
     }
   )
   const posts = data?.topic?.posts?.edges?.map((edge) => edge?.node)
