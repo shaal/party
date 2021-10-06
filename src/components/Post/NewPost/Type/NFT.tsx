@@ -7,7 +7,7 @@ import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 import useSWR from 'swr'
 import Web3 from 'web3'
 import Web3Modal from 'web3modal'
@@ -46,7 +46,6 @@ const NFTType: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        toast.success('NFT has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
       }
     }
@@ -100,16 +99,23 @@ const NFTType: React.FC = () => {
             <div
               className="cursor-pointer"
               onClick={() =>
-                createNFT({
-                  variables: {
-                    input: {
-                      body: asset?.name,
-                      type: 'NFT',
-                      address: asset?.asset_contract?.address,
-                      tokenId: asset?.token_id
+                toast.promise(
+                  createNFT({
+                    variables: {
+                      input: {
+                        body: asset?.name,
+                        type: 'NFT',
+                        address: asset?.asset_contract?.address,
+                        tokenId: asset?.token_id
+                      }
                     }
+                  }),
+                  {
+                    loading: 'Posting your NFT',
+                    success: () => `NFT has been posted successfully!`,
+                    error: () => ERROR_MESSAGE
                   }
-                })
+                )
               }
             >
               <Card className="p-2 space-y-2">
