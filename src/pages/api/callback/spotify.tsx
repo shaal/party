@@ -2,7 +2,7 @@ import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
 import SpotifyWebApi from 'spotify-web-api-node'
-import { BASE_URL } from 'src/constants'
+import { BASE_URL, ERROR_MESSAGE } from 'src/constants'
 
 const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
@@ -28,7 +28,7 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.redirect('/settings/integration')
     },
     function () {
-      throw new Error('Something went wrong!')
+      throw new Error(ERROR_MESSAGE)
     }
   )
 }
