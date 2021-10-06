@@ -1,6 +1,13 @@
 import { NotificationType } from '@prisma/client'
 import { db } from '@utils/prisma'
 
+/**
+ * Creates a notification
+ * @param dispatcherId - The source user who is responsible for the notification
+ * @param receiverId - The target user who going to consume the notification
+ * @param entityId - Entity id in which the action is performed
+ * @param type - Type of the notification
+ */
 export const createNotification = (
   dispatcherId: any,
   receiverId: any,
