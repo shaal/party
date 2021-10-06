@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 import { CurrentUserQuery } from './__generated__/SiteLayout.generated'
+import MobileFooter from './shared/MobileFooter'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
@@ -71,6 +72,7 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         {children}
+        <MobileFooter />
       </div>
     </AppContext.Provider>
   )
