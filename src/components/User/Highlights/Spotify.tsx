@@ -39,7 +39,7 @@ const Spotify: React.FC<Props> = ({ user }) => {
   return (
     <>
       {spotify?.isPlaying && (
-        <Card className="p-3 space-y-1 text-dark !bg-green-100 border-green-300">
+        <Card className="p-3 space-y-1 text-black !bg-green-100 border-green-300">
           <div className="flex items-center justify-between">
             <div>Listening to Spotify</div>
             <Tooltip content="Go to Spotify">
