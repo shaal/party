@@ -101,7 +101,7 @@ CREATE TABLE `nfts` (
     `address` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
-    UNIQUE INDEX `nfts_postId_unique`(`postId`),
+    UNIQUE INDEX `nfts_postId_key`(`postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -110,7 +110,7 @@ CREATE TABLE `poll` (
     `id` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191),
 
-    UNIQUE INDEX `poll_postId_unique`(`postId`),
+    UNIQUE INDEX `poll_postId_key`(`postId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -211,7 +211,7 @@ CREATE TABLE `integrations` (
     `spotifyRefreshToken` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `integrations_userId_unique`(`userId`),
+    UNIQUE INDEX `integrations_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
