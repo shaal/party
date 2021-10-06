@@ -3,7 +3,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 import useSWR from 'swr'
 
 import {
@@ -52,7 +52,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
   if (error)
     return (
       <div className="p-5 text-red-500 font-bold text-center space-y-2">
-        <div>Something went wrong!</div>
+        <div>{ERROR_MESSAGE}</div>
       </div>
     )
 
