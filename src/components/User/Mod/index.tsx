@@ -130,15 +130,15 @@ const UserMod: React.FC<Props> = ({ user }) => {
               </div>
             )}
             <div className="pt-2 space-x-2">
+              <Button type="submit">
+                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
+              </Button>
               <Button
                 type="button"
                 variant="success"
                 onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
               >
                 Update Badges
-              </Button>
-              <Button type="submit">
-                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
               </Button>
             </div>
           </Form>
