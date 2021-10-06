@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
+import { Spinner } from '@components/ui/Spinner'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -57,51 +58,58 @@ const NFTType: React.FC = () => {
     setEthAddress(web3?.currentProvider?.selectedAddress)
   }
 
-  return (
-    <>
-      {ethAddress ? (
-        <Card>
-          <CardBody className="grid gap-3 md:grid-cols-4 grid-cols-2">
-            {data?.assets?.map((asset: any) => (
-              <div key={asset?.id}>
-                <div
-                  className="cursor-pointer"
-                  onClick={() =>
-                    createNFT({
-                      variables: {
-                        input: {
-                          body: asset?.name,
-                          type: 'NFT',
-                          address: asset?.asset_contract?.address,
-                          tokenId: asset?.token_id
-                        }
-                      }
-                    })
-                  }
-                >
-                  <img
-                    className="object-cover h-38 w-38 rounded-lg border"
-                    src={asset?.image_url}
-                    alt={asset?.name}
-                  />
-                </div>
-              </div>
-            ))}
-          </CardBody>
-        </Card>
-      ) : (
-        <div className="space-y-2">
-          <div>
-            Put some text here! Put some text here! Put some text here! Put some
-            text here! Put some text here! Put some text here! Put some text
-            here! Put some text here! Put some text here!
-          </div>
-          <Button type="button" onClick={connectWallet}>
-            Load NFTs
-          </Button>
+  if (!ethAddress)
+    return (
+      <div className="space-y-2">
+        <div>
+          Put some text here! Put some text here! Put some text here! Put some
+          text here! Put some text here! Put some text here! Put some text here!
+          Put some text here! Put some text here!
         </div>
-      )}
-    </>
+        <Button type="button" onClick={connectWallet}>
+          Load NFTs
+        </Button>
+      </div>
+    )
+
+  if (!data)
+    return (
+      <div className="p-5 font-bold text-center space-y-2">
+        <Spinner size="md" className="mx-auto" />
+        <div>Loading collectibles from OpenSea</div>
+      </div>
+    )
+
+  return (
+    <Card>
+      <CardBody className="grid gap-3 md:grid-cols-4 grid-cols-2">
+        {data?.assets?.map((asset: any) => (
+          <div key={asset?.id}>
+            <div
+              className="cursor-pointer"
+              onClick={() =>
+                createNFT({
+                  variables: {
+                    input: {
+                      body: asset?.name,
+                      type: 'NFT',
+                      address: asset?.asset_contract?.address,
+                      tokenId: asset?.token_id
+                    }
+                  }
+                })
+              }
+            >
+              <img
+                className="object-cover h-38 w-38 rounded-lg border"
+                src={asset?.image_url}
+                alt={asset?.name}
+              />
+            </div>
+          </div>
+        ))}
+      </CardBody>
+    </Card>
   )
 }
 
