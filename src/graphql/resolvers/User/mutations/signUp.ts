@@ -1,4 +1,3 @@
-import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
@@ -6,10 +5,10 @@ import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
 import { SignupInput } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 export const signUp = async (query: any, input: SignupInput, req: any) => {
-  if (reservedSlugs.includes(input.username)) {
+  if (RESERVED_SLUGS.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 

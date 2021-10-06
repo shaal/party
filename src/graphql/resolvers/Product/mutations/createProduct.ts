@@ -1,16 +1,15 @@
-import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { CreateProductInput } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 export const createProduct = async (
   query: any,
   input: CreateProductInput,
   session: Session | null | undefined
 ) => {
-  if (reservedSlugs.includes(input.slug)) {
+  if (RESERVED_SLUGS.includes(input.slug)) {
     throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
   }
 
