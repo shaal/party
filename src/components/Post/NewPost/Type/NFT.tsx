@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
+import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -77,6 +78,14 @@ const NFTType: React.FC = () => {
       <div className="p-5 font-bold text-center space-y-2">
         <Spinner size="md" className="mx-auto" />
         <div>Loading collectibles from OpenSea</div>
+      </div>
+    )
+
+  if (data?.assets?.length === 0)
+    return (
+      <div className="p-5 font-bold text-center space-y-2">
+        <CollectionIcon className="h-8 w-8 mx-auto" />
+        <div>No collectibles found in OpenSea</div>
       </div>
     )
 
