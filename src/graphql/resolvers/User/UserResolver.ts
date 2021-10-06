@@ -40,6 +40,7 @@ builder.prismaObject('User', {
     // Timestamps
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),
 
     // Relations
     profile: t.relation('profile'),
@@ -255,6 +256,7 @@ const ModUserInput = builder.inputType('ModUserInput', {
     userId: t.id(),
     isVerified: t.boolean({ required: false }),
     isStaff: t.boolean({ required: false }),
+    featuredAt: t.boolean({ required: false }),
     spammy: t.boolean({ required: false })
   })
 })

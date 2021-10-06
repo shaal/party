@@ -20,6 +20,7 @@ import UpdateBadges from './UpdateBadges'
 const modUserSchema = object({
   isVerified: boolean(),
   isStaff: boolean(),
+  featuredAt: boolean(),
   spammy: boolean()
 })
 
@@ -37,6 +38,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
           id
           isVerified
           isStaff
+          featuredAt
           spammy
         }
       }
@@ -56,6 +58,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
     defaultValues: {
       isVerified: user?.isVerified as boolean,
       isStaff: user?.isStaff as boolean,
+      featuredAt: user?.featuredAt ? true : false,
       spammy: user?.spammy as boolean
     }
   })
@@ -76,14 +79,15 @@ const UserMod: React.FC<Props> = ({ user }) => {
           <Form
             form={form}
             className="space-y-1.5 mt-3 text-sm font-bold"
-            onSubmit={({ isVerified, isStaff, spammy }) =>
+            onSubmit={({ isVerified, isStaff, featuredAt, spammy }) =>
               modUser({
                 variables: {
                   input: {
                     userId: user?.id,
-                    isVerified: isVerified as boolean,
-                    isStaff: isStaff as boolean,
-                    spammy: spammy as boolean
+                    isVerified,
+                    isStaff,
+                    featuredAt: featuredAt ? true : false,
+                    spammy
                   }
                 }
               })
@@ -104,6 +108,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
                 {...form.register('isStaff')}
               />
               <label htmlFor="staffUser">Make as staff</label>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                id="featuredAt"
+                type="checkbox"
+                {...form.register('featuredAt')}
+              />
+              <label htmlFor="featuredAt">Feature this user</label>
             </div>
             {!user?.isStaff && (
               <div className="flex items-center gap-2">

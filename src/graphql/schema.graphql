@@ -158,6 +158,7 @@ input LoginInput {
 }
 
 input ModUserInput {
+  featuredAt: Boolean
   isStaff: Boolean
   isVerified: Boolean
   spammy: Boolean
@@ -615,6 +616,7 @@ type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
   createdAt: DateTime!
   email: String!
+  featuredAt: DateTime
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
   hasFollowed: Boolean!
