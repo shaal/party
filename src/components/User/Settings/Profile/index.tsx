@@ -12,6 +12,7 @@ export const PROFILE_SETTINGS_QUERY = gql`
       id
       username
       email
+      ethAddress
       profile {
         id
         name
