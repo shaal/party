@@ -5,7 +5,7 @@ import { unfurl } from 'unfurl.js'
 
 const redis = new Redis(process.env.REDIS_URL)
 
-const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { url } = req.query
   if (url) {
     try {
@@ -46,4 +46,4 @@ const oembed = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default oembed
+export default handler

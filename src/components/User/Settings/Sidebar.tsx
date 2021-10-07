@@ -1,6 +1,8 @@
 import {
   CashIcon,
   ClipboardListIcon,
+  DatabaseIcon,
+  ExclamationIcon,
   IdentificationIcon,
   LockClosedIcon,
   PuzzleIcon,
@@ -78,6 +80,17 @@ const Sidebar: React.FC = () => {
       <Menu current={router.pathname == '/settings/logs'} url="/settings/logs">
         <ClipboardListIcon className="h-4 w-4" />
         <div>Audit Logs</div>
+      </Menu>
+      <Menu current={router.pathname == '/settings/data'} url="/settings/data">
+        <DatabaseIcon className="h-4 w-4" />
+        <div>Data</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/settings/delete'}
+        url="/settings/delete"
+      >
+        <ExclamationIcon className="h-4 w-4 text-red-500" />
+        <div className="text-red-500">Danger Zone</div>
       </Menu>
     </div>
   )

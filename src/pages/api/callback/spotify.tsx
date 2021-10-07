@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import SpotifyWebApi from 'spotify-web-api-node'
 import { BASE_URL, ERROR_MESSAGE } from 'src/constants'
 
-const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
   if (!session) {
     return res.redirect('/login')
@@ -33,4 +33,4 @@ const spotify = async (req: NextApiRequest, res: NextApiResponse) => {
   )
 }
 
-export default spotify
+export default handler
