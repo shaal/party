@@ -16,7 +16,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await db.user.findUnique({
       where: { id: session.userId },
-      include: { profile: true }
+      include: {
+        profile: true,
+        tip: true,
+        sessions: true,
+        posts: true,
+        ownedProducts: true
+      }
     })
 
     res.setHeader(
