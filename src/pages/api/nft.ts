@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           IS_PRODUCTION ? 864000 : 500
         )
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(data)
+        return res.status(200).json(await data.json())
       }
     } catch (error: any) {
       return res.status(200).send({
