@@ -14,7 +14,7 @@ const DataSettings: React.FC = () => {
         <Sidebar />
       </GridItemFour>
       <GridItemEight>
-        <Card className="mb-4">
+        <Card>
           <CardBody className="space-y-5 linkify">
             <div className="text-lg font-bold">Export your account</div>
             <p>
@@ -40,11 +40,6 @@ const DataSettings: React.FC = () => {
             <Button icon={<DownloadIcon className="h-5 w-5" />}>
               Export account now
             </Button>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardBody>
-            <div className="text-lg font-bold">Export your account</div>
           </CardBody>
         </Card>
       </GridItemEight>
