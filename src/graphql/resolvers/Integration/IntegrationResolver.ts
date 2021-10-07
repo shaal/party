@@ -32,7 +32,10 @@ builder.prismaObject('Integration', {
         })
         return integration?.spotifyRefreshToken
       }
-    })
+    }),
+
+    // Relations
+    user: t.relation('user')
   })
 })
 
@@ -51,6 +54,7 @@ builder.queryField('integration', (t) =>
 
 const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   fields: (t) => ({
+    ethAddress: t.string({ required: false }),
     wakatimeAPIKey: t.string({ required: false }),
     spotifyRefreshToken: t.string({ required: false })
   })

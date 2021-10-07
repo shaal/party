@@ -8,6 +8,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
@@ -19,6 +20,11 @@ import {
   IntegrationSettingsMutation,
   IntegrationSettingsMutationVariables
 } from './__generated__/Form.generated'
+
+const ConnectWallet = dynamic(() => import('./ConnectWallet'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <div className="shimmer w-full h-9 rounded-lg" />
+})
 
 const editIntegrationSchema = object({
   wakatimeAPIKey: string()
@@ -86,9 +92,11 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
+              <ConnectWallet integration={integration} />
+              <div className="border-b"></div>
               {integration.spotifyRefreshToken ? (
                 <Button
-                  variant="success"
+                  variant="danger"
                   type="button"
                   onClick={() =>
                     editIntegration({

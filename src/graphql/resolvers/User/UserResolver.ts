@@ -19,6 +19,7 @@ builder.prismaObject('User', {
     isVerified: t.exposeBoolean('isVerified'),
     isStaff: t.exposeBoolean('isStaff'),
     inWaitlist: t.exposeBoolean('inWaitlist'),
+    ethAddress: t.exposeString('ethAddress', { nullable: true }),
     email: t.exposeString('email', {
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
