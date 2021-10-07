@@ -1,3 +1,4 @@
+import { db } from '@utils/prisma'
 import { resolveSession } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ERROR_MESSAGE } from 'src/constants'
@@ -12,8 +13,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     })
   }
 
+  const data = await db.user.findUnique({
+    where: { id: session.userId },
+    include: { profile: true }
+  })
+
   try {
-    return res.status(200).json({})
+    return res.status(200).json(data)
   } catch (error: any) {
     return res.status(200).send({
       status: 'error',
