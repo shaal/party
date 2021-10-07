@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { address, tokenId } = req.query
   if (address || tokenId) {
     try {
-      const cacheKey = `${address}-${tokenId}`
+      const cacheKey = `nft-${address}-${tokenId}`
       let cache: any = await redis.get(cacheKey)
       cache = JSON.parse(cache)
       let nftData = {}
@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           IS_PRODUCTION ? 864000 : 500
         )
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(data)
+        return res.status(data.status).json(await data.json())
       }
     } catch (error: any) {
       return res.status(200).send({
