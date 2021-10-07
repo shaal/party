@@ -8,6 +8,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
@@ -19,7 +20,11 @@ import {
   IntegrationSettingsMutation,
   IntegrationSettingsMutationVariables
 } from './__generated__/Form.generated'
-import ConnectWallet from './ConnectWallet'
+
+const ConnectWallet = dynamic(() => import('./ConnectWallet'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <div className="shimmer w-full h-9 rounded-lg" />
+})
 
 const editIntegrationSchema = object({
   wakatimeAPIKey: string()
