@@ -18,9 +18,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const cacheKey = `export-${session.userId}`
-    let cache: any = await redis.get(cacheKey)
 
-    if (cache) {
+    if (await redis.get(cacheKey)) {
       return res.status(429).send({
         status: 'error',
         message:
