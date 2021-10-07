@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import WalletConnectProvider from '@walletconnect/web3-provider'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
 import Web3 from 'web3'
@@ -37,7 +38,16 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   )
 
   const connectWallet = async () => {
-    const web3Modal = new Web3Modal()
+    const web3Modal = new Web3Modal({
+      cacheProvider: false,
+      providerOptions: {
+        walletconnect: {
+          display: { description: 'Use Rainbow & other popular wallets' },
+          package: WalletConnectProvider,
+          options: { infuraId: '3d19324a72854976a7160e0e2ebc9c2b' }
+        }
+      }
+    })
     const connection = await web3Modal.connect()
     const web3 = new Web3(connection)
 

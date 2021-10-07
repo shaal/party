@@ -30,11 +30,8 @@ export const GET_ETHADDRESS_QUERY = gql`
 
 const NFTType: React.FC = () => {
   const router = useRouter()
-  const {
-    data: user,
-    loading,
-    error
-  } = useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
+  const { data: user, loading } =
+    useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
 
   const { data } = useSWR(
     `https://${
