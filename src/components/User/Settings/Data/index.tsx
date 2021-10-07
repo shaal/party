@@ -1,13 +1,33 @@
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
+import { Spinner } from '@components/ui/Spinner'
+import AppContext from '@components/utils/AppContext'
 import { DownloadIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 
 import Sidebar from '../Sidebar'
 
 const DataSettings: React.FC = () => {
+  const { currentUser } = useContext(AppContext)
+  const [exporting, setExporting] = useState<boolean>(false)
+  const handleExport = () => {
+    setExporting(true)
+    fetch('/api/export')
+      .then((response) => response.blob())
+      .then((blob) => {
+        var url = window.URL.createObjectURL(blob)
+        var a = document.createElement('a')
+        a.href = url
+        a.download = `export-${currentUser?.id}.json`
+        document.body.appendChild(a)
+        a.click()
+        a.remove()
+      })
+      .finally(() => setExporting(false))
+  }
+
   return (
     <GridLayout>
       <GridItemFour>
@@ -37,8 +57,17 @@ const DataSettings: React.FC = () => {
               </Link>
               .
             </p>
-            <Button icon={<DownloadIcon className="h-5 w-5" />}>
-              Export account now
+            <Button
+              icon={
+                exporting ? (
+                  <Spinner size="xs" />
+                ) : (
+                  <DownloadIcon className="h-5 w-5" />
+                )
+              }
+              onClick={handleExport}
+            >
+              {exporting ? 'Cooking your data...' : 'Export account now'}
             </Button>
           </CardBody>
         </Card>
