@@ -15,10 +15,11 @@ generator giraphql {
 }
 
 model User {
-  id             String @id @default(uuid())
-  username       String @unique @default(uuid())
-  email          String @unique
+  id             String  @id @default(uuid())
+  username       String  @unique @default(uuid())
+  email          String  @unique
   hashedPassword String
+  ethAddress     String? @unique
 
   // Flags
   spammy     Boolean @default(false)
@@ -162,7 +163,7 @@ model NFT {
 
   // Relations
   post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String?
+  postId String? @unique
 
   // Attributes
   @@map("nfts")
@@ -173,7 +174,7 @@ model Poll {
 
   // Relations
   post    Post?        @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId  String?
+  postId  String?      @unique
   answers PollAnswer[]
 
   // Attributes
@@ -315,7 +316,7 @@ model Integration {
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  userId String @unique
 
   // Attributes
   @@map("integrations")
