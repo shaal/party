@@ -13,6 +13,7 @@ export const INTEGRATION_SETTINGS_QUERY = gql`
       wakatimeAPIKey
       spotifyRefreshToken
       user {
+        id
         ethAddress
       }
     }

@@ -19,6 +19,7 @@ import {
   IntegrationSettingsMutation,
   IntegrationSettingsMutationVariables
 } from './__generated__/Form.generated'
+import ConnectWallet from './ConnectWallet'
 
 const editIntegrationSchema = object({
   wakatimeAPIKey: string()
@@ -86,26 +87,10 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               {editIntegrationResult.data && (
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
+              <ConnectWallet integration={integration} />
               {integration.spotifyRefreshToken ? (
                 <Button
-                  variant="success"
-                  type="button"
-                  onClick={() =>
-                    editIntegration({
-                      variables: { input: { spotifyRefreshToken: null } }
-                    })
-                  }
-                >
-                  Disconnect Ethereum Wallet
-                </Button>
-              ) : (
-                <Button className="w-full" variant="success" type="button">
-                  Connect Ethereum Wallet
-                </Button>
-              )}
-              {integration.spotifyRefreshToken ? (
-                <Button
-                  variant="success"
+                  variant="danger"
                   type="button"
                   onClick={() =>
                     editIntegration({
