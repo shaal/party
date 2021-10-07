@@ -32,7 +32,10 @@ builder.prismaObject('Integration', {
         })
         return integration?.spotifyRefreshToken
       }
-    })
+    }),
+
+    // Relations
+    user: t.relation('user')
   })
 })
 
