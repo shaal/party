@@ -96,6 +96,23 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                     })
                   }
                 >
+                  Disconnect Ethereum Wallet
+                </Button>
+              ) : (
+                <Button className="w-full" variant="success" type="button">
+                  Connect Ethereum Wallet
+                </Button>
+              )}
+              {integration.spotifyRefreshToken ? (
+                <Button
+                  variant="success"
+                  type="button"
+                  onClick={() =>
+                    editIntegration({
+                      variables: { input: { spotifyRefreshToken: null } }
+                    })
+                  }
+                >
                   Disconnect Spotify
                 </Button>
               ) : (
