@@ -6,24 +6,36 @@ import AppContext from '@components/utils/AppContext'
 import { DownloadIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
+import toast from 'react-hot-toast'
+import { ERROR_MESSAGE } from 'src/constants'
 
 import Sidebar from '../Sidebar'
 
 const DataSettings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
   const [exporting, setExporting] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
   const handleExport = () => {
     setExporting(true)
     fetch('/api/export')
-      .then((response) => response.blob())
-      .then((blob) => {
-        var url = window.URL.createObjectURL(blob)
-        var a = document.createElement('a')
-        a.href = url
-        a.download = `export-${currentUser?.id}.json`
-        document.body.appendChild(a)
-        a.click()
-        a.remove()
+      .then((response) => [response.status, response.blob()])
+      .then(async (result) => {
+        if (result[0] === 200) {
+          const blob = await result[1]
+          var url = window.URL.createObjectURL(blob)
+          var a = document.createElement('a')
+          a.href = url
+          a.download = `export-${currentUser?.id}.json`
+          document.body.appendChild(a)
+          a.click()
+          a.remove()
+        } else if (result[0] === 429) {
+          toast.error(
+            'You downloaded the export recently, Please try again after some days!'
+          )
+        } else {
+          toast.error(ERROR_MESSAGE)
+        }
       })
       .finally(() => setExporting(false))
   }
