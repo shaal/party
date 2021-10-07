@@ -13,12 +13,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     })
   }
 
-  const data = await db.user.findUnique({
-    where: { id: session.userId },
-    include: { profile: true }
-  })
-
   try {
+    const data = await db.user.findUnique({
+      where: { id: session.userId },
+      include: { profile: true }
+    })
+
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename=export-${data?.username}-${data?.id}.json`
+    )
     return res.status(200).json(data)
   } catch (error: any) {
     return res.status(200).send({
