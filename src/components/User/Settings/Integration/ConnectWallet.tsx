@@ -53,10 +53,18 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
 
     editWallet({
       variables: {
-        // @ts-ignore
-        input: { ethAddress: web3?.currentProvider?.selectedAddress }
+        input: {
+          ethAddress:
+            web3.currentProvider?.constructor?.name === 'WalletConnectProvider'
+              ? // @ts-ignore
+                web3.currentProvider?.accounts[0]
+              : // @ts-ignore
+                web3.currentProvider.selectedAddress
+        }
       }
     })
+
+    web3Modal.clearCachedProvider()
   }
 
   const disconnectWallet = async () => {
