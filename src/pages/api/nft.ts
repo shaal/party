@@ -4,7 +4,7 @@ import { IS_PRODUCTION } from 'src/constants'
 
 const redis = new Redis(process.env.REDIS_URL)
 
-const nft = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { address, tokenId } = req.query
   if (address || tokenId) {
     try {
@@ -43,4 +43,4 @@ const nft = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default nft
+export default handler
