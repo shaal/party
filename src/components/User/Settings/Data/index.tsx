@@ -14,7 +14,6 @@ import Sidebar from '../Sidebar'
 const DataSettings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
   const [exporting, setExporting] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
   const handleExport = () => {
     setExporting(true)
     fetch('/api/export')
