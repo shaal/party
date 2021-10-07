@@ -4,6 +4,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -68,18 +69,22 @@ const NFTType: React.FC = () => {
 
   if (!user?.me?.ethAddress && !loading)
     return (
-      <div className="p-5 font-bold text-center space-y-3">
-        <div>
+      <div className="p-5 font-bold text-center">
+        <div className="mb-4">
           Connect your wallet that is associated with your NFTs in your
           integration settings.
         </div>
-        <Button
-          className="mx-auto"
-          type="button"
-          icon={<CashIcon className="h-5 w-5" />}
-        >
-          Connect Wallet
-        </Button>
+        <Link href="/settings/integration">
+          <a>
+            <Button
+              className="mx-auto"
+              type="button"
+              icon={<CashIcon className="h-5 w-5" />}
+            >
+              Connect Wallet
+            </Button>
+          </a>
+        </Link>
       </div>
     )
 
