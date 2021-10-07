@@ -3,7 +3,7 @@ import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
 import AppContext from '@components/utils/AppContext'
-import { DownloadIcon } from '@heroicons/react/outline'
+import { DownloadIcon, ExclamationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -67,6 +67,12 @@ const DataSettings: React.FC = () => {
                 <a>contact us</a>
               </Link>
               .
+            </p>
+            <p className="text-yellow-500 text-sm flex items-center space-x-1">
+              <ExclamationCircleIcon className="h-4 w-4" />
+              <div>
+                Please note you can download data only once in every 10 days
+              </div>
             </p>
             <Button
               icon={
