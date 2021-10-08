@@ -6,6 +6,7 @@ import { ethers } from 'ethers'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { STATIC_ASSETS } from 'src/constants'
 
 import {
   LoginWithWalletMutation,
@@ -66,7 +67,7 @@ const LoginWithWallet: React.FC = () => {
         })
         web3Modal.clearCachedProvider()
       }
-    } catch {
+    } finally {
       setLoginButtonMessage('Login with MetaMask')
     }
   }
@@ -76,9 +77,16 @@ const LoginWithWallet: React.FC = () => {
       size="lg"
       type="button"
       variant="success"
-      className=" w-full justify-center"
+      className="w-full justify-center text-[#F6851B] border-[#F6851B] hover:bg-[#ffe9d5] focus:ring-[#F6851B]"
       onClick={connectWallet}
       disabled={loginButtonMessage !== 'Login with MetaMask'}
+      icon={
+        <img
+          src={`${STATIC_ASSETS}/brands/metamask.svg`}
+          className="w-5"
+          alt="Twitter Logo"
+        />
+      }
       outline
     >
       {loginButtonMessage}
