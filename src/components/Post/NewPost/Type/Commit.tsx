@@ -5,6 +5,7 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { DocumentAddIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -61,7 +62,8 @@ const CommitType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ url }) =>
+      onSubmit={({ url }) => {
+        mixpanel.track('post.commit.create')
         createCommit({
           variables: {
             input: {
@@ -71,7 +73,7 @@ const CommitType: React.FC = () => {
             }
           }
         })
-      }
+      }}
     >
       <ErrorMessage
         title="Failed to create commit"

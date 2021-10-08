@@ -7,6 +7,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { TaskCheckbox } from '@components/ui/TaskCheckbox'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -60,7 +61,8 @@ const TaskType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body, done }) =>
+      onSubmit={({ body, done }) => {
+        mixpanel.track('post.task.create')
         createTask({
           variables: {
             input: {
@@ -73,7 +75,7 @@ const TaskType: React.FC = () => {
             }
           }
         })
-      }
+      }}
     >
       <ErrorMessage
         title="Failed to create task"

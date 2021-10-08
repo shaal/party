@@ -13,6 +13,7 @@ import {
   MinusCircleIcon,
   PlusCircleIcon
 } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -94,6 +95,7 @@ const PollType: React.FC = () => {
       className="space-y-1"
       onSubmit={({ body }) => {
         if (calculateError()) return false
+        mixpanel.track('post.poll.create')
         createPoll({
           variables: {
             input: {

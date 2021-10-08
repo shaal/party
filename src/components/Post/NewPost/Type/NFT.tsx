@@ -4,6 +4,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -108,7 +109,8 @@ const NFTType: React.FC = () => {
           <div key={asset?.id}>
             <div
               className="cursor-pointer"
-              onClick={() =>
+              onClick={() => {
+                mixpanel.track('post.nft.create')
                 toast.promise(
                   createNFT({
                     variables: {
@@ -126,7 +128,7 @@ const NFTType: React.FC = () => {
                     error: () => ERROR_MESSAGE
                   }
                 )
-              }
+              }}
             >
               <Card className="p-2 space-y-2">
                 <div>

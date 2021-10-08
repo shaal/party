@@ -47,6 +47,7 @@ const PostType: React.FC = () => {
         form.reset()
         toast.success('Post has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.task.create')
       }
     }
   )
@@ -60,7 +61,7 @@ const PostType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ body }) => {
-        mixpanel.track('post.create')
+        mixpanel.track('post.post.create')
         createPost({
           variables: {
             input: {
