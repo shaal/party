@@ -245,21 +245,21 @@ CREATE TABLE `logs` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_subscribed` (
+CREATE TABLE `_ProductToUser` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_subscribed_AB_unique`(`A`, `B`),
-    INDEX `_subscribed_B_index`(`B`)
+    UNIQUE INDEX `_ProductToUser_AB_unique`(`A`, `B`),
+    INDEX `_ProductToUser_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_joined` (
+CREATE TABLE `_CommunityToUser` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_joined_AB_unique`(`A`, `B`),
-    INDEX `_joined_B_index`(`B`)
+    UNIQUE INDEX `_CommunityToUser_AB_unique`(`A`, `B`),
+    INDEX `_CommunityToUser_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
