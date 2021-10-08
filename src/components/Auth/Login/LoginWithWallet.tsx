@@ -67,6 +67,7 @@ const LoginWithWallet: React.FC = () => {
         login({
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
+        mixpanel.track('Login success - wallet')
         web3Modal.clearCachedProvider()
       }
     } finally {
