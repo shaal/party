@@ -37,8 +37,8 @@ model User {
   posts                  Post[]
   ownedProducts          Product[]      @relation("productOwner")
   ownedCommunities       Community[]    @relation("communityOwner")
-  subscribedProducts     Product[]      @relation("subscribed")
-  joinedCommunities      Community[]    @relation("joined")
+  subscribedProducts     Product[]
+  joinedCommunities      Community[]
   sessions               Session[]
   profile                Profile?
   tip                    Tip?
@@ -266,7 +266,7 @@ model Product {
   // Relations
   owner        User?          @relation("productOwner", fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId      String?
-  subscribers  User[]         @relation("subscribed")
+  subscribers  User[]
   posts        Post[]
   notification Notification[] @relation("product")
 
@@ -287,7 +287,7 @@ model Community {
   // Relations
   owner   User?   @relation("communityOwner", fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String?
-  members User[]  @relation("joined")
+  members User[]
   posts   Post[]
 
   // Attributes
