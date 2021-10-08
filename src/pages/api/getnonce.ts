@@ -24,7 +24,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.json({ nonce: updatedUser?.nonce })
   } else {
-    return res.status(400).send({
+    return res.json({
       status: 'error',
       message: 'No address provided'
     })
