@@ -15,7 +15,9 @@ import {
 const LoginWithWallet: React.FC = () => {
   const { resolvedTheme } = useTheme()
   const authRedirect = useAuthRedirect()
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loginButtonMessage, setLoginButtonMessage] = useState<string>(
+    'Login with MetaMask'
+  )
   const [login, loginResult] = useMutation<
     LoginWithWalletMutation,
     LoginWithWalletMutationVariables
@@ -40,7 +42,7 @@ const LoginWithWallet: React.FC = () => {
         return toast.error('Metamask not found in the browser!')
       }
 
-      setLoading(true)
+      setLoginButtonMessage('Connecting...')
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const address = await web3.getSigner().getAddress()
@@ -48,8 +50,9 @@ const LoginWithWallet: React.FC = () => {
       const data = await response.json()
       if (data.status === 'error') {
         toast.error(data.message)
-        setLoading(false)
+        setLoginButtonMessage('Login with MetaMask')
       } else {
+        setLoginButtonMessage('Please sign...')
         const signature = await web3
           .getSigner()
           .provider.send('personal_sign', [
@@ -57,13 +60,14 @@ const LoginWithWallet: React.FC = () => {
             await web3.getSigner().getAddress()
           ])
 
+        setLoginButtonMessage('Loggin in...')
         login({
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
         web3Modal.clearCachedProvider()
       }
     } catch {
-      setLoading(false)
+      setLoginButtonMessage('Login with MetaMask')
     }
   }
 
@@ -74,10 +78,10 @@ const LoginWithWallet: React.FC = () => {
       variant="success"
       className=" w-full justify-center"
       onClick={connectWallet}
-      disabled={loading}
+      disabled={loginButtonMessage !== 'Login with MetaMask'}
       outline
     >
-      {loading ? 'Connecting...' : 'Login with Wallet'}
+      {loginButtonMessage}
     </Button>
   )
 }
