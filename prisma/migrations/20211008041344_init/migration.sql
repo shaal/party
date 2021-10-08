@@ -5,6 +5,7 @@ CREATE TABLE `users` (
     `email` VARCHAR(191) NOT NULL,
     `hashedPassword` VARCHAR(191) NOT NULL,
     `ethAddress` VARCHAR(191),
+    `nonce` VARCHAR(191),
     `spammy` BOOLEAN NOT NULL DEFAULT false,
     `isVerified` BOOLEAN NOT NULL DEFAULT false,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
