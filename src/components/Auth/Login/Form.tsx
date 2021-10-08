@@ -60,10 +60,12 @@ const LoginForm: React.FC = () => {
     const web3Modal = getWeb3Modal({ theme: resolvedTheme })
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
     const address = await web3.getSigner().getAddress()
+    const response = await fetch(`/api/nonce?address=${address}`)
+    const data = await response.json()
     const signature = await web3
       .getSigner()
       .provider.send('personal_sign', [
-        `Sign into Devparty with this wallet.`,
+        `Sign into Devparty with this wallet. ${data?.nonce}`,
         await web3.getSigner().getAddress()
       ])
 
