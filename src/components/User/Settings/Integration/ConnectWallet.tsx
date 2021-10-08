@@ -39,7 +39,6 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   const connectWallet = async () => {
     const web3Modal = getWeb3Modal()
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
-
     const address = await web3.getSigner().getAddress()
 
     editWallet({
