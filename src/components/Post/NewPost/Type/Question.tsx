@@ -54,11 +54,15 @@ const QuestionType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.question.create.failed')
+      },
       onCompleted(data) {
         setAttachments([])
         form.reset()
         toast.success('Question has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.question.create.success')
       }
     }
   )

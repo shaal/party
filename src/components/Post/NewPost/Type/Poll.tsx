@@ -48,10 +48,14 @@ const PollType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.poll.create.failed')
+      },
       onCompleted(data) {
         form.reset()
         toast.success('Poll has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.poll.create.success')
       }
     }
   )

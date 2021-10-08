@@ -47,7 +47,7 @@ const PostType: React.FC = () => {
         form.reset()
         toast.success('Post has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
-        mixpanel.track('post.task.create')
+        mixpanel.track('post.post.create.success')
       }
     }
   )

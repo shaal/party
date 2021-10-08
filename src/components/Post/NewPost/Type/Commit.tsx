@@ -46,10 +46,14 @@ const CommitType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.question.create.failed')
+      },
       onCompleted(data) {
         form.reset()
         toast.success('Git Commit has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.commit.create.success')
       }
     }
   )

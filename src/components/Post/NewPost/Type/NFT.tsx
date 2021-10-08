@@ -59,8 +59,12 @@ const NFTType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.nft.create.failed')
+      },
       onCompleted(data) {
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.nft.create.success')
       }
     }
   )

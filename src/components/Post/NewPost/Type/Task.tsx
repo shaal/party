@@ -49,6 +49,7 @@ const TaskType: React.FC = () => {
         form.reset()
         toast.success('Task has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.task.create.success')
       }
     }
   )
