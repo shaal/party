@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
@@ -14,9 +14,18 @@ import { object, string } from 'zod'
 
 import Waitlist from '../Waitlist'
 import {
+  GetNonceQuery,
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/Form.generated'
+
+export const GET_NONCE_QUERY = gql`
+  query GetNonceQuery($address: String!) {
+    getNonce(address: $address) {
+      nonce
+    }
+  }
+`
 
 const loginSchema = object({
   email: string().email({ message: '📧 Invalid email' }),
@@ -27,6 +36,7 @@ const loginSchema = object({
 
 const LoginForm: React.FC = () => {
   const { resolvedTheme } = useTheme()
+  const [getNonce, {}] = useLazyQuery<GetNonceQuery>(GET_NONCE_QUERY)
   const [showModal, setShowModal] = useState<boolean>(false)
   const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
@@ -60,6 +70,8 @@ const LoginForm: React.FC = () => {
     const web3Modal = getWeb3Modal({ theme: resolvedTheme })
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
     const address = await web3.getSigner().getAddress()
+    const nonce = getNonce({ variables: { address } })
+    console.log(nonce)
     const signature = await web3
       .getSigner()
       .provider.send('personal_sign', [

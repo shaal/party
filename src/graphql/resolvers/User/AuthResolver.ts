@@ -8,6 +8,7 @@ import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
 import { joinWaitlist } from './mutations/joinWaitlist'
 import { signUp } from './mutations/signUp'
+import { authWithWallet } from './queries/authWithWallet'
 
 builder.queryField('me', (t) =>
   t.prismaField({
@@ -64,6 +65,34 @@ builder.mutationField('login', (t) =>
           // Don't allow users to login if marked as spammy 😈
           throw new Error('Your account is suspended!')
         }
+
+        await createSession(req, user)
+        return user
+      } catch (error: any) {
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+      }
+    }
+  })
+)
+
+const LoginWithWalletInput = builder.inputType('LoginWithWalletInput', {
+  fields: (t) => ({
+    address: t.string(),
+    signature: t.string()
+  })
+})
+
+builder.mutationField('loginWithWallet', (t) =>
+  t.prismaField({
+    type: 'User',
+    skipTypeScopes: true,
+    authScopes: {
+      unauthenticated: false
+    },
+    args: { input: t.arg({ type: LoginWithWalletInput }) },
+    resolve: async (_query, parent, { input }, { req }) => {
+      try {
+        const user = await authWithWallet(input.address, input.signature)
 
         await createSession(req, user)
         return user
