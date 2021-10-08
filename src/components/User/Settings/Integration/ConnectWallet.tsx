@@ -1,10 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
-import WalletConnectProvider from '@walletconnect/web3-provider'
+import getWeb3Modal from '@components/utils/getWeb3Modal'
+import { ethers } from 'ethers'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
-import Web3 from 'web3'
-import Web3Modal from 'web3modal'
 
 import {
   WalletSettingsMutation,
@@ -38,28 +37,15 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   )
 
   const connectWallet = async () => {
-    const web3Modal = new Web3Modal({
-      cacheProvider: false,
-      providerOptions: {
-        walletconnect: {
-          display: { description: 'Use Rainbow & other popular wallets' },
-          package: WalletConnectProvider,
-          options: { infuraId: '3d19324a72854976a7160e0e2ebc9c2b' }
-        }
-      }
-    })
-    const connection = await web3Modal.connect()
-    const web3 = new Web3(connection)
+    const web3Modal = getWeb3Modal()
+    const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
+
+    const address = await web3.getSigner().getAddress()
 
     editWallet({
       variables: {
         input: {
-          ethAddress:
-            web3.currentProvider?.constructor?.name === 'WalletConnectProvider'
-              ? // @ts-ignore
-                web3.currentProvider?.accounts[0]
-              : // @ts-ignore
-                web3.currentProvider.selectedAddress
+          ethAddress: address
         }
       }
     })
