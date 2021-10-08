@@ -101,6 +101,14 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
+        <Button
+          size="lg"
+          variant="success"
+          className=" w-full justify-center"
+          outline
+        >
+          Login with Wallet
+        </Button>
       </div>
     </Form>
   )
