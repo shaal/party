@@ -42,6 +42,9 @@ const PostType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.post.create.failed')
+      },
       onCompleted(data) {
         setAttachments([])
         form.reset()

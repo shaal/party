@@ -44,6 +44,9 @@ const TaskType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.task.create.failed')
+      },
       onCompleted(data) {
         setAttachments([])
         form.reset()

@@ -47,7 +47,7 @@ const CommitType: React.FC = () => {
     `,
     {
       onError() {
-        mixpanel.track('post.question.create.failed')
+        mixpanel.track('post.commit.create.failed')
       },
       onCompleted(data) {
         form.reset()
