@@ -10,6 +10,7 @@ import { LogoutIcon } from '@heroicons/react/outline'
 import { ethers } from 'ethers'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import Waitlist from '../Waitlist'
@@ -62,14 +63,18 @@ const LoginForm: React.FC = () => {
     const address = await web3.getSigner().getAddress()
     const response = await fetch(`/api/nonce?address=${address}`)
     const data = await response.json()
-    const signature = await web3
-      .getSigner()
-      .provider.send('personal_sign', [
-        `Sign into Devparty with this wallet. ${data?.nonce}`,
-        await web3.getSigner().getAddress()
-      ])
+    if (data.status === 'error') {
+      toast.success(data.message)
+    } else {
+      const signature = await web3
+        .getSigner()
+        .provider.send('personal_sign', [
+          `Sign into Devparty with this wallet. ${data?.nonce}`,
+          await web3.getSigner().getAddress()
+        ])
 
-    web3Modal.clearCachedProvider()
+      web3Modal.clearCachedProvider()
+    }
   }
 
   return (

@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!user) {
       return res.status(400).send({
         status: 'error',
-        message: 'No user associated with this address'
+        message: 'This address is not associated with any user.'
       })
     }
 
