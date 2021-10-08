@@ -36,6 +36,10 @@ const LoginWithWallet: React.FC = () => {
 
   const connectWallet = async () => {
     try {
+      if (typeof window.web3 !== 'object') {
+        return toast.error('Metamask not found in the browser!')
+      }
+
       setLoading(true)
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
