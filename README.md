@@ -66,8 +66,6 @@ We encourage you to contribute to Devparty! Please check out the [Contributing g
 
 Special thanks to these amazing projects which help power Devparty:
 
-[<img src="https://assets.devparty.io/images/powered-by-vercel.svg" height="35">](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
-
 - [Vercel](https://vercel.com/?utm_source=devparty&utm_campaign=oss)
 - [Next.js](https://nextjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
