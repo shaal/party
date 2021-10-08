@@ -69,7 +69,7 @@ builder.mutationField('login', (t) =>
         await createSession(req, user)
         return user
       } catch (error: any) {
-        throw new Error(error)
+        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })
