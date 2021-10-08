@@ -3,6 +3,7 @@ import { Button } from '@components/ui/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { ethers } from 'ethers'
+import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -38,6 +39,7 @@ const LoginWithWallet: React.FC = () => {
   )
 
   const connectWallet = async () => {
+    mixpanel.track('Login - wallet button click')
     try {
       if (typeof window.web3 !== 'object') {
         return toast.error('Metamask not found in the browser!')
