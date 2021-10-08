@@ -1,6 +1,7 @@
 import { Button } from '@components/ui/Button'
 import { Modal } from '@components/ui/Modal'
 import { TicketIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useState } from 'react'
 
 import InviteDetails from './InviteDetails'
@@ -17,7 +18,10 @@ const Invite: React.FC = () => {
         Invite
       </Button>
       <Modal
-        onClose={() => setShowModal(!showModal)}
+        onClose={() => {
+          mixpanel.track('user.invite.modal.close')
+          setShowModal(!showModal)
+        }}
         title="Your Invite Code"
         show={showModal}
       >
