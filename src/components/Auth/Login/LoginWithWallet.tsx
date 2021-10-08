@@ -18,7 +18,7 @@ const LoginWithWallet: React.FC = () => {
   const [loginButtonMessage, setLoginButtonMessage] = useState<string>(
     'Login with MetaMask'
   )
-  const [login, loginResult] = useMutation<
+  const [login] = useMutation<
     LoginWithWalletMutation,
     LoginWithWalletMutationVariables
   >(
