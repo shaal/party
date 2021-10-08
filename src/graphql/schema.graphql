@@ -159,6 +159,11 @@ input LoginInput {
   password: String!
 }
 
+input LoginWithWalletInput {
+  nonce: String!
+  signature: String!
+}
+
 input ModUserInput {
   featuredAt: Boolean
   isStaff: Boolean
@@ -184,6 +189,7 @@ type Mutation {
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
+  loginWithWallet(input: LoginWithWalletInput!): User!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User
