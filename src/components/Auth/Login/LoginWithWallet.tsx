@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { STATIC_ASSETS } from 'src/constants'
+import { PUBLIC_SIGNING_MESSAGE, STATIC_ASSETS } from 'src/constants'
 
 import {
   LoginWithWalletMutation,
@@ -57,7 +57,7 @@ const LoginWithWallet: React.FC = () => {
         const signature = await web3
           .getSigner()
           .provider.send('personal_sign', [
-            `Sign into Devparty with this wallet. ${data?.nonce}`,
+            `${PUBLIC_SIGNING_MESSAGE} ${data?.nonce}`,
             await web3.getSigner().getAddress()
           ])
 

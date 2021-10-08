@@ -1,9 +1,10 @@
 import { db } from '@utils/prisma'
 import { ethers } from 'ethers'
+import { PUBLIC_SIGNING_MESSAGE } from 'src/constants'
 
 export const authWithWallet = async (nonce: string, signature: string) => {
   const address = ethers.utils.verifyMessage(
-    `Sign into Devparty with this wallet. ${nonce}`,
+    `${PUBLIC_SIGNING_MESSAGE} ${nonce}`,
     signature
   )
 
