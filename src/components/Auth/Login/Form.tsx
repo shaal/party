@@ -6,6 +6,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { object, string } from 'zod'
 
@@ -14,7 +15,11 @@ import {
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/Form.generated'
-import LoginWithWallet from './LoginWithWallet'
+
+const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <div className="w-full h-9" />
+})
 
 const loginSchema = object({
   email: string().email({ message: '📧 Invalid email' }),
