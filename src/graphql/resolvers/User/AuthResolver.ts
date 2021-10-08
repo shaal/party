@@ -77,7 +77,7 @@ builder.mutationField('login', (t) =>
 
 const LoginWithWalletInput = builder.inputType('LoginWithWalletInput', {
   fields: (t) => ({
-    address: t.string(),
+    nonce: t.string(),
     signature: t.string()
   })
 })
@@ -92,7 +92,7 @@ builder.mutationField('loginWithWallet', (t) =>
     args: { input: t.arg({ type: LoginWithWalletInput }) },
     resolve: async (_query, parent, { input }, { req }) => {
       try {
-        const user = await authWithWallet(input.address, input.signature)
+        const user = await authWithWallet(input.nonce, input.signature)
 
         await createSession(req, user)
         return user

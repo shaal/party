@@ -160,7 +160,7 @@ input LoginInput {
 }
 
 input LoginWithWalletInput {
-  address: String!
+  nonce: String!
   signature: String!
 }
 
@@ -208,10 +208,6 @@ type NFT {
   id: ID!
   post: Post!
   tokenId: String!
-}
-
-type Nonce {
-  nonce: String!
 }
 
 type Notification {
@@ -354,7 +350,6 @@ type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
   featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
-  getNonce(address: String!): Nonce!
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite

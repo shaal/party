@@ -4,13 +4,9 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
-import { ethers } from 'ethers'
-import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
-import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import Waitlist from '../Waitlist'
@@ -18,6 +14,7 @@ import {
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/Form.generated'
+import LoginWithWallet from './LoginWithWallet'
 
 const loginSchema = object({
   email: string().email({ message: '📧 Invalid email' }),
@@ -27,7 +24,6 @@ const loginSchema = object({
 })
 
 const LoginForm: React.FC = () => {
-  const { resolvedTheme } = useTheme()
   const [showModal, setShowModal] = useState<boolean>(false)
   const authRedirect = useAuthRedirect()
   const [login, loginResult] = useMutation<
@@ -56,26 +52,6 @@ const LoginForm: React.FC = () => {
   const form = useZodForm({
     schema: loginSchema
   })
-
-  const connectWallet = async () => {
-    const web3Modal = getWeb3Modal({ theme: resolvedTheme })
-    const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
-    const address = await web3.getSigner().getAddress()
-    const response = await fetch(`/api/nonce?address=${address}`)
-    const data = await response.json()
-    if (data.status === 'error') {
-      toast.success(data.message)
-    } else {
-      const signature = await web3
-        .getSigner()
-        .provider.send('personal_sign', [
-          `Sign into Devparty with this wallet. ${data?.nonce}`,
-          await web3.getSigner().getAddress()
-        ])
-
-      web3Modal.clearCachedProvider()
-    }
-  }
 
   return (
     <Form
@@ -126,16 +102,7 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
-        <Button
-          size="lg"
-          type="button"
-          variant="success"
-          className=" w-full justify-center"
-          onClick={connectWallet}
-          outline
-        >
-          Login with Wallet
-        </Button>
+        <LoginWithWallet />
       </div>
     </Form>
   )
