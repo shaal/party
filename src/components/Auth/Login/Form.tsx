@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        mixpanel.track('Login success - email')
+        mixpanel.track('login.success.email')
         if (data?.login?.inWaitlist) {
           setShowModal(true)
         } else {
@@ -64,7 +64,7 @@ const LoginForm: React.FC = () => {
     <Form
       form={form}
       onSubmit={({ email, password }) => {
-        mixpanel.track('Login - email button click')
+        mixpanel.track('login.create.email')
         login({ variables: { input: { email, password } } })
       }}
     >
