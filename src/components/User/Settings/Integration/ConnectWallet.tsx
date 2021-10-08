@@ -1,8 +1,10 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import { useTheme } from 'next-themes'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
 
@@ -17,6 +19,7 @@ interface Props {
 
 const ConnectWallet: React.FC<Props> = ({ integration }) => {
   const { resolvedTheme } = useTheme()
+  const [error, setError] = useState<boolean>(false)
   const [editWallet] = useMutation<
     WalletSettingsMutation,
     WalletSettingsMutationVariables
@@ -32,6 +35,9 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
       }
     `,
     {
+      onError() {
+        setError(true)
+      },
       onCompleted() {
         toast.success('Wallet has been connected successfully!')
       }
@@ -52,6 +58,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
     })
 
     web3Modal.clearCachedProvider()
+    setError(false)
   }
 
   const disconnectWallet = async () => {
@@ -64,6 +71,18 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
 
   return (
     <>
+      {error && (
+        <div>
+          <ErrorMessage
+            title="Your wallet address is already associated with other account!"
+            error={{
+              name: 'error',
+              message:
+                'This wallet is already associated with another account in Devparty profile. Please switch to a different account in your wallet and try again.'
+            }}
+          />
+        </div>
+      )}
       {integration.user?.ethAddress ? (
         <Button
           className="w-full"
@@ -71,7 +90,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
           type="button"
           onClick={disconnectWallet}
         >
-          Disconnect Ethereum Wallet
+          Disconnect MetaMask
         </Button>
       ) : (
         <Button
@@ -80,7 +99,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
           type="button"
           onClick={connectWallet}
         >
-          Connect Ethereum Wallet
+          Connect MetaMask
         </Button>
       )}
     </>
