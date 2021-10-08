@@ -13,7 +13,10 @@ const Invite: React.FC = () => {
       <Button
         className="text-xs"
         icon={<TicketIcon className="h-4 w-4" />}
-        onClick={() => setShowModal(!showModal)}
+        onClick={() => {
+          mixpanel.track('user.invite.modal.open')
+          setShowModal(!showModal)
+        }}
       >
         Invite
       </Button>
