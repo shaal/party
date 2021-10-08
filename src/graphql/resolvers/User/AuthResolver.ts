@@ -69,6 +69,9 @@ builder.mutationField('login', (t) =>
         await createSession(req, user)
         return user
       } catch (error: any) {
+        if (error.code === 'VALIDATION') {
+          throw new Error(error.message)
+        }
         throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
