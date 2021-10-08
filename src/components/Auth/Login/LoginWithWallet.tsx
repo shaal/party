@@ -57,7 +57,6 @@ const LoginWithWallet: React.FC = () => {
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
         web3Modal.clearCachedProvider()
-        setLoading(false)
       }
     } catch {
       setLoading(false)
