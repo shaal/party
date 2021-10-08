@@ -18,7 +18,7 @@ import {
 
 const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
   // eslint-disable-next-line react/display-name
-  loading: () => <div className="w-full h-9" />
+  loading: () => <div className="shimmer w-full h-9" />
 })
 
 const loginSchema = object({
