@@ -348,7 +348,7 @@ type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
   featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
-  getNonce(address: ID!): Nonce!
+  getNonce(address: String!): Nonce!
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite

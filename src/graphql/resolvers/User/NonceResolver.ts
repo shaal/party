@@ -19,7 +19,7 @@ export const NonceObject = builder.objectRef<Nonce>('Nonce').implement({
 builder.queryField('getNonce', (t) =>
   t.field({
     type: NonceObject,
-    args: { address: t.arg.id() },
+    args: { address: t.arg.string() },
     resolve: async (parent, { address }) => {
       return await getNonce(address)
     }
