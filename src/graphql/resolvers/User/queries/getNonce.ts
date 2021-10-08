@@ -9,5 +9,10 @@ export const getNonce = async (address: string) => {
   })
   const nonce = Math.floor(Math.random() * 90000) + 10000
 
-  return new Nonce(nonce.toString())
+  const updatedUser = await db.user.update({
+    where: { id: user.id },
+    data: { nonce: nonce.toString() }
+  })
+
+  return new Nonce(updatedUser?.nonce as string)
 }
