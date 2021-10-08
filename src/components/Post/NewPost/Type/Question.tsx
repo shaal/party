@@ -13,6 +13,7 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useState } from 'react'
@@ -53,11 +54,15 @@ const QuestionType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.question.create.failed')
+      },
       onCompleted(data) {
         setAttachments([])
         form.reset()
         toast.success('Question has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.question.create.success')
       }
     }
   )
@@ -70,7 +75,8 @@ const QuestionType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ title, body }) =>
+      onSubmit={({ title, body }) => {
+        mixpanel.track('post.question.create')
         createQuestion({
           variables: {
             input: {
@@ -83,7 +89,7 @@ const QuestionType: React.FC = () => {
             }
           }
         })
-      }
+      }}
     >
       <ErrorMessage
         title="Failed to create question"

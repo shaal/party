@@ -4,6 +4,7 @@ import { Button } from '@components/ui/Button'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import toast from 'react-hot-toast'
 import { BASE_URL, STATIC_ASSETS } from 'src/constants'
 
@@ -46,9 +47,11 @@ const InviteDetails: React.FC = () => {
       refetchQueries: [{ query: INVITE_CODE_QUERY }],
       onError(error) {
         toast.error(error.message)
+        mixpanel.track('user.invite.regenerate.failed')
       },
       onCompleted() {
         toast.success('Invite code regenerated successfully!')
+        mixpanel.track('user.invite.regenerate.success')
       }
     }
   )
