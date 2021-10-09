@@ -98,8 +98,8 @@ const Navbar: React.FC = () => {
               <div className="flex items-center gap-5">
                 <div className="hidden md:block">
                   <Invite />
+                  <Notification />
                 </div>
-                <Notification />
                 <MenuItems currentUser={currentUser} />
               </div>
             ) : (
