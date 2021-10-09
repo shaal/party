@@ -1,4 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
+import { SparklesIcon, UsersIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment } from 'react'
@@ -47,7 +48,10 @@ const MoreNavItems: React.FC = () => {
                   )
                 }
               >
-                Communities
+                <div className="flex items-center space-x-1.5">
+                  <UsersIcon className="h-4 w-4" />
+                  <div>Communities</div>
+                </div>
               </Menu.Item>
               <div className="border-b dark:border-gray-800"></div>
               <Menu.Item
@@ -60,7 +64,10 @@ const MoreNavItems: React.FC = () => {
                   )
                 }
               >
-                Feedback
+                <div className="flex items-center space-x-1.5">
+                  <SparklesIcon className="h-4 w-4" />
+                  <div>Feedback</div>
+                </div>
               </Menu.Item>
             </Menu.Items>
           </Transition>
