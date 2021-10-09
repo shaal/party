@@ -5,6 +5,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'
+import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
@@ -62,9 +63,11 @@ const PollType: React.FC<Props> = ({ post }) => {
       ],
       onError() {
         toast.error('You have already voted!')
+        mixpanel.track('post.poll.answer.failed')
       },
       onCompleted() {
         toast.success('Voted successfully!')
+        mixpanel.track('post.poll.answer.success')
       }
     }
   )
@@ -96,9 +99,10 @@ const PollType: React.FC<Props> = ({ post }) => {
                 style={{
                   backgroundColor: answer?.hasAnswered ? '#C4B5FD' : '#E5E7EB'
                 }}
-                onClick={() =>
+                onClick={() => {
+                  mixpanel.track('post.poll.answer.click')
                   answerPoll({ variables: { input: { id: answer?.id } } })
-                }
+                }}
               >
                 <div>{answer?.title}</div>
                 <div className="font-bold text-sm">

@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/ui/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
@@ -42,9 +43,13 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('user.profile.nft_avatars.update.failed')
+      },
       onCompleted(data) {
         toast.success('Avatar has been updated successfully!')
         router.push(`/@/${data?.editNFTAvatar?.username}`)
+        mixpanel.track('user.profile.nft_avatars.update.success')
       }
     }
   )
@@ -79,7 +84,8 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
           <div key={asset?.id}>
             <div
               className="cursor-pointer"
-              onClick={() =>
+              onClick={() => {
+                mixpanel.track('user.profile.nft_avatars.update.click')
                 editNFTAvatar({
                   variables: {
                     input: {
@@ -88,7 +94,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
                     }
                   }
                 })
-              }
+              }}
             >
               <img
                 className="object-cover h-36 w-36 rounded-lg border"

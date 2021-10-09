@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { TrashIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
@@ -23,8 +24,12 @@ const DeleteButton: React.FC<Props> = ({ post }) => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.delete.failed')
+      },
       onCompleted() {
         window.location.replace('/')
+        mixpanel.track('post.delete.success')
       }
     }
   )
@@ -32,7 +37,10 @@ const DeleteButton: React.FC<Props> = ({ post }) => {
   return (
     <button
       className="text-red-500 hover:text-red-400 flex items-center space-x-2"
-      onClick={() => deletePost({ variables: { input: { id: post?.id } } })}
+      onClick={() => {
+        mixpanel.track('post.delete.click')
+        deletePost({ variables: { input: { id: post?.id } } })
+      }}
     >
       <TrashIcon className="h-5 w-5" />
     </button>

@@ -8,6 +8,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -63,8 +64,12 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('user.social.update.failed')
+      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
+        mixpanel.track('user.social.update.success')
       }
     }
   )
@@ -90,13 +95,14 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ twitter, github, website, discord }) =>
+              onSubmit={({ twitter, github, website, discord }) => {
+                mixpanel.track('user.social.update.click')
                 editSocial({
                   variables: {
                     input: { website, twitter, github, discord }
                   }
                 })
-              }
+              }}
             >
               <ErrorMessage
                 title="Error updating social"

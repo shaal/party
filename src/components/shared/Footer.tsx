@@ -3,6 +3,7 @@ import {
   ShieldCheckIcon,
   ShieldExclamationIcon
 } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useContext } from 'react'
 
@@ -11,6 +12,7 @@ const Footer: React.FC = () => {
   const toggleStaffMode = () => {
     localStorage.setItem('staffMode', String(!staffMode))
     setStaffMode(!staffMode)
+    mixpanel.track(`staff.mode.${staffMode ? 'enabled' : 'disabled'}`)
   }
 
   return (

@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Notification } from 'src/__generated__/schema.generated'
@@ -37,9 +38,10 @@ const MarkAsRead: React.FC<Props> = ({ notification }) => {
   return (
     <button
       disabled={markingAsRead}
-      onClick={() =>
+      onClick={() => {
+        mixpanel.track('notification.read')
         readNotification({ variables: { input: { id: notification?.id } } })
-      }
+      }}
     >
       <Tooltip content="Mark as read">
         {markingAsRead ? (
