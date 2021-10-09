@@ -1,34 +1,49 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
+import { Tooltip } from '@components/ui/Tooltip'
 import { CashIcon, CollectionIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 import useSWR from 'swr'
-import Web3 from 'web3'
-import Web3Modal from 'web3modal'
 
 import {
   CreateNftMutation,
-  CreateNftMutationVariables
+  CreateNftMutationVariables,
+  GetEthAddressQuery
 } from './__generated__/NFT.generated'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
+export const GET_ETHADDRESS_QUERY = gql`
+  query GetEthAddressQuery {
+    me {
+      id
+      ethAddress
+    }
+  }
+`
+
 const NFTType: React.FC = () => {
   const router = useRouter()
-  const [ethAddress, setEthAddress] = useState<string>()
+  const { data: user, loading } =
+    useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
+
   const { data } = useSWR(
     `https://${
       IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${ethAddress}`,
+    }.opensea.io/api/v1/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${
+      user?.me?.ethAddress
+    }`,
     fetcher,
     {
       isPaused: () => {
-        return !ethAddress
+        return !user?.me?.ethAddress
       }
     }
   )
@@ -44,34 +59,34 @@ const NFTType: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('post.nft.create.failed')
+      },
       onCompleted(data) {
-        toast.success('NFT has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
+        mixpanel.track('post.nft.create.success')
       }
     }
   )
 
-  const connectWallet = async () => {
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const web3 = new Web3(connection)
-
-    // @ts-ignore
-    setEthAddress(web3?.currentProvider?.selectedAddress)
-  }
-
-  if (!ethAddress)
+  if (!user?.me?.ethAddress && !loading)
     return (
-      <div className="p-5 font-bold text-center space-y-3">
-        <div>Connect your wallet that is associated with your NFTs</div>
-        <Button
-          className="mx-auto"
-          type="button"
-          onClick={connectWallet}
-          icon={<CashIcon className="h-5 w-5" />}
-        >
-          Load NFTs
-        </Button>
+      <div className="p-5 font-bold text-center">
+        <div className="mb-4">
+          Connect your wallet that is associated with your NFTs in your
+          integration settings.
+        </div>
+        <Link href="/settings/integration">
+          <a>
+            <Button
+              className="mx-auto"
+              type="button"
+              icon={<CashIcon className="h-5 w-5" />}
+            >
+              Connect Wallet
+            </Button>
+          </a>
+        </Link>
       </div>
     )
 
@@ -98,24 +113,46 @@ const NFTType: React.FC = () => {
           <div key={asset?.id}>
             <div
               className="cursor-pointer"
-              onClick={() =>
-                createNFT({
-                  variables: {
-                    input: {
-                      body: asset?.name,
-                      type: 'NFT',
-                      address: asset?.asset_contract?.address,
-                      tokenId: asset?.token_id
+              onClick={() => {
+                mixpanel.track('post.nft.create')
+                toast.promise(
+                  createNFT({
+                    variables: {
+                      input: {
+                        body: asset?.name,
+                        type: 'NFT',
+                        address: asset?.asset_contract?.address,
+                        tokenId: asset?.token_id
+                      }
                     }
+                  }),
+                  {
+                    loading: 'Posting your NFT',
+                    success: () => `NFT has been posted successfully!`,
+                    error: () => ERROR_MESSAGE
                   }
-                })
-              }
+                )
+              }}
             >
-              <img
-                className="object-cover h-38 w-38 rounded-lg border"
-                src={asset?.image_url}
-                alt={asset?.name}
-              />
+              <Card className="p-2 space-y-2">
+                <div>
+                  <img
+                    className="object-cover h-38 w-38 rounded-lg border"
+                    src={asset?.image_url}
+                    alt={asset?.name}
+                  />
+                </div>
+                <div className="py-1">
+                  <div className="text-xs truncate">
+                    {asset?.collection?.name}
+                  </div>
+                  <Tooltip content={asset?.name}>
+                    <div className="text-sm truncate font-bold">
+                      {asset?.name}
+                    </div>
+                  </Tooltip>
+                </div>
+              </Card>
             </div>
           </div>
         ))}

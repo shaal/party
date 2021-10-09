@@ -66,6 +66,7 @@ input DeletePostInput {
 }
 
 input EditIntegrationInput {
+  ethAddress: String
   spotifyRefreshToken: String
   wakatimeAPIKey: String
 }
@@ -122,6 +123,7 @@ input EditUserInput {
 type Integration {
   id: ID!
   spotifyRefreshToken: String
+  user: User!
   wakatimeAPIKey: String
 }
 
@@ -157,6 +159,11 @@ input LoginInput {
   password: String!
 }
 
+input LoginWithWalletInput {
+  nonce: String!
+  signature: String!
+}
+
 input ModUserInput {
   featuredAt: Boolean
   isStaff: Boolean
@@ -182,6 +189,7 @@ type Mutation {
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
+  loginWithWallet(input: LoginWithWalletInput!): User!
   modTopic(input: EditTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User
@@ -616,6 +624,7 @@ type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
   createdAt: DateTime!
   email: String!
+  ethAddress: String
   featuredAt: DateTime
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!

@@ -4,6 +4,8 @@ CREATE TABLE `users` (
     `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `hashedPassword` VARCHAR(191) NOT NULL,
+    `ethAddress` VARCHAR(191),
+    `nonce` VARCHAR(191),
     `spammy` BOOLEAN NOT NULL DEFAULT false,
     `isVerified` BOOLEAN NOT NULL DEFAULT false,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
@@ -14,6 +16,7 @@ CREATE TABLE `users` (
 
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
+    UNIQUE INDEX `users_ethAddress_key`(`ethAddress`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -89,6 +92,7 @@ CREATE TABLE `posts` (
     `updatedAt` DATETIME(3) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
     `productId` VARCHAR(191),
+    `communityId` VARCHAR(191),
     `parentId` VARCHAR(191),
 
     PRIMARY KEY (`id`)
@@ -176,6 +180,20 @@ CREATE TABLE `products` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `communities` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191),
+    `avatar` VARCHAR(191),
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `ownerId` VARCHAR(191),
+
+    UNIQUE INDEX `communities_slug_key`(`slug`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `badges` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
@@ -227,12 +245,21 @@ CREATE TABLE `logs` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_subscribed` (
+CREATE TABLE `_ProductToUser` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `_subscribed_AB_unique`(`A`, `B`),
-    INDEX `_subscribed_B_index`(`B`)
+    UNIQUE INDEX `_ProductToUser_AB_unique`(`A`, `B`),
+    INDEX `_ProductToUser_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_CommunityToUser` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_CommunityToUser_AB_unique`(`A`, `B`),
+    INDEX `_CommunityToUser_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable

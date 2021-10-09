@@ -1,36 +1,33 @@
 import Redis from 'ioredis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { IS_PRODUCTION } from 'src/constants'
-import { unfurl } from 'unfurl.js'
 
 const redis = new Redis(process.env.REDIS_URL)
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { url } = req.query
-  if (url) {
+  const { address, tokenId } = req.query
+  if (address || tokenId) {
     try {
-      const stringifiedURL = url.toString()
-      let parsedUrl = stringifiedURL
-      if (!/^https?:\/\//i.test(stringifiedURL)) {
-        parsedUrl = 'https://' + url
-      }
-      let cache: any = await redis.get(parsedUrl)
+      const cacheKey = `nft-${address}-${tokenId}`
+      let cache: any = await redis.get(cacheKey)
       cache = JSON.parse(cache)
-      let oembedData = {}
+      let nftData = {}
       if (cache) {
-        oembedData = cache
+        nftData = cache
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(oembedData)
+        return res.status(200).json(nftData)
       } else {
-        const data = await unfurl(parsedUrl)
+        const data = await fetch(
+          `https://testnets-api.opensea.io/api/v1/asset/${address}/${tokenId}`
+        )
         redis.set(
-          parsedUrl,
-          JSON.stringify(data),
+          cacheKey,
+          JSON.stringify(await data.json()),
           'EX',
-          IS_PRODUCTION ? 864000 : 5
+          IS_PRODUCTION ? 864000 : 500
         )
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(data)
+        return res.status(data.status).json(await data.json())
       }
     } catch (error: any) {
       return res.status(200).send({
@@ -41,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     return res.status(400).send({
       status: 'error',
-      message: 'No URL provided'
+      message: 'No address and tokenId provided'
     })
   }
 }

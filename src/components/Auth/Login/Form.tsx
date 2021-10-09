@@ -6,6 +6,8 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { object, string } from 'zod'
 
@@ -14,6 +16,11 @@ import {
   LoginFormMutation,
   LoginFormMutationVariables
 } from './__generated__/Form.generated'
+
+const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
+  // eslint-disable-next-line react/display-name
+  loading: () => <div className="shimmer w-full h-10 rounded-lg" />
+})
 
 const loginSchema = object({
   email: string().email({ message: '📧 Invalid email' }),
@@ -38,7 +45,11 @@ const LoginForm: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('login.email.failed')
+      },
       onCompleted(data) {
+        mixpanel.track('login.email.success')
         if (data?.login?.inWaitlist) {
           setShowModal(true)
         } else {
@@ -55,9 +66,10 @@ const LoginForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ email, password }) =>
+      onSubmit={({ email, password }) => {
+        mixpanel.track('login.email')
         login({ variables: { input: { email, password } } })
-      }
+      }}
     >
       <ErrorMessage
         title="Login failed."
@@ -101,6 +113,7 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
+        <LoginWithWallet />
       </div>
     </Form>
   )

@@ -5,7 +5,8 @@ export const userData = [
     name: 'Yoginth',
     isStaff: true,
     avatar: 'https://i.ibb.co/Kw0Jbzf/avatar.png',
-    bio: '요기 • Creator of @Taskord • Mod at @thepracticaldev • BTS Fanboi ⟬⟭ • he/him 🏳️‍🌈🌳'
+    bio: '요기 • Creator of @Taskord • Mod at @thepracticaldev • BTS Fanboi ⟬⟭ • he/him 🏳️‍🌈🌳',
+    ethAddress: '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3'
   },
   {
     email: 'filiptronicek@yogi.codes',

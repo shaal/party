@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 
 interface Props {
-  children: ReactNode
+  children: React.ReactNode
   className?: string
 }
 

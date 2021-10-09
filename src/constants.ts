@@ -10,3 +10,5 @@ export const GIT_COMMIT_REF = process.env.GIT_COMMIT_REF
 export const POLLING_INTERVAL = 1000 * 60 // 1 minute
 export const ERROR_MESSAGE = 'Something went wrong!'
 export const RESERVED_SLUGS = ['admin', 'discover', 'products']
+export const PUBLIC_SIGNING_MESSAGE =
+  'Sign into Devparty with this wallet.\n\nNonce:'

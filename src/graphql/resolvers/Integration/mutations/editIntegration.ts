@@ -22,7 +22,12 @@ export const editIntegration = async (
     },
     data: {
       wakatimeAPIKey: input.wakatimeAPIKey,
-      spotifyRefreshToken: input.spotifyRefreshToken
+      spotifyRefreshToken: input.spotifyRefreshToken,
+      user: {
+        update: {
+          ethAddress: input.ethAddress
+        }
+      }
     }
   })
 }

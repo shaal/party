@@ -74,6 +74,7 @@ async function main() {
         isStaff: user.isStaff,
         inWaitlist: false,
         hashedPassword: await hashPassword(user.username),
+        ethAddress: user.ethAddress,
         profile: {
           create: {
             name: user.name,

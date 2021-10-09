@@ -6,6 +6,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
@@ -42,7 +43,11 @@ const ChangePasswordForm: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('user.password.update.failed')
+      },
       onCompleted() {
+        mixpanel.track('user.password.update.success')
         router.push('/login')
       }
     }
@@ -54,11 +59,12 @@ const ChangePasswordForm: React.FC = () => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ currentPassword, newPassword }) =>
+      onSubmit={({ currentPassword, newPassword }) => {
+        mixpanel.track('user.password.update.click')
         changePassword({
           variables: { input: { currentPassword, newPassword } }
         })
-      }
+      }}
     >
       <ErrorMessage
         title="Failed to change password"

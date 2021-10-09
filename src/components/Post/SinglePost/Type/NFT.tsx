@@ -36,9 +36,9 @@ const NFTType: React.FC<Props> = ({ post }) => {
     data?.post?.nft?.tokenId as string
   )
 
-  if (loading || isLoading) return <div>Loading NFT...</div>
+  if (isLoading) return <div>Loading NFT...</div>
 
-  if (error || isError)
+  if (isError)
     return (
       <div className="text-red-500 font-bold flex items-center space-x-1">
         <ExclamationCircleIcon className="h-5 w-5" />

@@ -1,33 +1,35 @@
 import { Button } from '@components/ui/Button'
 import { Modal } from '@components/ui/Modal'
+import mixpanel from 'mixpanel-browser'
 import { useState } from 'react'
 import { IS_DEVELOPMENT } from 'src/constants'
-import Web3 from 'web3'
-import Web3Modal from 'web3modal'
 
 import NFTAvatarsModal from './Modal'
 
-const NFTAvatars: React.FC = () => {
+interface Props {
+  ethAddress: string
+}
+
+const NFTAvatars: React.FC<Props> = ({ ethAddress }) => {
   const [showNFTModal, setShowNFTModal] = useState<boolean>(false)
-  const [ethAddress, setEthAddress] = useState<string>()
-
-  const connectWallet = async () => {
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const web3 = new Web3(connection)
-
-    // @ts-ignore
-    setEthAddress(web3?.currentProvider?.selectedAddress)
-    setShowNFTModal(!showNFTModal)
-  }
 
   return (
     <div>
-      <Button type="button" className="text-xs" onClick={connectWallet}>
+      <Button
+        type="button"
+        className="text-xs"
+        onClick={() => {
+          mixpanel.track('user.profile.nft_avatars.modal.open')
+          setShowNFTModal(!showNFTModal)
+        }}
+      >
         From NFT
       </Button>
       <Modal
-        onClose={() => setShowNFTModal(!showNFTModal)}
+        onClose={() => {
+          mixpanel.track('user.profile.nft_avatars.modal.close')
+          setShowNFTModal(!showNFTModal)
+        }}
         title={
           <div>
             Pick avatar from OpenSea{' '}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 interface Props {
-  children: React.ReactChild
+  children: React.ReactNode
   content: string
 }
 
