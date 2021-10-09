@@ -25,12 +25,12 @@ const MobileFooter: React.FC = () => {
         <Link href={currentUser ? '/home' : '/'}>
           <a className="text-xs py-1.5">
             {router.pathname == '/home' ? (
-              <div className="text-brand-500 font-bold space-y-0.5">
+              <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <HomeIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Home</div>
               </div>
             ) : (
-              <div className="space-y-0.5">
+              <div className="space-y-[0.3rem]">
                 <HomeIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Home</div>
               </div>
@@ -40,12 +40,12 @@ const MobileFooter: React.FC = () => {
         <Link href="/notifications">
           <a className="text-xs py-1.5">
             {router.pathname == '/notifications' ? (
-              <div className="text-brand-500 font-bold space-y-0.5">
+              <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <LightningBoltIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Notifications</div>
               </div>
             ) : (
-              <div className="space-y-0.5">
+              <div className="space-y-[0.3rem]">
                 <LightningBoltIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Notifications</div>
               </div>
@@ -55,12 +55,12 @@ const MobileFooter: React.FC = () => {
         <Link href="/explore">
           <a className="text-xs py-1.5">
             {router.pathname == '/explore' ? (
-              <div className="text-brand-500 font-bold space-y-0.5">
+              <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <GlobeIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Explore</div>
               </div>
             ) : (
-              <div className="space-y-0.5">
+              <div className="space-y-[0.3rem]">
                 <GlobeIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Explore</div>
               </div>
@@ -70,12 +70,12 @@ const MobileFooter: React.FC = () => {
         <Link href={`/@/${currentUser?.username}`}>
           <a className="text-xs py-1.5">
             {router.pathname == '/@/[username]' ? (
-              <div className="text-brand-500 font-bold space-y-0.5">
+              <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <UserIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Profile</div>
               </div>
             ) : (
-              <div className="space-y-0.5">
+              <div className="space-y-[0.3rem]">
                 <UserIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Profile</div>
               </div>
