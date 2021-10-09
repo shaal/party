@@ -102,7 +102,7 @@ const NewCommunity: React.FC = () => {
                 label="Slug"
                 type="text"
                 placeholder="minecraft"
-                prefix="https://devparty.io/products/"
+                prefix="https://devparty.io/communities/"
                 {...form.register('slug')}
               />
               <Input
