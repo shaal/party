@@ -49,6 +49,19 @@ const MoreNavItems: React.FC = () => {
               >
                 Communities
               </Menu.Item>
+              <div className="border-b dark:border-gray-800"></div>
+              <Menu.Item
+                as={NextLink}
+                href="/feedback"
+                className={({ active }: any) =>
+                  clsx(
+                    { 'bg-gray-100 dark:bg-gray-800': active },
+                    'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                  )
+                }
+              >
+                Feedback
+              </Menu.Item>
             </Menu.Items>
           </Transition>
         </>
