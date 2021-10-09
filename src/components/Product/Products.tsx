@@ -56,7 +56,7 @@ const Products: React.FC = () => {
       <GridItemEight>
         <Card>
           <CardBody className="space-y-6">
-            <ErrorMessage title="Failed to load post" error={error} />
+            <ErrorMessage title="Failed to load products" error={error} />
             {data?.products?.edges?.map((product: any) => (
               <ProductProfileLarge
                 key={product?.node?.id}
