@@ -111,6 +111,7 @@ const LoginForm: React.FC = () => {
             )
           }
         >
+          {form.formState.isSubmitting.toString()}
           Login
         </Button>
         <LoginWithWallet />
