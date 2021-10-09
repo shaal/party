@@ -4,6 +4,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
 import AppContext from '@components/utils/AppContext'
 import { DownloadIcon, ExclamationCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -15,6 +16,7 @@ const DataSettings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
   const [exporting, setExporting] = useState<boolean>(false)
   const handleExport = () => {
+    mixpanel.track('user.export.click')
     setExporting(true)
     fetch('/api/export')
       .then((response) => [response.status, response.blob()])
@@ -28,12 +30,15 @@ const DataSettings: React.FC = () => {
           document.body.appendChild(a)
           a.click()
           a.remove()
+          mixpanel.track('user.export.success')
         } else if (result[0] === 429) {
           toast.error(
             'You downloaded the export recently, Please try again after some days!'
           )
+          mixpanel.track('user.export.rate_limited')
         } else {
           toast.error(ERROR_MESSAGE)
+          mixpanel.track('user.export.failed')
         }
       })
       .finally(() => setExporting(false))
