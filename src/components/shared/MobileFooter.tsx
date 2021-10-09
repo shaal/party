@@ -1,12 +1,12 @@
 import AppContext from '@components/utils/AppContext'
 import {
-  GlobeIcon,
+  GlobeAltIcon,
   HomeIcon,
   LightningBoltIcon,
   UserGroupIcon
 } from '@heroicons/react/outline'
 import {
-  GlobeIcon as GlobeIconSolid,
+  GlobeAltIcon as GlobeAltIconSolid,
   HomeIcon as HomeIconSolid,
   LightningBoltIcon as LightningBoltIconSolid,
   UserGroupIcon as UserGroupIconSolid
@@ -56,12 +56,12 @@ const MobileFooter: React.FC = () => {
           <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/explore' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
-                <GlobeIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
+                <GlobeAltIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Explore</div>
               </div>
             ) : (
               <div className="space-y-[0.3rem]">
-                <GlobeIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
+                <GlobeAltIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
                 <div>Explore</div>
               </div>
             )}
