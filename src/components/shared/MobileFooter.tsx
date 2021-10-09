@@ -3,13 +3,13 @@ import {
   GlobeIcon,
   HomeIcon,
   LightningBoltIcon,
-  UserIcon
+  UsersIcon
 } from '@heroicons/react/outline'
 import {
   GlobeIcon as GlobeIconSolid,
   HomeIcon as HomeIconSolid,
   LightningBoltIcon as LightningBoltIconSolid,
-  UserIcon as UserIconSolid
+  UsersIcon as UsersIconSolid
 } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -71,13 +71,13 @@ const MobileFooter: React.FC = () => {
           <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/@/[username]' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
-                <UserIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
-                <div>Profile</div>
+                <UsersIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
+                <div>Communities</div>
               </div>
             ) : (
               <div className="space-y-[0.3rem]">
-                <UserIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
-                <div>Profile</div>
+                <UsersIcon className="h-[1.3rem] w-[1.3rem] mx-auto" />
+                <div>Communities</div>
               </div>
             )}
           </a>
