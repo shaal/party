@@ -2,11 +2,12 @@ import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
+import { CreateCommunityInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 export const createCommunity = async (
   query: any,
-  input: any, // TODO: Change it
+  input: CreateCommunityInput, // TODO: Change it
   session: Session | null | undefined
 ) => {
   if (reservedSlugs.includes(input.slug)) {
