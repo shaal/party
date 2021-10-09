@@ -54,8 +54,12 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('user.integration.update.failed')
+      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
+        mixpanel.track('user.integration.update.success')
       }
     }
   )
@@ -79,7 +83,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               form={form}
               className="space-y-4"
               onSubmit={({ wakatimeAPIKey }) => {
-                mixpanel.track('user.integration.updated')
+                mixpanel.track('user.integration.update.click')
                 editIntegration({
                   variables: {
                     input: { wakatimeAPIKey }
