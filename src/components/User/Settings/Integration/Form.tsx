@@ -8,6 +8,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -98,11 +99,12 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 <Button
                   variant="danger"
                   type="button"
-                  onClick={() =>
+                  onClick={() => {
+                    mixpanel.track('user.integration.spotify.disconnect')
                     editIntegration({
                       variables: { input: { spotifyRefreshToken: null } }
                     })
-                  }
+                  }}
                 >
                   Disconnect Spotify
                 </Button>
@@ -110,7 +112,14 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 <a
                   href={`https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${BASE_URL}/api/callback/spotify&scope=user-read-currently-playing`}
                 >
-                  <Button className="w-full" variant="success" type="button">
+                  <Button
+                    className="w-full"
+                    variant="success"
+                    type="button"
+                    onClick={() =>
+                      mixpanel.track('user.integration.spotify.connect')
+                    }
+                  >
                     Connect Spotify
                   </Button>
                 </a>
