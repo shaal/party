@@ -125,19 +125,28 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <div className="border-b dark:border-gray-800"></div>
               <div className="px-5 py-3 flex items-center space-x-3">
                 <button
-                  onClick={() => setTheme('light')}
+                  onClick={() => {
+                    mixpanel.track('theme.light')
+                    setTheme('light')
+                  }}
                   className={theme === 'light' ? 'text-xl' : ''}
                 >
                   🌞
                 </button>
                 <button
-                  onClick={() => setTheme('dark')}
+                  onClick={() => {
+                    mixpanel.track('theme.dark')
+                    setTheme('dark')
+                  }}
                   className={theme === 'dark' ? 'text-xl' : ''}
                 >
                   🌚
                 </button>
                 <button
-                  onClick={() => setTheme('system')}
+                  onClick={() => {
+                    mixpanel.track('theme.system')
+                    setTheme('system')
+                  }}
                   className={theme === 'system' ? 'text-xl' : ''}
                 >
                   💻
