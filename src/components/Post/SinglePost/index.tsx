@@ -122,7 +122,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         input: { id: post?.id }
       },
       onError() {
-        mixpanel.track('post.like.error')
+        mixpanel.track('post.like.failed')
       },
       onCompleted() {
         mixpanel.track('post.like.success')
