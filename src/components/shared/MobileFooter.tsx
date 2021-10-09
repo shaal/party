@@ -21,9 +21,9 @@ const MobileFooter: React.FC = () => {
 
   return (
     <div className="block sm:hidden">
-      <div className="mobile-footer bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 border-gray-200 dark:border-gray-700 border-t bottom-0 fixed w-full z-50 flex items-center justify-between px-3">
+      <div className="mobile-footer bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 border-gray-200 dark:border-gray-700 border-t bottom-0 fixed w-full z-50 flex items-center justify-between px-5">
         <Link href={currentUser ? '/home' : '/'}>
-          <a className="text-xs py-1.5">
+          <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/home' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <HomeIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
@@ -38,7 +38,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href="/notifications">
-          <a className="text-xs py-1.5">
+          <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/notifications' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <LightningBoltIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
@@ -53,7 +53,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href="/explore">
-          <a className="text-xs py-1.5">
+          <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/explore' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <GlobeIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
@@ -68,7 +68,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href={`/@/${currentUser?.username}`}>
-          <a className="text-xs py-1.5">
+          <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/@/[username]' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <UserIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
