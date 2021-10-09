@@ -78,13 +78,14 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ wakatimeAPIKey }) =>
+              onSubmit={({ wakatimeAPIKey }) => {
+                mixpanel.track('user.integration.updated')
                 editIntegration({
                   variables: {
                     input: { wakatimeAPIKey }
                   }
                 })
-              }
+              }}
             >
               <ErrorMessage
                 title="Error updating integration settings"
