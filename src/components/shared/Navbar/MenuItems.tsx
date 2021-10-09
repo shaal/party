@@ -4,6 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { CogIcon, LogoutIcon, UserIcon } from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
+import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
@@ -28,6 +29,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
   const toggleStaffMode = () => {
     localStorage.setItem('staffMode', String(!staffMode))
     setStaffMode(!staffMode)
+    mixpanel.track(`staff.mode.${staffMode ? 'enabled' : 'disabled'}`)
   }
 
   return (
