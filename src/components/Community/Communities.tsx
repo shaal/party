@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import ProductProfileLarge from '@components/shared/ProductProfileLarge'
 import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import { Button } from '@components/ui/Button'
@@ -10,14 +9,13 @@ import { CubeIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
 
-import { ProductsQuery } from './__generated__/Products.generated'
+import { CommunitiesQuery } from './__generated__/Communities.generated'
 
 const Footer = dynamic(() => import('@components/shared/Footer'))
 
-export const PRODUCTS_QUERY = gql`
-  query ProductsQuery {
+export const COMMUNITIES_QUERY = gql`
+  query CommunitiesQuery {
     products {
       edges {
         node {
@@ -32,8 +30,8 @@ export const PRODUCTS_QUERY = gql`
   }
 `
 
-const Products: React.FC = () => {
-  const { data, loading, error } = useQuery<ProductsQuery>(PRODUCTS_QUERY)
+const Communities: React.FC = () => {
+  const { loading, error } = useQuery<CommunitiesQuery>(COMMUNITIES_QUERY)
 
   if (loading)
     return (
@@ -56,13 +54,8 @@ const Products: React.FC = () => {
       <GridItemEight>
         <Card>
           <CardBody className="space-y-6">
-            <ErrorMessage title="Failed to load products" error={error} />
-            {data?.products?.edges?.map((product: any) => (
-              <ProductProfileLarge
-                key={product?.node?.id}
-                product={product?.node as Product}
-              />
-            ))}
+            <ErrorMessage title="Failed to load communities" error={error} />
+            WIP
           </CardBody>
         </Card>
       </GridItemEight>
@@ -70,11 +63,12 @@ const Products: React.FC = () => {
         <Card>
           <CardBody className="space-y-3">
             <div>
-              Launch a new product to Devparty and get noticed by peoples
+              Launch a new community to Devparty and socialize with your
+              favorite developers
             </div>
-            <Link href="/products/new" passHref>
+            <Link href="/communities/new" passHref>
               <Button icon={<CubeIcon className="h-4 w-4" />}>
-                <div>Create new Product</div>
+                <div>Create new community</div>
               </Button>
             </Link>
           </CardBody>
@@ -85,4 +79,4 @@ const Products: React.FC = () => {
   )
 }
 
-export default Products
+export default Communities
