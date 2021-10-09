@@ -1,5 +1,4 @@
 import { Menu, Transition } from '@headlessui/react'
-import { CogIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment } from 'react'
@@ -40,7 +39,7 @@ const MoreNavItems: React.FC = () => {
             >
               <Menu.Item
                 as={NextLink}
-                href="/settings/profile"
+                href="/communities"
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -48,10 +47,7 @@ const MoreNavItems: React.FC = () => {
                   )
                 }
               >
-                <div className="flex items-center space-x-1.5">
-                  <CogIcon className="h-4 w-4" />
-                  <div>Settings</div>
-                </div>
+                Communities
               </Menu.Item>
             </Menu.Items>
           </Transition>
