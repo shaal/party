@@ -28,3 +28,7 @@ body {
   @apply text-white;
   @apply rounded-lg;
 }
+
+.mobile-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
