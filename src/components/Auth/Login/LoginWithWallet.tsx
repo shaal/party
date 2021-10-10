@@ -86,7 +86,7 @@ const LoginWithWallet: React.FC = () => {
       icon={
         <img
           src={`${STATIC_ASSETS}/brands/metamask.svg`}
-          className="w-5"
+          className="h-4 w-4"
           alt="MetaMask Logo"
         />
       }

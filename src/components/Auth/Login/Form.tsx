@@ -126,8 +126,8 @@ const LoginForm: React.FC = () => {
               icon={
                 <img
                   src={`${STATIC_ASSETS}/brands/github-dark.svg`}
-                  className="w-5"
-                  alt="Twitter Logo"
+                  className="h-4 w-4"
+                  alt="GitHub Logo"
                 />
               }
               outline
