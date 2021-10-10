@@ -225,6 +225,7 @@ CREATE TABLE `notifications` (
 -- CreateTable
 CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
+    `githubId` VARCHAR(191),
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
