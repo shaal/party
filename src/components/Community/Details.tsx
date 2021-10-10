@@ -1,13 +1,17 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
-import UserProfileLarge from '@components/shared/UserProfileLarge'
+import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import { PencilIcon } from '@heroicons/react/outline'
+import {
+  FingerPrintIcon,
+  PencilIcon,
+  UserGroupIcon
+} from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -20,7 +24,7 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ community }) => {
-  const { currentUser, staffMode } = useContext(AppContext)
+  const { currentUser } = useContext(AppContext)
 
   return (
     <div className="mb-4">
@@ -54,14 +58,31 @@ const Details: React.FC<Props> = ({ community }) => {
             <Linkify options={linkifyOptions}>{community?.description}</Linkify>
           </div>
         )}
-        <div className="space-y-2">
-          <div className="font-bold">Owned by</div>
-          <Card>
-            <CardBody>
-              <UserProfileLarge user={community?.owner} />
-            </CardBody>
-          </Card>
-        </div>
+        <Card>
+          <CardBody className="space-y-3">
+            <div className="flex items-center space-x-1.5">
+              <UserGroupIcon className="h-5 w-5" />
+              <div>{community?.members?.totalCount}</div>
+              <div>members joined</div>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <FingerPrintIcon className="h-5 w-5" />
+              <div>Moderated by</div>
+              <div className="flex items-center space-x-1">
+                <img
+                  className="h-5 w-5 rounded-lg"
+                  src={community?.owner?.profile?.avatar}
+                  alt={`@${community?.owner?.username}'s username'`}
+                />
+                <Link href={`/@/${community?.owner?.username}`}>
+                  <a>
+                    <Slug slug={community?.owner?.username} prefix="@" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
       </div>
     </div>
   )

@@ -84,7 +84,7 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
       }
       outline
     >
-      {isSubscribed ? showText && 'Unsubscribe' : showText && 'Subscribe'}
+      {isSubscribed ? showText && 'Leave' : showText && 'Join'}
     </Switch>
   )
 }

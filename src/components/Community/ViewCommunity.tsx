@@ -24,10 +24,11 @@ export const COMMUNITY_QUERY = gql`
         username
         profile {
           id
-          name
           avatar
-          bio
         }
+      }
+      members {
+        totalCount
       }
     }
   }

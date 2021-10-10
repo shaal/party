@@ -113,8 +113,8 @@ async function main() {
 
   // Community
   for (const community of communityData) {
-    console.log(`Seeding Community - #${community.slug} 🎭`)
-    await db.product.create({
+    console.log(`Seeding Community - ${community.slug} 🎭`)
+    await db.community.create({
       data: {
         name: community.name,
         slug: community.slug,
