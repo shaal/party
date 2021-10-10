@@ -6,7 +6,6 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { STATIC_ASSETS } from 'src/constants'
@@ -63,10 +62,9 @@ const LoginForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ email, password }) => {
-        mixpanel.track('login.email.click')
+      onSubmit={({ email, password }) =>
         login({ variables: { input: { email, password } } })
-      }}
+      }
     >
       <ErrorMessage
         title="Login failed."
