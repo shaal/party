@@ -17,9 +17,8 @@ import {
 const LoginWithWallet: React.FC = () => {
   const { resolvedTheme } = useTheme()
   const authRedirect = useAuthRedirect()
-  const [loginButtonMessage, setLoginButtonMessage] = useState<string>(
-    'Login with MetaMask'
-  )
+  const [loginButtonMessage, setLoginButtonMessage] =
+    useState<string>('MetaMask')
   const [login] = useMutation<
     LoginWithWalletMutation,
     LoginWithWalletMutationVariables
@@ -53,7 +52,7 @@ const LoginWithWallet: React.FC = () => {
       const data = await response.json()
       if (data.status === 'error') {
         toast.error(data.message)
-        setLoginButtonMessage('Login with MetaMask')
+        setLoginButtonMessage('MetaMask')
         mixpanel.track('login.success.wallet')
       } else {
         setLoginButtonMessage('Please sign...')
@@ -72,7 +71,7 @@ const LoginWithWallet: React.FC = () => {
         web3Modal.clearCachedProvider()
       }
     } finally {
-      setLoginButtonMessage('Login with MetaMask')
+      setLoginButtonMessage('MetaMask')
     }
   }
 
@@ -83,12 +82,12 @@ const LoginWithWallet: React.FC = () => {
       variant="success"
       className="w-full justify-center text-[#F6851B] border-[#F6851B] hover:bg-[#ffe9d5] focus:ring-[#F6851B]"
       onClick={connectWallet}
-      disabled={loginButtonMessage !== 'Login with MetaMask'}
+      disabled={loginButtonMessage !== 'MetaMask'}
       icon={
         <img
           src={`${STATIC_ASSETS}/brands/metamask.svg`}
           className="w-5"
-          alt="Twitter Logo"
+          alt="MetaMask Logo"
         />
       }
       outline
