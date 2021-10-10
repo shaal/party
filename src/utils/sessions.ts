@@ -107,3 +107,14 @@ export async function resolveSession({
 
   return session
 }
+
+export async function resolveLocalSession({
+  req,
+  res
+}: Pick<GetServerSidePropsContext, 'req' | 'res'>) {
+  await applySession(req, res, sessionOptions)
+  const requestWithSession = req as unknown as RequestWithSession
+  const session = requestWithSession.session.get(IRON_SESSION_ID_KEY)
+
+  return session ? true : false
+}
