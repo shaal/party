@@ -1,12 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import SinglePost, { PostFragment } from '@components/Post/SinglePost'
 import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
-import { Card, CardBody } from '@components/ui/Card'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { OfflineState } from '@components/ui/OfflineState'
 import { Spinner } from '@components/ui/Spinner'
-import { useIsOffline } from '@components/utils/useOnlineStatus'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -36,7 +33,6 @@ interface Props {
 }
 
 const HomeFeed: React.FC<Props> = ({ feedType }) => {
-  const isOffline = useIsOffline()
   const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(
     HOME_FEED_QUERY,
     {
@@ -66,15 +62,6 @@ const HomeFeed: React.FC<Props> = ({ feedType }) => {
       }
     }
   })
-
-  if (isOffline)
-    return (
-      <Card>
-        <CardBody>
-          <OfflineState />
-        </CardBody>
-      </Card>
-    )
 
   if (loading) return <PostsShimmer />
 

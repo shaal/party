@@ -3,8 +3,6 @@ import ProductProfile from '@components/shared/ProductProfile'
 import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { OfflineState } from '@components/ui/OfflineState'
-import { useIsOffline } from '@components/utils/useOnlineStatus'
 import { CubeIcon } from '@heroicons/react/solid'
 import React from 'react'
 
@@ -40,18 +38,10 @@ const RecentProductsCard = ({ children }: any) => {
 }
 
 const RecentProducts: React.FC = () => {
-  const isOffline = useIsOffline()
   const { data, loading, error } = useQuery<RecentProductsQuery>(
     RECENT_PRODUCTS_QUERY
   )
   const products = data?.products?.edges?.map((edge) => edge?.node)
-
-  if (isOffline)
-    return (
-      <RecentProductsCard>
-        <OfflineState />
-      </RecentProductsCard>
-    )
 
   if (loading)
     return (
