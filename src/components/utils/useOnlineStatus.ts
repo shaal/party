@@ -13,8 +13,6 @@ export const useIsOffline = () => {
   const goOffline = () => setOfflineStatus(true)
 
   useEffect(() => {
-    console.log('called')
-
     return () => {
       window.removeEventListener('online', goOnline)
       window.removeEventListener('offline', goOffline)
