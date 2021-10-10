@@ -3,9 +3,11 @@ import React from 'react'
 
 export const OfflineState: React.FC = () => {
   return (
-    <div className="grid justify-items-center text-center space-y-2 text-gray-500 ">
-      <StatusOfflineIcon className="h-8 w-8" />
-      <div className="text-sm">
+    <div style={{ color: '#6B7280', textAlign: 'center' }}>
+      <StatusOfflineIcon
+        style={{ height: '2rem', width: '2rem', margin: '0 auto' }}
+      />
+      <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
         Looks like you lost your connection. Please check it and try again.
       </div>
     </div>
