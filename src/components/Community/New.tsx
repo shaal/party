@@ -24,14 +24,10 @@ const newCommunitySchema = object({
     .max(50, { message: '🍀 Name should not exceed 100 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '📦 Invalid slug' }),
   slug: string()
-    .min(2, { message: '📦 Slug should be atleast 2 characters' })
-    .max(50, { message: '📦 Slug should not exceed 100 characters' }),
-  website: string()
-    .url({ message: '🔗 Invalid URL' })
-    .min(2, { message: '🔗 URL should be atleast 2 characters' })
-    .max(100, { message: '🔗 URL should not exceed 100 characters' }),
+    .min(2, { message: '🎭 Slug should be atleast 2 characters' })
+    .max(50, { message: '🎭 Slug should not exceed 100 characters' }),
   description: string()
-    .max(190, { message: '📦 Description should not exceed 190 characters' })
+    .max(190, { message: '🎭 Description should not exceed 190 characters' })
     .nullable()
 })
 
@@ -75,13 +71,12 @@ const NewCommunity: React.FC = () => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ name, slug, website, description }) =>
+              onSubmit={({ name, slug, description }) =>
                 createCommunity({
                   variables: {
                     input: {
                       name,
                       slug,
-                      website,
                       description
                     }
                   }
@@ -104,12 +99,6 @@ const NewCommunity: React.FC = () => {
                 placeholder="minecraft"
                 prefix="https://devparty.io/communities/"
                 {...form.register('slug')}
-              />
-              <Input
-                label="Website"
-                type="text"
-                placeholder="https://minecraft.net"
-                {...form.register('website')}
               />
               <TextArea
                 label="Bio"
