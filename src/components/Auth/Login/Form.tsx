@@ -8,7 +8,6 @@ import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { STATIC_ASSETS } from 'src/constants'
 import { object, string } from 'zod'
@@ -117,7 +116,7 @@ const LoginForm: React.FC = () => {
         </Button>
         <div className="grid grid-cols-2 gap-2">
           <LoginWithWallet />
-          <Link href="/api/auth/github" passHref>
+          <a href="/api/auth/github">
             <Button
               size="lg"
               type="button"
@@ -135,7 +134,7 @@ const LoginForm: React.FC = () => {
             >
               GitHub
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </Form>
