@@ -5,6 +5,7 @@ import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
 
+import { communityData } from './seeds/communities'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
 const hplipsum = require('hplipsum')
@@ -33,6 +34,8 @@ async function main() {
   console.log('All invites are deleted 🗑️')
   await db.user.deleteMany()
   console.log('All users are deleted 🗑️')
+  await db.community.deleteMany()
+  console.log('All communities are deleted 🗑️')
 
   // Fake User
   for (let i = 0; i < 50; i++) {
@@ -101,6 +104,24 @@ async function main() {
         owner: {
           connect: {
             username: product.username
+          }
+        }
+      }
+    })
+  }
+
+  // Community
+  for (const community of communityData) {
+    console.log(`Seeding Community - #${community.slug} ✅`)
+    await db.product.create({
+      data: {
+        name: community.name,
+        slug: community.slug,
+        avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=🎭`,
+        description: community.description,
+        owner: {
+          connect: {
+            username: community.username
           }
         }
       }
