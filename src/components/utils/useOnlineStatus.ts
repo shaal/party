@@ -7,12 +7,10 @@ const getOnlineStatus = () => {
     : true
 }
 
-export const useOnlineStatus = () => {
-  const [onlineStatus, setOnlineStatus] = useState(getOnlineStatus())
-
-  const goOnline = () => setOnlineStatus(true)
-
-  const goOffline = () => setOnlineStatus(false)
+export const useIsOffline = () => {
+  const [offlineStatus, setOfflineStatus] = useState(!getOnlineStatus())
+  const goOnline = () => setOfflineStatus(false)
+  const goOffline = () => setOfflineStatus(true)
 
   useEffect(() => {
     window.addEventListener('online', goOnline)
@@ -24,5 +22,5 @@ export const useOnlineStatus = () => {
     }
   }, [])
 
-  return onlineStatus
+  return offlineStatus
 }

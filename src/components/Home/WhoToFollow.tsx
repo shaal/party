@@ -4,7 +4,7 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { OfflineState } from '@components/ui/OfflineState'
-import { useOnlineStatus } from '@components/utils/useOnlineStatus'
+import { useIsOffline } from '@components/utils/useOnlineStatus'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import mixpanel from 'mixpanel-browser'
@@ -57,7 +57,7 @@ const WhoToFollowCard = ({ children, refetch }: any) => {
 }
 
 const WhoToFollow: React.FC = () => {
-  const onlineStatus = useOnlineStatus()
+  const isOffline = useIsOffline()
   const { data, loading, error, refetch } = useQuery<WhoToFollowQuery>(
     WHO_TO_FOLLOW_QUERY,
     {
@@ -66,7 +66,7 @@ const WhoToFollow: React.FC = () => {
   )
   const users = data?.whoToFollow?.edges?.map((edge) => edge?.node)
 
-  if (onlineStatus)
+  if (isOffline)
     return (
       <WhoToFollowCard>
         <OfflineState />
