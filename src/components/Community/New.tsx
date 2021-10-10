@@ -38,8 +38,8 @@ const NewCommunity: React.FC = () => {
     CreateCommunityMutationVariables
   >(
     gql`
-      mutation CreateCommunityMutation($input: CreateProductInput!) {
-        createProduct(input: $input) {
+      mutation CreateCommunityMutation($input: CreateCommunityInput!) {
+        createCommunity(input: $input) {
           id
           slug
           description
@@ -48,7 +48,7 @@ const NewCommunity: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        router.push(`/products/${data?.createProduct?.slug}`)
+        router.push(`/products/${data?.createCommunity?.slug}`)
       }
     }
   )
