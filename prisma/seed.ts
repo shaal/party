@@ -4,6 +4,7 @@ import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
+import { md5 } from 'hash-wasm'
 
 import { communityData } from './seeds/communities'
 import { productData } from './seeds/products'
@@ -117,7 +118,9 @@ async function main() {
       data: {
         name: community.name,
         slug: community.slug,
-        avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=🎭`,
+        avatar: `https://avatar.tobi.sh/${await md5(
+          community.slug
+        )}.svg?text=🎭`,
         description: community.description,
         owner: {
           connect: {

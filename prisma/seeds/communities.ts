@@ -19,40 +19,43 @@ export const communityData = [
       'Web3.0, Cryptocurrencies and Cryptoeconomics. BUIDL, HODL and LEARN.'
   },
   {
-    name: 'Minecraft',
-    slug: 'minecraft',
+    name: 'Linux User Group',
+    slug: 'linux',
     username: 'svobodavl',
     description:
-      'Minecraft is a sandbox video game developed by the Swedish video game developer Mojang Studios.'
+      'All things Linux and open-source. Operating system, software and community.'
   },
   {
-    name: 'Prisma',
-    slug: 'prisma',
+    name: 'Fundraising',
+    slug: 'fundraising',
     username: 'kahy',
-    description: 'Prisma makes working with databases easy'
+    description:
+      'Tips & tricks for all things fundraising, angel, and VC related.'
   },
   {
-    name: 'Gitpod',
-    slug: 'gitpod',
+    name: 'Solo Entrepreneurship',
+    slug: 'entrepreneurship',
     username: 'filiptronicek',
-    description: 'Always Ready To Code'
+    description:
+      'Talks with others who are running the entrepreneurship path alone'
   },
   {
-    name: 'IPFS',
-    slug: 'ipfs',
+    name: 'Data Science',
+    slug: 'data-science',
     username: 'yoginth',
-    description: 'A peer-to-peer hypermedia protocol'
+    description: 'Talk about data science topics'
   },
   {
-    name: 'PlanetScale',
-    slug: 'planetscale',
+    name: 'NFT Non-Fungible Token',
+    slug: 'nft',
     username: 'filiptronicek',
-    description: 'We help operationalize Vitess in the cloud and on premise.'
+    description:
+      'All things about NFT, digital art, show your artwork, have fun?'
   },
   {
-    name: 'Danger',
-    slug: 'danger',
+    name: 'Open Source',
+    slug: 'oss',
     username: 'yoginth',
-    description: 'Stop saying You forgot to...'
+    description: 'Talk to other developers working on open source'
   }
 ]
