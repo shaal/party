@@ -33,3 +33,7 @@ tsconfig.tsbuildinfo
 
 src/**/__generated__/**
 *.rdb
+
+# Next PWA
+public/workbox*
+public/sw*
