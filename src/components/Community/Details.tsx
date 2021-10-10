@@ -60,11 +60,13 @@ const Details: React.FC<Props> = ({ community }) => {
         )}
         <Card>
           <CardBody className="space-y-3">
-            <div className="flex items-center space-x-1.5">
-              <UserGroupIcon className="h-5 w-5" />
-              <div>{community?.members?.totalCount}</div>
-              <div>members joined</div>
-            </div>
+            <Link href={`/communities/${community?.slug}/members`}>
+              <a className="flex items-center space-x-1.5">
+                <UserGroupIcon className="h-5 w-5" />
+                <div>{community?.members?.totalCount}</div>
+                <div>members joined</div>
+              </a>
+            </Link>
             <div className="flex items-center space-x-1.5">
               <FingerPrintIcon className="h-5 w-5" />
               <div>Moderated by</div>
