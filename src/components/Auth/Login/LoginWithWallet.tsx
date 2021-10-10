@@ -38,7 +38,7 @@ const LoginWithWallet: React.FC = () => {
   )
 
   const connectWallet = async () => {
-    mixpanel.track('login.create.wallet')
+    mixpanel.track('login.wallet.click')
     try {
       if (typeof window.web3 !== 'object') {
         return toast.error('Metamask not found in the browser!')
@@ -53,7 +53,7 @@ const LoginWithWallet: React.FC = () => {
       if (data.status === 'error') {
         toast.error(data.message)
         setLoginButtonMessage('MetaMask')
-        mixpanel.track('login.success.wallet')
+        mixpanel.track('login.wallet.success')
       } else {
         setLoginButtonMessage('Please sign...')
         const signature = await web3
@@ -67,7 +67,7 @@ const LoginWithWallet: React.FC = () => {
         login({
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
-        mixpanel.track('login.success.wallet')
+        mixpanel.track('login.wallet.success')
         web3Modal.clearCachedProvider()
       }
     } finally {

@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
     <Form
       form={form}
       onSubmit={({ email, password }) => {
-        mixpanel.track('login.email')
+        mixpanel.track('login.email.click')
         login({ variables: { input: { email, password } } })
       }}
     >
@@ -121,6 +121,7 @@ const LoginForm: React.FC = () => {
               size="lg"
               type="button"
               variant="success"
+              onClick={() => mixpanel.track('login.github.click')}
               className="w-full justify-center text-[#0d1117] border-[#0d1117] hover:bg-[#dadada] focus:ring-[#0d1117]"
               icon={
                 <img
