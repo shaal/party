@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const getOnlineStatus = () => {
+const getOnlineStatus = (): boolean => {
   return typeof navigator !== 'undefined' &&
     typeof navigator.onLine === 'boolean'
     ? navigator.onLine
@@ -8,7 +8,9 @@ const getOnlineStatus = () => {
 }
 
 export const useIsOffline = () => {
-  const [offlineStatus, setOfflineStatus] = useState(!getOnlineStatus())
+  const [offlineStatus, setOfflineStatus] = useState<boolean>(
+    !getOnlineStatus()
+  )
   const goOnline = () => setOfflineStatus(false)
   const goOffline = () => setOfflineStatus(true)
 
