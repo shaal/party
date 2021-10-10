@@ -9,6 +9,7 @@ import { LogoutIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
+import { STATIC_ASSETS } from 'src/constants'
 import { object, string } from 'zod'
 
 import Waitlist from '../Waitlist'
@@ -67,7 +68,7 @@ const LoginForm: React.FC = () => {
     <Form
       form={form}
       onSubmit={({ email, password }) => {
-        mixpanel.track('login.email')
+        mixpanel.track('login.email.click')
         login({ variables: { input: { email, password } } })
       }}
     >
@@ -113,7 +114,28 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
-        <LoginWithWallet />
+        <div className="grid grid-cols-2 gap-2">
+          <LoginWithWallet />
+          <a href="/api/auth/github">
+            <Button
+              size="lg"
+              type="button"
+              variant="success"
+              onClick={() => mixpanel.track('login.github.click')}
+              className="w-full justify-center text-[#0d1117] border-[#0d1117] hover:bg-[#dadada] focus:ring-[#0d1117]"
+              icon={
+                <img
+                  src={`${STATIC_ASSETS}/brands/github-dark.svg`}
+                  className="h-4 w-4"
+                  alt="GitHub Logo"
+                />
+              }
+              outline
+            >
+              GitHub
+            </Button>
+          </a>
+        </div>
       </div>
     </Form>
   )

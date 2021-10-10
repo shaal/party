@@ -225,10 +225,12 @@ CREATE TABLE `notifications` (
 -- CreateTable
 CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
+    `githubId` VARCHAR(191),
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `integrations_githubId_key`(`githubId`),
     UNIQUE INDEX `integrations_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

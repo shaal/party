@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
-import { resolveLocalSession, resolveSession } from './sessions'
+import { resolveSession } from './sessions'
 
 export async function unauthenticatedRoute(
   context: GetServerSidePropsContext,
@@ -26,7 +26,7 @@ export async function authenticatedRoute(
   context: GetServerSidePropsContext,
   redirect = '/login'
 ): Promise<GetServerSidePropsResult<{}>> {
-  const session = await resolveLocalSession(context)
+  const session = await resolveSession(context)
 
   if (!session) {
     return {
