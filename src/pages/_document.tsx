@@ -19,12 +19,19 @@ class DevpartyDocument extends Document<Props> {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="/favicon.svg" />
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          />
           <meta name="theme-color" content="#ffffff" />
+          <link rel="icon" href="/favicon.svg" />
           <link
             href="https://fonts.cdnfonts.com/css/circular-std"
             rel="stylesheet"
           />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
