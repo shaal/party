@@ -42,7 +42,7 @@ async function main() {
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding User - @${username} ✅`)
+    console.log(`Seeding User - @${username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -70,7 +70,7 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding User - @${user.username} ✅`)
+    console.log(`Seeding User - @${user.username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: user.email,
@@ -95,7 +95,7 @@ async function main() {
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding Product - #${product.slug} ✅`)
+    console.log(`Seeding Product - #${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
@@ -113,7 +113,7 @@ async function main() {
 
   // Community
   for (const community of communityData) {
-    console.log(`Seeding Community - #${community.slug} ✅`)
+    console.log(`Seeding Community - #${community.slug} 🎭`)
     await db.product.create({
       data: {
         name: community.name,
@@ -135,7 +135,7 @@ async function main() {
   for (let i = 0; i < 200; i++) {
     const post = hplipsum(10)
     const done = faker.datatype.boolean()
-    console.log(`Seeding Post - ${post} ✅`)
+    console.log(`Seeding Post - ${post} 📜`)
     await db.post.create({
       data: {
         body: post,
