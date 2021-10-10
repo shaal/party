@@ -1,7 +1,19 @@
+import { db } from '@utils/prisma'
+import { createSession, sessionOptions } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { ERROR_MESSAGE } from 'src/constants'
+import { withIronSession } from 'next-iron-session'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+import { Session } from '.prisma/client'
+
+interface NextApiRequestWithSession extends NextApiRequest {
+  session: Session
+}
+
+const handler = async (
+  req: NextApiRequestWithSession,
+  res: NextApiResponse
+) => {
   try {
     const requestOptions = {
       method: 'POST',
@@ -23,22 +35,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const accessTokenResponse = await accessToken.json()
 
-    const user = await fetch('https://api.github.com/user', {
+    const githubUser = await fetch('https://api.github.com/user', {
       headers: {
         Authorization: `token ${accessTokenResponse?.access_token}`
       }
     })
 
-    return res.json({
-      status: 'wip',
-      message: await user.json()
+    const response = await githubUser.json()
+
+    const integration = await db.integration.findFirst({
+      where: { githubId: response?.id.toString() },
+      include: { user: true }
     })
-  } catch {
+
+    await createSession(req, integration?.user as any)
+
+    return res.redirect('/home')
+  } catch (error: any) {
     return res.json({
       status: 'error',
-      message: ERROR_MESSAGE
+      message: IS_PRODUCTION ? ERROR_MESSAGE : error.message
     })
   }
 }
 
-export default handler
+export default withIronSession(handler, sessionOptions)
