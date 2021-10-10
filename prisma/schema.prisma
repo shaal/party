@@ -336,7 +336,7 @@ model Notification {
 
 model Integration {
   id                  String  @id @default(uuid())
-  githubId            String?
+  githubId            String? @unique
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
 
