@@ -48,7 +48,7 @@ const LoginWithWallet: React.FC = () => {
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const address = await web3.getSigner().getAddress()
-      const response = await fetch(`/api/getnonce?address=${address}`)
+      const response = await fetch(`/api/auth/getnonce?address=${address}`)
       const data = await response.json()
       if (data.status === 'error') {
         toast.error(data.message)
