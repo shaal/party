@@ -66,7 +66,7 @@ const WhoToFollow: React.FC = () => {
   )
   const users = data?.whoToFollow?.edges?.map((edge) => edge?.node)
 
-  if (!isOffline)
+  if (isOffline)
     return (
       <WhoToFollowCard>
         <OfflineState />
