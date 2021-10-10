@@ -21,11 +21,11 @@ import {
 const newCommunitySchema = object({
   name: string()
     .min(2, { message: '🍀 Name should be atleast 2 characters' })
-    .max(50, { message: '🍀 Name should not exceed 100 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '📦 Invalid slug' }),
+    .max(50, { message: '🍀 Name should not exceed 100 characters' }),
   slug: string()
     .min(2, { message: '🎭 Slug should be atleast 2 characters' })
-    .max(50, { message: '🎭 Slug should not exceed 100 characters' }),
+    .max(50, { message: '🎭 Slug should not exceed 100 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '🎭 Invalid slug' }),
   description: string()
     .max(190, { message: '🎭 Description should not exceed 190 characters' })
     .nullable()
