@@ -1,12 +1,12 @@
 {
   "name": "Devparty",
   "short_name": "Devparty",
+  "description": "The party hub for developers 🥳",
   "theme_color": "#ffffff",
-  "background_color": "#004740",
-  "display": "fullscreen",
-  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/?utm_source=homescreen&utm_medium=shortcut",
   "icons": [
     {
       "src": "https://assets.devparty.io/images/icons/72x72.png",
