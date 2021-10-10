@@ -13,14 +13,13 @@ export const useIsOffline = () => {
   const goOffline = () => setOfflineStatus(true)
 
   useEffect(() => {
-    window.addEventListener('online', goOnline)
-    window.addEventListener('offline', goOffline)
+    console.log('called')
 
     return () => {
       window.removeEventListener('online', goOnline)
       window.removeEventListener('offline', goOffline)
     }
-  }, [])
+  })
 
   return offlineStatus
 }
