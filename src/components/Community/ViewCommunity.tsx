@@ -45,7 +45,7 @@ const ViewCommunity = () => {
   if (!router.isReady || loading)
     return <PageLoading message="Loading community" />
 
-  if (!community) return window.location.replace('/home')
+  if (!community) return <div>404</div>
 
   return (
     <GridLayout>

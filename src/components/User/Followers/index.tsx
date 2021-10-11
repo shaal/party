@@ -30,7 +30,7 @@ const Followers = () => {
   if (!router.isReady || loading)
     return <PageLoading message="Loading followers" />
 
-  if (!user) return window.location.replace('/home')
+  if (!user) return <div>404</div>
 
   return (
     <>

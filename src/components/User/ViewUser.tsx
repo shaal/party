@@ -77,7 +77,7 @@ const ViewUser = () => {
 
   if (!router.isReady || loading) return <PageLoading message="Loading user" />
 
-  if (!user) return window.location.replace('/home')
+  if (!user) return <div>404</div>
 
   return (
     <>

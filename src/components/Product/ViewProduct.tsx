@@ -50,7 +50,7 @@ const ViewProduct = () => {
   if (!router.isReady || loading)
     return <PageLoading message="Loading product" />
 
-  if (!product) return window.location.replace('/home')
+  if (!product) <div>404</div>
 
   return (
     <GridLayout>

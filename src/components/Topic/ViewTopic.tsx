@@ -39,7 +39,7 @@ const ViewTopic = () => {
 
   if (!router.isReady || loading) return <PageLoading message="Loading topic" />
 
-  if (!topic) return window.location.replace('/home')
+  if (!topic) return <div>404</div>
 
   return (
     <GridLayout>

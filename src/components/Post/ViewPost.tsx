@@ -56,7 +56,7 @@ const ViewPost = () => {
       </GridLayout>
     )
 
-  if (!post) return window.location.replace('/home')
+  if (!post) return <div>404</div>
 
   return (
     <GridLayout>
