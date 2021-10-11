@@ -11,7 +11,6 @@ import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -73,12 +72,8 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('user.profile.update.failed')
-      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
-        mixpanel.track('user.profile.update.success')
       }
     }
   )
@@ -122,8 +117,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ username, name, bio, location }) => {
-                mixpanel.track('user.profile.update.click')
+              onSubmit={({ username, name, bio, location }) =>
                 editUser({
                   variables: {
                     input: {
@@ -136,7 +130,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     }
                   }
                 })
-              }}
+              }
             >
               <ErrorMessage
                 title="Error updating profile"

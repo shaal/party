@@ -6,11 +6,9 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
 import { ReplyIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE } from 'src/constants'
 import { object, string } from 'zod'
 
 import Attachment from '../NewPost/Attachment'
@@ -52,15 +50,10 @@ const NewReply: React.FC<Props> = ({ post }) => {
           variables: { id: post?.id }
         }
       ],
-      onError() {
-        toast.error(ERROR_MESSAGE)
-        mixpanel.track('post.reply.create.failed')
-      },
       onCompleted() {
         form.reset()
         setAttachments([])
         toast.success('Replied successfully!')
-        mixpanel.track('post.reply.create.success')
       }
     }
   )
@@ -75,8 +68,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         <Form
           form={form}
           className="space-y-1"
-          onSubmit={({ body }) => {
-            mixpanel.track('post.reply.create')
+          onSubmit={({ body }) =>
             createPost({
               variables: {
                 input: {
@@ -88,7 +80,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
                 }
               }
             })
-          }}
+          }
         >
           <ErrorMessage
             title="Failed to create reply"

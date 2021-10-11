@@ -2,7 +2,6 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Product } from 'src/__generated__/schema.generated'
@@ -38,7 +37,6 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
     {
       onError() {
         toast.error(ERROR_MESSAGE)
-        mixpanel.track('product.toggle_subscribe.failed')
       },
       onCompleted(data) {
         if (data?.toggleProductSubscribe?.hasSubscribed) {
@@ -50,7 +48,6 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
             `Successfully unsubscribed to ${data?.toggleProductSubscribe?.slug}`
           )
         }
-        mixpanel.track('product.toggle_subscribe.success')
       }
     }
   )
@@ -60,7 +57,6 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
   }, [product])
 
   const handleToggleSubscribe = () => {
-    mixpanel.track('product.toggle_subscribe.click')
     toggleProductSubscribe({
       variables: {
         input: { id: product?.id }

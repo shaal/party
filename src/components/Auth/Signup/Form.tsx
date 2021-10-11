@@ -6,7 +6,6 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import React, { useState } from 'react'
 import { object, string } from 'zod'
 
@@ -44,12 +43,8 @@ const SignupForm: React.FC = () => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('signup.waitlist.failed')
-      },
       onCompleted() {
         setShowModal(true)
-        mixpanel.track('signup.waitlist.success')
       }
     }
   )
@@ -61,14 +56,13 @@ const SignupForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ username, email, password }) => {
-        mixpanel.track('signup.waitlist')
+      onSubmit={({ username, email, password }) =>
         signUp({
           variables: {
             input: { username, email, password }
           }
         })
-      }}
+      }
     >
       <ErrorMessage
         title="Error creating account"

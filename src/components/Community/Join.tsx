@@ -2,7 +2,6 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Community } from 'src/__generated__/schema.generated'
@@ -36,7 +35,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
     {
       onError() {
         toast.error(ERROR_MESSAGE)
-        mixpanel.track('product.toggle_subscribe.failed')
       },
       onCompleted(data) {
         if (data?.toggleCommunityJoin?.hasJoined) {
@@ -48,7 +46,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
             `Successfully unsubscribed to ${data?.toggleCommunityJoin?.slug}`
           )
         }
-        mixpanel.track('product.toggle_subscribe.success')
       }
     }
   )
@@ -58,7 +55,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
   }, [community])
 
   const handleToggleSubscribe = () => {
-    mixpanel.track('product.toggle_subscribe.click')
     toggleCommunityJoin({
       variables: {
         input: { id: community?.id }
