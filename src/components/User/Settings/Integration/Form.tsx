@@ -8,7 +8,6 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -54,12 +53,8 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('user.integration.update.failed')
-      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
-        mixpanel.track('user.integration.update.success')
       }
     }
   )
@@ -82,14 +77,13 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ wakatimeAPIKey }) => {
-                mixpanel.track('user.integration.update.click')
+              onSubmit={({ wakatimeAPIKey }) =>
                 editIntegration({
                   variables: {
                     input: { wakatimeAPIKey }
                   }
                 })
-              }}
+              }
             >
               <ErrorMessage
                 title="Error updating integration settings"
@@ -104,12 +98,11 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 <Button
                   variant="danger"
                   type="button"
-                  onClick={() => {
-                    mixpanel.track('user.integration.spotify.disconnect')
+                  onClick={() =>
                     editIntegration({
                       variables: { input: { spotifyRefreshToken: null } }
                     })
-                  }}
+                  }
                 >
                   Disconnect Spotify
                 </Button>
@@ -117,14 +110,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 <a
                   href={`https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${BASE_URL}/api/callback/spotify&scope=user-read-currently-playing`}
                 >
-                  <Button
-                    className="w-full"
-                    variant="success"
-                    type="button"
-                    onClick={() =>
-                      mixpanel.track('user.integration.spotify.connect')
-                    }
-                  >
+                  <Button className="w-full" variant="success" type="button">
                     Connect Spotify
                   </Button>
                 </a>
