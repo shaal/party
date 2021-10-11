@@ -5,7 +5,6 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
-import mixpanel from 'mixpanel-browser'
 import React from 'react'
 
 interface Props {
@@ -24,10 +23,7 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
           },
           'flex items-center space-x-2 rounded-lg px-3 py-1 text-blue-500 hover:bg-blue-100 hover:text-blue-500 dark:hover:bg-opacity-20 hover:bg-opacity-100'
         )}
-        onClick={() => {
-          mixpanel.track('home.feed.type.all.click')
-          setFeedType('ALL')
-        }}
+        onClick={() => setFeedType('ALL')}
       >
         <GlobeIcon className="h-4 w-4" />
         <div className={feedType === 'ALL' ? '' : `hidden sm:block`}>All</div>
