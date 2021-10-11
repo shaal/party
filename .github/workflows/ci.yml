@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -13,29 +13,29 @@ jobs:
         node-version: [14.x, 16.x]
 
     steps:
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
 
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install Yarn Dependencies
-      run: yarn install --frozen-lockfile --silent
+      - name: Install Yarn Dependencies
+        run: yarn install --frozen-lockfile --silent
 
-    - name: Lint
-      run: yarn lint
+      - name: Lint
+        run: yarn lint
 
-    - name: Prettier Check
-      run: yarn prettier:check
+      - name: Prettier Check
+        run: yarn prettier:check
 
-    - name: Generate Prisma and GraphQL schema
-      run: yarn generate
+      - name: Generate Prisma and GraphQL schema
+        run: yarn generate
 
-    - name: Typescript typecheck
-      run: yarn typecheck
+      - name: Typescript typecheck
+        run: yarn typecheck
 
-    - name: Build Devparty
-      run: yarn build
+      - name: Build Devparty
+        run: yarn build
