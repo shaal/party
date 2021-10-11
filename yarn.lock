@@ -6044,10 +6044,10 @@ linkifyjs@^3.0.1:
   resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.1.tgz#fda7b8d399eceef6fd7427f8a6e5d4f962ae74ed"
   integrity sha512-HwXVwdNH1wESBfo2sH7Bkl+ywzbGA3+uJEfhquCyi/bMCa49bFUvd/re1NT1Lox/5jdnpQXzI9O/jykit71idg==
 
-lint-staged@^11.2.2:
-  version "11.2.2"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.2.tgz#b2b96d8c4eb350f832143c812defa2c70b9d0a2c"
-  integrity sha512-rbtLCRTyndPJvtjpLwVjjb6K91jQrJ06oNArA4igPTGYlDCrJMIFbNDUAQGa4GRd8AjUBHkAAmq+K38tcmMaAQ==
+lint-staged@^11.2.3:
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.3.tgz#fc3f4569cc4f46553309dfc1447b8aef69f744fb"
+  integrity sha512-Tfmhk8O2XFMD25EswHPv+OYhUjsijy5D7liTdxeXvhG2rsadmOLFtyj8lmlfoFFXY8oXWAIOKpoI+lJe1DB1mw==
   dependencies:
     cli-truncate "2.1.0"
     colorette "^1.4.0"
