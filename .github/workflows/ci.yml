@@ -20,7 +20,7 @@ jobs:
         cache: 'npm'
 
     - name: Checkout
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Install Yarn Dependencies
       run: yarn install --frozen-lockfile --silent
