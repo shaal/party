@@ -6,7 +6,6 @@ import { Form, useZodForm } from '@components/ui/Form'
 import { Spinner } from '@components/ui/Spinner'
 import { TextArea } from '@components/ui/TextArea'
 import { PencilAltIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -42,15 +41,11 @@ const PostType: React.FC = () => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('post.post.create.failed')
-      },
       onCompleted(data) {
         setAttachments([])
         form.reset()
         toast.success('Post has been created successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
-        mixpanel.track('post.post.create.success')
       }
     }
   )
@@ -63,8 +58,7 @@ const PostType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) => {
-        mixpanel.track('post.post.create')
+      onSubmit={({ body }) =>
         createPost({
           variables: {
             input: {
@@ -76,7 +70,7 @@ const PostType: React.FC = () => {
             }
           }
         })
-      }}
+      }
     >
       <ErrorMessage error={createPostResult.error} className="mb-1" />
       <TextArea {...form.register('body')} placeholder="What's on your mind?" />
