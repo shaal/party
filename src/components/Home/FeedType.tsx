@@ -40,10 +40,7 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
           },
           'flex items-center space-x-2 rounded-lg px-3 py-1 text-green-500 hover:bg-green-100 hover:text-green-500 dark:hover:bg-opacity-20 hover:bg-opacity-100'
         )}
-        onClick={() => {
-          mixpanel.track('home.feed.type.post.click')
-          setFeedType('POST')
-        }}
+        onClick={() => setFeedType('POST')}
       >
         <CollectionIcon className="h-4 w-4" />
         <div className={feedType === 'POST' ? '' : `hidden sm:block`}>
@@ -58,10 +55,7 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
           },
           'flex items-center space-x-2 rounded-lg px-3 py-1 text-pink-500 hover:bg-pink-100 hover:text-pink-500 dark:hover:bg-opacity-20 hover:bg-opacity-100'
         )}
-        onClick={() => {
-          mixpanel.track('home.feed.type.task.click')
-          setFeedType('TASK')
-        }}
+        onClick={() => setFeedType('TASK')}
       >
         <CheckCircleIcon className="h-4 w-4" />
         <div className={feedType === 'TASK' ? '' : `hidden sm:block`}>
@@ -76,10 +70,7 @@ const FeedType: React.FC<Props> = ({ setFeedType, feedType }) => {
           },
           'flex items-center space-x-2 rounded-lg px-3 py-1 text-purple-500 hover:bg-purple-100 hover:text-purple-500 dark:hover:bg-opacity-20 hover:bg-opacity-100'
         )}
-        onClick={() => {
-          mixpanel.track('home.feed.type.question.click')
-          setFeedType('QUESTION')
-        }}
+        onClick={() => setFeedType('QUESTION')}
       >
         <QuestionMarkCircleIcon className="h-4 w-4" />
         <div className={feedType === 'QUESTION' ? '' : `hidden sm:block`}>
