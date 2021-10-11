@@ -3,6 +3,7 @@ import { Button } from '@components/ui/Button'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
+import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -45,6 +46,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   )
 
   const connectWallet = async () => {
+    mixpanel.track('user.integration.wallet.connect')
     if (typeof window.web3 !== 'object') {
       return toast.error('Metamask not found in the browser!')
     }
@@ -66,6 +68,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   }
 
   const disconnectWallet = async () => {
+    mixpanel.track('user.integration.wallet.disconnect')
     editWallet({
       variables: {
         input: { ethAddress: null }

@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import { TrashIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Session } from 'src/__generated__/schema.generated'
@@ -28,8 +29,12 @@ const SingleSession: React.FC<Props> = ({ session }) => {
     `,
     {
       refetchQueries: [{ query: SESSION_SETTINGS_QUERY }],
+      onError() {
+        mixpanel.track('user.session.revoke.failed')
+      },
       onCompleted() {
         toast.success('Session revoked successfully!')
+        mixpanel.track('user.session.revoke.success')
       }
     }
   )
@@ -75,9 +80,10 @@ const SingleSession: React.FC<Props> = ({ session }) => {
           size="sm"
           variant="danger"
           icon={<TrashIcon className="h-4 w-4" />}
-          onClick={() =>
+          onClick={() => {
+            mixpanel.track('user.session.revoke.click')
             revokeSession({ variables: { input: { id: session?.id } } })
-          }
+          }}
         >
           {revoking ? 'Revoking...' : 'Revoke'}
         </Button>
