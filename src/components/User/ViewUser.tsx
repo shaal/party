@@ -7,6 +7,7 @@ import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
+import Custom404 from 'src/pages/404'
 
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
@@ -77,7 +78,7 @@ const ViewUser = () => {
 
   if (!router.isReady || loading) return <PageLoading message="Loading user" />
 
-  if (!user) return <div>404</div>
+  if (!user) return <Custom404 />
 
   return (
     <>

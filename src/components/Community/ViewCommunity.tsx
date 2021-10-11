@@ -6,6 +6,7 @@ import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Community } from 'src/__generated__/schema.generated'
+import Custom404 from 'src/pages/404'
 
 import { CommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
@@ -45,7 +46,7 @@ const ViewCommunity = () => {
   if (!router.isReady || loading)
     return <PageLoading message="Loading community" />
 
-  if (!community) return <div>404</div>
+  if (!community) return <Custom404 />
 
   return (
     <GridLayout>
