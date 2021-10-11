@@ -21,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup environment variables
+        run: cp .env.example .env
+
       - name: Install Yarn Dependencies
         run: yarn install --frozen-lockfile --silent
 
