@@ -11,6 +11,7 @@ import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -58,8 +59,12 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('product.profile.update.error')
+      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
+        mixpanel.track('product.profile.update.success')
       }
     }
   )
@@ -103,7 +108,8 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ slug, name, description }) =>
+              onSubmit={({ slug, name, description }) => {
+                mixpanel.track('product.profile.update.click')
                 editProduct({
                   variables: {
                     input: {
@@ -115,7 +121,7 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
                     }
                   }
                 })
-              }
+              }}
             >
               <ErrorMessage
                 title="Error updating profile"

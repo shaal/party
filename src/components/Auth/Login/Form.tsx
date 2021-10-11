@@ -6,6 +6,7 @@ import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
 import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
+import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { STATIC_ASSETS } from 'src/constants'
@@ -45,7 +46,11 @@ const LoginForm: React.FC = () => {
       }
     `,
     {
+      onError() {
+        mixpanel.track('login.email.failed')
+      },
       onCompleted(data) {
+        mixpanel.track('login.email.success')
         if (data?.login?.inWaitlist) {
           setShowModal(true)
         } else {
@@ -62,9 +67,10 @@ const LoginForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ email, password }) =>
+      onSubmit={({ email, password }) => {
+        mixpanel.track('login.email.click')
         login({ variables: { input: { email, password } } })
-      }
+      }}
     >
       <ErrorMessage
         title="Login failed."
@@ -115,6 +121,7 @@ const LoginForm: React.FC = () => {
               size="lg"
               type="button"
               variant="success"
+              onClick={() => mixpanel.track('login.github.click')}
               className="w-full justify-center text-[#0d1117] border-[#0d1117] hover:bg-[#dadada] focus:ring-[#0d1117]"
               icon={
                 <img
