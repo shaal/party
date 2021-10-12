@@ -65,9 +65,6 @@ const handler = async (
               coverBg: getRandomCover().color,
               bio: bio
             }
-          },
-          integrations: {
-            create: { githubId: id.toString() }
           }
         }
       })
