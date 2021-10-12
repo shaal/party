@@ -1,7 +1,10 @@
+import { getRandomCover } from '@graphql/utils/getRandomCover'
+import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession, sessionOptions } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { withIronSession } from 'next-iron-session'
+import { Octokit } from 'octokit'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { Session } from '.prisma/client'
@@ -32,23 +35,41 @@ const handler = async (
       'https://github.com/login/oauth/access_token',
       requestOptions
     )
-
     const accessTokenResponse = await accessToken.json()
+    const octokit = new Octokit({ auth: accessTokenResponse?.access_token })
+    const {
+      data: { login, name, bio, avatar_url }
+    } = await octokit.rest.users.getAuthenticated()
+    const { data: emails } =
+      await octokit.rest.users.listEmailsForAuthenticatedUser()
+    const githubEmail = emails.find((o: any) => o.primary)?.email
 
-    const githubUser = await fetch('https://api.github.com/user', {
-      headers: {
-        Authorization: `token ${accessTokenResponse?.access_token}`
-      }
+    const user = await db.user.findFirst({
+      where: { email: githubEmail }
     })
 
-    const response = await githubUser.json()
-
-    const integration = await db.integration.findFirst({
-      where: { githubId: response?.id.toString() },
-      include: { user: true }
-    })
-
-    await createSession(req, integration?.user as any)
+    if (user) {
+      await createSession(req, user as any)
+    } else {
+      const user = await db.user.create({
+        data: {
+          username: `github-${login}`,
+          email: githubEmail as string,
+          hashedPassword: await hashPassword(login),
+          inWaitlist: false,
+          profile: {
+            create: {
+              name: name ? name : login,
+              avatar: avatar_url,
+              cover: getRandomCover().image,
+              coverBg: getRandomCover().color,
+              bio: bio
+            }
+          }
+        }
+      })
+      await createSession(req, user as any)
+    }
 
     return res.redirect('/home')
   } catch (error: any) {

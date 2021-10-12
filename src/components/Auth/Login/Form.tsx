@@ -9,7 +9,6 @@ import { LogoutIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
-import { STATIC_ASSETS } from 'src/constants'
 import { object, string } from 'zod'
 
 import Waitlist from '../Waitlist'
@@ -19,7 +18,9 @@ import {
 } from './__generated__/Form.generated'
 
 const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
-  // eslint-disable-next-line react/display-name
+  loading: () => <div className="shimmer w-full h-10 rounded-lg" />
+})
+const LoginWithGitHub = dynamic(() => import('./LoginWithGitHub'), {
   loading: () => <div className="shimmer w-full h-10 rounded-lg" />
 })
 
@@ -116,25 +117,7 @@ const LoginForm: React.FC = () => {
         </Button>
         <div className="grid grid-cols-2 gap-2">
           <LoginWithWallet />
-          <a href="/api/auth/github">
-            <Button
-              size="lg"
-              type="button"
-              variant="success"
-              onClick={() => mixpanel.track('login.github.click')}
-              className="w-full justify-center text-[#0d1117] border-[#0d1117] hover:bg-[#dadada] focus:ring-[#0d1117]"
-              icon={
-                <img
-                  src={`${STATIC_ASSETS}/brands/github-dark.svg`}
-                  className="h-4 w-4"
-                  alt="GitHub Logo"
-                />
-              }
-              outline
-            >
-              GitHub
-            </Button>
-          </a>
+          <LoginWithGitHub />
         </div>
       </div>
     </Form>
