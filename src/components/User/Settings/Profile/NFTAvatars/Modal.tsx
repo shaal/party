@@ -12,7 +12,13 @@ import {
   AvatarSettingsMutationVariables
 } from './__generated__/Modal.generated'
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
+const fetcher = (url: string) =>
+  fetch(url, {
+    headers: {
+      'X-API-KEY': process.env.OPENSEA_API_KEY as string,
+      Accept: 'application/json'
+    }
+  }).then((r) => r.json())
 
 interface Props {
   ethAddress: string
