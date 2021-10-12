@@ -58,7 +58,6 @@ async function main() {
             bio: faker.commerce.productDescription()
           }
         },
-        integrations: { create: {} },
         posts: {
           create: {
             body: faker.lorem.sentence(20)

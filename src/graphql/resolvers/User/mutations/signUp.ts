@@ -37,8 +37,7 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
             coverBg: getRandomCover().color
           }
         },
-        following: { connect: { id: invite.userId } },
-        integrations: { create: {} }
+        following: { connect: { id: invite.userId } }
       }
     })
 
