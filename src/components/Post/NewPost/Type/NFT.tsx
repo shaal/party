@@ -18,7 +18,13 @@ import {
   GetEthAddressQuery
 } from './__generated__/NFT.generated'
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
+const fetcher = (url: string) =>
+  fetch(url, {
+    headers: {
+      'X-API-KEY': process.env.OPENSEA_API_KEY as string,
+      Accept: 'application/json'
+    }
+  }).then((r) => r.json())
 
 export const GET_ETHADDRESS_QUERY = gql`
   query GetEthAddressQuery {
