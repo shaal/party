@@ -18,7 +18,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(nftData)
       } else {
         const data = await fetch(
-          `https://testnets-api.opensea.io/api/v1/asset/${address}/${tokenId}`
+          `https://testnets-api.opensea.io/api/v1/asset/${address}/${tokenId}`,
+          {
+            headers: {
+              'X-API-KEY': process.env.OPENSEA_API_KEY as string,
+              Accept: 'application/json'
+            }
+          }
         )
         redis.set(
           cacheKey,
