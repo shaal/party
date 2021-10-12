@@ -2,6 +2,7 @@ import { db } from '@utils/prisma'
 import { createSession, sessionOptions } from '@utils/sessions'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { withIronSession } from 'next-iron-session'
+import { Octokit } from 'octokit'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { Session } from '.prisma/client'
@@ -35,22 +36,19 @@ const handler = async (
 
     const accessTokenResponse = await accessToken.json()
 
-    const githubUser = await fetch('https://api.github.com/user', {
-      headers: {
-        Authorization: `token ${accessTokenResponse?.access_token}`
-      }
-    })
-
-    const response = await githubUser.json()
+    const octokit = new Octokit({ auth: accessTokenResponse?.access_token })
+    const {
+      data: { id }
+    } = await octokit.rest.users.getAuthenticated()
 
     const integration = await db.integration.findFirst({
-      where: { githubId: response?.id.toString() },
+      where: { githubId: id.toString() },
       include: { user: true }
     })
 
     await createSession(req, integration?.user as any)
 
-    return res.redirect('/home')
+    return res.json({ octokit: integration })
   } catch (error: any) {
     return res.json({
       status: 'error',
