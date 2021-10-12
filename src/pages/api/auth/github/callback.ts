@@ -65,13 +65,16 @@ const handler = async (
               cover: getRandomCover().image,
               coverBg: getRandomCover().color
             }
+          },
+          integrations: {
+            create: { githubId: id.toString() }
           }
         }
       })
       await createSession(req, user as any)
     }
 
-    return res.json({ octokit: id })
+    return res.json({ octokit: integration?.user })
   } catch (error: any) {
     return res.json({
       status: 'error',
