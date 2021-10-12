@@ -40,19 +40,21 @@ const handler = async (
     const {
       data: { id, login, name, bio, avatar_url }
     } = await octokit.rest.users.getAuthenticated()
+    const { data: emails } =
+      await octokit.rest.users.listEmailsForAuthenticatedUser()
+    const githubEmail = emails.find((o: any) => o.primary)?.email
 
-    const integration = await db.integration.findFirst({
-      where: { githubId: String(id) },
-      include: { user: true }
+    const user = await db.user.findFirst({
+      where: { email: githubEmail }
     })
 
-    if (integration?.user) {
-      await createSession(req, integration?.user as any)
+    if (user) {
+      await createSession(req, user as any)
     } else {
       const user = await db.user.create({
         data: {
           username: `github-${login}`,
-          email: `github-${login}@devparty.io`,
+          email: githubEmail as string,
           hashedPassword: await hashPassword(login),
           inWaitlist: false,
           profile: {
