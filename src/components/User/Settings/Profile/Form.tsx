@@ -187,8 +187,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   <ChooseFile
                     onChange={(evt: any) => handleUpload(evt, 'avatar')}
                   />
-                  {currentUser?.ethAddress && (
-                    <NFTAvatars ethAddress={currentUser?.ethAddress} />
+                  {currentUser?.integrations?.ethAddress && (
+                    <NFTAvatars
+                      ethAddress={currentUser?.integrations?.ethAddress}
+                    />
                   )}
                 </div>
               </div>

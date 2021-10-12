@@ -8,8 +8,8 @@ export const authWithWallet = async (nonce: string, signature: string) => {
     signature
   )
 
-  return await db.user.findUnique({
-    where: { ethAddress: address },
+  return await db.user.findFirst({
+    where: { integrations: { ethAddress: address } },
     rejectOnNotFound: true
   })
 }

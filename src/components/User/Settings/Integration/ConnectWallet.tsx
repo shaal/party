@@ -9,6 +9,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
 
+import { INTEGRATION_SETTINGS_QUERY } from '.'
 import {
   WalletSettingsMutation,
   WalletSettingsMutationVariables
@@ -29,13 +30,12 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
       mutation WalletSettingsMutation($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
-          user {
-            ethAddress
-          }
+          ethAddress
         }
       }
     `,
     {
+      refetchQueries: [{ query: INTEGRATION_SETTINGS_QUERY }],
       onError() {
         setError(true)
       },
@@ -90,7 +90,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
           />
         </div>
       )}
-      {integration.user?.ethAddress ? (
+      {integration?.ethAddress ? (
         <Button
           className="w-full"
           variant="danger"

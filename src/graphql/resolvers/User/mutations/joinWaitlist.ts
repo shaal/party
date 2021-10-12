@@ -28,8 +28,7 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
             cover: getRandomCover().image,
             coverBg: getRandomCover().color
           }
-        },
-        integrations: { create: {} }
+        }
       }
     })
 
