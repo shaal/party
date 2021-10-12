@@ -4,7 +4,7 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, OPENSEA_API_URL } from 'src/constants'
 import useSWR from 'swr'
 
 import {
@@ -27,9 +27,7 @@ interface Props {
 const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
   const router = useRouter()
   const { data, error } = useSWR(
-    `https://${
-      IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
+    `${OPENSEA_API_URL}/assets?format=json&limit=9&offset=0&order_direction=desc&owner=${ethAddress}`,
     fetcher
   )
   const [editNFTAvatar] = useMutation<

@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, OPENSEA_API_URL } from 'src/constants'
 import useSWR from 'swr'
 
 import {
@@ -41,11 +41,7 @@ const NFTType: React.FC = () => {
     useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
 
   const { data } = useSWR(
-    `https://${
-      IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${
-      user?.me?.ethAddress
-    }`,
+    `${OPENSEA_API_URL}/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${user?.me?.ethAddress}`,
     fetcher,
     {
       isPaused: () => {
