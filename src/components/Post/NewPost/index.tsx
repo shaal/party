@@ -14,31 +14,25 @@ import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
 const PostType = dynamic(() => import('./Type/Post'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
 const QuestionType = dynamic(() => import('./Type/Question'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 const TaskType = dynamic(() => import('./Type/Task'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
 const CommitType = dynamic(() => import('./Type/Commit'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
 const PollType = dynamic(() => import('./Type/Poll'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
 const NFTType = dynamic(() => import('./Type/NFT'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <Loading />
 })
 
