@@ -100,7 +100,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               )}
               <ConnectWallet integration={integration} />
               <div className="border-b"></div>
-              {integration.spotifyRefreshToken ? (
+              {integration?.spotifyRefreshToken ? (
                 <Button
                   variant="danger"
                   type="button"

@@ -77,7 +77,6 @@ async function main() {
         isStaff: user.isStaff,
         inWaitlist: false,
         hashedPassword: await hashPassword(user.username),
-        ethAddress: user.ethAddress,
         profile: {
           create: {
             name: user.name,
@@ -87,7 +86,7 @@ async function main() {
             bio: user.bio
           }
         },
-        integrations: { create: {} }
+        integrations: { create: { ethAddress: user.ethAddress } }
       }
     })
   }

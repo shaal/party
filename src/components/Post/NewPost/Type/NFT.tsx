@@ -30,7 +30,9 @@ export const GET_ETHADDRESS_QUERY = gql`
   query GetEthAddressQuery {
     me {
       id
-      ethAddress
+      integrations {
+        ethAddress
+      }
     }
   }
 `
@@ -41,11 +43,11 @@ const NFTType: React.FC = () => {
     useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
 
   const { data } = useSWR(
-    `${OPENSEA_API_URL}/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${user?.me?.ethAddress}`,
+    `${OPENSEA_API_URL}/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${user?.me?.integrations?.ethAddress}`,
     fetcher,
     {
       isPaused: () => {
-        return !user?.me?.ethAddress
+        return !user?.me?.integrations?.ethAddress
       }
     }
   )
@@ -71,7 +73,7 @@ const NFTType: React.FC = () => {
     }
   )
 
-  if (!user?.me?.ethAddress && !loading)
+  if (!user?.me?.integrations?.ethAddress && !loading)
     return (
       <div className="p-5 font-bold text-center">
         <div className="mb-4">

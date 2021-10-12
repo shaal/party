@@ -162,6 +162,7 @@ input EditUserInput {
 }
 
 type Integration {
+  ethAddress: String
   id: ID!
   spotifyRefreshToken: String
   user: User!
@@ -672,7 +673,6 @@ type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
   createdAt: DateTime!
   email: String!
-  ethAddress: String
   featuredAt: DateTime
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
