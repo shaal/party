@@ -18,7 +18,7 @@ const LoginWithGitHub: React.FC = () => {
         icon={
           <img
             src={`${STATIC_ASSETS}/brands/${
-              resolvedTheme === 'dark' ? 'github-dark' : 'github-light'
+              resolvedTheme === 'dark' ? 'github-light' : 'github-dark'
             }.svg`}
             className="h-4 w-4"
             alt="GitHub Logo"
