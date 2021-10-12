@@ -33,6 +33,7 @@ builder.prismaObject('Integration', {
         return integration?.spotifyRefreshToken
       }
     }),
+    ethAddress: t.exposeString('ethAddress', { nullable: true }),
 
     // Relations
     user: t.relation('user')
@@ -65,7 +66,7 @@ builder.mutationField('editIntegration', (t) =>
     type: 'Integration',
     args: { input: t.arg({ type: EditIntegrationInput }) },
     resolve: async (query, parent, { input }, { session }) => {
-      return await editIntegration(input, session)
+      return await editIntegration(query, input, session)
     }
   })
 )

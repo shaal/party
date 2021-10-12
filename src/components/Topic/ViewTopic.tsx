@@ -9,6 +9,7 @@ import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Topic } from 'src/__generated__/schema.generated'
+import Custom404 from 'src/pages/404'
 
 import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
@@ -39,7 +40,7 @@ const ViewTopic = () => {
 
   if (!router.isReady || loading) return <PageLoading message="Loading topic" />
 
-  if (!topic) return window.location.replace('/home')
+  if (!topic) return <Custom404 />
 
   return (
     <GridLayout>
