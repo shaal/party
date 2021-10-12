@@ -1,5 +1,8 @@
+import { getRandomCover } from '@graphql/utils/getRandomCover'
+import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession, sessionOptions } from '@utils/sessions'
+import { md5 } from 'hash-wasm'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { withIronSession } from 'next-iron-session'
 import { Octokit } from 'octokit'
@@ -38,17 +41,37 @@ const handler = async (
 
     const octokit = new Octokit({ auth: accessTokenResponse?.access_token })
     const {
-      data: { id }
+      data: { id, login }
     } = await octokit.rest.users.getAuthenticated()
 
     const integration = await db.integration.findFirst({
-      where: { githubId: id.toString() },
+      where: { githubId: String(id) },
       include: { user: true }
     })
 
-    await createSession(req, integration?.user as any)
+    if (integration?.user) {
+      await createSession(req, integration?.user as any)
+    } else {
+      const user = await db.user.create({
+        data: {
+          username: `github-${login}`,
+          email: `github-${login}@devparty.io`,
+          hashedPassword: await hashPassword(login),
+          inWaitlist: true,
+          profile: {
+            create: {
+              name: login,
+              avatar: `https://avatar.tobi.sh/${await md5(login)}.svg`,
+              cover: getRandomCover().image,
+              coverBg: getRandomCover().color
+            }
+          }
+        }
+      })
+      await createSession(req, user as any)
+    }
 
-    return res.json({ octokit: integration })
+    return res.json({ octokit: id })
   } catch (error: any) {
     return res.json({
       status: 'error',
