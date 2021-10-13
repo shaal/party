@@ -1,5 +1,10 @@
 import { db } from '@utils/prisma'
 
+/**
+ * Get list of featured users
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @returns list of featured users
+ */
 export const getFeaturedUsers = async (query: any) => {
   return await db.user.findMany({
     ...query,
