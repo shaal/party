@@ -8,13 +8,14 @@ import { IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
-// The duration that the session will be valid for, in seconds (default is 182 days).
+// The duration that the session will be valid for, in seconds (default is 30 days).
 // We will automatically renew these sessions after 25% of the validity period.
-const SESSION_TTL = 182 * 24 * 3600
+const SESSION_TTL = 30 * 24 * 3600
 
 // The key that we store the actual database ID of the session in
 const IRON_SESSION_ID_KEY = 'sessionID'
 
+// Use a custom IncomingMessage type
 interface RequestWithSession extends IncomingMessage {
   session: import('next-iron-session').Session
 }
@@ -105,6 +106,7 @@ export async function resolveSession({
     })
 
     if (session) {
+      // If we resolve a session in the request, we'll automatically renew it 25% of the session has elapsed
       const shouldRefreshSession =
         differenceInSeconds(session.expiresAt, new Date()) < 0.75 * SESSION_TTL
 
