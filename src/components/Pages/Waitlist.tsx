@@ -1,10 +1,12 @@
 import DevpartySEO from '@components/shared/SEO'
 import React, { Fragment } from 'react'
+import Confetti from 'react-confetti'
 import { STATIC_ASSETS } from 'src/constants'
 
 const Waitlist: React.FC = () => {
   return (
     <>
+      <Confetti />
       <DevpartySEO title="You are in Waitlist! · Devparty" />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img src={`${STATIC_ASSETS}/emojis/unicorn.png`} alt="Unicorn emoji" />
