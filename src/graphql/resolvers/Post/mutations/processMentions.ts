@@ -5,7 +5,7 @@ import { db } from '@utils/prisma'
 import { Post, Session } from '.prisma/client'
 
 /**
- * Process and creates a mentions
+ * Process and creates mentions
  * @param post - Post to process mentions
  * @param session - Current user's session
  */
