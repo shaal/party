@@ -51,8 +51,6 @@ const handler = async (
 
     if (user) {
       if (!user?.inWaitlist) {
-        await createSession(req, user as any)
-      } else {
         await db.user.update({
           where: { email: githubEmail },
           data: {
@@ -60,13 +58,13 @@ const handler = async (
             profile: {
               update: {
                 name: name ? name : login,
-                avatar: avatar_url,
                 bio: bio,
                 github: login
               }
             }
           }
         })
+        await createSession(req, user as any)
       }
     } else {
       await db.user.create({
