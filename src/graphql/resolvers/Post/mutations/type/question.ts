@@ -7,6 +7,13 @@ import { CreatePostInput } from 'src/__generated__/schema.generated'
 
 import { processMentions } from '../processMentions'
 
+/**
+ * Creates a new question
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - CreatePostInput
+ * @param session - Current user's session
+ * @returns a new question
+ */
 export const question = async (
   query: any,
   input: CreatePostInput,
