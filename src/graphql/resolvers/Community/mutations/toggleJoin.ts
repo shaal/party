@@ -3,6 +3,12 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasJoined } from '../queries/hasJoined'
 
+/**
+ * Join the community
+ * @param currentUserId - Current user ID
+ * @param communityId - Community ID need to join
+ * @returns the joined community
+ */
 export const toggleJoin = async (
   currentUserId: string,
   communityId: string
