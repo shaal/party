@@ -30,7 +30,7 @@ export const POST_QUERY = gql`
   ${PostFragment}
 `
 
-const ViewPost = () => {
+const ViewPost: React.FC = () => {
   const router = useRouter()
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {

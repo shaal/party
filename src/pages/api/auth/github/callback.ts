@@ -2,6 +2,7 @@ import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession, sessionOptions } from '@utils/sessions'
+import { md5 } from 'hash-wasm'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { withIronSession } from 'next-iron-session'
 import { Octokit } from 'octokit'
@@ -49,29 +50,46 @@ const handler = async (
     })
 
     if (user) {
-      await createSession(req, user as any)
+      if (!user?.inWaitlist) {
+        await db.user.update({
+          where: { email: githubEmail },
+          data: {
+            username: `github-${login}`,
+            profile: {
+              update: {
+                name: name ? name : login,
+                bio: bio,
+                github: login
+              }
+            }
+          }
+        })
+        await createSession(req, user as any)
+      }
     } else {
-      const user = await db.user.create({
+      await db.user.create({
         data: {
           username: `github-${login}`,
           email: githubEmail as string,
-          hashedPassword: await hashPassword(login),
-          inWaitlist: false,
+          hashedPassword: await hashPassword(await md5(login + Math.random())),
+          inWaitlist: true,
           profile: {
             create: {
               name: name ? name : login,
               avatar: avatar_url,
               cover: getRandomCover().image,
               coverBg: getRandomCover().color,
-              bio: bio
+              bio: bio,
+              github: login
             }
           }
         }
       })
-      await createSession(req, user as any)
     }
 
-    return res.redirect('/home')
+    return res.redirect(
+      user ? (user?.inWaitlist ? '/waitlist' : '/home') : '/waitlist'
+    )
   } catch (error: any) {
     return res.json({
       status: 'error',

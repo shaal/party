@@ -40,7 +40,7 @@ export const PRODUCT_QUERY = gql`
   }
 `
 
-const ViewProduct = () => {
+const ViewProduct: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
     variables: { slug: router.query.slug },

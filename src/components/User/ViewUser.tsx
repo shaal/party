@@ -65,7 +65,7 @@ export const VIEW_USER_QUERY = gql`
   ${UserFragment}
 `
 
-const ViewUser = () => {
+const ViewUser: React.FC = () => {
   const router = useRouter()
   const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {

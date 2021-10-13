@@ -8,10 +8,10 @@ import { useAuthRedirect } from '@components/utils/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import React from 'react'
 import { object, string } from 'zod'
 
-import Waitlist from '../Waitlist'
 import {
   LoginFormMutation,
   LoginFormMutationVariables
@@ -32,8 +32,8 @@ const loginSchema = object({
 })
 
 const LoginForm: React.FC = () => {
-  const [showModal, setShowModal] = useState<boolean>(false)
   const authRedirect = useAuthRedirect()
+  const router = useRouter()
   const [login, loginResult] = useMutation<
     LoginFormMutation,
     LoginFormMutationVariables
@@ -51,10 +51,11 @@ const LoginForm: React.FC = () => {
         mixpanel.track('login.email.failed')
       },
       onCompleted(data) {
-        mixpanel.track('login.email.success')
         if (data?.login?.inWaitlist) {
-          setShowModal(true)
+          mixpanel.track('login.email.waitlist.redirect')
+          router.push('/waitlist')
         } else {
+          mixpanel.track('login.email.success')
           authRedirect()
         }
       }
@@ -78,9 +79,6 @@ const LoginForm: React.FC = () => {
         error={loginResult.error}
         className="mb-3"
       />
-      {showModal && (
-        <Waitlist showModal={showModal} setShowModal={setShowModal} />
-      )}
       <div className="space-y-4">
         <div>
           <Input

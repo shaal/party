@@ -4,13 +4,12 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import React from 'react'
 import { object, string } from 'zod'
 
-import Waitlist from '../Waitlist'
 import {
   JoinWaitlistFormMutation,
   JoinWaitlistFormMutationVariables
@@ -27,10 +26,8 @@ export const signUpSchema = object({
   })
 })
 
-const SUCCESS_MESSAGE = 'Hang tight - you’re currently on the waitlist now 🎉'
-
 const SignupForm: React.FC = () => {
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const router = useRouter()
   const [signUp, signUpResult] = useMutation<
     JoinWaitlistFormMutation,
     JoinWaitlistFormMutationVariables
@@ -48,8 +45,9 @@ const SignupForm: React.FC = () => {
         mixpanel.track('signup.waitlist.failed')
       },
       onCompleted() {
-        setShowModal(true)
+        router.push('/waitlist')
         mixpanel.track('signup.waitlist.success')
+        mixpanel.track('signup.waitlist.redirect')
       }
     }
   )
@@ -75,12 +73,6 @@ const SignupForm: React.FC = () => {
         error={signUpResult.error}
         className="mb-3"
       />
-      {signUpResult.data && (
-        <SuccessMessage className="mb-3">{SUCCESS_MESSAGE}</SuccessMessage>
-      )}
-      {showModal && (
-        <Waitlist showModal={showModal} setShowModal={setShowModal} />
-      )}
       <div className="space-y-4">
         <div>
           <Input
