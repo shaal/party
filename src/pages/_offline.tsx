@@ -1,13 +1,13 @@
 import DevpartySEO from '@components/shared/SEO'
 import { Button } from '@components/ui/Button'
-import { HomeIcon } from '@heroicons/react/outline'
+import { RefreshIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { STATIC_ASSETS } from 'src/constants'
 
-export default function Custom404() {
+export default function Offline() {
   return (
     <>
-      <DevpartySEO title="Page Not Found · Devparty" />
+      <DevpartySEO title="Offline · Devparty" />
       <div className="flex flex-col h-full justify-start pt-10 items-center">
         <img
           src={`${STATIC_ASSETS}/gifs/nyan-cat.gif`}
@@ -15,16 +15,18 @@ export default function Custom404() {
           className="h-60"
         />
         <div className="py-10 text-center">
-          <h1 className="text-3xl mb-4 font-bold">Oops, Lost‽</h1>
-          <div className="mb-4">This page could not be found.</div>
+          <h1 className="text-3xl mb-4 font-bold">You are offline!</h1>
+          <div className="mb-4">
+            Please check your internet connection and reload.
+          </div>
           <Link href="/home" passHref>
             <a>
               <Button
                 className="flex item-center mx-auto"
                 size="lg"
-                icon={<HomeIcon className="w-4 h-4" />}
+                icon={<RefreshIcon className="w-4 h-4" />}
               >
-                <div>Go to home</div>
+                <div>Reload</div>
               </Button>
             </a>
           </Link>
