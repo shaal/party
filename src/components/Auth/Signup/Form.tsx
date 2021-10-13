@@ -7,6 +7,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { CollectionIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
 

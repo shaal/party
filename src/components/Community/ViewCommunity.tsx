@@ -35,7 +35,7 @@ export const COMMUNITY_QUERY = gql`
   }
 `
 
-const ViewCommunity = () => {
+const ViewCommunity: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<CommunityQuery>(COMMUNITY_QUERY, {
     variables: { slug: router.query.slug },
