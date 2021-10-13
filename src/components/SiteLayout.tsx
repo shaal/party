@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import mixpanel from 'mixpanel-browser'
+import Head from 'next/head'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
@@ -78,6 +79,12 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <AppContext.Provider value={injectedGlobalContext}>
+      <Head>
+        <meta
+          name="theme-color"
+          content={resolvedTheme === 'dark' ? '#1b1b1d' : '#ffffff'}
+        />
+      </Head>
       <Toaster position="top-right" toastOptions={toastOptions} />
       <div className="flex flex-col min-h-screen">
         <Navbar />

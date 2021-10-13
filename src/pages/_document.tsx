@@ -21,7 +21,6 @@ class DevpartyDocument extends Document<Props> {
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="theme-color" content="#ffffff" />
           <link rel="icon" href="/favicon.svg" />
           <link
             href="https://fonts.cdnfonts.com/css/circular-std"
