@@ -8,7 +8,11 @@ import { IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
+// The duration that the session will be valid for, in seconds (default is 182 days).
+// We will automatically renew these sessions after 25% of the validity period.
 const SESSION_TTL = 182 * 24 * 3600
+
+// The key that we store the actual database ID of the session in
 const IRON_SESSION_ID_KEY = 'sessionID'
 
 interface RequestWithSession extends IncomingMessage {
