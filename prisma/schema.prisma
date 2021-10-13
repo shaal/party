@@ -287,9 +287,23 @@ model Community {
   ownerId String?
   members User[]
   posts   Post[]
+  rules   Rule[]
 
   // Attributes
   @@map("communities")
+}
+
+model Rule {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  // Relations
+  community   Community? @relation(fields: [communityId], references: [id])
+  communityId String?
+
+  // Attributes
+  @@map("community_rules")
 }
 
 model Badge {

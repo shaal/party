@@ -7,11 +7,7 @@ import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import {
-  FingerPrintIcon,
-  PencilIcon,
-  UserGroupIcon
-} from '@heroicons/react/outline'
+import { FingerPrintIcon, PencilIcon } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -40,10 +36,18 @@ const Details: React.FC<Props> = ({ community }) => {
           </div>
           <div className="text-xl">{community?.slug}</div>
         </div>
+        <div>
+          <Link href={`/communities/${community?.slug}/members`} passHref>
+            <a>
+              <div className="text-xl">{community?.members?.totalCount}</div>
+              <div className="text-gray-500">Members</div>
+            </a>
+          </Link>
+        </div>
         {currentUser?.id !== community?.owner?.id ? (
           <Join community={community} showText />
         ) : (
-          <Link href={`/community/${community?.slug}/settings`} passHref>
+          <Link href={`/communities/${community?.slug}/settings`} passHref>
             <Button
               size="md"
               variant="success"
@@ -60,13 +64,6 @@ const Details: React.FC<Props> = ({ community }) => {
         )}
         <Card>
           <CardBody className="space-y-3">
-            <Link href={`/communities/${community?.slug}/members`}>
-              <a className="flex items-center space-x-1.5">
-                <UserGroupIcon className="h-5 w-5" />
-                <div>{community?.members?.totalCount}</div>
-                <div>members joined</div>
-              </a>
-            </Link>
             <div className="flex items-center space-x-1.5">
               <FingerPrintIcon className="h-5 w-5" />
               <div>Moderated by</div>
