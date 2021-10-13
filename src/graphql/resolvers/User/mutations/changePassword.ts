@@ -4,6 +4,12 @@ import { hashPassword, verifyPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { ChangePasswordInput } from 'src/__generated__/schema.generated'
 
+/**
+ * Change a user's password
+ * @param input - ChangePasswordInput
+ * @param session - Current user's session
+ * @returns a Result (Success/Failed)
+ */
 export const changePassword = async (
   input: ChangePasswordInput,
   session: Session | null | undefined
