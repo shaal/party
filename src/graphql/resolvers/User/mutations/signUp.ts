@@ -7,6 +7,13 @@ import { md5 } from 'hash-wasm'
 import { SignupInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
+/**
+ * Signup a new user
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - SignupInput
+ * @param req - HTTP request
+ * @returns a newly joined user
+ */
 export const signUp = async (query: any, input: SignupInput, req: any) => {
   if (RESERVED_SLUGS.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
