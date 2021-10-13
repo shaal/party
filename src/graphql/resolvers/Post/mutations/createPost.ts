@@ -12,6 +12,13 @@ import { question } from './type/question'
 import { reply } from './type/reply'
 import { task } from './type/task'
 
+/**
+ * Creates a new post
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - CreatePostInput
+ * @param session - Current user's session
+ * @returns the new post
+ */
 export const createPost = async (
   query: any,
   input: CreatePostInput,
