@@ -48,7 +48,7 @@ const NewCommunity: React.FC = () => {
     `,
     {
       onCompleted(data) {
-        router.push(`/products/${data?.createCommunity?.slug}`)
+        router.push(`/communities/${data?.createCommunity?.slug}`)
       }
     }
   )
