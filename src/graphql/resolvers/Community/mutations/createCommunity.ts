@@ -4,9 +4,16 @@ import { md5 } from 'hash-wasm'
 import { CreateCommunityInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
+/**
+ * Creates a new community
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - CreateCommunityInput
+ * @param session - Current user's session
+ * @returns a new community
+ */
 export const createCommunity = async (
   query: any,
-  input: CreateCommunityInput, // TODO: Change it
+  input: CreateCommunityInput,
   session: Session | null | undefined
 ) => {
   if (RESERVED_SLUGS.includes(input.slug)) {
