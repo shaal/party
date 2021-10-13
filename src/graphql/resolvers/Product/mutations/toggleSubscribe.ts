@@ -4,6 +4,12 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasSubscribed } from '../queries/hasSubscribed'
 
+/**
+ * Subscribe to a product
+ * @param currentUserId - Current user ID
+ * @param productId - Product ID need to subscribe
+ * @returns the subscribed product
+ */
 export const toggleSubscribe = async (
   currentUserId: string,
   productId: string
