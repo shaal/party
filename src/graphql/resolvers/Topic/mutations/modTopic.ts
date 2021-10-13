@@ -2,6 +2,13 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { EditTopicInput } from 'src/__generated__/schema.generated'
 
+/**
+ * Update the topic
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - EditTopicInput
+ * @param session - Current user's session
+ * @returns the updated topic
+ */
 export const modTopic = async (
   query: any,
   input: EditTopicInput | null | undefined,
