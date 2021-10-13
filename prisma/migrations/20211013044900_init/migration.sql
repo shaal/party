@@ -11,9 +11,15 @@ CREATE TABLE `users` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `featuredAt` DATETIME(3),
+    `stripeCustomerId` VARCHAR(191),
+    `stripeSubscriptionId` VARCHAR(191),
+    `stripePriceId` VARCHAR(191),
+    `stripeCurrentPeriodEnd` DATETIME(3),
 
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
+    UNIQUE INDEX `users_stripeCustomerId_key`(`stripeCustomerId`),
+    UNIQUE INDEX `users_stripeSubscriptionId_key`(`stripeSubscriptionId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
