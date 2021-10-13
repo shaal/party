@@ -2,6 +2,11 @@ import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
+/**
+ * Get a commit data from GitHub
+ * @param url - Git commit URL
+ * @returns a commit data from GitHub
+ */
 export const useGitCommit = (url: string) => {
   const splitedURL = new URL(url).pathname.split('/')
 
