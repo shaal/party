@@ -13,6 +13,7 @@ import { processMentions } from '../processMentions'
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
  * @param input - CreatePostInput
  * @param session - Current user's session
+ * @param parentId - Parent Post ID
  * @returns a new reply
  */
 export const reply = async (
