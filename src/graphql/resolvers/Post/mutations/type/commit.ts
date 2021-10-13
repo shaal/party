@@ -7,7 +7,7 @@ import { CreatePostInput } from 'src/__generated__/schema.generated'
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
  * @param input - CreatePostInput
  * @param session - Current user's session
- * @returns a commit
+ * @returns a new commit
  */
 export const commit = async (
   query: any,
