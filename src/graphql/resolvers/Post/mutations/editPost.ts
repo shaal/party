@@ -2,6 +2,13 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { EditPostInput } from 'src/__generated__/schema.generated'
 
+/**
+ * Edit the existing post
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - EditPostInput
+ * @param session - Current user's session
+ * @returns a edited post
+ */
 export const editPost = async (
   query: any,
   input: EditPostInput | null | undefined,
