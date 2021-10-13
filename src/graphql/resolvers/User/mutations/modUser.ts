@@ -1,6 +1,12 @@
 import { db } from '@utils/prisma'
 import { ModUserInput } from 'src/__generated__/schema.generated'
 
+/**
+ * Moderate the user
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - ModUserInput
+ * @returns the moderated user
+ */
 export const modUser = async (query: any, input: ModUserInput) => {
   if (input.spammy) {
     await db.session.deleteMany({
