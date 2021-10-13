@@ -4,6 +4,10 @@ import { bcrypt, bcryptVerify } from 'hash-wasm'
 
 import { db } from './prisma'
 
+/**
+ * This is the cost factor of the bcrypt hash function. In general, this number
+ * should be changed as CPUs get faster.
+ */
 const COST_FACTOR = 11
 
 /**
