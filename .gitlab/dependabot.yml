@@ -5,8 +5,8 @@ updates:
     schedule:
       interval: 'daily'
     commit-message:
-      prefix: '⬆️🟢'
-      prefix-development: '⬆️🟡'
+      prefix: '⬆️'
+      prefix-development: '⬆️'
     assignees:
       - yo
     reviewers:
