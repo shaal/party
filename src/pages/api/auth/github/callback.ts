@@ -50,13 +50,14 @@ const handler = async (
 
     if (user) {
       await createSession(req, user as any)
+      return res.redirect('/home')
     } else {
-      const user = await db.user.create({
+      await db.user.create({
         data: {
           username: `github-${login}`,
           email: githubEmail as string,
           hashedPassword: await hashPassword(login),
-          inWaitlist: false,
+          inWaitlist: true,
           profile: {
             create: {
               name: name ? name : login,
@@ -68,10 +69,8 @@ const handler = async (
           }
         }
       })
-      await createSession(req, user as any)
+      return res.redirect('/waitlist')
     }
-
-    return res.redirect('/home')
   } catch (error: any) {
     return res.json({
       status: 'error',
