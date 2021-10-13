@@ -1,5 +1,12 @@
 import { db } from '@utils/prisma'
 
+/**
+ * Get more posts by given user
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param userId - Source user ID where to fetch their posts
+ * @param type - Post Type
+ * @returns the more posts by given user
+ */
 export const getMorePostsByUser = async (
   query: any,
   userId: string,
