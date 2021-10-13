@@ -18,7 +18,9 @@ import {
 } from './__generated__/Form.generated'
 
 const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
-  // eslint-disable-next-line react/display-name
+  loading: () => <div className="shimmer w-full h-10 rounded-lg" />
+})
+const LoginWithGitHub = dynamic(() => import('./LoginWithGitHub'), {
   loading: () => <div className="shimmer w-full h-10 rounded-lg" />
 })
 
@@ -67,7 +69,7 @@ const LoginForm: React.FC = () => {
     <Form
       form={form}
       onSubmit={({ email, password }) => {
-        mixpanel.track('login.email')
+        mixpanel.track('login.email.click')
         login({ variables: { input: { email, password } } })
       }}
     >
@@ -113,7 +115,10 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
-        <LoginWithWallet />
+        <div className="grid grid-cols-2 gap-2">
+          <LoginWithWallet />
+          <LoginWithGitHub />
+        </div>
       </div>
     </Form>
   )

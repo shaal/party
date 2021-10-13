@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, OPENSEA_API_URL } from 'src/constants'
 import useSWR from 'swr'
 
 import {
@@ -18,13 +18,21 @@ import {
   GetEthAddressQuery
 } from './__generated__/NFT.generated'
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
+const fetcher = (url: string) =>
+  fetch(url, {
+    headers: {
+      'X-API-KEY': process.env.OPENSEA_API_KEY as string,
+      Accept: 'application/json'
+    }
+  }).then((r) => r.json())
 
 export const GET_ETHADDRESS_QUERY = gql`
   query GetEthAddressQuery {
     me {
       id
-      ethAddress
+      integrations {
+        ethAddress
+      }
     }
   }
 `
@@ -35,15 +43,11 @@ const NFTType: React.FC = () => {
     useQuery<GetEthAddressQuery>(GET_ETHADDRESS_QUERY)
 
   const { data } = useSWR(
-    `https://${
-      IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
-    }.opensea.io/api/v1/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${
-      user?.me?.ethAddress
-    }`,
+    `${OPENSEA_API_URL}/assets?format=json&limit=20&offset=0&order_direction=desc&owner=${user?.me?.integrations?.ethAddress}`,
     fetcher,
     {
       isPaused: () => {
-        return !user?.me?.ethAddress
+        return !user?.me?.integrations?.ethAddress
       }
     }
   )
@@ -69,7 +73,7 @@ const NFTType: React.FC = () => {
     }
   )
 
-  if (!user?.me?.ethAddress && !loading)
+  if (!user?.me?.integrations?.ethAddress && !loading)
     return (
       <div className="p-5 font-bold text-center">
         <div className="mb-4">

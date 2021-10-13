@@ -23,7 +23,6 @@ import {
 } from './__generated__/Form.generated'
 
 const ConnectWallet = dynamic(() => import('./ConnectWallet'), {
-  // eslint-disable-next-line react/display-name
   loading: () => <div className="shimmer w-full h-9 rounded-lg" />
 })
 
@@ -100,7 +99,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
               )}
               <ConnectWallet integration={integration} />
               <div className="border-b"></div>
-              {integration.spotifyRefreshToken ? (
+              {integration?.spotifyRefreshToken ? (
                 <Button
                   variant="danger"
                   type="button"

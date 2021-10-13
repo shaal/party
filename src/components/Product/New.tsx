@@ -21,11 +21,11 @@ import {
 const newProductSchema = object({
   name: string()
     .min(2, { message: '🍀 Name should be atleast 2 characters' })
-    .max(50, { message: '🍀 Name should not exceed 100 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '📦 Invalid slug' }),
+    .max(50, { message: '🍀 Name should not exceed 100 characters' }),
   slug: string()
     .min(2, { message: '📦 Slug should be atleast 2 characters' })
-    .max(50, { message: '📦 Slug should not exceed 100 characters' }),
+    .max(50, { message: '📦 Slug should not exceed 100 characters' })
+    .regex(/^[a-z0-9_\.]+$/, { message: '📦 Invalid slug' }),
   website: string()
     .url({ message: '🔗 Invalid URL' })
     .min(2, { message: '🔗 URL should be atleast 2 characters' })

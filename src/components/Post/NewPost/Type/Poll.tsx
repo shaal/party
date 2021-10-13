@@ -150,7 +150,7 @@ const PollType: React.FC = () => {
                 icon={<PlusCircleIcon className="h-5 w-4" />}
                 outline
               >
-                New answer
+                Add Choice
               </Button>
             )}
             {pollError && (

@@ -33,10 +33,51 @@ input ChangePasswordInput {
   newPassword: String!
 }
 
+type Community {
+  avatar: String
+  createdAt: DateTime!
+  description: String
+  hasJoined: Boolean!
+  id: ID!
+  members(after: String, before: String, first: Int, last: Int): CommunityMembersConnection!
+  name: String!
+  owner: User!
+  posts(after: String, before: String, first: Int, last: Int): CommunityPostsConnection!
+  slug: String!
+}
+
+type CommunityMembersConnection {
+  edges: [CommunityMembersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CommunityMembersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
+type CommunityPostsConnection {
+  edges: [CommunityPostsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CommunityPostsConnectionEdge {
+  cursor: String!
+  node: Post!
+}
+
 input CreateBadgeInput {
   description: String!
   image: String!
   name: String!
+}
+
+input CreateCommunityInput {
+  description: String
+  name: String!
+  slug: String!
 }
 
 input CreatePostInput {
@@ -121,6 +162,7 @@ input EditUserInput {
 }
 
 type Integration {
+  ethAddress: String
   id: ID!
   spotifyRefreshToken: String
   user: User!
@@ -177,6 +219,7 @@ type Mutation {
   attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
   createBadge(input: CreateBadgeInput!): Badge!
+  createCommunity(input: CreateCommunityInput!): Community!
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
   deletePost(input: DeletePostInput!): Result!
@@ -197,6 +240,7 @@ type Mutation {
   regenerateInvite: Invite!
   revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
+  toggleCommunityJoin(input: ToggleCommunityJoinInput!): Community
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
   toggleProductSubscribe(input: ToggleProductSubscribeInput!): Product
@@ -348,6 +392,7 @@ type Profile {
 
 type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
+  community(slug: String!): Community!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
   featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
@@ -573,6 +618,10 @@ type Tip {
   user: User!
 }
 
+input ToggleCommunityJoinInput {
+  id: ID!
+}
+
 input ToggleFollowInput {
   userId: ID!
 }
@@ -624,7 +673,6 @@ type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
   createdAt: DateTime!
   email: String!
-  ethAddress: String
   featuredAt: DateTime
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!

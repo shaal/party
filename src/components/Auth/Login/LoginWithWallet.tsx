@@ -17,9 +17,8 @@ import {
 const LoginWithWallet: React.FC = () => {
   const { resolvedTheme } = useTheme()
   const authRedirect = useAuthRedirect()
-  const [loginButtonMessage, setLoginButtonMessage] = useState<string>(
-    'Login with MetaMask'
-  )
+  const [loginButtonMessage, setLoginButtonMessage] =
+    useState<string>('MetaMask')
   const [login] = useMutation<
     LoginWithWalletMutation,
     LoginWithWalletMutationVariables
@@ -39,7 +38,7 @@ const LoginWithWallet: React.FC = () => {
   )
 
   const connectWallet = async () => {
-    mixpanel.track('login.create.wallet')
+    mixpanel.track('login.wallet.click')
     try {
       if (typeof window.web3 !== 'object') {
         return toast.error('Metamask not found in the browser!')
@@ -49,12 +48,12 @@ const LoginWithWallet: React.FC = () => {
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const address = await web3.getSigner().getAddress()
-      const response = await fetch(`/api/getnonce?address=${address}`)
+      const response = await fetch(`/api/auth/getnonce?address=${address}`)
       const data = await response.json()
       if (data.status === 'error') {
         toast.error(data.message)
-        setLoginButtonMessage('Login with MetaMask')
-        mixpanel.track('login.success.wallet')
+        setLoginButtonMessage('MetaMask')
+        mixpanel.track('login.wallet.success')
       } else {
         setLoginButtonMessage('Please sign...')
         const signature = await web3
@@ -68,11 +67,11 @@ const LoginWithWallet: React.FC = () => {
         login({
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
-        mixpanel.track('login.success.wallet')
+        mixpanel.track('login.wallet.success')
         web3Modal.clearCachedProvider()
       }
     } finally {
-      setLoginButtonMessage('Login with MetaMask')
+      setLoginButtonMessage('MetaMask')
     }
   }
 
@@ -83,12 +82,12 @@ const LoginWithWallet: React.FC = () => {
       variant="success"
       className="w-full justify-center text-[#F6851B] border-[#F6851B] hover:bg-[#ffe9d5] focus:ring-[#F6851B]"
       onClick={connectWallet}
-      disabled={loginButtonMessage !== 'Login with MetaMask'}
+      disabled={loginButtonMessage !== 'MetaMask'}
       icon={
         <img
           src={`${STATIC_ASSETS}/brands/metamask.svg`}
-          className="w-5"
-          alt="Twitter Logo"
+          className="h-4 w-4"
+          alt="MetaMask Logo"
         />
       }
       outline

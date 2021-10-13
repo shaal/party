@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
+import Custom404 from 'src/pages/404'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
 import MorePosts from './MorePosts'
@@ -56,7 +57,7 @@ const ViewPost = () => {
       </GridLayout>
     )
 
-  if (!post) return window.location.replace('/home')
+  if (!post) return <Custom404 />
 
   return (
     <GridLayout>

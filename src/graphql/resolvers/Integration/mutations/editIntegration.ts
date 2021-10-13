@@ -9,25 +9,23 @@ import { EditIntegrationInput } from 'src/__generated__/schema.generated'
  * @returns updated integration
  */
 export const editIntegration = async (
+  query: any,
   input: EditIntegrationInput,
   session: Session | null | undefined
 ) => {
-  const integration = await db.integration.findFirst({
-    where: { userId: session?.userId }
-  })
+  const data = {
+    wakatimeAPIKey: input.wakatimeAPIKey,
+    spotifyRefreshToken: input.spotifyRefreshToken,
+    ethAddress: input.ethAddress
+  }
 
-  return await db.integration.update({
-    where: {
-      id: integration?.id
-    },
-    data: {
-      wakatimeAPIKey: input.wakatimeAPIKey,
-      spotifyRefreshToken: input.spotifyRefreshToken,
-      user: {
-        update: {
-          ethAddress: input.ethAddress
-        }
-      }
+  return await db.integration.upsert({
+    ...query,
+    where: { userId: session!.userId },
+    update: data,
+    create: {
+      ...data,
+      user: { connect: { id: session!.userId } }
     }
   })
 }

@@ -4,7 +4,9 @@ import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
+import { md5 } from 'hash-wasm'
 
+import { communityData } from './seeds/communities'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
 const hplipsum = require('hplipsum')
@@ -33,12 +35,14 @@ async function main() {
   console.log('All invites are deleted 🗑️')
   await db.user.deleteMany()
   console.log('All users are deleted 🗑️')
+  await db.community.deleteMany()
+  console.log('All communities are deleted 🗑️')
 
   // Fake User
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding User - @${username} ✅`)
+    console.log(`Seeding User - @${username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -54,7 +58,6 @@ async function main() {
             bio: faker.commerce.productDescription()
           }
         },
-        integrations: { create: {} },
         posts: {
           create: {
             body: faker.lorem.sentence(20)
@@ -66,7 +69,7 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding User - @${user.username} ✅`)
+    console.log(`Seeding User - @${user.username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: user.email,
@@ -74,7 +77,6 @@ async function main() {
         isStaff: user.isStaff,
         inWaitlist: false,
         hashedPassword: await hashPassword(user.username),
-        ethAddress: user.ethAddress,
         profile: {
           create: {
             name: user.name,
@@ -84,14 +86,14 @@ async function main() {
             bio: user.bio
           }
         },
-        integrations: { create: {} }
+        integrations: { create: { ethAddress: user.ethAddress } }
       }
     })
   }
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding Product - #${product.slug} ✅`)
+    console.log(`Seeding Product - #${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
@@ -107,11 +109,31 @@ async function main() {
     })
   }
 
+  // Community
+  for (const community of communityData) {
+    console.log(`Seeding Community - ${community.slug} 🎭`)
+    await db.community.create({
+      data: {
+        name: community.name,
+        slug: community.slug,
+        avatar: `https://avatar.tobi.sh/${await md5(
+          community.slug
+        )}.svg?text=🎭`,
+        description: community.description,
+        owner: {
+          connect: {
+            username: community.username
+          }
+        }
+      }
+    })
+  }
+
   // Post
   for (let i = 0; i < 200; i++) {
     const post = hplipsum(10)
     const done = faker.datatype.boolean()
-    console.log(`Seeding Post - ${post} ✅`)
+    console.log(`Seeding Post - ${post} 📜`)
     await db.post.create({
       data: {
         body: post,

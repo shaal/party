@@ -12,7 +12,6 @@ export const PROFILE_SETTINGS_QUERY = gql`
       id
       username
       email
-      ethAddress
       profile {
         id
         name
@@ -21,6 +20,9 @@ export const PROFILE_SETTINGS_QUERY = gql`
         avatar
         cover
         coverBg
+      }
+      integrations {
+        ethAddress
       }
     }
   }

@@ -4,8 +4,6 @@ CREATE TABLE `users` (
     `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `hashedPassword` VARCHAR(191) NOT NULL,
-    `ethAddress` VARCHAR(191),
-    `nonce` VARCHAR(191),
     `spammy` BOOLEAN NOT NULL DEFAULT false,
     `isVerified` BOOLEAN NOT NULL DEFAULT false,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
@@ -16,7 +14,6 @@ CREATE TABLE `users` (
 
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
-    UNIQUE INDEX `users_ethAddress_key`(`ethAddress`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -227,8 +224,11 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
+    `ethAddress` VARCHAR(191),
+    `ethNonce` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `integrations_ethAddress_key`(`ethAddress`),
     UNIQUE INDEX `integrations_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

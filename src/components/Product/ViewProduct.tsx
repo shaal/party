@@ -6,6 +6,7 @@ import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Product } from 'src/__generated__/schema.generated'
+import Custom404 from 'src/pages/404'
 
 import { ProductQuery } from './__generated__/ViewProduct.generated'
 import Details from './Details'
@@ -50,7 +51,7 @@ const ViewProduct = () => {
   if (!router.isReady || loading)
     return <PageLoading message="Loading product" />
 
-  if (!product) return window.location.replace('/home')
+  if (!product) return <Custom404 />
 
   return (
     <GridLayout>
