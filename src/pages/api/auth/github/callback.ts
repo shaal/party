@@ -49,8 +49,9 @@ const handler = async (
     })
 
     if (user) {
-      await createSession(req, user as any)
-      return res.redirect('/home')
+      if (!user?.inWaitlist) {
+        await createSession(req, user as any)
+      }
     } else {
       await db.user.create({
         data: {
@@ -69,8 +70,11 @@ const handler = async (
           }
         }
       })
-      return res.redirect('/waitlist')
     }
+
+    return res.redirect(
+      user ? (user?.inWaitlist ? '/waitlist' : '/home') : '/waitlist'
+    )
   } catch (error: any) {
     return res.json({
       status: 'error',
