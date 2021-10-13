@@ -1,8 +1,7 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
-import { reservedSlugs } from '../Common/queries/reservedSlugs'
 import { createProduct } from './mutations/createProduct'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
@@ -117,7 +116,7 @@ builder.mutationField('editProduct', (t) =>
     authScopes: { user: true },
     nullable: true,
     resolve: async (query, parent, { input }) => {
-      if (reservedSlugs.includes(input.slug)) {
+      if (RESERVED_SLUGS.includes(input.slug)) {
         throw new Error(`Product slug "${input.slug}" is reserved by Devparty.`)
       }
 

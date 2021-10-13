@@ -8,12 +8,24 @@ interface ClientOptions {
   initialState?: Record<string, any>
 }
 
+/**
+ * Helps to create a new apollo client from _app.tsx
+ * @param initialState - Apollo's intial state
+ * @returns a new apollo client
+ */
 export function useApollo(initialState?: Record<string, any>) {
   const client = createApolloClient({ initialState })
 
   return client
 }
 
+/**
+ * Creates a new apollo client
+ * @param param - createApolloClient parameters
+ * @param param.initialState - Apollo's intial state
+ * @param param.headers - HTTP headers
+ * @returns the new client
+ */
 export function createApolloClient({ initialState, headers }: ClientOptions) {
   let nextClient = apolloClient
   const ssrMode = typeof window === 'undefined'
@@ -71,13 +83,25 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
     })
   }
 
+  /**
+   * If your page has Next.js data fetching methods that use Apollo Client,
+   * the initial state gets hydrated here
+   */
   if (initialState) {
+    // Get existing cache, loaded during client side data fetching
     const existingCache = nextClient.extract()
+
+    /**
+     * Restore the cache using the data passed from
+     * getStaticProps/getServerSideProps combined with the existing cached data
+     */
     nextClient.cache.restore({ ...existingCache, ...initialState })
   }
 
+  // For SSG and SSR always create a new Apollo Client
   if (ssrMode) return nextClient
 
+  // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = nextClient
 
   return nextClient

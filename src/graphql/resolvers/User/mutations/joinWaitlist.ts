@@ -1,15 +1,20 @@
-import { reservedSlugs } from '@graphql/resolvers/Common/queries/reservedSlugs'
 import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 import { User } from '.prisma/client'
 
+/**
+ * Add user to the waitlist
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param input - JoinWaitlistInput
+ * @returns the user in the waitlist
+ */
 export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
-  if (reservedSlugs.includes(input.username)) {
+  if (RESERVED_SLUGS.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
 

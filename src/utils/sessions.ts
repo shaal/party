@@ -8,9 +8,16 @@ import { IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
-const SESSION_TTL = 182 * 24 * 3600
+/**
+ * The duration that the session will be valid for, in seconds (default is 30 days) and
+ * we will automatically renew these sessions after 25% of the validity period.
+ */
+const SESSION_TTL = 30 * 24 * 3600
+
+// The key that we store the actual database ID of the session in
 const IRON_SESSION_ID_KEY = 'sessionID'
 
+// Use a custom IncomingMessage type
 interface RequestWithSession extends IncomingMessage {
   session: import('next-iron-session').Session
 }
@@ -37,6 +44,12 @@ export const sessionOptions: SessionOptions = {
   }
 }
 
+/**
+ * Create session for the given user
+ * @param request - HTTP request
+ * @param user - Session to be created for the given user
+ * @returns session of the given user
+ */
 export async function createSession(request: IncomingMessage, user: User) {
   const session = await db.session.create({
     data: {
@@ -55,6 +68,11 @@ export async function createSession(request: IncomingMessage, user: User) {
   return session
 }
 
+/**
+ * Remove session
+ * @param request - HTTP request
+ * @param session - Session in which need to be removed
+ */
 export async function removeSession(
   request: IncomingMessage,
   session: Session
@@ -66,6 +84,7 @@ export async function removeSession(
 }
 
 const sessionCache = new WeakMap<IncomingMessage, Session | null>()
+
 export async function resolveSession({
   req,
   res
@@ -89,6 +108,7 @@ export async function resolveSession({
     })
 
     if (session) {
+      // If we resolve a session in the request, we'll automatically renew it 25% of the session has elapsed
       const shouldRefreshSession =
         differenceInSeconds(session.expiresAt, new Date()) < 0.75 * SESSION_TTL
 

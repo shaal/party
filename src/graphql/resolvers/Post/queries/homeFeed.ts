@@ -2,6 +2,13 @@ import { PostType, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import Redis from 'ioredis'
 
+/**
+ * Gets the collection of posts for home page
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param type - Post Type
+ * @param session - Current user's session
+ * @returns the collection of posts for home page
+ */
 export const homeFeed = async (
   query: any,
   type: string,

@@ -5,6 +5,12 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 import { hasFollowed } from '../queries/hasFollowed'
 import { User } from '.prisma/client'
 
+/**
+ * Follow the give user
+ * @param currentUserId - Current user ID
+ * @param userId - Target user ID
+ * @returns the followed user
+ */
 export const toggleFollow = async (currentUserId: string, userId: string) => {
   try {
     // Unfollow

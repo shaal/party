@@ -1,5 +1,11 @@
 import { db } from '@utils/prisma'
 
+/**
+ * Check whether user voted for a poll
+ * @param currentUserId - Current user ID
+ * @param pollId - Poll ID need to check it is voted
+ * @returns the user has voted the poll
+ */
 export const hasVoted = async (currentUserId: string, pollId: string) => {
   const user = await db.poll.findUnique({
     where: { id: pollId },

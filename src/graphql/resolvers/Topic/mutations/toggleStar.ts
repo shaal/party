@@ -3,6 +3,12 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { hasStarred } from '../queries/hasStarred'
 
+/**
+ * Star a topic
+ * @param currentUserId - Current user ID
+ * @param topicId - Topic ID to be starred
+ * @returns the starred topic
+ */
 export const toggleStar = async (currentUserId: string, topicId: string) => {
   try {
     // Unstar

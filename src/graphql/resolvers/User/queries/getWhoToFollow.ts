@@ -2,6 +2,12 @@ import { db } from '@utils/prisma'
 
 import { Session } from '.prisma/client'
 
+/**
+ * Get list of tailored users to follow
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param session - Current user's session
+ * @returns list of users to follow
+ */
 export const getWhoToFollow = async (
   query: any,
   session: Session | null | undefined

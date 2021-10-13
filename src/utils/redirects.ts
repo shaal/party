@@ -2,6 +2,12 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 import { resolveSession } from './sessions'
 
+/**
+ * Check for the route is unauthenticated
+ * @param context - Next.js server side props context
+ * @param redirect - Redirect to the target URL
+ * @returns redirect props
+ */
 export async function unauthenticatedRoute(
   context: GetServerSidePropsContext,
   redirect: string = '/home'
@@ -22,6 +28,12 @@ export async function unauthenticatedRoute(
   }
 }
 
+/**
+ * Check for the route is authenticated
+ * @param context - Next.js server side props context
+ * @param redirect - Redirect to the target URL
+ * @returns redirect props
+ */
 export async function authenticatedRoute(
   context: GetServerSidePropsContext,
   redirect = '/login'
@@ -44,6 +56,12 @@ export async function authenticatedRoute(
   }
 }
 
+/**
+ * Check for the route is gated to staff
+ * @param context - Next.js server side props context
+ * @param redirect - Redirect to the target URL
+ * @returns redirect props
+ */
 export async function staffRoute(
   context: GetServerSidePropsContext,
   redirect = '/'

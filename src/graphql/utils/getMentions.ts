@@ -1,3 +1,8 @@
+/**
+ * Extract unique usernames from the given post body
+ * @param postBody - Body of the Post
+ * @returns array of user usernames
+ */
 export const getMentions = (postBody: string) => {
   var regexp = /\B@\w\w+\b/g
   var result = postBody.match(regexp)

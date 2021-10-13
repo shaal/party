@@ -4,6 +4,13 @@ import { createNotification } from '@graphql/resolvers/Notification/mutations/cr
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
+/**
+ * Like a post
+ * @param query - Contains an include object to pre-load data needed to resolve nested parts.
+ * @param userId  - Current user ID
+ * @param postId - Post ID need to be liked
+ * @returns a liked post
+ */
 export const togglePostLike = async (
   query: any,
   userId: string,

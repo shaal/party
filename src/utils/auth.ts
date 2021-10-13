@@ -4,8 +4,17 @@ import { bcrypt, bcryptVerify } from 'hash-wasm'
 
 import { db } from './prisma'
 
+/**
+ * This is the cost factor of the bcrypt hash function. In general, this number
+ * should be changed as CPUs get faster.
+ */
 const COST_FACTOR = 11
 
+/**
+ * Hash a given raw text password
+ * @param password - Raw text password
+ * @returns a new hashed password
+ */
 export async function hashPassword(password: string): Promise<string> {
   const salt = crypto.randomBytes(16)
 
@@ -19,6 +28,12 @@ export async function hashPassword(password: string): Promise<string> {
   return key
 }
 
+/**
+ * Verifies the given hashed password is correct
+ * @param hashedPassword - Hashed password
+ * @param password - Raw text password
+ * @returns the password is correct or not
+ */
 export function verifyPassword(
   hashedPassword: string,
   password: string
@@ -29,6 +44,12 @@ export function verifyPassword(
   })
 }
 
+/**
+ * Authenticate the user by email and password
+ * @param email - User's email
+ * @param password - User's password
+ * @returns the authenticated user
+ */
 export async function authenticateUser(email: string, password: string) {
   const user = await db.user.findFirst({
     where: {

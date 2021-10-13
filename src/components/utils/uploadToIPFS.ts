@@ -1,3 +1,8 @@
+/**
+ * Upload image to IPFS
+ * @param data - File data (images and videos)
+ * @returns ipfs URL
+ */
 export async function uploadToIPFS(data: File) {
   const formData = new FormData()
   formData.append('file', data, 'img')

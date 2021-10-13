@@ -3,6 +3,12 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { EditPostInput } from 'src/__generated__/schema.generated'
 
+/**
+ * Deletes a post
+ * @param input - EditPostInput
+ * @param session - Current user's session
+ * @returns a Result (Success or Failed)
+ */
 export const deletePost = async (
   input: EditPostInput | null | undefined,
   session: Session | null | undefined
