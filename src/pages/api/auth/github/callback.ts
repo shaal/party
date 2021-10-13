@@ -65,7 +65,8 @@ const handler = async (
               avatar: avatar_url,
               cover: getRandomCover().image,
               coverBg: getRandomCover().color,
-              bio: bio
+              bio: bio,
+              github: login
             }
           }
         }
