@@ -1,5 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
-import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import {
+  GridItemEight,
+  GridItemTwelve,
+  GridLayout
+} from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
@@ -56,9 +60,9 @@ const ViewCommunity: React.FC = () => {
         image={community?.avatar as string}
         path={`/products/${community?.slug}`}
       />
-      <GridItemFour>
+      <GridItemTwelve>
         <Details community={community as Community} />
-      </GridItemFour>
+      </GridItemTwelve>
       <GridItemEight>
         <div className="space-y-5">
           <ErrorMessage title="Failed to load post" error={error} />

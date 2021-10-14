@@ -1,6 +1,7 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
+import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
@@ -23,67 +24,86 @@ const Details: React.FC<Props> = ({ community }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <div className="mb-4">
-      <div className="px-5 sm:px-0 space-y-5">
-        <img
-          src={imagekitURL(community?.avatar as string, 200, 200)}
-          className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
-          alt={`#${community?.slug}'s avatar`}
-        />
-        <div>
-          <div className="text-2xl font-bold flex items-center gap-1.5">
-            {community?.name}
-          </div>
-          <div className="text-xl">{community?.slug}</div>
-        </div>
-        <div>
-          <Link href={`/communities/${community?.slug}/members`} passHref>
-            <a>
-              <div className="text-xl">{community?.members?.totalCount}</div>
-              <div className="text-gray-500">Members</div>
-            </a>
-          </Link>
-        </div>
-        {currentUser?.id !== community?.owner?.id ? (
-          <Join community={community} showText />
-        ) : (
-          <Link href={`/communities/${community?.slug}/settings`} passHref>
-            <Button
-              size="md"
-              variant="success"
-              icon={<PencilIcon className="h-4 w-4" />}
-            >
-              Edit Community
-            </Button>
-          </Link>
-        )}
-        {community?.description && (
-          <div className="linkify">
-            <Linkify options={linkifyOptions}>{community?.description}</Linkify>
-          </div>
-        )}
-        <Card>
-          <CardBody className="space-y-3">
-            <div className="flex items-center space-x-1.5">
-              <FingerPrintIcon className="h-5 w-5" />
-              <div>Moderated by</div>
-              <div className="flex items-center space-x-1">
-                <img
-                  className="h-5 w-5 rounded-lg"
-                  src={community?.owner?.profile?.avatar}
-                  alt={`@${community?.owner?.username}'s username'`}
-                />
-                <Link href={`/@/${community?.owner?.username}`}>
-                  <a>
-                    <Slug slug={community?.owner?.username} prefix="@" />
-                  </a>
-                </Link>
+    <Card className="mb-4">
+      <CardBody>
+        <GridLayout className="!p-0">
+          <GridItemEight>
+            <div className="flex items-center space-x-5">
+              <img
+                src={imagekitURL(community?.avatar as string, 200, 200)}
+                className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
+                alt={`#${community?.slug}'s avatar`}
+              />
+              <div>
+                <div>
+                  <div className="text-2xl font-bold flex items-center gap-1.5">
+                    {community?.name}
+                  </div>
+                  <div className="text-xl">{community?.slug}</div>
+                </div>
+                {community?.description && (
+                  <div className="linkify">
+                    <Linkify options={linkifyOptions}>
+                      {community?.description}
+                    </Linkify>
+                  </div>
+                )}
               </div>
             </div>
-          </CardBody>
-        </Card>
+          </GridItemEight>
+          <GridItemFour>
+            <Card>
+              <CardBody className="space-y-3">
+                <div className="flex items-center space-x-1.5">
+                  <FingerPrintIcon className="h-5 w-5" />
+                  <div>Moderated by</div>
+                  <div className="flex items-center space-x-1">
+                    <img
+                      className="h-5 w-5 rounded-lg"
+                      src={community?.owner?.profile?.avatar}
+                      alt={`@${community?.owner?.username}'s username'`}
+                    />
+                    <Link href={`/@/${community?.owner?.username}`}>
+                      <a>
+                        <Slug slug={community?.owner?.username} prefix="@" />
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+          </GridItemFour>
+        </GridLayout>
+      </CardBody>
+      <div className="border-t" />
+      <div className="flex items-center justify-between py-4 px-5">
+        <div>
+          <div>
+            <Link href={`/communities/${community?.slug}/members`} passHref>
+              <a>
+                <div className="text-xl">{community?.members?.totalCount}</div>
+                <div className="text-gray-500">Members</div>
+              </a>
+            </Link>
+          </div>
+        </div>
+        <div>
+          {currentUser?.id !== community?.owner?.id ? (
+            <Join community={community} showText />
+          ) : (
+            <Link href={`/communities/${community?.slug}/settings`} passHref>
+              <Button
+                size="md"
+                variant="success"
+                icon={<PencilIcon className="h-4 w-4" />}
+              >
+                Edit Community
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
+    </Card>
   )
 }
 
