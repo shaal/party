@@ -33,6 +33,7 @@ builder.prismaObject('Integration', {
         return integration?.spotifyRefreshToken
       }
     }),
+    githubId: t.exposeString('githubId', { nullable: true }),
     ethAddress: t.exposeString('ethAddress', { nullable: true }),
 
     // Relations

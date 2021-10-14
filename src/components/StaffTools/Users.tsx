@@ -46,6 +46,7 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
           createdAt
           updatedAt
           invite {
+            id
             code
             usedTimes
           }
@@ -54,6 +55,10 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
             name
             bio
             avatar
+          }
+          integrations {
+            githubId
+            ethAddress
           }
         }
       }
@@ -158,7 +163,9 @@ const StaffToolsUsers: React.FC = () => {
                         <div>Integrations:</div>
                         <div className="flex items-center space-x-1.5">
                           {!user?.hasSpotifyIntegration &&
-                            !user?.hasWakatimeIntegration && <div>None</div>}
+                            !user?.hasWakatimeIntegration &&
+                            !user?.integrations?.githubId &&
+                            !user?.integrations?.ethAddress && <div>None</div>}
                           {user?.hasSpotifyIntegration && (
                             <img
                               className="h-4 w-4"
@@ -172,6 +179,31 @@ const StaffToolsUsers: React.FC = () => {
                               src={`${STATIC_ASSETS}/brands/wakatime-dark.svg`}
                               alt="Wakatime Logo"
                             />
+                          )}
+                          {user?.hasWakatimeIntegration && (
+                            <img
+                              className="h-4 w-4"
+                              src={`${STATIC_ASSETS}/brands/wakatime-dark.svg`}
+                              alt="Wakatime Logo"
+                            />
+                          )}
+                          {user?.integrations?.githubId && (
+                            <Tooltip content={user?.integrations?.githubId}>
+                              <img
+                                className="h-4 w-4"
+                                src={`${STATIC_ASSETS}/brands/github-dark.svg`}
+                                alt="GitHub Logo"
+                              />
+                            </Tooltip>
+                          )}
+                          {user?.integrations?.ethAddress && (
+                            <Tooltip content={user?.integrations?.ethAddress}>
+                              <img
+                                className="h-4 w-4"
+                                src={`${STATIC_ASSETS}/brands/metamask.svg`}
+                                alt="MetaMask Logo"
+                              />
+                            </Tooltip>
                           )}
                         </div>
                       </div>
