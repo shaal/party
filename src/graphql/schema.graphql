@@ -98,7 +98,8 @@ input CreatePostInput {
   done: Boolean! = true
   parentId: ID
   polls: String
-  productId: ID
+  targetId: ID
+  targetType: String
   title: String
   tokenId: String
   type: String! = "POST"
@@ -371,6 +372,7 @@ type Product {
   posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
   producthunt: String
   slug: String!
+  subscribers(after: String, before: String, first: Int, last: Int): ProductSubscribersConnection!
   twitter: String
   updatedAt: DateTime!
   website: String
@@ -385,6 +387,17 @@ type ProductPostsConnection {
 type ProductPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type ProductSubscribersConnection {
+  edges: [ProductSubscribersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProductSubscribersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type Profile {
@@ -691,6 +704,7 @@ type TopicStarrersConnectionEdge {
 
 type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
+  communities(after: String, before: String, first: Int, last: Int): UserCommunitiesConnection!
   createdAt: DateTime!
   email: String!
   featuredAt: DateTime
@@ -726,6 +740,17 @@ type UserBadgesConnection {
 type UserBadgesConnectionEdge {
   cursor: String!
   node: Badge!
+}
+
+type UserCommunitiesConnection {
+  edges: [UserCommunitiesConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserCommunitiesConnectionEdge {
+  cursor: String!
+  node: Community!
 }
 
 type UserFollowersConnection {

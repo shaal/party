@@ -126,7 +126,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       validate: { minLength: 1, maxLength: 190 }
     }),
     parentId: t.id({ required: false }),
-    productId: t.id({ required: false }),
+    targetId: t.id({ required: false }),
+    targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
     attachments: t.string({ required: false }),

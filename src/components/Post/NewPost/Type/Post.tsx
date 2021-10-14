@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import Attachment from '../Attachment'
-import SelectProduct from '../SelectProduct'
+import SelectTarget from '../SelectTarget'
 import {
   CreatePostMutation,
   CreatePostMutationVariables
@@ -28,7 +28,10 @@ const newPostSchema = object({
 const PostType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [createPost, createPostResult] = useMutation<
     CreatePostMutation,
     CreatePostMutationVariables
@@ -72,7 +75,8 @@ const PostType: React.FC = () => {
               type: 'POST',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
-              productId: selectedProduct as string
+              targetId: selectedTarget.targetId,
+              targetType: selectedTarget.targetType
             }
           }
         })
@@ -86,7 +90,7 @@ const PostType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
-          <SelectProduct setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
           type="submit"

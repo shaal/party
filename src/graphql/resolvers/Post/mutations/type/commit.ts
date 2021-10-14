@@ -20,7 +20,14 @@ export const commit = async (
       userId: session!.userId,
       body: input.body,
       type: 'COMMIT',
-      productId: input.productId ? input.productId : null
+      productId:
+        input.targetId && input.targetType === 'Product'
+          ? input.targetId
+          : null,
+      communityId:
+        input.targetId && input.targetType === 'Community'
+          ? input.targetId
+          : null
     }
   })
 
