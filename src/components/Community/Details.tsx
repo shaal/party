@@ -80,14 +80,14 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="border-t" />
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
-          <Button outline>
+          <Button variant="secondary" outline>
             <Link href={`/communities/${community?.slug}/members`} passHref>
               <a>
                 <div>Home</div>
               </a>
             </Link>
           </Button>
-          <Button outline>
+          <Button variant="primary" light>
             <Link href={`/communities/${community?.slug}/members`} passHref>
               <a>
                 <div>Members</div>
