@@ -5,7 +5,7 @@ import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, GlobeIcon } from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { useContext } from 'react'
-import { Product } from 'src/__generated__/schema.generated'
+import { Community, Product } from 'src/__generated__/schema.generated'
 
 import { SelectTargetQuery } from './__generated__/SelectTarget.generated'
 
@@ -45,7 +45,7 @@ interface Props {
 }
 
 const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
-  const [product, setProduct] = useState<Product | null>()
+  const [selected, setSelected] = useState<Product | Community | null>()
   const { currentUser } = useContext(AppContext)
   const { data } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY, {
     variables: { username: currentUser?.username }
@@ -53,9 +53,12 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
   const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
   const communities = data?.user?.communities?.edges?.map((edge) => edge?.node)
 
-  const handleSelectTarget = (product: Product) => {
-    setProduct(product)
-    setSelectedTarget(product?.id)
+  const handleSelectTarget = (
+    target: Product | Community,
+    type: 'Product' | 'Community'
+  ) => {
+    setSelected(target)
+    setSelectedTarget({ targetId: target?.id, targetType: type })
   }
 
   return (
@@ -70,7 +73,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
               icon={<ChevronDownIcon className="h-4 w-4" />}
               outline
             >
-              <div>Everywhere</div>
+              <div>{selected ? selected?.name : 'Everywhere'}</div>
             </Popover.Button>
             <Transition
               as={Fragment}
@@ -85,7 +88,10 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
                 <div className="overflow-hidden rounded-lg shadow-md border">
                   <div className="relative bg-white p-4 space-y-2">
                     <div className="font-bold">Where to post?</div>
-                    <button className="flex items-center space-x-2 text-sm">
+                    <button
+                      type="button"
+                      className="flex items-center space-x-2 text-sm"
+                    >
                       <GlobeIcon className="h-5 w-5 text-brand-500" />
                       <div>Everywhere</div>
                     </button>
@@ -94,7 +100,13 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
                       <div className="space-y-2">
                         {products?.map((product: any) => (
                           <div key={product?.name}>
-                            <button className="flex items-center space-x-2">
+                            <button
+                              type="button"
+                              className="flex items-center space-x-2"
+                              onClick={() =>
+                                handleSelectTarget(product, 'Product')
+                              }
+                            >
                               <img
                                 className="h-8 w-8 rounded"
                                 src={product?.avatar}
@@ -117,7 +129,13 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
                       <div className="space-y-2">
                         {communities?.map((community: any) => (
                           <div key={community?.name}>
-                            <button className="flex items-center space-x-2">
+                            <button
+                              type="button"
+                              className="flex items-center space-x-2"
+                              onClick={() =>
+                                handleSelectTarget(community, 'Community')
+                              }
+                            >
                               <img
                                 className="h-8 w-8 rounded"
                                 src={community?.avatar}
