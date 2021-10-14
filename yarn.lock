@@ -6371,10 +6371,10 @@ linkify-react@^3.0.1:
   resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-3.0.1.tgz#fb0215a9cdaaea4bd96a513f5236453cd005e07a"
   integrity sha512-IjOFAMCofGr2Do67E9AzJJGz7HT5QdI5KMqahRHxj0Y4XRWcvDz6CGPCsCAW//QsaAS8NlBE+bX8V5kVhLx9DQ==
 
-linkifyjs@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.2.tgz#f1d300300ef21dab0eaabdd8a661186723f924ba"
-  integrity sha512-PSHDxSAWkZQ208W4PI/+yo9NHSI6NAHKmazMtyRavyibJgrPOioPIjQn7zyapASQlKoPmAV+tOlqzTqX3XFWXQ==
+linkifyjs@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.3.tgz#51ea2160b4c60c2c87c27757a1e9eacd422c6076"
+  integrity sha512-ba5opS5wRHSbDC8VaiDdN14nPGm6LqyRsIPQZGG4qXV4scFdrPneT/uoZOaq9QAPBf6W9I9D/6tNSzWH//815Q==
 
 lint-staged@^11.2.3:
   version "11.2.3"
