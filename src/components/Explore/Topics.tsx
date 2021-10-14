@@ -102,7 +102,7 @@ const Topics: React.FC = () => {
           </div>
         </Card>
       ) : (
-        <Card>
+        <Card className="mb-4">
           <CardBody className="space-y-3">
             <div>Join Devparty today!</div>
             <div className="flex space-x-1.5">
