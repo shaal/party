@@ -39,7 +39,7 @@ const handler = async (
     const accessTokenResponse = await accessToken.json()
     const octokit = new Octokit({ auth: accessTokenResponse?.access_token })
     const {
-      data: { login, name, bio, avatar_url }
+      data: { id, login, name, bio, avatar_url }
     } = await octokit.rest.users.getAuthenticated()
     const { data: emails } =
       await octokit.rest.users.listEmailsForAuthenticatedUser()
@@ -61,6 +61,9 @@ const handler = async (
                 bio: bio,
                 github: login
               }
+            },
+            integrations: {
+              create: { githubId: id.toString() }
             }
           }
         })
