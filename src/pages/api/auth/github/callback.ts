@@ -45,9 +45,11 @@ const handler = async (
       await octokit.rest.users.listEmailsForAuthenticatedUser()
     const githubEmail = emails.find((o: any) => o.primary)?.email
 
-    const user = await db.user.findFirst({
-      where: { email: githubEmail }
+    const integration = await db.integration.findFirst({
+      where: { githubId: id.toString() },
+      select: { user: true }
     })
+    const user = integration?.user
 
     if (user) {
       if (!user?.inWaitlist) {
@@ -61,9 +63,6 @@ const handler = async (
                 bio: bio,
                 github: login
               }
-            },
-            integrations: {
-              create: { githubId: id.toString() }
             }
           }
         })
@@ -85,6 +84,9 @@ const handler = async (
               bio: bio,
               github: login
             }
+          },
+          integrations: {
+            create: { githubId: id.toString() }
           }
         }
       })
