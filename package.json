@@ -43,7 +43,7 @@
     "hash-wasm": "^4.9.0",
     "ioredis": "^4.28.0",
     "linkify-plugin-hashtag": "^3.0.2",
-    "linkify-plugin-mention": "^3.0.2",
+    "linkify-plugin-mention": "^3.0.3",
     "linkify-react": "^3.0.1",
     "linkifyjs": "^3.0.2",
     "markdown-to-jsx": "^7.1.3",
