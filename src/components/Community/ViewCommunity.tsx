@@ -27,6 +27,7 @@ export const COMMUNITY_QUERY = gql`
       avatar
       description
       hasJoined
+      createdAt
       owner {
         id
         username

@@ -8,11 +8,17 @@ import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import { FingerPrintIcon, PencilIcon } from '@heroicons/react/outline'
+import {
+  ClockIcon,
+  FingerPrintIcon,
+  PencilIcon,
+  UserGroupIcon
+} from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { Community } from 'src/__generated__/schema.generated'
+import * as timeago from 'timeago.js'
 
 import Join from './Join'
 
@@ -55,6 +61,10 @@ const Details: React.FC<Props> = ({ community }) => {
             <Card>
               <CardBody className="space-y-3">
                 <div className="flex items-center space-x-1.5">
+                  <UserGroupIcon className="h-5 w-5" />
+                  <div>{community?.members?.totalCount} members joined</div>
+                </div>
+                <div className="flex items-center space-x-1.5">
                   <FingerPrintIcon className="h-5 w-5" />
                   <div>Moderated by</div>
                   <div className="flex items-center space-x-1">
@@ -69,6 +79,10 @@ const Details: React.FC<Props> = ({ community }) => {
                       </a>
                     </Link>
                   </div>
+                </div>
+                <div className="flex items-center space-x-1.5">
+                  <ClockIcon className="h-5 w-5" />
+                  <div>Created {timeago.format(community?.createdAt)}</div>
                 </div>
               </CardBody>
             </Card>
