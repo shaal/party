@@ -109,7 +109,8 @@ const PollType: React.FC = () => {
               body,
               polls: JSON.stringify(polls) as string,
               type: 'POLL',
-              productId: selectedTarget.targetId
+              targetId: selectedTarget.targetId,
+              targetType: selectedTarget.targetType
             }
           }
         })

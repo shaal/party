@@ -76,7 +76,8 @@ const CommitType: React.FC = () => {
             input: {
               body: url,
               type: 'COMMIT',
-              productId: selectedTarget.targetId
+              targetId: selectedTarget.targetId,
+              targetType: selectedTarget.targetType
             }
           }
         })

@@ -75,7 +75,8 @@ const PostType: React.FC = () => {
               type: 'POST',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
-              productId: selectedTarget.targetId
+              targetId: selectedTarget.targetId,
+              targetType: selectedTarget.targetType
             }
           }
         })
