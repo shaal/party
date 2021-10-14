@@ -98,7 +98,8 @@ input CreatePostInput {
   done: Boolean! = true
   parentId: ID
   polls: String
-  productId: ID
+  targetId: ID
+  targetType: String
   title: String
   tokenId: String
   type: String! = "POST"
