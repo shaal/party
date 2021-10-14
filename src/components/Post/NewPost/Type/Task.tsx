@@ -14,7 +14,7 @@ import toast from 'react-hot-toast'
 import { boolean, object, string } from 'zod'
 
 import Attachment from '../Attachment'
-import SelectProduct from '../SelectProduct'
+import SelectTarget from '../SelectTarget'
 import {
   CreateTaskMutation,
   CreateTaskMutationVariables
@@ -98,7 +98,7 @@ const TaskType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
-          <SelectProduct setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedProduct={setSelectedProduct} />
         </div>
         <Button
           type="submit"

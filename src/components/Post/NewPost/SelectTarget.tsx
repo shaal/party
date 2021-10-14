@@ -8,10 +8,10 @@ import { Fragment, useState } from 'react'
 import { useContext } from 'react'
 import { Product } from 'src/__generated__/schema.generated'
 
-import { SelectProductQuery } from './__generated__/SelectProduct.generated'
+import { SelectTargetQuery } from './__generated__/SelectTarget.generated'
 
-export const SELECT_PRODUCT_QUERY = gql`
-  query SelectProductQuery($username: String!) {
+export const SELECT_TARGET_QUERY = gql`
+  query SelectTargetQuery($username: String!) {
     user(username: $username) {
       ownedProducts {
         edges {
@@ -31,21 +31,21 @@ interface Props {
   setSelectedProduct: React.Dispatch<React.SetStateAction<string>>
 }
 
-const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
+const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
   const [product, setProduct] = useState<Product | null>()
   const { currentUser } = useContext(AppContext)
-  const { data } = useQuery<SelectProductQuery>(SELECT_PRODUCT_QUERY, {
+  const { data } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY, {
     variables: { username: currentUser?.username }
   })
   const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
 
-  const handleSelectProduct = (product: Product) => {
+  const handleSelectTarget = (product: Product) => {
     setProduct(product)
     setSelectedProduct(product?.id)
   }
 
   return (
-    <Listbox value={product} onChange={handleSelectProduct}>
+    <Listbox value={product} onChange={handleSelectTarget}>
       {({ open }) => (
         <div className="">
           <Listbox.Button className="flex items-center justify-between bg-white dark:bg-gray-900 relative w-full border border-gray-300 dark:border-gray-800 rounded-lg px-3 py-0.5 cursor-default focus:outline-none text-sm">
@@ -102,4 +102,4 @@ const SelectProduct: React.FC<Props> = ({ setSelectedProduct }) => {
   )
 }
 
-export default SelectProduct
+export default SelectTarget

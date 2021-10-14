@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import Attachment from '../Attachment'
-import SelectProduct from '../SelectProduct'
+import SelectTarget from '../SelectTarget'
 import {
   CreatePostMutation,
   CreatePostMutationVariables
@@ -86,7 +86,7 @@ const PostType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
-          <SelectProduct setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedProduct={setSelectedProduct} />
         </div>
         <Button
           type="submit"

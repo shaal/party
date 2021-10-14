@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import SelectProduct from '../SelectProduct'
+import SelectTarget from '../SelectTarget'
 import {
   CreateCommitMutation,
   CreateCommitMutationVariables
@@ -88,7 +88,7 @@ const CommitType: React.FC = () => {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
-          <SelectProduct setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedProduct={setSelectedProduct} />
         </div>
         <Button
           type="submit"
