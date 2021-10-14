@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import {
   GridItemEight,
+  GridItemFour,
   GridItemTwelve,
   GridLayout
 } from '@components/GridLayout'
@@ -14,6 +15,7 @@ import Custom404 from 'src/pages/404'
 
 import { CommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
+import Rules from './Rules'
 
 export const COMMUNITY_QUERY = gql`
   query CommunityQuery($slug: String!) {
@@ -53,22 +55,30 @@ const ViewCommunity: React.FC = () => {
   if (!community) return <Custom404 />
 
   return (
-    <GridLayout>
+    <>
       <DevpartySEO
         title={`${community?.slug} (${community?.name}) · Devparty`}
         description={community?.description as string}
         image={community?.avatar as string}
         path={`/products/${community?.slug}`}
       />
-      <GridItemTwelve>
-        <Details community={community as Community} />
-      </GridItemTwelve>
-      <GridItemEight>
-        <div className="space-y-5">
-          <ErrorMessage title="Failed to load post" error={error} />
-        </div>
-      </GridItemEight>
-    </GridLayout>
+      <GridLayout className="flex-grow-0 pb-0">
+        <GridItemTwelve>
+          <Details community={community as Community} />
+        </GridItemTwelve>
+        <GridItemEight>
+          <div className="space-y-5">
+            <ErrorMessage title="Failed to load post" error={error} />
+          </div>
+        </GridItemEight>
+      </GridLayout>
+      <GridLayout className="flex-grow-0 pt-0 -mt-4">
+        <GridItemEight>WIP</GridItemEight>
+        <GridItemFour>
+          <Rules community={community as Community} />
+        </GridItemFour>
+      </GridLayout>
+    </>
   )
 }
 
