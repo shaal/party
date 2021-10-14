@@ -43,6 +43,7 @@ type Community {
   name: String!
   owner: User!
   posts(after: String, before: String, first: Int, last: Int): CommunityPostsConnection!
+  rules(after: String, before: String, first: Int, last: Int): CommunityRulesConnection!
   slug: String!
 }
 
@@ -66,6 +67,16 @@ type CommunityPostsConnection {
 type CommunityPostsConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type CommunityRulesConnection {
+  edges: [CommunityRulesConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type CommunityRulesConnectionEdge {
+  cursor: String!
+  node: Rule!
 }
 
 input CreateBadgeInput {
@@ -569,6 +580,14 @@ enum Result {
 
 input RevokeSessionInput {
   id: ID!
+}
+
+type Rule {
+  community: Community!
+  description: String
+  id: ID!
+  index: Int!
+  name: String!
 }
 
 type Session {
