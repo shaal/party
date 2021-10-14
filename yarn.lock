@@ -6356,20 +6356,20 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-linkify-plugin-hashtag@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/linkify-plugin-hashtag/-/linkify-plugin-hashtag-3.0.2.tgz#4915e70fe50ca5cc52936446efb2bfd20e16b178"
-  integrity sha512-5yRxhV1xRakwLIUBXVx92EFUIh5HKLxK8tWnuEQ0dzIewd8uRrfUMY5zQ7rBMq9rchKJ8lTgSl1CuaFd59auzg==
+linkify-plugin-hashtag@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/linkify-plugin-hashtag/-/linkify-plugin-hashtag-3.0.3.tgz#7d744764b8c379e9e2482f67923aa41588fd38cf"
+  integrity sha512-60v/jDigRuqa8uWNwKNYx5D6yMAn1GCgNk/JU7SbIgW8DMTDFg/vS1JG4Y2lSUBIJXLkZC5a0ZOTDmpbjwPCWw==
 
 linkify-plugin-mention@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/linkify-plugin-mention/-/linkify-plugin-mention-3.0.3.tgz#8896dfe032610b1ce360d1f934f0dd92748e9e3d"
   integrity sha512-P63yTexhLj975Qm+znP63grkM1WlEW76FljGLfUybZQVz+1gZE89YX3lsdOXVOnLF45VKULDlHqIfuS71QrPOg==
 
-linkify-react@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-3.0.1.tgz#fb0215a9cdaaea4bd96a513f5236453cd005e07a"
-  integrity sha512-IjOFAMCofGr2Do67E9AzJJGz7HT5QdI5KMqahRHxj0Y4XRWcvDz6CGPCsCAW//QsaAS8NlBE+bX8V5kVhLx9DQ==
+linkify-react@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-3.0.3.tgz#97d420694cb173e46f75fb2b7de6f3887059ad4f"
+  integrity sha512-CdERZyocGB+2sHYKMKltAWy5TyelgocnMI7SU5vdT0ojtZd1u8sRuntXrxjA3tvgTirtLm2nD7gDdJFaVXvDAw==
 
 linkifyjs@^3.0.3:
   version "3.0.3"
