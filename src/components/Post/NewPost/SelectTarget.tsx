@@ -50,9 +50,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
     variables: { username: currentUser?.username }
   })
   const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
-  const communities = data?.user?.ownedCommunities?.edges?.map(
-    (edge) => edge?.node
-  )
+  const communities = data?.user?.communities?.edges?.map((edge) => edge?.node)
 
   const handleSelectTarget = (product: Product) => {
     setProduct(product)
@@ -74,7 +72,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute z-10 mt-2">
+              <Popover.Panel className="absolute z-10 mt-2 w-screen max-w-[13rem]">
                 <div className="overflow-hidden rounded-lg shadow-md border">
                   <div className="relative bg-white p-3 space-y-2">
                     <div className="font-bold">Where to post?</div>
@@ -96,7 +94,8 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
                               <div className="text-left">
                                 <div className="font-bold">{product?.name}</div>
                                 <div className="text-xs">
-                                  {product?.subscribers?.totalCount} subscribers
+                                  <b>{product?.subscribers?.totalCount}</b>{' '}
+                                  subscribers
                                 </div>
                               </div>
                             </button>
@@ -104,7 +103,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
                         ))}
                       </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 pt-2">
                       <div className="text-sm font-bold">My Communities</div>
                       <div className="space-y-2 text-sm">
                         {communities?.map((community: any) => (
@@ -120,7 +119,8 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
                                   {community?.name}
                                 </div>
                                 <div className="text-xs">
-                                  {community?.members?.totalCount} members
+                                  <b>{community?.members?.totalCount}</b>{' '}
+                                  members
                                 </div>
                               </div>
                             </button>
