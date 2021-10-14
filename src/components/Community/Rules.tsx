@@ -3,6 +3,7 @@ import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Community } from 'src/__generated__/schema.generated'
 
 import { CommunityRulesQuery } from './__generated__/Rules.generated'
@@ -43,6 +44,7 @@ const Rules: React.FC<Props> = ({ community }) => {
       <Card className="mb-4">
         <CardBody>
           <div className="text-lg font-bold">{community?.name} Rules</div>
+          <ErrorMessage title="Failed to load rules" error={error} />
           {loading}
         </CardBody>
         {children}

@@ -15,6 +15,7 @@ import Custom404 from 'src/pages/404'
 
 import { CommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
+import CommunityFeed from './Feed'
 import Rules from './Rules'
 
 export const COMMUNITY_QUERY = gql`
@@ -73,7 +74,9 @@ const ViewCommunity: React.FC = () => {
         </GridItemEight>
       </GridLayout>
       <GridLayout className="flex-grow-0 pt-0 -mt-4">
-        <GridItemEight>WIP</GridItemEight>
+        <GridItemEight>
+          <CommunityFeed community={community as Community} />
+        </GridItemEight>
         <GridItemFour>
           <Rules community={community as Community} />
         </GridItemFour>
