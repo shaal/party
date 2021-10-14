@@ -703,6 +703,7 @@ type TopicStarrersConnectionEdge {
 
 type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
+  communities(after: String, before: String, first: Int, last: Int): UserCommunitiesConnection!
   createdAt: DateTime!
   email: String!
   featuredAt: DateTime
@@ -738,6 +739,17 @@ type UserBadgesConnection {
 type UserBadgesConnectionEdge {
   cursor: String!
   node: Badge!
+}
+
+type UserCommunitiesConnection {
+  edges: [UserCommunitiesConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserCommunitiesConnectionEdge {
+  cursor: String!
+  node: Community!
 }
 
 type UserFollowersConnection {
