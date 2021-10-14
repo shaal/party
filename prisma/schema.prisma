@@ -350,6 +350,7 @@ model Integration {
   id                  String  @id @default(uuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
+  githubId            String? @unique
   ethAddress          String? @unique
   ethNonce            String?
 

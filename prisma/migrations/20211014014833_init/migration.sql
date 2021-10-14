@@ -234,10 +234,12 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191),
     `spotifyRefreshToken` VARCHAR(191),
+    `githubId` VARCHAR(191),
     `ethAddress` VARCHAR(191),
     `ethNonce` VARCHAR(191),
     `userId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `integrations_githubId_key`(`githubId`),
     UNIQUE INDEX `integrations_ethAddress_key`(`ethAddress`),
     UNIQUE INDEX `integrations_userId_key`(`userId`),
     PRIMARY KEY (`id`)
