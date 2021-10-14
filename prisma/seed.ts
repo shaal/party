@@ -6,7 +6,7 @@ import { hashPassword } from '@utils/auth'
 import faker from 'faker'
 import { md5 } from 'hash-wasm'
 
-import { communityData } from './seeds/communities'
+import { communityData, rulesData } from './seeds/communities'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
 const hplipsum = require('hplipsum')
@@ -124,7 +124,8 @@ async function main() {
           connect: {
             username: community.username
           }
-        }
+        },
+        rules: { createMany: { data: rulesData } }
       }
     })
   }

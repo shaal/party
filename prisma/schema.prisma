@@ -295,6 +295,7 @@ model Community {
 
 model Rule {
   id          String  @id @default(uuid())
+  index       Int
   name        String
   description String?
 
