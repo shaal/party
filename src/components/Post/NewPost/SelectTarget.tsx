@@ -16,8 +16,10 @@ export const SELECT_TARGET_QUERY = gql`
           node {
             id
             name
-            slug
             avatar
+            subscribers {
+              totalCount
+            }
           }
         }
       }
@@ -74,10 +76,13 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
                               <img
                                 className="h-8 w-8 rounded"
                                 src={product?.avatar}
-                                alt={`#${product?.slug}'s avatar'`}
+                                alt={`#${product?.name}'s avatar'`}
                               />
-                              <div>
-                                <div>{product?.name}</div>
+                              <div className="text-left">
+                                <div className="font-bold">{product?.name}</div>
+                                <div className="text-xs">
+                                  {product?.subscribers?.totalCount} subscribers
+                                </div>
                               </div>
                             </button>
                           </div>
