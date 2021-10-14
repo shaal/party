@@ -1,4 +1,4 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
 
 let apolloClient: ApolloClient<any>
@@ -30,7 +30,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   let nextClient = apolloClient
   const ssrMode = typeof window === 'undefined'
 
-  const httpLink = new HttpLink({
+  const httpLink = createHttpLink({
     uri: 'https://devparty-dev.graphcdn.app',
     headers: headers,
     credentials: 'include'
