@@ -50,7 +50,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
         <div className="">
           <Listbox.Button className="flex items-center justify-between bg-white dark:bg-gray-900 relative w-full border border-gray-300 dark:border-gray-800 rounded-lg px-3 py-0.5 cursor-default focus:outline-none text-sm">
             <span className="w-16 block truncate dark:text-gray-400 flex-1 text-left font-medium">
-              {product ? product?.name : 'Product'}
+              {product ? product?.name : 'Everywhere'}
             </span>
             <ChevronDownIcon className="h-4 w-4" />
           </Listbox.Button>
