@@ -1,9 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
-import { imagekitURL } from '@components/utils/imagekitURL'
-import { Listbox, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/outline'
-import clsx from 'clsx'
+import { Popover, Transition } from '@headlessui/react'
+import { GlobeIcon } from '@heroicons/react/outline'
 import { Fragment, useState } from 'react'
 import { useContext } from 'react'
 import { Product } from 'src/__generated__/schema.generated'
@@ -45,60 +43,55 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
   }
 
   return (
-    <Listbox value={product} onChange={handleSelectTarget}>
-      {({ open }) => (
-        <div className="">
-          <Listbox.Button className="flex items-center justify-between bg-white dark:bg-gray-900 relative w-full border border-gray-300 dark:border-gray-800 rounded-lg px-3 py-0.5 cursor-default focus:outline-none text-sm">
-            <span className="w-16 block truncate dark:text-gray-400 flex-1 text-left font-medium">
-              {product ? product?.name : 'Everywhere'}
-            </span>
-            <ChevronDownIcon className="h-4 w-4" />
-          </Listbox.Button>
-
-          <Transition show={open} as={Fragment}>
-            <Listbox.Options
-              static
-              className="z-10 absolute mt-1 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-md rounded-lg py-1 px-2 text-base focus:outline-none sm:text-sm"
+    <div className="w-full max-w-sm px-4">
+      <Popover>
+        {({ open }) => (
+          <>
+            <Popover.Button>Everywhere</Popover.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
             >
-              {products?.map((product: any) => (
-                <Listbox.Option
-                  key={product?.id}
-                  className={({ active }) =>
-                    clsx(
-                      { 'bg-gray-100 dark:bg-gray-800': active },
-                      'block px-3 py-1.5 my-1 text-sm text-gray-700 dark:text-gray-200 rounded-lg cursor-pointer'
-                    )
-                  }
-                  value={product}
-                >
-                  <div className="flex items-center gap-2">
-                    <img
-                      className="h-5 w-5 rounded-md"
-                      src={imagekitURL(product?.avatar, 50, 50)}
-                      alt={`#${product?.slug}'s avatar`}
-                    />
-                    <div className="block truncate font-medium">
-                      {product?.name}
+              <Popover.Panel className="absolute z-10 px-0 mt-2">
+                <div className="overflow-hidden rounded-lg shadow-md border">
+                  <div className="relative bg-white p-3 space-y-2">
+                    <div className="font-bold">Where to post?</div>
+                    <button className="flex items-center space-x-2 text-sm">
+                      <GlobeIcon className="h-5 w-5 text-brand-500" />
+                      <div>Everywhere</div>
+                    </button>
+                    <div className="space-y-2">
+                      <div className="text-sm font-bold">My Products</div>
+                      <div className="space-y-2 text-sm">
+                        {products?.map((product: any) => (
+                          <div key={product?.name}>
+                            <button className="flex space-x-2">
+                              <img
+                                className="h-8 w-8 rounded"
+                                src={product?.avatar}
+                                alt={`#${product?.slug}'s avatar'`}
+                              />
+                              <div>
+                                <div>{product?.name}</div>
+                              </div>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </Listbox.Option>
-              ))}
-              <Listbox.Option
-                className={({ active }) =>
-                  clsx(
-                    { 'bg-gray-100 dark:bg-gray-800': active },
-                    'block px-3 py-1.5 my-1 text-sm text-red-500 rounded-lg cursor-pointer'
-                  )
-                }
-                value={null}
-              >
-                <span className="block truncate font-medium">Reset</span>
-              </Listbox.Option>
-            </Listbox.Options>
-          </Transition>
-        </div>
-      )}
-    </Listbox>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+    </div>
   )
 }
 
