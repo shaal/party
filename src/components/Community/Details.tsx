@@ -11,7 +11,6 @@ import { linkifyOptions } from '@components/utils/linkifyOptions'
 import { FingerPrintIcon, PencilIcon } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { Community } from 'src/__generated__/schema.generated'
 
@@ -23,7 +22,6 @@ interface Props {
 
 const Details: React.FC<Props> = ({ community }) => {
   const { currentUser } = useContext(AppContext)
-  const router = useRouter()
 
   return (
     <Card className="mb-4">
@@ -81,7 +79,7 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
           <Button variant="secondary" outline>
-            <Link href={`/communities/${community?.slug}/members`} passHref>
+            <Link href={`/communities/${community?.slug}`} passHref>
               <a>
                 <div>Home</div>
               </a>
@@ -91,6 +89,13 @@ const Details: React.FC<Props> = ({ community }) => {
             <Link href={`/communities/${community?.slug}/members`} passHref>
               <a>
                 <div>Members</div>
+              </a>
+            </Link>
+          </Button>
+          <Button variant="primary" light>
+            <Link href={`/communities/${community?.slug}/about`} passHref>
+              <a>
+                <div>About</div>
               </a>
             </Link>
           </Button>
