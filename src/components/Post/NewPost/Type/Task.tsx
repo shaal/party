@@ -30,7 +30,10 @@ const newTaskSchema = object({
 const TaskType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [createTask, createTaskResult] = useMutation<
     CreateTaskMutation,
     CreateTaskMutationVariables
@@ -75,7 +78,7 @@ const TaskType: React.FC = () => {
               type: 'TASK',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
-              productId: selectedProduct as string
+              productId: selectedTarget.targetId
             }
           }
         })
@@ -98,7 +101,7 @@ const TaskType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
-          <SelectTarget setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
           type="submit"

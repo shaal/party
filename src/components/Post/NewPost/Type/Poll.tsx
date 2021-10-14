@@ -35,7 +35,10 @@ const PollType: React.FC = () => {
   const router = useRouter()
   const [polls, setPolls] = useState([{ title: '' }, { title: '' }])
   const [pollError, setPollError] = useState<boolean>(false)
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [createPoll, createPollResult] = useMutation<
     CreatePollMutation,
     CreatePollMutationVariables
@@ -106,7 +109,7 @@ const PollType: React.FC = () => {
               body,
               polls: JSON.stringify(polls) as string,
               type: 'POLL',
-              productId: selectedProduct as string
+              productId: selectedTarget.targetId
             }
           }
         })
@@ -163,7 +166,7 @@ const PollType: React.FC = () => {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
-          <SelectTarget setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
           type="submit"

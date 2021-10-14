@@ -39,7 +39,10 @@ const newQuestionSchema = object({
 const QuestionType: React.FC = () => {
   const router = useRouter()
   const [attachments, setAttachments] = useState<string[]>([])
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [preview, setPreview] = useState<boolean>(false)
   const [createQuestion, createQuestionResult] = useMutation<
     CreateQuestionMutation,
@@ -85,7 +88,7 @@ const QuestionType: React.FC = () => {
               type: 'QUESTION',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
-              productId: selectedProduct as string
+              productId: selectedTarget.targetId
             }
           }
         })
@@ -123,7 +126,7 @@ const QuestionType: React.FC = () => {
             attachments={attachments}
             setAttachments={setAttachments}
           />
-          <SelectTarget setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
           <Tooltip content="Preview Markdown">
             <Button
               type="button"

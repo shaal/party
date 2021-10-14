@@ -41,10 +41,10 @@ export const SELECT_TARGET_QUERY = gql`
 `
 
 interface Props {
-  setSelectedProduct: React.Dispatch<React.SetStateAction<string>>
+  setSelectedTarget: React.Dispatch<React.SetStateAction<any>>
 }
 
-const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
+const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
   const [product, setProduct] = useState<Product | null>()
   const { currentUser } = useContext(AppContext)
   const { data } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY, {
@@ -55,7 +55,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedProduct }) => {
 
   const handleSelectTarget = (product: Product) => {
     setProduct(product)
-    setSelectedProduct(product?.id)
+    setSelectedTarget(product?.id)
   }
 
   return (

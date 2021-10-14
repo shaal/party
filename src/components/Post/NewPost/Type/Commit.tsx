@@ -32,7 +32,10 @@ const newCommitSchema = object({
 
 const CommitType: React.FC = () => {
   const router = useRouter()
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [createCommit, createCommitResult] = useMutation<
     CreateCommitMutation,
     CreateCommitMutationVariables
@@ -73,7 +76,7 @@ const CommitType: React.FC = () => {
             input: {
               body: url,
               type: 'COMMIT',
-              productId: selectedProduct as string
+              productId: selectedTarget.targetId
             }
           }
         })
@@ -88,7 +91,7 @@ const CommitType: React.FC = () => {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
-          <SelectTarget setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
           type="submit"
