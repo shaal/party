@@ -249,7 +249,7 @@ CREATE TABLE `integrations` (
 -- CreateTable
 CREATE TABLE `logs` (
     `id` VARCHAR(191) NOT NULL,
-    `action` ENUM('POST_LIKE') NOT NULL,
+    `action` ENUM('SETTINGS_UPDATE', 'PASSWORD_UPDATE') NOT NULL,
     `entityId` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `userId` VARCHAR(191) NOT NULL,

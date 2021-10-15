@@ -1,3 +1,4 @@
+import { createLog } from '@graphql/resolvers/Log/mutations/createLog'
 import { Result } from '@graphql/resolvers/ResultResolver'
 import { Session } from '@prisma/client'
 import { hashPassword, verifyPassword } from '@utils/auth'
@@ -38,6 +39,7 @@ export const changePassword = async (
       }
     }
   })
+  createLog(session!.userId, user?.id, 'PASSWORD_UPDATE')
 
   // Logout everywhere
   await db.session.deleteMany({

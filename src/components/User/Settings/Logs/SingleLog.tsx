@@ -1,6 +1,5 @@
 import Slug from '@components/shared/Slug'
-import { HeartIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
+import { CogIcon, FingerPrintIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Log } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
@@ -24,12 +23,16 @@ const SingleLog: React.FC<Props> = ({ log }) => {
           <div className="text-sm font-bold">{log?.action}</div>
         </div>
         <div className="linkify">
-          {log?.action === 'POST_LIKE' && (
+          {log?.action === 'SETTINGS_UPDATE' && (
             <div className="flex items-center space-x-1">
-              <HeartIcon className="h-4 w-4 text-pink-500" />
-              <div>
-                Liked a <Link href={`/posts/${log?.entityId}`}>post</Link>
-              </div>
+              <CogIcon className="h-4 w-4 text-gray-500" />
+              <div>updated user settings</div>
+            </div>
+          )}
+          {log?.action === 'PASSWORD_UPDATE' && (
+            <div className="flex items-center space-x-1">
+              <FingerPrintIcon className="h-4 w-4 text-gray-500" />
+              <div>updated the password</div>
             </div>
           )}
         </div>

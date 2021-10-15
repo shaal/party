@@ -1,6 +1,8 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 
+import { createLog } from '../Log/mutations/createLog'
+
 builder.prismaObject('Profile', {
   findUnique: (profile) => ({ id: profile.id }),
   fields: (t) => ({
@@ -38,7 +40,7 @@ builder.mutationField('editSocial', (t) =>
     type: 'User',
     args: { input: t.arg({ type: EditSocialInput }) },
     resolve: async (query, parent, { input }, { session }) => {
-      return await db.user.update({
+      const user = await db.user.update({
         ...query,
         where: {
           id: session!.userId
@@ -54,6 +56,9 @@ builder.mutationField('editSocial', (t) =>
           }
         }
       })
+      createLog(session!.userId, user?.id, 'SETTINGS_UPDATE')
+
+      return user
     }
   })
 )
