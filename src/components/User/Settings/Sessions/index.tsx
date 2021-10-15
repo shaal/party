@@ -46,7 +46,6 @@ const SessionsSettings: React.FC = () => {
     SESSION_SETTINGS_QUERY,
     { variables: { after: null } }
   )
-
   const sessions = data?.sessions?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.sessions?.pageInfo
 

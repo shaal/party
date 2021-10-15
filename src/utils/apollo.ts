@@ -54,7 +54,8 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
               exploreFeed: relayStylePagination([]),
               replies: relayStylePagination([]),
               notifications: relayStylePagination(['isRead']),
-              sessions: relayStylePagination([])
+              sessions: relayStylePagination([]),
+              logs: relayStylePagination([])
             }
           },
           Topic: {
