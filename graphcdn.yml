@@ -10,8 +10,3 @@ rules:
     types:
       Query: true
 schema: 'https://devparty.io/api/graphql'
-
-development:
-  name: devparty-dev
-  originUrl: '/api/graphql'
-  schema: '/api/graphql'
