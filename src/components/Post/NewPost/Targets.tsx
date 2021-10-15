@@ -73,17 +73,19 @@ const Targets: React.FC<Props> = ({
     )
 
   return (
-    <div className="relative px-5 py-3.5 space-y-2">
+    <div className="relative divide-y dark:divide-gray-700">
       <button
         type="button"
-        className="flex items-center space-x-2 font-bold pb-3"
+        className="flex items-center space-x-2 font-bold px-5 py-3.5"
         onClick={() => handleSelectTarget(null, 'Everywhere')}
       >
         <GlobeIcon className="h-5 w-5 text-brand-500" />
         <div>Everywhere</div>
       </button>
-      <div className="space-y-2">
-        <div className="font-bold">My Products</div>
+      <div className="space-y-2 px-5 py-3.5">
+        <div className="font-bold text-gray-700 dark:text-gray-300">
+          My Products
+        </div>
         <div className="space-y-2">
           {products?.map((product: any) => (
             <div key={product?.name}>
@@ -108,8 +110,10 @@ const Targets: React.FC<Props> = ({
           ))}
         </div>
       </div>
-      <div className="space-y-2 pt-2">
-        <div className="font-bold">My Communities</div>
+      <div className="space-y-2 px-5 py-3.5">
+        <div className="font-bold text-gray-700 dark:text-gray-300">
+          My Communities
+        </div>
         <div className="space-y-2">
           {communities?.map((community: any) => (
             <div key={community?.name}>
