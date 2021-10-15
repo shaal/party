@@ -7,7 +7,7 @@ interface Props {
   product: Product
 }
 
-const SelectedProduct: React.FC<Props> = ({ product }) => {
+const SelectedTarget: React.FC<Props> = ({ product }) => {
   return (
     <div className="text-sm flex items-center space-x-2">
       <div>Posted in</div>
@@ -27,4 +27,4 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default SelectedProduct
+export default SelectedTarget

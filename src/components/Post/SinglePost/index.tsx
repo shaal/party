@@ -22,7 +22,7 @@ import {
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
 import Oembed from './Oembed'
-import SelectedProduct from './SelectedProduct'
+import SelectedTarget from './SelectedTarget'
 import CommitType from './Type/Commit'
 import NFTType from './Type/NFT'
 import PollType from './Type/Poll'
@@ -213,7 +213,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           </div>
         )}
         <div className="ml-auto">
-          {post?.product && <SelectedProduct product={post?.product} />}
+          {post?.product && <SelectedTarget product={post?.product} />}
         </div>
       </div>
     </Card>
