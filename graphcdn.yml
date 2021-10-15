@@ -3,7 +3,7 @@ originUrl: 'https://devparty.io/api/graphql'
 scopes:
   AUTHENTICATED: 'cookie:devparty_session|header:Authorization'
 rules:
-  - description: Cache everything (default)
+  - description: Cache everything
     maxAge: 900
     scope: AUTHENTICATED
     swr: 900
