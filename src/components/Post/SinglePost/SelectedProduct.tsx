@@ -1,4 +1,6 @@
+import { Tooltip } from '@components/ui/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { CubeIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'
 import { Product } from 'src/__generated__/schema.generated'
@@ -10,7 +12,9 @@ interface Props {
 const SelectedProduct: React.FC<Props> = ({ product }) => {
   return (
     <div className="text-sm flex items-center space-x-2">
-      <div>Posted in</div>
+      <Tooltip content="Product">
+        <CubeIcon className="h-4 w-4 text-gray-500" />
+      </Tooltip>
       <Link href={`/products/${product?.slug}`} passHref>
         <a className="flex items-center space-x-1 cursor-pointer">
           <img
