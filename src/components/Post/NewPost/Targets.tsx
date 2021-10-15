@@ -52,19 +52,28 @@ const Targets: React.FC<Props> = ({
   const communities = data?.me?.communities?.edges?.map((edge) => edge?.node)
 
   const handleSelectTarget = (
-    target: Product | Community,
-    type: 'Product' | 'Community'
+    target: Product | Community | null,
+    type: 'Product' | 'Community' | 'Everywhere'
   ) => {
-    setSelected(target)
-    setSelectedTarget({ targetId: target?.id, targetType: type })
-    setShowModal(false)
+    if (target) {
+      setSelected(target)
+      setSelectedTarget({ targetId: target?.id, targetType: type })
+      setShowModal(false)
+    } else {
+      setSelected(null)
+      setSelectedTarget({ targetId: '', targetType: '' })
+      setShowModal(false)
+    }
   }
 
   return (
     <div className="px-2">
       <div className="relative bg-white p-4 space-y-2">
-        <div className="font-bold">Where to post?</div>
-        <button type="button" className="flex items-center space-x-2 text-sm">
+        <button
+          type="button"
+          className="flex items-center space-x-2 font-bold pb-3"
+          onClick={() => handleSelectTarget(null, 'Everywhere')}
+        >
           <GlobeIcon className="h-5 w-5 text-brand-500" />
           <div>Everywhere</div>
         </button>
