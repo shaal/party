@@ -13,7 +13,7 @@ export const createNotification = (
   receiverId: any,
   entityId: any,
   type: NotificationType
-): void  => {
+): void => {
   new Promise((resolve, reject) => {
     db.notification
       .upsert({

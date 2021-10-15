@@ -4,9 +4,7 @@ import { STATIC_ASSETS } from 'src/constants'
  * Generate random color and cover for user
  * @returns random color and cover
  */
-export const getRandomCover = (): {image: string;
-color: string;
-}  => {
+export const getRandomCover = (): { image: string; color: string } => {
   const colors = [
     '6B7280',
     'EF4444',
