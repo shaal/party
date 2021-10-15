@@ -1,5 +1,5 @@
 export const linkifyOptions = {
-  formatHref: function (href: string, type: any): string  {
+  formatHref: function (href: string, type: any): string {
     if (type === 'hashtag') {
       href = '/topics/' + href.slice(1)
     }
