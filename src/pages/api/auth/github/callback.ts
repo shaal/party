@@ -96,10 +96,12 @@ const handler = async (
       user ? (user?.inWaitlist ? '/waitlist' : '/home') : '/waitlist'
     )
   } catch (error: any) {
-    return res.json({
-      status: 'error',
-      message: IS_PRODUCTION ? ERROR_MESSAGE : error.message
-    })
+    return IS_PRODUCTION
+      ? res.redirect('/500')
+      : res.json({
+          status: 'error',
+          message: IS_PRODUCTION ? ERROR_MESSAGE : error.message
+        })
   }
 }
 

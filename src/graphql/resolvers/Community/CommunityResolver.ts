@@ -40,6 +40,12 @@ builder.prismaObject('Community', {
         where: { hidden: false },
         orderBy: { createdAt: 'desc' }
       })
+    }),
+    rules: t.relatedConnection('rules', {
+      cursor: 'id',
+      query: () => ({
+        orderBy: { index: 'asc' }
+      })
     })
   })
 })

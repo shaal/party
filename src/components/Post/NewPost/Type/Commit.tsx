@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import SelectProduct from '../SelectProduct'
+import SelectTarget from '../SelectTarget'
 import {
   CreateCommitMutation,
   CreateCommitMutationVariables
@@ -32,7 +32,10 @@ const newCommitSchema = object({
 
 const CommitType: React.FC = () => {
   const router = useRouter()
-  const [selectedProduct, setSelectedProduct] = useState<string>('')
+  const [selectedTarget, setSelectedTarget] = useState({
+    targetId: '',
+    targetType: ''
+  })
   const [createCommit, createCommitResult] = useMutation<
     CreateCommitMutation,
     CreateCommitMutationVariables
@@ -73,7 +76,8 @@ const CommitType: React.FC = () => {
             input: {
               body: url,
               type: 'COMMIT',
-              productId: selectedProduct as string
+              targetId: selectedTarget.targetId,
+              targetType: selectedTarget.targetType
             }
           }
         })
@@ -88,7 +92,7 @@ const CommitType: React.FC = () => {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex space-x-2">
-          <SelectProduct setSelectedProduct={setSelectedProduct} />
+          <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
           type="submit"

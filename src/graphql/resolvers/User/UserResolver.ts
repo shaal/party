@@ -91,6 +91,10 @@ builder.prismaObject('User', {
       cursor: 'id',
       totalCount: true
     }),
+    communities: t.relatedConnection('ownedCommunities', {
+      cursor: 'id',
+      totalCount: true
+    }),
     followers: t.relatedConnection('followedBy', {
       cursor: 'id',
       totalCount: true

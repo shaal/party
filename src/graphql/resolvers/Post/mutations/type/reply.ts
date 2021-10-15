@@ -31,7 +31,6 @@ export const reply = async (
       done: input.done,
       attachments: input.attachments ? input.attachments : undefined,
       type: input.type as PostType,
-      productId: input.productId ? input.productId : null,
       topics: { create: parseTopics(getTopics(input.body)) },
       parentId
     }

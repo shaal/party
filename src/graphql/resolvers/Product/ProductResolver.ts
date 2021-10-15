@@ -34,6 +34,10 @@ builder.prismaObject('Product', {
 
     // Relations
     owner: t.relation('owner'),
+    subscribers: t.relatedConnection('subscribers', {
+      cursor: 'id',
+      totalCount: true
+    }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,

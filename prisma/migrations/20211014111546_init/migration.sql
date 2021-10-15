@@ -193,6 +193,7 @@ CREATE TABLE `communities` (
 -- CreateTable
 CREATE TABLE `community_rules` (
     `id` VARCHAR(191) NOT NULL,
+    `index` INTEGER NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191),
     `communityId` VARCHAR(191),

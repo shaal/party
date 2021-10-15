@@ -1,5 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
-import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import {
+  GridItemEight,
+  GridItemFour,
+  GridItemTwelve,
+  GridLayout
+} from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
@@ -10,6 +15,8 @@ import Custom404 from 'src/pages/404'
 
 import { CommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
+import CommunityFeed from './Feed'
+import Rules from './Rules'
 
 export const COMMUNITY_QUERY = gql`
   query CommunityQuery($slug: String!) {
@@ -20,6 +27,7 @@ export const COMMUNITY_QUERY = gql`
       avatar
       description
       hasJoined
+      createdAt
       owner {
         id
         username
@@ -49,22 +57,32 @@ const ViewCommunity: React.FC = () => {
   if (!community) return <Custom404 />
 
   return (
-    <GridLayout>
+    <>
       <DevpartySEO
         title={`${community?.slug} (${community?.name}) · Devparty`}
         description={community?.description as string}
         image={community?.avatar as string}
         path={`/products/${community?.slug}`}
       />
-      <GridItemFour>
-        <Details community={community as Community} />
-      </GridItemFour>
-      <GridItemEight>
-        <div className="space-y-5">
-          <ErrorMessage title="Failed to load post" error={error} />
-        </div>
-      </GridItemEight>
-    </GridLayout>
+      <GridLayout className="flex-grow-0 pb-0">
+        <GridItemTwelve>
+          <Details community={community as Community} />
+        </GridItemTwelve>
+        <GridItemEight>
+          <div className="space-y-5">
+            <ErrorMessage title="Failed to load post" error={error} />
+          </div>
+        </GridItemEight>
+      </GridLayout>
+      <GridLayout className="flex-grow-0 pt-0 -mt-4">
+        <GridItemEight>
+          <CommunityFeed community={community as Community} />
+        </GridItemEight>
+        <GridItemFour>
+          <Rules community={community as Community} />
+        </GridItemFour>
+      </GridLayout>
+    </>
   )
 }
 

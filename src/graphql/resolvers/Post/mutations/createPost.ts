@@ -36,15 +36,28 @@ export const createPost = async (
     throw new Error('Invalid type')
   }
 
-  if (input.productId) {
+  if (input.targetId && input.targetType === 'Product') {
     const product = await db.product.findUnique({
       ...query,
-      where: { id: input.productId }
+      where: { id: input.targetId }
     })
 
     if (product?.ownerId !== session!.userId) {
       throw new Error(
         'Oops! Sorry you cannot post in product that is not owned'
+      )
+    }
+  }
+
+  if (input.targetId && input.targetType === 'Community') {
+    const community = await db.community.findUnique({
+      ...query,
+      where: { id: input.targetId }
+    })
+
+    if (community?.ownerId !== session!.userId) {
+      throw new Error(
+        'Oops! Sorry you cannot post in community that is not owned'
       )
     }
   }
