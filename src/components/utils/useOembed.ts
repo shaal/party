@@ -7,10 +7,9 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
  * @param url - URL in which need to create oembed
  * @returns the oembed object
  */
-export const useOembed = (url: string | null | undefined): {oembed: error;
-isLoading: boolean;
-isError: any;
-}  => {
+export const useOembed = (
+  url: string | null | undefined
+): { oembed: any; isLoading: boolean; isError: any } => {
   const { data, error } = useSWR(`/api/oembed?url=${url}`, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,

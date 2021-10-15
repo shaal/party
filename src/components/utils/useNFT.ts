@@ -8,10 +8,10 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
  * @param tokenId - NFT's Token ID
  * @returns a NFT from opensea
  */
-export const useNFT = (address: string, tokenId: string): {nft: error;
-isLoading: boolean;
-isError: any;
-}  => {
+export const useNFT = (
+  address: string,
+  tokenId: string
+): { nft: any; isLoading: boolean; isError: any } => {
   const { data, error } = useSWR(
     `/api/nft?address=${address}&tokenId=${tokenId}`,
     fetcher,
