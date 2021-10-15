@@ -32,12 +32,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   const ssrMode = typeof window === 'undefined'
 
   const httpLink = createHttpLink({
-    uri: ssrMode
-      ? IS_PRODUCTION
-        ? GRAPHCDN_URL
-        : `http://localhost:3000/api/graphql`
-      : '/api/graphql',
-
+    uri: IS_PRODUCTION ? GRAPHCDN_URL : `/api/graphql`,
     headers: headers,
     credentials: 'include'
   })
