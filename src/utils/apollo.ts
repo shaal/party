@@ -10,7 +10,7 @@ interface ClientOptions {
 
 /**
  * Helps to create a new apollo client from _app.tsx
- * @param initialState - Apollo's intial state
+ * @param initialState - Apollo's initial state
  * @returns a new apollo client
  */
 export function useApollo(initialState?: Record<string, any>) {
@@ -22,7 +22,7 @@ export function useApollo(initialState?: Record<string, any>) {
 /**
  * Creates a new apollo client
  * @param param - createApolloClient parameters
- * @param param.initialState - Apollo's intial state
+ * @param param.initialState - Apollo's initial state
  * @param param.headers - HTTP headers
  * @returns the new client
  */
