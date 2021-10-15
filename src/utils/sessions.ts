@@ -4,7 +4,7 @@ import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
 import requestIp from 'request-ip'
-import { IS_PRODUCTION } from 'src/constants'
+import { IS_PREVIEW, IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
