@@ -1,3 +1,4 @@
+import { createLog } from '@graphql/resolvers/Log/mutations/createLog'
 import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
@@ -66,6 +67,7 @@ const handler = async (
             }
           }
         })
+        createLog(user?.id, user?.id, 'LOGIN')
         await createSession(req, user as any)
       }
     } else {
