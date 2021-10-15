@@ -2,7 +2,6 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Spinner } from '@components/ui/Spinner'
-import { Tooltip } from '@components/ui/Tooltip'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import toast from 'react-hot-toast'
@@ -93,31 +92,27 @@ const InviteDetails: React.FC = () => {
                 <div>
                   {BASE_URL}/invite/{user?.invite?.code}
                 </div>
-                <Tooltip content="Regenerate Invite">
-                  <div
-                    className="cursor-pointer"
-                    onClick={() => regenerateInvite()}
-                  >
-                    <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                  </div>
-                </Tooltip>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => regenerateInvite()}
+                >
+                  <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                </div>
               </div>
             </div>
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Code</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
                 <div>{user?.invite?.code}</div>
-                <Tooltip content="Regenerate Invite">
-                  <div
-                    className="cursor-pointer"
-                    onClick={() => {
-                      mixpanel.track('user.invite.regenerate.click')
-                      regenerateInvite()
-                    }}
-                  >
-                    <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                  </div>
-                </Tooltip>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    mixpanel.track('user.invite.regenerate.click')
+                    regenerateInvite()
+                  }}
+                >
+                  <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                </div>
               </div>
             </div>
             <div className="mt-5 mb-1 text-center">

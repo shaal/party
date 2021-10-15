@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 w-full shadow sticky top-0 z-10">
       {currentUser?.isStaff && staffMode && <StaffBar />}
       <div className="container mx-auto max-w-screen-2xl px-5">
         <div className="relative flex items-center justify-between h-14 sm:h-16">
