@@ -28,3 +28,6 @@ export const STATIC_ASSETS = 'https://assets.devparty.io/images'
 export const OPENSEA_API_URL = `https://${
   IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
 }.opensea.io/api/v1`
+
+// Misc
+export const GRAPHCDN_ENABLED = IS_PRODUCTION && !IS_PREVIEW

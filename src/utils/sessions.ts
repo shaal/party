@@ -4,7 +4,7 @@ import { IncomingMessage } from 'http'
 import { GetServerSidePropsContext } from 'next'
 import { applySession, SessionOptions } from 'next-iron-session'
 import requestIp from 'request-ip'
-import { IS_PREVIEW, IS_PRODUCTION } from 'src/constants'
+import { GRAPHCDN_ENABLED, IS_PRODUCTION } from 'src/constants'
 
 import { db } from './prisma'
 
@@ -39,9 +39,9 @@ export const sessionOptions: SessionOptions = {
   ttl: SESSION_TTL,
   cookieOptions: {
     secure: IS_PRODUCTION,
-    sameSite: IS_PRODUCTION && !IS_PREVIEW ? 'none' : 'strict',
+    sameSite: GRAPHCDN_ENABLED ? 'none' : 'strict',
     httpOnly: true,
-    domain: IS_PRODUCTION && !IS_PREVIEW ? '.devparty.io' : undefined
+    domain: GRAPHCDN_ENABLED ? '.devparty.io' : undefined
   }
 }
 
