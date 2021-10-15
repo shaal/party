@@ -56,7 +56,7 @@ const MoreNavItems: React.FC = () => {
               <div className="border-b dark:border-gray-800"></div>
               <Menu.Item
                 as={NextLink}
-                href="/feedback"
+                href="https://tally.so/r/nPYB1m"
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -66,7 +66,7 @@ const MoreNavItems: React.FC = () => {
               >
                 <div className="flex items-center space-x-1.5">
                   <SparklesIcon className="h-4 w-4" />
-                  <div>Feedback</div>
+                  <div>Contact</div>
                 </div>
               </Menu.Item>
             </Menu.Items>
