@@ -7,7 +7,11 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
  * @param url - Git commit URL
  * @returns a commit data from GitHub
  */
-export const useGitCommit = (url: string) => {
+export const useGitCommit = (url: string): {commit: error;
+slug: string;
+isLoading: boolean;
+isError: any;
+}  => {
   const splitedURL = new URL(url).pathname.split('/')
 
   const { data, error } = useSWR(
