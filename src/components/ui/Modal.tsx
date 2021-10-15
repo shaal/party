@@ -7,7 +7,6 @@ interface Props {
   show: boolean
   children: React.ReactNode[] | React.ReactNode
   onClose: () => void
-  onEnter?: () => boolean
 }
 
 export const Modal: React.FC<Props> = (props) => {
