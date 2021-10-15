@@ -39,9 +39,9 @@ export const sessionOptions: SessionOptions = {
   ttl: SESSION_TTL,
   cookieOptions: {
     secure: IS_PRODUCTION,
-    sameSite: 'none',
+    sameSite: IS_PRODUCTION ? 'none' : 'strict',
     httpOnly: true,
-    domain: IS_PRODUCTION ? '.devparty.io' : ''
+    domain: IS_PRODUCTION ? '.devparty.io' : undefined
   }
 }
 
