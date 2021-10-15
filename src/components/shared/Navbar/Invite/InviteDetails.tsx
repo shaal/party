@@ -116,7 +116,7 @@ const InviteDetails: React.FC = () => {
               </div>
             </div>
             <div className="mt-5 mb-1 text-center">
-              You've invited <b>{user?.invite?.usedTimes}</b> people so far.
+              You have invited <b>{user?.invite?.usedTimes}</b> people so far.
             </div>
           </>
         ) : (
