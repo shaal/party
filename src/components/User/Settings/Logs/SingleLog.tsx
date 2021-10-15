@@ -1,5 +1,10 @@
 import Slug from '@components/shared/Slug'
-import { CogIcon, FingerPrintIcon } from '@heroicons/react/outline'
+import {
+  CogIcon,
+  FingerPrintIcon,
+  LoginIcon,
+  LogoutIcon
+} from '@heroicons/react/outline'
 import React from 'react'
 import { Log } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
@@ -33,6 +38,18 @@ const SingleLog: React.FC<Props> = ({ log }) => {
             <div className="flex items-center space-x-1">
               <FingerPrintIcon className="h-4 w-4 text-gray-500" />
               <div>updated the password</div>
+            </div>
+          )}
+          {log?.action === 'LOGIN' && (
+            <div className="flex items-center space-x-1">
+              <LoginIcon className="h-4 w-4 text-gray-500" />
+              <div>logged in</div>
+            </div>
+          )}
+          {log?.action === 'LOGOUT' && (
+            <div className="flex items-center space-x-1">
+              <LogoutIcon className="h-4 w-4 text-gray-500" />
+              <div>logged out</div>
             </div>
           )}
         </div>
