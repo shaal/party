@@ -1,44 +1,10 @@
-import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/ui/Button'
-import AppContext from '@components/utils/AppContext'
-import { Popover, Transition } from '@headlessui/react'
-import { ChevronDownIcon, GlobeIcon } from '@heroicons/react/outline'
-import { Fragment, useState } from 'react'
-import { useContext } from 'react'
+import { Modal } from '@components/ui/Modal'
+import mixpanel from 'mixpanel-browser'
+import { useState } from 'react'
 import { Community, Product } from 'src/__generated__/schema.generated'
 
-import { SelectTargetQuery } from './__generated__/SelectTarget.generated'
-
-export const SELECT_TARGET_QUERY = gql`
-  query SelectTargetQuery($username: String!) {
-    user(username: $username) {
-      ownedProducts {
-        edges {
-          node {
-            id
-            name
-            avatar
-            subscribers {
-              totalCount
-            }
-          }
-        }
-      }
-      communities {
-        edges {
-          node {
-            id
-            name
-            avatar
-            members {
-              totalCount
-            }
-          }
-        }
-      }
-    }
-  }
-`
+import Targets from './Targets'
 
 interface Props {
   setSelectedTarget: React.Dispatch<React.SetStateAction<any>>
@@ -46,122 +12,36 @@ interface Props {
 
 const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
   const [selected, setSelected] = useState<Product | Community | null>()
-  const { currentUser } = useContext(AppContext)
-  const { data } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY, {
-    variables: { username: currentUser?.username }
-  })
-  const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
-  const communities = data?.user?.communities?.edges?.map((edge) => edge?.node)
-
-  const handleSelectTarget = (
-    target: Product | Community,
-    type: 'Product' | 'Community'
-  ) => {
-    setSelected(target)
-    setSelectedTarget({ targetId: target?.id, targetType: type })
-  }
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   return (
-    <div className="w-full max-w-sm px-2">
-      <Popover>
-        {({ open }) => (
-          <>
-            <Popover.Button
-              as={Button}
-              className="text-sm flex items-center space-x-2"
-              size="sm"
-              icon={<ChevronDownIcon className="h-4 w-4" />}
-              outline
-            >
-              <div>{selected ? selected?.name : 'Everywhere'}</div>
-            </Popover.Button>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute z-10 mt-2 w-screen max-w-[14rem]">
-                <div className="overflow-hidden rounded-lg shadow-md border">
-                  <div className="relative bg-white p-4 space-y-2">
-                    <div className="font-bold">Where to post?</div>
-                    <button
-                      type="button"
-                      className="flex items-center space-x-2 text-sm"
-                    >
-                      <GlobeIcon className="h-5 w-5 text-brand-500" />
-                      <div>Everywhere</div>
-                    </button>
-                    <div className="space-y-2">
-                      <div className="font-bold">My Products</div>
-                      <div className="space-y-2">
-                        {products?.map((product: any) => (
-                          <div key={product?.name}>
-                            <button
-                              type="button"
-                              className="flex items-center space-x-2"
-                              onClick={() =>
-                                handleSelectTarget(product, 'Product')
-                              }
-                            >
-                              <img
-                                className="h-8 w-8 rounded"
-                                src={product?.avatar}
-                                alt={`#${product?.name}'s avatar'`}
-                              />
-                              <div className="text-left">
-                                <div className="font-bold">{product?.name}</div>
-                                <div className="text-sm">
-                                  <b>{product?.subscribers?.totalCount}</b>{' '}
-                                  subscribers
-                                </div>
-                              </div>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="space-y-2 pt-2">
-                      <div className="font-bold">My Communities</div>
-                      <div className="space-y-2">
-                        {communities?.map((community: any) => (
-                          <div key={community?.name}>
-                            <button
-                              type="button"
-                              className="flex items-center space-x-2"
-                              onClick={() =>
-                                handleSelectTarget(community, 'Community')
-                              }
-                            >
-                              <img
-                                className="h-8 w-8 rounded"
-                                src={community?.avatar}
-                                alt={`${community?.name}'s avatar'`}
-                              />
-                              <div className="text-left">
-                                <div className="font-bold">
-                                  {community?.name}
-                                </div>
-                                <div className="text-sm">
-                                  <b>{community?.members?.totalCount}</b>{' '}
-                                  members
-                                </div>
-                              </div>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </>
-        )}
-      </Popover>
+    <div className="px-2">
+      <Button
+        type="button"
+        className="text-xs flex items-center space-x-2"
+        size="sm"
+        outline
+        onClick={() => {
+          mixpanel.track('post.select_target.modal.open')
+          setShowModal(!showModal)
+        }}
+      >
+        {selected ? selected?.name : 'Everywhere'}
+      </Button>
+      <Modal
+        onClose={() => {
+          mixpanel.track('post.select_target.modal.close')
+          setShowModal(!showModal)
+        }}
+        title="Where to post?"
+        show={showModal}
+      >
+        <Targets
+          setSelectedTarget={setSelectedTarget}
+          setSelected={setSelected}
+          setShowModal={setShowModal}
+        />
+      </Modal>
     </div>
   )
 }
