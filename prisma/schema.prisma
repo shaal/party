@@ -405,6 +405,11 @@ enum NotificationType {
 }
 
 enum LogActionType {
+  // Auth
+  LOGIN
+  LOGOUT
+
+  // Settings
   SETTINGS_UPDATE
   PASSWORD_UPDATE
 }
