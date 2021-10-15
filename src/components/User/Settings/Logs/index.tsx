@@ -47,7 +47,7 @@ const LogsSettings: React.FC = () => {
     }
   )
   const logs = data?.logs?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.sessions?.pageInfo
+  const pageInfo = data?.logs?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
