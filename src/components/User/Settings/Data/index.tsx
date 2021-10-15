@@ -57,7 +57,7 @@ const DataSettings: React.FC = () => {
               Most of the personal data that Devparty has about you is
               accessible through the Devparty app (e.g. posts, replies, products
               and user account). If you would like to get a consolidated copy of
-              this data, you can download it by clicking the "Export Now"
+              this data, you can download it by clicking the <b>Export Now</b>
               button.
             </p>
             <p>
