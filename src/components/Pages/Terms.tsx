@@ -113,7 +113,7 @@ const Terms: React.FC = () => {
                 Devparty has not reviewed all of the sites linked to its Website
                 and is not responsible for the contents of any such linked site.
                 The presence of any link does not imply endorsement by Devparty
-                of the site. The use of any linked website is at the user's own
+                of the site. The use of any linked website is at the user own
                 risk.
               </p>
               <h2 className="text-black dark:text-white">
@@ -139,7 +139,7 @@ const Terms: React.FC = () => {
               </p>
               <h2 className="text-black dark:text-white">9. Governing Law</h2>
               <p>
-                Any claim related to Devparty's Website shall be governed by the
+                Any claim related to Devparty Website shall be governed by the
                 laws of in without regards to its conflict of law provisions.
               </p>
             </div>
