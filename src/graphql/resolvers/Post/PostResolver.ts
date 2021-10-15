@@ -50,6 +50,7 @@ builder.prismaObject('Post', {
     // Relations
     user: t.relation('user'),
     product: t.relation('product', { nullable: true }),
+    community: t.relation('community', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),
     poll: t.relation('poll', { nullable: true }),
     nft: t.relation('nft', { nullable: true }),

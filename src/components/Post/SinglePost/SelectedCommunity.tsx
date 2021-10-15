@@ -1,29 +1,29 @@
 import { Tooltip } from '@components/ui/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { CubeIcon } from '@heroicons/react/solid'
+import { UsersIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
+import { Community } from 'src/__generated__/schema.generated'
 
 interface Props {
-  product: Product
+  community: Community
 }
 
-const SelectedProduct: React.FC<Props> = ({ product }) => {
+const SelectedCommunity: React.FC<Props> = ({ community }) => {
   return (
     <div className="text-sm flex items-center space-x-2">
-      <Tooltip content="Product">
-        <CubeIcon className="h-4 w-4 text-gray-500" />
+      <Tooltip content="Community">
+        <UsersIcon className="h-4 w-4 text-gray-500" />
       </Tooltip>
-      <Link href={`/products/${product?.slug}`} passHref>
+      <Link href={`/communities/${community?.slug}`} passHref>
         <a className="flex items-center space-x-1 cursor-pointer">
           <img
             className="h-4 w-4 rounded"
-            src={imagekitURL(product?.avatar as string, 50, 50)}
-            alt={`#${product?.slug}'s avatar'`}
+            src={imagekitURL(community?.avatar as string, 50, 50)}
+            alt={`#${community?.slug}'s avatar'`}
           />
           <div className="font-bold text-gray-600 dark:text-gray-200">
-            {product?.name}
+            {community?.name}
           </div>
         </a>
       </Link>
@@ -31,4 +31,4 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default SelectedProduct
+export default SelectedCommunity
