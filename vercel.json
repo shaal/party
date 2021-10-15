@@ -5,10 +5,6 @@
     {
       "source": "/discord",
       "destination": "https://discord.gg/zxHM7uwDmk"
-    },
-    {
-      "source": "/feedback",
-      "destination": "https://gitlab.com/yo/devparty/-/issues/new"
     }
   ]
 }
