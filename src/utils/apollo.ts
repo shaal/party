@@ -1,5 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
+import { GRAPHCDN_URL, IS_PRODUCTION } from 'src/constants'
 
 let apolloClient: ApolloClient<any>
 
@@ -31,7 +32,12 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
   const ssrMode = typeof window === 'undefined'
 
   const httpLink = createHttpLink({
-    uri: 'https://devparty-dev.graphcdn.app',
+    uri: ssrMode
+      ? IS_PRODUCTION
+        ? GRAPHCDN_URL
+        : `http://localhost:3000/api/graphql`
+      : '/api/graphql',
+
     headers: headers,
     credentials: 'include'
   })
