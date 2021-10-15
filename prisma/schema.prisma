@@ -405,5 +405,5 @@ enum NotificationType {
 }
 
 enum LogActionType {
-  POST_LIKE
+  SETTINGS_UPDATE
 }

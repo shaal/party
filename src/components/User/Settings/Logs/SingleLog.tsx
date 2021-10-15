@@ -24,7 +24,7 @@ const SingleLog: React.FC<Props> = ({ log }) => {
           <div className="text-sm font-bold">{log?.action}</div>
         </div>
         <div className="linkify">
-          {log?.action === 'POST_LIKE' && (
+          {log?.action === 'SETTINGS_UPDATE' && (
             <div className="flex items-center space-x-1">
               <HeartIcon className="h-4 w-4 text-pink-500" />
               <div>

@@ -2,6 +2,7 @@ import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
+import { createLog } from '../Log/mutations/createLog'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
 import { getFeaturedUsers } from './queries/getFeaturedUsers'
@@ -178,7 +179,7 @@ builder.mutationField('editUser', (t) =>
     authScopes: { user: true },
     resolve: async (query, parent, { input }, { session }) => {
       try {
-        return await db.user.update({
+        const user = await db.user.update({
           ...query,
           where: { id: session!.userId },
           data: {
@@ -194,6 +195,9 @@ builder.mutationField('editUser', (t) =>
             }
           }
         })
+        createLog(session!.userId, user?.id, 'SETTINGS_UPDATE')
+
+        return user
       } catch (error: any) {
         if (error.code === 'P2002') {
           throw new Error('Username is already taken!')
