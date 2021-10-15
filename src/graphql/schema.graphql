@@ -320,6 +320,7 @@ type PollAnswerVotersConnectionEdge {
 type Post {
   attachments: Attachments
   body: String!
+  community: Community
   createdAt: DateTime!
   done: Boolean!
   hasLiked: Boolean!

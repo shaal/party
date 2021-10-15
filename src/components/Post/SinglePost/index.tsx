@@ -22,7 +22,8 @@ import {
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
 import Oembed from './Oembed'
-import SelectedTarget from './SelectedTarget'
+import SelectedCommunity from './SelectedCommunity'
+import SelectedProduct from './SelectedProduct'
 import CommitType from './Type/Commit'
 import NFTType from './Type/NFT'
 import PollType from './Type/Poll'
@@ -79,6 +80,12 @@ export const PostFragment = gql`
       }
     }
     product {
+      id
+      name
+      slug
+      avatar
+    }
+    community {
       id
       name
       slug
@@ -213,7 +220,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           </div>
         )}
         <div className="ml-auto">
-          {post?.product && <SelectedTarget product={post?.product} />}
+          {post?.product && <SelectedProduct product={post?.product} />}
+          {post?.community && <SelectedCommunity community={post?.community} />}
         </div>
       </div>
     </Card>
