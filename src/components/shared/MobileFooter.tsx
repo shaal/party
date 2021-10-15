@@ -67,7 +67,7 @@ const MobileFooter: React.FC = () => {
             )}
           </a>
         </Link>
-        <Link href={`/@/${currentUser?.username}`}>
+        <Link href="/communities">
           <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/communities' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
