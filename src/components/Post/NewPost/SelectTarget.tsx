@@ -1,5 +1,6 @@
 import { Button } from '@components/ui/Button'
 import { Modal } from '@components/ui/Modal'
+import { GlobeIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import { useState } from 'react'
 import { Community, Product } from 'src/__generated__/schema.generated'
@@ -18,9 +19,20 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
     <div className="px-2">
       <Button
         type="button"
-        className="text-xs flex items-center space-x-2"
+        className="text-xs"
         size="sm"
         outline
+        icon={
+          selected ? (
+            <img
+              src={selected?.avatar as string}
+              className="h-4 w-4 rounded"
+              alt={`${selected?.name}'s avatar'`}
+            />
+          ) : (
+            <GlobeIcon className="h-4 w-4 text-brand-500" />
+          )
+        }
         onClick={() => {
           mixpanel.track('post.select_target.modal.open')
           setShowModal(!showModal)
