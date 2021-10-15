@@ -23,7 +23,6 @@ export const PUBLIC_SIGNING_MESSAGE =
 // URLs
 export const BASE_URL = process.env.BASE_URL
 export const STATIC_ASSETS = 'https://assets.devparty.io/images'
-export const GRAPHCDN_URL = 'https://devparty.graphcdn.app'
 export const OPENSEA_API_URL = `https://${
   IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
 }.opensea.io/api/v1`
