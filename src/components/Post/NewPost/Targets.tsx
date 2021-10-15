@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { Spinner } from '@components/ui/Spinner'
 import { GlobeIcon } from '@heroicons/react/outline'
 import { Community, Product } from 'src/__generated__/schema.generated'
 
@@ -46,7 +47,7 @@ const Targets: React.FC<Props> = ({
   setSelected,
   setShowModal
 }) => {
-  const { data } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY)
+  const { data, loading } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY)
 
   const products = data?.me?.ownedProducts?.edges?.map((edge) => edge?.node)
   const communities = data?.me?.communities?.edges?.map((edge) => edge?.node)
@@ -63,68 +64,74 @@ const Targets: React.FC<Props> = ({
     setShowModal(false)
   }
 
+  if (loading)
+    return (
+      <div className="px-5 py-3.5 font-bold text-center space-y-2">
+        <Spinner size="md" className="mx-auto" />
+        <div>Loading your communities and products</div>
+      </div>
+    )
+
   return (
-    <div className="px-2">
-      <div className="relative bg-white p-4 space-y-2">
-        <button
-          type="button"
-          className="flex items-center space-x-2 font-bold pb-3"
-          onClick={() => handleSelectTarget(null, 'Everywhere')}
-        >
-          <GlobeIcon className="h-5 w-5 text-brand-500" />
-          <div>Everywhere</div>
-        </button>
+    <div className="relative px-5 py-3.5 space-y-2">
+      <button
+        type="button"
+        className="flex items-center space-x-2 font-bold pb-3"
+        onClick={() => handleSelectTarget(null, 'Everywhere')}
+      >
+        <GlobeIcon className="h-5 w-5 text-brand-500" />
+        <div>Everywhere</div>
+      </button>
+      <div className="space-y-2">
+        <div className="font-bold">My Products</div>
         <div className="space-y-2">
-          <div className="font-bold">My Products</div>
-          <div className="space-y-2">
-            {products?.map((product: any) => (
-              <div key={product?.name}>
-                <button
-                  type="button"
-                  className="flex items-center space-x-2"
-                  onClick={() => handleSelectTarget(product, 'Product')}
-                >
-                  <img
-                    className="h-8 w-8 rounded"
-                    src={product?.avatar}
-                    alt={`#${product?.name}'s avatar'`}
-                  />
-                  <div className="text-left">
-                    <div className="font-bold">{product?.name}</div>
-                    <div className="text-sm">
-                      <b>{product?.subscribers?.totalCount}</b> subscribers
-                    </div>
+          {products?.map((product: any) => (
+            <div key={product?.name}>
+              <button
+                type="button"
+                className="flex items-center space-x-2"
+                onClick={() => handleSelectTarget(product, 'Product')}
+              >
+                <img
+                  className="h-8 w-8 rounded"
+                  src={product?.avatar}
+                  alt={`#${product?.name}'s avatar'`}
+                />
+                <div className="text-left">
+                  <div className="font-bold">{product?.name}</div>
+                  <div className="text-sm">
+                    <b>{product?.subscribers?.totalCount}</b> subscribers
                   </div>
-                </button>
-              </div>
-            ))}
-          </div>
+                </div>
+              </button>
+            </div>
+          ))}
         </div>
-        <div className="space-y-2 pt-2">
-          <div className="font-bold">My Communities</div>
-          <div className="space-y-2">
-            {communities?.map((community: any) => (
-              <div key={community?.name}>
-                <button
-                  type="button"
-                  className="flex items-center space-x-2"
-                  onClick={() => handleSelectTarget(community, 'Community')}
-                >
-                  <img
-                    className="h-8 w-8 rounded"
-                    src={community?.avatar}
-                    alt={`${community?.name}'s avatar'`}
-                  />
-                  <div className="text-left">
-                    <div className="font-bold">{community?.name}</div>
-                    <div className="text-sm">
-                      <b>{community?.members?.totalCount}</b> members
-                    </div>
+      </div>
+      <div className="space-y-2 pt-2">
+        <div className="font-bold">My Communities</div>
+        <div className="space-y-2">
+          {communities?.map((community: any) => (
+            <div key={community?.name}>
+              <button
+                type="button"
+                className="flex items-center space-x-2"
+                onClick={() => handleSelectTarget(community, 'Community')}
+              >
+                <img
+                  className="h-8 w-8 rounded"
+                  src={community?.avatar}
+                  alt={`${community?.name}'s avatar'`}
+                />
+                <div className="text-left">
+                  <div className="font-bold">{community?.name}</div>
+                  <div className="text-sm">
+                    <b>{community?.members?.totalCount}</b> members
                   </div>
-                </button>
-              </div>
-            ))}
-          </div>
+                </div>
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
