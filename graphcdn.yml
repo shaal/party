@@ -15,4 +15,4 @@ environments:
   development:
     name: devparty-dev
     originUrl: '/api/graphql'
-    schema: '/api/graphql'
+    schema: '/src/graphql/schema.graphql'
