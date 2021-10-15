@@ -12,7 +12,7 @@ import {
   ClockIcon,
   FingerPrintIcon,
   PencilIcon,
-  UserGroupIcon
+  UsersIcon
 } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
@@ -61,7 +61,7 @@ const Details: React.FC<Props> = ({ community }) => {
             <Card>
               <CardBody className="space-y-3">
                 <div className="flex items-center space-x-1.5">
-                  <UserGroupIcon className="h-5 w-5" />
+                  <UsersIcon className="h-5 w-5" />
                   <div>{community?.members?.totalCount} members joined</div>
                 </div>
                 <div className="flex items-center space-x-1.5">
