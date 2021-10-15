@@ -46,6 +46,10 @@ build:
   script:
     - yarn build
 
+graphcdn:
+  script:
+    - npx graphcdn push schema
+
 migrate:
   extends: .prepare
   script:
