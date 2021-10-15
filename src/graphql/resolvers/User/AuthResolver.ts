@@ -4,6 +4,7 @@ import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
+import { createLog } from '../Log/mutations/createLog'
 import { Result } from '../ResultResolver'
 import { changePassword } from './mutations/changePassword'
 import { joinWaitlist } from './mutations/joinWaitlist'
@@ -67,6 +68,7 @@ builder.mutationField('login', (t) =>
         }
 
         await createSession(req, user)
+        createLog(user?.id, user?.id, 'LOGIN')
         return user
       } catch (error: any) {
         if (error.code === 'VALIDATION') {
@@ -96,8 +98,9 @@ builder.mutationField('loginWithWallet', (t) =>
     resolve: async (_query, parent, { input }, { req }) => {
       try {
         const user = await authWithWallet(input.nonce, input.signature)
-
+        createLog(user?.id, user?.id, 'LOGIN')
         await createSession(req, user)
+
         return user
       } catch (error: any) {
         throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
