@@ -55,15 +55,12 @@ const Targets: React.FC<Props> = ({
     target: Product | Community | null,
     type: 'Product' | 'Community' | 'Everywhere'
   ) => {
-    if (target) {
-      setSelected(target)
-      setSelectedTarget({ targetId: target?.id, targetType: type })
-      setShowModal(false)
-    } else {
-      setSelected(null)
-      setSelectedTarget({ targetId: '', targetType: '' })
-      setShowModal(false)
-    }
+    setSelected(target)
+    setSelectedTarget({
+      targetId: target ? target?.id : '',
+      targetType: target ? type : ''
+    })
+    setShowModal(false)
   }
 
   return (
