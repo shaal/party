@@ -1,12 +1,17 @@
 name: devparty
 originUrl: 'https://devparty.io/api/graphql'
 scopes:
-  AUTHENTICATED: 'cookie:devparty_session|header:Authorization'
+  AUTHENTICATED: 'cookie:devparty_session|header:authorization'
 rules:
-  - description: Cache everything
+  - types:
+      - Query
     maxAge: 900
-    scope: AUTHENTICATED
     swr: 900
-    types:
-      Query: true
+    scope: AUTHENTICATED
+    description: Cache everything
+  - types:
+      - Spotify
+    maxAge: 0
+    swr: 0
+    description: Skip Spotify query
 schema: 'https://devparty.io/api/graphql'
