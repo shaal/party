@@ -21,11 +21,13 @@ Feature Requests by the community are highly encouraged. Please feel free to cre
 ## Code of Conduct
 
 This project and everyone participating in it are governed by the [Code of Conduct](https://gitlab.com/yo/devparty/-/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read the [full text](https://gitlab.com/yo/devparty/-/blob/main/CODE_OF_CONDUCT.md) so that you can read which actions may or may not be tolerated.
+
 ## Bugs
 
 We are using [GitLab Issues](https://gitlab.com/yo/devparty/-/issues) to manage our public bugs. We keep a close eye on this so before filing a new issue, try to make sure the problem does not already exist.
 
 ---
+
 ## Submitting a Merge Request
 
 - Merge Requests should be raised for any change and it will be approved by a maintainer before merging.
@@ -45,10 +47,6 @@ We are using [GitLab Issues](https://gitlab.com/yo/devparty/-/issues) to manage 
 
 First of all, you need to check if you're satisfying the `Contribution Prerequisites`
 
-
 Then, please follow the instructions in [LOCAL_SETUP_GUIDE.md]()
 
 ---
-
-
-
