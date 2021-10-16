@@ -6,10 +6,12 @@ import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Spinner } from '@components/ui/Spinner'
 import { CubeIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React from 'react'
+import useInView from 'react-cool-inview'
 import { Product } from 'src/__generated__/schema.generated'
 
 import { ProductsQuery } from './__generated__/Products.generated'
@@ -17,8 +19,12 @@ import { ProductsQuery } from './__generated__/Products.generated'
 const Footer = dynamic(() => import('@components/shared/Footer'))
 
 export const PRODUCTS_QUERY = gql`
-  query ProductsQuery {
-    products {
+  query ProductsQuery($after: String) {
+    products(first: 10, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
       edges {
         node {
           id
@@ -33,7 +39,29 @@ export const PRODUCTS_QUERY = gql`
 `
 
 const Products: React.FC = () => {
-  const { data, loading, error } = useQuery<ProductsQuery>(PRODUCTS_QUERY)
+  const { data, loading, error, fetchMore } = useQuery<ProductsQuery>(
+    PRODUCTS_QUERY,
+    { variables: { after: null } }
+  )
+  const products = data?.products?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.products?.pageInfo
+
+  const { observe } = useInView({
+    threshold: 1,
+    onChange: ({ observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: () => {
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
+          }
+        })
+      }
+    }
+  })
 
   if (loading)
     return (
@@ -57,12 +85,17 @@ const Products: React.FC = () => {
         <Card>
           <CardBody className="space-y-6">
             <ErrorMessage title="Failed to load products" error={error} />
-            {data?.products?.edges?.map((product: any) => (
+            {products?.map((product: any) => (
               <ProductProfileLarge
-                key={product?.node?.id}
-                product={product?.node as Product}
+                key={product?.id}
+                product={product as Product}
               />
             ))}
+            {pageInfo?.hasNextPage && (
+              <span ref={observe} className="flex justify-center p-5">
+                <Spinner size="md" />
+              </span>
+            )}
           </CardBody>
         </Card>
       </GridItemEight>
