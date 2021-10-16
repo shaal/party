@@ -50,4 +50,5 @@ First of all, you need to check if you're satisfying the `Contribution Prerequis
 Then, please follow the instructions in [LOCAL_SETUP_GUIDE](docs/setup.md).
 
 ---
+
 ## Happy Contributing 🥳
