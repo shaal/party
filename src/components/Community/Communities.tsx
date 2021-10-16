@@ -70,7 +70,7 @@ const Communities: React.FC = () => {
         <GridItemSix>
           <Card>
             <CardBody className="space-y-3">
-              <Card>
+              <Card forceRounded>
                 <CardBody className="space-y-2">
                   <div className="text-xl flex items-center space-x-2">
                     <TrendingUpIcon className="h-6 w-6" />
@@ -89,7 +89,7 @@ const Communities: React.FC = () => {
         <GridItemSix>
           <Card>
             <CardBody className="space-y-3">
-              <Card>
+              <Card forceRounded>
                 <CardBody className="space-y-2">
                   <div className="text-xl flex items-center space-x-2">
                     <FireIcon className="h-6 w-6" />
