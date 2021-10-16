@@ -26,20 +26,15 @@ This project and everyone participating in it are governed by the [Code of Condu
 We are using [GitLab Issues](https://gitlab.com/yo/devparty/-/issues) to manage our public bugs. We keep a close eye on this so before filing a new issue, try to make sure the problem does not already exist.
 
 ---
-## Merge Requests
-- The latest changes are always in `main` branch, so please make your Merge Request against that branch.
-- Merge Requests should be raised for any change.
-- Merge Requests need the approval of a maintainer before merging.
+## Submitting a Merge Request
+
+- Merge Requests should be raised for any change and it will be approved by a maintainer before merging.
+- The latest changes are always in `main` branch, so please create your branch from `main`.
+- If you’ve fixed a bug or added code that should be tested, add the tests and then link the corresponding issue in either your commit or your PR.
 - Run `yarn lint` before committing to make resolving conflicts easier (VSCode users, check out this extension to fix lint issues in development)
 - We encourage you to test your changes, and if you have the opportunity, please make those tests part of the Merge Request.
 - If you add new functionality, please provide the corresponding documentation as well and make it part of the Merge Request.
-## Submitting a Merge Request
-
-Before submitting your merge request make sure the following requirements are fulfilled:
-
-- Create your branch from `main`.
-- If you’ve fixed a bug or added code that should be tested, add the tests and then link the corresponding issue in either your commit or your PR.
-- Make sure your code is linted (`yarn lint`).
+- The Merge Request should be raised against main branch.
 
 ## Contribution Prerequisites
 
