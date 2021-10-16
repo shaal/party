@@ -1,12 +1,21 @@
 interface CardProps {
   children: React.ReactNode
   className?: string
+  forceRounded?: boolean
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '' }) => {
+export const Card: React.FC<CardProps> = ({
+  children,
+  className = '',
+  forceRounded = false
+}) => {
   return (
     <div
-      className={`border dark:border-gray-800 bg-white dark:bg-gray-900 lg:rounded-lg md:rounded-lg sm:rounded-lg shadow-sm dark:shadow-md ${className}`}
+      className={`border dark:border-gray-800 bg-white dark:bg-gray-900 ${
+        forceRounded
+          ? 'rounded-lg'
+          : 'lg:rounded-lg md:rounded-lg sm:rounded-lg'
+      } shadow-sm dark:shadow-md ${className}`}
     >
       {children}
     </div>

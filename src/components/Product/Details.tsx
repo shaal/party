@@ -59,7 +59,7 @@ const Details: React.FC<Props> = ({ product }) => {
         <Social product={product} />
         <div className="space-y-2">
           <div className="font-bold">Owned by</div>
-          <Card>
+          <Card forceRounded>
             <CardBody>
               <UserProfileLarge user={product?.owner} />
             </CardBody>
