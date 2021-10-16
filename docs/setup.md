@@ -62,3 +62,5 @@ sudo apt install docker-ce docker-ce-cli containerd.io
      this points to Docker's link
    - Migrate the migration to database by running `yarn prisma:migrate`
    - Seed the fake data to the database by running `yarn prisma:seed`
+
+7. Run `yarn dev` and visit http://localhost:3000/
