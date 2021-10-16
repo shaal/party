@@ -47,9 +47,6 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
 
   const connectWallet = async () => {
     mixpanel.track('user.integration.wallet.connect')
-    if (typeof window.web3 !== 'object') {
-      return toast.error('Metamask not found in the browser!')
-    }
 
     const web3Modal = getWeb3Modal({ theme: resolvedTheme })
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
@@ -97,7 +94,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
           type="button"
           onClick={disconnectWallet}
         >
-          Disconnect MetaMask
+          Disconnect Wallet
         </Button>
       ) : (
         <Button
@@ -106,7 +103,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
           type="button"
           onClick={connectWallet}
         >
-          Connect MetaMask
+          Connect Wallet
         </Button>
       )}
     </>

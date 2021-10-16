@@ -17,8 +17,7 @@ import {
 const LoginWithWallet: React.FC = () => {
   const { resolvedTheme } = useTheme()
   const authRedirect = useAuthRedirect()
-  const [loginButtonMessage, setLoginButtonMessage] =
-    useState<string>('MetaMask')
+  const [loginButtonMessage, setLoginButtonMessage] = useState<string>('Wallet')
   const [login] = useMutation<
     LoginWithWalletMutation,
     LoginWithWalletMutationVariables
@@ -40,10 +39,6 @@ const LoginWithWallet: React.FC = () => {
   const connectWallet = async () => {
     mixpanel.track('login.wallet.click')
     try {
-      if (typeof window.web3 !== 'object') {
-        return toast.error('Metamask not found in the browser!')
-      }
-
       setLoginButtonMessage('Connecting...')
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
@@ -52,7 +47,7 @@ const LoginWithWallet: React.FC = () => {
       const data = await response.json()
       if (data.status === 'error') {
         toast.error(data.message)
-        setLoginButtonMessage('MetaMask')
+        setLoginButtonMessage('Wallet')
         mixpanel.track('login.wallet.success')
       } else {
         setLoginButtonMessage('Please sign...')
@@ -71,7 +66,7 @@ const LoginWithWallet: React.FC = () => {
         web3Modal.clearCachedProvider()
       }
     } finally {
-      setLoginButtonMessage('MetaMask')
+      setLoginButtonMessage('Wallet')
     }
   }
 
@@ -82,7 +77,7 @@ const LoginWithWallet: React.FC = () => {
       variant="success"
       className="w-full justify-center text-[#F6851B] border-[#F6851B] hover:bg-[#ffe9d5] focus:ring-[#F6851B]"
       onClick={connectWallet}
-      disabled={loginButtonMessage !== 'MetaMask'}
+      disabled={loginButtonMessage !== 'Wallet'}
       icon={
         <img
           src={`${STATIC_ASSETS}/brands/metamask.svg`}
