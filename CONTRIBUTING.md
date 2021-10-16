@@ -47,6 +47,7 @@ We are using [GitLab Issues](https://gitlab.com/yo/devparty/-/issues) to manage 
 
 First of all, you need to check if you're satisfying the `Contribution Prerequisites`
 
-Then, please follow the instructions in [LOCAL_SETUP_GUIDE.md]()
+Then, please follow the instructions in [LOCAL_SETUP_GUIDE](docs/setup.md).
 
 ---
+## Happy Contributing 🥳
