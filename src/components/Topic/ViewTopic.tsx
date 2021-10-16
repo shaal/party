@@ -44,7 +44,7 @@ const ViewTopic: React.FC = () => {
 
   return (
     <GridLayout>
-      <GridItemEight className="mb-4 lg:mb-0">
+      <GridItemEight>
         <TopicFeed topic={topic?.name as string} />
       </GridItemEight>
       <GridItemFour>
