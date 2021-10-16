@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Card, CardBody } from '@components/ui/Card'
+import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { Spinner } from '@components/ui/Spinner'
 import React from 'react'
@@ -42,7 +43,7 @@ export const SESSION_SETTINGS_QUERY = gql`
 `
 
 const SessionsSettings: React.FC = () => {
-  const { data, loading, fetchMore } = useQuery<SessionsSettingsQuery>(
+  const { data, loading, error, fetchMore } = useQuery<SessionsSettingsQuery>(
     SESSION_SETTINGS_QUERY,
     { variables: { after: null } }
   )
@@ -78,6 +79,7 @@ const SessionsSettings: React.FC = () => {
       <GridItemEight>
         <Card className="mb-4">
           <CardBody className="space-y-4">
+            <ErrorMessage title="Failed to load sessions" error={error} />
             {sessions?.map((session: any) => (
               <SingleSession key={session?.id} session={session} />
             ))}
