@@ -46,12 +46,12 @@ export const Modal: React.FC<Props> = (props) => {
             <div className="inline-block align-bottom bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-t-lg sm:rounded-b-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg">
               <div className="flex items-center justify-between border-b dark:border-gray-700 px-5 py-3.5">
                 <div className="font-bold">{props.title}</div>
-                <div
-                  className="cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-1"
+                <button
+                  className="text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-1"
                   onClick={props.onClose}
                 >
                   <XIcon className="h-5 w-5" />
-                </div>
+                </button>
               </div>
               {props.children}
             </div>

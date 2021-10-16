@@ -38,5 +38,13 @@ export const userData = [
     name: 'Josef Kahoun',
     isStaff: false,
     avatar: 'https://avatars.githubusercontent.com/u/48121432'
+  },
+  {
+    email: 'sasi@yogi.codes',
+    username: 'sasidharan',
+    name: 'Sasi',
+    isStaff: true,
+    avatar: 'https://avatars.githubusercontent.com/u/29498872',
+    bio: 'Creator of Lag and Log'
   }
 ]
