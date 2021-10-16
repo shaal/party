@@ -51,7 +51,6 @@ graphcdn:
     - npx graphcdn push schema
   only:
     - main
-  when: manual
 
 migrate:
   extends: .prepare
@@ -59,6 +58,7 @@ migrate:
     - yarn prisma migrate reset --force
   only:
     - main
+  when: manual
 
 housekeeping:
   before_script: []
