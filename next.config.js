@@ -10,7 +10,7 @@ module.exports = withPWA({
   reactStrictMode: true,
   poweredByHeader: false,
   generateEtags: false,
-  experimental: { esmExternals: true },
+  experimental: { esmExternals: true, swcLoader: true, swcMinify: true },
   env: {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
     OPENSEA_API_KEY: process.env.OPENSEA_API_KEY,
