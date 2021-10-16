@@ -32,7 +32,7 @@ const FEATURED_USERS_QUERY = gql`
 const FeaturedUsersCard = ({ children }: any) => {
   return (
     <div className="mb-4">
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-3 lg:mb-2 px-3 lg:px-0">
         <SparklesIcon className="h-4 w-4 text-yellow-500" />
         <div>Featured users</div>
       </div>
