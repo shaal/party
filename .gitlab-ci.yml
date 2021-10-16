@@ -64,7 +64,7 @@ migrate:
 seed:
   extends: .prepare
   script:
-    - yarn prisma:seed
+    - DATABASE_URL=PROD_DATABASE_URL yarn prisma:seed
   only:
     - main
   when: manual
