@@ -21,7 +21,7 @@ const MobileFooter: React.FC = () => {
 
   return (
     <div className="block sm:hidden">
-      <div className="mobile-footer bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 border-gray-200 dark:border-gray-700 border-t bottom-0 fixed w-full z-50 flex items-center justify-between px-5">
+      <div className="mobile-footer bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 border-gray-200 dark:border-gray-700 border-t bottom-0 fixed w-full z-10 flex items-center justify-between px-5">
         <Link href={currentUser ? '/home' : '/'}>
           <a className="text-[0.7rem] py-1.5">
             {router.pathname == '/home' ? (
