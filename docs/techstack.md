@@ -9,6 +9,7 @@ For the Devparty tech stack we use:
 - [**MySQL**](https://www.mysql.com/?utm_source=devparty) as the primary database and for Full Text Search
 - [**Redis**](https://redis.io/?utm_source=devparty) to store cached data
 - [**Prisma**](https://prisma.io/?utm_source=devparty) for typescript database ORM
+- [**GraphQL**](https://graphql.org/?utm_source=devparty) for data query and manipulation for APIs
 
 ## Services
 
