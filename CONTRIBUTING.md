@@ -4,15 +4,15 @@
 
 Devparty is an open-source project maintained by [Yogi](https://gitlab.com/yo). We appreciate your interest and efforts to contribute to Devparty.
 
-Anyone can be a contributor. Either you found a typo, or you have an awesome feature request you could implement, we encourage you to create a Pull Request.
+Anyone can be a contributor. Either you found a typo, or you have an awesome feature request you could implement, we encourage you to create a Merge Request.
 
-All efforts to contribute are highly appreciated, we recommend you talk to a maintainer prior to spending a lot of time making a pull request that may not align with the project roadmap.
+All efforts to contribute are highly appreciated, we recommend you talk to a maintainer prior to spending a lot of time making a merge request that may not align with the project roadmap.
 
 ## Open Development & Community Driven
 
-Devparty is an open-source project. See the [LICENSE](https://gitlab.com/yo/devparty/-/blob/main/LICENSE) file for licensing information. All the work done is available on GitHub.
+Devparty is an open-source project. See the [LICENSE](https://gitlab.com/yo/devparty/-/blob/main/LICENSE) file for licensing information. All the work done is available on GitLab.
 
-The maintainers and the contributors send pull requests which go through the same validation process.
+The maintainers and the contributors send merge requests which go through the same validation process.
 
 ## Feature Requests
 
@@ -26,20 +26,20 @@ This project and everyone participating in it are governed by the [Code of Condu
 We are using [GitLab Issues](https://gitlab.com/yo/devparty/-/issues) to manage our public bugs. We keep a close eye on this so before filing a new issue, try to make sure the problem does not already exist.
 
 ---
-## Pull Requests
-- The latest changes are always in `main` branch, so please make your Pull Request against that branch.
-- Pull Requests should be raised for any change.
-- Pull Requests need approval of a core contributor before merging.
-- Run `npm run lint` before committing to make resolving conflicts easier (VSCode users, check out this extension to fix lint issues in development)
-- We encourage you to test your changes, and if you have the opportunity, please make those tests part of the Pull Request
-- If you add new functionality, please provide the corresponding documentation as well and make it part of the Pull Request
-## Submitting a Pull Request
+## Merge Requests
+- The latest changes are always in `main` branch, so please make your Merge Request against that branch.
+- Merge Requests should be raised for any change.
+- Merge Requests need the approval of a maintainer before merging.
+- Run `yarn lint` before committing to make resolving conflicts easier (VSCode users, check out this extension to fix lint issues in development)
+- We encourage you to test your changes, and if you have the opportunity, please make those tests part of the Merge Request.
+- If you add new functionality, please provide the corresponding documentation as well and make it part of the Merge Request.
+## Submitting a Merge Request
 
-Before submitting your pull request make sure the following requirements are fulfilled:
+Before submitting your merge request make sure the following requirements are fulfilled:
 
 - Create your branch from `main`.
 - If you’ve fixed a bug or added code that should be tested, add the tests and then link the corresponding issue in either your commit or your PR.
-- Make sure your code lints (`npm run lint`).
+- Make sure your code is linted (`yarn lint`).
 
 ## Contribution Prerequisites
 
