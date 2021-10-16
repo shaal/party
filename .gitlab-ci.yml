@@ -53,9 +53,8 @@ graphcdn:
     - main
 
 migrate:
-  extends: .prepare
   script:
-    - yarn prisma migrate reset --force
+    - npx prisma migrate reset --force
   only:
     - main
   when: manual
