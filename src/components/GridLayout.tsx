@@ -1,12 +1,9 @@
-interface GridLayoutProps {
+interface Props {
   children: React.ReactNode
   className?: string
 }
 
-export const GridLayout: React.FC<GridLayoutProps> = ({
-  children,
-  className = ''
-}) => {
+export const GridLayout: React.FC<Props> = ({ children, className = '' }) => {
   return (
     <div
       className={`container mx-auto max-w-screen-2xl flex-grow py-8 lg:px-28 md:px-10 sm:px-5 px-0 ${className}`}
@@ -16,24 +13,36 @@ export const GridLayout: React.FC<GridLayoutProps> = ({
   )
 }
 
-export const GridItemFour: React.FC<React.ReactNode> = ({ children }) => {
+export const GridItemFour: React.FC<Props> = ({ children, className = '' }) => {
   return (
-    <div className="lg:col-span-4 md:col-span-12 col-span-12">{children}</div>
+    <div className={`lg:col-span-4 md:col-span-12 col-span-12 ${className}`}>
+      {children}
+    </div>
   )
 }
 
-export const GridItemSix: React.FC<React.ReactNode> = ({ children }) => {
+export const GridItemSix: React.FC<Props> = ({ children, className = '' }) => {
   return (
-    <div className="lg:col-span-6 md:col-span-12 col-span-12">{children}</div>
+    <div className={`lg:col-span-6 md:col-span-12 col-span-12 ${className}`}>
+      {children}
+    </div>
   )
 }
 
-export const GridItemEight: React.FC<React.ReactNode> = ({ children }) => {
+export const GridItemEight: React.FC<Props> = ({
+  children,
+  className = ''
+}) => {
   return (
-    <div className="lg:col-span-8 md:col-span-12 col-span-12">{children}</div>
+    <div className={`lg:col-span-8 md:col-span-12 col-span-12 ${className}`}>
+      {children}
+    </div>
   )
 }
 
-export const GridItemTwelve: React.FC<React.ReactNode> = ({ children }) => {
-  return <div className="col-span-12">{children}</div>
+export const GridItemTwelve: React.FC<Props> = ({
+  children,
+  className = ''
+}) => {
+  return <div className={`col-span-12 ${className}`}>{children}</div>
 }
