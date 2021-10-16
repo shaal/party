@@ -5,7 +5,7 @@ import { PUBLIC_SIGNING_MESSAGE } from 'src/constants'
 /**
  * Authenticate a user with Wallet
  * @param nonce - Unique nonce generated on sign request
- * @param signature - Generated from metamask
+ * @param signature - Generated from wallet
  * @returns the authenticated user
  */
 export const authWithWallet = async (nonce: string, signature: string) => {
