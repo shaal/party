@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer
-      className={`mt-4 leading-7 text-sm sticky flex flex-wrap ${
+      className={`mt-4 leading-7 text-sm sticky flex flex-wrap px-3 lg:px-0 ${
         staffMode ? 'top-28' : 'top-20'
       }`}
     >
