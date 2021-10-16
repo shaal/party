@@ -18,4 +18,5 @@ For the Devparty services we use:
 - [**PlanetScale**](https://www.planetscale.com/?utm_source=devparty) as a serverless database platform backed by Vitess _(Dublin Region)_
 - [**Upstash**](https://upstash.com/?utm_source=devparty) as a serverless database for Redis _(Ireland Region)_
 - [**IPFS**](https://ipfs.io/?utm_source=devparty) for storing images in decentralized way
+- [**GraphCDN**](https://graphcdn.io/?utm_source=devparty) as a caching layer for GraphQL query results
 - [**GitLab**](https://gitlab.com/?utm_source=devparty) for hosting the source code and issue tracking
