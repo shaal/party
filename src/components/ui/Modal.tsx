@@ -49,6 +49,7 @@ export const Modal: React.FC<Props> = (props) => {
                 <div
                   className="cursor-pointer text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-1"
                   onClick={props.onClose}
+                  onKeyDown={props.onClose}
                 >
                   <XIcon className="h-5 w-5" />
                 </div>

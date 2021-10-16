@@ -95,6 +95,7 @@ const InviteDetails: React.FC = () => {
                 <div
                   className="cursor-pointer"
                   onClick={() => regenerateInvite()}
+                  onKeyDown={() => regenerateInvite()}
                 >
                   <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </div>
@@ -107,6 +108,10 @@ const InviteDetails: React.FC = () => {
                 <div
                   className="cursor-pointer"
                   onClick={() => {
+                    mixpanel.track('user.invite.regenerate.click')
+                    regenerateInvite()
+                  }}
+                  onKeyDown={() => {
                     mixpanel.track('user.invite.regenerate.click')
                     regenerateInvite()
                   }}
