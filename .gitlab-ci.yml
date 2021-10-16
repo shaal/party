@@ -60,6 +60,15 @@ migrate:
     - main
   when: manual
 
+# Remove after Devparty release
+seed:
+  extends: .prepare
+  script:
+    - yarn prisma:seed
+  only:
+    - main
+  when: manual
+
 housekeeping:
   before_script: []
   script:
