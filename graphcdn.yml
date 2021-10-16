@@ -1,7 +1,7 @@
 name: devparty
 originUrl: 'https://devparty.io/api/graphql'
 scopes:
-  AUTHENTICATED: 'cookie:devparty_session|header:Authorization
+  AUTHENTICATED: 'cookie:devparty_session|header:Authorization'
 rules:
   - description: Cache everything
     maxAge: 900
