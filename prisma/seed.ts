@@ -42,7 +42,7 @@ async function main() {
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding User - @${username} 👨‍🎤`)
+    console.log(`Seeding Fake User - @${username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -63,25 +63,9 @@ async function main() {
     })
   }
 
-  // Fake Products
-  for (let i = 0; i < 50; i++) {
-    const slug =
-      `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding Product - @${slug} 📦`)
-    await db.product.create({
-      data: {
-        slug,
-        name: faker.company.companyName(),
-        avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
-        description: faker.lorem.sentence(10),
-        owner: { connect: { username: 'yoginth' } }
-      }
-    })
-  }
-
   // Real User
   for (const user of userData) {
-    console.log(`Seeding User - @${user.username} 👨‍🎤`)
+    console.log(`Seeding Real User - @${user.username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: user.email,
@@ -103,9 +87,25 @@ async function main() {
     })
   }
 
+  // Fake Products
+  for (let i = 0; i < 20; i++) {
+    const slug =
+      `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
+    console.log(`Seeding Fake Product - @${slug} 📦`)
+    await db.product.create({
+      data: {
+        slug,
+        name: faker.company.companyName(),
+        avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
+        description: faker.lorem.sentence(10),
+        owner: { connect: { username: 'yoginth' } }
+      }
+    })
+  }
+
   // Product
   for (const product of productData) {
-    console.log(`Seeding Product - #${product.slug} 📦`)
+    console.log(`Seeding Real Product - #${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
