@@ -73,14 +73,18 @@ const Targets: React.FC<Props> = ({
     )
 
   return (
-    <div className="relative divide-y dark:divide-gray-700">
+    <div className="divide-y dark:divide-gray-700">
       <button
         type="button"
         className="flex items-center space-x-2 font-bold px-5 py-3.5"
         onClick={() => handleSelectTarget(null, 'Everywhere')}
       >
         <GlobeIcon className="h-5 w-5 text-brand-500" />
-        <div>Everywhere</div>
+        <div className="flex items-center space-x-2">
+          <div>Everywhere</div>
+          <div className="text-sm text-gray-500">-</div>
+          <div className="text-sm text-gray-500 font-light">All Devparty</div>
+        </div>
       </button>
       <div className="space-y-2 px-5 py-3.5">
         <div className="font-bold text-gray-700 dark:text-gray-300">
