@@ -49,5 +49,7 @@ brew install --cask docker
 5. Run `docker-compose up`
 6. Setup database
 
+   - Set `DATABASE_URL="mysql://root:devparty@localhost:33060/devparty"`
+     this points to Docker's link
    - Migrate the migration to database by running `yarn prisma:migrate`
    - Seed the fake data to the database by running `yarn prisma:seed`
