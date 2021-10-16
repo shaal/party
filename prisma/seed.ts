@@ -58,11 +58,23 @@ async function main() {
             bio: faker.commerce.productDescription()
           }
         },
-        posts: {
-          create: {
-            body: faker.lorem.sentence(20)
-          }
-        }
+        posts: { create: { body: faker.lorem.sentence(20) } }
+      }
+    })
+  }
+
+  // Fake Products
+  for (let i = 0; i < 50; i++) {
+    const slug =
+      `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
+    console.log(`Seeding Product - @${slug} 📦`)
+    await db.product.create({
+      data: {
+        slug,
+        name: faker.company.companyName(),
+        avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
+        description: faker.lorem.sentence(10),
+        owner: { connect: { username: 'yoginth' } }
       }
     })
   }
@@ -100,11 +112,7 @@ async function main() {
         slug: product.slug,
         avatar: product.avatar,
         description: product.description,
-        owner: {
-          connect: {
-            username: product.username
-          }
-        }
+        owner: { connect: { username: product.username } }
       }
     })
   }
