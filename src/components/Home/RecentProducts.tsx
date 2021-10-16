@@ -26,7 +26,7 @@ export const RECENT_PRODUCTS_QUERY = gql`
 const RecentProductsCard = ({ children }: any) => {
   return (
     <div className="mb-4">
-      <div className="mb-2 flex items-center gap-2">
+      <div className="flex items-center gap-2 mb-3 lg:mb-2 px-3 lg:px-0">
         <CubeIcon className="h-4 w-4 text-green-500" />
         <div>Recent products</div>
       </div>

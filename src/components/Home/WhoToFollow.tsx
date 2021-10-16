@@ -33,7 +33,7 @@ const WHO_TO_FOLLOW_QUERY = gql`
 const WhoToFollowCard = ({ children, refetch }: any) => {
   return (
     <div className="mb-4">
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between mb-3 lg:mb-2 px-3 lg:px-0">
         <div className="flex items-center gap-2">
           <SparklesIcon className="h-4 w-4 text-yellow-500" />
           <div>Who to follow</div>
