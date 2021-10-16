@@ -1,6 +1,5 @@
 import DevpartySEO from '@components/shared/SEO'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
 import { STATIC_ASSETS } from 'src/constants'
 
 const Waitlist: React.FC = () => {
@@ -15,10 +14,7 @@ const Waitlist: React.FC = () => {
             Hang tight - you’re currently on the waitlist. We will onboard you
             ASAP!
           </div>
-          <div className="flex max-w-sm mx-auto mt-10 mb-4 justify-between bg-gray-200 dark:bg-gray-800 rounded-full">
-            <span className="px-5 py-4 rounded-l-full bg-gray-300 dark:bg-gray-700">
-              #119
-            </span>
+          <div className="flex max-w-sm mx-auto mt-10 mb-4 justify-center bg-gray-200 dark:bg-gray-800 rounded-full">
             <span className="px-5 py-4 truncate">joe@hey.com</span>
           </div>
           <Link href={`https://twitter.com/devpartyio`}>
