@@ -52,7 +52,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
       },
       onCompleted(data) {
         toast.success('Avatar has been updated successfully!')
-        router.push(`/@/${data?.editNFTAvatar?.username}`)
+        router.push(`/u/${data?.editNFTAvatar?.username}`)
         mixpanel.track('user.profile.nft_avatars.update.success')
       }
     }

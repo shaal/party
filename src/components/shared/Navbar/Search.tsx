@@ -97,7 +97,7 @@ const Search: React.FC = () => {
                     key={user?.node?.id}
                     className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
                   >
-                    <a href={`/@/${user?.node?.username}`}>
+                    <a href={`/u/${user?.node?.username}`}>
                       <UserProfile user={user?.node} />
                     </a>
                   </div>

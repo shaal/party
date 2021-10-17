@@ -84,7 +84,7 @@ const ViewUser: React.FC = () => {
         title={`${user?.username} (${user?.profile?.name}) · Devparty`}
         description={user?.profile?.bio as string}
         image={user?.profile?.avatar as string}
-        path={`/@/${user?.username}`}
+        path={`/u/${user?.username}`}
       />
       <div
         className="h-64"

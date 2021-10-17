@@ -52,7 +52,7 @@ const InviteSignup: React.FC = () => {
               ) : (
                 !error && (
                   <div className="text-xl">
-                    <Link href={`/@/${invite?.user?.username}`}>
+                    <Link href={`/u/${invite?.user?.username}`}>
                       <a className="font-bold">
                         <Slug slug={invite?.user?.username} prefix="@" />{' '}
                         invited you to the party

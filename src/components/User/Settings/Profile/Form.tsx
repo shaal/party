@@ -156,7 +156,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 label="Username"
                 type="text"
                 placeholder="johndoe"
-                prefix="https://devparty.io/@/"
+                prefix="https://devparty.io/u/"
                 {...form.register('username')}
               />
               <Input

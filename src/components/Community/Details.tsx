@@ -73,8 +73,8 @@ const Details: React.FC<Props> = ({ community }) => {
                       src={community?.owner?.profile?.avatar}
                       alt={`@${community?.owner?.username}'s username'`}
                     />
-                    <Link href={`/@/${community?.owner?.username}`}>
-                      <a href={`/@/${community?.owner?.username}`}>
+                    <Link href={`/u/${community?.owner?.username}`}>
+                      <a href={`/u/${community?.owner?.username}`}>
                         <Slug slug={community?.owner?.username} prefix="@" />
                       </a>
                     </Link>
