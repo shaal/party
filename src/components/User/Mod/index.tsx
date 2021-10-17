@@ -74,7 +74,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
               <span className="font-mono font-bold">{user?.id}</span>
             </div>
           </div>
-          <div className="border-t border-yellow-400 my-3"></div>
+          <div className="border-t border-yellow-400 my-3" />
           <div className="font-bold text-lg">Flags</div>
           <Form
             form={form}

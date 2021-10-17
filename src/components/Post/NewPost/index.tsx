@@ -36,7 +36,7 @@ const NFTType = dynamic(() => import('./Type/NFT'), {
   loading: () => <Loading />
 })
 
-const Loading = () => <div className="shimmer rounded-lg h-10"></div>
+const Loading = () => <div className="shimmer rounded-lg h-10" />
 
 const NewPost: React.FC = () => {
   return (

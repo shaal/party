@@ -54,9 +54,9 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
       <div className="space-y-2">
         <div className="font-bold">Products</div>
         <div className="flex flex-wrap gap-1.5 w-3/4">
-          <div className="shimmer h-9 w-9 rounded-lg"></div>
-          <div className="shimmer h-9 w-9 rounded-lg"></div>
-          <div className="shimmer h-9 w-9 rounded-lg"></div>
+          <div className="shimmer h-9 w-9 rounded-lg" />
+          <div className="shimmer h-9 w-9 rounded-lg" />
+          <div className="shimmer h-9 w-9 rounded-lg" />
         </div>
       </div>
     )

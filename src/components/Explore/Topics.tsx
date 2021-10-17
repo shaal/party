@@ -44,7 +44,7 @@ const Topics: React.FC = () => {
     return (
       <Card className="mb-4">
         <CardBody>
-          <div className="shimmer h-5 rounded-lg"></div>
+          <div className="shimmer h-5 rounded-lg" />
         </CardBody>
       </Card>
     )

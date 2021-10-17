@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {currentUserLoading ? (
-              <div className="shimmer rounded-full h-8 w-8 sm:h-10 sm:w-10"></div>
+              <div className="shimmer rounded-full h-8 w-8 sm:h-10 sm:w-10" />
             ) : currentUser ? (
               <div className="flex items-center gap-5">
                 <div className="hidden md:block">

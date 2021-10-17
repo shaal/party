@@ -53,7 +53,7 @@ const MoreNavItems: React.FC = () => {
                   <div>Communities</div>
                 </div>
               </Menu.Item>
-              <div className="border-b dark:border-gray-800"></div>
+              <div className="border-b dark:border-gray-800" />
               <Menu.Item
                 as={NextLink}
                 href="https://tally.so/r/nPYB1m"

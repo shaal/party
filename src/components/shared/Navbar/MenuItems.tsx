@@ -76,7 +76,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   <Slug slug={currentUser?.username} prefix="@" />
                 </div>
               </Menu.Item>
-              <div className="border-b dark:border-gray-800"></div>
+              <div className="border-b dark:border-gray-800" />
               <Menu.Item
                 as={NextLink}
                 href={`/@/${currentUser?.username}`}
@@ -122,7 +122,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   <div>Logout</div>
                 </div>
               </Menu.Item>
-              <div className="border-b dark:border-gray-800"></div>
+              <div className="border-b dark:border-gray-800" />
               <div className="px-5 py-3 flex items-center space-x-3">
                 <button
                   onClick={() => {
@@ -154,7 +154,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               </div>
               {currentUser?.isStaff && (
                 <>
-                  <div className="border-b dark:border-gray-800"></div>
+                  <div className="border-b dark:border-gray-800" />
                   <Menu.Item
                     as="div"
                     onClick={toggleStaffMode}

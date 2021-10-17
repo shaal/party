@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
       style={{
         backgroundImage: `url('${STATIC_ASSETS}/patterns/topography.svg')`
       }}
-    ></div>
+    />
   )
 }
 

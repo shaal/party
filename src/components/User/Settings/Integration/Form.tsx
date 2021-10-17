@@ -98,7 +98,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
               )}
               <ConnectWallet integration={integration} />
-              <div className="border-b"></div>
+              <div className="border-b" />
               {integration?.spotifyRefreshToken ? (
                 <Button
                   variant="danger"
@@ -128,7 +128,7 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                   </Button>
                 </a>
               )}
-              <div className="border-b"></div>
+              <div className="border-b" />
               <Input
                 label="Wakatime API Key"
                 type="text"
