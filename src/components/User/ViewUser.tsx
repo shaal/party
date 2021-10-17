@@ -5,14 +5,13 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React from 'react'
 import { User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
 import { ViewUserQuery } from './__generated__/ViewUser.generated'
 import Details from './Details'
 import UserFeed from './Feed'
-import FeedType from './FeedType'
 
 export const UserFragment = gql`
   fragment UserFragment on User {
@@ -67,7 +66,6 @@ export const VIEW_USER_QUERY = gql`
 
 const ViewUser: React.FC = () => {
   const router = useRouter()
-  const [feedType, setFeedType] = useState<string>('POST')
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
     variables: {
       username: router.query.username
@@ -105,8 +103,7 @@ const ViewUser: React.FC = () => {
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
-            <FeedType setFeedType={setFeedType} feedType={feedType} />
-            <UserFeed feedType={feedType} />
+            <UserFeed />
           </div>
         </GridItemEight>
       </GridLayout>
