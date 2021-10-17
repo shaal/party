@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
     }
 
-    const nonce = Math.floor(Math.random() * 90000) + 10000
+    const nonce = Math.floor(Math.random() * 9000000000) + 1000000000
 
     const updatedIntegration = await db.integration.update({
       where: { userId: user.id },
