@@ -149,8 +149,13 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           )}
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
-            <Link href={`/posts/${post?.parent?.id}`} passHref>
-              <a className="text-gray-500 dark:text-gray-400">Replying to</a>
+            <Link href={`/posts/${post?.parent?.id}`}>
+              <a
+                href={`/posts/${post?.parent?.id}`}
+                className="text-gray-500 dark:text-gray-400"
+              >
+                Replying to
+              </a>
             </Link>
             <Link href={`/@/${post?.parent?.user?.username}`}>
               <a href={`/@/${post?.parent?.user?.username}`}>
@@ -161,8 +166,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         <div className="flex justify-between items-center">
           <UserProfile user={post?.user as User} />
-          <Link href={`/posts/${post?.id}`} passHref>
-            <a className="text-sm cursor-pointer">
+          <Link href={`/posts/${post?.id}`}>
+            <a href={`/posts/${post?.id}`} className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
             </a>
           </Link>
