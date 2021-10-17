@@ -33,7 +33,7 @@ export const COMMUNITIES_QUERY = gql`
 `
 
 const Communities: React.FC = () => {
-  const { loading, error } = useQuery<CommunitiesQuery>(COMMUNITIES_QUERY)
+  const { loading } = useQuery<CommunitiesQuery>(COMMUNITIES_QUERY)
 
   if (loading)
     return (

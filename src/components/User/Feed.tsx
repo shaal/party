@@ -33,12 +33,8 @@ const USER_FEED_QUERY = gql`
   ${PostFragment}
 `
 
-interface Props {
-  feedType: string
-}
-
 // eslint-disable-next-line no-unused-vars
-const UserFeed: React.FC<Props> = ({ feedType }) => {
+const UserFeed: React.FC = () => {
   const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
     USER_FEED_QUERY,
