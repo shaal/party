@@ -1,5 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { Card } from '@components/ui/Card'
+import { Spinner } from '@components/ui/Spinner'
 import useOnClickOutside from '@components/utils/useOnClickOutside'
 import React, { useRef, useState } from 'react'
 
@@ -13,6 +14,7 @@ export const SEARCH_USERS_QUERY = gql`
         node {
           id
           username
+          isVerified
           profile {
             id
             name
@@ -63,7 +65,10 @@ const Search: React.FC = () => {
         >
           <Card className="py-2">
             {searchUsersLoading ? (
-              <div>Loading...</div>
+              <div className="px-4 py-2 font-bold text-center space-y-2 text-sm">
+                <Spinner size="sm" className="mx-auto" />
+                <div>Searching users</div>
+              </div>
             ) : (
               <div>
                 {searchUsersData?.searchUsers?.edges?.map((user: any) => (
