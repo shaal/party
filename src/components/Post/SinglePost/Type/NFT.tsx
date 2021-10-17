@@ -24,7 +24,7 @@ interface Props {
 }
 
 const NFTType: React.FC<Props> = ({ post }) => {
-  const { data, loading, error } = useQuery<PostNftQuery>(POST_NFT_QUERY, {
+  const { data } = useQuery<PostNftQuery>(POST_NFT_QUERY, {
     variables: {
       id: post.id
     },
