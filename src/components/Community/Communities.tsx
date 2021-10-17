@@ -57,10 +57,12 @@ const Communities: React.FC = () => {
         <GridItemTwelve>
           <Card>
             <CardBody className="space-y-3">
-              <Link href="/communities/new" passHref>
-                <Button icon={<CubeIcon className="h-4 w-4" />}>
-                  <div>New community</div>
-                </Button>
+              <Link href="/communities/new">
+                <a href="/communities/new">
+                  <Button icon={<CubeIcon className="h-4 w-4" />}>
+                    <div>New community</div>
+                  </Button>
+                </a>
               </Link>
             </CardBody>
           </Card>
