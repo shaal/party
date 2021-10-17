@@ -41,7 +41,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href="/notifications">
-          <a className="text-[0.7rem] py-1.5">
+          <a href="/notifications" className="text-[0.7rem] py-1.5">
             {router.pathname == '/notifications' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <LightningBoltIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
