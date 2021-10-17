@@ -431,8 +431,7 @@ type Query {
   post(id: ID!): Post!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!
-  searchPosts(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchPostsConnection!
-  searchProduct(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchProductConnection!
+  searchTopics(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchTopicsConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
@@ -524,24 +523,14 @@ type QueryProductsConnectionEdge {
   node: Product!
 }
 
-type QuerySearchPostsConnection {
-  edges: [QuerySearchPostsConnectionEdge]!
+type QuerySearchTopicsConnection {
+  edges: [QuerySearchTopicsConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type QuerySearchPostsConnectionEdge {
+type QuerySearchTopicsConnectionEdge {
   cursor: String!
-  node: Post!
-}
-
-type QuerySearchProductConnection {
-  edges: [QuerySearchProductConnectionEdge]!
-  pageInfo: PageInfo!
-}
-
-type QuerySearchProductConnectionEdge {
-  cursor: String!
-  node: Product!
+  node: Topic!
 }
 
 type QuerySearchUsersConnection {
