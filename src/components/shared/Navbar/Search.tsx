@@ -5,7 +5,10 @@ import useOnClickOutside from '@components/utils/useOnClickOutside'
 import React, { useRef, useState } from 'react'
 
 import UserProfile from '../UserProfile'
-import { SearchUsersQuery } from './__generated__/Search.generated'
+import {
+  SearchTopicsQuery,
+  SearchUsersQuery
+} from './__generated__/Search.generated'
 
 const SEARCH_USERS_QUERY = gql`
   query SearchUsersQuery($keyword: String!) {
@@ -73,16 +76,13 @@ const Search: React.FC = () => {
         >
           <Card className="py-2">
             {searchTopicsData?.searchTopics?.edges?.map((topic: any) => (
-              <div
-                key={topic?.node?.id}
-                className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
-              >
+              <div key={topic?.node?.id} className="px-4 py-2">
                 <a className="w-full" href={`/topics/${topic?.node?.name}`}>
                   #{topic?.node?.name}
                 </a>
               </div>
             ))}
-            {searchTopicsData?.searchTopics?.edges?.length > 0 && (
+            {(searchTopicsData?.searchTopics?.edges?.length as number) > 0 && (
               <div className="border-t my-2" />
             )}
             {searchUsersLoading ? (
