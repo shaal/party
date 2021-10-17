@@ -93,7 +93,9 @@ const Topics: React.FC = () => {
                       </div>
                     )}
                     <Link href={`/topics/${topic?.node?.name}`}>
-                      <a>{topic?.node?.name}</a>
+                      <a href={`/topics/${topic?.node?.name}`}>
+                        {topic?.node?.name}
+                      </a>
                     </Link>
                   </div>
                 ))}
