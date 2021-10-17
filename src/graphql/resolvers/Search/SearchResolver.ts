@@ -27,7 +27,12 @@ builder.queryField('searchUsers', (t) =>
     resolve: async (query, parent, { keyword }) => {
       return await db.user.findMany({
         ...query,
-        where: { username: { contains: keyword }, inWaitlist: false }
+        where: {
+          OR: [
+            { username: { contains: keyword }, inWaitlist: false },
+            { profile: { name: { contains: keyword } } }
+          ]
+        }
       })
     }
   })
