@@ -56,7 +56,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href="/explore">
-          <a className="text-[0.7rem] py-1.5">
+          <a href="/explore" className="text-[0.7rem] py-1.5">
             {router.pathname == '/explore' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <GlobeAltIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
@@ -71,7 +71,7 @@ const MobileFooter: React.FC = () => {
           </a>
         </Link>
         <Link href="/communities">
-          <a className="text-[0.7rem] py-1.5">
+          <a href="/communities" className="text-[0.7rem] py-1.5">
             {router.pathname == '/communities' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
                 <UsersIconSolid className="h-[1.3rem] w-[1.3rem] mx-auto" />
