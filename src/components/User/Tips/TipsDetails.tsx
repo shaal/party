@@ -142,13 +142,15 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
       {tip?.user?.id === currentUser?.id && (
         <div className="border-t dark:border-gray-800 py-4 px-4 flex items-center justify-between">
           <div className="text-sm">Send your tip 💫</div>
-          <Link href="/settings/tips" passHref>
-            <Button
-              className="text-sm"
-              icon={<PencilIcon className="h-4 w-4" />}
-            >
-              Edit Tips
-            </Button>
+          <Link href="/settings/tips">
+            <a href="/settings/tips">
+              <Button
+                className="text-sm"
+                icon={<PencilIcon className="h-4 w-4" />}
+              >
+                Edit Tips
+              </Button>
+            </a>
           </Link>
         </div>
       )}
