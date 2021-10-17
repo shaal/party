@@ -23,7 +23,7 @@ class DevpartyDocument extends Document<Props> {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link rel="icon" href="/favicon.svg" />
           <link
-            href="https://fonts.cdnfonts.com/css/circular-std"
+            href="https://assets.devparty.io/css/font.css"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />

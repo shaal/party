@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Circular Std', Helvetica, Arial, sans-serif;
+  font-family: 'Devparty', Helvetica, Arial, sans-serif;
 
   @apply bg-gray-50;
   @apply dark:bg-black;
