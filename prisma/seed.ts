@@ -9,6 +9,7 @@ import { md5 } from 'hash-wasm'
 import { communityData, rulesData } from './seeds/communities'
 import { productData } from './seeds/products'
 import { userData } from './seeds/user'
+
 const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
