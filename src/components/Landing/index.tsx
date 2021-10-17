@@ -40,7 +40,9 @@ const Landing: React.FC = () => {
             <div className="linkify">
               Already have an account?{' '}
               <Link href="/login">
-                <a className="font-bold">Log in</a>
+                <a href="/login" className="font-bold">
+                  Log in
+                </a>
               </Link>
             </div>
           </div>
