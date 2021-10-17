@@ -118,14 +118,16 @@ const Details: React.FC<Props> = ({ community }) => {
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
-            <Link href={`/communities/${community?.slug}/settings`} passHref>
-              <Button
-                size="md"
-                variant="success"
-                icon={<PencilIcon className="h-4 w-4" />}
-              >
-                Edit Community
-              </Button>
+            <Link href={`/communities/${community?.slug}/settings`}>
+              <a href={`/communities/${community?.slug}/settings`}>
+                <Button
+                  size="md"
+                  variant="success"
+                  icon={<PencilIcon className="h-4 w-4" />}
+                >
+                  Edit Community
+                </Button>
+              </a>
             </Link>
           )}
         </div>

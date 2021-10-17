@@ -81,7 +81,7 @@ const NFTType: React.FC = () => {
           integration settings.
         </div>
         <Link href="/settings/integration">
-          <a>
+          <a href="/settings/integration">
             <Button
               className="mx-auto"
               type="button"
