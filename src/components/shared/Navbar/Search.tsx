@@ -38,7 +38,7 @@ const Search: React.FC = () => {
 
   useOnClickOutside(dropdownRef, () => setSearchText(''))
 
-  const [searchUsers, { data: searchUsersData }] =
+  const [searchUsers, { data: searchUsersData, loading: searchUsersLoading }] =
     useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
 
   const handleSearch = (evt: any) => {
@@ -62,21 +62,25 @@ const Search: React.FC = () => {
           ref={dropdownRef}
         >
           <Card className="py-2">
-            <div>
-              {searchUsersData?.searchUsers?.edges?.map((user: any) => (
-                <div
-                  key={user?.node?.id}
-                  className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
-                >
-                  <a href={`/@/${user?.node?.username}`}>
-                    <UserProfile user={user?.node} />
-                  </a>
-                </div>
-              ))}
-              {searchUsersData?.searchUsers?.edges?.length === 0 && (
-                <EmptyState type="users" />
-              )}
-            </div>
+            {searchUsersLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <div>
+                {searchUsersData?.searchUsers?.edges?.map((user: any) => (
+                  <div
+                    key={user?.node?.id}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
+                  >
+                    <a href={`/@/${user?.node?.username}`}>
+                      <UserProfile user={user?.node} />
+                    </a>
+                  </div>
+                ))}
+                {searchUsersData?.searchUsers?.edges?.length === 0 && (
+                  <EmptyState type="users" />
+                )}
+              </div>
+            )}
           </Card>
         </div>
       )}
