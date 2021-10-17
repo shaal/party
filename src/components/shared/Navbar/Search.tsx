@@ -1,7 +1,10 @@
 import { gql, useLazyQuery } from '@apollo/client'
+import { Card, CardBody } from '@components/ui/Card'
+import useOnClickOutside from '@components/utils/useOnClickOutside'
+import { UsersIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import {
   SearchPostsQuery,
@@ -48,9 +51,21 @@ export const SEARCH_PRODUCTS_QUERY = gql`
   }
 `
 
+interface EmptyStateProps {
+  type: string
+}
+
+const EmptyState: React.FC<EmptyStateProps> = ({ type }) => (
+  <div className="flex w-full p-4 dark:text-gray-400">No matching {type}</div>
+)
+
 const Search: React.FC = () => {
   const [searchText, setSearchText] = useState<string>('')
-  const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
+
+  const dropdownRef = useRef(null)
+  const searchInputContainerRef = useRef(null)
+
+  useOnClickOutside(dropdownRef, () => setSearchText(''))
 
   const [searchPosts, { data: searchPostsData }] =
     useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
@@ -62,7 +77,6 @@ const Search: React.FC = () => {
   const handleSearch = (evt: any) => {
     let keyword = evt.target.value
     setSearchText(keyword)
-    setShowSearchResults(keyword.length > 0)
     searchPosts({ variables: { keyword } })
     searchUsers({ variables: { keyword } })
     searchProducts({ variables: { keyword } })
@@ -76,33 +90,42 @@ const Search: React.FC = () => {
         placeholder="Search Devparty..."
         value={searchText}
         onChange={handleSearch}
+        ref={searchInputContainerRef}
       />
       {searchText.length > 0 && (
-        <div className="flex flex-col max-h-[80vh] w-full sm:max-w-lg overflow-y-scroll absolute mt-2 border dark:border-gray-800 bg-white dark:bg-gray-900 rounded-lg shadow">
-          {searchUsersData?.searchUsers?.edges?.map((user: any, index: any) => (
-            <Link
-              href={`/@/${user?.node?.username}`}
-              key={user?.node?.id}
-              passHref
-            >
-              <div
-                className={`flex items-center w-full p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800`}
-                key={index}
-                onClick={() => {
-                  setShowSearchResults(false)
-                  setSearchText('')
-                  mixpanel.track('Clicked Search result')
-                }}
-              >
-                {user?.node?.username}
+        <div
+          className="flex flex-col w-full sm:max-w-lg absolute mt-2"
+          ref={dropdownRef}
+        >
+          <Card>
+            <CardBody>
+              <div className="flex items-center space-x-2">
+                <UsersIcon className="h-4 w-4" />
+                <div>Users</div>
               </div>
-            </Link>
-          ))}
-          {searchUsersData?.searchUsers?.edges?.length === 0 && (
-            <div className="flex w-full p-4 dark:text-gray-400">
-              No matching people
-            </div>
-          )}
+              {searchUsersData?.searchUsers?.edges?.map((user: any) => (
+                <Link
+                  href={`/@/${user?.node?.username}`}
+                  key={user?.node?.id}
+                  passHref
+                >
+                  <a
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                    href={`/@/${user?.node?.username}`}
+                    onClick={() => {
+                      setSearchText('')
+                      mixpanel.track('Clicked Search result')
+                    }}
+                  >
+                    {user?.node?.username}
+                  </a>
+                </Link>
+              ))}
+              {searchUsersData?.searchUsers?.edges?.length === 0 && (
+                <EmptyState type="users" />
+              )}
+            </CardBody>
+          </Card>
         </div>
       )}
     </>
