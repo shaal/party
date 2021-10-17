@@ -16,22 +16,20 @@ const Home: React.FC = () => {
   const [feedType, setFeedType] = useState<string>('ALL')
 
   return (
-    <>
-      <GridLayout>
-        <GridItemEight>
-          <div className="space-y-3">
-            {currentUser && <NewPost />}
-            <FeedType setFeedType={setFeedType} feedType={feedType} />
-            <HomeFeed feedType={feedType} />
-          </div>
-        </GridItemEight>
-        <GridItemFour>
-          <WhoToFollow />
-          <RecentProducts />
-          <Footer />
-        </GridItemFour>
-      </GridLayout>
-    </>
+    <GridLayout>
+      <GridItemEight>
+        <div className="space-y-3">
+          {currentUser && <NewPost />}
+          <FeedType setFeedType={setFeedType} feedType={feedType} />
+          <HomeFeed feedType={feedType} />
+        </div>
+      </GridItemEight>
+      <GridItemFour>
+        <WhoToFollow />
+        <RecentProducts />
+        <Footer />
+      </GridItemFour>
+    </GridLayout>
   )
 }
 
