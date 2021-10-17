@@ -41,14 +41,16 @@ const Details: React.FC<Props> = ({ product }) => {
         {currentUser?.id !== product?.owner?.id ? (
           <Subscribe product={product} showText />
         ) : (
-          <Link href={`/products/${product?.slug}/settings`} passHref>
-            <Button
-              size="md"
-              variant="success"
-              icon={<PencilIcon className="h-4 w-4" />}
-            >
-              Edit Product
-            </Button>
+          <Link href={`/products/${product?.slug}/settings`}>
+            <a href={`/products/${product?.slug}/settings`}>
+              <Button
+                size="md"
+                variant="success"
+                icon={<PencilIcon className="h-4 w-4" />}
+              >
+                Edit Product
+              </Button>
+            </a>
           </Link>
         )}
         {product?.description && (
