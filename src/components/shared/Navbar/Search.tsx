@@ -7,9 +7,9 @@ import React, { useRef, useState } from 'react'
 import UserProfile from '../UserProfile'
 import { SearchUsersQuery } from './__generated__/Search.generated'
 
-export const SEARCH_USERS_QUERY = gql`
+const SEARCH_USERS_QUERY = gql`
   query SearchUsersQuery($keyword: String!) {
-    searchUsers(first: 5, keyword: $keyword) {
+    searchUsers(first: 10, keyword: $keyword) {
       edges {
         node {
           id
@@ -26,13 +26,18 @@ export const SEARCH_USERS_QUERY = gql`
   }
 `
 
-interface EmptyStateProps {
-  type: string
-}
-
-const EmptyState: React.FC<EmptyStateProps> = ({ type }) => (
-  <div className="flex w-full p-4 dark:text-gray-400">No matching {type}</div>
-)
+const SEARCH_TOPICS_QUERY = gql`
+  query SearchTopicsQuery($keyword: String!) {
+    searchTopics(first: 5, keyword: $keyword) {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+`
 
 const Search: React.FC = () => {
   const [searchText, setSearchText] = useState<string>('')
@@ -42,11 +47,14 @@ const Search: React.FC = () => {
 
   const [searchUsers, { data: searchUsersData, loading: searchUsersLoading }] =
     useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
+  const [searchTopics, { data: searchTopicsData }] =
+    useLazyQuery<SearchTopicsQuery>(SEARCH_TOPICS_QUERY)
 
   const handleSearch = (evt: any) => {
     let keyword = evt.target.value
     setSearchText(keyword)
     searchUsers({ variables: { keyword } })
+    searchTopics({ variables: { keyword } })
   }
 
   return (
@@ -64,6 +72,19 @@ const Search: React.FC = () => {
           ref={dropdownRef}
         >
           <Card className="py-2">
+            {searchTopicsData?.searchTopics?.edges?.map((topic: any) => (
+              <div
+                key={topic?.node?.id}
+                className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
+              >
+                <a className="w-full" href={`/topics/${topic?.node?.name}`}>
+                  #{topic?.node?.name}
+                </a>
+              </div>
+            ))}
+            {searchTopicsData?.searchTopics?.edges?.length > 0 && (
+              <div className="border-t my-2" />
+            )}
             {searchUsersLoading ? (
               <div className="px-4 py-2 font-bold text-center space-y-2 text-sm">
                 <Spinner size="sm" className="mx-auto" />
@@ -82,7 +103,7 @@ const Search: React.FC = () => {
                   </div>
                 ))}
                 {searchUsersData?.searchUsers?.edges?.length === 0 && (
-                  <EmptyState type="users" />
+                  <div className="px-4 py-2">No matching users</div>
                 )}
               </div>
             )}
