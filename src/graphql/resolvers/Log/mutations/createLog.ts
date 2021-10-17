@@ -11,7 +11,7 @@ export const createLog = (
   userId: any,
   entityId: any,
   action: LogActionType
-) => {
+): void => {
   new Promise((resolve, reject) => {
     db.log
       .create({
