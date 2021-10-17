@@ -96,15 +96,17 @@ const Details: React.FC<Props> = ({ user }) => {
             {currentUser?.id !== user?.id ? (
               <Follow user={user} showText={true} />
             ) : (
-              <Link href="/settings/profile" passHref>
-                <Button
-                  size="md"
-                  variant="success"
-                  className="text-sm"
-                  icon={<PencilIcon className="h-4 w-4" />}
-                >
-                  Edit Profile
-                </Button>
+              <Link href="/settings/profile">
+                <a href="/settings/profile">
+                  <Button
+                    size="md"
+                    variant="success"
+                    className="text-sm"
+                    icon={<PencilIcon className="h-4 w-4" />}
+                  >
+                    Edit Profile
+                  </Button>
+                </a>
               </Link>
             )}
             {user?.tip && <Tips user={user} />}

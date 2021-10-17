@@ -119,10 +119,12 @@ const Navbar: React.FC = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link href="/login" passHref>
-                    <Button size="lg" variant="success">
-                      Login
-                    </Button>
+                  <Link href="/login">
+                    <a href="/login">
+                      <Button size="lg" variant="success">
+                        Login
+                      </Button>
+                    </a>
                   </Link>
                 </div>
               </div>
