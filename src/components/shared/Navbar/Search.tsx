@@ -71,10 +71,10 @@ const Search: React.FC = () => {
       />
       {searchText.length > 0 && (
         <div
-          className="flex flex-col w-full sm:max-w-lg absolute mt-2"
+          className="flex flex-col w-full sm:max-w-md absolute mt-2"
           ref={dropdownRef}
         >
-          <Card className="py-2">
+          <Card className="py-2 max-h-[80vh] overflow-y-auto">
             {searchTopicsData?.searchTopics?.edges?.map((topic: any) => (
               <div key={topic?.node?.id} className="px-4 py-2">
                 <a className="w-full" href={`/topics/${topic?.node?.name}`}>
