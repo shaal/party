@@ -33,7 +33,7 @@ builder.prismaObject('Post', {
     oembedUrl: t.field({
       type: 'String',
       nullable: true,
-      resolve: async (parent) => {
+      resolve: (parent) => {
         try {
           // @ts-ignore
           return parent.body.match(urlRegexSafe())[0]

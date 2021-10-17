@@ -63,7 +63,7 @@ export const builder = new SchemaBuilder<{
     DirectivePlugin
   ],
   prisma: { client: db },
-  authScopes: async ({ session }) => ({
+  authScopes: ({ session }) => ({
     public: true,
     user: !!session,
     unauthenticated: !session,

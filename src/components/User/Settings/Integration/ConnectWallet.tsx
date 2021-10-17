@@ -64,7 +64,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
     setError(false)
   }
 
-  const disconnectWallet = async () => {
+  const disconnectWallet = () => {
     mixpanel.track('user.integration.wallet.disconnect')
     editWallet({
       variables: {
