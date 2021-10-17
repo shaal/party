@@ -26,8 +26,9 @@ const Navbar: React.FC = () => {
 
   const NavItem = ({ url, name, current }: NavItemProps) => {
     return (
-      <Link href={url} passHref>
+      <Link href={url}>
         <a
+          href={url}
           className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
             'text-black dark:text-white bg-gray-200 dark:bg-gray-800': current,
             'text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800':
@@ -109,10 +110,12 @@ const Navbar: React.FC = () => {
             ) : (
               <div className="space-x-4 flex">
                 <div className="hidden sm:block">
-                  <Link href="/signup" passHref>
-                    <Button size="lg" variant="primary">
-                      Signup
-                    </Button>
+                  <Link href="/signup">
+                    <a href="/signup">
+                      <Button size="lg" variant="primary">
+                        Signup
+                      </Button>
+                    </a>
                   </Link>
                 </div>
                 <div>
