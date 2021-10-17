@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
         ▲ Powered by Vercel
       </a>
       {currentUser?.isStaff && (
-        <a onClick={toggleStaffMode} className="cursor-pointer">
+        <a href="#" onClick={toggleStaffMode} className="cursor-pointer">
           {staffMode ? (
             <div className="flex items-center space-x-1 text-red-500">
               <ShieldCheckIcon className="h-4 w-4" />
