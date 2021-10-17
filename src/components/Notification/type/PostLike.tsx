@@ -33,7 +33,7 @@ const PostLike: React.FC<Props> = ({ notification }) => {
           <div className="linkify">
             liked your{' '}
             <Link href={`/posts/${notification?.like?.post?.id}`}>
-              <a>post</a>
+              <a href={`/posts/${notification?.like?.post?.id}`}>post</a>
             </Link>
           </div>
         </div>

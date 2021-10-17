@@ -149,11 +149,16 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           )}
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
-            <Link href={`/posts/${post?.parent?.id}`} passHref>
-              <a className="text-gray-500 dark:text-gray-400">Replying to</a>
+            <Link href={`/posts/${post?.parent?.id}`}>
+              <a
+                href={`/posts/${post?.parent?.id}`}
+                className="text-gray-500 dark:text-gray-400"
+              >
+                Replying to
+              </a>
             </Link>
-            <Link href={`/@/${post?.parent?.user?.username}`} passHref>
-              <a>
+            <Link href={`/@/${post?.parent?.user?.username}`}>
+              <a href={`/@/${post?.parent?.user?.username}`}>
                 <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
               </a>
             </Link>
@@ -161,8 +166,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         <div className="flex justify-between items-center">
           <UserProfile user={post?.user as User} />
-          <Link href={`/posts/${post?.id}`} passHref>
-            <a className="text-sm cursor-pointer">
+          <Link href={`/posts/${post?.id}`}>
+            <a href={`/posts/${post?.id}`} className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
             </a>
           </Link>
@@ -181,8 +186,11 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
       </CardBody>
       <div className="flex px-4 py-3 gap-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
-        <Link href={`/posts/${post?.id}`} passHref>
-          <a className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
+        <Link href={`/posts/${post?.id}`}>
+          <a
+            href={`/posts/${post?.id}`}
+            className="text-blue-500 hover:text-blue-400 flex items-center space-x-2"
+          >
             <ChatIcon className="h-5 w-5" />
             {(post?.replies?.totalCount as number) > 0 && (
               <div className="text-xs">{post?.replies?.totalCount}</div>
@@ -198,9 +206,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                 <Link
                   key={like?.node?.user?.id}
                   href={`/@/${like?.node?.user?.username}`}
-                  passHref
                 >
-                  <a>
+                  <a href={`/@/${like?.node?.user?.username}`}>
                     <img
                       className="rounded-full border h-5 w-5"
                       src={imagekitURL(

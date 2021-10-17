@@ -20,8 +20,13 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
         />
         <div>
           <div className="flex items-center gap-1.5">
-            <Link href={`/products/${product?.slug}`} passHref>
-              <a className="font-bold cursor-pointer">{product?.name}</a>
+            <Link href={`/products/${product?.slug}`}>
+              <a
+                href={`/products/${product?.slug}`}
+                className="font-bold cursor-pointer"
+              >
+                {product?.name}
+              </a>
             </Link>
           </div>
           <Slug slug={product?.slug} />

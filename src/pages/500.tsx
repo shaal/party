@@ -22,8 +22,8 @@ export default function Custom500() {
             We track these errors automatically, but if the problem persists
             feel free to contact us. In the meantime, try refreshing.
           </div>
-          <Link href="/signup" passHref>
-            <a>
+          <Link href="/signup">
+            <a href="/signup">
               <Button
                 className="flex item-center mx-auto"
                 size="lg"

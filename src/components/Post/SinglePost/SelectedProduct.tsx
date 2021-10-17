@@ -15,8 +15,11 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
       <Tooltip content="Product">
         <CubeIcon className="h-4 w-4 text-gray-500" />
       </Tooltip>
-      <Link href={`/products/${product?.slug}`} passHref>
-        <a className="flex items-center space-x-1 cursor-pointer">
+      <Link href={`/products/${product?.slug}`}>
+        <a
+          href={`/products/${product?.slug}`}
+          className="flex items-center space-x-1 cursor-pointer"
+        >
           <img
             className="h-4 w-4 rounded"
             src={imagekitURL(product?.avatar as string, 50, 50)}

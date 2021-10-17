@@ -105,10 +105,12 @@ const Products: React.FC = () => {
             <div>
               Launch a new product to Devparty and get noticed by peoples
             </div>
-            <Link href="/products/new" passHref>
-              <Button icon={<CubeIcon className="h-4 w-4" />}>
-                <div>Create new Product</div>
-              </Button>
+            <Link href="/products/new">
+              <a href="/products/new">
+                <Button icon={<CubeIcon className="h-4 w-4" />}>
+                  <div>Create new Product</div>
+                </Button>
+              </a>
             </Link>
           </CardBody>
         </Card>

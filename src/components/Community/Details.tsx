@@ -74,7 +74,7 @@ const Details: React.FC<Props> = ({ community }) => {
                       alt={`@${community?.owner?.username}'s username'`}
                     />
                     <Link href={`/@/${community?.owner?.username}`}>
-                      <a>
+                      <a href={`/@/${community?.owner?.username}`}>
                         <Slug slug={community?.owner?.username} prefix="@" />
                       </a>
                     </Link>
@@ -93,22 +93,22 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
           <Button variant="secondary" outline>
-            <Link href={`/communities/${community?.slug}`} passHref>
-              <a>
+            <Link href={`/communities/${community?.slug}`}>
+              <a href={`/communities/${community?.slug}`}>
                 <div>Home</div>
               </a>
             </Link>
           </Button>
           <Button variant="primary" light>
-            <Link href={`/communities/${community?.slug}/members`} passHref>
-              <a>
+            <Link href={`/communities/${community?.slug}/members`}>
+              <a href={`/communities/${community?.slug}/members`}>
                 <div>Members</div>
               </a>
             </Link>
           </Button>
           <Button variant="primary" light>
-            <Link href={`/communities/${community?.slug}/about`} passHref>
-              <a>
+            <Link href={`/communities/${community?.slug}/about`}>
+              <a href={`/communities/${community?.slug}/about`}>
                 <div>About</div>
               </a>
             </Link>
@@ -118,14 +118,16 @@ const Details: React.FC<Props> = ({ community }) => {
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
-            <Link href={`/communities/${community?.slug}/settings`} passHref>
-              <Button
-                size="md"
-                variant="success"
-                icon={<PencilIcon className="h-4 w-4" />}
-              >
-                Edit Community
-              </Button>
+            <Link href={`/communities/${community?.slug}/settings`}>
+              <a href={`/communities/${community?.slug}/settings`}>
+                <Button
+                  size="md"
+                  variant="success"
+                  icon={<PencilIcon className="h-4 w-4" />}
+                >
+                  Edit Community
+                </Button>
+              </a>
             </Link>
           )}
         </div>

@@ -74,7 +74,9 @@ const MorePosts: React.FC<Props> = ({ post }) => {
               alt={`@${post?.user?.profile?.avatar}'s avatar'`}
             />
             <Link href={`/@/${post?.user?.username}`}>
-              <a>{post?.user?.profile?.name}</a>
+              <a href={`/@/${post?.user?.username}`}>
+                {post?.user?.profile?.name}
+              </a>
             </Link>
           </div>
         </div>

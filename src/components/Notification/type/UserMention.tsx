@@ -25,7 +25,7 @@ const UserMention: React.FC<Props> = ({ notification }) => {
             </div>
             <div>mentioned you in the</div>
             <Link href={`/posts/${notification?.post?.id}`}>
-              <a>post</a>
+              <a href={`/posts/${notification?.post?.id}`}>post</a>
             </Link>
           </div>
           <div className="flex items-center space-x-3">
