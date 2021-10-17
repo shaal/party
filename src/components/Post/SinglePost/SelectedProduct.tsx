@@ -23,7 +23,7 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
           <img
             className="h-4 w-4 rounded"
             src={imagekitURL(product?.avatar as string, 50, 50)}
-            alt={`#${product?.slug}'s avatar'`}
+            alt={`#${product?.slug}'`}
           />
           <div className="font-bold text-gray-600 dark:text-gray-200">
             {product?.name}

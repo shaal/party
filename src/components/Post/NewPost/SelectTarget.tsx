@@ -27,7 +27,7 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
             <img
               src={selected?.avatar as string}
               className="h-4 w-4 rounded"
-              alt={`${selected?.name}'s avatar'`}
+              alt={`${selected?.name}'`}
             />
           ) : (
             <GlobeIcon className="h-4 w-4 text-brand-500" />

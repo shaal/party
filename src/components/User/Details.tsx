@@ -48,7 +48,7 @@ const Details: React.FC<Props> = ({ user }) => {
           <img
             className="rounded-full ring-8 w-28 h-28 sm:h-40 sm:w-40 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
             src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
-            alt={`@${user?.username}'s avatar`}
+            alt={`@${user?.username}`}
           />
           {user?.profile?.nftSource && (
             <a href={user?.profile?.nftSource} target="_blank" rel="noreferrer">

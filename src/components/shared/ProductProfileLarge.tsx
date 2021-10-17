@@ -16,7 +16,7 @@ const ProductProfileLarge: React.FC<Props> = ({ product }) => {
         <img
           src={imagekitURL(product?.avatar as string, 100, 100)}
           className="h-16 w-16 rounded-lg bg-gray-200"
-          alt={`#${product?.slug}'s avatar`}
+          alt={`#${product?.slug}`}
         />
         <div>
           <div className="flex items-center gap-1.5">

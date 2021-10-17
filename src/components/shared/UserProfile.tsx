@@ -23,7 +23,7 @@ const UserProfile: React.FC<Props> = ({ user, showFollow = false }) => {
         <img
           src={imagekitURL(user?.profile?.avatar as string, 100, 100)}
           className="h-11 w-11 rounded-full bg-gray-200"
-          alt={`@${user?.username}'s avatar`}
+          alt={`@${user?.username}`}
         />
         <div>
           <div className="flex items-center gap-1.5">

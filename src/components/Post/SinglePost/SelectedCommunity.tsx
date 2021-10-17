@@ -23,7 +23,7 @@ const SelectedCommunity: React.FC<Props> = ({ community }) => {
           <img
             className="h-4 w-4 rounded"
             src={imagekitURL(community?.avatar as string, 50, 50)}
-            alt={`#${community?.slug}'s avatar'`}
+            alt={`#${community?.slug}'`}
           />
           <div className="font-bold text-gray-600 dark:text-gray-200">
             {community?.name}

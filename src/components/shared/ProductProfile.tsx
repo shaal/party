@@ -15,7 +15,7 @@ const ProductProfile: React.FC<Props> = ({ product }) => {
         <img
           src={product?.avatar as string}
           className="h-11 w-11 rounded-lg bg-gray-200"
-          alt={`#${product?.slug}'s avatar`}
+          alt={`#${product?.slug}`}
         />
         <div>
           <div className="flex items-center gap-1.5">

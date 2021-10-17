@@ -101,7 +101,7 @@ const Targets: React.FC<Props> = ({
                 <img
                   className="h-8 w-8 rounded"
                   src={product?.avatar}
-                  alt={`#${product?.name}'s avatar'`}
+                  alt={`#${product?.name}'`}
                 />
                 <div className="text-left">
                   <div className="font-bold">{product?.name}</div>
@@ -129,7 +129,7 @@ const Targets: React.FC<Props> = ({
                 <img
                   className="h-8 w-8 rounded"
                   src={community?.avatar}
-                  alt={`${community?.name}'s avatar'`}
+                  alt={`${community?.name}'`}
                 />
                 <div className="text-left">
                   <div className="font-bold">{community?.name}</div>

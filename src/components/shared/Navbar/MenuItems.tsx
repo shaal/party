@@ -44,7 +44,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 100,
                 100
               )}
-              alt={`@${currentUser?.username}'s avatar`}
+              alt={`@${currentUser?.username}`}
             />
           </Menu.Button>
           <Transition

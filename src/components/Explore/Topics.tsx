@@ -62,7 +62,7 @@ const Topics: React.FC = () => {
             <img
               className="h-16 w-16 rounded-full mx-auto"
               src={imagekitURL(user?.profile?.avatar as string, 100, 100)}
-              alt={`@${user?.username}'s avatar`}
+              alt={`@${user?.username}`}
             />
             <div>
               <div className="font-bold text-lg">{user?.profile?.name}</div>
@@ -85,7 +85,7 @@ const Topics: React.FC = () => {
                       <img
                         className="h-7 w-7 rounded-md"
                         src={imagekitURL(topic?.node?.image, 80, 80)}
-                        alt={`#${topic?.node?.name}'s image'`}
+                        alt={`#${topic?.node?.name}'s'`}
                       />
                     ) : (
                       <div className="flex items-center justify-around h-7 w-7 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md">

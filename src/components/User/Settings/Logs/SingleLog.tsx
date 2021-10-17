@@ -19,7 +19,7 @@ const SingleLog: React.FC<Props> = ({ log }) => {
       <img
         className="h-7 w-7 rounded-full"
         src={log?.user?.profile?.avatar}
-        alt={`@${log?.user?.username}'s avatar`}
+        alt={`@${log?.user?.username}`}
       />
       <div className="space-y-1">
         <div className="flex items-center space-x-1">

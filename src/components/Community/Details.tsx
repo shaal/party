@@ -38,7 +38,7 @@ const Details: React.FC<Props> = ({ community }) => {
               <img
                 src={imagekitURL(community?.avatar as string, 200, 200)}
                 className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
-                alt={`#${community?.slug}'s avatar`}
+                alt={`#${community?.slug}`}
               />
               <div>
                 <div>

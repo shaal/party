@@ -23,7 +23,7 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
         <img
           src={imagekitURL(user?.profile?.avatar as string, 100, 100)}
           className="h-14 w-14 rounded-full bg-gray-200"
-          alt={`@/${user?.username}'s avatar`}
+          alt={`@/${user?.username}`}
         />
         <div className="space-y-2">
           <div>

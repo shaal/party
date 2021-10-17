@@ -30,7 +30,7 @@ const Details: React.FC<Props> = ({ product }) => {
         <img
           src={imagekitURL(product?.avatar as string, 200, 200)}
           className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
-          alt={`#${product?.slug}'s avatar`}
+          alt={`#${product?.slug}`}
         />
         <div>
           <div className="text-2xl font-bold flex items-center gap-1.5">

@@ -41,7 +41,7 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
             <img
               className="h-9 w-9 rounded-lg"
               src={imagekitURL(product?.avatar, 100, 100)}
-              alt={`#${product?.slug}'s avatar`}
+              alt={`#${product?.slug}`}
             />
           </a>
         </Link>

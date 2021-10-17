@@ -215,7 +215,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                         50,
                         50
                       )}
-                      alt={`@${like?.node?.user?.username}'s avatar`}
+                      alt={`@${like?.node?.user?.username}`}
                     />
                   </a>
                 </Link>

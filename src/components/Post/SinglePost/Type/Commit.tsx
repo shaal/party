@@ -85,7 +85,7 @@ const CommitType: React.FC<Props> = ({ post }) => {
               <img
                 className="h-5 w-5 rounded-md"
                 src={imagekitURL(commit?.author?.avatar_url as string, 50, 50)}
-                alt={`@${commit?.author?.login}'s avatar'`}
+                alt={`@${commit?.author?.login}'`}
               />
             </div>
             <div className="flex items-center space-x-1">
