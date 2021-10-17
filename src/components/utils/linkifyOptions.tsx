@@ -4,7 +4,7 @@ export const linkifyOptions = {
       href = '/topics/' + href.slice(1)
     }
     if (type === 'mention') {
-      href = '/@/' + href.slice(1)
+      href = '/u/' + href.slice(1)
     }
     return href
   }

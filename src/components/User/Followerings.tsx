@@ -9,14 +9,14 @@ interface Props {
 const Followerings: React.FC<Props> = ({ user }) => {
   return (
     <div className="flex gap-5">
-      <Link href={`/@/${user?.username}/following`}>
-        <a href={`/@/${user?.username}/following`}>
+      <Link href={`/u/${user?.username}/following`}>
+        <a href={`/u/${user?.username}/following`}>
           <div className="text-xl">{user?.following?.totalCount}</div>
           <div className="text-gray-500">Following</div>
         </a>
       </Link>
-      <Link href={`/@/${user?.username}/followers`}>
-        <a href={`/@/${user?.username}/followers`}>
+      <Link href={`/u/${user?.username}/followers`}>
+        <a href={`/u/${user?.username}/followers`}>
           <div className="text-xl">{user?.followers?.totalCount}</div>
           <div className="text-gray-500">Followers</div>
         </a>

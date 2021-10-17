@@ -63,7 +63,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
             >
               <Menu.Item
                 as={NextLink}
-                href={`/@/${currentUser?.username}`}
+                href={`/u/${currentUser?.username}`}
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -79,7 +79,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <div className="border-b dark:border-gray-800" />
               <Menu.Item
                 as={NextLink}
-                href={`/@/${currentUser?.username}`}
+                href={`/u/${currentUser?.username}`}
                 className={({ active }: any) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },

@@ -73,8 +73,8 @@ const MorePosts: React.FC<Props> = ({ post }) => {
               src={imagekitURL(post?.user?.profile?.avatar, 50, 50)}
               alt={`@${post?.user?.profile?.avatar}'`}
             />
-            <Link href={`/@/${post?.user?.username}`}>
-              <a href={`/@/${post?.user?.username}`}>
+            <Link href={`/u/${post?.user?.username}`}>
+              <a href={`/u/${post?.user?.username}`}>
                 {post?.user?.profile?.name}
               </a>
             </Link>
