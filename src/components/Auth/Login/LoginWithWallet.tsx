@@ -55,7 +55,7 @@ const LoginWithWallet: React.FC = () => {
           .getSigner()
           .provider.send('personal_sign', [
             `${PUBLIC_SIGNING_MESSAGE} ${data?.nonce}`,
-            await web3.getSigner().getAddress()
+            address
           ])
 
         setLoginButtonMessage('Loggin in...')
