@@ -1,17 +1,17 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 
-builder.queryField('searchPosts', (t) =>
+builder.queryField('searchTopics', (t) =>
   t.prismaConnection({
-    type: 'Post',
+    type: 'Topic',
     args: { keyword: t.arg.string() },
     cursor: 'id',
     defaultSize: 20,
     maxSize: 100,
     resolve: async (query, parent, { keyword }) => {
-      return await db.post.findMany({
+      return await db.topic.findMany({
         ...query,
-        where: { body: { contains: keyword } }
+        where: { name: { contains: keyword } }
       })
     }
   })
@@ -28,22 +28,6 @@ builder.queryField('searchUsers', (t) =>
       return await db.user.findMany({
         ...query,
         where: { username: { contains: keyword }, inWaitlist: false }
-      })
-    }
-  })
-)
-
-builder.queryField('searchProduct', (t) =>
-  t.prismaConnection({
-    type: 'Product',
-    args: { keyword: t.arg.string() },
-    cursor: 'id',
-    defaultSize: 20,
-    maxSize: 100,
-    resolve: async (query, parent, { keyword }) => {
-      return await db.product.findMany({
-        ...query,
-        where: { slug: { contains: keyword } }
       })
     }
   })

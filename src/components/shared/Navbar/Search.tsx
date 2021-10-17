@@ -1,44 +1,41 @@
 import { gql, useLazyQuery } from '@apollo/client'
+import { Card } from '@components/ui/Card'
+import { Spinner } from '@components/ui/Spinner'
+import useOnClickOutside from '@components/utils/useOnClickOutside'
+import React, { useRef, useState } from 'react'
 
+import UserProfile from '../UserProfile'
 import {
-  SearchPostsQuery,
-  SearchProductsQuery,
+  SearchTopicsQuery,
   SearchUsersQuery
 } from './__generated__/Search.generated'
 
-export const SEARCH_POSTS_QUERY = gql`
-  query SearchPostsQuery($keyword: String!) {
-    searchPosts(first: 5, keyword: $keyword) {
-      edges {
-        node {
-          id
-          body
-        }
-      }
-    }
-  }
-`
-
-export const SEARCH_USERS_QUERY = gql`
+const SEARCH_USERS_QUERY = gql`
   query SearchUsersQuery($keyword: String!) {
-    searchUsers(first: 5, keyword: $keyword) {
+    searchUsers(first: 10, keyword: $keyword) {
       edges {
         node {
           id
           username
+          isVerified
+          profile {
+            id
+            name
+            avatar
+          }
         }
       }
     }
   }
 `
 
-export const SEARCH_PRODUCTS_QUERY = gql`
-  query SearchProductsQuery($keyword: String!) {
-    searchProduct(first: 5, keyword: $keyword) {
+const SEARCH_TOPICS_QUERY = gql`
+  query SearchTopicsQuery($keyword: String!) {
+    searchTopics(first: 5, keyword: $keyword) {
       edges {
         node {
           id
-          slug
+          name
         }
       }
     }
@@ -46,28 +43,21 @@ export const SEARCH_PRODUCTS_QUERY = gql`
 `
 
 const Search: React.FC = () => {
-  const [searchPosts, {}] = useLazyQuery<SearchPostsQuery>(SEARCH_POSTS_QUERY)
-  const [searchUsers, {}] = useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
-  const [searchProducts, {}] = useLazyQuery<SearchProductsQuery>(
-    SEARCH_PRODUCTS_QUERY
-  )
+  const [searchText, setSearchText] = useState<string>('')
+  const dropdownRef = useRef(null)
+
+  useOnClickOutside(dropdownRef, () => setSearchText(''))
+
+  const [searchUsers, { data: searchUsersData, loading: searchUsersLoading }] =
+    useLazyQuery<SearchUsersQuery>(SEARCH_USERS_QUERY)
+  const [searchTopics, { data: searchTopicsData }] =
+    useLazyQuery<SearchTopicsQuery>(SEARCH_TOPICS_QUERY)
 
   const handleSearch = (evt: any) => {
-    searchPosts({
-      variables: {
-        keyword: evt.target.value
-      }
-    })
-    searchUsers({
-      variables: {
-        keyword: evt.target.value
-      }
-    })
-    searchProducts({
-      variables: {
-        keyword: evt.target.value
-      }
-    })
+    let keyword = evt.target.value
+    setSearchText(keyword)
+    searchUsers({ variables: { keyword } })
+    searchTopics({ variables: { keyword } })
   }
 
   return (
@@ -76,8 +66,50 @@ const Search: React.FC = () => {
         className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-brand-500 focus:ring-brand-400 outline-none rounded-lg shadow-sm w-full py-1.5"
         type="text"
         placeholder="Search Devparty..."
+        value={searchText}
         onChange={handleSearch}
       />
+      {searchText.length > 0 && (
+        <div
+          className="flex flex-col w-full sm:max-w-lg absolute mt-2"
+          ref={dropdownRef}
+        >
+          <Card className="py-2">
+            {searchTopicsData?.searchTopics?.edges?.map((topic: any) => (
+              <div key={topic?.node?.id} className="px-4 py-2">
+                <a className="w-full" href={`/topics/${topic?.node?.name}`}>
+                  #{topic?.node?.name}
+                </a>
+              </div>
+            ))}
+            {(searchTopicsData?.searchTopics?.edges?.length as number) > 0 && (
+              <div className="border-t my-2" />
+            )}
+            {searchUsersLoading ? (
+              <div className="px-4 py-2 font-bold text-center space-y-2 text-sm">
+                <Spinner size="sm" className="mx-auto" />
+                <div>Searching users</div>
+              </div>
+            ) : (
+              <div>
+                {searchUsersData?.searchUsers?.edges?.map((user: any) => (
+                  <div
+                    key={user?.node?.id}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2"
+                  >
+                    <a href={`/@/${user?.node?.username}`}>
+                      <UserProfile user={user?.node} />
+                    </a>
+                  </div>
+                ))}
+                {searchUsersData?.searchUsers?.edges?.length === 0 && (
+                  <div className="px-4 py-2">No matching users</div>
+                )}
+              </div>
+            )}
+          </Card>
+        </div>
+      )}
     </>
   )
 }
