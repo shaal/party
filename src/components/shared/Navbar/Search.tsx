@@ -1,11 +1,10 @@
 import { gql, useLazyQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card } from '@components/ui/Card'
 import useOnClickOutside from '@components/utils/useOnClickOutside'
 import { UsersIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
-import Link from 'next/link'
 import React, { useRef, useState } from 'react'
 
+import UserProfileSmall from '../UserProfileSmall'
 import {
   SearchPostsQuery,
   SearchProductsQuery,
@@ -32,6 +31,11 @@ export const SEARCH_USERS_QUERY = gql`
         node {
           id
           username
+          profile {
+            id
+            name
+            avatar
+          }
         }
       }
     }
@@ -98,33 +102,27 @@ const Search: React.FC = () => {
           ref={dropdownRef}
         >
           <Card>
-            <CardBody>
-              <div className="flex items-center space-x-2">
+            <div>
+              <div className="flex items-center space-x-2 text-sm font-bold p-5">
                 <UsersIcon className="h-4 w-4" />
                 <div>Users</div>
               </div>
-              {searchUsersData?.searchUsers?.edges?.map((user: any) => (
-                <Link
-                  href={`/@/${user?.node?.username}`}
-                  key={user?.node?.id}
-                  passHref
-                >
-                  <a
-                    className="hover:bg-gray-100 dark:hover:bg-gray-800"
-                    href={`/@/${user?.node?.username}`}
-                    onClick={() => {
-                      setSearchText('')
-                      mixpanel.track('Clicked Search result')
-                    }}
+              <div>
+                {searchUsersData?.searchUsers?.edges?.map((user: any) => (
+                  <div
+                    key={user?.node?.id}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800 px-5 py-1"
                   >
-                    {user?.node?.username}
-                  </a>
-                </Link>
-              ))}
-              {searchUsersData?.searchUsers?.edges?.length === 0 && (
-                <EmptyState type="users" />
-              )}
-            </CardBody>
+                    <a href={`/@/${user?.node?.username}`}>
+                      <UserProfileSmall user={user?.node} />
+                    </a>
+                  </div>
+                ))}
+                {searchUsersData?.searchUsers?.edges?.length === 0 && (
+                  <EmptyState type="users" />
+                )}
+              </div>
+            </div>
           </Card>
         </div>
       )}
