@@ -73,8 +73,8 @@ const Navbar: React.FC = () => {
         <div className="relative flex items-center justify-between h-14 sm:h-16">
           <div className="flex-1 flex items-center justify-start">
             <div className="flex-shrink-0 flex items-center space-x-3">
-              <Link href={currentUser ? '/home' : '/'} passHref>
-                <a>
+              <Link href={currentUser ? '/home' : '/'}>
+                <a href={currentUser ? '/home' : '/'}>
                   <img
                     className="block h-8 sm:h-9 w-auto cursor-pointer"
                     src="/logo.svg"

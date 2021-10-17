@@ -152,8 +152,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             <Link href={`/posts/${post?.parent?.id}`} passHref>
               <a className="text-gray-500 dark:text-gray-400">Replying to</a>
             </Link>
-            <Link href={`/@/${post?.parent?.user?.username}`} passHref>
-              <a>
+            <Link href={`/@/${post?.parent?.user?.username}`}>
+              <a href={`/@/${post?.parent?.user?.username}`}>
                 <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
               </a>
             </Link>
@@ -198,9 +198,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                 <Link
                   key={like?.node?.user?.id}
                   href={`/@/${like?.node?.user?.username}`}
-                  passHref
                 >
-                  <a>
+                  <a href={`/@/${like?.node?.user?.username}`}>
                     <img
                       className="rounded-full border h-5 w-5"
                       src={imagekitURL(
