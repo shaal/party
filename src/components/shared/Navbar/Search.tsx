@@ -83,7 +83,7 @@ const Search: React.FC = () => {
               </div>
             ))}
             {(searchTopicsData?.searchTopics?.edges?.length as number) > 0 && (
-              <div className="border-t my-2" />
+              <div className="border-t dark:border-gray-800 my-2" />
             )}
             {searchUsersLoading ? (
               <div className="px-4 py-2 font-bold text-center space-y-2 text-sm">
