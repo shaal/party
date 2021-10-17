@@ -7,7 +7,7 @@ import { db } from '@utils/prisma'
  * @param entityId - Entity id where the action is going to perform
  * @param action - Type of the action
  */
-export const createLog = async (
+export const createLog = (
   userId: any,
   entityId: any,
   action: LogActionType
