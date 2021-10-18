@@ -16,11 +16,10 @@ import Custom404 from 'src/pages/404'
 import { ViewCommunityQuery } from '../__generated__/ViewCommunity.generated'
 import Rules from '../Rules'
 import { VIEW_COMMUNITY_QUERY } from '../ViewCommunity'
-import MembersList from './list'
 
 export const COMMUNITY_MEMBERS_QUERY = VIEW_COMMUNITY_QUERY
 
-const Members: React.FC = () => {
+const About: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewCommunityQuery>(
     COMMUNITY_MEMBERS_QUERY,
@@ -50,9 +49,7 @@ const Members: React.FC = () => {
         </GridItemTwelve>
       </GridLayout>
       <GridLayout className="flex-grow-0 pt-0">
-        <GridItemEight>
-          <MembersList />
-        </GridItemEight>
+        <GridItemEight>WIP</GridItemEight>
         <GridItemFour>
           <Rules community={community as Community} />
         </GridItemFour>
@@ -61,4 +58,4 @@ const Members: React.FC = () => {
   )
 }
 
-export default Members
+export default About
