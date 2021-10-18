@@ -9,7 +9,7 @@ import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
-  ClockIcon,
+  CalendarIcon,
   FingerPrintIcon,
   PencilIcon,
   UsersIcon
@@ -80,10 +80,15 @@ const Details: React.FC<Props> = ({ community }) => {
                         <Slug slug={community?.owner?.username} prefix="@" />
                       </a>
                     </Link>
+                    {community?.members?.totalCount - 1 > 0 && (
+                      <div className="text-gray-500">
+                        and {community?.members?.totalCount} others
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center space-x-1.5">
-                  <ClockIcon className="h-5 w-5" />
+                  <CalendarIcon className="h-5 w-5" />
                   <div>Created {timeago.format(community?.createdAt)}</div>
                 </div>
               </CardBody>

@@ -7,7 +7,6 @@ import {
   GridLayout
 } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -49,13 +48,8 @@ const Members: React.FC = () => {
         <GridItemTwelve>
           <Details community={community as Community} />
         </GridItemTwelve>
-        <GridItemEight>
-          <div className="space-y-5">
-            <ErrorMessage title="Failed to load post" error={error} />
-          </div>
-        </GridItemEight>
       </GridLayout>
-      <GridLayout className="flex-grow-0 pt-0 -mt-4">
+      <GridLayout className="flex-grow-0 pt-0">
         <GridItemEight>
           <MembersList />
         </GridItemEight>

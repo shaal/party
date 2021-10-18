@@ -121,6 +121,12 @@ async function main() {
   // Community
   for (const community of communityData) {
     console.log(`Seeding Community - ${community.slug} 🎭`)
+    const connectors = [
+      { username: community.username },
+      { username: 'yoginth' },
+      { username: 'filiptronick' }
+    ]
+
     await db.community.create({
       data: {
         name: community.name,
@@ -129,11 +135,9 @@ async function main() {
           community.slug
         )}.svg?text=🎭`,
         description: community.description,
-        owner: {
-          connect: {
-            username: community.username
-          }
-        },
+        owner: { connect: { username: community.username } },
+        members: { connect: connectors },
+        moderators: { connect: connectors },
         rules: { createMany: { data: rulesData } }
       }
     })
