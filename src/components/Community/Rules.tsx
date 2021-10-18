@@ -71,7 +71,7 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
         </div>
       )}
       <div className="divide-y">
-        {rules?.length < 1 && (
+        {(rules?.length as number) < 1 && (
           <div className="grid justify-items-center space-y-2 px-5 py-3">
             <div>
               <ShieldCheckIcon className="h-5 w-5 text-brand-500" />
