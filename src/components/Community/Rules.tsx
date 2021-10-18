@@ -4,6 +4,7 @@ import 'linkify-plugin-mention'
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
+import { ShieldCheckIcon } from '@heroicons/react/outline'
 import { Community } from 'src/__generated__/schema.generated'
 
 import { CommunityRulesQuery } from './__generated__/Rules.generated'
@@ -31,7 +32,7 @@ interface Props {
 }
 
 const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
-  const { data, loading, error } = useQuery<CommunityRulesQuery>(
+  const { data, loading } = useQuery<CommunityRulesQuery>(
     COMMUNITY_RULES_QUERY,
     {
       variables: { slug: community?.slug },
@@ -43,7 +44,7 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
   const RulesCard = ({ children }: any) => {
     return (
       <Card
-        className={`mb-4 ${showCardAndHeading ? '' : 'border-0 shadow-none'}`}
+        className={`mb-4 ${showCardAndHeading ? '' : 'border-0 !shadow-none'}`}
       >
         {children}
       </Card>
@@ -70,6 +71,14 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
         </div>
       )}
       <div className="divide-y">
+        {rules?.length < 1 && (
+          <div className="grid justify-items-center space-y-2 px-5 py-3">
+            <div>
+              <ShieldCheckIcon className="h-5 w-5 text-brand-500" />
+            </div>
+            <div>No rules!</div>
+          </div>
+        )}
         {rules?.map((rule: any, index: number) => (
           <div
             className="px-5 py-3 flex items-baseline space-x-3"
