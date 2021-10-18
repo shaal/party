@@ -3,7 +3,7 @@ import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Spinner } from '@components/ui/Spinner'
 import { Community } from 'src/__generated__/schema.generated'
 
 import { CommunityRulesQuery } from './__generated__/Rules.generated'
@@ -27,9 +27,10 @@ export const COMMUNITY_RULES_QUERY = gql`
 
 interface Props {
   community: Community
+  showCardAndHeading?: boolean
 }
 
-const Rules: React.FC<Props> = ({ community }) => {
+const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
   const { data, loading, error } = useQuery<CommunityRulesQuery>(
     COMMUNITY_RULES_QUERY,
     {
@@ -39,23 +40,35 @@ const Rules: React.FC<Props> = ({ community }) => {
   )
   const rules = data?.community?.rules?.edges?.map((edge) => edge?.node)
 
-  const RulesCard = ({ loading, children }: any) => {
+  const RulesCard = ({ children }: any) => {
     return (
-      <Card className="mb-4">
-        <CardBody>
-          <div className="text-lg font-bold">{community?.name} Rules</div>
-          <ErrorMessage title="Failed to load rules" error={error} />
-          {loading}
-        </CardBody>
+      <Card
+        className={`mb-4 ${showCardAndHeading ? '' : 'border-0 shadow-none'}`}
+      >
         {children}
       </Card>
     )
   }
 
-  if (loading) return <RulesCard loading="Loading rules..." />
+  if (loading)
+    return (
+      <RulesCard>
+        <CardBody>
+          <div className="font-bold text-center space-y-2 text-sm">
+            <Spinner size="md" className="mx-auto" />
+            <div>Loading rules</div>
+          </div>
+        </CardBody>
+      </RulesCard>
+    )
 
   return (
     <RulesCard>
+      {showCardAndHeading && (
+        <div className="text-lg font-bold px-5 pt-4 pb-2">
+          {community?.name} Rules
+        </div>
+      )}
       <div className="divide-y">
         {rules?.map((rule: any, index: number) => (
           <div
