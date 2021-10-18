@@ -57,7 +57,7 @@ const About: React.FC = () => {
       <GridLayout className="flex-grow-0 pt-0">
         <GridItemEight>
           <Card>
-            <div className="space-y-6 divide-y">
+            <div className="divide-y">
               <div className="space-y-2 p-5">
                 <div className="text-lg font-bold">Community Info</div>
                 <div>{community?.description}</div>
