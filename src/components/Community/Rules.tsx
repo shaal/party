@@ -74,9 +74,9 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
         {(rules?.length as number) < 1 && (
           <div className="grid justify-items-center space-y-2 px-5 py-3">
             <div>
-              <ScaleIcon className="h-5 w-5 text-brand-500" />
+              <ScaleIcon className="h-8 w-8 text-brand-500" />
             </div>
-            <div>No rules!</div>
+            <div>No rules for this community</div>
           </div>
         )}
         {rules?.map((rule: any, index: number) => (

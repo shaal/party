@@ -83,7 +83,7 @@ const WhoToFollow: React.FC = () => {
         {users?.length === 0 && (
           <div className="grid justify-items-center space-y-2">
             <div>
-              <UsersIcon className="h-5 w-5 text-brand-500" />
+              <UsersIcon className="h-8 w-8 text-brand-500" />
             </div>
             <div>Nothing to suggest</div>
           </div>
