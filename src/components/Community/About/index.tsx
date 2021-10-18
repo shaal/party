@@ -7,13 +7,16 @@ import {
   GridLayout
 } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
-import { Card, CardBody } from '@components/ui/Card'
+import Slug from '@components/shared/Slug'
+import { Card } from '@components/ui/Card'
 import { PageLoading } from '@components/ui/PageLoading'
+import { CalendarIcon, GlobeIcon, UsersIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Community } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
+import * as timeago from 'timeago.js'
 
 import { ViewCommunityQuery } from '../__generated__/ViewCommunity.generated'
 import Rules from '../Rules'
@@ -53,22 +56,54 @@ const About: React.FC = () => {
       <GridLayout className="flex-grow-0 pt-0">
         <GridItemEight>
           <Card>
-            <CardBody>WIP</CardBody>
-            <div className="px-5 py-2 space-y-1">
-              <div className="text-lg font-bold">Rules</div>
-              <div className="text-sm text-gray-500 linkify">
-                These are set and enforced by Community admins and are in
-                addition to{' '}
-                <Link href="/terms">
-                  <a href="/terms">Devparty's rules</a>
-                </Link>
-                .
+            <div className="space-y-6 divide-y">
+              <div className="space-y-2 p-5">
+                <div className="text-lg font-bold">Community Info</div>
+                <div>{community?.description}</div>
+                <div className="pt-4 space-y-4">
+                  <div className="flex items-center space-x-1.5">
+                    <UsersIcon className="h-6 w-6" />
+                    <div>Only members can Post.</div>
+                  </div>
+                  <div className="flex items-center space-x-1.5">
+                    <GlobeIcon className="h-6 w-6" />
+                    <div>
+                      Everyone can view posts within any Community on Devparty.
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-1.5">
+                    <CalendarIcon className="h-6 w-6" />
+                    <div className="flex items-center space-x-1.5">
+                      <div>
+                        Created {timeago.format(community?.createdAt)} by
+                      </div>
+                      <Slug slug={community?.owner?.username} prefix="@" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2 p-5">
+                <div className="text-lg font-bold">Moderators</div>
+                <div>{community?.description}</div>
+              </div>
+              <div>
+                <div className="space-y-2 p-5">
+                  <div className="text-lg font-bold">Rules</div>
+                  <div className="text-sm text-gray-500 linkify">
+                    These are set and enforced by Community admins and are in
+                    addition to{' '}
+                    <Link href="/terms">
+                      <a href="/terms">Devparty's rules</a>
+                    </Link>
+                    .
+                  </div>
+                </div>
+                <Rules
+                  community={community as Community}
+                  showCardAndHeading={false}
+                />
               </div>
             </div>
-            <Rules
-              community={community as Community}
-              showCardAndHeading={false}
-            />
           </Card>
         </GridItemEight>
         <GridItemFour>

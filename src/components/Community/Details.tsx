@@ -9,7 +9,7 @@ import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
-  ClockIcon,
+  CalendarIcon,
   FingerPrintIcon,
   PencilIcon,
   UsersIcon
@@ -83,7 +83,7 @@ const Details: React.FC<Props> = ({ community }) => {
                   </div>
                 </div>
                 <div className="flex items-center space-x-1.5">
-                  <ClockIcon className="h-5 w-5" />
+                  <CalendarIcon className="h-5 w-5" />
                   <div>Created {timeago.format(community?.createdAt)}</div>
                 </div>
               </CardBody>
