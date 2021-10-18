@@ -5,8 +5,8 @@ scopes:
 rules:
   - types:
       - Query
-    maxAge: 900
-    swr: 900
+    maxAge: 1000
+    swr: 1000
     scope: AUTHENTICATED
     description: Cache everything
   - types:
