@@ -129,10 +129,12 @@ async function main() {
           community.slug
         )}.svg?text=🎭`,
         description: community.description,
-        owner: {
-          connect: {
-            username: community.username
-          }
+        owner: { connect: { username: community.username } },
+        members: {
+          connect: [{ username: community.username }, { username: 'yoginth' }]
+        },
+        moderators: {
+          connect: [{ username: community.username }, { username: 'yoginth' }]
         },
         rules: { createMany: { data: rulesData } }
       }
