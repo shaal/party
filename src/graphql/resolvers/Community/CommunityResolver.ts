@@ -33,6 +33,13 @@ builder.prismaObject('Community', {
         where: { spammy: false }
       })
     }),
+    moderators: t.relatedConnection('moderators', {
+      cursor: 'id',
+      totalCount: true,
+      query: () => ({
+        where: { spammy: false }
+      })
+    }),
     posts: t.relatedConnection('posts', {
       cursor: 'id',
       totalCount: true,
