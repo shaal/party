@@ -39,6 +39,9 @@ export const VIEW_COMMUNITY_QUERY = gql`
       members {
         totalCount
       }
+      moderators {
+        totalCount
+      }
     }
   }
 `

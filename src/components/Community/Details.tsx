@@ -80,6 +80,11 @@ const Details: React.FC<Props> = ({ community }) => {
                         <Slug slug={community?.owner?.username} prefix="@" />
                       </a>
                     </Link>
+                    {community?.members?.totalCount > 0 && (
+                      <div className="text-gray-500">
+                        and {community?.members?.totalCount} others
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center space-x-1.5">

@@ -21,6 +21,7 @@ import * as timeago from 'timeago.js'
 import { ViewCommunityQuery } from '../__generated__/ViewCommunity.generated'
 import Rules from '../Rules'
 import { VIEW_COMMUNITY_QUERY } from '../ViewCommunity'
+import ModeratorsList from './Moderators'
 
 export const COMMUNITY_ABOUT_QUERY = VIEW_COMMUNITY_QUERY
 
@@ -77,14 +78,18 @@ const About: React.FC = () => {
                       <div>
                         Created {timeago.format(community?.createdAt)} by
                       </div>
-                      <Slug slug={community?.owner?.username} prefix="@" />
+                      <Link href={`/u/${community?.owner?.username}`}>
+                        <a href={`/u/${community?.owner?.username}`}>
+                          <Slug slug={community?.owner?.username} prefix="@" />
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="space-y-2 p-5">
                 <div className="text-lg font-bold">Moderators</div>
-                <div>{community?.description}</div>
+                <ModeratorsList />
               </div>
               <div>
                 <div className="space-y-2 p-5">
