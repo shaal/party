@@ -13,6 +13,7 @@ import React from 'react'
 import { Community } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
+import { ViewCommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
 import CommunityFeed from './Feed'
 import Rules from './Rules'
