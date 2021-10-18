@@ -13,10 +13,17 @@ rules:
       - Spotify
     maxAge: 0
     swr: 0
-    description: Skip Spotify query
+    description: Skip invite query
   - types:
       - Invite
     maxAge: 0
     swr: 0
-    description: Skip Invite query
+    scope: AUTHENTICATED
+    description: Skip invite query
+  - types:
+      - Session
+    maxAge: 0
+    swr: 0
+    scope: AUTHENTICATED
+    description: Skip session query
 schema: 'https://devparty.io/api/graphql'
