@@ -28,7 +28,9 @@ export const createCommunity = async (
         name: input.name,
         slug: input.slug,
         description: input.description,
-        avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=🎭`
+        avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=🎭`,
+        members: { connect: { id: session!.userId } },
+        moderators: { connect: { id: session!.userId } }
       }
     })
   } catch (error: any) {
