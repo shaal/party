@@ -184,7 +184,7 @@ CREATE TABLE `communities` (
     `description` VARCHAR(191),
     `avatar` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `ownerId` VARCHAR(191),
+    `ownerId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `communities_slug_key`(`slug`),
     PRIMARY KEY (`id`)

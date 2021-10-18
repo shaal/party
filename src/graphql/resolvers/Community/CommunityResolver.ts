@@ -26,6 +26,7 @@ builder.prismaObject('Community', {
 
     // Relations
     owner: t.relation('owner'),
+    ownerId: t.exposeID('ownerId'),
     members: t.relatedConnection('members', {
       cursor: 'id',
       totalCount: true,

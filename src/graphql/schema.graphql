@@ -40,8 +40,10 @@ type Community {
   hasJoined: Boolean!
   id: ID!
   members(after: String, before: String, first: Int, last: Int): CommunityMembersConnection!
+  moderators(after: String, before: String, first: Int, last: Int): CommunityModeratorsConnection!
   name: String!
   owner: User!
+  ownerId: ID!
   posts(after: String, before: String, first: Int, last: Int): CommunityPostsConnection!
   rules(after: String, before: String, first: Int, last: Int): CommunityRulesConnection!
   slug: String!
@@ -54,6 +56,17 @@ type CommunityMembersConnection {
 }
 
 type CommunityMembersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
+type CommunityModeratorsConnection {
+  edges: [CommunityModeratorsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CommunityModeratorsConnectionEdge {
   cursor: String!
   node: User!
 }

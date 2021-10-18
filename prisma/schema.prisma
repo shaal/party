@@ -284,9 +284,9 @@ model Community {
   createdAt DateTime @default(now())
 
   // Relations
-  owner      User?   @relation("communityOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId    String?
-  moderators User[]  @relation("communityModerator")
+  owner      User   @relation("communityOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId    String
+  moderators User[] @relation("communityModerator")
   members    User[]
   posts      Post[]
   rules      Rule[]
