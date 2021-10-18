@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { Community } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
@@ -27,6 +28,7 @@ interface Props {
 }
 
 const Details: React.FC<Props> = ({ community }) => {
+  const router = useRouter()
   const { currentUser } = useContext(AppContext)
 
   return (
@@ -92,21 +94,33 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="border-t" />
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
-          <Button variant="secondary" outline>
+          <Button
+            variant="secondary"
+            outline={router.pathname === '/communities/[slug]'}
+            light={router.pathname !== '/communities/[slug]'}
+          >
             <Link href={`/communities/${community?.slug}`}>
               <a href={`/communities/${community?.slug}`}>
                 <div>Home</div>
               </a>
             </Link>
           </Button>
-          <Button variant="primary" light>
+          <Button
+            variant="secondary"
+            outline={router.pathname === '/communities/[slug]/members'}
+            light={router.pathname !== '/communities/[slug]/members'}
+          >
             <Link href={`/communities/${community?.slug}/members`}>
               <a href={`/communities/${community?.slug}/members`}>
                 <div>Members</div>
               </a>
             </Link>
           </Button>
-          <Button variant="primary" light>
+          <Button
+            variant="secondary"
+            outline={router.pathname === '/communities/[slug]/about'}
+            light={router.pathname !== '/communities/[slug]/about'}
+          >
             <Link href={`/communities/${community?.slug}/about`}>
               <a href={`/communities/${community?.slug}/about`}>
                 <div>About</div>

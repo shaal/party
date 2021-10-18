@@ -34,8 +34,9 @@ model User {
   // Relations
   posts                  Post[]
   ownedProducts          Product[]      @relation("productOwner")
-  ownedCommunities       Community[]    @relation("communityOwner")
   subscribedProducts     Product[]
+  ownedCommunities       Community[]    @relation("communityOwner")
+  moderatedCommunities   Community[]    @relation("communityModerator")
   joinedCommunities      Community[]
   sessions               Session[]
   profile                Profile?
@@ -283,11 +284,12 @@ model Community {
   createdAt DateTime @default(now())
 
   // Relations
-  owner   User?   @relation("communityOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId String?
-  members User[]
-  posts   Post[]
-  rules   Rule[]
+  owner      User   @relation("communityOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId    String
+  moderators User[] @relation("communityModerator")
+  members    User[]
+  posts      Post[]
+  rules      Rule[]
 
   // Attributes
   @@map("communities")

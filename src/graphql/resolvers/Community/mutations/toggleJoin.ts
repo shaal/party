@@ -14,30 +14,29 @@ export const toggleJoin = async (
   communityId: string
 ) => {
   try {
-    // Unstar
+    // Leave
     if (await hasJoined(currentUserId, communityId)) {
-      return await db.community.update({
+      const community = await db.community.findFirst({
         where: { id: communityId },
-        data: {
-          members: {
-            disconnect: {
-              id: currentUserId
-            }
-          }
-        }
+        select: { ownerId: true }
       })
+
+      if (community?.ownerId === currentUserId) {
+        throw new Error('You cannot leave the community you owned!')
+      } else {
+        const updatedCommunity = await db.community.update({
+          where: { id: communityId },
+          data: { members: { disconnect: { id: currentUserId } } }
+        })
+
+        return updatedCommunity
+      }
     }
 
-    // Star
+    // Join
     const community = await db.community.update({
       where: { id: communityId },
-      data: {
-        members: {
-          connect: {
-            id: currentUserId
-          }
-        }
-      }
+      data: { members: { connect: { id: currentUserId } } }
     })
 
     return community

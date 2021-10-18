@@ -184,7 +184,7 @@ CREATE TABLE `communities` (
     `description` VARCHAR(191),
     `avatar` VARCHAR(191),
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `ownerId` VARCHAR(191),
+    `ownerId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `communities_slug_key`(`slug`),
     PRIMARY KEY (`id`)
@@ -264,6 +264,15 @@ CREATE TABLE `_ProductToUser` (
 
     UNIQUE INDEX `_ProductToUser_AB_unique`(`A`, `B`),
     INDEX `_ProductToUser_B_index`(`B`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `_communityModerator` (
+    `A` VARCHAR(191) NOT NULL,
+    `B` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `_communityModerator_AB_unique`(`A`, `B`),
+    INDEX `_communityModerator_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
