@@ -4,7 +4,7 @@ import 'linkify-plugin-mention'
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
-import { ShieldCheckIcon } from '@heroicons/react/outline'
+import { ScaleIcon } from '@heroicons/react/outline'
 import { Community } from 'src/__generated__/schema.generated'
 
 import { CommunityRulesQuery } from './__generated__/Rules.generated'
@@ -74,7 +74,7 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
         {(rules?.length as number) < 1 && (
           <div className="grid justify-items-center space-y-2 px-5 py-3">
             <div>
-              <ShieldCheckIcon className="h-5 w-5 text-brand-500" />
+              <ScaleIcon className="h-5 w-5 text-brand-500" />
             </div>
             <div>No rules!</div>
           </div>
