@@ -14,4 +14,9 @@ rules:
     maxAge: 0
     swr: 0
     description: Skip Spotify query
+  - types:
+      - Invite
+    maxAge: 0
+    swr: 0
+    description: Skip Invite query
 schema: 'https://devparty.io/api/graphql'
