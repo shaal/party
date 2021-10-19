@@ -50,7 +50,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="Post">
@@ -65,7 +65,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="Task">
@@ -80,7 +80,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="Question">
@@ -95,7 +95,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="Poll">
@@ -110,7 +110,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="Git Commit">
@@ -125,7 +125,7 @@ const NewPost: React.FC = () => {
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm'
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
                   )}
                 >
                   <Tooltip content="NFT">

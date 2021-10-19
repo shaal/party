@@ -36,3 +36,7 @@ body {
 .web3modal-modal-lightbox {
   @apply !z-20;
 }
+
+.tab-focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-4 focus-visible:rounded-full;
+}
