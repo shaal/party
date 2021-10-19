@@ -3,6 +3,7 @@ import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
+import { EmptyState } from '@components/ui/EmptyState'
 import { Spinner } from '@components/ui/Spinner'
 import { ScaleIcon } from '@heroicons/react/outline'
 import { Community } from 'src/__generated__/schema.generated'
@@ -72,12 +73,11 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
       )}
       <div className="divide-y">
         {(rules?.length as number) < 1 && (
-          <div className="grid justify-items-center space-y-2 px-5 py-3">
-            <div>
-              <ScaleIcon className="h-8 w-8 text-brand-500" />
-            </div>
-            <div>No rules for this community</div>
-          </div>
+          <EmptyState
+            icon={<ScaleIcon className="h-8 w-8 text-brand-500" />}
+            message="No rules for this community"
+            hideCard
+          />
         )}
         {rules?.map((rule: any, index: number) => (
           <div
