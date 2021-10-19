@@ -1,7 +1,13 @@
+import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon, UserIcon } from '@heroicons/react/outline'
+import {
+  DotsVerticalIcon,
+  FlagIcon,
+  TrashIcon,
+  UserAddIcon
+} from '@heroicons/react/outline'
 import clsx from 'clsx'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
 interface Props {
@@ -9,12 +15,14 @@ interface Props {
 }
 
 const PostMenu: React.FC<Props> = ({ post }) => {
+  const { currentUser } = useContext(AppContext)
+
   return (
     <div>
       <Menu as="div" className="absolute z-[5]">
         <div>
           <Menu.Button>
-            <DotsVerticalIcon className="h-5 w-5 text-gray-700" />
+            <DotsVerticalIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
           </Menu.Button>
         </div>
         <Transition
@@ -28,7 +36,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
         >
           <Menu.Items
             static
-            className="absolute w-56 rounded-lg shadow-sm bg-white dark:bg-gray-900 border dark:border-gray-800"
+            className="absolute w-48 rounded-lg py-1 shadow-sm bg-white dark:bg-gray-900 border dark:border-gray-800"
           >
             <Menu.Item
               as="div"
@@ -39,11 +47,42 @@ const PostMenu: React.FC<Props> = ({ post }) => {
                 )
               }
             >
-              <div className="flex items-center space-x-1.5">
-                <UserIcon className="h-4 w-4" />
-                <div>Your Profile</div>
+              <div className="flex items-center space-x-2">
+                <UserAddIcon className="h-4 w-4" />
+                <div>Follow @{post?.user?.username}</div>
               </div>
             </Menu.Item>
+            {currentUser?.id === post?.user?.id ? (
+              <Menu.Item
+                as="div"
+                className={({ active }: any) =>
+                  clsx(
+                    { 'bg-gray-100 dark:bg-gray-800': active },
+                    'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
+                  )
+                }
+              >
+                <div className="flex items-center space-x-2">
+                  <TrashIcon className="h-4 w-4" />
+                  <div>Delete</div>
+                </div>
+              </Menu.Item>
+            ) : (
+              <Menu.Item
+                as="div"
+                className={({ active }: any) =>
+                  clsx(
+                    { 'bg-gray-100 dark:bg-gray-800': active },
+                    'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
+                  )
+                }
+              >
+                <div className="flex items-center space-x-2">
+                  <FlagIcon className="h-4 w-4" />
+                  <div>Report Post</div>
+                </div>
+              </Menu.Item>
+            )}
           </Menu.Items>
         </Transition>
       </Menu>
