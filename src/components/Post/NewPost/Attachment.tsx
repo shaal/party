@@ -26,7 +26,7 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
 
   return (
     <div className="flex items-center gap-2 text-sm">
-      <button type="button">
+      <button type="button" className="tab-focus-ring">
         <label className="flex items-center gap-1 cursor-pointer">
           {loading ? (
             <Spinner size="sm" />
