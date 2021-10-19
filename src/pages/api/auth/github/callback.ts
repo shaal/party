@@ -75,7 +75,9 @@ const handler = async (
         data: {
           username: `github-${login}`,
           email: githubEmail as string,
-          hashedPassword: await hashPassword(await md5(login + Math.random())),
+          hashedPassword: await hashPassword(
+            await md5(login + Math.random().toString())
+          ),
           inWaitlist: true,
           profile: {
             create: {
