@@ -1,9 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Card, CardBody } from '@components/ui/Card'
+import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { Spinner } from '@components/ui/Spinner'
+import { ShieldCheckIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
@@ -68,6 +70,13 @@ const StaffToolsReports: React.FC = () => {
         <Card>
           <CardBody className="space-y-4">
             <ErrorMessage title="Failed to load reports" error={error} />
+            {reports?.length < 1 && (
+              <EmptyState
+                icon={<ShieldCheckIcon className="h-8 w-8 text-brand-500" />}
+                message="No reports to process!"
+                hideCard
+              />
+            )}
             {reports?.map((report: any) => (
               <div key={report?.id}>{report?.message}</div>
             ))}
