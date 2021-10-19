@@ -4,6 +4,7 @@ import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
+import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -20,6 +21,7 @@ interface Props {
 
 const Follow: React.FC<Props> = ({ user, showText }) => {
   const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [toggleFollow] = useMutation<
     ToggleFollowMutation,
@@ -59,6 +61,7 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
   }, [user])
 
   const handleToggleFollow = () => {
+    if (!currentUser) return router.push('/login')
     mixpanel.track('user.toggle_follow.click')
     toggleFollow({
       variables: {
