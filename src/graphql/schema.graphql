@@ -660,6 +660,7 @@ type Spotify {
 
 type Stats {
   badges: Int!
+  communities: Int!
   likes: Int!
   notifications: Int!
   posts: Int!
