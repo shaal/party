@@ -61,7 +61,11 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
   }, [user])
 
   const handleToggleFollow = () => {
-    if (!currentUser) return router.push('/login')
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/u/${user?.username}` }
+      })
     mixpanel.track('user.toggle_follow.click')
     toggleFollow({
       variables: {

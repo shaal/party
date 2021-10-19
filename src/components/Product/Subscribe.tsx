@@ -64,7 +64,11 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
   }, [product])
 
   const handleToggleSubscribe = () => {
-    if (!currentUser) return router.push('/login')
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/products/${product?.slug}` }
+      })
     mixpanel.track('product.toggle_subscribe.click')
     toggleProductSubscribe({
       variables: {

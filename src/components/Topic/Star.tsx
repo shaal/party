@@ -57,7 +57,11 @@ const Star: React.FC<Props> = ({ topic }) => {
   }, [topic])
 
   const handleToggleStar = () => {
-    if (!currentUser) return router.push('/login')
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/topics/${topic?.id}` }
+      })
     toggleTopicStar({
       variables: {
         input: { id: topic?.id }

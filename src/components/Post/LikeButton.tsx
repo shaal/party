@@ -25,7 +25,11 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   }, [entity])
 
   const toggleLike = () => {
-    if (!currentUser) return router.push('/login')
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/posts/${entity?.id}` }
+      })
     setIsLiked(!isLiked)
     setLikesCount(isLiked ? likesCount - 1 : likesCount + 1)
     handleLike(entity)
