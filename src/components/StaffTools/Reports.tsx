@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Slug from '@components/shared/Slug'
+import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
@@ -91,27 +92,33 @@ const StaffToolsReports: React.FC = () => {
               />
             )}
             {reports?.map((report: any) => (
-              <div key={report?.id} className="py-3 space-y-3">
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <Tooltip content="Reported by">
-                      <UserIcon className="h-5 w-5 text-gray-500" />
-                    </Tooltip>
-                    <Link href={`/u/${report?.user?.username}`}>
-                      <a href={`/u/${report?.user?.username}`}>
-                        <Slug slug={report?.user?.username} prefix="@" />
-                      </a>
-                    </Link>
+              <div
+                key={report?.id}
+                className="py-3 justify-between flex flex-col sm:flex-row sm:items-center"
+              >
+                <div className="space-y-3">
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <Tooltip content="Reported by">
+                        <UserIcon className="h-5 w-5 text-gray-500" />
+                      </Tooltip>
+                      <Link href={`/u/${report?.user?.username}`}>
+                        <a href={`/u/${report?.user?.username}`}>
+                          <Slug slug={report?.user?.username} prefix="@" />
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <Tooltip content="Message">
+                        <MailIcon className="h-5 w-5 text-gray-500" />
+                      </Tooltip>
+                      <div>{report?.message}</div>
+                    </div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <Tooltip content="Message">
-                      <MailIcon className="h-5 w-5 text-gray-500" />
-                    </Tooltip>
-                    <div>{report?.message}</div>
-                  </div>
-                </div>
+                <Button className="mt-3 sm:mt-0">Resolve</Button>
               </div>
             ))}
           </CardBody>
