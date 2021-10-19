@@ -36,7 +36,7 @@ const MoreNavItems: React.FC = () => {
           >
             <Menu.Items
               static
-              className="absolute w-48 rounded-lg shadow-md py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none mt-2 border dark:border-gray-800"
+              className="absolute w-48 rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 mt-2 border dark:border-gray-800"
             >
               <Menu.Item
                 as={NextLink}

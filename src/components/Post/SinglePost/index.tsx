@@ -15,12 +15,12 @@ import toast from 'react-hot-toast'
 import { Post, User } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
-import DeleteButton from '../DeleteButton'
 import LikeButton from '../LikeButton'
 import {
   TogglePostLikeMutation,
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
+import PostMenu from './Menu'
 import Oembed from './Oembed'
 import SelectedCommunity from './SelectedCommunity'
 import SelectedProduct from './SelectedProduct'
@@ -197,7 +197,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </a>
         </Link>
-        {post?.user?.id === currentUser?.id && <DeleteButton post={post} />}
+        <PostMenu post={post} />
         {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>
