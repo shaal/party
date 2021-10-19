@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
-import DeleteButton from './DeleteButton'
+import Delete from './Delete'
 
 interface Props {
   post: Post
@@ -54,7 +54,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
               </div>
             </Menu.Item>
             {currentUser?.id === post?.user?.id ? (
-              <DeleteButton post={post} />
+              <Delete post={post} />
             ) : (
               <Menu.Item
                 as="div"
