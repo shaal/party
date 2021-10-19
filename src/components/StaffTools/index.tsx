@@ -10,6 +10,7 @@ import {
   CubeIcon,
   DatabaseIcon,
   ExternalLinkIcon,
+  FlagIcon,
   HashtagIcon,
   HeartIcon,
   IdentificationIcon,
@@ -34,6 +35,7 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
       badges
       notifications
       sessions
+      reports
     }
   }
 `
@@ -111,6 +113,12 @@ const StaffToolsDashboard: React.FC = () => {
                 <LoginIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{stats?.sessions}</span> Sessions
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <FlagIcon className="h-4 w-4" />
+                <div>
+                  <span className="font-bold">{stats?.reports}</span> Reports
                 </div>
               </div>
             </div>
