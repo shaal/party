@@ -19,6 +19,7 @@ import React from 'react'
 import useInView from 'react-cool-inview'
 
 import { StaffToolsReportsQuery } from './__generated__/Reports.generated'
+import ReportEntity from './ReportEntity'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_REPORTS_QUERY = gql`
@@ -32,15 +33,13 @@ export const STAFF_TOOLS_REPORTS_QUERY = gql`
         node {
           id
           message
+          type
           user {
             id
             username
-            isVerified
-            profile {
-              id
-              avatar
-              name
-            }
+          }
+          post {
+            id
           }
         }
       }
@@ -51,12 +50,7 @@ export const STAFF_TOOLS_REPORTS_QUERY = gql`
 const StaffToolsReports: React.FC = () => {
   const { data, loading, error, fetchMore } = useQuery<StaffToolsReportsQuery>(
     STAFF_TOOLS_REPORTS_QUERY,
-    {
-      variables: {
-        after: null
-      },
-      pollInterval: 10000
-    }
+    { variables: { after: null } }
   )
   const reports = data?.reports?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.reports?.pageInfo
@@ -97,39 +91,39 @@ const StaffToolsReports: React.FC = () => {
               />
             )}
             {reports?.map((report: any) => (
-              <div
-                key={report?.id}
-                className="py-3 justify-between flex flex-col sm:flex-row sm:items-center"
-              >
-                <div className="space-y-3">
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <Tooltip content="Reported by">
-                        <UserIcon className="h-5 w-5 text-gray-500" />
-                      </Tooltip>
-                      <Link href={`/u/${report?.user?.username}`}>
-                        <a href={`/u/${report?.user?.username}`}>
-                          <Slug slug={report?.user?.username} prefix="@" />
-                        </a>
-                      </Link>
+              <div key={report?.id} className="py-3 space-y-3">
+                <div className="justify-between flex flex-col sm:flex-row sm:items-center">
+                  <div className="space-y-3">
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Tooltip content="Reported by">
+                          <UserIcon className="h-5 w-5 text-gray-500" />
+                        </Tooltip>
+                        <Link href={`/u/${report?.user?.username}`}>
+                          <a href={`/u/${report?.user?.username}`}>
+                            <Slug slug={report?.user?.username} prefix="@" />
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Tooltip content="Message">
+                          <MailIcon className="h-5 w-5 text-gray-500" />
+                        </Tooltip>
+                        <div>{report?.message}</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <Tooltip content="Message">
-                        <MailIcon className="h-5 w-5 text-gray-500" />
-                      </Tooltip>
-                      <div>{report?.message}</div>
-                    </div>
-                  </div>
+                  <Button
+                    className="mt-3 sm:mt-0 text-sm"
+                    size="sm"
+                    icon={<CheckCircleIcon className="h-4 w-4" />}
+                  >
+                    Resolve
+                  </Button>
                 </div>
-                <Button
-                  className="mt-3 sm:mt-0 text-sm"
-                  size="sm"
-                  icon={<CheckCircleIcon className="h-4 w-4" />}
-                >
-                  Resolve
-                </Button>
+                <ReportEntity report={report} />
               </div>
             ))}
           </CardBody>
