@@ -1,6 +1,7 @@
 import { builder } from '@graphql/builder'
 
 import { createReport } from './mutations/createReport'
+import { getReports } from './queries/getReports'
 
 builder.prismaObject('Report', {
   findUnique: (report) => ({ id: report.id }),
@@ -17,6 +18,19 @@ builder.prismaObject('Report', {
     post: t.relation('post', { nullable: true })
   })
 })
+
+builder.queryField('reports', (t) =>
+  t.prismaConnection({
+    type: 'Report',
+    cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
+    authScopes: { isStaff: true },
+    resolve: async (query) => {
+      return await getReports(query)
+    }
+  })
+)
 
 const CreateReportInput = builder.inputType('CreateReportInput', {
   fields: (t) => ({
