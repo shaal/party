@@ -12,6 +12,10 @@ import { User } from '.prisma/client'
  * @returns the followed user
  */
 export const toggleFollow = async (currentUserId: string, userId: string) => {
+  if (currentUserId === userId) {
+    throw new Error("You can't follow yourself!")
+  }
+
   try {
     // Unfollow
     if (await hasFollowed(currentUserId, userId)) {
