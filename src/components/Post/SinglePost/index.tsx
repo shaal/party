@@ -22,6 +22,7 @@ import {
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
 import Oembed from './Oembed'
+import PostMenu from './PostMenu'
 import SelectedCommunity from './SelectedCommunity'
 import SelectedProduct from './SelectedProduct'
 import CommitType from './Type/Commit'
@@ -198,6 +199,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           </a>
         </Link>
         {post?.user?.id === currentUser?.id && <DeleteButton post={post} />}
+        <PostMenu post={post} />
         {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
             <div>Liked by</div>
