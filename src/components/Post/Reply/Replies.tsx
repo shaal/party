@@ -74,7 +74,7 @@ const Replies: React.FC<Props> = ({ post }) => {
         {replies?.length === 0 ? (
           <EmptyState
             message="Be the first one to reply!"
-            icon={<ReplyIcon className="h-8 w-8" />}
+            icon={<ReplyIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           replies?.map((reply: any) => (

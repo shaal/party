@@ -1,10 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import SinglePost, { PostFragment } from '@components/Post/SinglePost'
 import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
-import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Spinner } from '@components/ui/Spinner'
-import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import { POLLING_INTERVAL } from 'src/constants'
@@ -59,16 +57,9 @@ const ExploreFeed: React.FC = () => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {posts?.length === 0 ? (
-          <EmptyState
-            message="No posts found, follow some users!"
-            icon={<CollectionIcon className="h-8 w-8" />}
-          />
-        ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
-          ))
-        )}
+        {posts?.map((post: any) => (
+          <SinglePost key={post?.id} post={post} showParent />
+        ))}
         {pageInfo?.hasNextPage && (
           <span ref={observe} className="flex justify-center p-5">
             <Spinner size="md" />

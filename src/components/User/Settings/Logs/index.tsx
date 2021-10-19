@@ -79,7 +79,7 @@ const LogsSettings: React.FC = () => {
         {logs?.length === 0 ? (
           <EmptyState
             message="No audit logs found!"
-            icon={<ClipboardListIcon className="h-8 w-8" />}
+            icon={<ClipboardListIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           <Card className="mb-4">

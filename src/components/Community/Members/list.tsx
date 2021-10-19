@@ -106,7 +106,7 @@ const MembersList: React.FC = () => {
                 <span>doesn’t have any members yet.</span>
               </div>
             }
-            icon={<UsersIcon className="h-8 w-8" />}
+            icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           members?.map((user: any) => (
