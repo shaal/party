@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
+import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
@@ -81,12 +82,11 @@ const WhoToFollow: React.FC = () => {
       <ErrorMessage title="Failed to load users" error={error} />
       <div className="space-y-3">
         {users?.length === 0 && (
-          <div className="grid justify-items-center space-y-2">
-            <div>
-              <UsersIcon className="h-8 w-8 text-brand-500" />
-            </div>
-            <div>Nothing to suggest</div>
-          </div>
+          <EmptyState
+            icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
+            message="Nothing to suggest"
+            hideCard
+          />
         )}
         {users?.map((user: any) => (
           <UserProfile key={user?.id} user={user} showFollow />
