@@ -450,6 +450,7 @@ type Query {
   post(id: ID!): Post!
   product(slug: String!): Product!
   products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!
+  reports(after: String, before: String, first: Int, last: Int): QueryReportsConnection!
   searchTopics(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchTopicsConnection!
   searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
@@ -540,6 +541,16 @@ type QueryProductsConnection {
 type QueryProductsConnectionEdge {
   cursor: String!
   node: Product!
+}
+
+type QueryReportsConnection {
+  edges: [QueryReportsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryReportsConnectionEdge {
+  cursor: String!
+  node: Report!
 }
 
 type QuerySearchTopicsConnection {
@@ -649,10 +660,12 @@ type Spotify {
 
 type Stats {
   badges: Int!
+  communities: Int!
   likes: Int!
   notifications: Int!
   posts: Int!
   products: Int!
+  reports: Int!
   sessions: Int!
   topics: Int!
   users: Int!

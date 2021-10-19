@@ -10,10 +10,12 @@ import {
   CubeIcon,
   DatabaseIcon,
   ExternalLinkIcon,
+  FlagIcon,
   HashtagIcon,
   HeartIcon,
   IdentificationIcon,
   LoginIcon,
+  UserIcon,
   UsersIcon
 } from '@heroicons/react/outline'
 import React from 'react'
@@ -26,12 +28,14 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
     stats {
       users
       products
+      communities
       posts
       likes
       topics
       badges
       notifications
       sessions
+      reports
     }
   }
 `
@@ -56,7 +60,7 @@ const StaffToolsDashboard: React.FC = () => {
             <div className="text-xl font-bold mb-1.5">Platform Stats</div>
             <div className="text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex items-center space-x-1.5">
-                <UsersIcon className="h-4 w-4" />
+                <UserIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{stats?.users}</span> Users
                 </div>
@@ -65,6 +69,13 @@ const StaffToolsDashboard: React.FC = () => {
                 <CubeIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{stats?.products}</span> Products
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <UsersIcon className="h-4 w-4" />
+                <div>
+                  <span className="font-bold">{stats?.communities}</span>{' '}
+                  Communities
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
@@ -102,6 +113,12 @@ const StaffToolsDashboard: React.FC = () => {
                 <LoginIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{stats?.sessions}</span> Sessions
+                </div>
+              </div>
+              <div className="flex items-center space-x-1.5">
+                <FlagIcon className="h-4 w-4" />
+                <div>
+                  <span className="font-bold">{stats?.reports}</span> Reports
                 </div>
               </div>
             </div>
