@@ -1,5 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
+import { Menu } from '@headlessui/react'
 import { TrashIcon } from '@heroicons/react/outline'
+import clsx from 'clsx'
 import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
@@ -35,15 +37,24 @@ const DeleteButton: React.FC<Props> = ({ post }) => {
   )
 
   return (
-    <button
-      className="text-red-500 hover:text-red-400 flex items-center space-x-2"
+    <Menu.Item
+      as="div"
+      className={({ active }: any) =>
+        clsx(
+          { 'bg-gray-100 dark:bg-gray-800': active },
+          'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
+        )
+      }
       onClick={() => {
         mixpanel.track('post.delete.click')
         deletePost({ variables: { input: { id: post?.id } } })
       }}
     >
-      <TrashIcon className="h-5 w-5" />
-    </button>
+      <div className="flex items-center space-x-2">
+        <TrashIcon className="h-4 w-4" />
+        <div>Delete</div>
+      </div>
+    </Menu.Item>
   )
 }
 

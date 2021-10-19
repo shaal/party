@@ -3,12 +3,13 @@ import { Menu, Transition } from '@headlessui/react'
 import {
   DotsVerticalIcon,
   FlagIcon,
-  TrashIcon,
   UserAddIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post } from 'src/__generated__/schema.generated'
+
+import DeleteButton from '../DeleteButton'
 
 interface Props {
   post: Post
@@ -53,20 +54,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
               </div>
             </Menu.Item>
             {currentUser?.id === post?.user?.id ? (
-              <Menu.Item
-                as="div"
-                className={({ active }: any) =>
-                  clsx(
-                    { 'bg-gray-100 dark:bg-gray-800': active },
-                    'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
-                  )
-                }
-              >
-                <div className="flex items-center space-x-2">
-                  <TrashIcon className="h-4 w-4" />
-                  <div>Delete</div>
-                </div>
-              </Menu.Item>
+              <DeleteButton post={post} />
             ) : (
               <Menu.Item
                 as="div"
