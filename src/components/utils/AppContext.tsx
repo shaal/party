@@ -6,6 +6,8 @@ export interface ContextType {
   currentUserError: any
   staffMode: any
   setStaffMode: any
+  viewingPost: any
+  setViewingPost: any
 }
 
 const AppContext = createContext<ContextType>({
@@ -13,7 +15,9 @@ const AppContext = createContext<ContextType>({
   currentUserLoading: false,
   currentUserError: null,
   staffMode: false,
-  setStaffMode: null
+  setStaffMode: null,
+  viewingPost: null,
+  setViewingPost: null
 })
 
 export default AppContext

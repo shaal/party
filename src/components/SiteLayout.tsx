@@ -58,6 +58,7 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
   const { data, loading, error } =
     useQuery<CurrentUserQuery>(CURRENT_USER_QUERY)
   const [staffMode, setStaffMode] = useState<boolean>()
+  const [viewingPost, setViewingPost] = useState<boolean>()
 
   useEffect(() => {
     setStaffMode(localStorage.staffMode === 'true')
@@ -68,7 +69,9 @@ const SiteLayout: React.FC<Props> = ({ children }) => {
     currentUserLoading: loading,
     currentUserError: error,
     staffMode,
-    setStaffMode
+    setStaffMode,
+    viewingPost,
+    setViewingPost
   }
 
   if (data?.me) {
