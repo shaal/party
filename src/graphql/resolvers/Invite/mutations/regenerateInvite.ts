@@ -12,7 +12,9 @@ export const regenerateInvite = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const code = await (await md5((session?.userId as string) + Math.random()))
+  const code = await (
+    await md5((session?.userId as string) + Math.random().toString())
+  )
     .slice(0, 12)
     .toLowerCase()
 
