@@ -8,7 +8,12 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
-import { MailIcon, ShieldCheckIcon, UserIcon } from '@heroicons/react/outline'
+import {
+  CheckCircleIcon,
+  MailIcon,
+  ShieldCheckIcon,
+  UserIcon
+} from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -118,7 +123,13 @@ const StaffToolsReports: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <Button className="mt-3 sm:mt-0">Resolve</Button>
+                <Button
+                  className="mt-3 sm:mt-0 text-sm"
+                  size="sm"
+                  icon={<CheckCircleIcon className="h-4 w-4" />}
+                >
+                  Resolve
+                </Button>
               </div>
             ))}
           </CardBody>
