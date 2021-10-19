@@ -70,7 +70,7 @@ const StaffToolsReports: React.FC = () => {
         <Card>
           <CardBody className="space-y-4">
             <ErrorMessage title="Failed to load reports" error={error} />
-            {reports?.length < 1 && (
+            {(reports?.length as number) < 1 && (
               <EmptyState
                 icon={<ShieldCheckIcon className="h-8 w-8 text-brand-500" />}
                 message="No reports to process!"
