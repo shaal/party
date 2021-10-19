@@ -1,6 +1,5 @@
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { CreateReportInput } from 'src/__generated__/schema.generated'
 
 /**
  * Creates a new report
@@ -11,7 +10,7 @@ import { CreateReportInput } from 'src/__generated__/schema.generated'
  */
 export const createReport = async (
   query: any,
-  input: CreateReportInput,
+  input: any,
   session: Session | null | undefined
 ) => {
   return await db.report.create({
