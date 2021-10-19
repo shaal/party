@@ -1,12 +1,12 @@
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon, FlagIcon } from '@heroicons/react/outline'
-import clsx from 'clsx'
+import { DotsVerticalIcon } from '@heroicons/react/outline'
 import { Fragment, useContext } from 'react'
-import { Post, User } from 'src/__generated__/schema.generated'
+import { Post } from 'src/__generated__/schema.generated'
 
 import Delete from './Delete'
 import Follow from './Follow'
+import Report from './Report'
 
 interface Props {
   post: Post
@@ -40,21 +40,8 @@ const PostMenu: React.FC<Props> = ({ post }) => {
               <Delete post={post} />
             ) : (
               <>
-                <Follow user={post?.user as User} />
-                <Menu.Item
-                  as="div"
-                  className={({ active }: any) =>
-                    clsx(
-                      { 'bg-gray-100 dark:bg-gray-800': active },
-                      'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
-                    )
-                  }
-                >
-                  <div className="flex items-center space-x-2">
-                    <FlagIcon className="h-4 w-4" />
-                    <div>Report Post</div>
-                  </div>
-                </Menu.Item>
+                <Follow user={post?.user} />
+                <Report post={post} />
               </>
             )}
           </Menu.Items>
