@@ -1,6 +1,6 @@
 export const userData = [
   {
-    email: 'me@yogi.codes',
+    email: 'yoginth@hey.com',
     username: 'yoginth',
     name: 'Yoginth',
     isStaff: true,
@@ -9,7 +9,7 @@ export const userData = [
     ethAddress: '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3'
   },
   {
-    email: 'filiptronicek@yogi.codes',
+    email: 'filip.tronicek@seznam.cz',
     username: 'filiptronicek',
     name: 'Filip Troníček',
     isStaff: true,
