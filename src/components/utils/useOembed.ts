@@ -13,7 +13,10 @@ export const useOembed = (
   const { data, error } = useSWR(`/api/oembed?url=${url}`, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
-    revalidateOnReconnect: false
+    revalidateOnReconnect: false,
+    isPaused: () => {
+      return !url
+    }
   })
 
   return {
