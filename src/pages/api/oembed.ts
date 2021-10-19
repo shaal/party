@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const stringifiedURL = url.toString()
       let parsedUrl = stringifiedURL
       if (!/^https?:\/\//i.test(stringifiedURL)) {
-        parsedUrl = 'https://' + url
+        parsedUrl = `https://${url}`
       }
       let cache: any = await redis.get(parsedUrl)
       cache = JSON.parse(cache)
