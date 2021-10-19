@@ -72,7 +72,7 @@ const FeaturedUsers: React.FC = () => {
         {users?.length === 0 && (
           <div className="grid justify-items-center space-y-2">
             <div>
-              <UsersIcon className="h-5 w-5" />
+              <UsersIcon className="h-8 w-8 text-brand-500" />
             </div>
             <div>No users are featured</div>
           </div>

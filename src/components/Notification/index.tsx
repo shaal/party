@@ -94,7 +94,7 @@ const Notifications: React.FC = () => {
   if (loading) return <PageLoading message="Loading notifications" />
 
   return (
-    <div className="flex flex-grow justify-center px-4 sm:px-6 lg:px-8 py-8">
+    <div className="flex flex-grow justify-center px-0 sm:px-6 lg:px-8 py-8">
       <div className="max-w-5xl w-full space-y-3">
         <NotificationType isRead={isRead} setIsRead={setIsRead} />
         <div className="space-y-5">

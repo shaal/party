@@ -24,11 +24,11 @@ export const createCommunity = async (
     return await db.community.create({
       ...query,
       data: {
-        ownerId: session!.userId,
         name: input.name,
         slug: input.slug,
         description: input.description,
         avatar: `https://avatar.tobi.sh/${await md5(input.slug)}.svg?text=🎭`,
+        owner: { connect: { id: session!.userId } },
         members: { connect: { id: session!.userId } },
         moderators: { connect: { id: session!.userId } }
       }

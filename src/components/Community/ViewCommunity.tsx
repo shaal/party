@@ -39,6 +39,9 @@ export const VIEW_COMMUNITY_QUERY = gql`
       members {
         totalCount
       }
+      moderators {
+        totalCount
+      }
     }
   }
 `
@@ -71,14 +74,10 @@ const ViewCommunity: React.FC = () => {
         <GridItemTwelve>
           <Details community={community as Community} />
         </GridItemTwelve>
-        <GridItemEight>
-          <div className="space-y-5">
-            <ErrorMessage title="Failed to load post" error={error} />
-          </div>
-        </GridItemEight>
       </GridLayout>
-      <GridLayout className="flex-grow-0 pt-0 -mt-4">
+      <GridLayout className="flex-grow-0 pt-0">
         <GridItemEight>
+          <ErrorMessage title="Failed to load post" error={error} />
           <CommunityFeed community={community as Community} />
         </GridItemEight>
         <GridItemFour>

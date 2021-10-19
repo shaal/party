@@ -5,13 +5,27 @@ scopes:
 rules:
   - types:
       - Query
-    maxAge: 900
-    swr: 900
+    maxAge: 1000
+    swr: 1000
     scope: AUTHENTICATED
     description: Cache everything
   - types:
       - Spotify
     maxAge: 0
     swr: 0
-    description: Skip Spotify query
+    description: Skip spotify query
+  - types:
+      - Session
+    maxAge: 0
+    swr: 0
+    scope: AUTHENTICATED
+    description: Skip session query
+  - types:
+      User:
+        - invite
+        - notificationsCount
+    maxAge: 0
+    swr: 0
+    scope: AUTHENTICATED
+    description: Skip user notificationsCount and invite fields
 schema: 'https://devparty.io/api/graphql'

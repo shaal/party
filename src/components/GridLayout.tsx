@@ -35,7 +35,7 @@ export const GridItemEight: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`lg:col-span-8 md:col-span-12 col-span-12 mb-5 lg:mb-0 ${className}`}
+      className={`lg:col-span-8 md:col-span-12 col-span-12 mb-5 ${className}`}
     >
       {children}
     </div>
