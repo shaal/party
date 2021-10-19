@@ -14,12 +14,7 @@ type Badge {
   id: ID!
   image: String!
   name: String!
-  users(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): BadgeUsersConnection!
+  users(after: String, before: String, first: Int, last: Int): BadgeUsersConnection!
 }
 
 type BadgeUsersConnection {
@@ -44,33 +39,13 @@ type Community {
   description: String
   hasJoined: Boolean!
   id: ID!
-  members(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): CommunityMembersConnection!
-  moderators(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): CommunityModeratorsConnection!
+  members(after: String, before: String, first: Int, last: Int): CommunityMembersConnection!
+  moderators(after: String, before: String, first: Int, last: Int): CommunityModeratorsConnection!
   name: String!
   owner: User!
   ownerId: ID!
-  posts(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): CommunityPostsConnection!
-  rules(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): CommunityRulesConnection!
+  posts(after: String, before: String, first: Int, last: Int): CommunityPostsConnection!
+  rules(after: String, before: String, first: Int, last: Int): CommunityRulesConnection!
   slug: String!
 }
 
@@ -148,6 +123,11 @@ input CreateProductInput {
   name: String!
   slug: String!
   website: String!
+}
+
+input CreateReportInput {
+  message: String!
+  type: String!
 }
 
 scalar DateTime
@@ -273,6 +253,7 @@ type Mutation {
   createCommunity(input: CreateCommunityInput!): Community!
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
+  createReport(input: CreateReportInput!): Report!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User!
@@ -341,12 +322,7 @@ type PollAnswer {
   id: ID!
   poll: Poll!
   title: String!
-  voters(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): PollAnswerVotersConnection!
+  voters(after: String, before: String, first: Int, last: Int): PollAnswerVotersConnection!
 }
 
 type PollAnswerVotersConnection {
@@ -368,23 +344,13 @@ type Post {
   done: Boolean!
   hasLiked: Boolean!
   id: ID!
-  likes(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): PostLikesConnection!
+  likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   nft: NFT
   oembedUrl: String
   parent: Post
   poll: Poll
   product: Product
-  replies(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): PostRepliesConnection!
+  replies(after: String, before: String, first: Int, last: Int): PostRepliesConnection!
   title: String
   type: String!
   updatedAt: DateTime!
@@ -423,20 +389,10 @@ type Product {
   id: ID!
   name: String!
   owner: User!
-  posts(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): ProductPostsConnection!
+  posts(after: String, before: String, first: Int, last: Int): ProductPostsConnection!
   producthunt: String
   slug: String!
-  subscribers(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): ProductSubscribersConnection!
+  subscribers(after: String, before: String, first: Int, last: Int): ProductSubscribersConnection!
   twitter: String
   updatedAt: DateTime!
   website: String
@@ -480,101 +436,30 @@ type Profile {
 }
 
 type Query {
-  badges(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryBadgesConnection!
+  badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   community(slug: String!): Community!
-  exploreFeed(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryExploreFeedConnection!
-  featuredUsers(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryFeaturedUsersConnection!
-  homeFeed(
-    after: String
-    before: String
-    first: Int
-    last: Int
-    type: String! = "ALL"
-  ): QueryHomeFeedConnection!
+  exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
+  featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
+  homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
   invite(code: String!): Invite
-  logs(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryLogsConnection!
+  logs(after: String, before: String, first: Int, last: Int): QueryLogsConnection!
   me: User
-  morePostsByUser(
-    after: String
-    before: String
-    first: Int
-    last: Int
-    type: String!
-    userId: ID!
-  ): QueryMorePostsByUserConnection!
-  notifications(
-    after: String
-    before: String
-    first: Int
-    isRead: Boolean! = false
-    last: Int
-  ): QueryNotificationsConnection!
+  morePostsByUser(after: String, before: String, first: Int, last: Int, type: String!, userId: ID!): QueryMorePostsByUserConnection!
+  notifications(after: String, before: String, first: Int, isRead: Boolean! = false, last: Int): QueryNotificationsConnection!
   post(id: ID!): Post!
   product(slug: String!): Product!
-  products(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryProductsConnection!
-  searchTopics(
-    after: String
-    before: String
-    first: Int
-    keyword: String!
-    last: Int
-  ): QuerySearchTopicsConnection!
-  searchUsers(
-    after: String
-    before: String
-    first: Int
-    keyword: String!
-    last: Int
-  ): QuerySearchUsersConnection!
-  sessions(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QuerySessionsConnection
+  products(after: String, before: String, first: Int, last: Int): QueryProductsConnection!
+  searchTopics(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchTopicsConnection!
+  searchUsers(after: String, before: String, first: Int, keyword: String!, last: Int): QuerySearchUsersConnection!
+  sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
   topic(name: String!): Topic!
   user(username: String!): User
-  users(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryUsersConnection!
+  users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
   wakatime(userId: ID!): Wakatime
-  whoToFollow(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): QueryWhoToFollowConnection!
+  whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
 }
 
 type QueryBadgesConnection {
@@ -711,6 +596,15 @@ input ReadNotificationInput {
   id: ID!
 }
 
+type Report {
+  createdAt: DateTime!
+  id: ID!
+  message: String!
+  post: Post
+  type: String!
+  user: User!
+}
+
 enum Result {
   SUCCESS
 }
@@ -801,19 +695,9 @@ type Topic {
   id: ID!
   image: String
   name: String!
-  posts(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): TopicPostsConnection!
+  posts(after: String, before: String, first: Int, last: Int): TopicPostsConnection!
   postsCount: Int!
-  starrers(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): TopicStarrersConnection!
+  starrers(after: String, before: String, first: Int, last: Int): TopicStarrersConnection!
 }
 
 type TopicPostsConnection {
@@ -837,33 +721,13 @@ type TopicStarrersConnectionEdge {
 }
 
 type User {
-  badges(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserBadgesConnection!
-  communities(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserCommunitiesConnection!
+  badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
+  communities(after: String, before: String, first: Int, last: Int): UserCommunitiesConnection!
   createdAt: DateTime!
   email: String!
   featuredAt: DateTime
-  followers(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserFollowersConnection!
-  following(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserFollowingConnection!
+  followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
+  following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
   hasFollowed: Boolean!
   hasSpotifyIntegration: Boolean!
   hasWakatimeIntegration: Boolean!
@@ -875,27 +739,12 @@ type User {
   isStaff: Boolean!
   isVerified: Boolean!
   notificationsCount: Int!
-  ownedProducts(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserOwnedProductsConnection!
-  posts(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserPostsConnection!
+  ownedProducts(after: String, before: String, first: Int, last: Int): UserOwnedProductsConnection!
+  posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
   profile: Profile!
   spammy: Boolean!
   tip: Tip
-  topics(
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): UserTopicsConnection!
+  topics(after: String, before: String, first: Int, last: Int): UserTopicsConnection!
   updatedAt: DateTime!
   username: String!
 }
