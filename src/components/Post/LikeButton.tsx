@@ -15,6 +15,9 @@ type Props = {
 const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
+  const [likesCount, setLikesCount] = useState<number>(
+    entity?.likes?.totalCount
+  )
   const [isLiked, setIsLiked] = useState<boolean>(false)
 
   useEffect(() => {
@@ -24,6 +27,7 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   const toggleLike = () => {
     if (!currentUser) return router.push('/login')
     setIsLiked(!isLiked)
+    setLikesCount(isLiked ? likesCount - 1 : likesCount + 1)
     handleLike(entity)
   }
 
@@ -39,9 +43,7 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
       ) : (
         <HeartIcon className="h-5 w-5" />
       )}
-      {(entity?.likes?.totalCount as number) > 0 && (
-        <div className="text-xs">{entity?.likes?.totalCount}</div>
-      )}
+      {likesCount > 0 && <div className="text-xs">{likesCount}</div>}
     </Switch>
   )
 }
