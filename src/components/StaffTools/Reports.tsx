@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
@@ -23,6 +24,16 @@ export const STAFF_TOOLS_REPORTS_QUERY = gql`
         node {
           id
           message
+          user {
+            id
+            username
+            isVerified
+            profile {
+              id
+              avatar
+              name
+            }
+          }
         }
       }
     }
@@ -68,7 +79,7 @@ const StaffToolsReports: React.FC = () => {
       </GridItemFour>
       <GridItemEight>
         <Card>
-          <CardBody className="space-y-4">
+          <CardBody className="divide-y">
             <ErrorMessage title="Failed to load reports" error={error} />
             {(reports?.length as number) < 1 && (
               <EmptyState
@@ -78,7 +89,12 @@ const StaffToolsReports: React.FC = () => {
               />
             )}
             {reports?.map((report: any) => (
-              <div key={report?.id}>{report?.message}</div>
+              <div key={report?.id} className="py-3">
+                <div className="space-y-2">
+                  <div className="font-bold text-sm">Reported by</div>
+                  <UserProfile user={report?.user} />
+                </div>
+              </div>
             ))}
           </CardBody>
         </Card>
