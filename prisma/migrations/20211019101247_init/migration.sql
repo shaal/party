@@ -260,7 +260,7 @@ CREATE TABLE `logs` (
 -- CreateTable
 CREATE TABLE `reports` (
     `id` VARCHAR(191) NOT NULL,
-    `message` VARCHAR(191),
+    `message` TEXT,
     `resolved` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST', 'USER', 'PRODUCT', 'COMMUNITY') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
