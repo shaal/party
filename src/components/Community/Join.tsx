@@ -1,9 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Community } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
@@ -19,6 +21,8 @@ interface Props {
 }
 
 const Subscribe: React.FC<Props> = ({ community, showText }) => {
+  const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
   const [toggleCommunityJoin] = useMutation<
     ToggleCommunityJoinMutation,
@@ -58,6 +62,11 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
   }, [community])
 
   const handleToggleSubscribe = () => {
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/communities/${community?.slug}` }
+      })
     mixpanel.track('product.toggle_subscribe.click')
     toggleCommunityJoin({
       variables: {

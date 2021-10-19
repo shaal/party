@@ -1,9 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
+import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/outline'
 import { StarIcon as StarIconSolid } from '@heroicons/react/solid'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Topic } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
@@ -18,6 +20,8 @@ interface Props {
 }
 
 const Star: React.FC<Props> = ({ topic }) => {
+  const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [isStarted, setIsStarted] = useState<boolean>(false)
   const [toggleTopicStar] = useMutation<
     ToggleTopicStarMutation,
@@ -53,6 +57,11 @@ const Star: React.FC<Props> = ({ topic }) => {
   }, [topic])
 
   const handleToggleStar = () => {
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/topics/${topic?.id}` }
+      })
     toggleTopicStar({
       variables: {
         input: { id: topic?.id }

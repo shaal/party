@@ -110,7 +110,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
     gql`
       mutation TogglePostLikeMutation($input: TogglePostLikeInput!) {
         togglePostLike(input: $input) {
-          ...PostFragment
+          id
         }
       }
       ${PostFragment}
