@@ -136,22 +136,22 @@ const NewPost: React.FC = () => {
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <PostType />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <TaskType />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <QuestionType />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <PollType />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <CommitType />
             </Tab.Panel>
-            <Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
               <NFTType />
             </Tab.Panel>
           </Tab.Panels>
