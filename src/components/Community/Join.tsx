@@ -19,6 +19,8 @@ interface Props {
 }
 
 const Subscribe: React.FC<Props> = ({ community, showText }) => {
+  const { currentUser } = useContext(AppContext)
+  const router = useRouter()
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
   const [toggleCommunityJoin] = useMutation<
     ToggleCommunityJoinMutation,
@@ -58,6 +60,11 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
   }, [community])
 
   const handleToggleSubscribe = () => {
+    if (!currentUser)
+      return router.push({
+        pathname: '/login',
+        query: { redirect: `/communities/${community?.slug}` }
+      })
     mixpanel.track('product.toggle_subscribe.click')
     toggleCommunityJoin({
       variables: {
