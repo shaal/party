@@ -73,11 +73,13 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
       )}
       <div className="divide-y">
         {(rules?.length as number) < 1 && (
-          <EmptyState
-            icon={<ScaleIcon className="h-8 w-8 text-brand-500" />}
-            message="No rules for this community"
-            hideCard
-          />
+          <div className="py-4">
+            <EmptyState
+              icon={<ScaleIcon className="h-8 w-8 text-brand-500" />}
+              message="No rules for this community"
+              hideCard
+            />
+          </div>
         )}
         {rules?.map((rule: any, index: number) => (
           <div
