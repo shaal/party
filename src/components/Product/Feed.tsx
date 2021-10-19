@@ -83,7 +83,7 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
                 <span className="font-bold ml-1">{product?.name}</span>
               </div>
             }
-            icon={<CollectionIcon className="h-8 w-8" />}
+            icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           posts?.map((post: any) => (

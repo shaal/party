@@ -106,7 +106,7 @@ const FollowersList: React.FC = () => {
                 <span>doesn’t have any followers yet.</span>
               </div>
             }
-            icon={<UsersIcon className="h-8 w-8" />}
+            icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           followers?.map((user: any) => (

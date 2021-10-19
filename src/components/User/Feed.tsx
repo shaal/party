@@ -82,7 +82,7 @@ const UserFeed: React.FC = () => {
                 <span>seems like not posted yet!</span>
               </div>
             }
-            icon={<CollectionIcon className="h-8 w-8" />}
+            icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           posts?.map((post: any) => (

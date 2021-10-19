@@ -102,7 +102,7 @@ const Notifications: React.FC = () => {
           {notifications?.length === 0 ? (
             <EmptyState
               message="Congratulations, you have read all your notifications."
-              icon={<BellIcon className="h-8 w-8" />}
+              icon={<BellIcon className="h-8 w-8 text-brand-500" />}
             />
           ) : (
             <div className="space-y-4">

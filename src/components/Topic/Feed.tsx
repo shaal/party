@@ -76,7 +76,7 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
         {posts?.length === 0 ? (
           <EmptyState
             message="No posts found, follow some users!"
-            icon={<CollectionIcon className="h-8 w-8" />}
+            icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           posts?.map((post: any) => (
