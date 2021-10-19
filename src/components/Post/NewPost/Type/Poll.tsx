@@ -134,7 +134,7 @@ const PollType: React.FC = () => {
                   name="title"
                   onChange={(e) => handleChange(index, e)}
                   prefix={<CheckCircleIcon className="h-5 w-5" />}
-                  placeholder={`Choice ${index + 1}`}
+                  placeholder={`Choice ${(index + 1).toString()}`}
                 />
                 {index > 1 ? (
                   <button type="button" onClick={() => removePoll(index)}>
