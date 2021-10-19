@@ -1,6 +1,5 @@
 import {
   ChartSquareBarIcon,
-  CubeIcon,
   FlagIcon,
   UsersIcon
 } from '@heroicons/react/outline'
@@ -44,13 +43,6 @@ const Sidebar: React.FC = () => {
       >
         <UsersIcon className="h-4 w-4" />
         <div>Users</div>
-      </Menu>
-      <Menu
-        current={router.pathname == '/stafftools/products'}
-        url="/stafftools/products"
-      >
-        <CubeIcon className="h-4 w-4" />
-        <div>Products</div>
       </Menu>
       <Menu
         current={router.pathname == '/stafftools/reports'}
