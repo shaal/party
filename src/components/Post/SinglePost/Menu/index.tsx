@@ -1,15 +1,12 @@
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import {
-  DotsVerticalIcon,
-  FlagIcon,
-  UserAddIcon
-} from '@heroicons/react/outline'
+import { DotsVerticalIcon, FlagIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
-import { Post } from 'src/__generated__/schema.generated'
+import { Post, User } from 'src/__generated__/schema.generated'
 
 import Delete from './Delete'
+import Follow from './Follow'
 
 interface Props {
   post: Post
@@ -37,22 +34,9 @@ const PostMenu: React.FC<Props> = ({ post }) => {
         >
           <Menu.Items
             static
-            className="absolute w-48 rounded-lg py-1 shadow-sm bg-white dark:bg-gray-900 border dark:border-gray-800"
+            className="absolute w-52 rounded-lg py-1 shadow-sm bg-white dark:bg-gray-900 border dark:border-gray-800"
           >
-            <Menu.Item
-              as="div"
-              className={({ active }: any) =>
-                clsx(
-                  { 'bg-gray-100 dark:bg-gray-800': active },
-                  'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
-                )
-              }
-            >
-              <div className="flex items-center space-x-2">
-                <UserAddIcon className="h-4 w-4" />
-                <div>Follow @{post?.user?.username}</div>
-              </div>
-            </Menu.Item>
+            <Follow user={post?.user as User} />
             {currentUser?.id === post?.user?.id ? (
               <Delete post={post} />
             ) : (
