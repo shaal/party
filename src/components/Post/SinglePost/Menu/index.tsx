@@ -36,24 +36,26 @@ const PostMenu: React.FC<Props> = ({ post }) => {
             static
             className="absolute w-52 rounded-lg py-1 shadow-sm bg-white dark:bg-gray-900 border dark:border-gray-800"
           >
-            <Follow user={post?.user as User} />
             {currentUser?.id === post?.user?.id ? (
               <Delete post={post} />
             ) : (
-              <Menu.Item
-                as="div"
-                className={({ active }: any) =>
-                  clsx(
-                    { 'bg-gray-100 dark:bg-gray-800': active },
-                    'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
-                  )
-                }
-              >
-                <div className="flex items-center space-x-2">
-                  <FlagIcon className="h-4 w-4" />
-                  <div>Report Post</div>
-                </div>
-              </Menu.Item>
+              <>
+                <Follow user={post?.user as User} />
+                <Menu.Item
+                  as="div"
+                  className={({ active }: any) =>
+                    clsx(
+                      { 'bg-gray-100 dark:bg-gray-800': active },
+                      'block px-4 py-1.5 text-sm text-red-500 m-2 rounded-lg cursor-pointer'
+                    )
+                  }
+                >
+                  <div className="flex items-center space-x-2">
+                    <FlagIcon className="h-4 w-4" />
+                    <div>Report Post</div>
+                  </div>
+                </Menu.Item>
+              </>
             )}
           </Menu.Items>
         </Transition>
@@ -61,4 +63,5 @@ const PostMenu: React.FC<Props> = ({ post }) => {
     </div>
   )
 }
+
 export default PostMenu
