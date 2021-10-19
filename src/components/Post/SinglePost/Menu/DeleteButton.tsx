@@ -9,13 +9,13 @@ import { Post } from 'src/__generated__/schema.generated'
 import {
   DeletePostMutation,
   DeletePostMutationVariables
-} from './__generated__/DeleteButton.generated'
+} from './__generated__/Delete.generated'
 
 type Props = {
   post: Post
 }
 
-const DeleteButton: React.FC<Props> = ({ post }) => {
+const Delete: React.FC<Props> = ({ post }) => {
   const [deletePost] = useMutation<
     DeletePostMutation,
     DeletePostMutationVariables
@@ -58,4 +58,4 @@ const DeleteButton: React.FC<Props> = ({ post }) => {
   )
 }
 
-export default DeleteButton
+export default Delete

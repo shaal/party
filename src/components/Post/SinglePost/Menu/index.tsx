@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
-import DeleteButton from '../DeleteButton'
+import DeleteButton from './DeleteButton'
 
 interface Props {
   post: Post

@@ -20,8 +20,8 @@ import {
   TogglePostLikeMutation,
   TogglePostLikeMutationVariables
 } from './__generated__/index.generated'
+import PostMenu from './Menu'
 import Oembed from './Oembed'
-import PostMenu from './PostMenu'
 import SelectedCommunity from './SelectedCommunity'
 import SelectedProduct from './SelectedProduct'
 import CommitType from './Type/Commit'
