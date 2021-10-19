@@ -48,6 +48,7 @@ model User {
   topics                 Topic[]
   polls                  PollAnswer[]
   logs                   Log[]
+  reports                Report[]
   following              User[]         @relation("follows")
   followedBy             User[]         @relation("follows")
   receivedNotification   Notification[] @relation("notificationReceiver")
@@ -155,6 +156,7 @@ model Post {
   parent       Post?          @relation("replies", fields: [parentId], references: [id], onDelete: SetNull)
   replies      Post[]         @relation("replies")
   notification Notification[] @relation("post")
+  report       Report[]       @relation("report")
 
   // Attributes
   @@map("posts")
@@ -326,8 +328,8 @@ model Notification {
   id       String           @id @default(uuid())
   message  String?
   isRead   Boolean          @default(false)
-  type     NotificationType
   entityId String           @unique
+  type     NotificationType
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -381,6 +383,25 @@ model Log {
   @@map("logs")
 }
 
+model Report {
+  id       String     @id @default(uuid())
+  message  String     @db.Text
+  resolved Boolean    @default(false)
+  type     ReportType
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId String
+  post   Post?   @relation("report", fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+
+  // Attributes
+  @@map("reports")
+}
+
 // Types
 enum PostType {
   POST
@@ -414,4 +435,11 @@ enum LogActionType {
   // Settings
   SETTINGS_UPDATE
   PASSWORD_UPDATE
+}
+
+enum ReportType {
+  POST
+  USER
+  PRODUCT
+  COMMUNITY
 }

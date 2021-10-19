@@ -125,6 +125,11 @@ input CreateProductInput {
   website: String!
 }
 
+input CreateReportInput {
+  message: String!
+  type: String!
+}
+
 scalar DateTime
 
 input DeletePostInput {
@@ -248,6 +253,7 @@ type Mutation {
   createCommunity(input: CreateCommunityInput!): Community!
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product!
+  createReport(input: CreateReportInput!): Report!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User!
@@ -588,6 +594,15 @@ type QueryWhoToFollowConnectionEdge {
 
 input ReadNotificationInput {
   id: ID!
+}
+
+type Report {
+  createdAt: DateTime!
+  id: ID!
+  message: String!
+  post: Post
+  type: String!
+  user: User!
 }
 
 enum Result {
