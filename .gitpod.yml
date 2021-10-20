@@ -7,6 +7,7 @@ tasks:
       yarn --network-timeout 100000;
       cp .env.example .env;
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
+      gp await-port 3306;
       yarn prisma:migrate;
       yarn prisma:seed;
       yarn prepare;
