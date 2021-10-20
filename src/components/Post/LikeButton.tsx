@@ -36,19 +36,21 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   }
 
   return (
-    <Switch
-      checked={entity?.hasLiked}
-      onChange={toggleLike}
-      className="text-pink-500 hover:text-pink-400 flex items-center space-x-2"
-      disabled={loading}
-    >
-      {isLiked ? (
-        <HeartIconSolid className="h-5 w-5" />
-      ) : (
-        <HeartIcon className="h-5 w-5" />
-      )}
+    <div className="text-pink-500 hover:text-pink-400 flex items-center space-x-2">
+      <Switch
+        checked={entity?.hasLiked}
+        onChange={toggleLike}
+        className="hover:bg-pink-300 hover:bg-opacity-20 p-1.5 rounded-full"
+        disabled={loading}
+      >
+        {isLiked ? (
+          <HeartIconSolid className="h-5 w-5" />
+        ) : (
+          <HeartIcon className="h-5 w-5" />
+        )}
+      </Switch>
       {likesCount > 0 && <div className="text-xs">{likesCount}</div>}
-    </Switch>
+    </div>
   )
 }
 

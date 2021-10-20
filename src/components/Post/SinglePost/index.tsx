@@ -181,18 +181,20 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           !isLoading &&
           !isError && <Oembed url={post?.oembedUrl} oembed={oembed} />}
       </CardBody>
-      <div className="flex px-4 py-3 space-x-7 border-t dark:border-gray-800">
+      <div className="flex px-4 py-1.5 space-x-7 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`}>
-          <a
-            href={`/posts/${post?.id}`}
-            className="text-blue-500 hover:text-blue-400 flex items-center space-x-2"
-          >
-            <ChatIcon className="h-5 w-5" />
+          <div className="text-blue-500 hover:text-blue-400 flex items-center space-x-2">
+            <a
+              href={`/posts/${post?.id}`}
+              className="hover:bg-blue-300 hover:bg-opacity-20 p-1.5 rounded-full"
+            >
+              <ChatIcon className="h-5 w-5" />
+            </a>
             {(post?.replies?.totalCount as number) > 0 && (
               <div className="text-xs">{post?.replies?.totalCount}</div>
             )}
-          </a>
+          </div>
         </Link>
         <PostMenu post={post} />
         {(post?.likes?.totalCount as number) > 0 && (

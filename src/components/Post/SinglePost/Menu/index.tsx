@@ -16,11 +16,11 @@ const PostMenu: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <Menu as="div" className="-mb-5">
+    <Menu as="div">
       {({ open }) => (
         <>
-          <Menu.Button>
-            <DotsVerticalIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+          <Menu.Button className="hover:bg-gray-300 hover:bg-opacity-20 p-1.5 rounded-full">
+            <DotsVerticalIcon className="h-5 w-5 text-gray-500 dark:text-gray-300" />
           </Menu.Button>
           <Transition
             show={open}
@@ -34,7 +34,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
           >
             <Menu.Items
               static
-              className="absolute w-48 rounded-lg shadow-sm py-1 mt-1 bg-white dark:bg-gray-900 border dark:border-gray-800"
+              className="absolute w-48 rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 border dark:border-gray-800"
             >
               {currentUser?.id === post?.user?.id ? (
                 <Delete post={post} />
