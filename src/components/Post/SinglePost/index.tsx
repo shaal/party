@@ -2,7 +2,6 @@ import { gql, useMutation } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
-import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { useOembed } from '@components/utils/useOembed'
 import { ChatIcon } from '@heroicons/react/outline'
@@ -10,7 +9,6 @@ import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { Post, User } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
@@ -101,7 +99,6 @@ interface Props {
 
 const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   const router = useRouter()
-  const { currentUser } = useContext(AppContext)
   const { oembed, isLoading, isError } = useOembed(post?.oembedUrl)
   const [togglePostLike] = useMutation<
     TogglePostLikeMutation,
