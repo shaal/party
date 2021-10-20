@@ -21,3 +21,6 @@ script:
   - yarn prettier:check
   - yarn lint
   - yarn build
+
+env:
+  DATABASE_URL="mysql://root@localhost:3306/devparty"
