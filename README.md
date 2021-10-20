@@ -9,10 +9,10 @@
         <img src="https://gitlab.com/yo/devparty/badges/main/pipeline.svg" alt="CI">
     </a>
     <a href="https://github.com/bigint/party/actions/workflows/ci.yml">
-        <img src="https://github.com/bigint/party/actions/workflows/ci.yml/badge.svg" alt="CI">
+        <img src="https://github.com/bigint/party/actions/workflows/ci.yml/badge.svg" alt="GitHub Actions">
     </a>
     <a href="https://app.travis-ci.com/gitlab/yo/devparty/builds">
-        <img src="https://app.travis-ci.com/yo/Devparty.svg?branch=main" alt="CI">
+        <img src="https://app.travis-ci.com/yo/Devparty.svg?branch=main" alt="Travis CI">
     </a>
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
