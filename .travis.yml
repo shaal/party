@@ -6,6 +6,7 @@ cache:
   apt: true
   directories:
     - node_modules
+    - .next/cache/
 
 node_js:
   - "16"
