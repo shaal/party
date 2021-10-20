@@ -22,7 +22,7 @@ export const COMMUNITY_MEMBERS_QUERY = VIEW_COMMUNITY_QUERY
 
 const Members: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ViewCommunityQuery>(
+  const { data, loading } = useQuery<ViewCommunityQuery>(
     COMMUNITY_MEMBERS_QUERY,
     {
       variables: { slug: router.query.slug },
