@@ -11,6 +11,9 @@
     <a href="https://github.com/bigint/party/actions/workflows/ci.yml">
         <img src="https://github.com/bigint/party/actions/workflows/ci.yml/badge.svg" alt="CI">
     </a>
+    <a href="https://app.travis-ci.com/gitlab/yo/devparty/builds">
+        <img src="https://app.travis-ci.com/yo/Devparty.svg?branch=main" alt="CI">
+    </a>
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
     </a>
