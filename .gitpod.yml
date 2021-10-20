@@ -3,6 +3,7 @@ image:
 
 tasks:
   - name: Setup
+    before: redis-server &
     init: >
       yarn install --frozen-lockfile --silent --network-timeout 100000;
       cp .env.example .env;
@@ -18,7 +19,6 @@ tasks:
       gp sync-await setup
       BROWSER=none yarn prisma studio
   - name: Dev Server
-    before: redis-server &
     command: >
       gp sync-await setup
       yarn dev
