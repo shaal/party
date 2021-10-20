@@ -19,10 +19,6 @@ builder.prismaObject('Post', {
     body: t.exposeString('body'),
     type: t.exposeString('type'),
     done: t.exposeBoolean('done'),
-    attachments: t.expose('attachments', {
-      type: 'Attachments',
-      nullable: true
-    }),
     hasLiked: t.field({
       type: 'Boolean',
       resolve: async (parent, args, { session }) => {
@@ -49,6 +45,7 @@ builder.prismaObject('Post', {
 
     // Relations
     user: t.relation('user'),
+    // attachments: t.relation('attachments', { nullable: true }),
     product: t.relation('product', { nullable: true }),
     community: t.relation('community', { nullable: true }),
     parent: t.relation('parent', { nullable: true }),

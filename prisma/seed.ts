@@ -147,26 +147,6 @@ async function main() {
         body: post,
         done,
         type: done ? 'TASK' : 'POST',
-        attachments:
-          faker.datatype.boolean() &&
-          JSON.stringify([
-            {
-              type: 'image/png',
-              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
-            },
-            {
-              type: 'image/png',
-              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
-            },
-            {
-              type: 'image/png',
-              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
-            },
-            {
-              type: 'image/png',
-              url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
-            }
-          ]),
         user: {
           connect: {
             username:
