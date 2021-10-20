@@ -16,12 +16,12 @@ tasks:
     command: yarn codegen:graphql --watch
   - name: Prisma Studio
     command: >
-      gp sync-await setup
-      BROWSER=none yarn prisma studio
+      gp sync-await setup;
+      BROWSER=none yarn prisma studio;
   - name: Dev Server
     command: >
-      gp sync-await setup
-      yarn dev
+      gp sync-await setup;
+      yarn dev;
 
 ports:
   - port: 3000 # Web app
