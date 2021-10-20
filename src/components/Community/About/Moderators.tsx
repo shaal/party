@@ -38,7 +38,7 @@ export const MODERATORS_QUERY = gql`
 
 const ModeratorsList: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<ModeratorsQuery>(
+  const { data, loading, error } = useQuery<ModeratorsQuery>(
     MODERATORS_QUERY,
     {
       variables: {
