@@ -116,12 +116,14 @@ const Topics: React.FC = () => {
                 </a>
               </Link>
               <Link href="/signup">
-                <Button
-                  variant="success"
-                  icon={<UserAddIcon className="h-4 w-4" />}
-                >
-                  Signup
-                </Button>
+                <a href="/signup">
+                  <Button
+                    variant="success"
+                    icon={<UserAddIcon className="h-4 w-4" />}
+                  >
+                    Signup
+                  </Button>
+                </a>
               </Link>
             </div>
           </CardBody>
