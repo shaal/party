@@ -4,7 +4,7 @@ image:
 tasks:
   - name: Setup
     init: >
-      yarn --network-timeout 100000;
+      yarn install --frozen-lockfile --silent --network-timeout 100000;
       cp .env.example .env;
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
       gp await-port 3306;
