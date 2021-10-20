@@ -38,16 +38,13 @@ export const MODERATORS_QUERY = gql`
 
 const ModeratorsList: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ModeratorsQuery>(
-    MODERATORS_QUERY,
-    {
-      variables: {
-        after: null,
-        slug: router.query.slug
-      },
-      skip: !router.isReady
-    }
-  )
+  const { data, loading, error } = useQuery<ModeratorsQuery>(MODERATORS_QUERY, {
+    variables: {
+      after: null,
+      slug: router.query.slug
+    },
+    skip: !router.isReady
+  })
   const moderators = data?.community?.moderators?.edges?.map(
     (edge) => edge?.node
   )
