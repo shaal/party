@@ -14,4 +14,8 @@ before_install:
   - npm config set python `which python`
 
 script:
+  - yarn generate
+  - yarn typecheck
+  - yarn prettier:check
   - yarn lint
+  - yarn build
