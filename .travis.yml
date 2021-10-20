@@ -9,6 +9,8 @@ cache:
 
 node_js:
   - "16"
+  - "15"
+  - "14"
 
 before_install:
   - npm config set python `which python`
