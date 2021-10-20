@@ -129,13 +129,12 @@ model Tip {
 }
 
 model Post {
-  id          String   @id @default(uuid())
-  title       String?
-  body        String   @db.Text
-  done        Boolean  @default(false)
-  type        PostType @default(POST)
-  attachments Json?
-  hidden      Boolean  @default(false)
+  id     String   @id @default(uuid())
+  title  String?
+  body   String   @db.Text
+  done   Boolean  @default(false)
+  type   PostType @default(POST)
+  hidden Boolean  @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -150,6 +149,7 @@ model Post {
   communityId  String?
   likes        Like[]
   topics       PostTopic[]
+  attachments  Attachment[]
   poll         Poll?
   nft          NFT?
   parentId     String?
@@ -160,6 +160,19 @@ model Post {
 
   // Attributes
   @@map("posts")
+}
+
+model Attachment {
+  id   String @id @default(uuid())
+  type String
+  url  String
+
+  // Relations
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String @unique
+
+  // Attributes
+  @@map("attachments")
 }
 
 model NFT {
