@@ -82,7 +82,7 @@ builder.mutationType({
   authScopes: { user: true }
 })
 
-// Cusrom Scalar Types
+// Custom Scalar Types
 builder.scalarType('DateTime', {
   serialize: (date) => date.toISOString(),
   parseValue: (date) => {
