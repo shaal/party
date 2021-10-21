@@ -35,7 +35,6 @@ export const PostFragment = gql`
     title
     body
     done
-    attachments
     type
     oembedUrl
     hasLiked
@@ -46,6 +45,10 @@ export const PostFragment = gql`
         id
         username
       }
+    }
+    attachments {
+      id
+      url
     }
     replies {
       totalCount

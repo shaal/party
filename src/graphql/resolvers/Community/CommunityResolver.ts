@@ -51,9 +51,7 @@ builder.prismaObject('Community', {
     }),
     rules: t.relatedConnection('rules', {
       cursor: 'id',
-      query: () => ({
-        orderBy: { index: 'asc' }
-      })
+      query: () => ({ orderBy: { index: 'asc' } })
     })
   })
 })

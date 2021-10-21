@@ -1,6 +1,7 @@
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
 import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
+import { parseAttachments } from '@graphql/utils/parseAttachments'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { PostType, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
@@ -22,6 +23,7 @@ export const reply = async (
   session: Session | null | undefined,
   parentId: string | null | undefined
 ) => {
+  const attachments = parseAttachments(input.attachments)
   const reply = await db.post.create({
     ...query,
     data: {
@@ -29,7 +31,9 @@ export const reply = async (
       title: input.title,
       body: input.body,
       done: input.done,
-      attachments: input.attachments ? input.attachments : undefined,
+      attachments: attachments
+        ? { createMany: { data: attachments } }
+        : undefined,
       type: input.type as PostType,
       topics: { create: parseTopics(getTopics(input.body)) },
       parentId

@@ -1,5 +1,6 @@
 import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
+import { parseAttachments } from '@graphql/utils/parseAttachments'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
@@ -19,12 +20,15 @@ export const post = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
+  const attachments = parseAttachments(input.attachments)
   const post = await db.post.create({
     ...query,
     data: {
       userId: session!.userId,
       body: input.body,
-      attachments: input.attachments ? input.attachments : undefined,
+      attachments: attachments
+        ? { createMany: { data: attachments } }
+        : undefined,
       type: 'POST',
       productId:
         input.targetId && input.targetType === 'Product'

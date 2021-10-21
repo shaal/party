@@ -7,7 +7,12 @@ input AttachBadgeToUserInput {
   userId: ID!
 }
 
-scalar Attachments
+type Attachment {
+  id: ID!
+  index: Int!
+  type: String!
+  url: String!
+}
 
 type Badge {
   description: String
@@ -337,7 +342,7 @@ type PollAnswerVotersConnectionEdge {
 }
 
 type Post {
-  attachments: Attachments
+  attachments: [Attachment!]!
   body: String!
   community: Community
   createdAt: DateTime!

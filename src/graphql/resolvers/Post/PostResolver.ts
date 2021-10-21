@@ -19,10 +19,6 @@ builder.prismaObject('Post', {
     body: t.exposeString('body'),
     type: t.exposeString('type'),
     done: t.exposeBoolean('done'),
-    attachments: t.expose('attachments', {
-      type: 'Attachments',
-      nullable: true
-    }),
     hasLiked: t.field({
       type: 'Boolean',
       resolve: async (parent, args, { session }) => {
@@ -61,6 +57,9 @@ builder.prismaObject('Post', {
         where: { user: { spammy: false }, hidden: false },
         orderBy: { createdAt: 'desc' }
       })
+    }),
+    attachments: t.relation('attachments', {
+      query: () => ({ orderBy: { index: 'asc' } })
     }),
     likes: t.relatedConnection('likes', { cursor: 'id', totalCount: true })
   })
@@ -131,6 +130,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
+    // TODO: use stringList instead of string
     attachments: t.string({ required: false }),
     polls: t.string({ required: false }),
     address: t.string({ required: false }),
