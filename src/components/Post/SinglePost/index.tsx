@@ -184,7 +184,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           !isLoading &&
           !isError && <Oembed url={post?.oembedUrl} oembed={oembed} />}
       </CardBody>
-      <div className="flex px-2 py-1.5 space-x-7 border-t dark:border-gray-800">
+      <div className="flex px-3 py-1.5 space-x-6 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`}>
           <div className="text-blue-500 hover:text-blue-400 flex items-center space-x-1">
