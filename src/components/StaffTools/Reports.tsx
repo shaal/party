@@ -72,13 +72,7 @@ const StaffToolsReports: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: STAFF_TOOLS_REPORTS_QUERY }],
-      onError() {
-        toast.error(ERROR_MESSAGE)
-      },
-      onCompleted() {
-        toast.success('Report resoved successfully!')
-      }
+      refetchQueries: [{ query: STAFF_TOOLS_REPORTS_QUERY }]
     }
   )
 
@@ -157,11 +151,18 @@ const StaffToolsReports: React.FC = () => {
                       className="mt-3 sm:mt-0 text-sm"
                       size="sm"
                       icon={<CheckCircleIcon className="h-4 w-4" />}
-                      onClick={() =>
-                        resolveReport({
-                          variables: { input: { id: report?.id } }
-                        })
-                      }
+                      onClick={() => {
+                        toast.promise(
+                          resolveReport({
+                            variables: { input: { id: report?.id } }
+                          }),
+                          {
+                            loading: 'Resolving the report...',
+                            success: () => 'Report resoved successfully!',
+                            error: () => ERROR_MESSAGE
+                          }
+                        )
+                      }}
                     >
                       Resolve
                     </Button>
