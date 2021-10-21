@@ -21,15 +21,14 @@ export const post = async (
   session: Session | null | undefined
 ) => {
   const attachments = parseAttachments(input.attachments)
-  console.log(attachments)
   const post = await db.post.create({
     ...query,
     data: {
       userId: session!.userId,
       body: input.body,
-      attachments: {
-        createMany: { data: attachments }
-      },
+      attachments: attachments
+        ? { createMany: { data: attachments } }
+        : undefined,
       type: 'POST',
       productId:
         input.targetId && input.targetType === 'Product'
