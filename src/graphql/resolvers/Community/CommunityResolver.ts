@@ -61,9 +61,9 @@ builder.queryField('community', (t) =>
     type: 'Community',
     args: { slug: t.arg.string() },
     resolve: async (query, parent, { slug }) => {
-      return await db.community.findUnique({
+      return await db.community.findFirst({
         ...query,
-        where: { slug },
+        where: { slug, hidden: false },
         rejectOnNotFound: true
       })
     }

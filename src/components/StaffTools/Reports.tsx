@@ -10,7 +10,6 @@ import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import {
   CheckCircleIcon,
-  EyeOffIcon,
   MailIcon,
   ShieldCheckIcon,
   UserIcon
@@ -137,36 +136,25 @@ const StaffToolsReports: React.FC = () => {
                     </div>
                     <ReportEntity report={report} />
                   </div>
-                  <div className="flex sm:block sm:space-y-2">
-                    <Button
-                      className="mt-3 sm:mt-0 text-sm mr-2"
-                      size="sm"
-                      variant="danger"
-                      icon={<EyeOffIcon className="h-4 w-4" />}
-                      onClick={() => alert('WIP')}
-                    >
-                      Hide
-                    </Button>
-                    <Button
-                      className="mt-3 sm:mt-0 text-sm"
-                      size="sm"
-                      icon={<CheckCircleIcon className="h-4 w-4" />}
-                      onClick={() => {
-                        toast.promise(
-                          resolveReport({
-                            variables: { input: { id: report?.id } }
-                          }),
-                          {
-                            loading: 'Resolving the report...',
-                            success: () => 'Report resoved successfully!',
-                            error: () => ERROR_MESSAGE
-                          }
-                        )
-                      }}
-                    >
-                      Resolve
-                    </Button>
-                  </div>
+                  <Button
+                    className="mt-3 sm:mt-0 text-sm"
+                    size="sm"
+                    icon={<CheckCircleIcon className="h-4 w-4" />}
+                    onClick={() => {
+                      toast.promise(
+                        resolveReport({
+                          variables: { input: { id: report?.id } }
+                        }),
+                        {
+                          loading: 'Resolving the report...',
+                          success: () => 'Report resoved successfully!',
+                          error: () => ERROR_MESSAGE
+                        }
+                      )
+                    }}
+                  >
+                    Resolve
+                  </Button>
                 </div>
               </div>
             ))}

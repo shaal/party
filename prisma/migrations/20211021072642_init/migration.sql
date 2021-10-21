@@ -173,6 +173,7 @@ CREATE TABLE `products` (
     `slug` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NULL,
     `avatar` VARCHAR(191) NULL,
+    `hidden` BOOLEAN NOT NULL DEFAULT false,
     `website` VARCHAR(191) NULL,
     `producthunt` VARCHAR(191) NULL,
     `discord` VARCHAR(191) NULL,
@@ -193,6 +194,7 @@ CREATE TABLE `communities` (
     `slug` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NULL,
     `avatar` VARCHAR(191) NULL,
+    `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `ownerId` VARCHAR(191) NOT NULL,
 

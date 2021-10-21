@@ -266,6 +266,7 @@ model Product {
   slug        String  @unique
   description String?
   avatar      String?
+  hidden      Boolean @default(false)
 
   // Social
   website     String?
@@ -295,6 +296,7 @@ model Community {
   slug        String  @unique
   description String?
   avatar      String?
+  hidden      Boolean @default(false)
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -398,9 +400,9 @@ model Log {
 }
 
 model Report {
-  id       String     @id @default(uuid())
-  message  String     @db.Text
-  type     ReportType
+  id      String     @id @default(uuid())
+  message String     @db.Text
+  type    ReportType
 
   // Timestamps
   createdAt DateTime @default(now())

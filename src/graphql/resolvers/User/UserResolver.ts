@@ -90,19 +90,23 @@ builder.prismaObject('User', {
     }),
     ownedProducts: t.relatedConnection('ownedProducts', {
       cursor: 'id',
-      totalCount: true
+      totalCount: true,
+      query: () => ({ where: { hidden: false } })
     }),
     communities: t.relatedConnection('ownedCommunities', {
       cursor: 'id',
-      totalCount: true
+      totalCount: true,
+      query: () => ({ where: { hidden: false } })
     }),
     followers: t.relatedConnection('followedBy', {
       cursor: 'id',
-      totalCount: true
+      totalCount: true,
+      query: () => ({ where: { spammy: false } })
     }),
     following: t.relatedConnection('following', {
       cursor: 'id',
-      totalCount: true
+      totalCount: true,
+      query: () => ({ where: { spammy: false } })
     })
   })
 })
