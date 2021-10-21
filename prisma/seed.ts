@@ -41,11 +41,7 @@ async function main() {
   await db.report.deleteMany()
   console.log('All reports have been deleted 🗑️')
 
-  const randomRealUser =
-    userData[Math.floor(Math.random() * userData.length)].username
   const reportTypes = ['POST', 'USER', 'PRODUCT', 'COMMUNITY']
-  const randomReportType =
-    reportTypes[Math.floor(Math.random() * reportTypes.length)]
 
   // Fake User
   for (let i = 0; i < 50; i++) {
@@ -108,7 +104,12 @@ async function main() {
         name: faker.company.companyName(),
         avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
         description: faker.lorem.sentence(10),
-        owner: { connect: { username: randomRealUser } }
+        owner: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        }
       }
     })
   }
@@ -139,7 +140,12 @@ async function main() {
         )}.svg?text=🎭`,
         description: community.description,
         owner: { connect: { username: community.username } },
-        members: { connect: { username: randomRealUser } },
+        members: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        },
         moderators: { connect: { username: 'yoginth' } },
         rules: { createMany: { data: rulesData } }
       }
@@ -183,7 +189,12 @@ async function main() {
               }
             }
           : undefined,
-        user: { connect: { username: randomRealUser } }
+        user: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        }
       }
     })
 
@@ -196,12 +207,24 @@ async function main() {
     const report = await db.report.create({
       data: {
         message,
-        type: randomReportType as any,
-        user: { connect: { username: randomRealUser } },
+        type: reportTypes[
+          Math.floor(Math.random() * reportTypes.length)
+        ] as any,
+        user: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        },
         post: {
           create: {
             body: message,
-            user: { connect: { username: randomRealUser } }
+            user: {
+              connect: {
+                username:
+                  userData[Math.floor(Math.random() * userData.length)].username
+              }
+            }
           }
         }
       }
