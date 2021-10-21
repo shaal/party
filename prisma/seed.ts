@@ -147,7 +147,34 @@ async function main() {
         body: post,
         done,
         type: done ? 'TASK' : 'POST',
-        // TODO: Add attachments
+        attachments: faker.datatype.boolean()
+          ? {
+              createMany: {
+                data: [
+                  {
+                    index: 1,
+                    type: 'image/png',
+                    url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+                  },
+                  {
+                    index: 2,
+                    type: 'image/png',
+                    url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+                  },
+                  {
+                    index: 3,
+                    type: 'image/png',
+                    url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+                  },
+                  {
+                    index: 4,
+                    type: 'image/png',
+                    url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
+                  }
+                ]
+              }
+            }
+          : undefined,
         user: {
           connect: {
             username:
