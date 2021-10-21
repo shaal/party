@@ -23,7 +23,7 @@ const handler = async (
           where: { id: req.query.id as string }
         })
 
-        await createSession(req, user as any)
+        await createSession(req, user as any, true)
       } else {
         return res.redirect('/home')
       }

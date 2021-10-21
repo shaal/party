@@ -68,7 +68,7 @@ const handler = async (
           }
         })
         createLog(user?.id, user?.id, 'LOGIN')
-        await createSession(req, user as any)
+        await createSession(req, user as any, false)
       }
     } else {
       await db.user.create({
