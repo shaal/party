@@ -25,6 +25,7 @@ export const question = async (
       userId: session!.userId,
       title: input.title,
       body: input.body,
+      // TODO: work on this to new model
       attachments: input.attachments ? input.attachments : undefined,
       type: 'QUESTION',
       productId:

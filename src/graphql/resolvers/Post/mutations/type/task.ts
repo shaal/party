@@ -25,6 +25,7 @@ export const task = async (
       userId: session!.userId,
       body: input.body,
       done: input.done,
+      // TODO: work on this to new model
       attachments: input.attachments ? input.attachments : undefined,
       type: 'TASK',
       productId:

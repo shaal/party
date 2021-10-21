@@ -29,6 +29,7 @@ export const reply = async (
       title: input.title,
       body: input.body,
       done: input.done,
+      // TODO: work on this to new model
       attachments: input.attachments ? input.attachments : undefined,
       type: input.type as PostType,
       topics: { create: parseTopics(getTopics(input.body)) },
