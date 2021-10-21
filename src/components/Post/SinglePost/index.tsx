@@ -4,7 +4,7 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { useOembed } from '@components/utils/useOembed'
-import { ChatIcon } from '@heroicons/react/outline'
+import { ChatAlt2Icon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -192,7 +192,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
               href={`/posts/${post?.id}`}
               className="hover:bg-blue-300 hover:bg-opacity-20 p-1.5 rounded-full"
             >
-              <ChatIcon className="h-5 w-5" />
+              <ChatAlt2Icon className="h-5 w-5" />
             </a>
             {(post?.replies?.totalCount as number) > 0 && (
               <div className="text-xs">{post?.replies?.totalCount}</div>
