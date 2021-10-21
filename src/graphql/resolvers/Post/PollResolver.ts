@@ -28,9 +28,7 @@ builder.prismaObject('Poll', {
     // Relations
     post: t.relation('post'),
     answers: t.relation('answers', {
-      query: () => ({
-        orderBy: { index: 'asc' }
-      })
+      query: () => ({ orderBy: { index: 'asc' } })
     })
   })
 })
