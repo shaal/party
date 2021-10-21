@@ -4,7 +4,12 @@ import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Modal } from '@components/ui/Modal'
-import { HashtagIcon } from '@heroicons/react/outline'
+import {
+  HashtagIcon,
+  PencilIcon,
+  ShieldCheckIcon,
+  SwitchHorizontalIcon
+} from '@heroicons/react/outline'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -129,17 +134,32 @@ const UserMod: React.FC<Props> = ({ user }) => {
                 </label>
               </div>
             )}
-            <div className="pt-2 space-x-2">
-              <Button type="submit">
-                {form.formState.isSubmitting ? 'Updating...' : 'Update'}
-              </Button>
-              <Button
-                type="button"
-                variant="success"
-                onClick={() => setShowUpdateBadgesModal(!showUpdateBadgesModal)}
-              >
-                Update Badges
-              </Button>
+            <div className="pt-2 space-y-2">
+              <div>
+                <Button type="submit" icon={<PencilIcon className="h-4 w-4" />}>
+                  {form.formState.isSubmitting ? 'Updating...' : 'Update'}
+                </Button>
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  variant="success"
+                  onClick={() =>
+                    setShowUpdateBadgesModal(!showUpdateBadgesModal)
+                  }
+                  icon={<ShieldCheckIcon className="h-4 w-4" />}
+                >
+                  Update Badges
+                </Button>
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  icon={<SwitchHorizontalIcon className="h-4 w-4" />}
+                >
+                  Masquerade
+                </Button>
+              </div>
             </div>
           </Form>
         </CardBody>
