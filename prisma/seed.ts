@@ -38,6 +38,8 @@ async function main() {
   console.log('All users have been deleted 🗑️')
   await db.community.deleteMany()
   console.log('All communities have been deleted 🗑️')
+  await db.report.deleteMany()
+  console.log('All reports have been deleted 🗑️')
 
   const randomRealUser =
     userData[Math.floor(Math.random() * userData.length)].username
