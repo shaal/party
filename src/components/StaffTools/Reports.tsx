@@ -10,6 +10,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import {
   CheckCircleIcon,
+  EyeOffIcon,
   MailIcon,
   ShieldCheckIcon,
   UserIcon
@@ -92,7 +93,7 @@ const StaffToolsReports: React.FC = () => {
             )}
             {reports?.map((report: any) => (
               <div key={report?.id} className="py-3 space-y-3">
-                <div className="justify-between flex flex-col sm:flex-row sm:items-center">
+                <div className="justify-between flex flex-col sm:flex-row sm:items-center space-x-0 sm:space-x-10">
                   <div className="space-y-3">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
@@ -114,16 +115,27 @@ const StaffToolsReports: React.FC = () => {
                         <div>{report?.message}</div>
                       </div>
                     </div>
+                    <ReportEntity report={report} />
                   </div>
-                  <Button
-                    className="mt-3 sm:mt-0 text-sm"
-                    size="sm"
-                    icon={<CheckCircleIcon className="h-4 w-4" />}
-                  >
-                    Resolve
-                  </Button>
+                  <div className="flex sm:block sm:space-y-2">
+                    <Button
+                      className="mt-3 sm:mt-0 text-sm mr-2"
+                      size="sm"
+                      variant="danger"
+                      icon={<EyeOffIcon className="h-4 w-4" />}
+                      onClick={() => alert('WIP')}
+                    >
+                      Hide
+                    </Button>
+                    <Button
+                      className="mt-3 sm:mt-0 text-sm"
+                      size="sm"
+                      icon={<CheckCircleIcon className="h-4 w-4" />}
+                    >
+                      Resolve
+                    </Button>
+                  </div>
                 </div>
-                <ReportEntity report={report} />
               </div>
             ))}
           </CardBody>
