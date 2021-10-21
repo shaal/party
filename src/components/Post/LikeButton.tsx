@@ -36,7 +36,7 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   }
 
   return (
-    <div className="text-pink-500 hover:text-pink-400 flex items-center space-x-2">
+    <div className="text-pink-500 hover:text-pink-400 flex items-center space-x-1">
       <Switch
         checked={entity?.hasLiked}
         onChange={toggleLike}
