@@ -43,7 +43,7 @@ async function main() {
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding Fake User - @${username} 👨‍🎤`)
+    console.log(`Seeding fake user - @${username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -66,13 +66,14 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding Real User - @${user.username} 👨‍🎤`)
+    console.log(`Seeding real user - @${user.username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: user.email,
         username: user.username,
         isStaff: user.isStaff,
         inWaitlist: false,
+        isVerified: true,
         hashedPassword: await hashPassword(user.username),
         profile: {
           create: {
@@ -92,7 +93,7 @@ async function main() {
   for (let i = 0; i < 20; i++) {
     const slug =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding Fake Product - @${slug} 📦`)
+    console.log(`Seeding fake product - @${slug} 📦`)
     await db.product.create({
       data: {
         slug,
@@ -106,7 +107,7 @@ async function main() {
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding Real Product - #${product.slug} 📦`)
+    console.log(`Seeding real product - #${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
@@ -120,7 +121,7 @@ async function main() {
 
   // Community
   for (const community of communityData) {
-    console.log(`Seeding Community - ${community.slug} 🎭`)
+    console.log(`Seeding real community - ${community.slug} 🎭`)
     await db.community.create({
       data: {
         name: community.name,
@@ -141,7 +142,7 @@ async function main() {
   for (let i = 0; i < 200; i++) {
     const post = hplipsum(10)
     const done = faker.datatype.boolean()
-    console.log(`Seeding Post - ${post} 📜`)
+    console.log(`Seeding fake post - ${post} 📜`)
     await db.post.create({
       data: {
         body: post,
