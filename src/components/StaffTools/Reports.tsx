@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
@@ -18,8 +18,14 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import toast from 'react-hot-toast'
+import { ERROR_MESSAGE } from 'src/constants'
 
-import { StaffToolsReportsQuery } from './__generated__/Reports.generated'
+import {
+  ResolveReportMutation,
+  ResolveReportMutationVariables,
+  StaffToolsReportsQuery
+} from './__generated__/Reports.generated'
 import ReportEntity from './ReportEntity'
 import Sidebar from './Sidebar'
 
@@ -55,6 +61,26 @@ const StaffToolsReports: React.FC = () => {
   )
   const reports = data?.reports?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.reports?.pageInfo
+
+  const [resolveReport] = useMutation<
+    ResolveReportMutation,
+    ResolveReportMutationVariables
+  >(
+    gql`
+      mutation ResolveReportMutation($input: ResolveReportInput!) {
+        resolveReport(input: $input)
+      }
+    `,
+    {
+      refetchQueries: [{ query: STAFF_TOOLS_REPORTS_QUERY }],
+      onError() {
+        toast.error(ERROR_MESSAGE)
+      },
+      onCompleted() {
+        toast.success('Report resoved successfully!')
+      }
+    }
+  )
 
   const { observe } = useInView({
     threshold: 1,
@@ -131,6 +157,11 @@ const StaffToolsReports: React.FC = () => {
                       className="mt-3 sm:mt-0 text-sm"
                       size="sm"
                       icon={<CheckCircleIcon className="h-4 w-4" />}
+                      onClick={() =>
+                        resolveReport({
+                          variables: { input: { id: report?.id } }
+                        })
+                      }
                     >
                       Resolve
                     </Button>
