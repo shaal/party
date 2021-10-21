@@ -1,6 +1,8 @@
 import { builder } from '@graphql/builder'
 
+import { Result } from '../ResultResolver'
 import { createReport } from './mutations/createReport'
+import { resolveReport } from './mutations/resolveReport'
 import { getReports } from './queries/getReports'
 
 builder.prismaObject('Report', {
@@ -45,6 +47,23 @@ builder.mutationField('createReport', (t) =>
     args: { input: t.arg({ type: CreateReportInput }) },
     resolve: async (query, parent, { input }, { session }) => {
       return await createReport(query, input, session)
+    }
+  })
+)
+
+const ResolveReportInput = builder.inputType('ResolveReportInput', {
+  fields: (t) => ({
+    id: t.id({ validate: { uuid: true } })
+  })
+})
+
+builder.mutationField('resolveReport', (t) =>
+  t.field({
+    type: Result,
+    args: { input: t.arg({ type: ResolveReportInput }) },
+    authScopes: { isStaff: true },
+    resolve: async (parent, { input }) => {
+      return await resolveReport(input.id)
     }
   })
 )
