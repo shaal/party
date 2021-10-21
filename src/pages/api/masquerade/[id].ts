@@ -17,10 +17,10 @@ const handler = async (
   try {
     const session = await resolveSession({ req, res })
 
-    if (!req.query.id) {
+    if (req.query.id) {
       if (session?.isStaff) {
         const user = await db.user.findFirst({
-          where: { id: req.query.id }
+          where: { id: req.query.id as string }
         })
 
         await createSession(req, user as any)
