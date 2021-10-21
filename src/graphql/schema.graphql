@@ -649,6 +649,7 @@ type Session {
   id: ID!
   ipAddress: String
   isStaff: Boolean!
+  masquerading: Boolean
   user: User!
   userAgent: String
 }

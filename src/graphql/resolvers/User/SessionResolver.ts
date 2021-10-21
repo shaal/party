@@ -12,6 +12,10 @@ builder.prismaObject('Session', {
     isStaff: t.exposeBoolean('isStaff'),
     ipAddress: t.exposeString('ipAddress', { nullable: true }),
     userAgent: t.exposeString('userAgent', { nullable: true }),
+    masquerading: t.exposeBoolean('masquerading', {
+      nullable: true,
+      authScopes: { isStaff: true }
+    }),
     current: t.field({
       type: 'Boolean',
       resolve: async (parent, args, { session, req, res }) => {
