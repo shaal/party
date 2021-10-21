@@ -75,6 +75,17 @@ builder.prismaObject('User', {
         return integration?.spotifyRefreshToken ? true : false
       }
     }),
+    masquerading: t.field({
+      type: 'Boolean',
+      authScopes: { user: true },
+      nullable: true,
+      resolve: async (parent) => {
+        const session = await db.session.findFirst({
+          where: { userId: parent.id }
+        })
+        return session?.masquerading
+      }
+    }),
     notificationsCount: t.field({
       type: 'Int',
       authScopes: { $granted: 'currentUser' },

@@ -649,7 +649,6 @@ type Session {
   id: ID!
   ipAddress: String
   isStaff: Boolean!
-  masquerading: Boolean
   user: User!
   userAgent: String
 }
@@ -762,6 +761,7 @@ type User {
   isFollowing: Boolean!
   isStaff: Boolean!
   isVerified: Boolean!
+  masquerading: Boolean
   notificationsCount: Int!
   ownedProducts(after: String, before: String, first: Int, last: Int): UserOwnedProductsConnection!
   posts(after: String, before: String, first: Int, last: Int): UserPostsConnection!
