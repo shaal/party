@@ -1,6 +1,6 @@
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { DotsVerticalIcon, FlagIcon } from '@heroicons/react/outline'
+import { DotsHorizontalIcon, FlagIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
@@ -20,7 +20,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
       {({ open }) => (
         <>
           <Menu.Button className="hover:bg-gray-300 hover:bg-opacity-20 p-1.5 rounded-full">
-            <DotsVerticalIcon className="h-5 w-5 text-gray-500 dark:text-gray-300" />
+            <DotsHorizontalIcon className="h-5 w-5 text-gray-500 dark:text-gray-300" />
           </Menu.Button>
           <Transition
             show={open}
