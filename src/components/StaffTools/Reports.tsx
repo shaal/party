@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
@@ -10,6 +10,7 @@ import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
 import {
   CheckCircleIcon,
+  EyeOffIcon,
   MailIcon,
   ShieldCheckIcon,
   UserIcon
@@ -17,8 +18,14 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import toast from 'react-hot-toast'
+import { ERROR_MESSAGE } from 'src/constants'
 
-import { StaffToolsReportsQuery } from './__generated__/Reports.generated'
+import {
+  ResolveReportMutation,
+  ResolveReportMutationVariables,
+  StaffToolsReportsQuery
+} from './__generated__/Reports.generated'
 import ReportEntity from './ReportEntity'
 import Sidebar from './Sidebar'
 
@@ -54,6 +61,20 @@ const StaffToolsReports: React.FC = () => {
   )
   const reports = data?.reports?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.reports?.pageInfo
+
+  const [resolveReport] = useMutation<
+    ResolveReportMutation,
+    ResolveReportMutationVariables
+  >(
+    gql`
+      mutation ResolveReportMutation($input: ResolveReportInput!) {
+        resolveReport(input: $input)
+      }
+    `,
+    {
+      refetchQueries: [{ query: STAFF_TOOLS_REPORTS_QUERY }]
+    }
+  )
 
   const { observe } = useInView({
     threshold: 1,
@@ -92,7 +113,7 @@ const StaffToolsReports: React.FC = () => {
             )}
             {reports?.map((report: any) => (
               <div key={report?.id} className="py-3 space-y-3">
-                <div className="justify-between flex flex-col sm:flex-row sm:items-center">
+                <div className="justify-between flex flex-col sm:flex-row sm:items-center space-x-0 sm:space-x-10">
                   <div className="space-y-3">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
@@ -114,16 +135,39 @@ const StaffToolsReports: React.FC = () => {
                         <div>{report?.message}</div>
                       </div>
                     </div>
+                    <ReportEntity report={report} />
                   </div>
-                  <Button
-                    className="mt-3 sm:mt-0 text-sm"
-                    size="sm"
-                    icon={<CheckCircleIcon className="h-4 w-4" />}
-                  >
-                    Resolve
-                  </Button>
+                  <div className="flex sm:block sm:space-y-2">
+                    <Button
+                      className="mt-3 sm:mt-0 text-sm mr-2"
+                      size="sm"
+                      variant="danger"
+                      icon={<EyeOffIcon className="h-4 w-4" />}
+                      onClick={() => alert('WIP')}
+                    >
+                      Hide
+                    </Button>
+                    <Button
+                      className="mt-3 sm:mt-0 text-sm"
+                      size="sm"
+                      icon={<CheckCircleIcon className="h-4 w-4" />}
+                      onClick={() => {
+                        toast.promise(
+                          resolveReport({
+                            variables: { input: { id: report?.id } }
+                          }),
+                          {
+                            loading: 'Resolving the report...',
+                            success: () => 'Report resoved successfully!',
+                            error: () => ERROR_MESSAGE
+                          }
+                        )
+                      }}
+                    >
+                      Resolve
+                    </Button>
+                  </div>
                 </div>
-                <ReportEntity report={report} />
               </div>
             ))}
           </CardBody>

@@ -38,12 +38,16 @@ async function main() {
   console.log('All users have been deleted 🗑️')
   await db.community.deleteMany()
   console.log('All communities have been deleted 🗑️')
+  await db.report.deleteMany()
+  console.log('All reports have been deleted 🗑️')
+
+  const reportTypes = ['POST', 'USER', 'PRODUCT', 'COMMUNITY']
 
   // Fake User
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding Fake User - @${username} 👨‍🎤`)
+    console.log(`Seeding fake user - @${username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -66,13 +70,14 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding Real User - @${user.username} 👨‍🎤`)
+    console.log(`Seeding real user - @${user.username} 👨‍🎤`)
     await db.user.create({
       data: {
         email: user.email,
         username: user.username,
         isStaff: user.isStaff,
         inWaitlist: false,
+        isVerified: true,
         hashedPassword: await hashPassword(user.username),
         profile: {
           create: {
@@ -92,21 +97,26 @@ async function main() {
   for (let i = 0; i < 20; i++) {
     const slug =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding Fake Product - @${slug} 📦`)
+    console.log(`Seeding fake product - @${slug} 📦`)
     await db.product.create({
       data: {
         slug,
         name: faker.company.companyName(),
         avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
         description: faker.lorem.sentence(10),
-        owner: { connect: { username: 'yoginth' } }
+        owner: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        }
       }
     })
   }
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding Real Product - #${product.slug} 📦`)
+    console.log(`Seeding real product - #${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
@@ -120,7 +130,7 @@ async function main() {
 
   // Community
   for (const community of communityData) {
-    console.log(`Seeding Community - ${community.slug} 🎭`)
+    console.log(`Seeding real community - ${community.slug} 🎭`)
     await db.community.create({
       data: {
         name: community.name,
@@ -130,7 +140,12 @@ async function main() {
         )}.svg?text=🎭`,
         description: community.description,
         owner: { connect: { username: community.username } },
-        members: { connect: { username: 'yoginth' } },
+        members: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        },
         moderators: { connect: { username: 'yoginth' } },
         rules: { createMany: { data: rulesData } }
       }
@@ -139,12 +154,11 @@ async function main() {
 
   // Post
   for (let i = 0; i < 200; i++) {
-    const post = hplipsum(10)
+    const body = hplipsum(10)
     const done = faker.datatype.boolean()
-    console.log(`Seeding Post - ${post} 📜`)
-    await db.post.create({
+    const post = await db.post.create({
       data: {
-        body: post,
+        body: body,
         done,
         type: done ? 'TASK' : 'POST',
         attachments: faker.datatype.boolean()
@@ -183,6 +197,40 @@ async function main() {
         }
       }
     })
+
+    console.log(`Seeding fake post - ${post?.id} 📜`)
+  }
+
+  // Report
+  for (let i = 0; i < 50; i++) {
+    const message = hplipsum(10)
+    const report = await db.report.create({
+      data: {
+        message,
+        type: reportTypes[
+          Math.floor(Math.random() * reportTypes.length)
+        ] as any,
+        user: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        },
+        post: {
+          create: {
+            body: message,
+            user: {
+              connect: {
+                username:
+                  userData[Math.floor(Math.random() * userData.length)].username
+              }
+            }
+          }
+        }
+      }
+    })
+
+    console.log(`Seeding fake report - ${report?.id} 🚩`)
   }
 }
 

@@ -20,6 +20,39 @@ const ReportEntity: React.FC<Props> = ({ report }) => {
           <ExternalLinkIcon className="h-4 w-4" />
         </a>
       )}
+      {report?.type === 'USER' && (
+        <a
+          className="flex items-center space-x-1"
+          href={`/u/${report?.post?.id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div>Open the user</div>
+          <ExternalLinkIcon className="h-4 w-4" />
+        </a>
+      )}
+      {report?.type === 'PRODUCT' && (
+        <a
+          className="flex items-center space-x-1"
+          href={`/products/${report?.post?.id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div>Open the product</div>
+          <ExternalLinkIcon className="h-4 w-4" />
+        </a>
+      )}
+      {report?.type === 'COMMUNITY' && (
+        <a
+          className="flex items-center space-x-1"
+          href={`/communities/${report?.post?.id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div>Open the community</div>
+          <ExternalLinkIcon className="h-4 w-4" />
+        </a>
+      )}
     </div>
   )
 }

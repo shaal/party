@@ -275,6 +275,7 @@ type Mutation {
   onboardUser(input: OnboardUserInput!): User
   readNotification(input: ReadNotificationInput!): Result!
   regenerateInvite: Invite!
+  resolveReport(input: ResolveReportInput!): Result!
   revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
   toggleCommunityJoin(input: ToggleCommunityJoinInput!): Community
@@ -619,6 +620,10 @@ type Report {
   post: Post
   type: String!
   user: User!
+}
+
+input ResolveReportInput {
+  id: ID!
 }
 
 enum Result {

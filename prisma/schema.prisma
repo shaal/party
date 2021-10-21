@@ -400,7 +400,6 @@ model Log {
 model Report {
   id       String     @id @default(uuid())
   message  String     @db.Text
-  resolved Boolean    @default(false)
   type     ReportType
 
   // Timestamps
