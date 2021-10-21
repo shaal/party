@@ -66,7 +66,7 @@ builder.queryField('product', (t) =>
     type: 'Product',
     args: { slug: t.arg.string() },
     resolve: async (query, parent, { slug }) => {
-      return await db.product.findUnique({
+      return await db.product.findFirst({
         ...query,
         where: { slug, hidden: false },
         rejectOnNotFound: true
