@@ -39,6 +39,12 @@ async function main() {
   await db.community.deleteMany()
   console.log('All communities have been deleted 🗑️')
 
+  const randomRealUser =
+    userData[Math.floor(Math.random() * userData.length)].username
+  const reportTypes = ['POST', 'USER', 'PRODUCT', 'COMMUNITY']
+  const randomReportType =
+    reportTypes[Math.floor(Math.random() * reportTypes.length)]
+
   // Fake User
   for (let i = 0; i < 50; i++) {
     const username =
@@ -100,7 +106,7 @@ async function main() {
         name: faker.company.companyName(),
         avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
         description: faker.lorem.sentence(10),
-        owner: { connect: { username: 'yoginth' } }
+        owner: { connect: { username: randomRealUser } }
       }
     })
   }
@@ -131,7 +137,7 @@ async function main() {
         )}.svg?text=🎭`,
         description: community.description,
         owner: { connect: { username: community.username } },
-        members: { connect: { username: 'yoginth' } },
+        members: { connect: { username: randomRealUser } },
         moderators: { connect: { username: 'yoginth' } },
         rules: { createMany: { data: rulesData } }
       }
@@ -140,12 +146,11 @@ async function main() {
 
   // Post
   for (let i = 0; i < 200; i++) {
-    const post = hplipsum(10)
+    const body = hplipsum(10)
     const done = faker.datatype.boolean()
-    console.log(`Seeding fake post - ${post} 📜`)
-    await db.post.create({
+    const post = await db.post.create({
       data: {
-        body: post,
+        body: body,
         done,
         type: done ? 'TASK' : 'POST',
         attachments: faker.datatype.boolean()
@@ -176,14 +181,31 @@ async function main() {
               }
             }
           : undefined,
-        user: {
-          connect: {
-            username:
-              userData[Math.floor(Math.random() * userData.length)].username
+        user: { connect: { username: randomRealUser } }
+      }
+    })
+
+    console.log(`Seeding fake post - ${post?.id} 📜`)
+  }
+
+  // Report
+  for (let i = 0; i < 50; i++) {
+    const message = hplipsum(10)
+    const report = await db.report.create({
+      data: {
+        message,
+        type: randomReportType as any,
+        user: { connect: { username: randomRealUser } },
+        post: {
+          create: {
+            body: message,
+            user: { connect: { username: randomRealUser } }
           }
         }
       }
     })
+
+    console.log(`Seeding fake report - ${report?.id} 🚩`)
   }
 }
 
