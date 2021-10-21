@@ -6,7 +6,7 @@ import RelayPlugin from '@giraphql/plugin-relay'
 import ScopeAuthPlugin from '@giraphql/plugin-scope-auth'
 import SimpleObjectsPlugin from '@giraphql/plugin-simple-objects'
 import ValidationPlugin from '@giraphql/plugin-validation'
-import { Prisma, Session } from '@prisma/client'
+import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { IncomingMessage, OutgoingMessage } from 'http'
 
@@ -43,7 +43,6 @@ export const builder = new SchemaBuilder<{
   Scalars: {
     ID: { Input: string; Output: string | number }
     DateTime: { Input: Date; Output: Date }
-    Attachments: { Input: String; Output: Prisma.JsonValue }
   }
   AuthScopes: {
     public: boolean
@@ -83,17 +82,10 @@ builder.mutationType({
   authScopes: { user: true }
 })
 
-// Cusrom Scalar Types
+// Custom Scalar Types
 builder.scalarType('DateTime', {
   serialize: (date) => date.toISOString(),
   parseValue: (date) => {
     return new Date(date)
-  }
-})
-
-builder.scalarType('Attachments', {
-  serialize: (attachments) => JSON.parse(attachments),
-  parseValue: (attachments) => {
-    return attachments
   }
 })
