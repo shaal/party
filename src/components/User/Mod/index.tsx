@@ -10,7 +10,7 @@ import {
   ShieldCheckIcon,
   SwitchHorizontalIcon
 } from '@heroicons/react/outline'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
@@ -153,12 +153,14 @@ const UserMod: React.FC<Props> = ({ user }) => {
                 </Button>
               </div>
               <div>
-                <Button
-                  type="button"
-                  icon={<SwitchHorizontalIcon className="h-4 w-4" />}
-                >
-                  Masquerade
-                </Button>
+                <a href={`/api/masquerade/${user?.id}`}>
+                  <Button
+                    type="button"
+                    icon={<SwitchHorizontalIcon className="h-4 w-4" />}
+                  >
+                    Masquerade
+                  </Button>
+                </a>
               </div>
             </div>
           </Form>
