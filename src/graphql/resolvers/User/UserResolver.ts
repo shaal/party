@@ -79,11 +79,11 @@ builder.prismaObject('User', {
       type: 'Boolean',
       authScopes: { user: true },
       nullable: true,
-      resolve: async (parent) => {
-        const session = await db.session.findFirst({
-          where: { userId: parent.id }
+      resolve: async (parent, args, { session }) => {
+        const resolvedSession = await db.session.findFirst({
+          where: { id: session?.id }
         })
-        return session?.masquerading
+        return resolvedSession?.masquerading
       }
     }),
     notificationsCount: t.field({

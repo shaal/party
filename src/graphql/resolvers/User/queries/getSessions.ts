@@ -14,7 +14,7 @@ export const getSessions = async (
 ) => {
   return await db.session.findMany({
     ...query,
-    where: { userId: session?.userId },
+    where: { userId: session?.userId, masquerading: false },
     orderBy: { createdAt: 'desc' }
   })
 }
