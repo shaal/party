@@ -130,6 +130,7 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
     targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
+    // TODO: use stringList instead of string
     attachments: t.string({ required: false }),
     polls: t.string({ required: false }),
     address: t.string({ required: false }),
