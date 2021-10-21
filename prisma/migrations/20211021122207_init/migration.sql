@@ -21,6 +21,7 @@ CREATE TABLE `users` (
 CREATE TABLE `sessions` (
     `id` VARCHAR(191) NOT NULL,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
+    `masquerading` BOOLEAN NOT NULL DEFAULT false,
     `ipAddress` VARCHAR(191) NULL,
     `userAgent` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

@@ -59,10 +59,11 @@ model User {
 }
 
 model Session {
-  id        String  @id @default(uuid())
-  isStaff   Boolean @default(false)
-  ipAddress String?
-  userAgent String?
+  id           String  @id @default(uuid())
+  isStaff      Boolean @default(false)
+  masquerading Boolean @default(false)
+  ipAddress    String?
+  userAgent    String?
 
   // Timestamps
   createdAt DateTime @default(now())

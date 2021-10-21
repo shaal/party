@@ -67,7 +67,7 @@ builder.mutationField('login', (t) =>
           throw new Error('Your account is suspended!')
         }
 
-        await createSession(req, user)
+        await createSession(req, user, false)
         createLog(user?.id, user?.id, 'LOGIN')
         return user
       } catch (error: any) {
@@ -99,7 +99,7 @@ builder.mutationField('loginWithWallet', (t) =>
       try {
         const user = await authWithWallet(input.nonce, input.signature)
         createLog(user?.id, user?.id, 'LOGIN')
-        await createSession(req, user)
+        await createSession(req, user, false)
 
         return user
       } catch (error: any) {

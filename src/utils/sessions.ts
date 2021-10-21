@@ -49,16 +49,22 @@ export const sessionOptions: SessionOptions = {
  * Create session for the given user
  * @param request - HTTP request
  * @param user - Session to be created for the given user
+ * @param masquerading - Whether user is masquerading or not
  * @returns session of the given user
  */
-export async function createSession(request: IncomingMessage, user: User) {
+export async function createSession(
+  request: IncomingMessage,
+  user: User,
+  masquerading: boolean = false
+) {
   const session = await db.session.create({
     data: {
       userId: user.id,
       isStaff: user.isStaff,
       expiresAt: addSeconds(new Date(), SESSION_TTL),
       ipAddress: requestIp.getClientIp(request),
-      userAgent: request.headers['user-agent']
+      userAgent: request.headers['user-agent'],
+      masquerading
     }
   })
 

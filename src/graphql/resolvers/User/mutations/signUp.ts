@@ -48,7 +48,7 @@ export const signUp = async (query: any, input: SignupInput, req: any) => {
     })
 
     createNotification(user?.id, invite.userId, user?.id, 'USER_INVITE_FOLLOW')
-    await createSession(req, user)
+    await createSession(req, user, false)
     await db.invite.updateMany({
       where: { code: input.invite },
       data: { usedTimes: { increment: 1 } }
