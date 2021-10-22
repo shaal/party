@@ -17,7 +17,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <Menu as="div" className="z-[5]">
+    <Menu as="div">
       {({ open }) => (
         <>
           <Menu.Button className="hover:bg-gray-300 hover:bg-opacity-20 p-1.5 rounded-full">
@@ -35,7 +35,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
           >
             <Menu.Items
               static
-              className="absolute w-max rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 border dark:border-gray-800"
+              className="absolute w-max rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 border dark:border-gray-800 z-[5]"
             >
               {currentUser?.id !== post?.user?.id && (
                 <Follow user={post?.user as User} />
