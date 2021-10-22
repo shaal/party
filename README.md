@@ -14,6 +14,9 @@
     <a href="https://app.travis-ci.com/gitlab/yo/devparty/builds">
         <img src="https://app.travis-ci.com/yo/Devparty.svg?branch=main" alt="Travis CI">
     </a>
+    <a href="https://dev.azure.com/yoginth/devparty/_build?definitionId=2">
+        <img src="https://dev.azure.com/yoginth/devparty/_apis/build/status/devparty?branchName=main" alt="Azure DevOps CI">
+    </a>
     <a href="https://www.codacy.com/gl/yo/devparty/dashboard">
         <img src="https://app.codacy.com/project/badge/Grade/2de963e2411a4e9b8ad20cc6438fc7d4" alt="Codacy">
     </a>
