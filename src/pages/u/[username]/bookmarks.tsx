@@ -1,7 +1,14 @@
 import Bookmarks from '@components/User/Bookmarks'
-import { authenticatedRoute } from '@utils/redirects'
-import { GetServerSideProps } from 'next'
+import { personalRoute } from '@utils/redirects'
+import { GetServerSidePropsContext } from 'next'
 
-export const getServerSideProps: GetServerSideProps = authenticatedRoute
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const auth = await personalRoute(context)
+  if ('redirect' in auth) return auth
+
+  return { props: {} }
+}
 
 export default Bookmarks

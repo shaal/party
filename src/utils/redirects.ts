@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
+import { db } from './prisma'
 import { resolveSession } from './sessions'
 
 /**
@@ -69,6 +70,35 @@ export async function staffRoute(
   const session = await resolveSession(context)
 
   if (!session?.isStaff) {
+    return {
+      redirect: {
+        destination: redirect,
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}
+
+/**
+ * Check for the route is gated to the current user
+ * @param context - Next.js server side props context
+ * @param redirect - Redirect to the target URL
+ * @returns redirect props
+ */
+export async function personalRoute(
+  context: GetServerSidePropsContext,
+  redirect = '/'
+): Promise<GetServerSidePropsResult<{}>> {
+  const session = await resolveSession(context)
+  const user = await db.user.findUnique({
+    where: { username: context?.query.username as string }
+  })
+
+  if (user?.id !== session?.userId) {
     return {
       redirect: {
         destination: redirect,
