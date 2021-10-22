@@ -38,6 +38,7 @@ export const PostFragment = gql`
     type
     oembedUrl
     hasLiked
+    hasBookmarked
     createdAt
     parent {
       id

@@ -60,7 +60,7 @@ builder.prismaObject('User', {
     bookmarks: t.relatedConnection('bookmarks', {
       cursor: 'id',
       query: () => ({
-        where: { hidden: false },
+        where: { post: { hidden: false } },
         orderBy: { createdAt: 'desc' }
       })
     }),

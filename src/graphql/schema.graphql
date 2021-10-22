@@ -33,6 +33,13 @@ type BadgeUsersConnectionEdge {
   node: User!
 }
 
+type Bookmark {
+  createdAt: DateTime!
+  id: ID!
+  post: Post!
+  user: User!
+}
+
 input ChangePasswordInput {
   currentPassword: String!
   newPassword: String!
@@ -278,6 +285,7 @@ type Mutation {
   resolveReport(input: ResolveReportInput!): Result!
   revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
+  toggleBookmark(input: ToggleBookmarkInput!): Post
   toggleCommunityJoin(input: ToggleCommunityJoinInput!): Community
   toggleFollow(input: ToggleFollowInput!): User
   togglePostLike(input: TogglePostLikeInput!): Post
@@ -348,6 +356,7 @@ type Post {
   community: Community
   createdAt: DateTime!
   done: Boolean!
+  hasBookmarked: Boolean!
   hasLiked: Boolean!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
@@ -692,6 +701,10 @@ type Tip {
   user: User!
 }
 
+input ToggleBookmarkInput {
+  id: ID!
+}
+
 input ToggleCommunityJoinInput {
   id: ID!
 }
@@ -745,6 +758,7 @@ type TopicStarrersConnectionEdge {
 
 type User {
   badges(after: String, before: String, first: Int, last: Int): UserBadgesConnection!
+  bookmarks(after: String, before: String, first: Int, last: Int): UserBookmarksConnection!
   communities(after: String, before: String, first: Int, last: Int): UserCommunitiesConnection!
   createdAt: DateTime!
   email: String!
@@ -782,6 +796,16 @@ type UserBadgesConnection {
 type UserBadgesConnectionEdge {
   cursor: String!
   node: Badge!
+}
+
+type UserBookmarksConnection {
+  edges: [UserBookmarksConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type UserBookmarksConnectionEdge {
+  cursor: String!
+  node: Bookmark!
 }
 
 type UserCommunitiesConnection {

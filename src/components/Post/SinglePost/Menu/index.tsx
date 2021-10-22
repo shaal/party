@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 
+import Bookmark from './Bookmark'
 import Delete from './Delete'
 import Follow from './Follow'
 
@@ -16,7 +17,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <Menu as="div">
+    <Menu as="div" className="z-[5]">
       {({ open }) => (
         <>
           <Menu.Button className="hover:bg-gray-300 hover:bg-opacity-20 p-1.5 rounded-full">
@@ -34,7 +35,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
           >
             <Menu.Items
               static
-              className="absolute w-48 rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 border dark:border-gray-800"
+              className="absolute w-max rounded-lg shadow-sm py-1 bg-white dark:bg-gray-900 border dark:border-gray-800"
             >
               {currentUser?.id === post?.user?.id ? (
                 <Delete post={post} />
@@ -57,6 +58,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
                   </Menu.Item>
                 </>
               )}
+              <Bookmark post={post} />
             </Menu.Items>
           </Transition>
         </>
