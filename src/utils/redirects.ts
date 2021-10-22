@@ -64,23 +64,15 @@ export async function authenticatedRoute(
  * @returns redirect props
  */
 export async function staffRoute(
-  context: GetServerSidePropsContext,
-  redirect = '/'
+  context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(context)
 
   if (!session?.isStaff) {
-    return {
-      redirect: {
-        destination: redirect,
-        permanent: false
-      }
-    }
+    return { notFound: true }
   }
 
-  return {
-    props: {}
-  }
+  return { props: {} }
 }
 
 /**
@@ -90,8 +82,7 @@ export async function staffRoute(
  * @returns redirect props
  */
 export async function personalRoute(
-  context: GetServerSidePropsContext,
-  redirect = '/'
+  context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(context)
   const user = await db.user.findUnique({
@@ -99,15 +90,8 @@ export async function personalRoute(
   })
 
   if (user?.id !== session?.userId) {
-    return {
-      redirect: {
-        destination: redirect,
-        permanent: false
-      }
-    }
+    return { notFound: true }
   }
 
-  return {
-    props: {}
-  }
+  return { props: {} }
 }

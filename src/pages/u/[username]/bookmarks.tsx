@@ -5,10 +5,7 @@ import { GetServerSidePropsContext } from 'next'
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const auth = await personalRoute(context)
-  if ('redirect' in auth) return auth
-
-  return { props: {} }
+  return await personalRoute(context)
 }
 
 export default Bookmarks
