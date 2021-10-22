@@ -1,6 +1,10 @@
 import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { DotsHorizontalIcon, FlagIcon } from '@heroicons/react/outline'
+import {
+  CodeIcon,
+  DotsHorizontalIcon,
+  FlagIcon
+} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
@@ -41,6 +45,20 @@ const PostMenu: React.FC<Props> = ({ post }) => {
                 <Follow user={post?.user as User} />
               )}
               <Bookmark post={post} />
+              <Menu.Item
+                as="div"
+                className={({ active }: any) =>
+                  clsx(
+                    { 'bg-gray-100 dark:bg-gray-800': active },
+                    'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                  )
+                }
+              >
+                <div className="flex items-center space-x-2">
+                  <CodeIcon className="h-4 w-4" />
+                  <div>Embed Post</div>
+                </div>
+              </Menu.Item>
               {currentUser?.id === post?.user?.id ? (
                 <Delete post={post} />
               ) : (
