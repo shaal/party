@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
-import UserProfile from '@components/shared/UserProfile'
+import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Card, CardBody } from '@components/ui/Card'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
@@ -112,7 +112,7 @@ const MembersList: React.FC = () => {
           members?.map((user: any) => (
             <Card key={user?.id}>
               <CardBody>
-                <UserProfile user={user} showFollow />
+                <UserProfileLarge user={user} showFollow />
               </CardBody>
             </Card>
           ))
