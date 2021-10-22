@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import UserProfile from '@components/shared/UserProfile'
+import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Spinner } from '@components/ui/Spinner'
 import { useRouter } from 'next/router'
@@ -63,7 +63,7 @@ const ModeratorsList: React.FC = () => {
       <div className="space-y-3">
         {moderators?.map((user: any) => (
           <div key={user?.id}>
-            <UserProfile user={user} showFollow />
+            <UserProfileLarge user={user} showFollow />
           </div>
         ))}
       </div>
