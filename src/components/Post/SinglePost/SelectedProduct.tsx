@@ -11,9 +11,9 @@ interface Props {
 
 const SelectedProduct: React.FC<Props> = ({ product }) => {
   return (
-    <div className="text-sm flex items-center space-x-2">
+    <div className="text-xs sm:text-sm flex items-center space-x-2 !ml-auto">
       <Tooltip content="Product">
-        <CubeIcon className="h-4 w-4 text-gray-500" />
+        <CubeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
       </Tooltip>
       <Link href={`/products/${product?.slug}`}>
         <a

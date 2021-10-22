@@ -229,10 +229,8 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        <div className="ml-auto">
-          {post?.product && <SelectedProduct product={post?.product} />}
-          {post?.community && <SelectedCommunity community={post?.community} />}
-        </div>
+        {post?.product && <SelectedProduct product={post?.product} />}
+        {post?.community && <SelectedCommunity community={post?.community} />}
       </div>
     </Card>
   )
