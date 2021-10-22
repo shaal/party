@@ -99,39 +99,39 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="border-t" />
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
-          <Button
-            variant="secondary"
-            outline={router.pathname === '/communities/[slug]'}
-            light={router.pathname !== '/communities/[slug]'}
-          >
-            <Link href={`/communities/${community?.slug}`}>
-              <a href={`/communities/${community?.slug}`}>
-                <div>Home</div>
-              </a>
-            </Link>
-          </Button>
-          <Button
-            variant="secondary"
-            outline={router.pathname === '/communities/[slug]/members'}
-            light={router.pathname !== '/communities/[slug]/members'}
-          >
-            <Link href={`/communities/${community?.slug}/members`}>
-              <a href={`/communities/${community?.slug}/members`}>
-                <div>Members</div>
-              </a>
-            </Link>
-          </Button>
-          <Button
-            variant="secondary"
-            outline={router.pathname === '/communities/[slug]/about'}
-            light={router.pathname !== '/communities/[slug]/about'}
-          >
-            <Link href={`/communities/${community?.slug}/about`}>
-              <a href={`/communities/${community?.slug}/about`}>
-                <div>About</div>
-              </a>
-            </Link>
-          </Button>
+          <Link href={`/communities/${community?.slug}`}>
+            <a href={`/communities/${community?.slug}`}>
+              <Button
+                variant="secondary"
+                outline={router.pathname === '/communities/[slug]'}
+                light={router.pathname !== '/communities/[slug]'}
+              >
+                Home
+              </Button>
+            </a>
+          </Link>
+          <Link href={`/communities/${community?.slug}/members`}>
+            <a href={`/communities/${community?.slug}/members`}>
+              <Button
+                variant="secondary"
+                outline={router.pathname === '/communities/[slug]/members'}
+                light={router.pathname !== '/communities/[slug]/members'}
+              >
+                Members
+              </Button>
+            </a>
+          </Link>
+          <Link href={`/communities/${community?.slug}/about`}>
+            <a href={`/communities/${community?.slug}/about`}>
+              <Button
+                variant="secondary"
+                outline={router.pathname === '/communities/[slug]/about'}
+                light={router.pathname !== '/communities/[slug]/about'}
+              >
+                About
+              </Button>
+            </a>
+          </Link>
         </div>
         <div>
           {currentUser?.id !== community?.owner?.id ? (
