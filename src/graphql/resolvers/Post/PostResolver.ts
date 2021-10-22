@@ -2,6 +2,7 @@ import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 import urlRegexSafe from 'url-regex-safe'
 
+import { hasBookmarked } from '../Bookmark/queries/hasBookmarked'
 import { hasLiked } from '../Like/queries/hasLiked'
 import { Result } from '../ResultResolver'
 import { createPost } from './mutations/createPost'
@@ -24,6 +25,13 @@ builder.prismaObject('Post', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await hasLiked(session?.userId as string, parent.id)
+      }
+    }),
+    hasBookmarked: t.field({
+      type: 'Boolean',
+      resolve: async (parent, args, { session }) => {
+        if (!session) return false
+        return await hasBookmarked(session?.userId as string, parent.id)
       }
     }),
     oembedUrl: t.field({

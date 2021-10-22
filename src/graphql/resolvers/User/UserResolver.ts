@@ -57,6 +57,13 @@ builder.prismaObject('User', {
         orderBy: { createdAt: 'desc' }
       })
     }),
+    bookmarks: t.relatedConnection('bookmarks', {
+      cursor: 'id',
+      query: () => ({
+        where: { post: { hidden: false } },
+        orderBy: { createdAt: 'desc' }
+      })
+    }),
     hasWakatimeIntegration: t.field({
       type: 'Boolean',
       resolve: async (parent) => {
