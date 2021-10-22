@@ -10,8 +10,8 @@ import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
   CalendarIcon,
-  FingerPrintIcon,
   PencilIcon,
+  ShieldCheckIcon,
   UsersIcon
 } from '@heroicons/react/outline'
 import Linkify from 'linkify-react'
@@ -67,7 +67,7 @@ const Details: React.FC<Props> = ({ community }) => {
                   <div>{community?.members?.totalCount} members joined</div>
                 </div>
                 <div className="flex items-center space-x-1.5">
-                  <FingerPrintIcon className="h-5 w-5" />
+                  <ShieldCheckIcon className="h-5 w-5" />
                   <div>Moderated by</div>
                   <div className="flex items-center space-x-1">
                     <img
