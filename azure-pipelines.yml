@@ -1,0 +1,6 @@
+pool:
+  name: Azure Pipelines
+
+steps:
+  - script: 'npm install'
+    displayName: 'Install Dependencies'
