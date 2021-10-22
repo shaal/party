@@ -140,6 +140,7 @@ CREATE TABLE `poll_answers` (
 -- CreateTable
 CREATE TABLE `bookmarks` (
     `id` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `postId` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
