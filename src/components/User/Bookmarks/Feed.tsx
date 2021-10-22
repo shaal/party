@@ -71,7 +71,7 @@ const BookmarkFeed: React.FC = () => {
       <div className="space-y-3">
         {data?.me?.bookmarks?.totalCount === 0 ? (
           <EmptyState
-            message={<div>You dont seems like any bookmarks yet!</div>}
+            message={<div>You don't seems like any bookmarked yet!</div>}
             icon={<BookmarkIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
