@@ -12,14 +12,14 @@ import Custom404 from 'src/pages/404'
 
 import { ViewUserQuery } from '../__generated__/ViewUser.generated'
 import { VIEW_USER_QUERY } from '../ViewUser'
-import FollowingList from './List'
+import BookmarkFeed from './Feed'
 
-export const USER_FOLLOWING_QUERY = VIEW_USER_QUERY
+export const USER_BOOKMARKS_QUERY = VIEW_USER_QUERY
 
-const Following: React.FC = () => {
+const Bookmarks: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(
-    USER_FOLLOWING_QUERY,
+    USER_BOOKMARKS_QUERY,
     {
       variables: {
         username: router.query.username
@@ -30,14 +30,14 @@ const Following: React.FC = () => {
   const user = data?.user
 
   if (!router.isReady || loading)
-    return <PageLoading message="Loading following" />
+    return <PageLoading message="Loading bookmarks" />
 
   if (!user) return <Custom404 />
 
   return (
     <>
       <DevpartySEO
-        title={`${user?.username} (${user?.profile?.name}) / Following · Devparty`}
+        title={`${user?.username} (${user?.profile?.name}) / Bookmarks · Devparty`}
         description={user?.profile?.bio as string}
         image={user?.profile?.avatar as string}
         path={`/u/${user?.username}`}
@@ -54,15 +54,15 @@ const Following: React.FC = () => {
       />
       <GridLayout>
         <GridItemFour>
-          <ErrorMessage title="Failed to load post" error={error} />
+          <ErrorMessage title="Failed to load bookmarks" error={error} />
           <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
-          <FollowingList />
+          <BookmarkFeed />
         </GridItemEight>
       </GridLayout>
     </>
   )
 }
 
-export default Following
+export default Bookmarks

@@ -65,6 +65,7 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
           User: {
             fields: {
               posts: relayStylePagination([]),
+              bookmarks: relayStylePagination([]),
               following: relayStylePagination([]),
               followers: relayStylePagination([])
             }

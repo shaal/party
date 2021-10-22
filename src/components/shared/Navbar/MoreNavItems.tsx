@@ -1,8 +1,9 @@
+import AppContext from '@components/utils/AppContext'
 import { Menu, Transition } from '@headlessui/react'
-import { SparklesIcon, UsersIcon } from '@heroicons/react/outline'
+import { BookmarkIcon, SparklesIcon, UsersIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 
 const NextLink = ({ href, children, ...rest }: any) => (
   <Link href={href}>
@@ -11,6 +12,8 @@ const NextLink = ({ href, children, ...rest }: any) => (
 )
 
 const MoreNavItems: React.FC = () => {
+  const { currentUser } = useContext(AppContext)
+
   return (
     <Menu as="div">
       {({ open }) => (
@@ -53,6 +56,23 @@ const MoreNavItems: React.FC = () => {
                   <div>Communities</div>
                 </div>
               </Menu.Item>
+              {currentUser && (
+                <Menu.Item
+                  as={NextLink}
+                  href={`/u/${currentUser?.username}/bookmarks`}
+                  className={({ active }: any) =>
+                    clsx(
+                      { 'bg-gray-100 dark:bg-gray-800': active },
+                      'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
+                    )
+                  }
+                >
+                  <div className="flex items-center space-x-1.5">
+                    <BookmarkIcon className="h-4 w-4" />
+                    <div>Bookmarks</div>
+                  </div>
+                </Menu.Item>
+              )}
               <div className="border-b dark:border-gray-800" />
               <Menu.Item
                 as={NextLink}

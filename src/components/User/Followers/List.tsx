@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { FollowersQuery } from './__generated__/list.generated'
+import { FollowersQuery } from './__generated__/List.generated'
 
 export const FOLLOWERS_QUERY = gql`
   query FollowersQuery($after: String, $username: String!) {
