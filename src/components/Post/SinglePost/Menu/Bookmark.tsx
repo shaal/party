@@ -2,7 +2,6 @@ import { gql, useMutation } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
 import { Menu } from '@headlessui/react'
 import { BookmarkIcon } from '@heroicons/react/outline'
-import { BookmarkIcon as BookmarkIconSolid } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
@@ -76,7 +75,7 @@ const Bookmark: React.FC<Props> = ({ post }) => {
     >
       <div className="flex items-center space-x-2">
         {post?.hasBookmarked ? (
-          <BookmarkIconSolid className="h-4 w-4" />
+          <BookmarkIcon className="h-4 w-4" />
         ) : (
           <BookmarkIcon className="h-4 w-4" />
         )}
