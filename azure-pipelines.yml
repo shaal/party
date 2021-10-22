@@ -2,5 +2,23 @@ pool:
   name: Azure Pipelines
 
 steps:
-  - script: 'npm install'
+  - script: 'npm install yarn -g'
+    displayName: 'Install Yarn'
+
+  - script: 'yarn install --frozen-lockfile --silent'
     displayName: 'Install Dependencies'
+
+  - script: 'yarn lint'
+    displayName: 'Lint'
+
+  - script: 'yarn prettier:check'
+    displayName: 'Prettier Check'
+
+  - script: 'yarn generate'
+    displayName: 'Generate'
+
+  - script: 'yarn generate && yarn typecheck'
+    displayName: 'Typecheck'
+
+  - script: 'yarn build'
+    displayName: 'Build'
