@@ -8,15 +8,14 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { POLLING_INTERVAL } from 'src/constants'
 
-import { UserFeedQuery } from './__generated__/Feed.generated'
+import { BookmarkFeedQuery } from './__generated__/Feed.generated'
 
-const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $username: String!) {
-    user(username: $username) {
+const BOOKMARK_FEED_QUERY = gql`
+  query BookmarkFeedQuery($after: String) {
+    me {
       id
-      posts(first: 10, after: $after) {
+      bookmarks(first: 10, after: $after) {
         totalCount
         pageInfo {
           endCursor
@@ -24,7 +23,9 @@ const USER_FEED_QUERY = gql`
         }
         edges {
           node {
-            ...PostFragment
+            post {
+              ...PostFragment
+            }
           }
         }
       }
@@ -32,23 +33,18 @@ const USER_FEED_QUERY = gql`
   }
   ${PostFragment}
 `
-
-const UserFeed: React.FC = () => {
+const BookmarkFeed: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<UserFeedQuery>(
-    USER_FEED_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<BookmarkFeedQuery>(
+    BOOKMARK_FEED_QUERY,
     {
-      variables: {
-        after: null,
-        username: router.query.username
-      },
-      skip: !router.isReady,
-      pollInterval: POLLING_INTERVAL
+      variables: { after: null },
+      skip: !router.isReady
     }
   )
 
-  const posts = data?.user?.posts?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.user?.posts?.pageInfo
+  const bookmarks = data?.me?.bookmarks?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.me?.bookmarks?.pageInfo
 
   const { observe } = useInView({
     threshold: 1,
@@ -73,19 +69,18 @@ const UserFeed: React.FC = () => {
     <>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {data?.user?.posts?.totalCount === 0 ? (
+        {data?.me?.bookmarks?.totalCount === 0 ? (
           <EmptyState
-            message={
-              <div>
-                <span className="font-bold mr-1">@{router.query.username}</span>
-                <span>seems like not posted yet!</span>
-              </div>
-            }
+            message={<div>You dont seems like any bookmarks yet!</div>}
             icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
+          bookmarks?.map((bookmark: any) => (
+            <SinglePost
+              key={bookmark?.post?.id}
+              post={bookmark?.post}
+              showParent
+            />
           ))
         )}
         {pageInfo?.hasNextPage && (
@@ -98,4 +93,4 @@ const UserFeed: React.FC = () => {
   )
 }
 
-export default UserFeed
+export default BookmarkFeed

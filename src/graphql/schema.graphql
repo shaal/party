@@ -801,6 +801,7 @@ type UserBadgesConnectionEdge {
 type UserBookmarksConnection {
   edges: [UserBookmarksConnectionEdge]!
   pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type UserBookmarksConnectionEdge {

@@ -59,6 +59,7 @@ builder.prismaObject('User', {
     }),
     bookmarks: t.relatedConnection('bookmarks', {
       cursor: 'id',
+      totalCount: true,
       query: () => ({
         where: { post: { hidden: false } },
         orderBy: { createdAt: 'desc' }
