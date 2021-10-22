@@ -4,7 +4,7 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/ui/EmptyState'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Spinner } from '@components/ui/Spinner'
-import { CollectionIcon } from '@heroicons/react/outline'
+import { BookmarkIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -72,7 +72,7 @@ const BookmarkFeed: React.FC = () => {
         {data?.me?.bookmarks?.totalCount === 0 ? (
           <EmptyState
             message={<div>You dont seems like any bookmarks yet!</div>}
-            icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
+            icon={<BookmarkIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           bookmarks?.map((bookmark: any) => (
