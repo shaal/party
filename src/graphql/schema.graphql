@@ -1,3 +1,8 @@
+input AcceptCOCAndTOSInput {
+  coc: Boolean!
+  tos: Boolean!
+}
+
 input AnswerPollInput {
   id: ID!
 }
@@ -259,6 +264,7 @@ input ModUserInput {
 }
 
 type Mutation {
+  acceptCocAndTos(input: AcceptCOCAndTOSInput!): User!
   answerPoll(input: AnswerPollInput!): PollAnswer
   attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
