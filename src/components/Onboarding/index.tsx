@@ -51,13 +51,7 @@ const Onboarding: React.FC = () => {
   })
 
   return (
-    <div
-      className="flex justify-center items-center h-[90vh]"
-      style={{
-        backgroundImage:
-          'url(https://ik.imagekit.io/devparty/tr:w-,h-/https://assets.devparty.io/images/patterns/1.svg)'
-      }}
-    >
+    <div className="flex justify-center items-center h-[90vh] onboarding-bg">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <div className="bg-black rounded-t-none sm:rounded-t-lg py-8 px-5 text-white space-y-5">
           <img className="h-10 w-10" src="/white.svg" alt="Logo" />
