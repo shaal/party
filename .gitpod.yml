@@ -14,14 +14,14 @@ tasks:
       gp sync-done setup;
     command: yarn codegen:graphql --watch
   - name: Prisma Studio
-    command: >
-      gp sync-await setup;
-      BROWSER=none yarn prisma studio;
+    init: gp sync-await setup
+    command: BROWSER=none yarn prisma studio
   - name: Dev Server
-    command: >
+    init: >
       gp sync-await setup;
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
-      yarn dev;
+    command: yarn dev
+  - command: printf "Happy coding🥳"
 
 ports:
   - port: 3000 # Web app
