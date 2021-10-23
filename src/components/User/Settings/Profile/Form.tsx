@@ -150,7 +150,6 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 label="Email"
                 type="email"
                 value={currentUser?.email as string}
-                disabled
               />
               <Input
                 label="Username"
