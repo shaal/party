@@ -35,11 +35,11 @@ const editProfileSchema = object({
     .max(50, { message: '👤 Name should be within 50 characters' }),
   bio: string()
     .max(190, { message: '👤 Bio should not exceed 190 characters' })
-    .nullable(),
+    .optional(),
   location: string()
     .max(50, { message: '📍 Location should not exceed 50 characters' })
-    .nullable(),
-  avatar: string()
+    .optional(),
+  avatar: string().optional()
 })
 
 interface Props {
