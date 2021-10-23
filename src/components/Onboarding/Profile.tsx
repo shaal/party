@@ -14,13 +14,7 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div
-      className="flex justify-center items-center h-[90vh]"
-      style={{
-        backgroundImage:
-          'url(https://ik.imagekit.io/devparty/tr:w-,h-/https://assets.devparty.io/images/patterns/1.svg)'
-      }}
-    >
+    <div className="onboarding-bg">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
