@@ -7,6 +7,7 @@ import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { PageLoading } from '@components/ui/PageLoading'
 import { Spinner } from '@components/ui/Spinner'
 import { Tooltip } from '@components/ui/Tooltip'
+import { humanize } from '@components/utils/humanize'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
@@ -149,10 +150,12 @@ const StaffToolsUsers: React.FC = () => {
                         </Tooltip>
                       </div>
                       <div>
-                        Following: <b>{user?.following?.totalCount}</b>
+                        Following:{' '}
+                        <b>{humanize(user?.following?.totalCount)}</b>
                       </div>
                       <div>
-                        Followers: <b>{user?.followers?.totalCount}</b>
+                        Followers:{' '}
+                        <b>{humanize(user?.followers?.totalCount)}</b>
                       </div>
                     </div>
                     <div className="text-sm pl-3">
