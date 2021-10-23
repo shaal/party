@@ -3,6 +3,7 @@ import Slug from '@components/shared/Slug'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/ui/Card'
 import { useOembed } from '@components/utils/hooks/useOembed'
+import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
@@ -196,7 +197,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
               <ChatAlt2Icon className="h-5 w-5" />
             </div>
             {(post?.replies?.totalCount as number) > 0 && (
-              <div className="text-xs">{post?.replies?.totalCount}</div>
+              <div className="text-xs">
+                {humanize(post?.replies?.totalCount)}
+              </div>
             )}
           </a>
         </Link>

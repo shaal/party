@@ -1,4 +1,5 @@
 import AppContext from '@components/utils/AppContext'
+import { humanize } from '@components/utils/humanize'
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
@@ -49,7 +50,7 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
           <HeartIcon className="h-5 w-5" />
         )}
       </Switch>
-      {likesCount > 0 && <div className="text-xs">{likesCount}</div>}
+      {likesCount > 0 && <div className="text-xs">{humanize(likesCount)}</div>}
     </div>
   )
 }
