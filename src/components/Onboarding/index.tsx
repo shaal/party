@@ -91,7 +91,7 @@ const Onboarding: React.FC = () => {
               <Button
                 className="mx-auto"
                 icon={<ArrowCircleRightIcon className="h-4 w-4" />}
-                disabled
+                disabled={!form.watch('coc') && !form.watch('tos')}
               >
                 Continue
               </Button>
