@@ -35,11 +35,11 @@ const editProfileSchema = object({
     .max(50, { message: '👤 Name should be within 50 characters' }),
   bio: string()
     .max(190, { message: '👤 Bio should not exceed 190 characters' })
-    .optional(),
+    .nullable(),
   location: string()
     .max(50, { message: '📍 Location should not exceed 50 characters' })
-    .optional(),
-  avatar: string().optional()
+    .nullable(),
+  avatar: string()
 })
 
 interface Props {
@@ -51,7 +51,7 @@ const SUCCESS_MESSAGE = 'Profile successfully updated!'
 const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
-  const [editUser, editUserResult] = useMutation<
+  const [editUser] = useMutation<
     ProfileSettingsMutation,
     ProfileSettingsMutationVariables
   >(
