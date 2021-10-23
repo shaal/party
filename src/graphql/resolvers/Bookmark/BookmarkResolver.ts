@@ -18,7 +18,7 @@ builder.prismaObject('Bookmark', {
 
 const ToggleBookmarkInput = builder.inputType('ToggleBookmarkInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 
