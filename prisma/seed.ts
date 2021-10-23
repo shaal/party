@@ -47,7 +47,7 @@ async function main() {
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding fake user - @${username} 👨‍🎤`)
+    console.log(`Seeding fake user - @${username} 👦`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -70,7 +70,7 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding real user - @${user.username} 👨‍🎤`)
+    console.log(`Seeding real user - @${user.username} 👦`)
     await db.user.create({
       data: {
         email: user.email,
