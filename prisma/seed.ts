@@ -52,7 +52,7 @@ async function main() {
       data: {
         email: `${username}@yogi.codes`,
         username,
-        inWaitlist: false,
+        inWaitlist: faker.datatype.boolean(),
         hashedPassword: await hashPassword(username),
         profile: {
           create: {
