@@ -24,9 +24,7 @@ export async function unauthenticatedRoute(
     }
   }
 
-  return {
-    props: {}
-  }
+  return { props: {} }
 }
 
 /**
@@ -52,9 +50,7 @@ export async function authenticatedRoute(
     }
   }
 
-  return {
-    props: {}
-  }
+  return { props: {} }
 }
 
 /**
