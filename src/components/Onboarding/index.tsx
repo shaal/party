@@ -46,7 +46,7 @@ const Onboarding: React.FC = () => {
           <div className="pt-5">
             <Button
               className="mx-auto"
-              icon={<ArrowCircleRightIcon className="h-5 w-5" />}
+              icon={<ArrowCircleRightIcon className="h-4 w-4" />}
               onClick={handleContinue}
             >
               Continue
