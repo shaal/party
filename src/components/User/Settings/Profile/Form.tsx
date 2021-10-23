@@ -51,7 +51,7 @@ const SUCCESS_MESSAGE = 'Profile successfully updated!'
 const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
-  const [editUser, editUserResult] = useMutation<
+  const [editUser] = useMutation<
     ProfileSettingsMutation,
     ProfileSettingsMutationVariables
   >(
@@ -131,7 +131,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   variables: {
                     input: {
                       username,
-                      email: email as string,
+                      email,
                       name,
                       bio: bio as string,
                       location: location as string,
