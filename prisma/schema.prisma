@@ -17,7 +17,7 @@ generator giraphql {
 model User {
   id             String @id @default(uuid())
   username       String @unique @default(uuid())
-  email          String? @unique
+  email          String @unique
   hashedPassword String
 
   // Flags

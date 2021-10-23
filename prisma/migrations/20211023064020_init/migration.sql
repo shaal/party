@@ -2,7 +2,7 @@
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
     `username` VARCHAR(191) NOT NULL,
-    `email` VARCHAR(191) NULL,
+    `email` VARCHAR(191) NOT NULL,
     `hashedPassword` VARCHAR(191) NOT NULL,
     `spammy` BOOLEAN NOT NULL DEFAULT false,
     `isVerified` BOOLEAN NOT NULL DEFAULT false,

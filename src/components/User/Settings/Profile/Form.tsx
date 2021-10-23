@@ -131,7 +131,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                   variables: {
                     input: {
                       username,
-                      email: email as string,
+                      email,
                       name,
                       bio: bio as string,
                       location: location as string,
