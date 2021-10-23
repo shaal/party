@@ -13,9 +13,6 @@ tasks:
       yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
-  - name: Prisma Studio
-    init: gp sync-await setup
-    command: BROWSER=none yarn prisma studio
   - name: Dev Server
     init: >
       gp sync-await setup;
@@ -26,9 +23,6 @@ tasks:
 ports:
   - port: 3000 # Web app
     onOpen: open-preview
-    visibility: public
-  - port: 5555 # Prisma Studio
-    onOpen: ignore
     visibility: public
   - port: 6379 # Redis
     onOpen: ignore
