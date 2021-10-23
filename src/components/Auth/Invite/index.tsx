@@ -18,6 +18,9 @@ export const GET_INVITE_QUERY = gql`
         username
       }
     }
+    waitlistCount {
+      count
+    }
   }
 `
 
@@ -30,6 +33,7 @@ const InviteSignup: React.FC = () => {
     skip: !router.isReady
   })
   const invite = data?.invite
+  const waitlistCount = data?.waitlistCount?.count
 
   return (
     <div className="flex flex-grow">
@@ -51,13 +55,19 @@ const InviteSignup: React.FC = () => {
                 <div className="shimmer h-7 max-w-sm rounded-lg" />
               ) : (
                 !error && (
-                  <div className="text-xl">
+                  <div className="text-xl space-y-2">
                     <Link href={`/u/${invite?.user?.username}`}>
                       <a className="font-bold">
                         <Slug slug={invite?.user?.username} prefix="@" />{' '}
                         invited you to the party
                       </a>
                     </Link>
+                    <div className="text-sm font-bold">
+                      You will be member{' '}
+                      <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2 py-0.5 rounded-md">
+                        #{waitlistCount}
+                      </span>
+                    </div>
                   </div>
                 )
               )}

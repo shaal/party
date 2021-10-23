@@ -475,6 +475,7 @@ type Query {
   topic(name: String!): Topic!
   user(username: String!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
+  waitlistCount: WaitlistCount!
   wakatime(userId: ID!): Wakatime
   whoToFollow(after: String, before: String, first: Int, last: Int): QueryWhoToFollowConnection!
 }
@@ -874,6 +875,10 @@ type UserTopicsConnection {
 type UserTopicsConnectionEdge {
   cursor: String!
   node: Topic!
+}
+
+type WaitlistCount {
+  count: Int!
 }
 
 type Wakatime {
