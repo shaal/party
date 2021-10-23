@@ -761,7 +761,7 @@ type User {
   bookmarks(after: String, before: String, first: Int, last: Int): UserBookmarksConnection!
   communities(after: String, before: String, first: Int, last: Int): UserCommunitiesConnection!
   createdAt: DateTime!
-  email: String!
+  email: String
   featuredAt: DateTime
   followers(after: String, before: String, first: Int, last: Int): UserFollowersConnection!
   following(after: String, before: String, first: Int, last: Int): UserFollowingConnection!
