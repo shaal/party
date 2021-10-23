@@ -7,7 +7,6 @@ tasks:
     init: >
       yarn install --frozen-lockfile --silent --network-timeout 100000;
       cp .env.example .env;
-      echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
       gp await-port 3306;
       yarn prisma:migrate;
       yarn prisma:seed;
@@ -18,7 +17,9 @@ tasks:
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
-    init: gp sync-await setup
+    init: >
+      gp sync-await setup;
+      echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
     command: yarn dev
 
 ports:
