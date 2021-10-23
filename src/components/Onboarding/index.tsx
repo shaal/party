@@ -1,5 +1,5 @@
-import { Button } from '@components/ui/Button'
-import { Card, CardBody } from '@components/ui/Card'
+import { Button } from '@components/UI/Button'
+import { Card, CardBody } from '@components/UI/Card'
 import AppContext from '@components/utils/AppContext'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import React, { useContext } from 'react'

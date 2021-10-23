@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import UserProfileLarge from '@components/shared/UserProfileLarge'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { Spinner } from '@components/ui/Spinner'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { Spinner } from '@components/UI/Spinner'
 import { useRouter } from 'next/router'
 import React from 'react'
 

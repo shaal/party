@@ -1,12 +1,10 @@
-import { Button } from '@components/ui/Button'
-import { Card, CardBody } from '@components/ui/Card'
-import { ProgressBar } from '@components/ui/ProgressBar'
-import AppContext from '@components/utils/AppContext'
+import { Button } from '@components/UI/Button'
+import { Card, CardBody } from '@components/UI/Card'
+import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowRightIcon } from '@heroicons/react/outline'
-import React, { useContext } from 'react'
+import React from 'react'
 
 const Topics: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
   return (
     <div
       className="flex justify-center items-center h-[90vh]"

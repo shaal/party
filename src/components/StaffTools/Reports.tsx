@@ -1,13 +1,13 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import Slug from '@components/shared/Slug'
-import { Button } from '@components/ui/Button'
-import { Card, CardBody } from '@components/ui/Card'
-import { EmptyState } from '@components/ui/EmptyState'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { PageLoading } from '@components/ui/PageLoading'
-import { Spinner } from '@components/ui/Spinner'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Button } from '@components/UI/Button'
+import { Card, CardBody } from '@components/UI/Card'
+import { EmptyState } from '@components/UI/EmptyState'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { PageLoading } from '@components/UI/PageLoading'
+import { Spinner } from '@components/UI/Spinner'
+import { Tooltip } from '@components/UI/Tooltip'
 import {
   CheckCircleIcon,
   MailIcon,

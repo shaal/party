@@ -1,9 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
 import Slug from '@components/shared/Slug'
-import { Button } from '@components/ui/Button'
-import { Card, CardBody } from '@components/ui/Card'
-import { Form, useZodForm } from '@components/ui/Form'
-import { Modal } from '@components/ui/Modal'
+import { Button } from '@components/UI/Button'
+import { Card, CardBody } from '@components/UI/Card'
+import { Form, useZodForm } from '@components/UI/Form'
+import { Modal } from '@components/UI/Modal'
 import {
   HashtagIcon,
   PencilIcon,

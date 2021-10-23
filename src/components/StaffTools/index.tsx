@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { PageLoading } from '@components/ui/PageLoading'
+import { Card, CardBody } from '@components/UI/Card'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { PageLoading } from '@components/UI/PageLoading'
 import {
   BellIcon,
   ChipIcon,

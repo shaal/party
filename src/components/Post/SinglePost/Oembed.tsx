@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import clsx from 'clsx'
 import React from 'react'
 import { STATIC_ASSETS } from 'src/constants'

@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
-import { Spinner } from '@components/ui/Spinner'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Spinner } from '@components/UI/Spinner'
+import { Tooltip } from '@components/UI/Tooltip'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import React from 'react'

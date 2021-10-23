@@ -1,4 +1,4 @@
-import { Tooltip } from '@components/ui/Tooltip'
+import { Tooltip } from '@components/UI/Tooltip'
 import Follow from '@components/User/Follow'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'

@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { ethers } from 'ethers'

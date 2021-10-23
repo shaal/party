@@ -1,7 +1,7 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
-import { Tooltip } from '@components/ui/Tooltip'
+import { Tooltip } from '@components/UI/Tooltip'
 import { useGitCommit } from '@components/utils/hooks/useGitCommit'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import {

@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import ProductProfile from '@components/shared/ProductProfile'
 import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Card, CardBody } from '@components/UI/Card'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { CubeIcon } from '@heroicons/react/solid'
 import React from 'react'
 

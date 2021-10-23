@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { Fragment } from 'react'
 
 import Footer from '../shared/Footer'
-import { Button } from '../ui/Button'
+import { Button } from '../UI/Button'
 
 const About: React.FC = () => {
   return (

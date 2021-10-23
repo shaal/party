@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import Follow from '@components/User/Follow'
 import AppContext from '@components/utils/AppContext'
 import React, { useContext } from 'react'

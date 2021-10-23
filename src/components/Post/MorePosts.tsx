@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Card, CardBody } from '@components/UI/Card'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Link from 'next/link'

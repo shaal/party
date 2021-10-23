@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import Link from 'next/link'
 import { User } from 'src/__generated__/schema.generated'

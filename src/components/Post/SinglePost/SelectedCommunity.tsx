@@ -1,4 +1,4 @@
-import { Tooltip } from '@components/ui/Tooltip'
+import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { UsersIcon } from '@heroicons/react/solid'
 import Link from 'next/link'

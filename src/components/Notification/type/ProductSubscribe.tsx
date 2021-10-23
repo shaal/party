@@ -1,6 +1,6 @@
 import ProductProfileLarge from '@components/shared/ProductProfileLarge'
 import UserProfile from '@components/shared/UserProfile'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { PlusCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'

@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'
 import React from 'react'

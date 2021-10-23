@@ -7,7 +7,7 @@ import {
   GridLayout
 } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
-import { PageLoading } from '@components/ui/PageLoading'
+import { PageLoading } from '@components/UI/PageLoading'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Community } from 'src/__generated__/schema.generated'

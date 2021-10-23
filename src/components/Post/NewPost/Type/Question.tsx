@@ -1,12 +1,12 @@
 import { gql, useMutation } from '@apollo/client'
 import Attachments from '@components/Post/SinglePost/Attachments'
-import { Button } from '@components/ui/Button'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
-import { Form, useZodForm } from '@components/ui/Form'
-import { Input } from '@components/ui/Input'
-import { Spinner } from '@components/ui/Spinner'
-import { TextArea } from '@components/ui/TextArea'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Button } from '@components/UI/Button'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { Form, useZodForm } from '@components/UI/Form'
+import { Input } from '@components/UI/Input'
+import { Spinner } from '@components/UI/Spinner'
+import { TextArea } from '@components/UI/TextArea'
+import { Tooltip } from '@components/UI/Tooltip'
 import {
   EyeIcon,
   EyeOffIcon,

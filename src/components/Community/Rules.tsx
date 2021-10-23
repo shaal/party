@@ -2,9 +2,9 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
-import { EmptyState } from '@components/ui/EmptyState'
-import { Spinner } from '@components/ui/Spinner'
+import { Card, CardBody } from '@components/UI/Card'
+import { EmptyState } from '@components/UI/EmptyState'
+import { Spinner } from '@components/UI/Spinner'
 import { ScaleIcon } from '@heroicons/react/outline'
 import { Community } from 'src/__generated__/schema.generated'
 

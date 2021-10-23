@@ -1,5 +1,5 @@
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import React from 'react'
 
 import Sidebar from '../Sidebar'
