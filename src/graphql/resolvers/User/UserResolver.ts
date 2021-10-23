@@ -21,6 +21,7 @@ builder.prismaObject('User', {
     isStaff: t.exposeBoolean('isStaff'),
     inWaitlist: t.exposeBoolean('inWaitlist'),
     email: t.exposeString('email', {
+      nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
     hasFollowed: t.field({
