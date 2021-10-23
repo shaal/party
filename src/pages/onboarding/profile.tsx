@@ -1,5 +1,5 @@
-import Topics from '@components/Onboarding/Topics'
+import Profile from '@components/Onboarding/Profile'
 
 // export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
-export default Topics
+export default Profile

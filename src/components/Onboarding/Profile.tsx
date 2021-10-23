@@ -4,7 +4,7 @@ import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-const Topics: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <div
       className="flex justify-center items-center h-[90vh]"
@@ -15,9 +15,13 @@ const Topics: React.FC = () => {
     >
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
-          <ProgressBar className="mb-5" percentage={25} />
-          <div className="text-2xl font-bold">What are you interested in?</div>
-          <div className="text-gray-500">Star tags to customize your feed</div>
+          <ProgressBar className="mb-5" percentage={50} />
+          <div className="text-2xl font-bold">Build your profile</div>
+          <div className="text-gray-500">
+            Tell us a little bit about yourself — this is how others will see
+            you on Devparty. You’ll always be able to edit this later in your
+            Settings.
+          </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto">
             <div>WIP</div>
             <div>WIP</div>
@@ -38,4 +42,4 @@ const Topics: React.FC = () => {
   )
 }
 
-export default Topics
+export default Profile
