@@ -228,7 +228,10 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
               ))}
             </div>
             {(post?.likes?.totalCount as number) > 5 && (
-              <div>and {(post?.likes?.totalCount as number) - 5} others...</div>
+              <div>
+                and {humanize((post?.likes?.totalCount as number) - 5)}{' '}
+                others...
+              </div>
             )}
           </div>
         )}

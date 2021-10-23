@@ -3,6 +3,7 @@ import 'linkify-plugin-mention'
 
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/ui/Card'
+import { humanize } from '@components/utils/humanize'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'
 import mixpanel from 'mixpanel-browser'
@@ -106,13 +107,13 @@ const PollType: React.FC<Props> = ({ post }) => {
               >
                 <div>{answer?.title}</div>
                 <div className="font-bold text-sm">
-                  {answer?.voters?.totalCount} votes
+                  {humanize(answer?.voters?.totalCount)} votes
                 </div>
               </button>
             ))
           )}
           <div className="text-gray-500 dark:text-gray-300">
-            {poll?.totalCount} votes
+            {humanize(poll?.totalCount as number)} votes
           </div>
         </CardBody>
       </Card>
