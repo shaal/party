@@ -44,4 +44,5 @@ body {
 .onboarding-bg {
   background-image: url(https://ik.imagekit.io/devparty/tr:w-,h-/https://assets.devparty.io/images/patterns/1.svg);
   background-size: 30%;
+  @apply flex justify-center items-center h-[calc(100vh-64px)];
 }

@@ -14,7 +14,7 @@ const Topics: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-[90vh] onboarding-bg">
+    <div className="onboarding-bg">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
