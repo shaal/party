@@ -4,7 +4,7 @@ import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-const Profile: React.FC = () => {
+const Follow: React.FC = () => {
   return (
     <div
       className="flex justify-center items-center h-[90vh]"
@@ -15,13 +15,11 @@ const Profile: React.FC = () => {
     >
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
-          <ProgressBar className="mb-5" percentage={50} />
+          <ProgressBar className="mb-5" percentage={75} />
           <div className="space-y-1">
-            <div className="text-2xl font-bold">Build your profile</div>
+            <div className="text-2xl font-bold">Suggested people to follow</div>
             <div className="text-gray-500">
-              Tell us a little bit about yourself — this is how others will see
-              you on Devparty. You’ll always be able to edit this later in your
-              Settings.
+              Follow users to get their updates on your feed
             </div>
           </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto">
@@ -44,4 +42,4 @@ const Profile: React.FC = () => {
   )
 }
 
-export default Profile
+export default Follow
