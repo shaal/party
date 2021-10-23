@@ -335,3 +335,27 @@ builder.mutationField('onboardUser', (t) =>
     }
   })
 )
+
+const AcceptCOCAndTOSInput = builder.inputType('AcceptCOCAndTOSInput', {
+  fields: (t) => ({
+    coc: t.boolean(),
+    tos: t.boolean()
+  })
+})
+
+builder.mutationField('acceptCocAndTos', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: { input: t.arg({ type: AcceptCOCAndTOSInput }) },
+    resolve: async (query, parent, { input }, { session }) => {
+      if (input.coc && input.tos) {
+        return await db.user.update({
+          where: { id: session?.userId },
+          data: { onboarded: true }
+        })
+      } else {
+        throw new Error('You must check all!')
+      }
+    }
+  })
+)
