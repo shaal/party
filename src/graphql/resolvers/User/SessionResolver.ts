@@ -47,7 +47,7 @@ builder.queryField('sessions', (t) =>
 
 const RevokeSessionInput = builder.inputType('RevokeSessionInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 
