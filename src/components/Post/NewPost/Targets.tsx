@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { Spinner } from '@components/ui/Spinner'
+import { humanize } from '@components/utils/humanize'
 import { GlobeIcon } from '@heroicons/react/outline'
 import { Community, Product } from 'src/__generated__/schema.generated'
 
@@ -106,7 +107,8 @@ const Targets: React.FC<Props> = ({
                 <div className="text-left">
                   <div className="font-bold">{product?.name}</div>
                   <div className="text-sm">
-                    <b>{product?.subscribers?.totalCount}</b> subscribers
+                    <b>{humanize(product?.subscribers?.totalCount)}</b>{' '}
+                    subscribers
                   </div>
                 </div>
               </button>
@@ -134,7 +136,7 @@ const Targets: React.FC<Props> = ({
                 <div className="text-left">
                   <div className="font-bold">{community?.name}</div>
                   <div className="text-sm">
-                    <b>{community?.members?.totalCount}</b> members
+                    <b>{humanize(community?.members?.totalCount)}</b> members
                   </div>
                 </div>
               </button>
