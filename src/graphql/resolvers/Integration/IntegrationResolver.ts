@@ -44,7 +44,7 @@ builder.prismaObject('Integration', {
 builder.queryField('integration', (t) =>
   t.prismaField({
     type: 'Integration',
-    args: { userId: t.arg.id({ required: false }) },
+    args: { userId: t.arg.id({ required: false, validate: { uuid: true } }) },
     nullable: true,
     resolve: async (query, parent, { userId }, { session }) => {
       return await db.integration.findFirst({
