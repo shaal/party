@@ -17,8 +17,7 @@ tasks:
     init: >
       gp sync-await setup;
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
-    command: yarn dev
-  - command: printf "Happy coding🥳"
+    command: yarn dev &
 
 ports:
   - port: 3000 # Web app
