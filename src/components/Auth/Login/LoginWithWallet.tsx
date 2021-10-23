@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/ui/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
-import { useAuthRedirect } from '@components/utils/useAuthRedirect'
+import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { ethers } from 'ethers'
 import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'

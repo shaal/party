@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import Hero from '@components/shared/Hero'
 import Slug from '@components/shared/Slug'
+import { humanize } from '@components/utils/humanize'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -63,9 +64,9 @@ const InviteSignup: React.FC = () => {
                       </a>
                     </Link>
                     <div className="text-sm font-bold">
-                      You will be member{' '}
+                      You will be user{' '}
                       <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2 py-0.5 rounded-md">
-                        #{waitlistCount}
+                        #{humanize(waitlistCount as number)}
                       </span>
                     </div>
                   </div>

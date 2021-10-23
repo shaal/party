@@ -1,7 +1,7 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { Card } from '@components/ui/Card'
 import { Spinner } from '@components/ui/Spinner'
-import useOnClickOutside from '@components/utils/useOnClickOutside'
+import useOnClickOutside from '@components/utils/hooks/useOnClickOutside'
 import React, { useRef, useState } from 'react'
 
 import UserProfile from '../UserProfile'

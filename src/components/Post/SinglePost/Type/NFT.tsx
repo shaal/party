@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { useNFT } from '@components/utils/useNFT'
+import { useNFT } from '@components/utils/hooks/useNFT'
 import { ExclamationCircleIcon, UsersIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
