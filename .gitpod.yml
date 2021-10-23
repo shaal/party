@@ -11,7 +11,7 @@ tasks:
       yarn prisma:migrate;
       yarn prisma:seed;
       yarn prepare;
-      BROWSER=none yarn prisma studio;
+      BROWSER=none yarn prisma studio &;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
   - name: Dev Server
