@@ -6,6 +6,7 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
+import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import {
@@ -64,7 +65,9 @@ const Details: React.FC<Props> = ({ community }) => {
               <CardBody className="space-y-3">
                 <div className="flex items-center space-x-1.5">
                   <UsersIcon className="h-5 w-5" />
-                  <div>{community?.members?.totalCount} members joined</div>
+                  <div>
+                    {humanize(community?.members?.totalCount)} members joined
+                  </div>
                 </div>
                 <div className="flex items-center space-x-1.5">
                   <ShieldCheckIcon className="h-5 w-5" />
@@ -82,7 +85,7 @@ const Details: React.FC<Props> = ({ community }) => {
                     </Link>
                     {community?.members?.totalCount - 1 > 0 && (
                       <div className="text-gray-500">
-                        and {community?.members?.totalCount} others
+                        and {humanize(community?.members?.totalCount)} others
                       </div>
                     )}
                   </div>
