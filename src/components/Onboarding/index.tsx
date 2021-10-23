@@ -2,10 +2,17 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import AppContext from '@components/utils/AppContext'
 import { ArrowRightIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
 const Onboarding: React.FC = () => {
   const { currentUser } = useContext(AppContext)
+  const router = useRouter()
+
+  const handleContinue = () => {
+    router.push('/onboarding/topics')
+  }
+
   return (
     <div
       className="flex justify-center items-center h-[90vh]"
@@ -40,6 +47,7 @@ const Onboarding: React.FC = () => {
             <Button
               className="mx-auto"
               icon={<ArrowRightIcon className="h-5 w-5" />}
+              onClick={handleContinue}
             >
               Continue
             </Button>
