@@ -17,7 +17,14 @@ const Topics: React.FC = () => {
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="text-2xl font-bold">What are you interested in?</div>
-          <div className="pt-5">WIP</div>
+          <div className="pt-5 max-h-[50vh] overflow-y-auto">
+            <div>WIP</div>
+            <div>WIP</div>
+            <div>WIP</div>
+            <div>WIP</div>
+            <div>WIP</div>
+            <div>WIP</div>
+          </div>
           <Button
             className="mx-auto"
             icon={<ArrowRightIcon className="h-4 w-4" />}
