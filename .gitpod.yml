@@ -19,7 +19,9 @@ tasks:
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
       yarn dev;
   - init: gp sync-await setup;
-    command: clear
+    command: >
+      printf "Waiting for server to boot ⏰"
+      clear
 
 ports:
   - port: 3000 # Web app
