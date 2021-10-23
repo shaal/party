@@ -2,11 +2,9 @@ import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
@@ -75,8 +73,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
-      onError() {
+      onError(error) {
         mixpanel.track('user.profile.update.failed')
+        console.log(error.message)
+        toast.error(error.message)
       },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
@@ -142,13 +142,6 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 })
               }}
             >
-              <ErrorMessage
-                title="Error updating profile"
-                error={editUserResult.error}
-              />
-              {editUserResult.data && (
-                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
-              )}
               <Input label="ID" type="text" value={currentUser?.id} disabled />
               <Input
                 label="Email"
