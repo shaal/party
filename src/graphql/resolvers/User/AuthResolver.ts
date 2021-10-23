@@ -33,16 +33,8 @@ builder.queryField('me', (t) =>
 
 const LoginInput = builder.inputType('LoginInput', {
   fields: (t) => ({
-    email: t.string({
-      validate: {
-        email: true
-      }
-    }),
-    password: t.string({
-      validate: {
-        minLength: 6
-      }
-    })
+    email: t.string({ validate: { email: true } }),
+    password: t.string({ validate: { minLength: 6 } })
   })
 })
 
@@ -118,16 +110,8 @@ const JoinWaitlistInput = builder.inputType('JoinWaitlistInput', {
         maxLength: 30
       }
     }),
-    email: t.string({
-      validate: {
-        email: true
-      }
-    }),
-    password: t.string({
-      validate: {
-        minLength: 6
-      }
-    })
+    email: t.string({ validate: { email: true } }),
+    password: t.string({ validate: { minLength: 6 } })
   })
 })
 

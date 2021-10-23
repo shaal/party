@@ -57,7 +57,7 @@ builder.queryField('topic', (t) =>
 
 const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 
