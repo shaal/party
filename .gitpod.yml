@@ -11,11 +11,9 @@ tasks:
       yarn prisma:migrate;
       yarn prisma:seed;
       yarn prepare;
+      BROWSER=none yarn prisma studio;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
-  - name: Prisma Studio
-    init: gp sync-await setup
-    command: BROWSER=none yarn prisma studio
   - name: Dev Server
     init: >
       gp sync-await setup;
