@@ -21,6 +21,7 @@ builder.prismaObject('User', {
     isStaff: t.exposeBoolean('isStaff'),
     inWaitlist: t.exposeBoolean('inWaitlist'),
     email: t.exposeString('email', {
+      nullable: true,
       authScopes: { isStaff: true, $granted: 'currentUser' }
     }),
     hasFollowed: t.field({
@@ -183,6 +184,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
       required: true,
       validate: { minLength: 2, maxLength: 50 }
     }),
+    email: t.string({ validate: { email: true } }),
     name: t.string({
       required: true,
       validate: { minLength: 2, maxLength: 50 }
@@ -207,6 +209,7 @@ builder.mutationField('editUser', (t) =>
           where: { id: session!.userId },
           data: {
             username: input.username,
+            email: input.email,
             profile: {
               update: {
                 name: input.name,
@@ -222,8 +225,15 @@ builder.mutationField('editUser', (t) =>
 
         return user
       } catch (error: any) {
-        if (error.code === 'P2002') {
+        if (
+          error.code === 'P2002' &&
+          error.meta.target === 'users_username_key'
+        ) {
           throw new Error('Username is already taken!')
+        }
+
+        if (error.code === 'P2002' && error.meta.target === 'users_email_key') {
+          throw new Error('Email is already taken!')
         }
 
         throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)

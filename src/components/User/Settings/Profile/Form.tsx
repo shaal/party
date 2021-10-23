@@ -2,11 +2,9 @@ import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
 import { Form, useZodForm } from '@components/ui/Form'
 import { Input } from '@components/ui/Input'
 import { Spinner } from '@components/ui/Spinner'
-import { SuccessMessage } from '@components/ui/SuccessMessage'
 import { TextArea } from '@components/ui/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
@@ -31,6 +29,7 @@ const editProfileSchema = object({
     .min(2, { message: '👤 Username should atleast have 2 characters' })
     .max(50, { message: '👤 Useranme should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid username' }),
+  email: string().email({ message: '📧 Invalid email' }),
   name: string()
     .min(2, { message: '👤 Name should atleast have 2 characters' })
     .max(50, { message: '👤 Name should be within 50 characters' }),
@@ -61,6 +60,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
         editUser(input: $input) {
           id
           username
+          email
           profile {
             id
             name
@@ -73,8 +73,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
-      onError() {
+      onError(error) {
         mixpanel.track('user.profile.update.failed')
+        console.log(error.message)
+        toast.error(error.message)
       },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
@@ -104,6 +106,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     schema: editProfileSchema,
     defaultValues: {
       username: currentUser.username,
+      email: currentUser.email as string,
       name: currentUser.profile.name,
       bio: currentUser.profile.bio as string,
       location: currentUser.profile.location as string,
@@ -122,12 +125,13 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ username, name, bio, location }) => {
+              onSubmit={({ username, email, name, bio, location }) => {
                 mixpanel.track('user.profile.update.click')
                 editUser({
                   variables: {
                     input: {
                       username,
+                      email: email as string,
                       name,
                       bio: bio as string,
                       location: location as string,
@@ -138,19 +142,12 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 })
               }}
             >
-              <ErrorMessage
-                title="Error updating profile"
-                error={editUserResult.error}
-              />
-              {editUserResult.data && (
-                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
-              )}
               <Input label="ID" type="text" value={currentUser?.id} disabled />
               <Input
                 label="Email"
                 type="email"
-                value={currentUser?.email}
-                disabled
+                placeholder="me@johndoe.com"
+                {...form.register('email')}
               />
               <Input
                 label="Username"
