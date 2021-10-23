@@ -3,6 +3,7 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
@@ -72,7 +73,7 @@ const Topics: React.FC = () => {
           <div className="border-b dark:border-gray-800" />
           <div className="p-5 space-y-3">
             <div className="font-bold">
-              {user?.topics?.totalCount} starred topics
+              {humanize(user?.topics?.totalCount)} starred topics
             </div>
             {user?.topics?.totalCount > 0 && (
               <div className="space-y-3">
