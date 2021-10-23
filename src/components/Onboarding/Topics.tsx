@@ -1,5 +1,6 @@
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
+import { ProgressBar } from '@components/ui/ProgressBar'
 import AppContext from '@components/utils/AppContext'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import React, { useContext } from 'react'
@@ -16,7 +17,9 @@ const Topics: React.FC = () => {
     >
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
+          <ProgressBar className="mb-5" percentage={25} />
           <div className="text-2xl font-bold">What are you interested in?</div>
+          <div>Star tags to customize your feed</div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto">
             <div>WIP</div>
             <div>WIP</div>
