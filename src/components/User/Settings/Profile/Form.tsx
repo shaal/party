@@ -31,6 +31,7 @@ const editProfileSchema = object({
     .min(2, { message: '👤 Username should atleast have 2 characters' })
     .max(50, { message: '👤 Useranme should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid username' }),
+  email: string().email({ message: '📧 Invalid email' }),
   name: string()
     .min(2, { message: '👤 Name should atleast have 2 characters' })
     .max(50, { message: '👤 Name should be within 50 characters' }),
@@ -61,6 +62,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
         editUser(input: $input) {
           id
           username
+          email
           profile {
             id
             name
@@ -104,6 +106,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     schema: editProfileSchema,
     defaultValues: {
       username: currentUser.username,
+      email: currentUser.email as string,
       name: currentUser.profile.name,
       bio: currentUser.profile.bio as string,
       location: currentUser.profile.location as string,
@@ -122,12 +125,13 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
             <Form
               form={form}
               className="space-y-4"
-              onSubmit={({ username, name, bio, location }) => {
+              onSubmit={({ username, email, name, bio, location }) => {
                 mixpanel.track('user.profile.update.click')
                 editUser({
                   variables: {
                     input: {
                       username,
+                      email: email as string,
                       name,
                       bio: bio as string,
                       location: location as string,
@@ -149,7 +153,8 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
               <Input
                 label="Email"
                 type="email"
-                value={currentUser?.email as string}
+                placeholder="me@johndoe.com"
+                {...form.register('email')}
               />
               <Input
                 label="Username"

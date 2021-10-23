@@ -184,6 +184,7 @@ const EditUserInput = builder.inputType('EditUserInput', {
       required: true,
       validate: { minLength: 2, maxLength: 50 }
     }),
+    email: t.string({ validate: { email: true } }),
     name: t.string({
       required: true,
       validate: { minLength: 2, maxLength: 50 }
@@ -208,6 +209,7 @@ builder.mutationField('editUser', (t) =>
           where: { id: session!.userId },
           data: {
             username: input.username,
+            email: input.email,
             profile: {
               update: {
                 name: input.name,
