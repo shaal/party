@@ -41,7 +41,7 @@ builder.queryField('notifications', (t) =>
 
 const ReadNotificationInput = builder.inputType('ReadNotificationInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 

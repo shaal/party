@@ -24,7 +24,7 @@ builder.prismaObject('PollAnswer', {
 
 const AnswerPollInput = builder.inputType('AnswerPollInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 

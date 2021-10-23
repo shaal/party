@@ -90,7 +90,7 @@ builder.mutationField('createCommunity', (t) =>
 
 const ToggleCommunityJoinInput = builder.inputType('ToggleCommunityJoinInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 

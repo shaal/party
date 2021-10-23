@@ -37,7 +37,7 @@ export const SpotifyObject = builder.objectRef<Spotify>('Spotify').implement({
 builder.queryField('spotify', (t) =>
   t.field({
     type: SpotifyObject,
-    args: { userId: t.arg.id() },
+    args: { userId: t.arg.id({ validate: { uuid: true } }) },
     nullable: true,
     resolve: async (parent, { userId }) => {
       return await spotify(userId)

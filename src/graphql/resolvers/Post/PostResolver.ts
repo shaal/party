@@ -78,7 +78,7 @@ builder.queryField('morePostsByUser', (t) =>
     type: 'Post',
     cursor: 'id',
     args: {
-      userId: t.arg.id(),
+      userId: t.arg.id({ validate: { uuid: true } }),
       type: t.arg.string()
     },
     resolve: async (query, parent, { userId, type }) => {
@@ -116,7 +116,7 @@ builder.queryField('exploreFeed', (t) =>
 builder.queryField('post', (t) =>
   t.prismaField({
     type: 'Post',
-    args: { id: t.arg.id() },
+    args: { id: t.arg.id({ validate: { uuid: true } }) },
     resolve: async (query, parent, { id }) => {
       return await db.post.findFirst({
         ...query,
@@ -133,8 +133,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 190 }
     }),
-    parentId: t.id({ required: false }),
-    targetId: t.id({ required: false }),
+    parentId: t.id({ required: false, validate: { uuid: true } }),
+    targetId: t.id({ required: false, validate: { uuid: true } }),
     targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
@@ -159,7 +159,7 @@ builder.mutationField('createPost', (t) =>
 
 const EditPostInput = builder.inputType('EditPostInput', {
   fields: (t) => ({
-    id: t.id(),
+    id: t.id({ validate: { uuid: true } }),
     body: t.string({ required: false }),
     done: t.boolean({ required: false })
   })
@@ -177,7 +177,7 @@ builder.mutationField('editPost', (t) =>
 
 const DeletePostInput = builder.inputType('DeletePostInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 

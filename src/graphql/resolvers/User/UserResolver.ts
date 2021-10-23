@@ -275,7 +275,7 @@ builder.mutationField('editNFTAvatar', (t) =>
 
 const ToggleFollowInput = builder.inputType('ToggleFollowInput', {
   fields: (t) => ({
-    userId: t.id()
+    userId: t.id({ validate: { uuid: true } })
   })
 })
 
@@ -294,7 +294,7 @@ builder.mutationField('toggleFollow', (t) =>
 // Staff Ops
 const ModUserInput = builder.inputType('ModUserInput', {
   fields: (t) => ({
-    userId: t.id(),
+    userId: t.id({ validate: { uuid: true } }),
     isVerified: t.boolean({ required: false }),
     isStaff: t.boolean({ required: false }),
     featuredAt: t.boolean({ required: false }),
@@ -318,7 +318,7 @@ builder.mutationField('modUser', (t) =>
 
 const OnboardUserInput = builder.inputType('OnboardUserInput', {
   fields: (t) => ({
-    userId: t.id()
+    userId: t.id({ validate: { uuid: true } })
   })
 })
 
