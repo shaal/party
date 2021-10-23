@@ -1,6 +1,6 @@
 import Slug from '@components/shared/Slug'
 import UserProfileLarge from '@components/shared/UserProfileLarge'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { UserAddIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Notification } from 'src/__generated__/schema.generated'

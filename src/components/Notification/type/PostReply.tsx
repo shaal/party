@@ -1,6 +1,6 @@
 import SinglePost from '@components/Post/SinglePost'
 import Slug from '@components/shared/Slug'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { ReplyIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'

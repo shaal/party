@@ -1,5 +1,5 @@
-import { Button } from '@components/ui/Button'
-import { Modal } from '@components/ui/Modal'
+import { Button } from '@components/UI/Button'
+import { Modal } from '@components/UI/Modal'
 import { TicketIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import { useState } from 'react'

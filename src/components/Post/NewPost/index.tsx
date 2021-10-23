@@ -1,5 +1,5 @@
-import { Card, CardBody } from '@components/ui/Card'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Card, CardBody } from '@components/UI/Card'
+import { Tooltip } from '@components/UI/Tooltip'
 import { Tab } from '@headlessui/react'
 import {
   ChartBarIcon,

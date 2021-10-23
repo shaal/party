@@ -1,6 +1,6 @@
 import Hero from '@components/shared/Hero'
 import LandingFooter from '@components/shared/LandingFooter'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'

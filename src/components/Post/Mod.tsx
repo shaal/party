@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { HashtagIcon } from '@heroicons/react/outline'
 import { Post } from 'src/__generated__/schema.generated'
 

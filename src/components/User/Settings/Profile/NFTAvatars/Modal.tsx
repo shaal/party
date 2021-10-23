@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { Spinner } from '@components/ui/Spinner'
+import { Spinner } from '@components/UI/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'

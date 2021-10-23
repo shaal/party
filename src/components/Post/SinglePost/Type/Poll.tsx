@@ -2,7 +2,7 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { gql, useMutation, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { humanize } from '@components/utils/humanize'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import Linkify from 'linkify-react'

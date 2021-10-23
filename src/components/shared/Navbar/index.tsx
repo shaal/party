@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
 import clsx from 'clsx'
 import dynamic from 'next/dynamic'

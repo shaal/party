@@ -1,5 +1,5 @@
-import { Spinner } from '@components/ui/Spinner'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Spinner } from '@components/UI/Spinner'
+import { Tooltip } from '@components/UI/Tooltip'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { PhotographIcon } from '@heroicons/react/outline'
 import { useState } from 'react'

@@ -39,7 +39,7 @@ const Brand: React.FC<Props> = ({ name, logo, url, size, children }) => {
 
 const Thanks: React.FC = () => {
   return (
-    <Fragment>
+    <>
       <DevpartySEO
         title="Thanks! · Devparty"
         description="Thank you for supporting our community 🙏"
@@ -104,7 +104,7 @@ const Thanks: React.FC = () => {
           <Footer />
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }
 

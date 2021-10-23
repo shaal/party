@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'

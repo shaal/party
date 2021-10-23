@@ -1,6 +1,6 @@
 import Slug from '@components/shared/Slug'
-import { Button } from '@components/ui/Button'
-import { Modal } from '@components/ui/Modal'
+import { Button } from '@components/UI/Button'
+import { Modal } from '@components/UI/Modal'
 import { CashIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'

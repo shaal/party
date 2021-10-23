@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import { Card } from '@components/ui/Card'
-import { Tooltip } from '@components/ui/Tooltip'
+import { Card } from '@components/UI/Card'
+import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { User } from 'src/__generated__/schema.generated'
 import { STATIC_ASSETS } from 'src/constants'

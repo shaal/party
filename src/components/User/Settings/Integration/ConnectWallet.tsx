@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '@components/ui/Button'
-import { ErrorMessage } from '@components/ui/ErrorMessage'
+import { Button } from '@components/UI/Button'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import mixpanel from 'mixpanel-browser'

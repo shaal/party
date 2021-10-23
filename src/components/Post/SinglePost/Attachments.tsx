@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { TrashIcon } from '@heroicons/react/outline'
 import { Prisma } from '@prisma/client'

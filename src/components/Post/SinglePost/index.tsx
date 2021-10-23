@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import UserProfile from '@components/shared/UserProfile'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { useOembed } from '@components/utils/hooks/useOembed'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'

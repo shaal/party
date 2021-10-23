@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { PageLoading } from '@components/ui/PageLoading'
+import { PageLoading } from '@components/UI/PageLoading'
 import AppContext from '@components/utils/AppContext'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'

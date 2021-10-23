@@ -9,24 +9,19 @@ import { resolveSession } from './sessions'
  * @param redirect - Redirect to the target URL
  * @returns redirect props
  */
-export async function unauthenticatedRoute(
-  context: GetServerSidePropsContext,
-  redirect = '/home'
-) {
+export async function unauthenticatedRoute(context: GetServerSidePropsContext) {
   const session = await resolveSession(context)
 
   if (session) {
     return {
       redirect: {
-        destination: redirect,
+        destination: '/home',
         permanent: false
       }
     }
   }
 
-  return {
-    props: {}
-  }
+  return { props: {} }
 }
 
 /**
@@ -36,15 +31,14 @@ export async function unauthenticatedRoute(
  * @returns redirect props
  */
 export async function authenticatedRoute(
-  context: GetServerSidePropsContext,
-  redirect = '/login'
+  context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(context)
 
   if (!session) {
     return {
       redirect: {
-        destination: `${redirect}?redirect=${encodeURIComponent(
+        destination: `/login?redirect=${encodeURIComponent(
           context.resolvedUrl
         )}`,
         permanent: false
@@ -52,9 +46,16 @@ export async function authenticatedRoute(
     }
   }
 
-  return {
-    props: {}
+  if (!session?.user?.onboarded) {
+    return {
+      redirect: {
+        destination: '/onboarding',
+        permanent: false
+      }
+    }
   }
+
+  return { props: {} }
 }
 
 /**

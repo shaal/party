@@ -1,6 +1,6 @@
 import SinglePost from '@components/Post/SinglePost'
 import UserProfile from '@components/shared/UserProfile'
-import { Card, CardBody } from '@components/ui/Card'
+import { Card, CardBody } from '@components/UI/Card'
 import { HeartIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'

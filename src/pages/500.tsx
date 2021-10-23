@@ -1,5 +1,5 @@
 import DevpartySEO from '@components/shared/SEO'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import { HomeIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { ERROR_MESSAGE, STATIC_ASSETS } from 'src/constants'

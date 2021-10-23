@@ -8,6 +8,7 @@ CREATE TABLE `users` (
     `isVerified` BOOLEAN NOT NULL DEFAULT false,
     `isStaff` BOOLEAN NOT NULL DEFAULT false,
     `inWaitlist` BOOLEAN NOT NULL DEFAULT true,
+    `onboarded` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `featuredAt` DATETIME(3) NULL,

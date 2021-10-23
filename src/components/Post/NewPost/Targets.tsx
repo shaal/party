@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Spinner } from '@components/ui/Spinner'
+import { Spinner } from '@components/UI/Spinner'
 import { humanize } from '@components/utils/humanize'
 import { GlobeIcon } from '@heroicons/react/outline'
 import { Community, Product } from 'src/__generated__/schema.generated'

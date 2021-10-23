@@ -4,7 +4,7 @@ import Footer from '../shared/Footer'
 
 const Terms: React.FC = () => {
   return (
-    <Fragment>
+    <>
       <div className="flex items-center justify-center bg-brand-400 h-44 w-full">
         <div className="relative text-center">
           <h1 className="text-3xl md:text-4xl font-semibold text-white">
@@ -149,7 +149,7 @@ const Terms: React.FC = () => {
           <Footer />
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }
 

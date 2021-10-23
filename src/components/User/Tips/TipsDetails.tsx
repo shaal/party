@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
 import { PencilIcon } from '@heroicons/react/outline'
 import Link from 'next/link'

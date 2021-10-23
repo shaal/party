@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
-import { Button } from '@components/ui/Button'
+import { Button } from '@components/UI/Button'
 import { TrashIcon } from '@heroicons/react/outline'
 import mixpanel from 'mixpanel-browser'
 import React from 'react'
