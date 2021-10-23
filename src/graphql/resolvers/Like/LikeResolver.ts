@@ -15,7 +15,7 @@ builder.prismaObject('Like', {
 
 const TogglePostLikeInput = builder.inputType('TogglePostLikeInput', {
   fields: (t) => ({
-    id: t.id()
+    id: t.id({ validate: { uuid: true } })
   })
 })
 
