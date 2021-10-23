@@ -25,6 +25,7 @@ model User {
   isVerified Boolean @default(false)
   isStaff    Boolean @default(false)
   inWaitlist Boolean @default(true)
+  onboarded  Boolean @default(false)
 
   // Timestamps
   createdAt  DateTime  @default(now())
@@ -222,7 +223,7 @@ model PollAnswer {
 }
 
 model Bookmark {
-  id    String @id @default(uuid())
+  id String @id @default(uuid())
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -234,8 +235,8 @@ model Bookmark {
   userId String
 
   // Attributes
-  @@map("bookmarks")
   @@unique([userId, postId], name: "bookmarkIdentifier")
+  @@map("bookmarks")
 }
 
 model PostTopic {
