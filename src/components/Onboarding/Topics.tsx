@@ -1,7 +1,7 @@
 import { Button } from '@components/ui/Button'
 import { Card, CardBody } from '@components/ui/Card'
 import AppContext from '@components/utils/AppContext'
-import { CheckIcon } from '@heroicons/react/outline'
+import { ArrowRightIcon } from '@heroicons/react/outline'
 import React, { useContext } from 'react'
 
 const Topics: React.FC = () => {
@@ -18,7 +18,10 @@ const Topics: React.FC = () => {
         <CardBody className="linkify space-y-2">
           <div className="text-2xl font-bold">What are you interested in?</div>
           <div className="pt-5">WIP</div>
-          <Button className="mx-auto" icon={<CheckIcon className="h-5 w-5" />}>
+          <Button
+            className="mx-auto"
+            icon={<ArrowRightIcon className="h-4 w-4" />}
+          >
             Continue
           </Button>
         </CardBody>
