@@ -17,9 +17,8 @@ tasks:
     init: gp sync-await setup;
     command: >
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
-      gp sync-done server;
-      yarn dev
-  - init: gp sync-await server;
+      yarn dev;
+  - init: gp sync-await setup;
     command: clear
 
 ports:
