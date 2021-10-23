@@ -1,7 +1,7 @@
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ProgressBar } from '@components/UI/ProgressBar'
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/outline'
+import { ArrowLeftIcon, CheckCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -36,7 +36,7 @@ const Follow: React.FC = () => {
             <ProgressBar percentage={100} />
             <Button
               className="mx-auto"
-              icon={<CheckIcon className="h-4 w-4" />}
+              icon={<CheckCircleIcon className="h-4 w-4" />}
               onClick={handleContinue}
             >
               Finish

@@ -1,7 +1,7 @@
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import AppContext from '@components/utils/AppContext'
-import { ArrowRightIcon } from '@heroicons/react/outline'
+import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
@@ -46,7 +46,7 @@ const Onboarding: React.FC = () => {
           <div className="pt-5">
             <Button
               className="mx-auto"
-              icon={<ArrowRightIcon className="h-5 w-5" />}
+              icon={<ArrowCircleRightIcon className="h-5 w-5" />}
               onClick={handleContinue}
             >
               Continue
