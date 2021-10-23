@@ -225,8 +225,15 @@ builder.mutationField('editUser', (t) =>
 
         return user
       } catch (error: any) {
-        if (error.code === 'P2002') {
+        if (
+          error.code === 'P2002' &&
+          error.meta.target === 'users_username_key'
+        ) {
           throw new Error('Username is already taken!')
+        }
+
+        if (error.code === 'P2002' && error.meta.target === 'users_email_key') {
+          throw new Error('Email is already taken!')
         }
 
         throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
