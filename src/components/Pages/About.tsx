@@ -7,7 +7,7 @@ import { Button } from '../ui/Button'
 
 const About: React.FC = () => {
   return (
-    <Fragment>
+    <>
       <section className="px-2 pt-20 bg-white dark:bg-black dark:text-white md:px-0">
         <div className="container items-center max-w-6xl px-5 mx-auto space-y-6 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-left sm:text-5xl md:text-6xl md:text-center">
@@ -144,7 +144,7 @@ const About: React.FC = () => {
       <div className="m-4 pb-4 flex justify-center">
         <Footer />
       </div>
-    </Fragment>
+    </>
   )
 }
 
