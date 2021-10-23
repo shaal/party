@@ -102,7 +102,7 @@ export async function resolveSession({
 
   await applySession(req, res, sessionOptions)
 
-  let session: Session | null = null
+  let session: Session | any = null
   const requestWithSession = req as unknown as RequestWithSession
   const sessionID = requestWithSession.session.get(IRON_SESSION_ID_KEY)
 
@@ -111,7 +111,8 @@ export async function resolveSession({
       where: {
         id: sessionID,
         expiresAt: { gte: new Date() }
-      }
+      },
+      include: { user: { select: { onboarded: true } } }
     })
 
     if (session) {

@@ -46,6 +46,15 @@ export async function authenticatedRoute(
     }
   }
 
+  if (!session?.user?.onboarded) {
+    return {
+      redirect: {
+        destination: '/onboarding',
+        permanent: false
+      }
+    }
+  }
+
   return { props: {} }
 }
 
