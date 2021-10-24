@@ -3,7 +3,6 @@ import { Button } from '@components/UI/Button'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
-import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -46,8 +45,6 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   )
 
   const connectWallet = async () => {
-    mixpanel.track('user.integration.wallet.connect')
-
     const web3Modal = getWeb3Modal({ theme: resolvedTheme })
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
     const address = await web3.getSigner().getAddress()
@@ -65,7 +62,6 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   }
 
   const disconnectWallet = () => {
-    mixpanel.track('user.integration.wallet.disconnect')
     editWallet({
       variables: {
         input: { ethAddress: null }

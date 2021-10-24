@@ -74,13 +74,10 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     `,
     {
       onError(error) {
-        mixpanel.track('user.profile.update.failed')
-        console.log(error.message)
         toast.error(error.message)
       },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
-        mixpanel.track('user.profile.update.success')
       }
     }
   )
