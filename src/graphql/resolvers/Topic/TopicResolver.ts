@@ -22,6 +22,9 @@ builder.prismaObject('Topic', {
     }),
     postsCount: t.relationCount('posts'),
 
+    // Timestamps
+    featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),
+
     // Relations
     starrers: t.relatedConnection('starrers', { cursor: 'id' }),
     posts: t.prismaConnection({

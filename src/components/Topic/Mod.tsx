@@ -4,8 +4,10 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { TextArea } from '@components/UI/TextArea'
 import { HashtagIcon } from '@heroicons/react/outline'
+import toast from 'react-hot-toast'
 import { Topic } from 'src/__generated__/schema.generated'
-import { object, string } from 'zod'
+import { ERROR_MESSAGE } from 'src/constants'
+import { boolean, object, string } from 'zod'
 
 import {
   ModTopicMutation,
@@ -15,7 +17,8 @@ import {
 const modTopicSchema = object({
   description: string()
     .max(1000, { message: '📜 Description should not exceed 1000 characters' })
-    .nullable()
+    .nullable(),
+  featuredAt: boolean()
 })
 
 interface Props {
@@ -29,12 +32,17 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
         modTopic(input: $input) {
           id
           description
+          featuredAt
         }
       }
     `,
     {
+      onError() {
+        toast.error(ERROR_MESSAGE)
+      },
       onCompleted() {
         form.reset()
+        toast.success('Topic staff settings updated!')
       }
     }
   )
@@ -42,7 +50,8 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
   const form = useZodForm({
     schema: modTopicSchema,
     defaultValues: {
-      description: topic?.description
+      description: topic?.description,
+      featuredAt: topic?.featuredAt ? true : false
     }
   })
 
@@ -62,17 +71,26 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
           <Form
             form={form}
             className="space-y-4"
-            onSubmit={({ description }) =>
+            onSubmit={({ description, featuredAt }) =>
               modTopic({
                 variables: {
                   input: {
                     id: topic?.id,
-                    description: description as string
+                    description: description as string,
+                    featuredAt: featuredAt ? true : false
                   }
                 }
               })
             }
           >
+            <div className="flex items-center gap-2">
+              <input
+                id="featuredAt"
+                type="checkbox"
+                {...form.register('featuredAt')}
+              />
+              <label htmlFor="featuredAt">Feature this topic</label>
+            </div>
             <TextArea
               label="Description"
               placeholder="Explain what's the topic about"
