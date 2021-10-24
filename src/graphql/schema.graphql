@@ -194,11 +194,6 @@ input EditTipsInput {
   paypal: String
 }
 
-input EditTopicInput {
-  description: String
-  id: ID!
-}
-
 input EditUserInput {
   avatar: String!
   bio: String
@@ -255,6 +250,12 @@ input LoginWithWalletInput {
   signature: String!
 }
 
+input ModTopicInput {
+  description: String
+  featuredAt: Boolean
+  id: ID!
+}
+
 input ModUserInput {
   featuredAt: Boolean
   isStaff: Boolean
@@ -284,7 +285,7 @@ type Mutation {
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
   loginWithWallet(input: LoginWithWalletInput!): User!
-  modTopic(input: EditTopicInput!): Topic
+  modTopic(input: ModTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User
   readNotification(input: ReadNotificationInput!): Result!

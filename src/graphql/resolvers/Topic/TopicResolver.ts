@@ -85,17 +85,18 @@ builder.mutationField('toggleTopicStar', (t) =>
   })
 )
 
-const EditTopicInput = builder.inputType('EditTopicInput', {
+const ModTopicInput = builder.inputType('ModTopicInput', {
   fields: (t) => ({
     id: t.id(),
-    description: t.string({ required: false })
+    description: t.string({ required: false }),
+    featuredAt: t.boolean({ required: false })
   })
 })
 
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: { input: t.arg({ type: EditTopicInput }) },
+    args: { input: t.arg({ type: ModTopicInput }) },
     nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       return await modTopic(query, input, session)

@@ -25,7 +25,7 @@ interface Props {
 const TopicMod: React.FC<Props> = ({ topic }) => {
   const [modTopic] = useMutation<ModTopicMutation, ModTopicMutationVariables>(
     gql`
-      mutation ModTopicMutation($input: EditTopicInput!) {
+      mutation ModTopicMutation($input: ModTopicInput!) {
         modTopic(input: $input) {
           id
           description

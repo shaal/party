@@ -1,17 +1,17 @@
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { EditTopicInput } from 'src/__generated__/schema.generated'
+import { ModTopicInput } from 'src/__generated__/schema.generated'
 
 /**
  * Update the topic
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
- * @param input - EditTopicInput
+ * @param input - ModTopicInput
  * @param session - Current user's session
  * @returns the updated topic
  */
 export const modTopic = async (
   query: any,
-  input: EditTopicInput | null | undefined,
+  input: ModTopicInput | null | undefined,
   session: Session | null | undefined
 ) => {
   const actionUser = await db.user.findUnique({
@@ -24,7 +24,8 @@ export const modTopic = async (
       ...query,
       where: { id: input?.id },
       data: {
-        description: input?.description as string
+        description: input?.description as string,
+        featuredAt: input?.featuredAt ? new Date() : null
       }
     })
   }
