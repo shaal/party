@@ -3,7 +3,6 @@ import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -40,7 +39,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
     {
       onError() {
         toast.error(ERROR_MESSAGE)
-        mixpanel.track('product.toggle_subscribe.failed')
       },
       onCompleted(data) {
         if (data?.toggleCommunityJoin?.hasJoined) {
@@ -52,7 +50,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
             `Successfully unsubscribed to ${data?.toggleCommunityJoin?.slug}`
           )
         }
-        mixpanel.track('product.toggle_subscribe.success')
       }
     }
   )
@@ -67,7 +64,6 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
         pathname: '/login',
         query: { redirect: `/communities/${community?.slug}` }
       })
-    mixpanel.track('product.toggle_subscribe.click')
     toggleCommunityJoin({
       variables: {
         input: { id: community?.id }
