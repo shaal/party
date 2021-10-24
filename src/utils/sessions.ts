@@ -92,10 +92,10 @@ export async function removeSession(
 
 const sessionCache = new WeakMap<IncomingMessage, Session | null>()
 
-export async function resolveSession({
-  req,
-  res
-}: Pick<GetServerSidePropsContext, 'req' | 'res'>) {
+export async function resolveSession(
+  { req, res }: Pick<GetServerSidePropsContext, 'req' | 'res'>,
+  checkOnboardStatus: boolean = false
+) {
   if (sessionCache.has(req)) {
     return sessionCache.get(req)
   }
@@ -112,7 +112,9 @@ export async function resolveSession({
         id: sessionID,
         expiresAt: { gte: new Date() }
       },
-      include: { user: { select: { onboarded: true } } }
+      include: checkOnboardStatus
+        ? { user: { select: { onboarded: true } } }
+        : null
     })
 
     if (session) {
