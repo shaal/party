@@ -36,7 +36,6 @@ const Bookmark: React.FC<Props> = ({ post }) => {
     {
       onError(error) {
         toast.error(error.message)
-        mixpanel.track('post.bookmark.failed')
       },
       onCompleted(data) {
         if (data?.toggleBookmark?.hasBookmarked) {
