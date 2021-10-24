@@ -6,7 +6,6 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { LogoutIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -47,15 +46,10 @@ const LoginForm: React.FC = () => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('login.email.failed')
-      },
       onCompleted(data) {
         if (data?.login?.inWaitlist) {
-          mixpanel.track('login.email.waitlist.redirect')
           router.push('/waitlist')
         } else {
-          mixpanel.track('login.email.success')
           authRedirect()
         }
       }
@@ -69,10 +63,9 @@ const LoginForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ email, password }) => {
-        mixpanel.track('login.email.click')
+      onSubmit={({ email, password }) =>
         login({ variables: { input: { email, password } } })
-      }}
+      }
     >
       <ErrorMessage
         title="Login failed."

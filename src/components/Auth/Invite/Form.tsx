@@ -6,7 +6,6 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { UserAddIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -31,12 +30,8 @@ const InviteSignupForm: React.FC = () => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('signup.invite.failed')
-      },
       onCompleted() {
         authRedirect()
-        mixpanel.track('signup.invite.success')
       }
     }
   )
@@ -48,8 +43,7 @@ const InviteSignupForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ username, email, password }) => {
-        mixpanel.track('signup.invite')
+      onSubmit={({ username, email, password }) =>
         signUp({
           variables: {
             input: {
@@ -60,7 +54,7 @@ const InviteSignupForm: React.FC = () => {
             }
           }
         })
-      }}
+      }
     >
       <ErrorMessage
         title="Error creating account"

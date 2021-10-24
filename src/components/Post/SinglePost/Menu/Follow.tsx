@@ -7,7 +7,6 @@ import AppContext from '@components/utils/AppContext'
 import { Menu } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
@@ -36,7 +35,6 @@ const Follow: React.FC<Props> = ({ user }) => {
     {
       onError(error) {
         toast.error(error.message)
-        mixpanel.track('user.toggle_follow.failed')
       },
       onCompleted(data) {
         if (data?.toggleFollow?.hasFollowed) {
@@ -48,7 +46,6 @@ const Follow: React.FC<Props> = ({ user }) => {
             `Successfully unfollowed @${data?.toggleFollow?.username}`
           )
         }
-        mixpanel.track('user.toggle_follow.success')
       }
     }
   )
@@ -59,7 +56,6 @@ const Follow: React.FC<Props> = ({ user }) => {
         pathname: '/login',
         query: { redirect: `/u/${user?.username}` }
       })
-    mixpanel.track('user.toggle_follow.click')
     toggleFollow({
       variables: {
         input: { userId: user?.id }

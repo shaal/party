@@ -3,7 +3,6 @@ import { Button } from '@components/UI/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { ethers } from 'ethers'
-import mixpanel from 'mixpanel-browser'
 import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -37,7 +36,6 @@ const LoginWithWallet: React.FC = () => {
   )
 
   const connectWallet = async () => {
-    mixpanel.track('login.wallet.click')
     try {
       setLoginButtonMessage('Connecting...')
       const web3Modal = getWeb3Modal({ theme: resolvedTheme })
@@ -48,7 +46,6 @@ const LoginWithWallet: React.FC = () => {
       if (data.status === 'error') {
         toast.error(data.message)
         setLoginButtonMessage('Wallet')
-        mixpanel.track('login.wallet.success')
       } else {
         setLoginButtonMessage('Please sign...')
         const signature = await web3
@@ -62,7 +59,6 @@ const LoginWithWallet: React.FC = () => {
         login({
           variables: { input: { nonce: data?.nonce as string, signature } }
         })
-        mixpanel.track('login.wallet.success')
         web3Modal.clearCachedProvider()
       }
     } finally {

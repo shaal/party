@@ -3,7 +3,6 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/UI/Button'
 import { Spinner } from '@components/UI/Spinner'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import toast from 'react-hot-toast'
 import { BASE_URL, STATIC_ASSETS } from 'src/constants'
 
@@ -46,11 +45,9 @@ const InviteDetails: React.FC = () => {
       refetchQueries: [{ query: INVITE_CODE_QUERY }],
       onError(error) {
         toast.error(error.message)
-        mixpanel.track('user.invite.regenerate.failed')
       },
       onCompleted() {
         toast.success('Invite code regenerated successfully!')
-        mixpanel.track('user.invite.regenerate.success')
       }
     }
   )
@@ -101,12 +98,7 @@ const InviteDetails: React.FC = () => {
               <div className="text-sm font-bold">Your Invite Code</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
                 <div>{user?.invite?.code}</div>
-                <button
-                  onClick={() => {
-                    mixpanel.track('user.invite.regenerate.click')
-                    regenerateInvite()
-                  }}
-                >
+                <button onClick={() => regenerateInvite()}>
                   <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </button>
               </div>
@@ -119,10 +111,7 @@ const InviteDetails: React.FC = () => {
           <div className="mt-4 mb-1">
             <Button
               className="mx-auto"
-              onClick={() => {
-                mixpanel.track('user.invite.regenerate.click')
-                regenerateInvite()
-              }}
+              onClick={() => regenerateInvite()}
               icon={<CursorClickIcon className="h-4 w-4" />}
             >
               Generate Invite

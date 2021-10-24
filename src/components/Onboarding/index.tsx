@@ -4,7 +4,6 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import AppContext from '@components/utils/AppContext'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
@@ -37,11 +36,9 @@ const Onboarding: React.FC = () => {
     {
       onError(error) {
         toast.error(error.message)
-        mixpanel.track('user.onboarding.accept_coc_and_tos.failed')
       },
       onCompleted() {
         router.push('/onboarding/topics')
-        mixpanel.track('user.onboarding.accept_coc_and_tos.success')
       }
     }
   )
@@ -64,10 +61,9 @@ const Onboarding: React.FC = () => {
         <CardBody className="linkify space-y-2">
           <Form
             form={form}
-            onSubmit={({ coc, tos }) => {
-              mixpanel.track('user.onboarding.accept_coc_and_tos.click')
+            onSubmit={({ coc, tos }) =>
               acceptCocAndTos({ variables: { input: { coc, tos } } })
-            }}
+            }
           >
             <div className="flex items-center space-x-2">
               <input id="acceptCOC" type="checkbox" {...form.register('coc')} />

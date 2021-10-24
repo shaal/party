@@ -6,7 +6,6 @@ import { useOembed } from '@components/utils/hooks/useOembed'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -125,16 +124,9 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
   )
 
   const handleLike = (post: any) => {
-    mixpanel.track('post.like.click')
     togglePostLike({
       variables: {
         input: { id: post?.id }
-      },
-      onError() {
-        mixpanel.track('post.like.failed')
-      },
-      onCompleted() {
-        mixpanel.track('post.like.success')
       }
     })
   }

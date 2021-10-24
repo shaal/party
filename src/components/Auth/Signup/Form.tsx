@@ -5,7 +5,6 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
@@ -41,13 +40,8 @@ const SignupForm: React.FC = () => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('signup.waitlist.failed')
-      },
       onCompleted() {
         router.push('/waitlist')
-        mixpanel.track('signup.waitlist.success')
-        mixpanel.track('signup.waitlist.redirect')
       }
     }
   )
@@ -59,14 +53,13 @@ const SignupForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ username, email, password }) => {
-        mixpanel.track('signup.waitlist')
+      onSubmit={({ username, email, password }) =>
         signUp({
           variables: {
             input: { username, email, password }
           }
         })
-      }}
+      }
     >
       <ErrorMessage
         title="Error creating account"
