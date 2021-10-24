@@ -83,6 +83,7 @@ const TopicMod: React.FC<Props> = ({ topic }) => {
               })
             }
           >
+            {/* TODO: Fix checkbox not update problem */}
             <div className="flex items-center gap-2">
               <input
                 id="featuredAt"
