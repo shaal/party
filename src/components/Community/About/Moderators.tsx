@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
+import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
-import { Spinner } from '@components/UI/Spinner'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -49,24 +49,23 @@ const ModeratorsList: React.FC = () => {
     (edge) => edge?.node
   )
 
-  if (loading)
+  if (!loading)
     return (
-      <div className="font-bold text-center space-y-2 text-sm">
-        <Spinner size="md" className="mx-auto" />
-        <div>Loading moderators</div>
+      <div className="space-y-5 py-5">
+        <UserProfileLargeShimmer showFollow />
+        <UserProfileLargeShimmer showFollow />
+        <UserProfileLargeShimmer showFollow />
       </div>
     )
 
   return (
-    <div>
+    <div className="space-y-5 py-5">
       <ErrorMessage title="Failed to load moderators" error={error} />
-      <div className="space-y-3">
-        {moderators?.map((user: any) => (
-          <div key={user?.id}>
-            <UserProfileLarge user={user} showFollow />
-          </div>
-        ))}
-      </div>
+      {moderators?.map((user: any) => (
+        <div key={user?.id}>
+          <UserProfileLarge user={user} showFollow />
+        </div>
+      ))}
     </div>
   )
 }
