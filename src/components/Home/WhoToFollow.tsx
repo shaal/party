@@ -6,7 +6,6 @@ import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
-import mixpanel from 'mixpanel-browser'
 import React from 'react'
 
 import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
@@ -39,12 +38,7 @@ const WhoToFollowCard = ({ children, refetch }: any) => {
           <SparklesIcon className="h-4 w-4 text-yellow-500" />
           <div>Who to follow</div>
         </div>
-        <button
-          onClick={() => {
-            mixpanel.track('refreshed.whotofollow')
-            refetch()
-          }}
-        >
+        <button onClick={() => refetch()}>
           <RefreshIcon className="h-5 w-5" />
         </button>
       </div>
