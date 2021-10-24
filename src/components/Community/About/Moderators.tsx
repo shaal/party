@@ -49,7 +49,7 @@ const ModeratorsList: React.FC = () => {
     (edge) => edge?.node
   )
 
-  if (!loading)
+  if (loading)
     return (
       <div className="space-y-5 py-5">
         <UserProfileLargeShimmer showFollow />
