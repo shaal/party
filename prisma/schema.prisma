@@ -257,6 +257,7 @@ model Topic {
   name        String  @unique
   image       String?
   description String?
+  featured    Boolean @default(false)
 
   // Relations
   posts    PostTopic[]
