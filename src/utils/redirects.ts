@@ -31,9 +31,11 @@ export async function unauthenticatedRoute(context: GetServerSidePropsContext) {
  * @returns redirect props
  */
 export async function authenticatedRoute(
-  context: GetServerSidePropsContext
+  context: GetServerSidePropsContext,
+  checkOnboardStatus: boolean = false
 ): Promise<GetServerSidePropsResult<{}>> {
-  const session = await resolveSession(context)
+  const session = await resolveSession(context, checkOnboardStatus)
+  const onboarded = session.hasOwnProperty('user') && !session?.user?.onboarded
 
   if (!session) {
     return {
@@ -46,12 +48,9 @@ export async function authenticatedRoute(
     }
   }
 
-  if (!session?.user?.onboarded) {
+  if (onboarded) {
     return {
-      redirect: {
-        destination: '/onboarding',
-        permanent: false
-      }
+      redirect: { destination: '/onboarding', permanent: false }
     }
   }
 
