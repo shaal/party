@@ -3,6 +3,7 @@ import { db } from '@utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'
+import { getFeaturedTopics } from './queries/getFeaturedTopics'
 import { hasStarred } from './queries/hasStarred'
 
 builder.prismaObject('Topic', {
@@ -20,6 +21,9 @@ builder.prismaObject('Topic', {
       }
     }),
     postsCount: t.relationCount('posts'),
+
+    // Timestamps
+    featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),
 
     // Relations
     starrers: t.relatedConnection('starrers', { cursor: 'id' }),
@@ -55,6 +59,18 @@ builder.queryField('topic', (t) =>
   })
 )
 
+builder.queryField('featuredTopics', (t) =>
+  t.prismaConnection({
+    type: 'Topic',
+    cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
+    resolve: async (query) => {
+      return await getFeaturedTopics(query)
+    }
+  })
+)
+
 const ToggleTopicStarInput = builder.inputType('ToggleTopicStarInput', {
   fields: (t) => ({
     id: t.id({ validate: { uuid: true } })
@@ -72,17 +88,18 @@ builder.mutationField('toggleTopicStar', (t) =>
   })
 )
 
-const EditTopicInput = builder.inputType('EditTopicInput', {
+const ModTopicInput = builder.inputType('ModTopicInput', {
   fields: (t) => ({
     id: t.id(),
-    description: t.string({ required: false })
+    description: t.string({ required: false }),
+    featuredAt: t.boolean({ required: false })
   })
 })
 
 builder.mutationField('modTopic', (t) =>
   t.prismaField({
     type: 'Topic',
-    args: { input: t.arg({ type: EditTopicInput }) },
+    args: { input: t.arg({ type: ModTopicInput }) },
     nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       return await modTopic(query, input, session)

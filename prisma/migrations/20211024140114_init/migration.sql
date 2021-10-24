@@ -164,7 +164,7 @@ CREATE TABLE `topics` (
     `name` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NULL,
     `description` VARCHAR(191) NULL,
-    `featured` BOOLEAN NOT NULL DEFAULT false,
+    `featuredAt` DATETIME(3) NULL,
 
     UNIQUE INDEX `topics_name_key`(`name`),
     PRIMARY KEY (`id`)

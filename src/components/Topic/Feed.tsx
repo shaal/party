@@ -4,7 +4,7 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { CollectionIcon } from '@heroicons/react/outline'
+import { HashtagIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import { POLLING_INTERVAL } from 'src/constants'
@@ -75,8 +75,13 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
       <div className="space-y-3">
         {posts?.length === 0 ? (
           <EmptyState
-            message="No posts found, follow some users!"
-            icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
+            message={
+              <div>
+                <span>No posts found in</span>
+                <span className="font-bold ml-1">{topic}</span>
+              </div>
+            }
+            icon={<HashtagIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
           posts?.map((post: any) => (
