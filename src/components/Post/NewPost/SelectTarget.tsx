@@ -1,7 +1,6 @@
 import { Button } from '@components/UI/Button'
 import { Modal } from '@components/UI/Modal'
 import { GlobeIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import { useState } from 'react'
 import { Community, Product } from 'src/__generated__/schema.generated'
 
@@ -33,18 +32,12 @@ const SelectTarget: React.FC<Props> = ({ setSelectedTarget }) => {
             <GlobeIcon className="h-4 w-4 text-brand-500" />
           )
         }
-        onClick={() => {
-          mixpanel.track('post.select_target.modal.open')
-          setShowModal(!showModal)
-        }}
+        onClick={() => setShowModal(!showModal)}
       >
         {selected ? selected?.name : 'Everywhere'}
       </Button>
       <Modal
-        onClose={() => {
-          mixpanel.track('post.select_target.modal.close')
-          setShowModal(!showModal)
-        }}
+        onClose={() => setShowModal(!showModal)}
         title="Where to post?"
         show={showModal}
       >
