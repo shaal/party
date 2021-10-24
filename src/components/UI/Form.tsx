@@ -34,11 +34,8 @@ export const FieldError: React.FC<FieldErrorProps> = ({ name }) => {
   const {
     formState: { errors }
   } = useFormContext()
-
   if (!name) return null
-
   const error = errors[name]
-
   if (!error) return null
 
   return (
