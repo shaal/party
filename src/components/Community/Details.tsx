@@ -40,7 +40,7 @@ const Details: React.FC<Props> = ({ community }) => {
             <div className="flex items-center space-x-5">
               <img
                 src={imagekitURL(community?.avatar as string, 200, 200)}
-                className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 ring-8 ring-gray-50 dark:ring-black"
+                className="rounded-lg h-28 w-28 sm:h-40 sm:w-40 bg-gray-200 dark:bg-gray-700"
                 alt={`#${community?.slug}`}
               />
               <div>

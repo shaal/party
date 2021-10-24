@@ -46,7 +46,7 @@ const Details: React.FC<Props> = ({ user }) => {
       <div className="px-5 sm:px-0 space-y-5">
         <div className="relative w-28 h-28 sm:h-40 sm:w-40 -mt-24">
           <img
-            className="rounded-full ring-8 w-28 h-28 sm:h-40 sm:w-40 bg-gray-300 dark:bg-gray-600 ring-gray-50 dark:ring-black"
+            className="rounded-full ring-8 w-28 h-28 sm:h-40 sm:w-40 bg-gray-200 dark:bg-gray-700 ring-gray-50 dark:ring-black"
             src={imagekitURL(user?.profile?.avatar as string, 200, 200)}
             alt={`@${user?.username}`}
           />
