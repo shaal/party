@@ -461,6 +461,7 @@ type Query {
   badges(after: String, before: String, first: Int, last: Int): QueryBadgesConnection!
   community(slug: String!): Community!
   exploreFeed(after: String, before: String, first: Int, last: Int): QueryExploreFeedConnection!
+  featuredTopics(after: String, before: String, first: Int, last: Int): QueryFeaturedTopicsConnection!
   featuredUsers(after: String, before: String, first: Int, last: Int): QueryFeaturedUsersConnection!
   homeFeed(after: String, before: String, first: Int, last: Int, type: String! = "ALL"): QueryHomeFeedConnection!
   integration(userId: ID): Integration
@@ -504,6 +505,16 @@ type QueryExploreFeedConnection {
 type QueryExploreFeedConnectionEdge {
   cursor: String!
   node: Post!
+}
+
+type QueryFeaturedTopicsConnection {
+  edges: [QueryFeaturedTopicsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryFeaturedTopicsConnectionEdge {
+  cursor: String!
+  node: Topic!
 }
 
 type QueryFeaturedUsersConnection {

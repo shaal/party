@@ -3,6 +3,7 @@ import { db } from '@utils/prisma'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'
+import { getFeaturedTopics } from './queries/getFeaturedTopics'
 import { hasStarred } from './queries/hasStarred'
 
 builder.prismaObject('Topic', {
@@ -51,6 +52,18 @@ builder.queryField('topic', (t) =>
         where: { name },
         rejectOnNotFound: true
       })
+    }
+  })
+)
+
+builder.queryField('featuredTopics', (t) =>
+  t.prismaConnection({
+    type: 'Topic',
+    cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
+    resolve: async (query) => {
+      return await getFeaturedTopics(query)
     }
   })
 )
