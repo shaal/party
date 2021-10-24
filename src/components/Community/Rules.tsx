@@ -2,9 +2,8 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { gql, useQuery } from '@apollo/client'
-import { Card, CardBody } from '@components/UI/Card'
+import { Card } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
-import { Spinner } from '@components/UI/Spinner'
 import { ScaleIcon } from '@heroicons/react/outline'
 import { Community } from 'src/__generated__/schema.generated'
 
@@ -55,12 +54,25 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
   if (loading)
     return (
       <RulesCard>
-        <CardBody>
-          <div className="font-bold text-center space-y-2 text-sm">
-            <Spinner size="md" className="mx-auto" />
-            <div>Loading rules</div>
+        {showCardAndHeading && (
+          <div className="text-lg p-5">
+            <div className="shimmer h-6 w-3/6 rounded" />
           </div>
-        </CardBody>
+        )}
+        <div className="divide-y">
+          {[...Array(3)]?.map((index: number) => (
+            <div className="px-5 py-3 flex space-x-3" key={index}>
+              <div className="shimmer h-5 w-5 rounded" />
+              <div className="space-y-3 w-full">
+                <div className="shimmer h-5 w-3/5 rounded" />
+                <div className="space-y-2">
+                  <div className="shimmer h-3 w-full rounded" />
+                  <div className="shimmer h-3 w-4/5 rounded" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </RulesCard>
     )
 
