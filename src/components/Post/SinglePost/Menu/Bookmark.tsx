@@ -3,7 +3,6 @@ import AppContext from '@components/utils/AppContext'
 import { Menu } from '@headlessui/react'
 import { BookmarkIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
-import mixpanel from 'mixpanel-browser'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
@@ -40,10 +39,8 @@ const Bookmark: React.FC<Props> = ({ post }) => {
       onCompleted(data) {
         if (data?.toggleBookmark?.hasBookmarked) {
           toast.success('Successfully bookmarked the post')
-          mixpanel.track('post.bookmark.success')
         } else {
           toast.success('Successfully removed the bookmark')
-          mixpanel.track('post.remove_bookmark.success')
         }
       }
     }
@@ -55,7 +52,6 @@ const Bookmark: React.FC<Props> = ({ post }) => {
         pathname: '/login',
         query: { redirect: `/posts/${post?.id}` }
       })
-    mixpanel.track('user.toggle_follow.click')
     toggleBookmark({
       variables: { input: { id: post?.id } }
     })
