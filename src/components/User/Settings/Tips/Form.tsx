@@ -8,7 +8,6 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import mixpanel from 'mixpanel-browser'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
@@ -68,12 +67,8 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
-      onError() {
-        mixpanel.track('user.tips.update.failed')
-      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
-        mixpanel.track('user.tips.update.success')
       }
     }
   )
@@ -108,8 +103,7 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 buymeacoffee,
                 bitcoin,
                 ethereum
-              }) => {
-                mixpanel.track('user.tips.update.click')
+              }) =>
                 editTips({
                   variables: {
                     input: {
@@ -122,7 +116,7 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     }
                   }
                 })
-              }}
+              }
             >
               <ErrorMessage
                 title="Error updating tips"
