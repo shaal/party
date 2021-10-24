@@ -51,7 +51,7 @@ const Onboarding: React.FC = () => {
   })
 
   return (
-    <div className="onboarding-bg">
+    <div className="onboarding-bg page-center">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <div className="bg-black rounded-t-none sm:rounded-t-lg py-8 px-5 text-white space-y-5">
           <img className="h-10 w-10" src="/white.svg" alt="Logo" />
