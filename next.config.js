@@ -7,6 +7,7 @@ module.exports = withPWA({
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching
   },
+  experimental: { esmExternals: true },
   reactStrictMode: true,
   poweredByHeader: false,
   generateEtags: false,
