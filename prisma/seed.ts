@@ -8,7 +8,7 @@ import { md5 } from 'hash-wasm'
 
 import { communityData, rulesData } from './seeds/communities'
 import { productData } from './seeds/products'
-import { userData } from './seeds/user'
+import { userData } from './seeds/users'
 
 const hplipsum = require('hplipsum')
 const db = new PrismaClient()
@@ -97,7 +97,7 @@ async function main() {
   for (let i = 0; i < 20; i++) {
     const slug =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding fake product - @${slug} 📦`)
+    console.log(`Seeding fake product - ${slug} 📦`)
     await db.product.create({
       data: {
         slug,
@@ -116,7 +116,7 @@ async function main() {
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding real product - #${product.slug} 📦`)
+    console.log(`Seeding real product - ${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
