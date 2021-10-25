@@ -8,6 +8,7 @@ import { md5 } from 'hash-wasm'
 
 import { communityData, rulesData } from './seeds/communities'
 import { productData } from './seeds/products'
+import { topicsData } from './seeds/topics'
 import { userData } from './seeds/users'
 
 const hplipsum = require('hplipsum')
@@ -231,6 +232,23 @@ async function main() {
     })
 
     console.log(`Seeding fake report - ${report?.id} 🚩`)
+  }
+
+  // Real Topic
+  for (const topic of topicsData) {
+    console.log(`Seeding real topics - #${topic.name} #️⃣`)
+    await db.topic.create({
+      data: {
+        name: topic.name,
+        featuredAt: new Date(),
+        starrers: {
+          connect: {
+            username:
+              userData[Math.floor(Math.random() * userData.length)].username
+          }
+        }
+      }
+    })
   }
 }
 
