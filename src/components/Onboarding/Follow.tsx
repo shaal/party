@@ -45,7 +45,7 @@ const Follow: React.FC = () => {
   }
 
   return (
-    <div className="onboarding-bg page-center !h-[calc(100vh-92px)]">
+    <div className="onboarding-bg page-center">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
