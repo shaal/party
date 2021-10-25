@@ -8,7 +8,7 @@ import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 
@@ -33,6 +33,7 @@ export const ONBOARDING_TOPICS_QUERY = gql`
 
 const Topics: React.FC = () => {
   const router = useRouter()
+  const [showSkip, setShowSkip] = useState<boolean>(true)
   const { data, loading, error } = useQuery<OnboardingTopicsQuery>(
     ONBOARDING_TOPICS_QUERY,
     { variables: { after: null } }
@@ -63,7 +64,7 @@ const Topics: React.FC = () => {
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}
               onClick={handleContinue}
             >
-              Continue
+              {showSkip ? 'Skip' : 'Continue'}
             </Button>
           </div>
           <div className="space-y-1">
@@ -82,14 +83,16 @@ const Topics: React.FC = () => {
                 <TopicProfileShimmer showStar />
               </div>
             ) : (
-              topics?.map((topic: any) => (
-                <TopicProfile
-                  key={topic?.id}
-                  topic={topic}
-                  showStar
-                  showToast={false}
-                />
-              ))
+              <div onClick={() => setShowSkip(false)}>
+                {topics?.map((topic: any) => (
+                  <TopicProfile
+                    key={topic?.id}
+                    topic={topic}
+                    showStar
+                    showToast={false}
+                  />
+                ))}
+              </div>
             )}
           </div>
         </CardBody>
