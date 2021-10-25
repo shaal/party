@@ -64,7 +64,6 @@ const Finish: React.FC = () => {
               </a>
             </div>
             <div>
-              <span>Join the chats</span>
               <a
                 href="https://twitter.com/devpartyio?ref_src=twsrc%5Etfw"
                 target="_blank"
