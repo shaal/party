@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
@@ -75,9 +76,16 @@ const Follow: React.FC = () => {
           </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-8 pr-1">
             <ErrorMessage title="Failed to load topics" error={error} />
-            {users?.map((user: any) => (
-              <UserProfileLarge key={user?.id} user={user} showFollow />
-            ))}
+            {loading ? (
+              <div className="space-y-8">
+                <UserProfileLargeShimmer showFollow />
+                <UserProfileLargeShimmer showFollow />
+              </div>
+            ) : (
+              users?.map((user: any) => (
+                <UserProfileLarge key={user?.id} user={user} showFollow />
+              ))
+            )}
           </div>
         </CardBody>
       </Card>
