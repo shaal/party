@@ -13,7 +13,7 @@ builder.prismaObject('Topic', {
     name: t.exposeString('name'),
     image: t.exposeString('image', { nullable: true }),
     description: t.exposeString('description', { nullable: true }),
-    hasStarted: t.field({
+    hasStarred: t.field({
       type: 'Boolean',
       resolve: async (parent, args, { session }) => {
         if (!session) return false
@@ -26,7 +26,10 @@ builder.prismaObject('Topic', {
     featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),
 
     // Relations
-    starrers: t.relatedConnection('starrers', { cursor: 'id' }),
+    starrers: t.relatedConnection('starrers', {
+      cursor: 'id',
+      totalCount: true
+    }),
     posts: t.prismaConnection({
       type: 'Post',
       cursor: 'id',

@@ -24,7 +24,7 @@ export const TOPIC_QUERY = gql`
       image
       description
       postsCount
-      hasStarted
+      hasStarred
       featuredAt
     }
   }

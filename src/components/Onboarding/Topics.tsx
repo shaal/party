@@ -1,20 +1,49 @@
+import { gql, useQuery } from '@apollo/client'
+import TopicProfileLarge from '@components/shared/TopicProfileLarge'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
+
+export const ONBOARDING_TOPICS_QUERY = gql`
+  query OnboardingTopicsQuery($after: String) {
+    featuredTopics(first: 50, after: $after) {
+      edges {
+        node {
+          id
+          name
+          description
+          starrers {
+            totalCount
+          }
+          postsCount
+          hasStarred
+        }
+      }
+    }
+  }
+`
+
 const Topics: React.FC = () => {
   const router = useRouter()
+  const { data, loading, error } = useQuery<OnboardingTopicsQuery>(
+    ONBOARDING_TOPICS_QUERY,
+    { variables: { after: null } }
+  )
+  const topics = data?.featuredTopics?.edges?.map((edge) => edge?.node)
 
   const handleContinue = () => {
     router.push('/onboarding/profile')
   }
 
   return (
-    <div className="onboarding-bg page-center">
+    <div className="onboarding-bg page-center !h-[calc(100vh-92px)]">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
@@ -44,13 +73,11 @@ const Topics: React.FC = () => {
               Star tags to customize your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto">
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-5 pr-1">
+            <ErrorMessage title="Failed to load topics" error={error} />
+            {topics?.map((topic: any) => (
+              <TopicProfileLarge key={topic?.id} topic={topic} showStar />
+            ))}
           </div>
         </CardBody>
       </Card>
