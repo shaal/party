@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
+import { Spinner } from '@components/UI/Spinner'
 import AppContext from '@components/utils/AppContext'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -80,7 +81,13 @@ const Onboarding: React.FC = () => {
             <div className="pt-5">
               <Button
                 className="mx-auto"
-                icon={<ArrowCircleRightIcon className="h-4 w-4" />}
+                icon={
+                  form.formState.isSubmitting ? (
+                    <Spinner size="xs" />
+                  ) : (
+                    <ArrowCircleRightIcon className="h-4 w-4" />
+                  )
+                }
                 disabled={!form.watch('coc') || !form.watch('tos')}
               >
                 Continue
