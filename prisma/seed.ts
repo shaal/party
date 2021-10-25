@@ -48,7 +48,7 @@ async function main() {
   for (let i = 0; i < 50; i++) {
     const username =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding fake user - @${username} 👦`)
+    console.log(`🌱 Seeding fake user - @${username} 👦`)
     await db.user.create({
       data: {
         email: `${username}@yogi.codes`,
@@ -71,7 +71,7 @@ async function main() {
 
   // Real User
   for (const user of userData) {
-    console.log(`Seeding real user - @${user.username} 👦`)
+    console.log(`🌱 Seeding real user - @${user.username} 👦`)
     await db.user.create({
       data: {
         email: user.email,
@@ -98,7 +98,7 @@ async function main() {
   for (let i = 0; i < 20; i++) {
     const slug =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`Seeding fake product - ${slug} 📦`)
+    console.log(`🌱 Seeding fake product - ${slug} 📦`)
     await db.product.create({
       data: {
         slug,
@@ -117,7 +117,7 @@ async function main() {
 
   // Product
   for (const product of productData) {
-    console.log(`Seeding real product - ${product.slug} 📦`)
+    console.log(`🌱 Seeding real product - ${product.slug} 📦`)
     await db.product.create({
       data: {
         name: product.name,
@@ -131,7 +131,7 @@ async function main() {
 
   // Community
   for (const community of communityData) {
-    console.log(`Seeding real community - ${community.slug} 🎭`)
+    console.log(`🌱 Seeding real community - ${community.slug} 🎭`)
     await db.community.create({
       data: {
         name: community.name,
@@ -199,7 +199,7 @@ async function main() {
       }
     })
 
-    console.log(`Seeding fake post - ${post?.id} 📜`)
+    console.log(`🌱 Seeding fake post - ${post?.id} 📜`)
   }
 
   // Report
@@ -231,12 +231,12 @@ async function main() {
       }
     })
 
-    console.log(`Seeding fake report - ${report?.id} 🚩`)
+    console.log(`🌱 Seeding fake report - ${report?.id} 🚩`)
   }
 
   // Real Topic
   for (const topic of topicsData) {
-    console.log(`Seeding real topics - #${topic.name} #️⃣`)
+    console.log(`🌱 Seeding real topics - #${topic.name} #️⃣`)
     await db.topic.create({
       data: {
         name: topic.name,
