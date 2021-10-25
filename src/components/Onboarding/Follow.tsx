@@ -13,7 +13,7 @@ import {
 } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { OnboardingUsersQuery } from './__generated__/Follow.generated'
 
@@ -40,6 +40,7 @@ export const ONBOARDING_USERS_QUERY = gql`
 
 const Follow: React.FC = () => {
   const router = useRouter()
+  const [showSkip, setShowSkip] = useState<boolean>(true)
   const { data, loading, error } = useQuery<OnboardingUsersQuery>(
     ONBOARDING_USERS_QUERY,
     { variables: { after: null } }
@@ -70,7 +71,7 @@ const Follow: React.FC = () => {
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}
               onClick={handleContinue}
             >
-              Continue
+              {showSkip ? 'Skip' : 'Continue'}
             </Button>
           </div>
           <div className="space-y-1">
@@ -96,14 +97,16 @@ const Follow: React.FC = () => {
                     icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
                   />
                 )}
-                {users?.map((user: any) => (
-                  <UserProfileLarge
-                    key={user?.id}
-                    user={user}
-                    showFollow
-                    showToast={false}
-                  />
-                ))}
+                <div onClick={() => setShowSkip(false)}>
+                  {users?.map((user: any) => (
+                    <UserProfileLarge
+                      key={user?.id}
+                      user={user}
+                      showFollow
+                      showToast={false}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>

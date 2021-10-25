@@ -1,17 +1,23 @@
+import { useQuery } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ProgressBar } from '@components/UI/ProgressBar'
+import { Spinner } from '@components/UI/Spinner'
+import { PROFILE_SETTINGS_QUERY } from '@components/User/Settings/Profile'
+import { ProfileSettingsQuery } from '@components/User/Settings/Profile/__generated__/index.generated'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
+import { User } from 'src/__generated__/schema.generated'
+
+import ProfileForm from './ProfileForm'
 
 const Profile: React.FC = () => {
-  const router = useRouter()
-
-  const handleContinue = () => {
-    router.push('/onboarding/follow')
-  }
+  const [showSkip, setShowSkip] = useState<boolean>(true)
+  const { data, loading } = useQuery<ProfileSettingsQuery>(
+    PROFILE_SETTINGS_QUERY
+  )
+  const currentUser = data?.me
 
   return (
     <div className="onboarding-bg page-center">
@@ -28,13 +34,14 @@ const Profile: React.FC = () => {
               />
             </Link>
             <ProgressBar percentage={50} />
-            <Button
-              className="mx-auto"
-              icon={<ArrowCircleRightIcon className="h-4 w-4" />}
-              onClick={handleContinue}
-            >
-              Continue
-            </Button>
+            <Link href="/onboarding/follow" passHref>
+              <Button
+                className="mx-auto"
+                icon={<ArrowCircleRightIcon className="h-4 w-4" />}
+              >
+                {showSkip ? 'Skip' : 'Continue'}
+              </Button>
+            </Link>
           </div>
           <div className="space-y-1">
             <div className="text-2xl font-bold">Build your profile</div>
@@ -44,13 +51,18 @@ const Profile: React.FC = () => {
               Settings.
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto">
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
+          <div className="pt-5">
+            {loading && !currentUser ? (
+              <div className="p-3 font-bold text-center space-y-2">
+                <Spinner size="md" className="mx-auto" />
+                <div>Get ready to build your profile!</div>
+              </div>
+            ) : (
+              <ProfileForm
+                currentUser={currentUser as User}
+                setShowSkip={setShowSkip}
+              />
+            )}
           </div>
         </CardBody>
       </Card>
