@@ -1,10 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
-import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -32,7 +30,7 @@ const changePasswordSchema = object({
 
 const ChangePasswordForm: React.FC = () => {
   const router = useRouter()
-  const [changePassword, changePasswordResult] = useMutation<
+  const [changePassword] = useMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables
   >(
@@ -42,6 +40,9 @@ const ChangePasswordForm: React.FC = () => {
       }
     `,
     {
+      onError(error) {
+        toast.error(error.message)
+      },
       onCompleted() {
         router.push('/login')
       }
@@ -60,15 +61,6 @@ const ChangePasswordForm: React.FC = () => {
         })
       }
     >
-      <ErrorMessage
-        title="Failed to change password"
-        error={changePasswordResult.error}
-      />
-
-      {changePasswordResult.data && (
-        <SuccessMessage>Password has been changed!</SuccessMessage>
-      )}
-
       <Input
         label="Current Password"
         type="password"
