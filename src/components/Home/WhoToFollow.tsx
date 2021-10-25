@@ -12,7 +12,7 @@ import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
 const WHO_TO_FOLLOW_QUERY = gql`
   query WhoToFollowQuery {
-    whoToFollow(first: 5) {
+    whoToFollow {
       edges {
         node {
           id

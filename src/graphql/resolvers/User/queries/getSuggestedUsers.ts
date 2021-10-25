@@ -3,29 +3,31 @@ import { db } from '@utils/prisma'
 import { Session } from '.prisma/client'
 
 /**
- * Get list of tailored users to follow
+ * Get list of suggested users to follow
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
  * @param session - Current user's session
- * @returns list of users to follow
+ * @returns list of suggested users to follow
  */
-export const getWhoToFollow = async (
+export const getSuggestedUsers = async (
   query: any,
   session: Session | null | undefined
 ) => {
-  const following = await db.user.findFirst({
+  const topics = await db.user.findFirst({
     where: { id: session?.userId, inWaitlist: false },
-    select: { following: { select: { id: true } } }
+    select: { topics: { select: { id: true } } }
   })
 
   return await db.user.findMany({
     ...query,
-    take: 5,
     where: {
       spammy: false,
       inWaitlist: false,
-      id: {
-        // @ts-ignore
-        notIn: [...following.following.map((user) => user.id), session?.userId]
+      id: { notIn: session?.userId },
+      topics: {
+        some: {
+          // @ts-ignore
+          id: { in: [...topics?.topics.map((topic) => topic.id)] }
+        }
       }
     },
     orderBy: [

@@ -13,7 +13,7 @@ import { OnboardingUsersQuery } from './__generated__/Follow.generated'
 
 export const ONBOARDING_USERS_QUERY = gql`
   query OnboardingUsersQuery($after: String) {
-    whoToFollow(first: 30, after: $after) {
+    suggestedUsers(first: 30, after: $after) {
       edges {
         node {
           id
@@ -38,7 +38,7 @@ const Follow: React.FC = () => {
     ONBOARDING_USERS_QUERY,
     { variables: { after: null } }
   )
-  const users = data?.whoToFollow?.edges?.map((edge) => edge?.node)
+  const users = data?.suggestedUsers?.edges?.map((edge) => edge?.node)
 
   const handleContinue = () => {
     router.push('/onboarding/profile')
