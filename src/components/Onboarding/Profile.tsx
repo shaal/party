@@ -50,7 +50,7 @@ const Profile: React.FC = () => {
               Settings.
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto">
+          <div className="pt-5">
             {loading && !currentUser ? (
               <div className="p-3 font-bold text-center space-y-2">
                 <Spinner size="md" className="mx-auto" />
