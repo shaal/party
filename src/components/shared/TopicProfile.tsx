@@ -43,7 +43,9 @@ const TopicProfile: React.FC<Props> = ({
           </div>
         </div>
       </div>
-      {showStar && showStar && <Star topic={topic} showToast={showToast} />}
+      {showStar && showStar && (
+        <Star topic={topic} showToast={showToast} showText />
+      )}
     </div>
   )
 }

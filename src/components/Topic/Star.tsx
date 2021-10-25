@@ -17,10 +17,11 @@ import {
 
 interface Props {
   topic: Topic
+  showText: boolean
   showToast?: boolean
 }
 
-const Star: React.FC<Props> = ({ topic, showToast = true }) => {
+const Star: React.FC<Props> = ({ topic, showText, showToast = true }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [isStarted, setIsStarted] = useState<boolean>(false)
@@ -77,6 +78,7 @@ const Star: React.FC<Props> = ({ topic, showToast = true }) => {
   return (
     <Switch
       as={Button}
+      className="text-sm"
       checked={isStarted}
       onChange={() => {
         setIsStarted(!isStarted)
@@ -91,7 +93,9 @@ const Star: React.FC<Props> = ({ topic, showToast = true }) => {
         )
       }
       outline
-    />
+    >
+      {isStarted ? showText && 'Unstar' : showText && 'Star'}
+    </Switch>
   )
 }
 
