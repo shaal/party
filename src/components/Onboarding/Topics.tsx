@@ -57,7 +57,7 @@ const Topics: React.FC = () => {
                 outline
               />
             </Link>
-            <ProgressBar percentage={33} />
+            <ProgressBar percentage={25} />
             <Button
               className="mx-auto"
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}
@@ -83,7 +83,12 @@ const Topics: React.FC = () => {
               </div>
             ) : (
               topics?.map((topic: any) => (
-                <TopicProfile key={topic?.id} topic={topic} showStar />
+                <TopicProfile
+                  key={topic?.id}
+                  topic={topic}
+                  showStar
+                  showToast={false}
+                />
               ))
             )}
           </div>

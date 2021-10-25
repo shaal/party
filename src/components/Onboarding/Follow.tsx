@@ -47,7 +47,7 @@ const Follow: React.FC = () => {
   const users = data?.suggestedUsers?.edges?.map((edge) => edge?.node)
 
   const handleContinue = () => {
-    router.push('/onboarding/profile')
+    router.push('/onboarding/finish')
   }
 
   return (
@@ -55,7 +55,7 @@ const Follow: React.FC = () => {
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
-            <Link href="/onboarding" passHref>
+            <Link href="/onboarding/profile" passHref>
               <Button
                 className="mx-auto rounded-full"
                 size="lg"
@@ -64,7 +64,7 @@ const Follow: React.FC = () => {
                 outline
               />
             </Link>
-            <ProgressBar percentage={33} />
+            <ProgressBar percentage={75} />
             <Button
               className="mx-auto"
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}
@@ -79,7 +79,7 @@ const Follow: React.FC = () => {
               Follow users to get their updates on your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-8 pr-1">
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar">
             <ErrorMessage title="Failed to load topics" error={error} />
             {loading ? (
               <div className="space-y-8">
@@ -87,7 +87,7 @@ const Follow: React.FC = () => {
                 <UserProfileLargeShimmer showFollow />
               </div>
             ) : (
-              <div>
+              <div className="space-y-8 pr-1">
                 {users?.length === 0 && (
                   <EmptyState
                     message={
@@ -97,7 +97,12 @@ const Follow: React.FC = () => {
                   />
                 )}
                 {users?.map((user: any) => (
-                  <UserProfileLarge key={user?.id} user={user} showFollow />
+                  <UserProfileLarge
+                    key={user?.id}
+                    user={user}
+                    showFollow
+                    showToast={false}
+                  />
                 ))}
               </div>
             )}

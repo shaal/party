@@ -12,9 +12,14 @@ import Slug from './Slug'
 interface Props {
   user: User
   showFollow?: boolean
+  showToast?: boolean
 }
 
-const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
+const UserProfileLarge: React.FC<Props> = ({
+  user,
+  showFollow = false,
+  showToast = true
+}) => {
   const { currentUser } = useContext(AppContext)
 
   return (
@@ -54,7 +59,9 @@ const UserProfileLarge: React.FC<Props> = ({ user, showFollow = false }) => {
           <div>{user?.profile?.bio}</div>
         </div>
       </div>
-      {currentUser && showFollow && <Follow user={user} showText />}
+      {currentUser && showFollow && (
+        <Follow user={user} showText showToast={showToast} />
+      )}
     </div>
   )
 }

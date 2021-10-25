@@ -63,7 +63,7 @@ const ViewTopic: React.FC = () => {
               <div>
                 <div className="flex items-center space-x-3">
                   <Slug slug={topic?.name} prefix="#" className="text-xl" />
-                  <Star topic={topic as Topic} />
+                  <Star topic={topic as Topic} showText={false} />
                 </div>
                 <div className="text-gray-600 dark:text-gray-300">
                   {topic?.postsCount} Posts
