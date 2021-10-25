@@ -3,9 +3,14 @@ import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLarge
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
+import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
-import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
+import {
+  ArrowCircleRightIcon,
+  ArrowLeftIcon,
+  UsersIcon
+} from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -82,9 +87,19 @@ const Follow: React.FC = () => {
                 <UserProfileLargeShimmer showFollow />
               </div>
             ) : (
-              users?.map((user: any) => (
-                <UserProfileLarge key={user?.id} user={user} showFollow />
-              ))
+              <div>
+                {users?.length === 0 && (
+                  <EmptyState
+                    message={
+                      <div>Star some topics to get suggested users!</div>
+                    }
+                    icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
+                  />
+                )}
+                {users?.map((user: any) => (
+                  <UserProfileLarge key={user?.id} user={user} showFollow />
+                ))}
+              </div>
             )}
           </div>
         </CardBody>
