@@ -35,7 +35,7 @@ export async function authenticatedRoute(
   checkOnboardStatus: boolean = false
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(context, checkOnboardStatus)
-  const onboarded = session.hasOwnProperty('user') && !session?.user?.onboarded
+  const onboarded = session?.hasOwnProperty('user') && !session?.user?.onboarded
 
   if (!session) {
     return {
