@@ -75,7 +75,7 @@ const Topics: React.FC = () => {
               Star tags to customize your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-5 pr-1">
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar">
             <ErrorMessage title="Failed to load topics" error={error} />
             {loading ? (
               <div className="space-y-5">
@@ -83,7 +83,10 @@ const Topics: React.FC = () => {
                 <TopicProfileShimmer showStar />
               </div>
             ) : (
-              <div onClick={() => setShowSkip(false)}>
+              <div
+                className="space-y-5 pr-1"
+                onClick={() => setShowSkip(false)}
+              >
                 {topics?.map((topic: any) => (
                   <TopicProfile
                     key={topic?.id}

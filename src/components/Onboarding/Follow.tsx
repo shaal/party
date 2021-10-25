@@ -88,7 +88,7 @@ const Follow: React.FC = () => {
                 <UserProfileLargeShimmer showFollow />
               </div>
             ) : (
-              <div className="space-y-8 pr-1">
+              <div>
                 {users?.length === 0 && (
                   <EmptyState
                     message={
@@ -97,7 +97,10 @@ const Follow: React.FC = () => {
                     icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
                   />
                 )}
-                <div onClick={() => setShowSkip(false)}>
+                <div
+                  className="space-y-5 pr-1"
+                  onClick={() => setShowSkip(false)}
+                >
                   {users?.map((user: any) => (
                     <UserProfileLarge
                       key={user?.id}
