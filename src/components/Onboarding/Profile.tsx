@@ -7,12 +7,13 @@ import { PROFILE_SETTINGS_QUERY } from '@components/User/Settings/Profile'
 import { ProfileSettingsQuery } from '@components/User/Settings/Profile/__generated__/index.generated'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { User } from 'src/__generated__/schema.generated'
 
 import ProfileForm from './ProfileForm'
 
 const Profile: React.FC = () => {
+  const [showSkip, setShowSkip] = useState<boolean>(true)
   const { data, loading } = useQuery<ProfileSettingsQuery>(
     PROFILE_SETTINGS_QUERY
   )
@@ -38,7 +39,7 @@ const Profile: React.FC = () => {
                 className="mx-auto"
                 icon={<ArrowCircleRightIcon className="h-4 w-4" />}
               >
-                Continue
+                {showSkip ? 'Skip' : 'Continue'}
               </Button>
             </Link>
           </div>
@@ -57,7 +58,10 @@ const Profile: React.FC = () => {
                 <div>Get ready to build your profile!</div>
               </div>
             ) : (
-              <ProfileForm currentUser={currentUser as User} />
+              <ProfileForm
+                currentUser={currentUser as User}
+                setShowSkip={setShowSkip}
+              />
             )}
           </div>
         </CardBody>

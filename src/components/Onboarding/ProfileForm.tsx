@@ -29,9 +29,10 @@ const editProfileSchema = object({
 
 interface Props {
   currentUser: User
+  setShowSkip: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ProfileForm: React.FC<Props> = ({ currentUser }) => {
+const ProfileForm: React.FC<Props> = ({ currentUser, setShowSkip }) => {
   const [editUser] = useMutation<
     OnboardingProfileSettingsMutation,
     OnboardingProfileSettingsMutationVariables
@@ -71,7 +72,7 @@ const ProfileForm: React.FC<Props> = ({ currentUser }) => {
     <Form
       form={form}
       className="space-y-4"
-      onSubmit={({ name, bio, location }) =>
+      onSubmit={({ name, bio, location }) => {
         editUser({
           variables: {
             input: {
@@ -85,7 +86,8 @@ const ProfileForm: React.FC<Props> = ({ currentUser }) => {
             }
           }
         })
-      }
+        setShowSkip(false)
+      }}
     >
       <Input
         label="Name"
