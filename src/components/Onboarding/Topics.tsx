@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ProgressBar } from '@components/UI/ProgressBar'
@@ -6,8 +7,37 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
+
+export const ONBOARDING_TOPICS_QUERY = gql`
+  query OnboardingTopicsQuery($after: String) {
+    featuredTopics(first: 10, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          id
+          name
+          starrers {
+            totalCount
+          }
+          hasStarred
+        }
+      }
+    }
+  }
+`
+
 const Topics: React.FC = () => {
   const router = useRouter()
+  const { data, loading, error, fetchMore } = useQuery<OnboardingTopicsQuery>(
+    ONBOARDING_TOPICS_QUERY,
+    { variables: { after: null } }
+  )
+  const products = data?.products?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.products?.pageInfo
 
   const handleContinue = () => {
     router.push('/onboarding/profile')

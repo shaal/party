@@ -32,7 +32,7 @@ const Star: React.FC<Props> = ({ topic }) => {
         toggleTopicStar(input: $input) {
           id
           name
-          hasStarted
+          hasStarred
         }
       }
     `,
@@ -41,7 +41,7 @@ const Star: React.FC<Props> = ({ topic }) => {
         toast.error(ERROR_MESSAGE)
       },
       onCompleted(data) {
-        if (data?.toggleTopicStar?.hasStarted) {
+        if (data?.toggleTopicStar?.hasStarred) {
           toast.success(`Successfully starred #${data?.toggleTopicStar?.name}`)
         } else {
           toast.success(
@@ -53,7 +53,7 @@ const Star: React.FC<Props> = ({ topic }) => {
   )
 
   useEffect(() => {
-    if (topic?.hasStarted) setIsStarted(topic?.hasStarted)
+    if (topic?.hasStarred) setIsStarted(topic?.hasStarred)
   }, [topic])
 
   const handleToggleStar = () => {
