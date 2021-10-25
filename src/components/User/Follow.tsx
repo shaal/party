@@ -16,9 +16,10 @@ import {
 interface Props {
   user: User
   showText: boolean
+  showToast?: boolean
 }
 
-const Follow: React.FC<Props> = ({ user, showText }) => {
+const Follow: React.FC<Props> = ({ user, showText, showToast = true }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
@@ -40,14 +41,16 @@ const Follow: React.FC<Props> = ({ user, showText }) => {
         toast.error(error.message)
       },
       onCompleted(data) {
-        if (data?.toggleFollow?.hasFollowed) {
-          toast.success(
-            `Successfully followed @${data?.toggleFollow?.username}`
-          )
-        } else {
-          toast.success(
-            `Successfully unfollowed @${data?.toggleFollow?.username}`
-          )
+        if (showToast) {
+          if (data?.toggleFollow?.hasFollowed) {
+            toast.success(
+              `Successfully followed @${data?.toggleFollow?.username}`
+            )
+          } else {
+            toast.success(
+              `Successfully unfollowed @${data?.toggleFollow?.username}`
+            )
+          }
         }
       }
     }

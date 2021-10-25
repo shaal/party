@@ -97,7 +97,12 @@ const Follow: React.FC = () => {
                   />
                 )}
                 {users?.map((user: any) => (
-                  <UserProfileLarge key={user?.id} user={user} showFollow />
+                  <UserProfileLarge
+                    key={user?.id}
+                    user={user}
+                    showFollow
+                    showToast={false}
+                  />
                 ))}
               </div>
             )}
