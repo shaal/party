@@ -2,11 +2,9 @@ import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
-import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -45,7 +43,7 @@ interface Props {
 const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editSocial, editSocialResult] = useMutation<
+  const [editSocial] = useMutation<
     SocialSettingsMutation,
     SocialSettingsMutationVariables
   >(
@@ -63,6 +61,9 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
+      onError(error) {
+        toast.error(error.message)
+      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
       }
@@ -98,13 +99,6 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 })
               }
             >
-              <ErrorMessage
-                title="Error updating social"
-                error={editSocialResult.error}
-              />
-              {editSocialResult.data && (
-                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
-              )}
               <Input
                 label="Twitter"
                 type="text"
