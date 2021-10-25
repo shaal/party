@@ -2,11 +2,9 @@ import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
-import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import React from 'react'
@@ -38,7 +36,7 @@ interface Props {
 const SUCCESS_MESSAGE = 'Integration settings successfully updated!'
 
 const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
-  const [editIntegration, editIntegrationResult] = useMutation<
+  const [editIntegration] = useMutation<
     IntegrationSettingsMutation,
     IntegrationSettingsMutationVariables
   >(
@@ -84,13 +82,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 })
               }
             >
-              <ErrorMessage
-                title="Error updating integration settings"
-                error={editIntegrationResult.error}
-              />
-              {editIntegrationResult.data && (
-                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
-              )}
               <ConnectWallet integration={integration} />
               <div className="border-b" />
               {integration?.spotifyRefreshToken ? (

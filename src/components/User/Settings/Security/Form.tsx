@@ -6,6 +6,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import {
