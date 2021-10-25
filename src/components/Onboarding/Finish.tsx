@@ -37,19 +37,13 @@ const Finish: React.FC = () => {
             </Button>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl font-bold">Build your profile</div>
+            <div className="text-2xl font-bold">Join our community!</div>
             <div className="text-gray-500">
-              Tell us a little bit about yourself — this is how others will see
-              you on Devparty. You’ll always be able to edit this later in your
-              Settings.
+              Join Devparty community accross the internet and stay updated with
+              new features and releases.
             </div>
           </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto">
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
             <div>WIP</div>
           </div>
         </CardBody>
