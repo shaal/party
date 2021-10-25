@@ -26,7 +26,7 @@ const Social: React.FC<Props> = ({ product }) => {
         <div className="flex items-center gap-2">
           {resolvedTheme === 'dark' ? (
             <img
-              src="${STATIC_ASSETS}/brands/twitter-light.svg"
+              src={`${STATIC_ASSETS}/brands/twitter-light.svg`}
               className="w-4"
               alt="Twitter Logo"
             />
