@@ -6,6 +6,7 @@ import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import useInView from 'react-cool-inview'
 
 import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 
@@ -36,8 +37,25 @@ const Topics: React.FC = () => {
     ONBOARDING_TOPICS_QUERY,
     { variables: { after: null } }
   )
-  const products = data?.products?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.products?.pageInfo
+  const topics = data?.featuredTopics?.edges?.map((edge) => edge?.node)
+  const pageInfo = data?.featuredTopics?.pageInfo
+
+  const { observe } = useInView({
+    threshold: 1,
+    onChange: ({ observe, unobserve }) => {
+      unobserve()
+      observe()
+    },
+    onEnter: () => {
+      if (pageInfo?.hasNextPage) {
+        fetchMore({
+          variables: {
+            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
+          }
+        })
+      }
+    }
+  })
 
   const handleContinue = () => {
     router.push('/onboarding/profile')
