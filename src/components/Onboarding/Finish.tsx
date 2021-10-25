@@ -43,8 +43,46 @@ const Finish: React.FC = () => {
               new features and releases.
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto">
-            <div>WIP</div>
+          <div className="pt-5 space-y-4">
+            <div>
+              <a
+                href="https://discord.gg/zxHM7uwDmk"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Button
+                  className="bg-[#5865F2] hover:bg-[#5865F2] border border-[#5865F2] text-white focus:ring-[#5865F2]"
+                  icon={
+                    <img
+                      className="h-5 w-5 mr-1"
+                      src="https://assets.devparty.io/images/brands/discord-white.svg"
+                    />
+                  }
+                >
+                  Join our Discord
+                </Button>
+              </a>
+            </div>
+            <div>
+              <span>Join the chats</span>
+              <a
+                href="https://twitter.com/devpartyio?ref_src=twsrc%5Etfw"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Button
+                  className="border bg-transparent border-[#2aa9e0] text-[#2aa9e0] hover:bg-transparent focus:ring-[#2aa9e0]"
+                  icon={
+                    <img
+                      className="h-3 mr-1"
+                      src="https://assets.devparty.io/images/brands/twitter.svg"
+                    />
+                  }
+                >
+                  Follow on Twitter
+                </Button>
+              </a>
+            </div>
           </div>
         </CardBody>
       </Card>
