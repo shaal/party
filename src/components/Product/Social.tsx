@@ -24,11 +24,19 @@ const Social: React.FC<Props> = ({ product }) => {
       )}
       {product?.twitter && (
         <div className="flex items-center gap-2">
-          <img
-            src={`${STATIC_ASSETS}/brands/twitter.svg`}
-            className="w-4"
-            alt="Twitter Logo"
-          />
+          {resolvedTheme === 'dark' ? (
+            <img
+              src="${STATIC_ASSETS}/brands/twitter-light.svg"
+              className="w-4"
+              alt="Twitter Logo"
+            />
+          ) : (
+            <img
+              src={`${STATIC_ASSETS}/brands/twitter-dark.svg`}
+              className="w-4"
+              alt="Twitter Logo"
+            />
+          )}
           <a
             href={`https://twitter.com/${product?.twitter}`}
             target="_blank"
