@@ -49,3 +49,12 @@ body {
 .page-center {
   @apply flex justify-center items-center h-[calc(100vh-64px)];
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

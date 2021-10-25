@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import TopicProfileLarge from '@components/shared/TopicProfileLarge'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
@@ -13,14 +14,11 @@ import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 export const ONBOARDING_TOPICS_QUERY = gql`
   query OnboardingTopicsQuery($after: String) {
     featuredTopics(first: 50, after: $after) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
       edges {
         node {
           id
           name
+          description
           starrers {
             totalCount
           }
@@ -38,7 +36,6 @@ const Topics: React.FC = () => {
     { variables: { after: null } }
   )
   const topics = data?.featuredTopics?.edges?.map((edge) => edge?.node)
-  const pageInfo = data?.featuredTopics?.pageInfo
 
   const handleContinue = () => {
     router.push('/onboarding/profile')
@@ -75,10 +72,10 @@ const Topics: React.FC = () => {
               Star tags to customize your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto">
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-3">
             <ErrorMessage title="Failed to load topics" error={error} />
             {topics?.map((topic: any) => (
-              <div key={topic?.id}>{topic?.name}</div>
+              <TopicProfileLarge key={topic?.id} topic={topic} showStar />
             ))}
           </div>
         </CardBody>
