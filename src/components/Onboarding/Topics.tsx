@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-import TopicProfileLarge from '@components/shared/TopicProfileLarge'
+import TopicProfileShimmer from '@components/shared/Shimmer/TopicProfileShimmer'
+import TopicProfile from '@components/shared/TopicProfile'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
@@ -75,9 +76,16 @@ const Topics: React.FC = () => {
           </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-5 pr-1">
             <ErrorMessage title="Failed to load topics" error={error} />
-            {topics?.map((topic: any) => (
-              <TopicProfileLarge key={topic?.id} topic={topic} showStar />
-            ))}
+            {loading ? (
+              <div className="space-y-5">
+                <TopicProfileShimmer showStar />
+                <TopicProfileShimmer showStar />
+              </div>
+            ) : (
+              topics?.map((topic: any) => (
+                <TopicProfile key={topic?.id} topic={topic} showStar />
+              ))
+            )}
           </div>
         </CardBody>
       </Card>

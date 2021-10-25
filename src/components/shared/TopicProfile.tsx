@@ -10,7 +10,7 @@ interface Props {
   showStar?: boolean
 }
 
-const TopicProfileLarge: React.FC<Props> = ({ topic, showStar = false }) => {
+const TopicProfile: React.FC<Props> = ({ topic, showStar = false }) => {
   return (
     <div className="flex justify-between items-center space-x-5">
       <div className="space-y-2">
@@ -43,4 +43,4 @@ const TopicProfileLarge: React.FC<Props> = ({ topic, showStar = false }) => {
   )
 }
 
-export default TopicProfileLarge
+export default TopicProfile
