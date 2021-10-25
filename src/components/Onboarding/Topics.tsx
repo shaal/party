@@ -22,6 +22,7 @@ export const ONBOARDING_TOPICS_QUERY = gql`
           starrers {
             totalCount
           }
+          postsCount
           hasStarred
         }
       }
@@ -42,7 +43,7 @@ const Topics: React.FC = () => {
   }
 
   return (
-    <div className="onboarding-bg page-center">
+    <div className="onboarding-bg page-center !h-[calc(100vh-92px)]">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
@@ -72,7 +73,7 @@ const Topics: React.FC = () => {
               Star tags to customize your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-3">
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-5 pr-1">
             <ErrorMessage title="Failed to load topics" error={error} />
             {topics?.map((topic: any) => (
               <TopicProfileLarge key={topic?.id} topic={topic} showStar />
