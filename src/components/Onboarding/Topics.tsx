@@ -1,18 +1,18 @@
 import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import useInView from 'react-cool-inview'
 
 import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 
 export const ONBOARDING_TOPICS_QUERY = gql`
   query OnboardingTopicsQuery($after: String) {
-    featuredTopics(first: 10, after: $after) {
+    featuredTopics(first: 50, after: $after) {
       pageInfo {
         endCursor
         hasNextPage
@@ -33,35 +33,16 @@ export const ONBOARDING_TOPICS_QUERY = gql`
 
 const Topics: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<OnboardingTopicsQuery>(
+  const { data, loading, error } = useQuery<OnboardingTopicsQuery>(
     ONBOARDING_TOPICS_QUERY,
     { variables: { after: null } }
   )
   const topics = data?.featuredTopics?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.featuredTopics?.pageInfo
 
-  const { observe } = useInView({
-    threshold: 1,
-    onChange: ({ observe, unobserve }) => {
-      unobserve()
-      observe()
-    },
-    onEnter: () => {
-      if (pageInfo?.hasNextPage) {
-        fetchMore({
-          variables: {
-            after: pageInfo?.endCursor ? pageInfo?.endCursor : null
-          }
-        })
-      }
-    }
-  })
-
   const handleContinue = () => {
     router.push('/onboarding/profile')
   }
-
-  if (loading) return <div>Loading...</div>
 
   return (
     <div className="onboarding-bg page-center">
@@ -95,12 +76,10 @@ const Topics: React.FC = () => {
             </div>
           </div>
           <div className="pt-5 max-h-[50vh] overflow-y-auto">
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
-            <div>WIP</div>
+            <ErrorMessage title="Failed to load topics" error={error} />
+            {topics?.map((topic: any) => (
+              <div key={topic?.id}>{topic?.name}</div>
+            ))}
           </div>
         </CardBody>
       </Card>
