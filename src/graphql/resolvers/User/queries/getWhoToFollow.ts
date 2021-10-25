@@ -19,7 +19,6 @@ export const getWhoToFollow = async (
 
   return await db.user.findMany({
     ...query,
-    take: 5,
     where: {
       spammy: false,
       inWaitlist: false,
