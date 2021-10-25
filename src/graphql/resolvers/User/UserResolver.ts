@@ -6,6 +6,7 @@ import { createLog } from '../Log/mutations/createLog'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
 import { getFeaturedUsers } from './queries/getFeaturedUsers'
+import { getSuggestedUsers } from './queries/getSuggestedUsers'
 import { getUsers } from './queries/getUsers'
 import { getWhoToFollow } from './queries/getWhoToFollow'
 import { hasFollowed } from './queries/hasFollowed'
@@ -162,8 +163,20 @@ builder.queryField('whoToFollow', (t) =>
   t.prismaConnection({
     type: 'User',
     cursor: 'id',
+    authScopes: { user: true },
     resolve: async (query, parent, args, { session }) => {
       return await getWhoToFollow(query, session)
+    }
+  })
+)
+
+builder.queryField('suggestedUsers', (t) =>
+  t.prismaConnection({
+    type: 'User',
+    cursor: 'id',
+    authScopes: { user: true },
+    resolve: async (query, parent, args, { session }) => {
+      return await getSuggestedUsers(query, session)
     }
   })
 )

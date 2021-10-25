@@ -480,6 +480,7 @@ type Query {
   sessions(after: String, before: String, first: Int, last: Int): QuerySessionsConnection
   spotify(userId: ID!): Spotify
   stats: Stats
+  suggestedUsers(after: String, before: String, first: Int, last: Int): QuerySuggestedUsersConnection!
   topic(name: String!): Topic!
   user(username: String!): User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
@@ -616,6 +617,16 @@ type QuerySessionsConnection {
 type QuerySessionsConnectionEdge {
   cursor: String!
   node: Session!
+}
+
+type QuerySuggestedUsersConnection {
+  edges: [QuerySuggestedUsersConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QuerySuggestedUsersConnectionEdge {
+  cursor: String!
+  node: User!
 }
 
 type QueryUsersConnection {
