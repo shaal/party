@@ -13,7 +13,7 @@ import { OnboardingUsersQuery } from './__generated__/Follow.generated'
 
 export const ONBOARDING_USERS_QUERY = gql`
   query OnboardingUsersQuery($after: String) {
-    whoToFollow(first: 50, after: $after) {
+    whoToFollow(first: 30, after: $after) {
       edges {
         node {
           id

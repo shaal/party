@@ -162,6 +162,8 @@ builder.queryField('whoToFollow', (t) =>
   t.prismaConnection({
     type: 'User',
     cursor: 'id',
+    defaultSize: 20,
+    maxSize: 100,
     authScopes: { user: true },
     resolve: async (query, parent, args, { session }) => {
       return await getWhoToFollow(query, session)
