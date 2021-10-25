@@ -2,11 +2,9 @@ import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
-import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -49,7 +47,7 @@ interface Props {
 const SUCCESS_MESSAGE = 'Tips successfully updated!'
 
 const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editTips, editTipsResult] = useMutation<
+  const [editTips] = useMutation<
     TipsSettingsMutation,
     TipsSettingsMutationVariables
   >(
@@ -67,6 +65,9 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
       }
     `,
     {
+      onError(error) {
+        toast.error(error.message)
+      },
       onCompleted() {
         toast.success(SUCCESS_MESSAGE)
       }
@@ -118,13 +119,6 @@ const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
                 })
               }
             >
-              <ErrorMessage
-                title="Error updating tips"
-                error={editTipsResult.error}
-              />
-              {editTipsResult.data && (
-                <SuccessMessage>{SUCCESS_MESSAGE}</SuccessMessage>
-              )}
               <Input
                 label="Cashtag"
                 type="text"
