@@ -79,7 +79,7 @@ const Follow: React.FC = () => {
               Follow users to get their updates on your feed
             </div>
           </div>
-          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar space-y-8 pr-1">
+          <div className="pt-5 max-h-[50vh] overflow-y-auto no-scrollbar">
             <ErrorMessage title="Failed to load topics" error={error} />
             {loading ? (
               <div className="space-y-8">
@@ -87,7 +87,7 @@ const Follow: React.FC = () => {
                 <UserProfileLargeShimmer showFollow />
               </div>
             ) : (
-              <div>
+              <div className="space-y-8 pr-1">
                 {users?.length === 0 && (
                   <EmptyState
                     message={
