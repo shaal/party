@@ -47,7 +47,7 @@ const Follow: React.FC = () => {
   const users = data?.suggestedUsers?.edges?.map((edge) => edge?.node)
 
   const handleContinue = () => {
-    router.push('/onboarding/profile')
+    router.push('/onboarding/finish')
   }
 
   return (
@@ -55,7 +55,7 @@ const Follow: React.FC = () => {
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
         <CardBody className="linkify space-y-2">
           <div className="flex items-center mb-5 space-x-5">
-            <Link href="/onboarding" passHref>
+            <Link href="/onboarding/profile" passHref>
               <Button
                 className="mx-auto rounded-full"
                 size="lg"
@@ -64,7 +64,7 @@ const Follow: React.FC = () => {
                 outline
               />
             </Link>
-            <ProgressBar percentage={33} />
+            <ProgressBar percentage={75} />
             <Button
               className="mx-auto"
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}

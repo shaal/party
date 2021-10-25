@@ -57,7 +57,7 @@ const Topics: React.FC = () => {
                 outline
               />
             </Link>
-            <ProgressBar percentage={33} />
+            <ProgressBar percentage={25} />
             <Button
               className="mx-auto"
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}

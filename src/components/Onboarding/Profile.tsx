@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
                 outline
               />
             </Link>
-            <ProgressBar percentage={66} />
+            <ProgressBar percentage={50} />
             <Button
               className="mx-auto"
               icon={<ArrowCircleRightIcon className="h-4 w-4" />}
