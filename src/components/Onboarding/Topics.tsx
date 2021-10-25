@@ -61,6 +61,8 @@ const Topics: React.FC = () => {
     router.push('/onboarding/profile')
   }
 
+  if (loading) return <div>Loading...</div>
+
   return (
     <div className="onboarding-bg page-center">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
