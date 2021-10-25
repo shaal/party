@@ -40,6 +40,11 @@ const ProfileForm: React.FC<Props> = ({ currentUser }) => {
       mutation OnboardingProfileSettingsMutation($input: EditUserInput!) {
         editUser(input: $input) {
           id
+          profile {
+            id
+            bio
+            location
+          }
         }
       }
     `,
