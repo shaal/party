@@ -83,7 +83,12 @@ const Topics: React.FC = () => {
               </div>
             ) : (
               topics?.map((topic: any) => (
-                <TopicProfile key={topic?.id} topic={topic} showStar />
+                <TopicProfile
+                  key={topic?.id}
+                  topic={topic}
+                  showStar
+                  showToast={false}
+                />
               ))
             )}
           </div>

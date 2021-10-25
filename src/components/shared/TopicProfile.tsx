@@ -8,9 +8,14 @@ import { Topic } from 'src/__generated__/schema.generated'
 interface Props {
   topic: Topic
   showStar?: boolean
+  showToast?: boolean
 }
 
-const TopicProfile: React.FC<Props> = ({ topic, showStar = false }) => {
+const TopicProfile: React.FC<Props> = ({
+  topic,
+  showStar = false,
+  showToast = true
+}) => {
   return (
     <div className="flex justify-between items-center space-x-5">
       <div className="space-y-2">
@@ -38,7 +43,7 @@ const TopicProfile: React.FC<Props> = ({ topic, showStar = false }) => {
           </div>
         </div>
       </div>
-      {showStar && showStar && <Star topic={topic} />}
+      {showStar && showStar && <Star topic={topic} showToast={showToast} />}
     </div>
   )
 }

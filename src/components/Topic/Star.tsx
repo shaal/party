@@ -17,9 +17,10 @@ import {
 
 interface Props {
   topic: Topic
+  showToast?: boolean
 }
 
-const Star: React.FC<Props> = ({ topic }) => {
+const Star: React.FC<Props> = ({ topic, showToast = true }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [isStarted, setIsStarted] = useState<boolean>(false)
@@ -41,12 +42,16 @@ const Star: React.FC<Props> = ({ topic }) => {
         toast.error(ERROR_MESSAGE)
       },
       onCompleted(data) {
-        if (data?.toggleTopicStar?.hasStarred) {
-          toast.success(`Successfully starred #${data?.toggleTopicStar?.name}`)
-        } else {
-          toast.success(
-            `Successfully unstarred #${data?.toggleTopicStar?.name}`
-          )
+        if (showToast) {
+          if (data?.toggleTopicStar?.hasStarred) {
+            toast.success(
+              `Successfully starred #${data?.toggleTopicStar?.name}`
+            )
+          } else {
+            toast.success(
+              `Successfully unstarred #${data?.toggleTopicStar?.name}`
+            )
+          }
         }
       }
     }
