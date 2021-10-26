@@ -37,14 +37,9 @@ builder.prismaObject('Post', {
       type: 'String',
       nullable: true,
       resolve: (parent) => {
-        console.log(
-          parent.body.match(
-            /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*)/
-          )
-        )
         try {
           // @ts-ignore
-          return parent.body.match(/^(?:\/\/|(?:www\.))/)[0]
+          return parent.body.match(/(www|http:|https:)+[^\s]+[\w]/)[0]
         } catch {
           return null
         }
