@@ -16,7 +16,7 @@ const Finish: React.FC = () => {
   return (
     <div className="onboarding-bg page-center">
       <Card className="w-full sm:max-w-xl border-2 shadow-lg">
-        <CardBody className="linkify space-y-2">
+        <CardBody className="linkify">
           <div className="flex items-center mb-5 space-x-5">
             <Link href="/onboarding/follow" passHref>
               <Button
@@ -36,14 +36,23 @@ const Finish: React.FC = () => {
               Finish
             </Button>
           </div>
-          <div className="space-y-1">
-            <div className="text-2xl font-bold">Join our community!</div>
-            <div className="text-gray-500">
-              Join Devparty community accross the internet and stay updated with
-              new features and releases.
+          <div className="space-y-1 text-center">
+            <div className="text-2xl font-bold">
+              Hangout with the community!
             </div>
+            <p className="text-gray-500 max-w-md mx-auto">
+              Join our community of builders across the internet and stay
+              updated with new features and releases.
+            </p>
           </div>
-          <div className="pt-5 space-y-4">
+          <div>
+            <img
+              alt="Welcome"
+              className="h-52 mx-auto"
+              src="https://assets.devparty.io/images/illustrations/yay.png"
+            />
+          </div>
+          <div className="mt-5 grid sm:flex justify-center items-center space-x-0 sm:space-x-2 space-y-2 sm:space-y-0">
             <div>
               <a
                 href="https://discord.gg/zxHM7uwDmk"
@@ -51,11 +60,12 @@ const Finish: React.FC = () => {
                 rel="noreferrer"
               >
                 <Button
-                  className="bg-[#5865F2] hover:bg-[#5865F2] border border-[#5865F2] text-white focus:ring-[#5865F2]"
+                  className="!border-[#5865F2] !bg-[#5865F2] opacity-90 hover:opacity-100 text-white focus:!ring-[#5865F2] focus:!ring-opacity-50"
                   icon={
                     <img
                       className="h-5 w-5 mr-1"
                       src="https://assets.devparty.io/images/brands/discord-white.svg"
+                      alt="Discord"
                     />
                   }
                 >
@@ -70,11 +80,12 @@ const Finish: React.FC = () => {
                 rel="noreferrer"
               >
                 <Button
-                  className="border bg-transparent border-[#2aa9e0] text-[#2aa9e0] hover:bg-transparent focus:ring-[#2aa9e0]"
+                  className="!border-[#1d9cf0] !bg-[#1d9cf0] opacity-90 hover:opacity-100 text-white focus:!ring-[#1d9cf0] focus:!ring-opacity-50"
                   icon={
                     <img
                       className="h-3 mr-1"
-                      src="https://assets.devparty.io/images/brands/twitter.svg"
+                      src="https://assets.devparty.io/images/brands/twitter-dark.svg"
+                      alt="Twitter"
                     />
                   }
                 >
