@@ -8,6 +8,7 @@
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
+  "gitlab.instanceUrl": "https://gitlab.com",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.gpuAcceleration": "canvas"
 }
