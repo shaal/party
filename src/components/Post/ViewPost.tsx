@@ -14,6 +14,7 @@ import { Post, User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
+import MintNFT from './MintNFT'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
@@ -80,6 +81,7 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <div className="space-y-5">
           <UserCard user={post?.user as User} />
+          <MintNFT />
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
         </div>
