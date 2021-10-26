@@ -2,7 +2,6 @@ import { Button } from '@components/UI/Button'
 import { Input } from '@components/UI/Input'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import Web3Modal from 'web3modal'
@@ -19,9 +18,8 @@ const client = create({
 
 const Mint: React.FC = () => {
   const [ethPrice, setEthPrice] = useState<string>('0')
-  const router = useRouter()
 
-  async function mintNFT() {
+  async function createMarket() {
     try {
       const added = await client.add(
         JSON.stringify({
@@ -86,7 +84,7 @@ const Mint: React.FC = () => {
         <div className="font-bold text-lg">Unlockable Content</div>
         <div>WIP</div>
       </div>
-      <Button onClick={mintNFT}>Mint NFT</Button>
+      <Button onClick={createMarket}>Mint NFT</Button>
     </div>
   )
 }
