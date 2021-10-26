@@ -42,7 +42,7 @@ const Mint: React.FC = () => {
     const provider = new ethers.providers.Web3Provider(connection)
     const signer = provider.getSigner()
 
-    /* next, create the item */
+    // next, create the item
     let contract = new ethers.Contract(nftaddress, NFT.abi, signer)
     let transaction = await contract.createToken(url)
     let tx = await transaction.wait()
@@ -52,7 +52,7 @@ const Mint: React.FC = () => {
 
     const price = ethers.utils.parseUnits(ethPrice, 'ether')
 
-    /* then list the item for sale on the marketplace */
+    // then list the item for sale on the marketplace
     contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString()
