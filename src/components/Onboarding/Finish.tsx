@@ -49,7 +49,7 @@ const Finish: React.FC = () => {
             <img
               alt="Welcome"
               className="h-52 mx-auto"
-              src="https://cloudflare-ipfs.com/ipfs/QmcDpJhD72Bk7SJ2sD6mnW4h7p8wf7CCy5UHHLtvh7WtW9"
+              src="assets.devparty.io/images/illustrations/yay.png"
             />
           </div>
           <div className="mt-5 flex justify-center space-x-2 items-center flex-wrap">
