@@ -65,7 +65,7 @@ const Finish: React.FC = () => {
                     <img
                       className="h-5 w-5 mr-1"
                       src="https://assets.devparty.io/images/brands/discord-white.svg"
-                      alt="discord"
+                      alt="Discord"
                     />
                   }
                 >
@@ -85,7 +85,7 @@ const Finish: React.FC = () => {
                     <img
                       className="h-3 mr-1"
                       src="https://assets.devparty.io/images/brands/twitter-dark.svg"
-                      alt="twitter"
+                      alt="Twitter"
                     />
                   }
                 >
