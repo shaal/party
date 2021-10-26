@@ -1,24 +1,29 @@
-import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export function middleware(req: NextRequest) {
+export function middleware() {
   const ContentSecurityPolicy = `
     block-all-mixed-content;
     font-src assets.devparty.io;
   `
 
-  return new Response(null, {
-    headers: {
-      ...Object.fromEntries(req.headers),
-      'Content-Security-Policy': ContentSecurityPolicy.replace(/\n/g, ''),
-      'Referrer-Policy':
-        'origin-when-cross-origin, strict-origin-when-cross-origin',
-      'Permissions-Policy': 'interest-cohort=()',
-      'X-middleware-next': '1',
-      'X-Frame-Options': 'DENY',
-      'X-Content-Type-Options': 'nosniff',
-      'X-DNS-Prefetch-Control': 'on',
-      'Strict-Transport-Security':
-        'max-age=31536000; includeSubDomains; preload'
-    }
-  })
+  const response = NextResponse.next()
+
+  response.headers.set(
+    'Content-Security-Policy',
+    ContentSecurityPolicy.replace(/\n/g, '')
+  )
+  response.headers.set(
+    'Referrer-Policy',
+    'origin-when-cross-origin, strict-origin-when-cross-origin'
+  )
+  response.headers.set('Permissions-Policy', 'interest-cohort=()')
+  response.headers.set(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains; preload'
+  )
+  response.headers.set('X-Frame-Options', 'DENY')
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('X-DNS-Prefetch-Control', 'on')
+
+  return response
 }
