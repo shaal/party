@@ -20,8 +20,8 @@ tasks:
       yarn dev;
   - init: gp sync-await setup;
     command: >
-      printf "Waiting for server to boot ⏰"
-      clear
+      printf "Waiting for server to boot ⏰";
+      clear;
 
 ports:
   - port: 3000 # Web app

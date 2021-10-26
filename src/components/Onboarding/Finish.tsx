@@ -45,14 +45,14 @@ const Finish: React.FC = () => {
               updated with new features and releases.
             </p>
           </div>
-          <div className="max-w-lg text-center">
+          <div>
             <img
               alt="Welcome"
               className="h-52 mx-auto"
-              src="assets.devparty.io/images/illustrations/yay.png"
+              src="https://assets.devparty.io/images/illustrations/yay.png"
             />
           </div>
-          <div className="mt-5 flex justify-center space-x-2 items-center flex-wrap">
+          <div className="mt-5 grid sm:flex justify-center items-center space-x-0 sm:space-x-2 space-y-2 sm:space-y-0">
             <div>
               <a
                 href="https://discord.gg/zxHM7uwDmk"
@@ -60,7 +60,7 @@ const Finish: React.FC = () => {
                 rel="noreferrer"
               >
                 <Button
-                  className="!bg-[#5865F2] !hover:bg-[#5865F2] border !border-[#5865F2] opacity-90 hover:opacity-100 text-white !focus:ring-[#5865F2]"
+                  className="!border-[#5865F2] !bg-[#5865F2] opacity-90 hover:opacity-100 text-white focus:!ring-[#5865F2] focus:!ring-opacity-50"
                   icon={
                     <img
                       className="h-5 w-5 mr-1"
@@ -80,7 +80,7 @@ const Finish: React.FC = () => {
                 rel="noreferrer"
               >
                 <Button
-                  className="border !bg-[#1d9cf0] !border-[#1d9cf0] opacity-90 hover:opacity-100 text-white !hover:bg-[#1d9cf0] !focus:ring-[#1d9cf0]"
+                  className="!border-[#1d9cf0] !bg-[#1d9cf0] opacity-90 hover:opacity-100 text-white focus:!ring-[#1d9cf0] focus:!ring-opacity-50"
                   icon={
                     <img
                       className="h-3 mr-1"
