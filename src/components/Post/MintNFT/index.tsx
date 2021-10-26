@@ -10,7 +10,8 @@ const MintNFT: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
   return (
     <Card>
-      <CardBody>
+      <CardBody className="space-y-3">
+        <div>Mint this post as NFT gas-free in Polygon network</div>
         <Button
           icon={<FingerPrintIcon className="h-4 w-4" />}
           onClick={() => setShowModal(!showModal)}
