@@ -1,6 +1,5 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
-import urlRegexSafe from 'url-regex-safe'
 
 import { hasBookmarked } from '../Bookmark/queries/hasBookmarked'
 import { hasLiked } from '../Like/queries/hasLiked'
@@ -40,7 +39,7 @@ builder.prismaObject('Post', {
       resolve: (parent) => {
         try {
           // @ts-ignore
-          return parent.body.match(urlRegexSafe())[0]
+          return parent.body.match(/(www|http:|https:)+[^\s]+[\w]/)[0]
         } catch {
           return null
         }
@@ -133,8 +132,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 190 }
     }),
-    parentId: t.id({ required: false, validate: { uuid: true } }),
-    targetId: t.id({ required: false, validate: { uuid: true } }),
+    parentId: t.id({ required: false }),
+    targetId: t.id({ required: false }),
     targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
