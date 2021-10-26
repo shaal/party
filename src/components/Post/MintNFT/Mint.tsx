@@ -1,3 +1,5 @@
+import { Button } from '@components/UI/Button'
+import { Input } from '@components/UI/Input'
 import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -8,22 +10,16 @@ import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
 import { nftaddress, nftmarketaddress } from '../../../../config'
 
 const Mint: React.FC = () => {
-  const [formInput, updateFormInput] = useState({
-    price: '',
-    name: '',
-    description: ''
-  })
+  const [ethPrice, setEthPrice] = useState<string>('0')
   const router = useRouter()
 
   async function createMarket() {
-    const { name, description, price } = formInput
-    if (!name || !description || !price) return
     try {
       const added = await fetch('https://ipfs.infura.io:5001/api/v0/add', {
         method: 'post',
         body: JSON.stringify({
-          name,
-          description,
+          name: 'Hello, World!',
+          description: 'Hello, World!',
           post: 'https://devparty.io',
           image: 'https://devparty.io'
         })
@@ -32,7 +28,7 @@ const Mint: React.FC = () => {
       const url = `https://ipfs.infura.io/ipfs/${Hash}`
       createSale(url)
     } catch (error) {
-      console.log('Error uploading file: ', error)
+      console.log('Error uploading metadata: ', error)
     }
   }
 
@@ -50,7 +46,7 @@ const Mint: React.FC = () => {
     let value = event.args[2]
     let tokenId = value.toNumber()
 
-    const price = ethers.utils.parseUnits(formInput.price, 'ether')
+    const price = ethers.utils.parseUnits(ethPrice, 'ether')
 
     /* then list the item for sale on the marketplace */
     contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
@@ -74,33 +70,18 @@ const Mint: React.FC = () => {
         <div className="font-bold text-lg">Sale Status and Price</div>
         <div className="flex justify-center">
           <div className="w-1/2 flex flex-col pb-12">
-            <input
-              placeholder="Asset Name"
-              className="mt-8 border rounded p-4"
-              onChange={(e) =>
-                updateFormInput({ ...formInput, name: e.target.value })
-              }
-            />
-            <textarea
-              placeholder="Asset Description"
-              className="mt-2 border rounded p-4"
-              onChange={(e) =>
-                updateFormInput({ ...formInput, description: e.target.value })
-              }
-            />
-            <input
+            <Input
+              type="number"
               placeholder="Asset Price in Eth"
               className="mt-2 border rounded p-4"
-              onChange={(e) =>
-                updateFormInput({ ...formInput, price: e.target.value })
-              }
+              onChange={(e) => setEthPrice(e.target.value)}
             />
-            <button
+            <Button
               onClick={createMarket}
               className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
             >
               Create Digital Asset
-            </button>
+            </Button>
           </div>
         </div>
       </div>
