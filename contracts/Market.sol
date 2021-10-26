@@ -41,12 +41,12 @@ contract NFTMarket is ReentrancyGuard {
     bool sold
   );
 
-  /* Returns the listing price of the contract */
+  // Returns the listing price of the contract
   function getListingPrice() public view returns (uint256) {
     return listingPrice;
   }
 
-  /* Places an item for sale on the marketplace */
+  // Places an item for sale on the marketplace
   function createMarketItem(
     address nftContract,
     uint256 tokenId,
@@ -81,8 +81,8 @@ contract NFTMarket is ReentrancyGuard {
     );
   }
 
-  /* Creates the sale of a marketplace item */
-  /* Transfers ownership of the item, as well as funds between parties */
+  // Creates the sale of a marketplace item
+  // Transfers ownership of the item, as well as funds between parties
   function createMarketSale(
     address nftContract,
     uint256 itemId
@@ -99,7 +99,7 @@ contract NFTMarket is ReentrancyGuard {
     payable(owner).transfer(listingPrice);
   }
 
-  /* Returns all unsold market items */
+  // Returns all unsold market items
   function fetchMarketItems() public view returns (MarketItem[] memory) {
     uint itemCount = _itemIds.current();
     uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
@@ -117,7 +117,7 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
-  /* Returns onlyl items that a user has purchased */
+  // Returns only items that a user has purchased
   function fetchMyNFTs() public view returns (MarketItem[] memory) {
     uint totalItemCount = _itemIds.current();
     uint itemCount = 0;
@@ -141,7 +141,7 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
-  /* Returns only items a user has created */
+  // Returns only items a user has created
   function fetchItemsCreated() public view returns (MarketItem[] memory) {
     uint totalItemCount = _itemIds.current();
     uint itemCount = 0;
