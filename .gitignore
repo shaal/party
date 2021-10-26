@@ -42,3 +42,4 @@ public/sw*
 # Hardhat files
 cache
 artifacts
+config.js
