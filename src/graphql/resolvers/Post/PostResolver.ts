@@ -37,10 +37,14 @@ builder.prismaObject('Post', {
       type: 'String',
       nullable: true,
       resolve: (parent) => {
+        console.log(
+          parent.body.match(
+            /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*)/
+          )
+        )
         try {
           // @ts-ignore
-          // return parent.body.match(urlRegexSafe())[0]
-          return null
+          return parent.body.match(/^(?:\/\/|(?:www\.))/)[0]
         } catch {
           return null
         }
@@ -133,8 +137,8 @@ const CreatePostInput = builder.inputType('CreatePostInput', {
       required: false,
       validate: { minLength: 1, maxLength: 190 }
     }),
-    parentId: t.id({ required: false, validate: { uuid: true } }),
-    targetId: t.id({ required: false, validate: { uuid: true } }),
+    parentId: t.id({ required: false }),
+    targetId: t.id({ required: false }),
     targetType: t.string({ required: false }),
     body: t.string({ validate: { minLength: 1, maxLength: 10000 } }),
     done: t.boolean({ defaultValue: true }),
