@@ -4,6 +4,7 @@ import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import Web3Modal from 'web3modal'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
@@ -20,7 +21,7 @@ const Mint: React.FC = () => {
   const [ethPrice, setEthPrice] = useState<string>('0')
   const router = useRouter()
 
-  async function createMarket() {
+  async function mintNFT() {
     try {
       const added = await client.add(
         JSON.stringify({
@@ -62,7 +63,7 @@ const Mint: React.FC = () => {
       value: listingPrice
     })
     await transaction.wait()
-    router.push('/')
+    toast.success('🎉🎉🎉🎉🎉')
   }
 
   return (
@@ -85,7 +86,7 @@ const Mint: React.FC = () => {
         <div className="font-bold text-lg">Unlockable Content</div>
         <div>WIP</div>
       </div>
-      <Button onClick={createMarket}>Mint NFT</Button>
+      <Button onClick={mintNFT}>Mint NFT</Button>
     </div>
   )
 }
