@@ -1,6 +1,7 @@
 import { Button } from '@components/UI/Button'
 import { Input } from '@components/UI/Input'
 import { ethers } from 'ethers'
+import { create } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Web3Modal from 'web3modal'
@@ -9,23 +10,27 @@ import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
 import { nftaddress, nftmarketaddress } from '../../../../config'
 
+const client = create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https'
+})
+
 const Mint: React.FC = () => {
   const [ethPrice, setEthPrice] = useState<string>('0')
   const router = useRouter()
 
   async function createMarket() {
     try {
-      const added = await fetch('https://ipfs.infura.io:5001/api/v0/add', {
-        method: 'post',
-        body: JSON.stringify({
-          name: 'Hello, World!',
-          description: 'Hello, World!',
-          post: 'https://devparty.io',
-          image: 'https://devparty.io'
+      const added = await client.add(
+        JSON.stringify({
+          name: "Yogi's Friend",
+          description: "Yogi's best friend is filiptronicek",
+          post: 'https://devparty.io/posts/fufu',
+          image: 'ipfs://QmboHvNcxqH4TPTFe1t1fwgFFj9KrECHvBbp7WpsVmfwDp/nft.jpg'
         })
-      })
-      const { Hash }: { Hash: string } = await added.json()
-      const url = `https://ipfs.infura.io/ipfs/${Hash}`
+      )
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`
       createSale(url)
     } catch (error) {
       console.log('Error uploading metadata: ', error)
@@ -68,27 +73,19 @@ const Mint: React.FC = () => {
       </div>
       <div>
         <div className="font-bold text-lg">Sale Status and Price</div>
-        <div className="flex justify-center">
-          <div className="w-1/2 flex flex-col pb-12">
-            <Input
-              type="number"
-              placeholder="Asset Price in Eth"
-              className="mt-2 border rounded p-4"
-              onChange={(e) => setEthPrice(e.target.value)}
-            />
-            <Button
-              onClick={createMarket}
-              className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
-            >
-              Create Digital Asset
-            </Button>
-          </div>
+        <div>
+          <Input
+            type="number"
+            placeholder="Asset Price in ETH"
+            onChange={(e) => setEthPrice(e.target.value)}
+          />
         </div>
       </div>
       <div>
         <div className="font-bold text-lg">Unlockable Content</div>
         <div>WIP</div>
       </div>
+      <Button onClick={createMarket}>Mint NFT</Button>
     </div>
   )
 }
