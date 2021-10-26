@@ -14,13 +14,13 @@ import { Post, User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
 import { PostQuery } from './__generated__/ViewPost.generated'
-import MintNFT from './MintNFT'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
 
 const PostMod = dynamic(() => import('./Mod'))
+const MintNFT = dynamic(() => import('./MintNFT'))
 
 export const POST_QUERY = gql`
   query PostQuery($id: ID!) {
