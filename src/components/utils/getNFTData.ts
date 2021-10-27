@@ -16,12 +16,12 @@ const getNFTData = (post: Post) => {
       },
       {
         trait_type: 'Type',
-        value: `@${post?.type}`
+        value: post?.type
       },
       {
         display_type: 'date',
         trait_type: 'Posted at',
-        value: new Date(post?.createdAt).getTime() / 1000
+        value: parseInt((new Date(post?.createdAt).getTime() / 1000).toFixed(0))
       }
     ]
   }
