@@ -8589,10 +8589,10 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-hook-form@^7.18.0-next.0:
-  version "7.18.0-next.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.18.0-next.0.tgz#1aa68db17eb745efc7e3f5c6ef6e92f13290c693"
-  integrity sha512-Jy/FH32SVzZ2twK+607tPjUPtKCh6MNUppVRn/ZTrItpTeYWQLXkE6SBqIz9AO2xmhf/NkzeQ19TCPPT6WXo6A==
+react-hook-form@^7.18.0:
+  version "7.18.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.18.0.tgz#2ba847096be0209e1f6e4d82e7168a037a2fe103"
+  integrity sha512-aTFs1jXGvpBBv4vYuhheVd9KbAZw/l3DOZhLIadNDyFddaDQmn+yJa63IZ14GDFz4NFgIi+ROkubfGJG2x6q2Q==
 
 react-hot-toast@^2.1.1:
   version "2.1.1"
