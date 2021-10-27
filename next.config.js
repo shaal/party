@@ -8,8 +8,8 @@ module.exports = withPWA({
     runtimeCaching
   },
   experimental: {
-    concurrentFeatures: true,
-    serverComponents: true
+    concurrentFeatures: true
+    // serverComponents: true
   },
   swcMinify: true,
   reactStrictMode: true,

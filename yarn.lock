@@ -8580,7 +8580,7 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-dom@^18.0.0-alpha-4298ddbc5-20211023:
+react-dom@alpha:
   version "18.0.0-alpha-4298ddbc5-20211023"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0-alpha-4298ddbc5-20211023.tgz#c3613a1b1e5da44c8e5d36c33245ad270f01c215"
   integrity sha512-3coe1i4Q3xj9uqFX+3+3JLkHZZ/+dPsI7k3cM5w2vR0hybffH81d+A4Pybp5L4vVmKIOkCm8iWZvtGQZOaz95A==
@@ -8635,7 +8635,7 @@ react@^16.8.6:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-react@^18.0.0-alpha-4298ddbc5-20211023:
+react@alpha:
   version "18.0.0-alpha-4298ddbc5-20211023"
   resolved "https://registry.yarnpkg.com/react/-/react-18.0.0-alpha-4298ddbc5-20211023.tgz#ecd19302e69fff0c5656a40238f68aab13068b5e"
   integrity sha512-RmJoUjvn4Ol3kzAgqyAWXpa+7Apj8KlN1/3QvGEDDpVvc7njrrQR49PKkYeFphejUle6GBQhaN74iQdQ9JqRiw==
