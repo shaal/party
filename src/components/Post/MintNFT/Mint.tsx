@@ -38,7 +38,10 @@ const Mint: React.FC<Props> = ({ post }) => {
           name: `Post from @${post?.user?.username} in Devparty`,
           description: post?.body,
           post: `https://devparty.io/posts/${post?.id}`,
-          image: post?.attachments ? post?.attachments[0].url : null
+          image:
+            post?.attachments.length > 0
+              ? post?.attachments[0].url
+              : 'https://cloudflare-ipfs.com/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C'
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
@@ -83,7 +86,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       await transaction.wait()
       toast.success('Your item has been successfully listed!')
       setMintingStatus('Listing completed! Reloading this page')
-      router.push(`/posts/${post?.id}`)
+      router.reload()
     } catch {
       setIsMinting(false)
       toast.error('Transaction has been cancelled!')
