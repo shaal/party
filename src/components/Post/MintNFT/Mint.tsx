@@ -18,6 +18,7 @@ const client = create({
 
 const Mint: React.FC = () => {
   const [ethPrice, setEthPrice] = useState<string>('0')
+  const [ethPrice, setEthPrice] = useState<string>('0')
 
   async function createMarket() {
     try {
@@ -67,14 +68,12 @@ const Mint: React.FC = () => {
   return (
     <div className="px-5 py-3.5 space-y-3">
       <div>
-        <div>
-          <Input
-            label="Sale Status and Price"
-            type="number"
-            placeholder="Asset Price in ETH"
-            onChange={(e) => setEthPrice(e.target.value)}
-          />
-        </div>
+        <Input
+          label="Sale Status and Price"
+          type="number"
+          placeholder="Asset Price in ETH"
+          onChange={(e) => setEthPrice(e.target.value)}
+        />
       </div>
       <Button onClick={createMarket}>Mint NFT</Button>
     </div>
