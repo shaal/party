@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
+import { BASE_URL } from 'src/constants'
 import Web3Modal from 'web3modal'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
@@ -37,7 +38,7 @@ const Mint: React.FC<Props> = ({ post }) => {
         JSON.stringify({
           name: `Post from @${post?.user?.username} in Devparty`,
           description: post?.body,
-          post: `https://devparty.io/posts/${post?.id}`,
+          post: `${BASE_URL}/posts/${post?.id}`,
           image:
             post?.attachments.length > 0
               ? post?.attachments[0].url
