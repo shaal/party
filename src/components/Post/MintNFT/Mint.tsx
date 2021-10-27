@@ -37,8 +37,11 @@ const Mint: React.FC<Props> = ({ post }) => {
       const added = await client.add(
         JSON.stringify({
           name: `Post from @${post?.user?.username} in Devparty`,
-          description: post?.body,
-          post: `${BASE_URL}/posts/${post?.id}`,
+          description: `${post?.body}\n\n${BASE_URL}/posts/${post?.id}`,
+          image:
+            post?.attachments.length > 0
+              ? post?.attachments[0].url
+              : 'https://cloudflare-ipfs.com/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C',
           attributes: [
             {
               trait_type: 'User',
@@ -49,11 +52,7 @@ const Mint: React.FC<Props> = ({ post }) => {
               trait_type: 'Posted at',
               value: new Date(post?.createdAt).getTime() / 1000
             }
-          ],
-          image:
-            post?.attachments.length > 0
-              ? post?.attachments[0].url
-              : 'https://cloudflare-ipfs.com/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C'
+          ]
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
