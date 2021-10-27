@@ -39,6 +39,12 @@ const Mint: React.FC<Props> = ({ post }) => {
           name: `Post from @${post?.user?.username} in Devparty`,
           description: post?.body,
           post: `${BASE_URL}/posts/${post?.id}`,
+          attributes: [
+            {
+              trait_type: 'User',
+              value: `@${post?.user?.username}`
+            }
+          ],
           image:
             post?.attachments.length > 0
               ? post?.attachments[0].url
