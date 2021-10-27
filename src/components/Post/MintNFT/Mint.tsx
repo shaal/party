@@ -65,24 +65,16 @@ const Mint: React.FC = () => {
   }
 
   return (
-    <div className="px-5 py-3.5 space-y-5">
+    <div className="px-5 py-3.5 space-y-3">
       <div>
-        <div className="font-bold text-lg">Type of NFT</div>
-        <div>WIP</div>
-      </div>
-      <div>
-        <div className="font-bold text-lg">Sale Status and Price</div>
         <div>
           <Input
+            label="Sale Status and Price"
             type="number"
             placeholder="Asset Price in ETH"
             onChange={(e) => setEthPrice(e.target.value)}
           />
         </div>
-      </div>
-      <div>
-        <div className="font-bold text-lg">Unlockable Content</div>
-        <div>WIP</div>
       </div>
       <Button onClick={createMarket}>Mint NFT</Button>
     </div>
