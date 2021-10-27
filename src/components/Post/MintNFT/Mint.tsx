@@ -37,7 +37,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       const added = await client.add(
         JSON.stringify({
           name: `Post from @${post?.user?.username} in Devparty`,
-          description: `${post?.body}\n\n${BASE_URL}/posts/${post?.id}`,
+          description: `${post?.body}\n\nLink to post: ${BASE_URL}/posts/${post?.id}`,
           image:
             post?.attachments.length > 0
               ? post?.attachments[0].url
