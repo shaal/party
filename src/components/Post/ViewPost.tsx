@@ -37,9 +37,7 @@ const ViewPost: React.FC = () => {
   const router = useRouter()
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
-    variables: {
-      id: router.query.postId
-    },
+    variables: { id: router.query.postId },
     skip: !router.isReady
   })
   const post = data?.post
