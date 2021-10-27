@@ -3,7 +3,6 @@ import { Button } from '@components/UI/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
 import { ethers } from 'ethers'
-import { useTheme } from 'next-themes'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { PUBLIC_SIGNING_MESSAGE, STATIC_ASSETS } from 'src/constants'
@@ -14,7 +13,6 @@ import {
 } from './__generated__/LoginWithWallet.generated'
 
 const LoginWithWallet: React.FC = () => {
-  const { resolvedTheme } = useTheme()
   const authRedirect = useAuthRedirect()
   const [loginButtonMessage, setLoginButtonMessage] = useState<string>('Wallet')
   const [login] = useMutation<
@@ -38,7 +36,7 @@ const LoginWithWallet: React.FC = () => {
   const connectWallet = async () => {
     try {
       setLoginButtonMessage('Connecting...')
-      const web3Modal = getWeb3Modal({ theme: resolvedTheme })
+      const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const address = await web3.getSigner().getAddress()
       const response = await fetch(`/api/auth/getnonce?address=${address}`)

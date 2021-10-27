@@ -1,6 +1,7 @@
 import { Button } from '@components/UI/Button'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
@@ -8,7 +9,6 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import { BASE_URL } from 'src/constants'
-import Web3Modal from 'web3modal'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
@@ -66,10 +66,9 @@ const Mint: React.FC<Props> = ({ post }) => {
     try {
       // Get signature from the user
       setMintingStatus('Please sign in your wallet')
-      const web3Modal = new Web3Modal()
-      const connection = await web3Modal.connect()
-      const provider = new ethers.providers.Web3Provider(connection)
-      const signer = provider.getSigner()
+      const web3Modal = getWeb3Modal()
+      const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
+      const signer = await web3.getSigner()
 
       // Create the item
       setMintingStatus('Item creation in progress')
