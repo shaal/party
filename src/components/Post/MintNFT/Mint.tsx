@@ -43,6 +43,7 @@ const Mint: React.FC = () => {
 
   async function createSale(url: string) {
     try {
+      // Get signature from the user
       setMintingStatus('Please sign in your wallet')
       const web3Modal = new Web3Modal()
       const connection = await web3Modal.connect()
@@ -60,8 +61,8 @@ const Mint: React.FC = () => {
 
       const price = ethers.utils.parseUnits(ethPrice.toString(), 'ether')
 
-      setMintingStatus('Item listing in progress')
       // List the item for sale on the marketplace
+      setMintingStatus('Item listing in progress')
       contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
       let listingPrice = await contract.getListingPrice()
       listingPrice = listingPrice.toString()
@@ -70,9 +71,7 @@ const Mint: React.FC = () => {
         nftaddress,
         tokenId,
         price,
-        {
-          value: listingPrice
-        }
+        { value: listingPrice }
       )
       await transaction.wait()
       setIsMinting(false)
