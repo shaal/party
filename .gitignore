@@ -43,3 +43,4 @@ public/sw*
 cache
 artifacts
 config.js
+.secret

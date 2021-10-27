@@ -85,9 +85,10 @@ const Mint: React.FC<Props> = ({ post }) => {
         { value: listingPrice }
       )
       await transaction.wait()
+      console.log(transaction)
       toast.success('Your item has been successfully listed!')
       setMintingStatus('Listing completed! Reloading this page')
-      router.reload()
+      // router.reload()
     } catch {
       setIsMinting(false)
       toast.error('Transaction has been cancelled!')
