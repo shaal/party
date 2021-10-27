@@ -3,10 +3,15 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Modal } from '@components/UI/Modal'
 import { FingerPrintIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
+import { Post } from 'src/__generated__/schema.generated'
 
 import Mint from './Mint'
 
-const MintNFT: React.FC = () => {
+interface Props {
+  post: Post
+}
+
+const MintNFT: React.FC<Props> = ({ post }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
   return (
     <Card>
@@ -23,7 +28,7 @@ const MintNFT: React.FC = () => {
           title="NFT Settings"
           show={showModal}
         >
-          <Mint />
+          <Mint post={post} />
         </Modal>
       </CardBody>
     </Card>

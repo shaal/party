@@ -3,8 +3,10 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { Post } from 'src/__generated__/schema.generated'
 import Web3Modal from 'web3modal'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
@@ -17,7 +19,12 @@ const client = create({
   protocol: 'https'
 })
 
-const Mint: React.FC = () => {
+interface Props {
+  post: Post
+}
+
+const Mint: React.FC<Props> = ({ post }) => {
+  const router = useRouter()
   const [ethPrice, setEthPrice] = useState<number>(0)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [mintingStatus, setMintingStatus] = useState<string>('')
@@ -28,10 +35,10 @@ const Mint: React.FC = () => {
       setMintingStatus('Pushing metadata to IPFS')
       const added = await client.add(
         JSON.stringify({
-          name: "Yogi's Friend",
-          description: "Yogi's best friend is filiptronicek",
-          post: 'https://devparty.io/posts/fufu',
-          image: 'ipfs://QmboHvNcxqH4TPTFe1t1fwgFFj9KrECHvBbp7WpsVmfwDp/nft.jpg'
+          name: `Post from @${post?.user?.username} in Devparty`,
+          description: post?.body,
+          post: `https://devparty.io/posts/${post?.id}`,
+          image: post?.attachments ? post?.attachments[0].url : null
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
@@ -74,8 +81,9 @@ const Mint: React.FC = () => {
         { value: listingPrice }
       )
       await transaction.wait()
-      setIsMinting(false)
       toast.success('Your item has been successfully listed!')
+      setMintingStatus('Listing completed! Reloading this page')
+      router.push(`/posts/${post?.id}`)
     } catch {
       setIsMinting(false)
       toast.error('Transaction has been cancelled!')
