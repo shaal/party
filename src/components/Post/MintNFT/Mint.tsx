@@ -1,6 +1,7 @@
 import { Button } from '@components/UI/Button'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
@@ -8,7 +9,6 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { BASE_URL } from 'src/constants'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
@@ -34,27 +34,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     setIsMinting(true)
     try {
       setMintingStatus('Pushing metadata to IPFS')
-      const added = await client.add(
-        JSON.stringify({
-          name: `Post from @${post?.user?.username} in Devparty`,
-          description: `${post?.body}\n\nLink to post: ${BASE_URL}/posts/${post?.id}`,
-          image:
-            post?.attachments.length > 0
-              ? post?.attachments[0].url
-              : 'https://cloudflare-ipfs.com/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C',
-          attributes: [
-            {
-              trait_type: 'User',
-              value: `@${post?.user?.username}`
-            },
-            {
-              display_type: 'date',
-              trait_type: 'Posted at',
-              value: new Date(post?.createdAt).getTime() / 1000
-            }
-          ]
-        })
-      )
+      const added = await client.add(JSON.stringify(getNFTData(post)))
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
       createSale(url)
     } catch {
