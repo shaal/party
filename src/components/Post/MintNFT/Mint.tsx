@@ -43,6 +43,11 @@ const Mint: React.FC<Props> = ({ post }) => {
             {
               trait_type: 'User',
               value: `@${post?.user?.username}`
+            },
+            {
+              display_type: 'date',
+              trait_type: 'Posted at',
+              value: new Date(post?.createdAt).getTime() / 1000
             }
           ],
           image:
