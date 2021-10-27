@@ -162,4 +162,9 @@ contract NFTMarket is ReentrancyGuard {
     }
     return items;
   }
+
+  // Returns only the given item
+  function getOwner() external view returns (address) {
+    return owner;
+  }
 }

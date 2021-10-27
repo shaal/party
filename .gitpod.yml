@@ -37,6 +37,7 @@ ports:
   - port: 3306 # MySQL
     onOpen: ignore
   - port: 8545 # Hardhat
+    visibility: public
     onOpen: ignore
 
 vscode:
