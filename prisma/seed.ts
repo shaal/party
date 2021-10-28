@@ -79,6 +79,7 @@ async function main() {
         isStaff: user.isStaff,
         inWaitlist: false,
         isVerified: true,
+        onboarded: true,
         hashedPassword: await hashPassword(user.username),
         profile: {
           create: {
