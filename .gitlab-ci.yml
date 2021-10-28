@@ -39,14 +39,14 @@ generate:
 typecheck:
   extends: .prepare
   script:
-    - npx hardhat run scripts/deploy.js --network hardhat
+    - npx hardhat compile
     - yarn generate
     - yarn typecheck
 
 build:
   extends: .prepare
   script:
-    - npx hardhat run scripts/deploy.js --network hardhat
+    - npx hardhat compile
     - yarn build
 
 graphcdn:
