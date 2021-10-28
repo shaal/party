@@ -25,7 +25,7 @@ const MintNFT: React.FC<Props> = ({ post }) => {
         </Button>
         <Modal
           onClose={() => setShowModal(!showModal)}
-          title="NFT Settings"
+          title="Create NFT"
           show={showModal}
         >
           <Mint post={post} />
