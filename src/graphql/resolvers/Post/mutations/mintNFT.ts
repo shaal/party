@@ -1,23 +1,23 @@
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { MintNFTInput } from 'src/__generated__/schema.generated'
+import { MintNftInput } from 'src/__generated__/schema.generated'
 
 /**
  * Mint an NFT
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
- * @param input - MintNFTInput
+ * @param input - MintNftInput
  * @returns a nft address and token
  * @param session - Current user's session
  */
 export const mintNFT = async (
   query: any,
-  input: MintNFTInput | null | undefined,
+  input: MintNftInput | null | undefined,
   session: Session | null | undefined
 ) => {
   const post = await db.post.findFirst({
     ...query,
     where: {
-      id: input?.id,
+      id: input?.postId,
       userId: session!.userId
     },
 
