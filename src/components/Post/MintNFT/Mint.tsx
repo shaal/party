@@ -12,7 +12,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
-import { number, object, string } from 'zod'
+import { object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
@@ -29,7 +29,9 @@ const client = create({
 
 const newNFTSchema = object({
   title: string().min(0).max(100),
-  price: number().min(0).max(10000)
+  price: string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+    message: 'Expected number, received a string'
+  })
 })
 
 interface Props {
@@ -58,7 +60,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     schema: newNFTSchema,
     defaultValues: {
       title: `Post by @${post?.user?.username} in Devparty`,
-      price: 0
+      price: '0'
     }
   })
 
@@ -176,15 +178,18 @@ const Mint: React.FC<Props> = ({ post }) => {
           </div>
           <div>
             <Input
-              label="Sale Status and Price"
+              label="Selling Price"
               type="number"
-              placeholder="Asset Price in ETH"
+              placeholder="2.5"
+              prefix="MATIC"
               {...form.register('price')}
             />
           </div>
           <div>
             <Button
-              disabled={!form.formState.isDirty || form.watch('price') <= 0}
+              disabled={
+                !form.formState.isDirty || parseInt(form.watch('price')) <= 0
+              }
             >
               Mint NFT
             </Button>
