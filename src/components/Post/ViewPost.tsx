@@ -7,16 +7,12 @@ import UserCard from '@components/shared/UserCard'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
-import getWeb3Modal from '@components/utils/getWeb3Modal'
-import { ethers } from 'ethers'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
-import { NFT_MARKET_ADDRESS } from 'src/constants'
 import Custom404 from 'src/pages/404'
 
-import Market from '../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
@@ -45,24 +41,6 @@ const ViewPost: React.FC = () => {
     skip: !router.isReady
   })
   const post = data?.post
-
-  useEffect(() => {
-    loadNFTs()
-  }, [])
-
-  async function loadNFTs() {
-    const web3Modal = getWeb3Modal()
-    const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
-    const signer = web3.getSigner()
-    const marketContract = new ethers.Contract(
-      NFT_MARKET_ADDRESS as string,
-      Market.abi,
-      signer
-    )
-    const data = await marketContract.getOwner()
-    console.log(await marketContract.fetchItemsCreated())
-    console.log(data)
-  }
 
   if (!router.isReady || loading)
     return (
