@@ -43,6 +43,7 @@ const Mint: React.FC<Props> = ({ post }) => {
   }
 
   async function createSale(url: string) {
+    console.log(NFT_ADDRESS, NFT_MARKET_ADDRESS)
     try {
       // Get signature from the user
       setMintingStatus('Please sign in your wallet')
@@ -82,7 +83,8 @@ const Mint: React.FC<Props> = ({ post }) => {
       toast.success('Your item has been successfully listed!')
       setMintingStatus('Listing completed! Reloading this page')
       router.reload()
-    } catch {
+    } catch (error) {
+      console.log(error)
       setIsMinting(false)
       toast.error('Transaction has been cancelled!')
     }
