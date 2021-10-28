@@ -1,3 +1,4 @@
+import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
@@ -13,6 +14,10 @@ import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
+import {
+  MintNftMutation,
+  MintNftMutationVariables
+} from './__generated__/Mint.generated'
 
 const client = create({
   host: 'ipfs.infura.io',
@@ -31,6 +36,17 @@ const Mint: React.FC<Props> = ({ post }) => {
     'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
   >('NOT_STARTED')
   const [mintingStatusText, setMintingStatusText] = useState<string>('')
+  const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
+    gql`
+      mutation MintNFTMutation($input: MintNFTInput!) {
+        mint(input: $input) {
+          id
+          address
+          tokenId
+        }
+      }
+    `
+  )
 
   async function createMarket() {
     setMintingStatus('IN_PROGRESS')
@@ -74,6 +90,11 @@ const Mint: React.FC<Props> = ({ post }) => {
       let listingPrice = await contract.getListingPrice()
       listingPrice = listingPrice.toString()
       setMintingStatusText('Item listing in progress')
+      mintNFT({
+        variables: {
+          input: { postId: post?.id, address: NFT_ADDRESS as string, tokenId }
+        }
+      })
       transaction = await contract.createMarketItem(
         NFT_ADDRESS,
         tokenId,
