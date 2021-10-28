@@ -1,5 +1,5 @@
 describe('NFTMarket', function () {
-  it('Should create market items and fetch', async function () {
+  it('Should create market item and fetch', async function () {
     const Market = await ethers.getContractFactory('NFTMarket')
     const market = await Market.deploy()
     await market.deployed()

@@ -164,23 +164,7 @@ contract NFTMarket is ReentrancyGuard {
   }
 
   // Returns NFT item for given tokenId
-  function fetchItem(uint256 tokenId)
-      public
-      view
-      returns (
-          uint256 itemId,
-          uint256 price,
-          address ownerOfNFT,
-          address seller,
-          bool sold
-      )
-  {
-      return (
-          idToMarketItem[tokenId].itemId,
-          idToMarketItem[tokenId].price,
-          idToMarketItem[tokenId].owner,
-          idToMarketItem[tokenId].seller,
-          idToMarketItem[tokenId].sold
-      );
+  function fetchItem(uint256 tokenId) public view returns (MarketItem memory) {
+      return idToMarketItem[tokenId];
   }
 }
