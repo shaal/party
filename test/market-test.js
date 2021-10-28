@@ -36,7 +36,7 @@ describe('NFTMarket', function () {
     console.log('Total items in market -- ', items.length)
     const tokenUri = await nft.tokenURI(1)
     console.log('tokenUri -- ', tokenUri)
-    item = await market.findOneMarketItem(items[0].tokenId)
+    item = await market.findMarketItemByTokenId(items[0].tokenId)
     console.log('Found by tokenId --', item)
   })
 })
