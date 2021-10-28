@@ -12,7 +12,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
-import { number, object } from 'zod'
+import { number, object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
@@ -28,6 +28,7 @@ const client = create({
 })
 
 const newNFTSchema = object({
+  title: string().min(0).max(100),
   price: number().min(0).max(10000)
 })
 
@@ -54,7 +55,11 @@ const Mint: React.FC<Props> = ({ post }) => {
   )
 
   const form = useZodForm({
-    schema: newNFTSchema
+    schema: newNFTSchema,
+    defaultValues: {
+      title: `Post by @${post?.user?.username} in Devparty`,
+      price: 0
+    }
   })
 
   const createMarket = async () => {
@@ -64,7 +69,9 @@ const Mint: React.FC<Props> = ({ post }) => {
       setMintingStatusText(
         `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
       )
-      const added = await client.add(JSON.stringify(getNFTData(post)))
+      const added = await client.add(
+        JSON.stringify({ name: form.watch('title'), ...getNFTData(post) })
+      )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
       createSale(url)
     } catch {
@@ -162,16 +169,26 @@ const Mint: React.FC<Props> = ({ post }) => {
         <Form form={form} className="space-y-3" onSubmit={createMarket}>
           <div>
             <Input
+              label="Title"
+              placeholder="Title of your NFT"
+              {...form.register('title')}
+            />
+          </div>
+          <div>
+            <Input
               label="Sale Status and Price"
               type="number"
               placeholder="Asset Price in ETH"
               {...form.register('price')}
             />
           </div>
-          {form.formState.isDirty.toString()}
-          <Button disabled={form.formState.isDirty || form.watch('price') <= 0}>
-            Mint NFT
-          </Button>
+          <div>
+            <Button
+              disabled={!form.formState.isDirty || form.watch('price') <= 0}
+            >
+              Mint NFT
+            </Button>
+          </div>
         </Form>
       )}
     </div>

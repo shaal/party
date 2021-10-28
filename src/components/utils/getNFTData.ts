@@ -3,7 +3,6 @@ import { BASE_URL } from 'src/constants'
 
 const getNFTData = (post: Post) => {
   return {
-    name: `Post from @${post?.user?.username} in Devparty`,
     description: `${post?.body}\n\nLink to post: ${BASE_URL}/posts/${post?.id}`,
     image:
       post?.attachments.length > 0
