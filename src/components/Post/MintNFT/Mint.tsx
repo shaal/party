@@ -9,10 +9,10 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
+import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
-import { nftaddress, nftmarketaddress } from '../../../../config'
 
 const client = create({
   host: 'ipfs.infura.io',
@@ -52,7 +52,7 @@ const Mint: React.FC<Props> = ({ post }) => {
 
       // Create the item
       setMintingStatus('Item creation in progress')
-      let contract = new ethers.Contract(nftaddress, NFT.abi, signer)
+      let contract = new ethers.Contract(NFT_ADDRESS as string, NFT.abi, signer)
       let transaction = await contract.createToken(url)
       let tx = await transaction.wait()
       let event = tx.events[0]
@@ -63,12 +63,16 @@ const Mint: React.FC<Props> = ({ post }) => {
 
       // List the item for sale on the marketplace
       setMintingStatus('Item listing in progress')
-      contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+      contract = new ethers.Contract(
+        NFT_MARKET_ADDRESS as string,
+        Market.abi,
+        signer
+      )
       let listingPrice = await contract.getListingPrice()
       listingPrice = listingPrice.toString()
 
       transaction = await contract.createMarketItem(
-        nftaddress,
+        NFT_ADDRESS,
         tokenId,
         price,
         { value: listingPrice }

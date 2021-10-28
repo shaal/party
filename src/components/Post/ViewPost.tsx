@@ -13,10 +13,10 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
+import { NFT_MARKET_ADDRESS } from 'src/constants'
 import Custom404 from 'src/pages/404'
 
 import Market from '../../../artifacts/contracts/Market.sol/NFTMarket.json'
-import { nftmarketaddress } from '../../../config'
 import { PostQuery } from './__generated__/ViewPost.generated'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
@@ -55,7 +55,7 @@ const ViewPost: React.FC = () => {
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
     const signer = web3.getSigner()
     const marketContract = new ethers.Contract(
-      nftmarketaddress,
+      NFT_MARKET_ADDRESS as string,
       Market.abi,
       signer
     )

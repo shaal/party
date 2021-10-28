@@ -1,5 +1,4 @@
 const hre = require('hardhat')
-const fs = require('fs')
 
 async function main() {
   const NFTMarket = await hre.ethers.getContractFactory('NFTMarket')
@@ -12,15 +11,8 @@ async function main() {
   await nft.deployed()
   console.log('nft deployed to:', nft.address)
 
-  let config = `export const nftmarketaddress = '${nftMarket.address}'
-export const nftaddress = '${nft.address}'
-`
-
-  let data = JSON.stringify(config)
-  fs.writeFileSync(
-    process.env.NODE_ENV === 'production' ? 'config.js' : 'config.dev.js',
-    JSON.parse(data)
-  )
+  process.env['NFT_MARKET_ADDRESS'] = nftMarket.address
+  process.env['NFT_ADDRESS'] = nft.address
 }
 
 main()
