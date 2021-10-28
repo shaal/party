@@ -44,6 +44,7 @@ typecheck:
 build:
   extends: .prepare
   script:
+    - npx hardhat run scripts/deploy.js --network hardhat
     - yarn build
 
 graphcdn:
