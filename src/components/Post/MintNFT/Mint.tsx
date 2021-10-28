@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
+import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import getNFTData from '@components/utils/getNFTData'
@@ -11,6 +12,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
+import { number, object } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
@@ -25,12 +27,15 @@ const client = create({
   protocol: 'https'
 })
 
+const newNFTSchema = object({
+  price: number().min(0).max(10000)
+})
+
 interface Props {
   post: Post
 }
 
 const Mint: React.FC<Props> = ({ post }) => {
-  const [ethPrice, setEthPrice] = useState<number>(0)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [mintingStatus, setMintingStatus] = useState<
     'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
@@ -48,7 +53,11 @@ const Mint: React.FC<Props> = ({ post }) => {
     `
   )
 
-  async function createMarket() {
+  const form = useZodForm({
+    schema: newNFTSchema
+  })
+
+  const createMarket = async () => {
     setMintingStatus('IN_PROGRESS')
     setIsMinting(true)
     try {
@@ -79,7 +88,10 @@ const Mint: React.FC<Props> = ({ post }) => {
       let value = event.args[2]
       let tokenId = value.toNumber()
 
-      const price = ethers.utils.parseUnits(ethPrice.toString(), 'ether')
+      const price = ethers.utils.parseUnits(
+        form.watch('price').toString(),
+        'ether'
+      )
 
       // List the item for sale on the marketplace
       contract = new ethers.Contract(
@@ -147,19 +159,20 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>{mintingStatusText}</div>
         </div>
       ) : (
-        <div className="space-y-3">
+        <Form form={form} className="space-y-3" onSubmit={createMarket}>
           <div>
             <Input
               label="Sale Status and Price"
               type="number"
               placeholder="Asset Price in ETH"
-              onChange={(e) => setEthPrice(e.target.value as any)}
+              {...form.register('price')}
             />
           </div>
-          <Button onClick={createMarket} disabled={ethPrice <= 0}>
+          {form.formState.isDirty.toString()}
+          <Button disabled={form.formState.isDirty || form.watch('price') <= 0}>
             Mint NFT
           </Button>
-        </div>
+        </Form>
       )}
     </div>
   )
