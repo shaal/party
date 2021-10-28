@@ -26,15 +26,7 @@ describe('NFTMarket', function () {
     )
     console.log('Create nftOne NFT', nftOne)
 
-    await market.createMarketItem(nftContractAddress, 2, auctionPrice, {
-      value: listingPrice
-    })
-
-    items = await market.fetchMarketItems()
-    console.log('Total items in market -- ', items.length)
-    const tokenUri = await nft.tokenURI(1)
-    console.log('tokenUri -- ', tokenUri)
-    item = await market.fetchItem(items[0].tokenId)
+    item = await market.fetchItem(1)
     console.log('Found by tokenId --', item)
   })
 })
