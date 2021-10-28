@@ -92,6 +92,11 @@ export const PostFragment = gql`
       slug
       avatar
     }
+    nft {
+      id
+      address
+      tokenId
+    }
   }
 `
 
