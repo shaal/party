@@ -5,7 +5,6 @@ import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
@@ -25,7 +24,6 @@ interface Props {
 }
 
 const Mint: React.FC<Props> = ({ post }) => {
-  const router = useRouter()
   const [ethPrice, setEthPrice] = useState<number>(0)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [mintingStatus, setMintingStatus] = useState<
