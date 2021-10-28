@@ -3,6 +3,7 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
+import { ArrowRightIcon } from '@heroicons/react/outline'
 import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
 import { useState } from 'react'
@@ -94,7 +95,23 @@ const Mint: React.FC<Props> = ({ post }) => {
   return (
     <div className="px-5 py-3.5 space-y-3">
       {mintingStatus === 'COMPLETED' ? (
-        <div>Tada</div>
+        <div className="p-5 font-bold text-center space-y-4">
+          <div className="space-y-2">
+            <div className="text-3xl">🎉</div>
+            <div>Your NFT has been successfully minted!</div>
+          </div>
+          <div>
+            <a href="https://opensea.io" target="_blank" rel="noreferrer">
+              <Button
+                className="mx-auto"
+                icon={<ArrowRightIcon className="h-5 w-5" />}
+                outline
+              >
+                View on Opensea
+              </Button>
+            </a>
+          </div>
+        </div>
       ) : isMinting ? (
         <div className="p-5 font-bold text-center space-y-2">
           <Spinner size="md" className="mx-auto" />
