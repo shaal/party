@@ -17,7 +17,10 @@ export const nftaddress = '${nft.address}'
 `
 
   let data = JSON.stringify(config)
-  fs.writeFileSync('config.js', JSON.parse(data))
+  fs.writeFileSync(
+    process.env.NODE_ENV === 'production' ? 'config.js' : 'config.dev.js',
+    JSON.parse(data)
+  )
 }
 
 main()
