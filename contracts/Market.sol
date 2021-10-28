@@ -115,7 +115,7 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
-  // Returns NFT items for given token and address
+  // Returns NFT item for given token and address
   function findOneNFT(address nftAddress, uint256 tokenId) public view returns (MarketItem memory) {
     uint itemCount = _itemIds.current();
     uint currentIndex = 0;
