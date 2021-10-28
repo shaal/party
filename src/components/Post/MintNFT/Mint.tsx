@@ -64,24 +64,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   })
 
-  const createMarket = async () => {
-    setMintingStatus('IN_PROGRESS')
-    setIsMinting(true)
-    try {
-      setMintingStatusText(
-        `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
-      )
-      const added = await client.add(
-        JSON.stringify({ name: form.watch('title'), ...getNFTData(post) })
-      )
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      createSale(url)
-    } catch {
-      setIsMinting(false)
-    }
-  }
-
-  async function createSale(url: string) {
+  const createSale = async (url: string) => {
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
@@ -135,6 +118,23 @@ const Mint: React.FC<Props> = ({ post }) => {
       setIsMinting(false)
       setMintingStatus('ERRORED')
       toast.error('Transaction has been cancelled!')
+    }
+  }
+
+  const createMarket = async () => {
+    setMintingStatus('IN_PROGRESS')
+    setIsMinting(true)
+    try {
+      setMintingStatusText(
+        `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
+      )
+      const added = await client.add(
+        JSON.stringify({ name: form.watch('title'), ...getNFTData(post) })
+      )
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      createSale(url)
+    } catch {
+      setIsMinting(false)
     }
   }
 
