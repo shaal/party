@@ -92,7 +92,11 @@ const Mint: React.FC<Props> = ({ post }) => {
       setMintingStatusText('Item listing in progress')
       mintNFT({
         variables: {
-          input: { postId: post?.id, address: NFT_ADDRESS as string, tokenId }
+          input: {
+            postId: post?.id,
+            address: NFT_ADDRESS as string,
+            tokenId: tokenId.toString()
+          }
         }
       })
       transaction = await contract.createMarketItem(
@@ -122,7 +126,11 @@ const Mint: React.FC<Props> = ({ post }) => {
             <div>Your NFT has been successfully minted!</div>
           </div>
           <div>
-            <a href="https://opensea.io" target="_blank" rel="noreferrer">
+            <a
+              href="https://opensea.io/account"
+              target="_blank"
+              rel="noreferrer"
+            >
               <Button
                 className="mx-auto"
                 icon={<ArrowRightIcon className="h-5 w-5" />}

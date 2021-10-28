@@ -28,8 +28,14 @@ export const mintNFT = async (
     throw new Error("You can't ming other users post!")
   }
 
-  return await db.nFT.update({
+  const nftData = {
+    address: input?.address as string,
+    tokenId: input?.tokenId as string
+  }
+
+  return await db.nFT.upsert({
     where: { postId: post?.id },
-    data: { address: input?.address, tokenId: input?.tokenId }
+    update: nftData,
+    create: { post: { connect: { id: post?.id } }, ...nftData }
   })
 }
