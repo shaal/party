@@ -450,7 +450,6 @@ enum PostType {
   QUESTION
   POLL
   COMMIT
-  NFT
   REPLY
 }
 
