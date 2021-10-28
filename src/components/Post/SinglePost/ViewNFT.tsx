@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 import { Nft } from 'src/__generated__/schema.generated'
-import { BASE_URL, NFT_MARKET_ADDRESS, NFT_RPC_URL } from 'src/constants'
+import { NFT_MARKET_ADDRESS, NFT_RPC_URL } from 'src/constants'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 
@@ -30,12 +30,7 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
     setNftData(data)
   }
 
-  return (
-    <div className="border-t">
-      {JSON.stringify(nftData, null, 2)}
-      {BASE_URL}
-    </div>
-  )
+  return <div className="border-t">{JSON.stringify(nftData, null, 2)}</div>
 }
 
 export default ViewNFT
