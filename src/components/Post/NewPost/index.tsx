@@ -15,18 +15,15 @@ import React, { Fragment } from 'react'
 const PostType = dynamic(() => import('./Type/Post'), {
   loading: () => <Loading />
 })
-
 const QuestionType = dynamic(() => import('./Type/Question'), {
   loading: () => <Loading />
 })
 const TaskType = dynamic(() => import('./Type/Task'), {
   loading: () => <Loading />
 })
-
 const CommitType = dynamic(() => import('./Type/Commit'), {
   loading: () => <Loading />
 })
-
 const PollType = dynamic(() => import('./Type/Poll'), {
   loading: () => <Loading />
 })
