@@ -30,7 +30,7 @@ import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
 
 const ViewNFT = dynamic(() => import('./ViewNFT'), {
-  loading: () => <div className="shimmer h-10 w-full" />
+  loading: () => <div className="shimmer h-10 w-full rounded-b-lg" />
 })
 
 export const PostFragment = gql`
