@@ -17,6 +17,8 @@ cache:
 
 .prepare:
   before_script:
+    - node -v
+    - yarn -v
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
 
