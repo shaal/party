@@ -47,7 +47,6 @@ const Mint: React.FC<Props> = ({ post }) => {
   }
 
   async function createSale(url: string) {
-    console.log(NFT_ADDRESS, NFT_MARKET_ADDRESS)
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
@@ -81,7 +80,6 @@ const Mint: React.FC<Props> = ({ post }) => {
         { value: listingPrice }
       )
       await transaction.wait()
-      console.log(transaction)
       toast.success('Your item has been successfully listed!')
       setMintingStatusText('Listing completed! Reloading this page')
       setMintingStatus('COMPLETED')
