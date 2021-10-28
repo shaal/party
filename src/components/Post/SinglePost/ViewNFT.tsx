@@ -22,7 +22,6 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
       Market.abi,
       provider
     )
-
     const data = await marketContract.fetchItem(nft?.tokenId)
     setNftData(data)
   }

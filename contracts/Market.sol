@@ -165,6 +165,6 @@ contract NFTMarket is ReentrancyGuard {
 
   // Returns NFT item for given tokenId
   function fetchItem(uint256 tokenId) public view returns (MarketItem memory) {
-      return idToMarketItem[tokenId];
+    return idToMarketItem[tokenId];
   }
 }
