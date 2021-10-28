@@ -22,9 +22,7 @@ describe('NFTMarket', function () {
       nftContractAddress,
       1,
       auctionPrice,
-      {
-        value: listingPrice
-      }
+      { value: listingPrice }
     )
     console.log('Create nftOne NFT', nftOne)
 

@@ -4,7 +4,7 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
 
-image: node:latest
+image: node:16
 
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
@@ -17,6 +17,8 @@ cache:
 
 .prepare:
   before_script:
+    - node -v
+    - yarn -v
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
 
@@ -38,14 +40,18 @@ generate:
 typecheck:
   extends: .prepare
   script:
-    - METAMASK_PRIVATE_KEY=$METAMASK_PRIVATE_KEY npx hardhat compile
     - yarn generate
     - yarn typecheck
+
+hardhat:
+  extends: .prepare
+  script:
+    - yarn generate
+    - npx hardhat test
 
 build:
   extends: .prepare
   script:
-    - METAMASK_PRIVATE_KEY=$METAMASK_PRIVATE_KEY npx hardhat compile
     - yarn build
 
 graphcdn:
