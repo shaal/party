@@ -81,9 +81,14 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <div className="space-y-5">
           <UserCard user={post?.user as User} />
-          {currentUser?.id === post?.user?.id && (
-            <MintNFT post={post as Post} />
-          )}
+          {currentUser?.id === post?.user?.id &&
+            (post?.nft ? (
+              <Card>
+                <CardBody>This is already an NFT</CardBody>
+              </Card>
+            ) : (
+              <MintNFT post={post as Post} />
+            ))}
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
         </div>
