@@ -54,7 +54,6 @@ vscode:
     - christian-kohler.npm-intellisense
     - esbenp.prettier-vscode
     - prisma.prisma
-    - pflannery.vscode-versionlens
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
     - bradlc.vscode-tailwindcss
