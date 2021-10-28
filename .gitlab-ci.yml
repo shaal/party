@@ -9,6 +9,7 @@ image: node:latest
 variables:
   SAST_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
   SECRET_DETECTION_EXCLUDED_PATHS: 'node_modules, .next, yarn.lock'
+  METAMASK_PRIVATE_KEY: $METAMASK_PRIVATE_KEY
 
 cache:
   paths:
