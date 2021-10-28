@@ -4,27 +4,22 @@ describe('NFTMarket', function () {
     const market = await Market.deploy()
     await market.deployed()
     const marketAddress = market.address
-
     const NFT = await ethers.getContractFactory('NFT')
     const nft = await NFT.deploy(marketAddress)
     await nft.deployed()
     const nftContractAddress = nft.address
-
     let listingPrice = await market.getListingPrice()
     listingPrice = listingPrice.toString()
-
     const auctionPrice = ethers.utils.parseUnits('1', 'ether')
-
     await nft.createToken('https://www.mytokenlocation.com')
     await nft.createToken('https://www.mytokenlocation2.com')
-
-    let nftOne = await market.createMarketItem(
+    const newNft = await market.createMarketItem(
       nftContractAddress,
       1,
       auctionPrice,
       { value: listingPrice }
     )
-    console.log('Create nftOne NFT', nftOne)
+    console.log('Created NFT', newNft)
 
     item = await market.fetchItem(1)
     console.log('Found by tokenId --', item)
