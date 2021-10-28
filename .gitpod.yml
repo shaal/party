@@ -56,7 +56,6 @@ vscode:
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
     - bradlc.vscode-tailwindcss
-    - bierner.markdown-preview-github-styles
     - editorconfig.editorconfig
     - pkief.material-icon-theme
     - juanblanco.solidity
