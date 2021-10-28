@@ -1,8 +1,7 @@
-import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 import { Nft } from 'src/__generated__/schema.generated'
-import { NFT_MARKET_ADDRESS } from 'src/constants'
+import { BASE_URL, NFT_MARKET_ADDRESS, NFT_RPC_URL } from 'src/constants'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 
@@ -17,15 +16,13 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
   }, [])
 
   async function loadNFTs() {
-    const web3Modal = getWeb3Modal()
-    const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
-    const signer = await web3.getSigner()
-
+    const provider = new ethers.providers.JsonRpcProvider(NFT_RPC_URL)
     const marketContract = new ethers.Contract(
       NFT_MARKET_ADDRESS as string,
       Market.abi,
-      signer
+      provider
     )
+
     const data = await marketContract.findOneMarketItem(
       nft?.address,
       nft?.tokenId
@@ -33,7 +30,12 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
     setNftData(data)
   }
 
-  return <div className="border-t">{JSON.stringify(nftData, null, 2)}</div>
+  return (
+    <div className="border-t">
+      {JSON.stringify(nftData, null, 2)}
+      {BASE_URL}
+    </div>
+  )
 }
 
 export default ViewNFT

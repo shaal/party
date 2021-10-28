@@ -24,6 +24,7 @@ tasks:
       gp await-port 8545
       npx hardhat run scripts/deploy.js --network localhost
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
+      echo "NFT_RPC_URL=\"$(gp url 8545)\"" >> .env
       yarn dev
     openMode: tab-after
   - name: Bash
