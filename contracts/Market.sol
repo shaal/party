@@ -115,6 +115,23 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
+  // Returns NFT item for given tokenId and nftAddress
+  function findOneMarketItem(address nftAddress, uint256 tokenId) public view returns (MarketItem memory) {
+    uint itemCount = _itemIds.current();
+    uint currentIndex = 0;
+
+    MarketItem memory item;
+    for (uint i = 0; i < itemCount; i++) {
+      if (idToMarketItem[i + 1].nftContract == nftAddress && idToMarketItem[i + 1].tokenId == tokenId) {
+        uint currentId = i + 1;
+        MarketItem storage currentItem = idToMarketItem[currentId];
+        item = currentItem;
+        currentIndex += 1;
+      }
+    }
+    return item;
+  }
+
   // Returns only items that a user has purchased
   function fetchMyNFTs() public view returns (MarketItem[] memory) {
     uint totalItemCount = _itemIds.current();
