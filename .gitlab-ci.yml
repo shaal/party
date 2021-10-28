@@ -40,14 +40,18 @@ generate:
 typecheck:
   extends: .prepare
   script:
-    - METAMASK_PRIVATE_KEY=$METAMASK_PRIVATE_KEY npx hardhat compile
     - yarn generate
     - yarn typecheck
+
+hardhat:
+  extends: .prepare
+  script:
+    - yarn generate
+    - npx hardhat test
 
 build:
   extends: .prepare
   script:
-    - METAMASK_PRIVATE_KEY=$METAMASK_PRIVATE_KEY npx hardhat compile
     - yarn build
 
 graphcdn:
