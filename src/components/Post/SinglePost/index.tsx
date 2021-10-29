@@ -29,7 +29,7 @@ import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
 
-const ViewNFT = dynamic(() => import('./ViewNFT'), {
+const NFTIcon = dynamic(() => import('./ViewNFT'), {
   loading: () => (
     <div className="!ml-auto flex items-center">
       <div className="shimmer rounded-full h-[20px] w-[20px]" />
@@ -241,7 +241,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         {post?.product && <SelectedProduct product={post?.product} />}
         {post?.community && <SelectedCommunity community={post?.community} />}
-        {post?.nft && <ViewNFT nft={post?.nft} />}
+        {post?.nft && <NFTIcon nft={post?.nft} />}
       </div>
     </Card>
   )

@@ -9,7 +9,7 @@ interface Props {
   nft: Nft
 }
 
-const ViewNFT: React.FC<Props> = ({ nft }) => {
+const NFTIcon: React.FC<Props> = ({ nft }) => {
   async function buyNft() {
     const web3Modal = getWeb3Modal()
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
@@ -43,4 +43,4 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
   )
 }
 
-export default ViewNFT
+export default NFTIcon
