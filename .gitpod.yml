@@ -13,11 +13,9 @@ tasks:
       yarn prepare
       gp sync-done setup
     command: yarn codegen:graphql --watch
-    openMode: tab-after
   - name: Hardhat
     init: gp sync-await setup;
     command: npx hardhat node
-    openMode: tab-after
   - name: Dev Server
     init: gp sync-await setup
     command: |
@@ -26,13 +24,11 @@ tasks:
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
       echo "NFT_RPC_URL=\"$(gp url 8545)\"" >> .env
       yarn dev
-    openMode: tab-after
   - name: Bash
-    init: gp sync-await setup;
+    init: gp sync-await setup
     command: |
       printf "Waiting for server to boot ⏰"
       clear
-    openMode: tab-after
 
 ports:
   - port: 3000 # Web app
