@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         />
       </div>
 
-      <FieldError name={props.name} />
+      {props.name && <FieldError name={props.name} />}
     </label>
   )
 })
