@@ -125,19 +125,19 @@ const Mint: React.FC<Props> = ({ post }) => {
     setMintingStatus('IN_PROGRESS')
     setIsMinting(true)
     try {
-      const file = await client.add(
-        urlSource(
-          'https://3000-apricot-whippet-d51g2qo3.ws-eu18.gitpod.io/logo.svg'
-        )
-      )
-      console.log(file)
       setMintingStatusText(
         `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
       )
-      const added = await client.add(
-        JSON.stringify({ name: form.watch('title'), ...getNFTData(post) })
+      const { cid } = await client.add(
+        urlSource(`https://nft.devparty.io/${post?.body}`)
       )
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      const { path } = await client.add(
+        JSON.stringify({
+          name: form.watch('title'),
+          ...getNFTData(post, `ipfs://${cid}`)
+        })
+      )
+      const url = `https://ipfs.infura.io/ipfs/${path}`
       createSale(url)
     } catch {
       setIsMinting(false)

@@ -1,13 +1,10 @@
 import { Post } from 'src/__generated__/schema.generated'
 import { BASE_URL } from 'src/constants'
 
-const getNFTData = (post: Post) => {
+const getNFTData = (post: Post, nft: string) => {
   return {
     description: `${post?.body}\n\nLink to post: ${BASE_URL}/posts/${post?.id}`,
-    image:
-      post?.attachments.length > 0
-        ? post?.attachments[0].url
-        : 'https://cloudflare-ipfs.com/ipfs/QmdmPHWQBzV24GvbwCszm2AnWetBENeBP2UStuETsyAp1C',
+    image: post?.attachments.length > 0 ? post?.attachments[0].url : nft,
     attributes: [
       {
         trait_type: 'User',
