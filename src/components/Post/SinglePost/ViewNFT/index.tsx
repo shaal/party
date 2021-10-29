@@ -24,6 +24,7 @@ const NFTIcon: React.FC<Props> = ({ nft }) => {
       <Modal
         onClose={() => setShowModal(!showModal)}
         title="Buy NFT"
+        size="lg"
         show={showModal}
       >
         <ViewNFT nft={nft} />
