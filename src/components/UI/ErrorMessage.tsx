@@ -23,7 +23,7 @@ export const ErrorMessage: React.FC<Props> = ({
         </h3>
       )}
       <div className="text-sm text-red-700 dark:text-red-200">
-        {error.message}
+        {error?.message}
       </div>
     </div>
   )

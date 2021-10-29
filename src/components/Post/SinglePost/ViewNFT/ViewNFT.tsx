@@ -49,13 +49,26 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
       </div>
     )
 
+  if (isError)
+    return (
+      <div className="px-5 py-3.5">
+        <ErrorMessage
+          title={ERROR_MESSAGE}
+          error={{
+            name: 'The NFT is distributing accross the network, please try again after sometime!',
+            message:
+              'The NFT is distributing accross the network, please try again! after sometime'
+          }}
+        />
+      </div>
+    )
+
   const metadata = JSON.parse(fetchedNft?.metadata)
 
   return (
     <div className="px-5 py-3.5 space-y-3">
       <GridLayout className="!p-0">
         <GridItemSix>
-          <ErrorMessage title={ERROR_MESSAGE} error={isError} />
           {JSON.stringify(metadata, null, 2)}
           <Button onClick={buyNft}>Buy now</Button>
         </GridItemSix>

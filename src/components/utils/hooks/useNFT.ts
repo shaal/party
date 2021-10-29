@@ -28,6 +28,6 @@ export const useNFT = (
   return {
     nft: data,
     isLoading: !error && !data,
-    isError: error || !data?.token_address
+    isError: error || data?.message
   }
 }
