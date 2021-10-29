@@ -51,8 +51,6 @@ graphcdn:
 migrate:
   script:
     - npx prisma migrate reset --force
-  only:
-    - main
   when: manual
 
 # Remove after Devparty release
