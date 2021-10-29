@@ -13,6 +13,7 @@ interface Props {
 
 const MintNFT: React.FC<Props> = ({ post }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
+
   return (
     <Card>
       <CardBody className="space-y-3">
