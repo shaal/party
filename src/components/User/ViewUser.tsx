@@ -67,9 +67,7 @@ export const VIEW_USER_QUERY = gql`
 const ViewUser: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
-    variables: {
-      username: router.query.username
-    },
+    variables: { username: router.query.username },
     skip: !router.isReady
   })
   const user = data?.user
