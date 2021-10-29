@@ -4,6 +4,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useNFT } from '@components/utils/hooks/useNFT'
+import { imagekitURL } from '@components/utils/imagekitURL'
 import { ethers } from 'ethers'
 import { Nft } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
@@ -51,7 +52,7 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
 
   if (isError)
     return (
-      <div className="px-5 py-3.5">
+      <div className="p-5">
         <ErrorMessage
           title={ERROR_MESSAGE}
           error={{
@@ -69,10 +70,18 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
     <div className="px-5 py-3.5 space-y-3">
       <GridLayout className="!p-0">
         <GridItemSix>
-          {JSON.stringify(metadata, null, 2)}
+          <div className="aspect-w-16 aspect-h-12">
+            <img
+              className="rounded-lg object-cover bg-gray-100 dark:bg-gray-800 border dark:border-gray-800"
+              src={imagekitURL(metadata?.image)}
+              alt={fetchedNft?.token_address}
+            />
+          </div>
+        </GridItemSix>
+        <GridItemSix className="space-y-3">
+          <div className="text-xl font-bold">{metadata?.name}</div>
           <Button onClick={buyNft}>Buy now</Button>
         </GridItemSix>
-        <GridItemSix>WIP</GridItemSix>
       </GridLayout>
     </div>
   )

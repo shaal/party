@@ -134,7 +134,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       const { path } = await client.add(
         JSON.stringify({
           name: form.watch('title'),
-          ...getNFTData(post, `ipfs://${cid}`)
+          ...getNFTData(post, `https://ipfs.infura.io/ipfs/${cid}`)
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${path}`
