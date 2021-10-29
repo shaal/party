@@ -11,7 +11,7 @@ import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
+import { IS_PRODUCTION, NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
 import { object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
@@ -44,7 +44,12 @@ const Mint: React.FC<Props> = ({ post }) => {
     'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
   >('NOT_STARTED')
   const [mintingStatusText, setMintingStatusText] = useState<string>('')
-  const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
+  const [mintedAddress, setMintedAddress] = useState<string>('')
+  const [mintedTokenId, setMintedTokenId] = useState<string>('')
+  const [mintNFT, mintNFTResult] = useMutation<
+    MintNftMutation,
+    MintNftMutationVariables
+  >(
     gql`
       mutation MintNFTMutation($input: MintNFTInput!) {
         mint(input: $input) {
@@ -53,7 +58,13 @@ const Mint: React.FC<Props> = ({ post }) => {
           tokenId
         }
       }
-    `
+    `,
+    {
+      onCompleted(data) {
+        setMintedAddress(data?.address)
+        setMintedTokenId(data?.tokenId)
+      }
+    }
   )
 
   const form = useZodForm({
@@ -154,7 +165,11 @@ const Mint: React.FC<Props> = ({ post }) => {
           </div>
           <div>
             <a
-              href="https://opensea.io/account"
+              href={`https://${
+                IS_PRODUCTION ? 'opensea.io' : 'testnet-opensea.io'
+              }/assets/${
+                IS_PRODUCTION ? 'matic' : 'mumbai'
+              }/${mintedAddress}/${mintedTokenId}`}
               target="_blank"
               rel="noreferrer"
             >
