@@ -7,7 +7,7 @@ import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import { ethers } from 'ethers'
-import { create } from 'ipfs-http-client'
+import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
@@ -125,6 +125,12 @@ const Mint: React.FC<Props> = ({ post }) => {
     setMintingStatus('IN_PROGRESS')
     setIsMinting(true)
     try {
+      const file = await client.add(
+        urlSource(
+          'https://3000-apricot-whippet-d51g2qo3.ws-eu18.gitpod.io/logo.svg'
+        )
+      )
+      console.log(file)
       setMintingStatusText(
         `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
       )
