@@ -1,10 +1,9 @@
-import { Button } from '@components/UI/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
 import { Nft } from 'src/__generated__/schema.generated'
-import { NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
+import { NFT_ADDRESS, NFT_MARKET_ADDRESS, STATIC_ASSETS } from 'src/constants'
 
-import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
+import Market from '../../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 
 interface Props {
   nft: Nft
@@ -32,8 +31,14 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
   }
 
   return (
-    <div className="p-5 border-t">
-      <Button onClick={buyNft}>Buy</Button>
+    <div className="!ml-auto flex">
+      <button onClick={buyNft}>
+        <img
+          className="h-[20px] w-[20px]"
+          src={`${STATIC_ASSETS}/brands/polygon.svg`}
+          alt="Polygon Logo"
+        />
+      </button>
     </div>
   )
 }
