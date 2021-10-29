@@ -1,6 +1,6 @@
 # Contributing to Devparty 🥳
 
-👍🎉 First off, thanks for taking the time to contribute! 🎉👍
+👍🎉 Thank you for your interest in contributing to the Devparty! 🎉👍
 
 Devparty is an open-source project maintained by [Yogi](https://gitlab.com/yo). We appreciate your interest and efforts to contribute to Devparty.
 
