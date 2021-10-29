@@ -61,8 +61,8 @@ const Mint: React.FC<Props> = ({ post }) => {
     `,
     {
       onCompleted(data) {
-        setMintedAddress(data?.address)
-        setMintedTokenId(data?.tokenId)
+        setMintedAddress(data?.mint?.address)
+        setMintedTokenId(data?.mint?.tokenId)
       }
     }
   )
