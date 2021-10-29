@@ -46,10 +46,7 @@ const Mint: React.FC<Props> = ({ post }) => {
   const [mintingStatusText, setMintingStatusText] = useState<string>('')
   const [mintedAddress, setMintedAddress] = useState<string>('')
   const [mintedTokenId, setMintedTokenId] = useState<string>('')
-  const [mintNFT, mintNFTResult] = useMutation<
-    MintNftMutation,
-    MintNftMutationVariables
-  >(
+  const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
     gql`
       mutation MintNFTMutation($input: MintNFTInput!) {
         mint(input: $input) {
@@ -166,7 +163,7 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>
             <a
               href={`https://${
-                IS_PRODUCTION ? 'opensea.io' : 'testnet-opensea.io'
+                IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
               }/assets/${
                 IS_PRODUCTION ? 'matic' : 'mumbai'
               }/${mintedAddress}/${mintedTokenId}`}
