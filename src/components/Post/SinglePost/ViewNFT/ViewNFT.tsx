@@ -1,5 +1,7 @@
+import { GridItemSix, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { Spinner } from '@components/UI/Spinner'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useNFT } from '@components/utils/hooks/useNFT'
 import { ethers } from 'ethers'
@@ -39,15 +41,26 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
     await transaction.wait()
   }
 
-  if (isLoading) return <div>Loading NFT...</div>
+  if (isLoading)
+    return (
+      <div className="p-5 font-bold text-center space-y-2">
+        <Spinner size="md" className="mx-auto" />
+        <div>Loading NFT</div>
+      </div>
+    )
 
   const metadata = JSON.parse(fetchedNft?.metadata)
 
   return (
     <div className="px-5 py-3.5 space-y-3">
-      <ErrorMessage title={ERROR_MESSAGE} error={isError} />
-      {JSON.stringify(metadata, null, 2)}
-      <Button onClick={buyNft}>Buy now</Button>
+      <GridLayout className="!p-0">
+        <GridItemSix>
+          <ErrorMessage title={ERROR_MESSAGE} error={isError} />
+          {JSON.stringify(metadata, null, 2)}
+          <Button onClick={buyNft}>Buy now</Button>
+        </GridItemSix>
+        <GridItemSix>WIP</GridItemSix>
+      </GridLayout>
     </div>
   )
 }
