@@ -13,16 +13,10 @@ tasks:
       yarn prepare
       gp sync-done setup
     command: yarn codegen:graphql --watch
-  - name: Hardhat
-    init: gp sync-await setup;
-    command: npx hardhat node
   - name: Dev Server
     init: gp sync-await setup
     command: |
-      gp await-port 8545
-      npx hardhat run scripts/deploy.js --network localhost
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
-      echo "NFT_RPC_URL=\"$(gp url 8545)\"" >> .env
       yarn dev
   - name: Bash
     init: gp sync-await setup
@@ -37,9 +31,6 @@ ports:
   - port: 6379 # Redis
     onOpen: ignore
   - port: 3306 # MySQL
-    onOpen: ignore
-  - port: 8545 # Hardhat
-    visibility: public
     onOpen: ignore
 
 vscode:
