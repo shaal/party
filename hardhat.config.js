@@ -7,7 +7,7 @@ module.exports = {
   networks: {
     hardhat: { chainId: 1337 },
     mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com',
+      url: 'https://polygon-mumbai.g.alchemy.com/v2/4I2SjVe05n1iTtTO2bPGt4CnCCnLGkvm',
       accounts: [privateKey]
     },
     matic: {
