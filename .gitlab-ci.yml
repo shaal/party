@@ -43,7 +43,7 @@ typecheck:
     - yarn generate
     - yarn typecheck
 
-hardhat:
+hardhat-test:
   extends: .prepare
   script:
     - yarn generate
