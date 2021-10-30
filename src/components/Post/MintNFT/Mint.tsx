@@ -27,10 +27,7 @@ const client = create({
 })
 
 const newNFTSchema = object({
-  title: string().min(0).max(100),
-  price: string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-    message: 'Expected number, received a string'
-  })
+  title: string().min(0).max(100)
 })
 
 interface Props {
@@ -66,8 +63,7 @@ const Mint: React.FC<Props> = ({ post }) => {
   const form = useZodForm({
     schema: newNFTSchema,
     defaultValues: {
-      title: `Post by @${post?.user?.username} in Devparty`,
-      price: '0'
+      title: `Post by @${post?.user?.username} in Devparty`
     }
   })
 
@@ -78,17 +74,15 @@ const Mint: React.FC<Props> = ({ post }) => {
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
 
-      // List the item for sale on the marketplace
+      // Mint the Item
       const contract = new ethers.Contract(
         NFT_MARKET_ADDRESS as string,
         Market.abi,
         signer
       )
       setMintingStatusText('Item listing in progress')
-      const transaction = await contract.mint(
-        '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3',
-        url
-      )
+      const transaction = await contract.mint(await signer.getAddress(), url)
+      console.log(transaction)
       await transaction.wait()
       toast.success('Your item has been successfully listed!')
       setMintingStatusText('Listing completed! Reloading this page')
@@ -167,22 +161,7 @@ const Mint: React.FC<Props> = ({ post }) => {
             />
           </div>
           <div>
-            <Input
-              label="Selling Price"
-              type="number"
-              placeholder="2.5"
-              prefix="MATIC"
-              {...form.register('price')}
-            />
-          </div>
-          <div>
-            <Button
-              disabled={
-                !form.formState.isDirty || parseInt(form.watch('price')) <= 0
-              }
-            >
-              Mint NFT
-            </Button>
+            <Button>Mint NFT</Button>
           </div>
         </Form>
       )}
