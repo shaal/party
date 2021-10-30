@@ -13,7 +13,6 @@ module.exports = withPWA({
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
     OPENSEA_API_KEY: process.env.OPENSEA_API_KEY,
     BASE_URL: process.env.BASE_URL,
-    NFT_RPC_URL: process.env.NFT_RPC_URL,
     GIT_COMMIT_REF: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF,
     GIT_COMMIT_SHA: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
     VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,

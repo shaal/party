@@ -22,7 +22,6 @@ export const PUBLIC_SIGNING_MESSAGE =
 
 // URLs
 export const BASE_URL = process.env.BASE_URL
-export const NFT_RPC_URL = process.env.NFT_RPC_URL
 export const GRAPHCDN_URL = 'https://graphql.devparty.io'
 export const STATIC_ASSETS = 'https://assets.devparty.io/images'
 export const OPENSEA_API_URL = `https://${
