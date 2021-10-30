@@ -108,10 +108,10 @@ const Mint: React.FC<Props> = ({ post }) => {
       const { path } = await client.add(
         JSON.stringify({
           name: form.watch('title'),
-          ...getNFTData(post, `https://ipfs.infura.io/ipfs/${cid}`)
+          ...getNFTData(post, `https://ipfs.io/ipfs/${cid}`)
         })
       )
-      const url = `https://ipfs.infura.io/ipfs/${path}`
+      const url = `https://ipfs.io/ipfs/${path}`
       createSale(url)
     } catch {
       setIsMinting(false)
