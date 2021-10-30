@@ -1,77 +1,45 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NFTMarket is ReentrancyGuard {
+contract NFTMarket is ERC721, Ownable {
   using Counters for Counters.Counter;
-  Counters.Counter private _itemIds;
+  using Strings for uint256;
+  Counters.Counter private _tokenIds;
+  mapping (uint256 => string) private _tokenURIs;
+  
+  constructor() ERC721("Devparty", "DEV") {}
 
-  address payable owner;
-  uint256 listingPrice = 0.00000025 ether;
-
-  constructor() {
-    owner = payable(msg.sender);
+  function _setTokenURI(uint256 tokenId, string memory _tokenURI)
+    internal
+    virtual
+  {
+    _tokenURIs[tokenId] = _tokenURI;
   }
 
-  struct MarketItem {
-    uint itemId;
-    address nftContract;
-    uint256 tokenId;
-    address payable seller;
-    address payable owner;
-    uint256 price;
-    bool sold;
+  function tokenURI(uint256 tokenId) 
+    public
+    view
+    virtual
+    override
+    returns (string memory)
+  {
+    require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    string memory _tokenURI = _tokenURIs[tokenId];
+    return _tokenURI;
   }
 
-  mapping(uint256 => MarketItem) private idToMarketItem;
-
-  event MarketItemCreated (
-    uint indexed itemId,
-    address indexed nftContract,
-    uint256 indexed tokenId,
-    address seller,
-    address owner,
-    uint256 price,
-    bool sold
-  );
-
-  // Returns the listing price of the contract
-  function getListingPrice() public view returns (uint256) {
-    return listingPrice;
-  }
-
-  // Places an item for sale on the marketplace
-  function createMarketItem(
-    address nftContract,
-    uint256 tokenId,
-    uint256 price
-  ) public payable nonReentrant {
-    require(price > 0, "Price must be at least 1 wei");
-    require(msg.value == listingPrice, "Price must be equal to listing price");
-
-    _itemIds.increment();
-    uint256 itemId = _itemIds.current();
-
-    idToMarketItem[itemId] =  MarketItem(
-      itemId,
-      nftContract,
-      tokenId,
-      payable(msg.sender),
-      payable(address(0)),
-      price,
-      false
-    );
-
-    emit MarketItemCreated(
-      itemId,
-      nftContract,
-      tokenId,
-      msg.sender,
-      address(0),
-      price,
-      false
-    );
+  function mint(address recipient, string memory uri)
+    public
+    returns (uint256)
+  {
+    _tokenIds.increment();
+    uint256 newItemId = _tokenIds.current();
+    _mint(recipient, newItemId);
+    _setTokenURI(newItemId, uri);
+    return newItemId;
   }
 }

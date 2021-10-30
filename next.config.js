@@ -18,7 +18,6 @@ module.exports = withPWA({
     VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
     VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
     NFT_MARKET_ADDRESS: process.env.NFT_MARKET_ADDRESS,
-    NFT_ADDRESS: process.env.NFT_ADDRESS,
     MORALIS_API_KEY: process.env.MORALIS_API_KEY
   }
 })

@@ -11,11 +11,10 @@ import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { IS_PRODUCTION, NFT_ADDRESS, NFT_MARKET_ADDRESS } from 'src/constants'
+import { IS_PRODUCTION, NFT_MARKET_ADDRESS } from 'src/constants'
 import { object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
-import NFT from '../../../../artifacts/contracts/NFT.sol/NFT.json'
 import {
   MintNftMutation,
   MintNftMutationVariables
@@ -79,43 +78,16 @@ const Mint: React.FC<Props> = ({ post }) => {
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
 
-      // Create the item
-      let contract = new ethers.Contract(NFT_ADDRESS as string, NFT.abi, signer)
-      let transaction = await contract.createToken(url)
-      setMintingStatusText('Item creation in progress')
-      let tx = await transaction.wait()
-      let event = tx.events[0]
-      let value = event.args[2]
-      let tokenId = value.toNumber()
-
-      const price = ethers.utils.parseUnits(
-        form.watch('price').toString(),
-        'ether'
-      )
-
       // List the item for sale on the marketplace
-      contract = new ethers.Contract(
+      const contract = new ethers.Contract(
         NFT_MARKET_ADDRESS as string,
         Market.abi,
         signer
       )
-      let listingPrice = await contract.getListingPrice()
-      listingPrice = listingPrice.toString()
       setMintingStatusText('Item listing in progress')
-      mintNFT({
-        variables: {
-          input: {
-            postId: post?.id,
-            address: NFT_ADDRESS as string,
-            tokenId: tokenId.toString()
-          }
-        }
-      })
-      transaction = await contract.createMarketItem(
-        NFT_ADDRESS,
-        tokenId,
-        price,
-        { value: listingPrice }
+      const transaction = await contract.mint(
+        '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3',
+        url
       )
       await transaction.wait()
       toast.success('Your item has been successfully listed!')
