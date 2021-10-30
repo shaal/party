@@ -58,7 +58,7 @@
     "next-iron-session": "^4.2.0",
     "next-pwa": "^5.4.0",
     "next-themes": "^0.0.15",
-    "nextjs-progressbar": "^0.0.11",
+    "nextjs-progressbar": "^0.0.13",
     "octokit": "^1.7.0",
     "react": "^17.0.2",
     "react-cool-inview": "^2.0.8",
@@ -77,7 +77,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.1",
     "@graphql-codegen/near-operation-file-preset": "^2.1.6",
-    "@graphql-codegen/typescript": "^2.2.4",
+    "@graphql-codegen/typescript": "^2.3.0",
     "@graphql-codegen/typescript-operations": "^2.1.8",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/forms": "^0.4.0-alpha.1",
