@@ -17,7 +17,7 @@ import { Post } from 'src/__generated__/schema.generated'
 import { IS_PRODUCTION, NFT_MARKET_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
-import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
+import Market from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
 import {
   MintNftMutation,
   MintNftMutationVariables
@@ -93,18 +93,22 @@ const Mint: React.FC<Props> = ({ post }) => {
         signer
       )
       setMintingStatusText('Minting NFT in progress')
-      const transaction = await contract.mint(await signer.getAddress(), url)
+      const transaction = await contract.issueToken(
+        await signer.getAddress(),
+        5,
+        url
+      )
       const finishedTransaction = await transaction.wait()
-      let event = finishedTransaction.events[0]
-      mintNFT({
-        variables: {
-          input: {
-            postId: post?.id,
-            address: transaction.to,
-            tokenId: event.args[2].toString()
-          }
-        }
-      })
+      console.log(finishedTransaction)
+      // mintNFT({
+      //   variables: {
+      //     input: {
+      //       postId: post?.id,
+      //       address: transaction.to,
+      //       tokenId: event.args[2].toString()
+      //     }
+      //   }
+      // })
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
