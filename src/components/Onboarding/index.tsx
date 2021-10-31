@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
+import { Checkbox } from '@components/UI/Checkbox'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Spinner } from '@components/UI/Spinner'
 import AppContext from '@components/utils/AppContext'
@@ -67,13 +68,13 @@ const Onboarding: React.FC = () => {
             }
           >
             <div className="flex items-center space-x-2">
-              <input id="acceptCOC" type="checkbox" {...form.register('coc')} />
+              <Checkbox {...form.register('coc')} />
               <label htmlFor="acceptCOC">
                 You agree to uphold our <a href="/">Code of Conduct</a>
               </label>
             </div>
             <div className="flex items-center space-x-2">
-              <input id="acceptTOS" type="checkbox" {...form.register('tos')} />
+              <Checkbox {...form.register('tos')} />
               <label htmlFor="acceptTOS">
                 You agree to our <a href="/">Terms and Conditions</a>
               </label>

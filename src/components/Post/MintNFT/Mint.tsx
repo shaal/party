@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
+import { Checkbox } from '@components/UI/Checkbox'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
@@ -12,7 +13,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 import { IS_PRODUCTION, NFT_MARKET_ADDRESS } from 'src/constants'
-import { object, string } from 'zod'
+import { boolean, object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/Market.sol/NFTMarket.json'
 import {
@@ -27,7 +28,8 @@ const client = create({
 })
 
 const newNFTSchema = object({
-  title: string().min(0).max(100)
+  title: string().min(0).max(100),
+  accept: boolean()
 })
 
 interface Props {
@@ -136,7 +138,7 @@ const Mint: React.FC<Props> = ({ post }) => {
   }
 
   return (
-    <div className="px-5 py-3.5 space-y-3">
+    <div className="space-y-3">
       {mintingStatus === 'COMPLETED' ? (
         <div className="p-5 font-bold text-center space-y-4">
           <div className="space-y-2">
@@ -169,15 +171,24 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>{mintingStatusText}</div>
         </div>
       ) : (
-        <Form form={form} className="space-y-3" onSubmit={generateNft}>
-          <div>
-            <Input
-              label="Title"
-              placeholder="Title of your NFT"
-              {...form.register('title')}
-            />
+        <Form form={form} onSubmit={generateNft}>
+          <div className="px-5 py-3.5 space-y-5">
+            <div>
+              <Input
+                label="Title"
+                placeholder="Title of your NFT"
+                {...form.register('title')}
+              />
+            </div>
+            <div className="flex items-center space-x-4">
+              <Checkbox id="acceptRights" {...form.register('accept')} />
+              <label htmlFor="acceptRights">
+                I have the rights to publish this artwork, and understand it
+                will be minted on the <b>Polygon</b> network.
+              </label>
+            </div>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between p-5 border-t dark:border-gray-800">
             <a
               className="text-sm text-gray-500"
               href="https://ipfs.io"
