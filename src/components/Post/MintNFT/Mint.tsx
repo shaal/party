@@ -83,8 +83,18 @@ const Mint: React.FC<Props> = ({ post }) => {
       )
       setMintingStatusText('Minting NFT in progress')
       const transaction = await contract.mint(await signer.getAddress(), url)
-      console.log(transaction)
-      await transaction.wait()
+      const finishedTransaction = await transaction.wait()
+      let event = finishedTransaction.events[0]
+      mintNFT({
+        variables: {
+          input: {
+            postId: post?.id,
+            address: transaction.to,
+            tokenId: event.args[2].toString()
+          }
+        }
+      })
+
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
     } catch (error) {
