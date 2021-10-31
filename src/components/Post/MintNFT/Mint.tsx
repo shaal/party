@@ -73,6 +73,13 @@ const Mint: React.FC<Props> = ({ post }) => {
       const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
+      const { name: currentNetworkName } = await web3.getNetwork()
+      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'maticmum'
+
+      if (currentNetworkName !== expectedNetworkName) {
+        setIsMinting(false)
+        return toast.error('You are in wrong network!')
+      }
 
       // Mint the Item
       const contract = new ethers.Contract(
