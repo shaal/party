@@ -84,7 +84,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       const signer = await web3.getSigner()
       const { name: currentNetworkName } = await web3.getNetwork()
       // TODO: Change to maticmum
-      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'matic'
+      const expectedNetworkName = IS_PRODUCTION ? 'maticmum' : 'maticmum'
 
       if (currentNetworkName !== expectedNetworkName) {
         setIsMinting(false)
