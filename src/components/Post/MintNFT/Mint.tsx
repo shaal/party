@@ -83,7 +83,8 @@ const Mint: React.FC<Props> = ({ post }) => {
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
       const { name: currentNetworkName } = await web3.getNetwork()
-      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'maticmum'
+      // TODO: Change to maticmum
+      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'matic'
 
       if (currentNetworkName !== expectedNetworkName) {
         setIsMinting(false)
@@ -159,11 +160,12 @@ const Mint: React.FC<Props> = ({ post }) => {
             <div>Your NFT has been successfully minted!</div>
           </div>
           <div>
+            {/* TODO: Update URLs */}
             <a
               href={`https://${
-                IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
+                IS_PRODUCTION ? 'testnets.opensea.io' : 'testnets.opensea.io'
               }/assets/${
-                IS_PRODUCTION ? 'matic' : 'mumbai'
+                IS_PRODUCTION ? 'mumbai' : 'mumbai'
               }/${mintedAddress}/${mintedTokenId}`}
               target="_blank"
               rel="noreferrer"
