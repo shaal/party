@@ -130,7 +130,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       const { path } = await client.add(
         JSON.stringify({
           name: form.watch('title'),
-          ...getNFTData(post, `https://ipfs.infura.io/ipfs/${cid}`)
+          ...getNFTData(nsfw, post, `https://ipfs.infura.io/ipfs/${cid}`)
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${path}`
@@ -227,7 +227,7 @@ const Mint: React.FC<Props> = ({ post }) => {
             >
               Stored on <b>IPFS</b>
             </a>
-            <Button>Mint NFT</Button>
+            <Button disabled={!form.watch('accept')}>Mint NFT</Button>
           </div>
         </Form>
       )}
