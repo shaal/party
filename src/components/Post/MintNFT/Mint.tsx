@@ -103,7 +103,9 @@ const Mint: React.FC<Props> = ({ post }) => {
         `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
       )
       const { cid } = await client.add(
-        urlSource(`https://nft.devparty.io/${post?.body}`)
+        urlSource(
+          `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
+        )
       )
       const { path } = await client.add(
         JSON.stringify({
