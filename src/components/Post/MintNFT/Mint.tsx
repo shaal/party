@@ -67,7 +67,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   })
 
-  const createSale = async (url: string) => {
+  const mintNft = async (url: string) => {
     try {
       // Get signature from the user
       setMintingStatusText('Sign in the wallet to continue')
@@ -105,7 +105,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   }
 
-  const createMarket = async () => {
+  const generateNft = async () => {
     setMintingStatus('IN_PROGRESS')
     setIsMinting(true)
     try {
@@ -123,7 +123,7 @@ const Mint: React.FC<Props> = ({ post }) => {
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${path}`
-      createSale(url)
+      mintNft(url)
     } catch {
       setIsMinting(false)
     }
@@ -163,7 +163,7 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>{mintingStatusText}</div>
         </div>
       ) : (
-        <Form form={form} className="space-y-3" onSubmit={createMarket}>
+        <Form form={form} className="space-y-3" onSubmit={generateNft}>
           <div>
             <Input
               label="Title"
