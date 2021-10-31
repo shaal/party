@@ -72,7 +72,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   })
 
-  const mintNft = async (url: string) => {
+  const mintToken = async (url: string) => {
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
@@ -100,6 +100,8 @@ const Mint: React.FC<Props> = ({ post }) => {
       )
       const finishedTransaction = await transaction.wait()
       let event = finishedTransaction.events[0]
+
+      // Add transaction to the DB
       mintNFT({
         variables: {
           input: {
@@ -138,7 +140,7 @@ const Mint: React.FC<Props> = ({ post }) => {
         })
       )
       const url = `https://ipfs.infura.io/ipfs/${path}`
-      mintNft(url)
+      mintToken(url)
     } catch {
       setIsMinting(false)
     }
