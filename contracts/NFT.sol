@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
-contract NFTMarket is ERC721, Ownable {
+contract Devparty is Ownable, ERC1155Supply {
   using Counters for Counters.Counter;
-  using Strings for uint256;
   Counters.Counter private _tokenIds;
   mapping (uint256 => string) private _tokenURIs;
+  bytes4 private constant _INTERFACE_ID_ERC2981 = 0x2a55205a;
 
-  constructor() ERC721("Devparty", "DEV") {}
+  constructor() ERC1155("") {}
 
   function _setTokenURI(uint256 tokenId, string memory _tokenURI)
     internal
@@ -24,22 +24,27 @@ contract NFTMarket is ERC721, Ownable {
     public
     view
     virtual
-    override
     returns (string memory)
   {
-    require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    require(exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
     string memory _tokenURI = _tokenURIs[tokenId];
 
     return _tokenURI;
   }
 
-  function mint(address recipient, string memory uri)
+  function issueToken(
+    address recipient,
+    uint256 amount,
+    string memory uri
+  )
     public
     returns (uint256)
   {
+    require(amount < 0, "Quantity should be greater than 0");
+
     _tokenIds.increment();
     uint256 newItemId = _tokenIds.current();
-    _mint(recipient, newItemId);
+    _mint(recipient, newItemId, amount, "");
     _setTokenURI(newItemId, uri);
 
     return newItemId;
