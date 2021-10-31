@@ -6,7 +6,9 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
+import { Switch } from '@headlessui/react'
 import { ArrowRightIcon } from '@heroicons/react/outline'
+import clsx from 'clsx'
 import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
@@ -37,6 +39,7 @@ interface Props {
 }
 
 const Mint: React.FC<Props> = ({ post }) => {
+  const [nsfw, setNsfw] = useState<boolean>(false)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [mintingStatus, setMintingStatus] = useState<
     'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
@@ -179,6 +182,33 @@ const Mint: React.FC<Props> = ({ post }) => {
                 placeholder="Title of your NFT"
                 {...form.register('title')}
               />
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-lg font-bold">Explicit Content</div>
+                <div className="text-gray-500">18+</div>
+              </div>
+              <div>
+                <Switch
+                  checked={nsfw}
+                  onChange={setNsfw}
+                  className={clsx(
+                    { 'bg-brand-500': nsfw },
+                    { 'bg-gray-300': !nsfw },
+                    'relative inline-flex flex-shrink-0 h-[24.5px] w-12 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none'
+                  )}
+                >
+                  <span className="sr-only">Use setting</span>
+                  <span
+                    aria-hidden="true"
+                    className={clsx(
+                      { 'translate-x-6': nsfw },
+                      { 'translate-x-0': !nsfw },
+                      'pointer-events-none inline-block h-[20px] w-[20px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200'
+                    )}
+                  />
+                </Switch>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <Checkbox id="acceptRights" {...form.register('accept')} />
