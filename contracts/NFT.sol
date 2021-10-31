@@ -32,6 +32,13 @@ contract Devparty is Ownable, ERC1155Supply {
     return _tokenURI;
   }
 
+  /**
+    * Mint + Issue Token
+    *
+    * @param recipient - Token will be issued to recipient
+    * @param amount - amount of tokens to mint
+    * @param uri - IPFS URL
+    */
   function issueToken(
     address recipient,
     uint256 amount,
@@ -40,8 +47,6 @@ contract Devparty is Ownable, ERC1155Supply {
     public
     returns (uint256)
   {
-    require(amount < 0, "Quantity should be greater than 0");
-
     _tokenIds.increment();
     uint256 newItemId = _tokenIds.current();
     _mint(recipient, newItemId, amount, "");
