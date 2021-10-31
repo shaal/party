@@ -14,7 +14,7 @@ import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { IS_PRODUCTION, NFT_MARKET_ADDRESS } from 'src/constants'
+import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import Market from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
@@ -92,7 +92,7 @@ const Mint: React.FC<Props> = ({ post }) => {
 
       // Mint the Item
       const contract = new ethers.Contract(
-        NFT_MARKET_ADDRESS as string,
+        NFT_CONTRACT_ADDRESS as string,
         Market.abi,
         signer
       )

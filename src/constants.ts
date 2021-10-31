@@ -29,7 +29,7 @@ export const OPENSEA_API_URL = `https://${
 }.opensea.io/api/v1`
 
 // NFT
-export const NFT_MARKET_ADDRESS = process.env.NFT_MARKET_ADDRESS
+export const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
 
 // Misc
 export const GRAPHCDN_ENABLED =
