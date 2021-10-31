@@ -11,7 +11,7 @@ contract Devparty is Ownable, ERC1155Supply {
   mapping (uint256 => string) private _tokenURIs;
   bytes4 private constant _INTERFACE_ID_ERC2981 = 0x2a55205a;
 
-  constructor() ERC1155("") {}
+  constructor() ERC1155("Devparty") {}
 
   function _setTokenURI(uint256 tokenId, string memory _tokenURI)
     internal
