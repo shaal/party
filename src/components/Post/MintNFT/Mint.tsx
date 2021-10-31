@@ -99,16 +99,16 @@ const Mint: React.FC<Props> = ({ post }) => {
         url
       )
       const finishedTransaction = await transaction.wait()
-      console.log(finishedTransaction)
-      // mintNFT({
-      //   variables: {
-      //     input: {
-      //       postId: post?.id,
-      //       address: transaction.to,
-      //       tokenId: event.args[2].toString()
-      //     }
-      //   }
-      // })
+      let event = finishedTransaction.events[0]
+      mintNFT({
+        variables: {
+          input: {
+            postId: post?.id,
+            address: transaction.to,
+            tokenId: event.args[3].toString()
+          }
+        }
+      })
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
