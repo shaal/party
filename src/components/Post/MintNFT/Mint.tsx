@@ -30,7 +30,10 @@ const client = create({
 })
 
 const newNFTSchema = object({
-  title: string().min(0).max(100),
+  title: string().min(0).max(255),
+  quantity: string().refine((val: string) => !Number.isNaN(parseInt(val, 10)), {
+    message: 'Expected number'
+  }),
   accept: boolean()
 })
 
@@ -68,7 +71,8 @@ const Mint: React.FC<Props> = ({ post }) => {
   const form = useZodForm({
     schema: newNFTSchema,
     defaultValues: {
-      title: `Post by @${post?.user?.username} in Devparty`
+      title: `Post by @${post?.user?.username} in Devparty`,
+      quantity: '1'
     }
   })
 
@@ -95,7 +99,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       setMintingStatusText('Minting NFT in progress')
       const transaction = await contract.issueToken(
         await signer.getAddress(),
-        5,
+        form.watch('quantity'),
         url
       )
       const finishedTransaction = await transaction.wait()
@@ -181,13 +185,27 @@ const Mint: React.FC<Props> = ({ post }) => {
         </div>
       ) : (
         <Form form={form} onSubmit={generateNft}>
-          <div className="px-5 py-3.5 space-y-5">
+          <div className="px-5 py-3.5 space-y-7">
             <div>
               <Input
                 label="Title"
                 placeholder="Title of your NFT"
                 {...form.register('title')}
               />
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-lg font-bold">Number of Editions</div>
+                <div className="text-gray-500">1 by default</div>
+              </div>
+              <div>
+                <Input
+                  type="number"
+                  className="w-20"
+                  placeholder="5"
+                  {...form.register('quantity')}
+                />
+              </div>
             </div>
             <div className="flex items-center justify-between">
               <div>
@@ -233,7 +251,15 @@ const Mint: React.FC<Props> = ({ post }) => {
             >
               Stored on <b>IPFS</b>
             </a>
-            <Button disabled={!form.watch('accept')}>Mint NFT</Button>
+            <Button
+              disabled={
+                !form.watch('accept') ||
+                parseInt(form.watch('quantity')) < 1 ||
+                parseInt(form.watch('quantity')) > 1000
+              }
+            >
+              Mint NFT
+            </Button>
           </div>
         </Form>
       )}
