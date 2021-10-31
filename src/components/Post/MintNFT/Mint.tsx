@@ -70,6 +70,7 @@ const Mint: React.FC<Props> = ({ post }) => {
   const createSale = async (url: string) => {
     try {
       // Get signature from the user
+      setMintingStatusText('Sign in the wallet to continue')
       const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
@@ -80,12 +81,11 @@ const Mint: React.FC<Props> = ({ post }) => {
         Market.abi,
         signer
       )
-      setMintingStatusText('Item listing in progress')
+      setMintingStatusText('Minting NFT in progress')
       const transaction = await contract.mint(await signer.getAddress(), url)
       console.log(transaction)
       await transaction.wait()
-      toast.success('Your item has been successfully listed!')
-      setMintingStatusText('Listing completed! Reloading this page')
+      toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
     } catch (error) {
       console.log(error)
@@ -99,14 +99,13 @@ const Mint: React.FC<Props> = ({ post }) => {
     setMintingStatus('IN_PROGRESS')
     setIsMinting(true)
     try {
-      setMintingStatusText(
-        `We're preparing your NFT, We'll ask you to confirm with your wallet shortly`
-      )
+      setMintingStatusText('Converting your post as art')
       const { cid } = await client.add(
         urlSource(
           `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
         )
       )
+      setMintingStatusText('Uploading metadata to decentralized servers')
       const { path } = await client.add(
         JSON.stringify({
           name: form.watch('title'),
