@@ -70,7 +70,6 @@ const Mint: React.FC<Props> = ({ post }) => {
   const mintNft = async (url: string) => {
     try {
       // Get signature from the user
-      setMintingStatusText('Sign in the wallet to continue')
       const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
