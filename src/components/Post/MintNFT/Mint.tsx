@@ -177,7 +177,15 @@ const Mint: React.FC<Props> = ({ post }) => {
               {...form.register('title')}
             />
           </div>
-          <div>
+          <div className="flex items-center justify-between">
+            <a
+              className="text-sm text-gray-500"
+              href="https://ipfs.io"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Stored on <b>IPFS</b>
+            </a>
             <Button>Mint NFT</Button>
           </div>
         </Form>
