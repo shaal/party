@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.9;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@opengsn/contracts/src/BaseRelayRecipient.sol";
 
-contract Devparty is Ownable, ERC1155Supply, ReentrancyGuard {
+contract Devparty is Ownable, ERC1155Supply, BaseRelayRecipient {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   mapping (uint256 => string) private _tokenURIs;
@@ -49,7 +50,6 @@ contract Devparty is Ownable, ERC1155Supply, ReentrancyGuard {
     string memory uri
   )
     public
-    nonReentrant
     returns (uint256)
   {
     require(amount != 0, "Quantity should be positive");
@@ -60,5 +60,33 @@ contract Devparty is Ownable, ERC1155Supply, ReentrancyGuard {
     _setTokenURI(newItemId, uri);
 
     return newItemId;
+  }
+
+  function _msgSender()
+    internal
+    view
+    override(Context, BaseRelayRecipient)
+    returns (address)
+  {
+    return BaseRelayRecipient._msgSender();
+  }
+
+  function _msgData()
+    internal
+    view
+    override(Context, BaseRelayRecipient)
+    returns (bytes memory)
+  {
+    return BaseRelayRecipient._msgData();
+  }
+
+  function versionRecipient()
+    external
+    virtual
+    override
+    view
+    returns (string memory)
+  {
+    return "1";
   }
 }
