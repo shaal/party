@@ -15,7 +15,11 @@ import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
+import {
+  ERROR_MESSAGE,
+  IS_PRODUCTION,
+  NFT_CONTRACT_ADDRESS
+} from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
@@ -98,14 +102,32 @@ const Mint: React.FC<Props> = ({ post }) => {
 
       const provider = biconomy.getEthersProvider()
 
-      const transaction = await provider.send('eth_sendTransaction', [
-        {
-          data,
-          from: signerAddress,
-          to: NFT_CONTRACT_ADDRESS as string,
-          signatureType: 'EIP712_SIGN'
-        }
-      ])
+      const transaction = await provider
+        .send('eth_sendTransaction', [
+          {
+            data,
+            from: signerAddress,
+            to: NFT_CONTRACT_ADDRESS as string,
+            signatureType: 'EIP712_SIGN'
+          }
+        ])
+        .catch((error: any) => {
+          if (error.code === 4001) {
+            toast.error(ERROR_MESSAGE)
+            setMintingStatus('ERRORED')
+          }
+
+          if (
+            JSON.parse(
+              error?.body || error?.error?.body || '{}'
+            )?.error?.message?.includes('caller is not minter')
+          ) {
+            toast.error('Your address is not approved for minting.')
+            setMintingStatus('ERRORED')
+          }
+
+          throw error
+        })
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
