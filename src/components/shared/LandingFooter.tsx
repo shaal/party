@@ -3,7 +3,7 @@ import Link from 'next/link'
 const LandingFooter: React.FC = () => {
   return (
     <>
-      <footer className="leading-7 flex flex-wrap">
+      <footer className="leading-7 hidden md:flex flex-wrap">
         <span className="text-gray-500 dark:text-gray-300 font-bold pr-3">
           © Devparty
         </span>
@@ -25,7 +25,7 @@ const LandingFooter: React.FC = () => {
         </a>
       </footer>
       <a
-        className="mt-2 hover:font-bold"
+        className="mt-2 hover:font-bold hidden md:block"
         href="https://vercel.com/?utm_source=Devparty&utm_campaign=oss"
         target="_blank"
         rel="noreferrer"
