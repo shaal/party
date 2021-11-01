@@ -85,11 +85,7 @@ const Mint: React.FC<Props> = ({ post }) => {
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
-      const { biconomy, web3 } = await getBiconomy(web3Modal).catch((error) => {
-        if (error !== 'Modal closed by user')
-          toast.error('Transaction cancelled by user')
-        setMintingStatus('ERRORED')
-      })
+      const { biconomy, web3 } = await getBiconomy(web3Modal)
       const signerAddress = await web3.getSigner().getAddress()
 
       const contract = new ethers.Contract(
