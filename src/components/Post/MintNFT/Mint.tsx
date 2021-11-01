@@ -82,7 +82,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       // Upload to IPFS
       setMintingStatus('IN_PROGRESS')
       setIsMinting(true)
-      setMintingStatusText('Converting your post as art')
+      setMintingStatusText('Converting your post as an art')
       const { cid } = await client.add(
         urlSource(
           `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
@@ -98,6 +98,9 @@ const Mint: React.FC<Props> = ({ post }) => {
       const url = `https://ipfs.infura.io/ipfs/${path}`
 
       // Start Minting
+      setMintingStatusText(
+        'Minting in progress, you will be asked to sign in your wallet'
+      )
       const web3Modal = getWeb3Modal()
       const { biconomy, web3 } = await getBiconomy(web3Modal)
       const signerAddress = await web3.getSigner().getAddress()
@@ -123,9 +126,22 @@ const Mint: React.FC<Props> = ({ post }) => {
           signatureType: 'EIP712_SIGN'
         }
       ])
+      setMintingStatusText('Pushing your NFT in to the network')
+      provider.once(transaction, (result: any) => {
+        mintNFT({
+          variables: {
+            input: {
+              postId: post?.id,
+              address: NFT_CONTRACT_ADDRESS,
+              tokenId: contract.interface
+                .decodeFunctionResult('issueToken', result.logs[0].data)[0]
+                .toNumber()
+            }
+          }
+        })
 
-      toast.success('Minting has been successfully completed!')
-      setMintingStatus('COMPLETED')
+        setMintingStatus('COMPLETED')
+      })
     } catch (error) {
       console.log(error)
       setIsMinting(false)
