@@ -5,9 +5,7 @@ import { ethers } from 'ethers'
 export const getBiconomy = async (web3Modal: any) => {
   const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
   const biconomy = new Biconomy(
-    new ethers.providers.JsonRpcProvider(
-      'https://speedy-nodes-nyc.moralis.io/ff1274045f2cabf446cb8753/polygon/mumbai'
-    ),
+    new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com'),
     {
       apiKey: process.env.BICONOMY_API_KEY,
       walletProvider: web3.provider
