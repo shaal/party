@@ -47,6 +47,8 @@ contract Devparty is ERC1155Supply, ReentrancyGuard {
     nonReentrant
     returns (uint256)
   {
+    require(amount != 0, "Quantity should be positive");
+
     _tokenIds.increment();
     uint256 newItemId = _tokenIds.current();
     _mint(recipient, newItemId, amount, "");
