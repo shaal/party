@@ -15,11 +15,7 @@ import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
-import {
-  ERROR_MESSAGE,
-  IS_PRODUCTION,
-  NFT_CONTRACT_ADDRESS
-} from 'src/constants'
+import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
@@ -81,9 +77,27 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   })
 
-  const mintToken = async (url: string) => {
+  const mintToken = async () => {
     try {
-      // Get signature from the user
+      // Upload to IPFS
+      setMintingStatus('IN_PROGRESS')
+      setIsMinting(true)
+      setMintingStatusText('Converting your post as art')
+      const { cid } = await client.add(
+        urlSource(
+          `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
+        )
+      )
+      setMintingStatusText('Uploading metadata to decentralized servers')
+      const { path } = await client.add(
+        JSON.stringify({
+          name: form.watch('title'),
+          ...getNFTData(nsfw, post, `https://ipfs.infura.io/ipfs/${cid}`)
+        })
+      )
+      const url = `https://ipfs.infura.io/ipfs/${path}`
+
+      // Start Minting
       const web3Modal = getWeb3Modal()
       const { biconomy, web3 } = await getBiconomy(web3Modal)
       const signerAddress = await web3.getSigner().getAddress()
@@ -101,31 +115,14 @@ const Mint: React.FC<Props> = ({ post }) => {
       )
 
       const provider = biconomy.getEthersProvider()
-
-      const transaction = await provider
-        .send('eth_sendTransaction', [
-          {
-            data,
-            from: signerAddress,
-            to: NFT_CONTRACT_ADDRESS as string,
-            signatureType: 'EIP712_SIGN'
-          }
-        ])
-        .catch((error: any) => {
-          if (error.code === 4001) {
-            toast.error(ERROR_MESSAGE)
-          }
-
-          if (
-            JSON.parse(
-              error?.body || error?.error?.body || '{}'
-            )?.error?.message?.includes('caller is not minter')
-          ) {
-            toast.error('Your address is not approved for minting.')
-          }
-
-          setMintingStatus('ERRORED')
-        })
+      const transaction = await provider.send('eth_sendTransaction', [
+        {
+          data,
+          from: signerAddress,
+          to: NFT_CONTRACT_ADDRESS as string,
+          signatureType: 'EIP712_SIGN'
+        }
+      ])
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
@@ -134,30 +131,6 @@ const Mint: React.FC<Props> = ({ post }) => {
       setIsMinting(false)
       setMintingStatus('ERRORED')
       toast.error('Transaction has been cancelled!')
-    }
-  }
-
-  const generateNft = async () => {
-    setMintingStatus('IN_PROGRESS')
-    setIsMinting(true)
-    try {
-      setMintingStatusText('Converting your post as art')
-      const { cid } = await client.add(
-        urlSource(
-          `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
-        )
-      )
-      setMintingStatusText('Uploading metadata to decentralized servers')
-      const { path } = await client.add(
-        JSON.stringify({
-          name: form.watch('title'),
-          ...getNFTData(nsfw, post, `https://ipfs.infura.io/ipfs/${cid}`)
-        })
-      )
-      const url = `https://ipfs.infura.io/ipfs/${path}`
-      mintToken(url)
-    } catch {
-      setIsMinting(false)
     }
   }
 
@@ -196,7 +169,7 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>{mintingStatusText}</div>
         </div>
       ) : (
-        <Form form={form} onSubmit={generateNft}>
+        <Form form={form} onSubmit={mintToken}>
           <div className="px-5 py-3.5 space-y-7">
             <div>
               <Input
