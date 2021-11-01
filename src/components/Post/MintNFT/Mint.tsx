@@ -85,7 +85,11 @@ const Mint: React.FC<Props> = ({ post }) => {
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
-      const { biconomy, web3 } = await getBiconomy(web3Modal)
+      const { biconomy, web3 } = await getBiconomy(web3Modal).catch((error) => {
+        if (error !== 'Modal closed by user')
+          toast.error('Transaction cancelled by user')
+        setMintingStatus('ERRORED')
+      })
       const signerAddress = await web3.getSigner().getAddress()
 
       const contract = new ethers.Contract(
@@ -114,7 +118,6 @@ const Mint: React.FC<Props> = ({ post }) => {
         .catch((error: any) => {
           if (error.code === 4001) {
             toast.error(ERROR_MESSAGE)
-            setMintingStatus('ERRORED')
           }
 
           if (
@@ -123,10 +126,9 @@ const Mint: React.FC<Props> = ({ post }) => {
             )?.error?.message?.includes('caller is not minter')
           ) {
             toast.error('Your address is not approved for minting.')
-            setMintingStatus('ERRORED')
           }
 
-          throw error
+          setMintingStatus('ERRORED')
         })
 
       toast.success('Minting has been successfully completed!')
