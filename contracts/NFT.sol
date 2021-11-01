@@ -2,14 +2,12 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
-contract Devparty is Ownable, ERC1155Supply {
+contract Devparty is ERC1155Supply {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   mapping (uint256 => string) private _tokenURIs;
-  bytes4 private constant _INTERFACE_ID_ERC2981 = 0x2a55205a;
 
   constructor() ERC1155("Devparty") {}
 
