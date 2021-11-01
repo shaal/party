@@ -3,8 +3,9 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Devparty is ERC1155Supply {
+contract Devparty is ERC1155Supply, ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
   mapping (uint256 => string) private _tokenURIs;
@@ -24,7 +25,7 @@ contract Devparty is ERC1155Supply {
     virtual
     returns (string memory)
   {
-    require(exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    require(exists(tokenId), "URI query for nonexistent token");
     string memory _tokenURI = _tokenURIs[tokenId];
 
     return _tokenURI;
@@ -43,6 +44,7 @@ contract Devparty is ERC1155Supply {
     string memory uri
   )
     public
+    nonReentrant
     returns (uint256)
   {
     _tokenIds.increment();
