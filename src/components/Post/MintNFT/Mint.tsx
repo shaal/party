@@ -132,10 +132,10 @@ const Mint: React.FC<Props> = ({ post }) => {
           variables: {
             input: {
               postId: post?.id,
-              address: NFT_CONTRACT_ADDRESS,
+              address: NFT_CONTRACT_ADDRESS as string,
               tokenId: contract.interface
                 .decodeFunctionResult('issueToken', result.logs[0].data)[0]
-                .toNumber()
+                .toString()
             }
           }
         })
