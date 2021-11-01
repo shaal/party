@@ -4,6 +4,7 @@ import { Checkbox } from '@components/UI/Checkbox'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import { getBiconomy } from '@components/utils/getBiconomy'
 import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { Switch } from '@headlessui/react'
@@ -17,7 +18,7 @@ import { Post } from 'src/__generated__/schema.generated'
 import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
-import Market from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
+import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
 import {
   MintNftMutation,
   MintNftMutationVariables
@@ -80,42 +81,31 @@ const Mint: React.FC<Props> = ({ post }) => {
     try {
       // Get signature from the user
       const web3Modal = getWeb3Modal()
-      const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
-      const signer = await web3.getSigner()
-      const { name: currentNetworkName } = await web3.getNetwork()
-      // TODO: Change to maticmum
-      const expectedNetworkName = IS_PRODUCTION ? 'maticmum' : 'maticmum'
+      const { biconomy, web3 } = await getBiconomy(web3Modal)
+      const signerAddress = await web3.getSigner().getAddress()
 
-      if (currentNetworkName !== expectedNetworkName) {
-        setIsMinting(false)
-        return toast.error('You are in wrong network!')
-      }
-
-      // Mint the Item
       const contract = new ethers.Contract(
         NFT_CONTRACT_ADDRESS as string,
-        Market.abi,
-        signer
+        NFT.abi,
+        biconomy.getSignerByAddress(signerAddress)
       )
-      setMintingStatusText('Minting NFT in progress')
-      const transaction = await contract.issueToken(
-        await signer.getAddress(),
+
+      const { data } = await contract.populateTransaction.issueToken(
+        signerAddress,
         form.watch('quantity'),
         url
       )
-      const finishedTransaction = await transaction.wait()
-      let event = finishedTransaction.events[0]
 
-      // Add transaction to the DB
-      mintNFT({
-        variables: {
-          input: {
-            postId: post?.id,
-            address: transaction.to,
-            tokenId: event.args[3].toString()
-          }
+      const provider = biconomy.getEthersProvider()
+
+      const transaction = await provider.send('eth_sendTransaction', [
+        {
+          data,
+          from: signerAddress,
+          to: NFT_CONTRACT_ADDRESS as string,
+          signatureType: 'EIP712_SIGN'
         }
-      })
+      ])
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
