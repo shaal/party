@@ -4,7 +4,6 @@ import { Spinner } from '@components/UI/Spinner'
 import { useNFT } from '@components/utils/hooks/useNFT'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { Nft } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE } from 'src/constants'
 
 interface Props {
   nft: Nft
@@ -25,11 +24,13 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
       </div>
     )
 
-  if (isError)
+  const metadata = JSON.parse(fetchedNft?.metadata)
+
+  if (isError || !metadata)
     return (
       <div className="p-5">
         <ErrorMessage
-          title={ERROR_MESSAGE}
+          title="NFT is processing!"
           error={{
             name: 'The NFT is distributing accross the network, please try again after sometime!',
             message:
@@ -38,8 +39,6 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
         />
       </div>
     )
-
-  const metadata = JSON.parse(fetchedNft?.metadata)
 
   return (
     <div className="px-5 py-3.5 space-y-3">
