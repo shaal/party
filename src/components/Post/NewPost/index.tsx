@@ -12,6 +12,8 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
+import IssueType from './Type/Issue'
+
 const PostType = dynamic(() => import('./Type/Post'), {
   loading: () => <Loading />
 })
@@ -123,7 +125,7 @@ const NewPost: React.FC = () => {
               <PollType />
             </Tab.Panel>
             <Tab.Panel className="focus:outline-none">
-              <PollType />
+              <IssueType />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
