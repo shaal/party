@@ -62,3 +62,11 @@ body {
 .prose li {
   @apply m-1;
 }
+
+.prose p {
+  @apply mb-1;
+}
+
+.prose h3 {
+  @apply mt-3 mb-2;
+}
