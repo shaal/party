@@ -5,14 +5,12 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { TaskCheckbox } from '@components/UI/TaskCheckbox'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
-import Attachment from '../Attachment'
 import SelectTarget from '../SelectTarget'
 import {
   CreateTaskMutation,
@@ -62,13 +60,12 @@ const IssueType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body, done }) =>
+      onSubmit={({ body }) =>
         createTask({
           variables: {
             input: {
               body,
-              done,
-              type: 'TASK',
+              type: 'ISSUE',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
               targetId: selectedTarget.targetId,
@@ -82,19 +79,11 @@ const IssueType: React.FC = () => {
         title="Failed to create task"
         error={createTaskResult.error}
       />
-      <div className="flex items-center mb-1.5 gap-2.5">
-        <TaskCheckbox {...form.register('done')} />
-        <Input
-          {...form.register('body')}
-          placeholder="What have you achieved?"
-        />
+      <div className="mb-1.5">
+        <Input {...form.register('body')} placeholder="GitHub issue URL" />
       </div>
       <div className="flex items-center justify-between">
-        <div className="flex space-x-2">
-          <Attachment
-            attachments={attachments}
-            setAttachments={setAttachments}
-          />
+        <div className="!-mx-2">
           <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button
