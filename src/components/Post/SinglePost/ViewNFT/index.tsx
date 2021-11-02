@@ -1,34 +1,29 @@
-import { Modal } from '@components/UI/Modal'
-import { useState } from 'react'
 import { Nft } from 'src/__generated__/schema.generated'
-import { STATIC_ASSETS } from 'src/constants'
-
-import ViewNFT from './ViewNFT'
+import { IS_PRODUCTION, STATIC_ASSETS } from 'src/constants'
 
 interface Props {
   nft: Nft
 }
 
 const NFTIcon: React.FC<Props> = ({ nft }) => {
-  const [showModal, setShowModal] = useState<boolean>(false)
-
   return (
-    <div className="!ml-auto flex">
-      <button onClick={() => setShowModal(!showModal)}>
+    <div className="!ml-auto flex items-center">
+      {/* TODO: Update URLs */}
+      <a
+        href={`https://${
+          IS_PRODUCTION ? 'testnets.opensea.io' : 'testnets.opensea.io'
+        }/assets/${IS_PRODUCTION ? 'mumbai' : 'mumbai'}/${nft?.address}/${
+          nft?.tokenId
+        }`}
+        target="_blank"
+        rel="noreferrer"
+      >
         <img
           className="h-[20px] w-[20px]"
           src={`${STATIC_ASSETS}/brands/polygon.svg`}
           alt="Polygon Logo"
         />
-      </button>
-      <Modal
-        onClose={() => setShowModal(!showModal)}
-        title="Buy NFT"
-        size="lg"
-        show={showModal}
-      >
-        <ViewNFT nft={nft} />
-      </Modal>
+      </a>
     </div>
   )
 }
