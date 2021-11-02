@@ -88,7 +88,7 @@ model Profile {
   nftSource String?
   cover     String
   coverBg   String
-  bio       String? @db.VarChar(256)
+  bio       String? @db.VarChar(280)
   location  String? @db.VarChar(32)
   website   String?
   discord   String? @db.VarChar(32)
@@ -210,7 +210,7 @@ model Poll {
 model PollAnswer {
   id    String @id @default(uuid())
   index Int
-  title String
+  title String @db.VarChar(64)
 
   // Relations
   poll   Poll   @relation(fields: [pollId], references: [id], onDelete: Cascade)
@@ -256,9 +256,9 @@ model PostTopic {
 
 model Topic {
   id          String  @id @default(uuid())
-  name        String  @unique
+  name        String  @unique @db.VarChar(64)
   image       String?
-  description String?
+  description String? @db.VarChar(280)
 
   // Timestamps
   featuredAt DateTime?
@@ -288,18 +288,18 @@ model Like {
 
 model Product {
   id          String  @id @default(uuid())
-  name        String
-  slug        String  @unique
-  description String?
+  name        String  @db.VarChar(64)
+  slug        String  @unique @db.VarChar(16)
+  description String? @db.VarChar(280)
   avatar      String?
   hidden      Boolean @default(false)
 
   // Social
   website     String?
-  producthunt String?
-  discord     String?
-  github      String?
-  twitter     String?
+  producthunt String? @db.VarChar(32)
+  discord     String? @db.VarChar(32)
+  github      String? @db.VarChar(32)
+  twitter     String? @db.VarChar(32)
 
   // Timestamps
   createdAt DateTime @default(now())
