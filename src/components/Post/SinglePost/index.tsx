@@ -176,7 +176,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'TASK' && <TaskType task={post} />}
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
         {post?.type === 'POLL' && <PollType post={post} />}
-        {post?.type === 'ISSUE' && <IssueType issue={post} />}
+        {post?.type === 'ISSUE' && <IssueType post={post} />}
         {post?.type !== 'ISSUE' &&
           post?.oembedUrl &&
           !isLoading &&
