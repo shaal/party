@@ -6,18 +6,19 @@ tasks:
     before: redis-server &
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
+      curl -fsSL https://bun.sh/install | bash
       cp .env.example .env
       gp await-port 3306
-      yarn prisma:migrate
-      yarn prisma:seed
-      yarn prepare
+      bun prisma:migrate
+      bun prisma:seed
+      bun prepare
       gp sync-done setup
-    command: yarn codegen:graphql --watch
+    command: bun codegen:graphql --watch
   - name: Dev Server
     init: gp sync-await setup
     command: |
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
-      yarn dev
+      bun dev
   - name: Bash
     init: gp sync-await setup
     command: |
