@@ -24,9 +24,7 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
       </div>
     )
 
-  const metadata = JSON.parse(fetchedNft?.metadata)
-
-  if (isError || !metadata)
+  if (isError || !fetchedNft?.metadata)
     return (
       <div className="p-5">
         <ErrorMessage
@@ -39,6 +37,8 @@ const ViewNFT: React.FC<Props> = ({ nft }) => {
         />
       </div>
     )
+
+  const metadata = JSON.parse(fetchedNft?.metadata)
 
   return (
     <div className="px-5 py-3.5 space-y-3">

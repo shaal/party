@@ -6,16 +6,12 @@ module.exports = {
   defaultNetwork: 'hardhat',
   networks: {
     hardhat: { chainId: 1337 },
-    rinkeby: {
-      url: 'https://speedy-nodes-nyc.moralis.io/ff1274045f2cabf446cb8753/eth/rinkeby',
-      accounts: [privateKey]
-    },
     mumbai: {
-      url: 'https://speedy-nodes-nyc.moralis.io/ff1274045f2cabf446cb8753/polygon/mumbai',
+      url: 'https://rpc-mumbai.maticvigil.com',
       accounts: [privateKey]
     },
     matic: {
-      url: 'https://speedy-nodes-nyc.moralis.io/ff1274045f2cabf446cb8753/polygon/mainnet',
+      url: 'https://rpc-matic.maticvigil.com',
       accounts: [privateKey]
     }
   },

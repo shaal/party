@@ -17,7 +17,7 @@ import { Post } from 'src/__generated__/schema.generated'
 import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
-import Market from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
+import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
 import {
   MintNftMutation,
   MintNftMutationVariables
@@ -94,7 +94,7 @@ const Mint: React.FC<Props> = ({ post }) => {
       // Mint the Item
       const contract = new ethers.Contract(
         NFT_CONTRACT_ADDRESS as string,
-        Market.abi,
+        NFT.abi,
         signer
       )
       setMintingStatusText('Minting NFT in progress')
