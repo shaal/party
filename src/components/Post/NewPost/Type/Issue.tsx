@@ -5,7 +5,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { CheckCircleIcon } from '@heroicons/react/outline'
+import { ClipboardListIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -92,11 +92,11 @@ const IssueType: React.FC = () => {
             form.formState.isSubmitting ? (
               <Spinner size="xs" />
             ) : (
-              <CheckCircleIcon className="h-4 w-4" />
+              <ClipboardListIcon className="h-4 w-4" />
             )
           }
         >
-          Create Task
+          Post Issue
         </Button>
       </div>
       <Attachments
