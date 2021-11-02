@@ -15,35 +15,32 @@ cache:
     - yarn -v
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
-    - curl -fsSL https://bun.sh/install | bash
-    - export BUN_INSTALL="$HOME/.bun"
-    - export PATH="$BUN_INSTALL/bin:$PATH"
 
 lint:
   extends: .prepare
   script:
-    - bun run lint
+    - yarn lint
 
 prettier:
   extends: .prepare
   script:
-    - bun run prettier:check
+    - yarn prettier:check
 
 generate:
   extends: .prepare
   script:
-    - bun run generate
+    - yarn generate
 
 typecheck:
   extends: .prepare
   script:
-    - bun run generate
-    - bun run typecheck
+    - yarn generate
+    - yarn typecheck
 
 build:
   extends: .prepare
   script:
-    - bun run build
+    - yarn build
 
 graphcdn:
   script:
@@ -60,7 +57,7 @@ migrate:
 seed:
   extends: .prepare
   script:
-    - DATABASE_URL=$PROD_DATABASE_URL bun run prisma:seed
+    - DATABASE_URL=$PROD_DATABASE_URL yarn prisma:seed
   only:
     - main
   when: manual
