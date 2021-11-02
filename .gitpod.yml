@@ -11,16 +11,16 @@ tasks:
       echo "PATH="$BUN_INSTALL/bin:$PATH"" >> $HOME/.bashrc
       cp .env.example .env
       gp await-port 3306
-      bun prisma:migrate
-      bun prisma:seed
-      bun prepare
+      bun run prisma:migrate
+      bun run prisma:seed
+      bun run prepare
       gp sync-done setup
-    command: bun codegen:graphql --watch
+    command: bun run codegen:graphql --watch
   - name: Dev Server
     init: gp sync-await setup
     command: |
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
-      bun dev
+      bun run dev
   - name: Bash
     init: gp sync-await setup
     command: |
