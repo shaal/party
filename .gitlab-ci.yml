@@ -16,8 +16,8 @@ cache:
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
     - curl -fsSL https://bun.sh/install | bash
-    - echo "BUN_INSTALL="/home/gitpod/.bun"" >> $HOME/.bashrc
-    - echo "PATH="$BUN_INSTALL/bin:$PATH"" >> $HOME/.bashrc
+    - export BUN_INSTALL="/home/gitpod/.bun"
+    - export PATH="$BUN_INSTALL/bin:$PATH"
 
 lint:
   extends: .prepare
