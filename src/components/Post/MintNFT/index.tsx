@@ -9,24 +9,28 @@ import Mint from './Mint'
 
 interface Props {
   post: Post
-  setShowMint: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MintNFT: React.FC<Props> = ({ post, setShowMint }) => {
+const MintNFT: React.FC<Props> = ({ post }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [showMint, setShowMint] = useState<boolean>(true)
 
   return (
     <Card>
       <CardBody className="space-y-3">
-        <div>
-          Mint this post as NFT with very less gas fee in Polygon network
-        </div>
-        <Button
-          icon={<FingerPrintIcon className="h-4 w-4" />}
-          onClick={() => setShowModal(!showModal)}
-        >
-          Mint NFT
-        </Button>
+        {showMint && (
+          <>
+            <div>
+              Mint this post as NFT with very less gas fee in Polygon network
+            </div>
+            <Button
+              icon={<FingerPrintIcon className="h-4 w-4" />}
+              onClick={() => setShowModal(!showModal)}
+            >
+              Mint NFT
+            </Button>
+          </>
+        )}
         <Modal
           onClose={() => setShowModal(!showModal)}
           title="Create NFT"
