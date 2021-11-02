@@ -4,7 +4,6 @@ import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { CreatePostInput } from 'src/__generated__/schema.generated'
 
-import { commit } from './type/commit'
 import { poll } from './type/poll'
 import { post } from './type/post'
 import { question } from './type/question'
@@ -91,10 +90,6 @@ export const createPost = async (
 
   if (input?.type === 'POLL') {
     newPost = await poll(query, input, session)
-  }
-
-  if (input?.type === 'COMMIT') {
-    newPost = await commit(query, input, session)
   }
 
   if (input?.type === 'REPLY') {

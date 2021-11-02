@@ -5,7 +5,6 @@ import {
   ChartBarIcon,
   CheckCircleIcon,
   CollectionIcon,
-  DocumentAddIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -19,9 +18,6 @@ const QuestionType = dynamic(() => import('./Type/Question'), {
   loading: () => <Loading />
 })
 const TaskType = dynamic(() => import('./Type/Task'), {
-  loading: () => <Loading />
-})
-const CommitType = dynamic(() => import('./Type/Commit'), {
   loading: () => <Loading />
 })
 const PollType = dynamic(() => import('./Type/Poll'), {
@@ -96,21 +92,6 @@ const NewPost: React.FC = () => {
                 </button>
               )}
             </Tab>
-            <Tab as={Fragment}>
-              {({ selected }) => (
-                <button
-                  className={clsx(
-                    { 'text-brand-500': selected },
-                    { 'text-gray-400': !selected },
-                    'flex items-center gap-1.5 text-sm tab-focus-ring'
-                  )}
-                >
-                  <Tooltip content="Git Commit">
-                    <DocumentAddIcon className="h-5 w-5" />
-                  </Tooltip>
-                </button>
-              )}
-            </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
             <Tab.Panel className="focus:outline-none">
@@ -124,9 +105,6 @@ const NewPost: React.FC = () => {
             </Tab.Panel>
             <Tab.Panel className="focus:outline-none">
               <PollType />
-            </Tab.Panel>
-            <Tab.Panel className="focus:outline-none">
-              <CommitType />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
