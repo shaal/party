@@ -18,7 +18,7 @@ const MintNFT: React.FC<Props> = ({ post }) => {
   return (
     <Card>
       <CardBody className="space-y-3">
-        {showMint && (
+        {showMint ? (
           <>
             <div>
               Mint this post as NFT with very less gas fee in Polygon network
@@ -30,6 +30,8 @@ const MintNFT: React.FC<Props> = ({ post }) => {
               Mint NFT
             </Button>
           </>
+        ) : (
+          <div>NFT is now available everywhere 🎉</div>
         )}
         <Modal
           onClose={() => setShowModal(!showModal)}
