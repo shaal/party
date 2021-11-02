@@ -18,7 +18,7 @@ import {
 } from './__generated__/Task.generated'
 
 const newTaskSchema = object({
-  body: string()
+  url: string()
     .min(1, { message: '✅ Task should not be empty' })
     .max(10000, { message: '✅ Task should not exceed 10000 characters' })
 })
@@ -60,11 +60,11 @@ const IssueType: React.FC = () => {
     <Form
       form={form}
       className="space-y-1"
-      onSubmit={({ body }) =>
+      onSubmit={({ url }) =>
         createTask({
           variables: {
             input: {
-              body,
+              body: url,
               type: 'ISSUE',
               attachments:
                 attachments.length > 0 ? JSON.stringify(attachments) : null,
@@ -80,7 +80,7 @@ const IssueType: React.FC = () => {
         error={createTaskResult.error}
       />
       <div className="mb-1.5">
-        <Input {...form.register('body')} placeholder="GitHub issue URL" />
+        <Input {...form.register('url')} placeholder="GitHub issue URL" />
       </div>
       <div className="flex items-center justify-between">
         <div className="!-mx-2">
