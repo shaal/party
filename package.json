@@ -29,7 +29,7 @@
     "@giraphql/plugin-validation": "^2.12.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
-    "@hookform/resolvers": "^2.8.2",
+    "@hookform/resolvers": "^2.8.3",
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.3.2",
