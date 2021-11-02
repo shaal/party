@@ -29,7 +29,14 @@ const IssueType: React.FC<Props> = ({ post }) => {
   return (
     <div className="space-y-3 linkify">
       <div>
-        <div className="text-lg font-bold mb-1">{issue?.title}</div>
+        <a
+          className="text-lg font-bold mb-1"
+          href={issue?.html_url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {issue?.title}
+        </a>
         {router.pathname === '/posts/[postId]' && (
           <div className="prose">
             <Markdown options={{ wrapper: 'article' }}>{issue?.body}</Markdown>
