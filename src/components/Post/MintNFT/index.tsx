@@ -9,9 +9,10 @@ import Mint from './Mint'
 
 interface Props {
   post: Post
+  setShowMint: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MintNFT: React.FC<Props> = ({ post }) => {
+const MintNFT: React.FC<Props> = ({ post, setShowMint }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   return (
@@ -31,7 +32,7 @@ const MintNFT: React.FC<Props> = ({ post }) => {
           title="Create NFT"
           show={showModal}
         >
-          <Mint post={post} />
+          <Mint post={post} setShowMint={setShowMint} />
         </Modal>
       </CardBody>
     </Card>

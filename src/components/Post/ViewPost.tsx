@@ -9,7 +9,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Post, User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
@@ -35,6 +35,7 @@ export const POST_QUERY = gql`
 
 const ViewPost: React.FC = () => {
   const router = useRouter()
+  const [showMint, setShowMint] = useState<boolean>(true)
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
     variables: { id: router.query.postId },
@@ -81,8 +82,8 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <div className="space-y-5">
           <UserCard user={post?.user as User} />
-          {currentUser?.id === post?.user?.id && !post?.nft && (
-            <MintNFT post={post as Post} />
+          {currentUser?.id === post?.user?.id && showMint && !post?.nft && (
+            <MintNFT post={post as Post} setShowMint={setShowMint} />
           )}
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}

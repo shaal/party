@@ -39,9 +39,10 @@ const newNFTSchema = object({
 
 interface Props {
   post: Post
+  setShowMint: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Mint: React.FC<Props> = ({ post }) => {
+const Mint: React.FC<Props> = ({ post, setShowMint }) => {
   const [nsfw, setNsfw] = useState<boolean>(false)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [mintingStatus, setMintingStatus] = useState<
@@ -76,8 +77,25 @@ const Mint: React.FC<Props> = ({ post }) => {
     }
   })
 
-  const mintToken = async (url: string) => {
+  const mintToken = async () => {
     try {
+      setMintingStatus('IN_PROGRESS')
+      setIsMinting(true)
+      setMintingStatusText('Converting your post as an art')
+      const { cid } = await client.add(
+        urlSource(
+          `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
+        )
+      )
+      setMintingStatusText('Uploading metadata to decentralized servers')
+      const { path } = await client.add(
+        JSON.stringify({
+          name: form.watch('title'),
+          ...getNFTData(nsfw, post, `https://ipfs.infura.io/ipfs/${cid}`)
+        })
+      )
+      const url = `https://ipfs.infura.io/ipfs/${path}`
+
       // Get signature from the user
       const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
@@ -119,35 +137,12 @@ const Mint: React.FC<Props> = ({ post }) => {
 
       toast.success('Minting has been successfully completed!')
       setMintingStatus('COMPLETED')
+      setShowMint(false)
     } catch (error) {
       console.log(error)
       setIsMinting(false)
       setMintingStatus('ERRORED')
       toast.error('Transaction has been cancelled!')
-    }
-  }
-
-  const generateNft = async () => {
-    setMintingStatus('IN_PROGRESS')
-    setIsMinting(true)
-    try {
-      setMintingStatusText('Converting your post as art')
-      const { cid } = await client.add(
-        urlSource(
-          `https://nft.devparty.io/${post?.body}?avatar=${post?.user?.profile?.avatar}`
-        )
-      )
-      setMintingStatusText('Uploading metadata to decentralized servers')
-      const { path } = await client.add(
-        JSON.stringify({
-          name: form.watch('title'),
-          ...getNFTData(nsfw, post, `https://ipfs.infura.io/ipfs/${cid}`)
-        })
-      )
-      const url = `https://ipfs.infura.io/ipfs/${path}`
-      mintToken(url)
-    } catch {
-      setIsMinting(false)
     }
   }
 
@@ -186,7 +181,7 @@ const Mint: React.FC<Props> = ({ post }) => {
           <div>{mintingStatusText}</div>
         </div>
       ) : (
-        <Form form={form} onSubmit={generateNft}>
+        <Form form={form} onSubmit={mintToken}>
           <div className="px-5 py-3.5 space-y-7">
             <div>
               <Input
