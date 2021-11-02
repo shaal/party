@@ -5,7 +5,7 @@ interface Props {
   nft: Nft
 }
 
-const NFTIcon: React.FC<Props> = ({ nft }) => {
+const ViewNFT: React.FC<Props> = ({ nft }) => {
   return (
     <div className="!ml-auto flex items-center">
       {/* TODO: Update URLs */}
@@ -28,4 +28,4 @@ const NFTIcon: React.FC<Props> = ({ nft }) => {
   )
 }
 
-export default NFTIcon
+export default ViewNFT

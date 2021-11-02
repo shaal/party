@@ -6,7 +6,6 @@ import { useOembed } from '@components/utils/hooks/useOembed'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -28,14 +27,7 @@ import PollType from './Type/Poll'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
-
-const NFTIcon = dynamic(() => import('./ViewNFT'), {
-  loading: () => (
-    <div className="!ml-auto flex items-center">
-      <div className="shimmer rounded-full h-[20px] w-[20px]" />
-    </div>
-  )
-})
+import ViewNFT from './ViewNFT'
 
 export const PostFragment = gql`
   fragment PostFragment on Post {
@@ -241,7 +233,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         {post?.product && <SelectedProduct product={post?.product} />}
         {post?.community && <SelectedCommunity community={post?.community} />}
-        {post?.nft && <NFTIcon nft={post?.nft} />}
+        {post?.nft && <ViewNFT nft={post?.nft} />}
       </div>
     </Card>
   )
