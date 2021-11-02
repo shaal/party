@@ -7,7 +7,7 @@ tasks:
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
       curl -fsSL https://bun.sh/install | bash
-      export BUN_INSTALL="/home/gitpod/.bun"
+      export BUN_INSTALL="$HOME/.bun"
       export PATH="$BUN_INSTALL/bin:$PATH"
       cp .env.example .env
       gp await-port 3306
