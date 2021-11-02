@@ -13,14 +13,12 @@ import { object, string } from 'zod'
 
 import SelectTarget from '../SelectTarget'
 import {
-  CreateTaskMutation,
-  CreateTaskMutationVariables
-} from './__generated__/Task.generated'
+  CreateIssueMutation,
+  CreateIssueMutationVariables
+} from './__generated__/Issue.generated'
 
-const newTaskSchema = object({
-  url: string()
-    .min(1, { message: '✅ Task should not be empty' })
-    .max(10000, { message: '✅ Task should not exceed 10000 characters' })
+const newIssueSchema = object({
+  url: string().url({ message: '🐙 Invalid issue URL' })
 })
 
 const IssueType: React.FC = () => {
@@ -30,12 +28,12 @@ const IssueType: React.FC = () => {
     targetId: '',
     targetType: ''
   })
-  const [createTask, createTaskResult] = useMutation<
-    CreateTaskMutation,
-    CreateTaskMutationVariables
+  const [createIssue, createIssueResult] = useMutation<
+    CreateIssueMutation,
+    CreateIssueMutationVariables
   >(
     gql`
-      mutation CreateTaskMutation($input: CreatePostInput!) {
+      mutation CreateIssueMutation($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -46,14 +44,14 @@ const IssueType: React.FC = () => {
       onCompleted(data) {
         setAttachments([])
         form.reset()
-        toast.success('Task has been created successfully!')
+        toast.success('Issue has been posted successfully!')
         router.push(`/posts/${data?.createPost?.id}`)
       }
     }
   )
 
   const form = useZodForm({
-    schema: newTaskSchema
+    schema: newIssueSchema
   })
 
   return (
@@ -61,7 +59,7 @@ const IssueType: React.FC = () => {
       form={form}
       className="space-y-1"
       onSubmit={({ url }) =>
-        createTask({
+        createIssue({
           variables: {
             input: {
               body: url,
@@ -76,8 +74,8 @@ const IssueType: React.FC = () => {
       }
     >
       <ErrorMessage
-        title="Failed to create task"
-        error={createTaskResult.error}
+        title="Failed to create issue"
+        error={createIssueResult.error}
       />
       <div className="mb-1.5">
         <Input {...form.register('url')} placeholder="GitHub issue URL" />
