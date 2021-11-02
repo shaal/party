@@ -36,6 +36,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
           rel="noreferrer"
         >
           {issue?.title}
+          <span className="text-gray-500 font-normal"> #{issue?.number}</span>
         </a>
         {router.pathname === '/posts/[postId]' && (
           <div className="prose">
