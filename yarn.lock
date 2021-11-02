@@ -4876,7 +4876,7 @@ cborg@^1.2.1:
   resolved "https://registry.yarnpkg.com/cborg/-/cborg-1.5.2.tgz#87964ce85bcb894c8175f3f34eed3fd512aaff6e"
   integrity sha512-w7RJ0Hm29B/Y5kvUXrP+TfgvBmkRUwYVr8hD63z5MlIGdlelhzNMCV/xKbG+yAyp4euJrqxPsQMXGyJKnfGhPQ==
 
-chai@^4.2.0:
+chai@^4.2.0, chai@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.3.4.tgz#b55e655b31e1eac7099be4c08c21964fce2e6c49"
   integrity sha512-yS5H68VYOCtN1cjfwumDSuzn/9c+yza4f3reKXlE5rUg7SFcCEy90gJvydNgOYtblyf4Zi6jIWRnXOgErta0KA==

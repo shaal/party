@@ -37,6 +37,11 @@ typecheck:
     - yarn generate
     - yarn typecheck
 
+hardhat-test:
+  extends: .prepare
+  script:
+    - npx hardhat test
+
 build:
   extends: .prepare
   script:
