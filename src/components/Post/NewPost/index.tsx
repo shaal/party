@@ -122,6 +122,9 @@ const NewPost: React.FC = () => {
             <Tab.Panel className="focus:outline-none">
               <PollType />
             </Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
+              <PollType />
+            </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </CardBody>
