@@ -7,6 +7,11 @@ tasks:
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
       curl -fsSL https://bun.sh/install | bash
+<<<<<<< HEAD
+=======
+      export BUN_INSTALL="$HOME/.bun"
+      export PATH="$BUN_INSTALL/bin:$PATH"
+>>>>>>> fc0e54edf2c17095267f8ca65e1d6acc55b4cb28
       cp .env.example .env
       gp await-port 3306
       bun run prisma:migrate
