@@ -17,7 +17,6 @@ module.exports = withPWA({
     VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
     NFT_CONTRACT_ADDRESS: process.env.NFT_CONTRACT_ADDRESS,
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
-    OPENSEA_API_KEY: process.env.OPENSEA_API_KEY,
-    MORALIS_API_KEY: process.env.MORALIS_API_KEY
+    OPENSEA_API_KEY: process.env.OPENSEA_API_KEY
   }
 })
