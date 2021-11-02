@@ -14,6 +14,7 @@ export const issue = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
+  // TODO: Check for valid issue url
   const issue = await db.post.create({
     ...query,
     data: {
