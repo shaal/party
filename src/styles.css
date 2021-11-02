@@ -58,3 +58,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.prose li {
+  @apply m-1;
+}
