@@ -3,7 +3,6 @@ import { Button } from '@components/UI/Button'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { ethers } from 'ethers'
-import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Integration } from 'src/__generated__/schema.generated'
@@ -19,7 +18,6 @@ interface Props {
 }
 
 const ConnectWallet: React.FC<Props> = ({ integration }) => {
-  const { resolvedTheme } = useTheme()
   const [error, setError] = useState<boolean>(false)
   const [editWallet] = useMutation<
     WalletSettingsMutation,
@@ -45,7 +43,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
   )
 
   const connectWallet = async () => {
-    const web3Modal = getWeb3Modal({ theme: resolvedTheme })
+    const web3Modal = getWeb3Modal()
     const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
     const address = await web3.getSigner().getAddress()
 

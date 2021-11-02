@@ -1,21 +1,29 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 
 interface Props {
   title: React.ReactNode
+  size?: 'md' | 'lg'
   show: boolean
   children: React.ReactNode[] | React.ReactNode
   onClose: () => void
 }
 
-export const Modal: React.FC<Props> = (props) => {
+export const Modal: React.FC<Props> = ({
+  title,
+  size = 'md',
+  show,
+  children,
+  onClose
+}) => {
   return (
-    <Transition.Root show={props.show} as={Fragment}>
+    <Transition.Root show={show} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
-        onClose={props.onClose}
+        onClose={onClose}
       >
         <div className="flex items-end justify-center min-h-screen text-center sm:block sm:p-0">
           <Transition.Child
@@ -43,17 +51,23 @@ export const Modal: React.FC<Props> = (props) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-t-lg sm:rounded-b-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg">
+            <div
+              className={clsx(
+                { 'sm:max-w-5xl': size === 'lg' },
+                { 'sm:max-w-lg': size === 'md' },
+                'inline-block align-bottom bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-t-lg sm:rounded-b-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full'
+              )}
+            >
               <div className="flex items-center justify-between border-b dark:border-gray-700 px-5 py-3.5">
-                <div className="font-bold">{props.title}</div>
+                <div className="font-bold">{title}</div>
                 <button
                   className="text-gray-800 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md p-1"
-                  onClick={props.onClose}
+                  onClick={onClose}
                 >
                   <XIcon className="h-5 w-5" />
                 </button>
               </div>
-              {props.children}
+              {children}
             </div>
           </Transition.Child>
         </div>

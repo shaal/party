@@ -28,6 +28,9 @@ export const OPENSEA_API_URL = `https://${
   IS_PRODUCTION ? 'testnets-api' : 'testnets-api'
 }.opensea.io/api/v1`
 
+// NFT
+export const NFT_CONTRACT_ADDRESS = process.env.NFT_CONTRACT_ADDRESS
+
 // Misc
 export const GRAPHCDN_ENABLED =
   IS_PRODUCTION && process.env.VERCEL_ENV !== 'preview'

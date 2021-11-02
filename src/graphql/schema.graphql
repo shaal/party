@@ -250,6 +250,12 @@ input LoginWithWalletInput {
   signature: String!
 }
 
+input MintNFTInput {
+  address: String!
+  postId: ID!
+  tokenId: String!
+}
+
 input ModTopicInput {
   description: String
   featuredAt: Boolean
@@ -285,6 +291,7 @@ type Mutation {
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User!
   loginWithWallet(input: LoginWithWalletInput!): User!
+  mint(input: MintNFTInput!): NFT!
   modTopic(input: ModTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User

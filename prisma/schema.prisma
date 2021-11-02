@@ -11,9 +11,9 @@ generator client {
 }
 
 generator giraphql {
-  provider = "prisma-giraphql-types"
+  provider     = "prisma-giraphql-types"
   clientOutput = "@prisma/client"
-  output = "./giraphql-types.ts"
+  output       = "./giraphql-types.ts"
 }
 
 model User {
@@ -188,8 +188,8 @@ model NFT {
   address String
 
   // Relations
-  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String? @unique
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String @unique
 
   // Attributes
   @@map("nfts")
@@ -450,7 +450,6 @@ enum PostType {
   QUESTION
   POLL
   COMMIT
-  NFT
   REPLY
 }
 

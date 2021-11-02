@@ -7,6 +7,7 @@ import { Result } from '../ResultResolver'
 import { createPost } from './mutations/createPost'
 import { deletePost } from './mutations/deletePost'
 import { editPost } from './mutations/editPost'
+import { mintNFT } from './mutations/mintNFT'
 import { exploreFeed } from './queries/exploreFeed'
 import { getMorePostsByUser } from './queries/getMorePostsByUser'
 import { homeFeed } from './queries/homeFeed'
@@ -170,6 +171,25 @@ builder.mutationField('editPost', (t) =>
     args: { input: t.arg({ type: EditPostInput }) },
     resolve: async (query, parent, { input }, { session }) => {
       return await editPost(query, input, session)
+    }
+  })
+)
+
+const MintNFTInput = builder.inputType('MintNFTInput', {
+  fields: (t) => ({
+    postId: t.id({ validate: { uuid: true } }),
+    address: t.string(),
+    tokenId: t.string()
+  })
+})
+
+builder.mutationField('mint', (t) =>
+  t.prismaField({
+    type: 'NFT',
+    args: { input: t.arg({ type: MintNFTInput }) },
+    authScopes: { user: true },
+    resolve: async (query, parent, { input }, { session }) => {
+      return await mintNFT(query, input, session)
     }
   })
 )

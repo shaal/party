@@ -84,7 +84,7 @@ CREATE TABLE `posts` (
     `title` VARCHAR(191) NULL,
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
-    `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'NFT', 'REPLY') NOT NULL DEFAULT 'POST',
+    `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `nfts` (
     `id` VARCHAR(191) NOT NULL,
     `tokenId` VARCHAR(191) NOT NULL,
     `address` VARCHAR(191) NOT NULL,
-    `postId` VARCHAR(191) NULL,
+    `postId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `nfts_postId_key`(`postId`),
     PRIMARY KEY (`id`)

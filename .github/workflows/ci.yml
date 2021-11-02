@@ -1,8 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches: [main]
+on: push
 
 jobs:
   build:
@@ -51,6 +49,9 @@ jobs:
 
       - name: Typescript typecheck
         run: yarn typecheck
+
+      - name: Hardhat test
+        run: npx hardhat test
 
       - name: Build Devparty
         run: yarn build

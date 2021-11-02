@@ -18,7 +18,8 @@ tasks:
     command: |
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
       yarn dev
-  - init: gp sync-await setup
+  - name: Bash
+    init: gp sync-await setup
     command: |
       printf "Waiting for server to boot ⏰"
       clear
@@ -37,15 +38,10 @@ vscode:
     - dbaeumer.vscode-eslint
     - mikestead.dotenv
     - graphql.vscode-graphql
-    - christian-kohler.npm-intellisense
     - esbenp.prettier-vscode
     - prisma.prisma
-    - pflannery.vscode-versionlens
     - wix.vscode-import-cost
     - formulahendry.auto-close-tag
-    - github.github-vscode-theme
-    - gitlab.gitlab-workflow
     - bradlc.vscode-tailwindcss
-    - bierner.markdown-preview-github-styles
-    - editorconfig.editorconfig
     - pkief.material-icon-theme
+    - juanblanco.solidity

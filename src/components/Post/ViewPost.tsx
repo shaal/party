@@ -20,6 +20,9 @@ import Replies from './Reply/Replies'
 import SinglePost, { PostFragment } from './SinglePost'
 
 const PostMod = dynamic(() => import('./Mod'))
+const MintNFT = dynamic(() => import('./MintNFT'), {
+  loading: () => <div className="shimmer w-full h-15 rounded-lg" />
+})
 
 export const POST_QUERY = gql`
   query PostQuery($id: ID!) {
@@ -34,9 +37,7 @@ const ViewPost: React.FC = () => {
   const router = useRouter()
   const { currentUser, staffMode } = useContext(AppContext)
   const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
-    variables: {
-      id: router.query.postId
-    },
+    variables: { id: router.query.postId },
     skip: !router.isReady
   })
   const post = data?.post
@@ -80,6 +81,9 @@ const ViewPost: React.FC = () => {
       <GridItemFour>
         <div className="space-y-5">
           <UserCard user={post?.user as User} />
+          {currentUser?.id === post?.user?.id && !post?.nft && (
+            <MintNFT post={post as Post} />
+          )}
           {currentUser?.isStaff && staffMode && <PostMod post={post as Post} />}
           {post?.type === 'QUESTION' && <MorePosts post={post as Post} />}
         </div>

@@ -23,11 +23,11 @@ import Oembed from './Oembed'
 import SelectedCommunity from './SelectedCommunity'
 import SelectedProduct from './SelectedProduct'
 import CommitType from './Type/Commit'
-import NFTType from './Type/NFT'
 import PollType from './Type/Poll'
 import PostType from './Type/Post'
 import QuestionType from './Type/Question'
 import TaskType from './Type/Task'
+import ViewNFT from './ViewNFT'
 
 export const PostFragment = gql`
   fragment PostFragment on Post {
@@ -92,6 +92,11 @@ export const PostFragment = gql`
       name
       slug
       avatar
+    }
+    nft {
+      id
+      address
+      tokenId
     }
   }
 `
@@ -172,7 +177,6 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         {post?.type === 'QUESTION' && <QuestionType question={post} />}
         {post?.type === 'POLL' && <PollType post={post} />}
         {post?.type === 'COMMIT' && <CommitType post={post} />}
-        {post?.type === 'NFT' && <NFTType post={post} />}
         {post?.type !== 'COMMIT' &&
           post?.oembedUrl &&
           !isLoading &&
@@ -229,6 +233,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         {post?.product && <SelectedProduct product={post?.product} />}
         {post?.community && <SelectedCommunity community={post?.community} />}
+        {post?.nft && <ViewNFT nft={post?.nft} />}
       </div>
     </Card>
   )
