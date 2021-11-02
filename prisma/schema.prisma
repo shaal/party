@@ -18,7 +18,7 @@ generator giraphql {
 
 model User {
   id             String @id @default(uuid())
-  username       String @unique @default(uuid())
+  username       String @unique @db.VarChar(32)
   email          String @unique
   hashedPassword String
 
@@ -88,12 +88,12 @@ model Profile {
   nftSource String?
   cover     String
   coverBg   String
-  bio       String?
-  location  String?
+  bio       String? @db.VarChar(280)
+  location  String? @db.VarChar(32)
   website   String?
-  discord   String?
-  github    String?
-  twitter   String?
+  discord   String? @db.VarChar(32)
+  github    String? @db.VarChar(32)
+  twitter   String? @db.VarChar(32)
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -118,12 +118,12 @@ model Invite {
 
 model Tip {
   id           String  @id @default(uuid())
-  cash         String?
-  paypal       String?
-  github       String?
-  buymeacoffee String?
-  bitcoin      String?
-  ethereum     String?
+  cash         String? @db.VarChar(32)
+  paypal       String? @db.VarChar(32)
+  github       String? @db.VarChar(32)
+  buymeacoffee String? @db.VarChar(32)
+  bitcoin      String? @db.VarChar(64)
+  ethereum     String? @db.VarChar(64)
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -135,7 +135,7 @@ model Tip {
 
 model Post {
   id     String   @id @default(uuid())
-  title  String?
+  title  String?  @db.VarChar(280)
   body   String   @db.Text
   done   Boolean  @default(false)
   type   PostType @default(POST)
@@ -210,7 +210,7 @@ model Poll {
 model PollAnswer {
   id    String @id @default(uuid())
   index Int
-  title String
+  title String @db.VarChar(64)
 
   // Relations
   poll   Poll   @relation(fields: [pollId], references: [id], onDelete: Cascade)
@@ -256,9 +256,9 @@ model PostTopic {
 
 model Topic {
   id          String  @id @default(uuid())
-  name        String  @unique
+  name        String  @unique @db.VarChar(64)
   image       String?
-  description String?
+  description String? @db.VarChar(280)
 
   // Timestamps
   featuredAt DateTime?
@@ -288,18 +288,18 @@ model Like {
 
 model Product {
   id          String  @id @default(uuid())
-  name        String
-  slug        String  @unique
-  description String?
+  name        String  @db.VarChar(64)
+  slug        String  @unique @db.VarChar(32)
+  description String? @db.VarChar(280)
   avatar      String?
   hidden      Boolean @default(false)
 
   // Social
   website     String?
-  producthunt String?
-  discord     String?
-  github      String?
-  twitter     String?
+  producthunt String? @db.VarChar(32)
+  discord     String? @db.VarChar(32)
+  github      String? @db.VarChar(32)
+  twitter     String? @db.VarChar(32)
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -318,9 +318,9 @@ model Product {
 
 model Community {
   id          String  @id @default(uuid())
-  name        String
-  slug        String  @unique
-  description String?
+  name        String  @db.VarChar(64)
+  slug        String  @unique @db.VarChar(32)
+  description String? @db.VarChar(280)
   avatar      String?
   hidden      Boolean @default(false)
 
@@ -342,8 +342,8 @@ model Community {
 model Rule {
   id          String  @id @default(uuid())
   index       Int
-  name        String
-  description String?
+  name        String  @db.VarChar(64)
+  description String? @db.VarChar(280)
 
   // Relations
   community   Community? @relation(fields: [communityId], references: [id])
@@ -355,9 +355,9 @@ model Rule {
 
 model Badge {
   id          String  @id @default(uuid())
-  name        String
+  name        String  @db.VarChar(64)
   image       String
-  description String?
+  description String? @db.VarChar(280)
 
   // Relations
   users User[]
@@ -368,7 +368,7 @@ model Badge {
 
 model Notification {
   id       String           @id @default(uuid())
-  message  String?
+  message  String?          @db.VarChar(280)
   isRead   Boolean          @default(false)
   entityId String           @unique
   type     NotificationType
@@ -397,9 +397,9 @@ model Integration {
   id                  String  @id @default(uuid())
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
-  githubId            String? @unique
-  ethAddress          String? @unique
-  ethNonce            String?
+  githubId            String? @unique @db.VarChar(64)
+  ethAddress          String? @unique @db.VarChar(64)
+  ethNonce            String? @db.VarChar(5)
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
