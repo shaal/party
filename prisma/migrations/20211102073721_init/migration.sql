@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
-    `username` VARCHAR(191) NOT NULL,
+    `username` VARCHAR(32) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `hashedPassword` VARCHAR(191) NOT NULL,
     `spammy` BOOLEAN NOT NULL DEFAULT false,
@@ -40,12 +40,12 @@ CREATE TABLE `profiles` (
     `nftSource` VARCHAR(191) NULL,
     `cover` VARCHAR(191) NOT NULL,
     `coverBg` VARCHAR(191) NOT NULL,
-    `bio` VARCHAR(191) NULL,
-    `location` VARCHAR(191) NULL,
+    `bio` VARCHAR(280) NULL,
+    `location` VARCHAR(32) NULL,
     `website` VARCHAR(191) NULL,
-    `discord` VARCHAR(191) NULL,
-    `github` VARCHAR(191) NULL,
-    `twitter` VARCHAR(191) NULL,
+    `discord` VARCHAR(32) NULL,
+    `github` VARCHAR(32) NULL,
+    `twitter` VARCHAR(32) NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `profiles_userId_key`(`userId`),
@@ -66,12 +66,12 @@ CREATE TABLE `invites` (
 -- CreateTable
 CREATE TABLE `tips` (
     `id` VARCHAR(191) NOT NULL,
-    `cash` VARCHAR(191) NULL,
-    `paypal` VARCHAR(191) NULL,
-    `github` VARCHAR(191) NULL,
-    `buymeacoffee` VARCHAR(191) NULL,
-    `bitcoin` VARCHAR(191) NULL,
-    `ethereum` VARCHAR(191) NULL,
+    `cash` VARCHAR(32) NULL,
+    `paypal` VARCHAR(32) NULL,
+    `github` VARCHAR(32) NULL,
+    `buymeacoffee` VARCHAR(32) NULL,
+    `bitcoin` VARCHAR(64) NULL,
+    `ethereum` VARCHAR(64) NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `tips_userId_key`(`userId`),
@@ -81,7 +81,7 @@ CREATE TABLE `tips` (
 -- CreateTable
 CREATE TABLE `posts` (
     `id` VARCHAR(191) NOT NULL,
-    `title` VARCHAR(191) NULL,
+    `title` VARCHAR(280) NULL,
     `body` TEXT NOT NULL,
     `done` BOOLEAN NOT NULL DEFAULT false,
     `type` ENUM('POST', 'TASK', 'QUESTION', 'POLL', 'COMMIT', 'REPLY') NOT NULL DEFAULT 'POST',
@@ -131,7 +131,7 @@ CREATE TABLE `poll` (
 CREATE TABLE `poll_answers` (
     `id` VARCHAR(191) NOT NULL,
     `index` INTEGER NOT NULL,
-    `title` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(64) NOT NULL,
     `pollId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
@@ -161,9 +161,9 @@ CREATE TABLE `post_topics` (
 -- CreateTable
 CREATE TABLE `topics` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(64) NOT NULL,
     `image` VARCHAR(191) NULL,
-    `description` VARCHAR(191) NULL,
+    `description` VARCHAR(280) NULL,
     `featuredAt` DATETIME(3) NULL,
 
     UNIQUE INDEX `topics_name_key`(`name`),
@@ -183,16 +183,16 @@ CREATE TABLE `likes` (
 -- CreateTable
 CREATE TABLE `products` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `slug` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
+    `name` VARCHAR(64) NOT NULL,
+    `slug` VARCHAR(32) NOT NULL,
+    `description` VARCHAR(280) NULL,
     `avatar` VARCHAR(191) NULL,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `website` VARCHAR(191) NULL,
-    `producthunt` VARCHAR(191) NULL,
-    `discord` VARCHAR(191) NULL,
-    `github` VARCHAR(191) NULL,
-    `twitter` VARCHAR(191) NULL,
+    `producthunt` VARCHAR(32) NULL,
+    `discord` VARCHAR(32) NULL,
+    `github` VARCHAR(32) NULL,
+    `twitter` VARCHAR(32) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `ownerId` VARCHAR(191) NULL,
@@ -204,9 +204,9 @@ CREATE TABLE `products` (
 -- CreateTable
 CREATE TABLE `communities` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `slug` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
+    `name` VARCHAR(64) NOT NULL,
+    `slug` VARCHAR(32) NOT NULL,
+    `description` VARCHAR(280) NULL,
     `avatar` VARCHAR(191) NULL,
     `hidden` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -220,8 +220,8 @@ CREATE TABLE `communities` (
 CREATE TABLE `community_rules` (
     `id` VARCHAR(191) NOT NULL,
     `index` INTEGER NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
+    `name` VARCHAR(64) NOT NULL,
+    `description` VARCHAR(280) NULL,
     `communityId` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
@@ -230,9 +230,9 @@ CREATE TABLE `community_rules` (
 -- CreateTable
 CREATE TABLE `badges` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(64) NOT NULL,
     `image` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
+    `description` VARCHAR(280) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -240,7 +240,7 @@ CREATE TABLE `badges` (
 -- CreateTable
 CREATE TABLE `notifications` (
     `id` VARCHAR(191) NOT NULL,
-    `message` VARCHAR(191) NULL,
+    `message` VARCHAR(280) NULL,
     `isRead` BOOLEAN NOT NULL DEFAULT false,
     `entityId` VARCHAR(191) NOT NULL,
     `type` ENUM('POST_LIKE', 'POST_REPLY', 'USER_MENTION', 'USER_FOLLOW', 'USER_INVITE_FOLLOW', 'PRODUCT_SUBSCRIBE') NOT NULL,
@@ -261,9 +261,9 @@ CREATE TABLE `integrations` (
     `id` VARCHAR(191) NOT NULL,
     `wakatimeAPIKey` VARCHAR(191) NULL,
     `spotifyRefreshToken` VARCHAR(191) NULL,
-    `githubId` VARCHAR(191) NULL,
-    `ethAddress` VARCHAR(191) NULL,
-    `ethNonce` VARCHAR(191) NULL,
+    `githubId` VARCHAR(64) NULL,
+    `ethAddress` VARCHAR(64) NULL,
+    `ethNonce` VARCHAR(5) NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `integrations_githubId_key`(`githubId`),

@@ -18,7 +18,7 @@ generator giraphql {
 
 model User {
   id             String @id @default(uuid())
-  username       String @unique @db.VarChar(16)
+  username       String @unique @db.VarChar(32)
   email          String @unique
   hashedPassword String
 
@@ -289,7 +289,7 @@ model Like {
 model Product {
   id          String  @id @default(uuid())
   name        String  @db.VarChar(64)
-  slug        String  @unique @db.VarChar(16)
+  slug        String  @unique @db.VarChar(32)
   description String? @db.VarChar(280)
   avatar      String?
   hidden      Boolean @default(false)
@@ -319,7 +319,7 @@ model Product {
 model Community {
   id          String  @id @default(uuid())
   name        String  @db.VarChar(64)
-  slug        String  @unique @db.VarChar(16)
+  slug        String  @unique @db.VarChar(32)
   description String? @db.VarChar(280)
   avatar      String?
   hidden      Boolean @default(false)
