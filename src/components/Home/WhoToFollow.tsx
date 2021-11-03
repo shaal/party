@@ -1,9 +1,4 @@
-import {
-  ApolloQueryResult,
-  gql,
-  OperationVariables,
-  useQuery
-} from '@apollo/client'
+import { ApolloQueryResult, gql, useQuery } from '@apollo/client'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
@@ -13,6 +8,7 @@ import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
+import { User } from '../../__generated__/schema.generated'
 import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
 const WHO_TO_FOLLOW_QUERY = gql`
@@ -37,9 +33,7 @@ const WHO_TO_FOLLOW_QUERY = gql`
 
 interface Props {
   children: React.ReactNode
-  refetch?: (
-    variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<any>>
+  refetch?: () => Promise<ApolloQueryResult<any>>
 }
 
 const WhoToFollowCard: React.FC<Props> = ({ children, refetch }) => {
@@ -94,8 +88,8 @@ const WhoToFollow: React.FC = () => {
             hideCard
           />
         )}
-        {users?.map((user: any) => (
-          <UserProfile key={user?.id} user={user} showFollow />
+        {users?.map((user) => (
+          <UserProfile key={user?.id} user={user as User} showFollow />
         ))}
       </div>
     </WhoToFollowCard>
