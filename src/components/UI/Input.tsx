@@ -3,16 +3,12 @@ import { ComponentProps, forwardRef } from 'react'
 
 import { FieldError } from './Form'
 
-interface InputType extends Omit<ComponentProps<'input'>, 'prefix'> {
+interface Props extends Omit<ComponentProps<'input'>, 'prefix'> {
   label?: string
-  prefix?: any
+  prefix?: string | React.ReactNode
   className?: string
   error?: boolean
 }
-
-type Props = {
-  prefix?: string | React.ReactNode
-} & InputType
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   { label, prefix, type = 'text', error, className = '', ...props },
