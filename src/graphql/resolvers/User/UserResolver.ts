@@ -1,4 +1,5 @@
 import { builder } from '@graphql/builder'
+import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
@@ -268,6 +269,7 @@ builder.mutationField('editNFTAvatar', (t) =>
     type: 'User',
     args: { input: t.arg({ type: EditNFTAvatarInput }) },
     authScopes: { user: true },
+    nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       try {
         return await db.user.update({
@@ -279,8 +281,10 @@ builder.mutationField('editNFTAvatar', (t) =>
             }
           }
         })
-      } catch (error: any) {
-        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+        }
       }
     }
   })
