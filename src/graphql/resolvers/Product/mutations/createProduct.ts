@@ -1,4 +1,4 @@
-import { Session } from '@prisma/client'
+import { Prisma, Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
 import { CreateProductInput } from 'src/__generated__/schema.generated'
@@ -32,11 +32,13 @@ export const createProduct = async (
         owner: { connect: { id: session!.userId } }
       }
     })
-  } catch (error: any) {
-    if (error.code === 'P2002') {
-      throw new Error('Product slug is already taken!')
-    }
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        throw new Error('Product slug is already taken!')
+      }
 
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+      throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+    }
   }
 }

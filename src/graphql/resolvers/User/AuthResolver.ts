@@ -47,6 +47,7 @@ builder.mutationField('login', (t) =>
       unauthenticated: false
     },
     args: { input: t.arg({ type: LoginInput }) },
+    nullable: true,
     resolve: async (_query, parent, { input }, { req }) => {
       try {
         const user = await authenticateUser(input.email, input.password)
@@ -63,11 +64,14 @@ builder.mutationField('login', (t) =>
         await createSession(req, user, false)
         createLog(user?.id, user?.id, 'LOGIN')
         return user
-      } catch (error: any) {
-        if (error.code === 'VALIDATION') {
-          throw new Error(error.message)
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          if (error.code === 'VALIDATION') {
+            throw new Error(error.message)
+          }
+
+          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
         }
-        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
       }
     }
   })
