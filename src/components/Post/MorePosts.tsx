@@ -34,7 +34,13 @@ export const MORE_POSTS_BY_USER_QUERY = gql`
 interface Props {
   post: Post
 }
-const MorePostsCard = ({ title, children }: any) => {
+const MorePostsCard = ({
+  title,
+  children
+}: {
+  title: string
+  children: React.ReactNode
+}) => {
   return (
     <div className="mb-4">
       <div className="mb-2 flex items-center gap-2">
