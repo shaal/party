@@ -74,7 +74,7 @@ const PollType: React.FC = () => {
     calculateError()
   }
 
-  const handleChange = (i: any, e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (i: number, e: ChangeEvent<HTMLInputElement>) => {
     let newPolls = [...polls]
     // @ts-ignore
     newPolls[i][e.target.name] = e.target.value
