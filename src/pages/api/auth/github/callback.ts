@@ -90,7 +90,10 @@ const handler = async (
             }
           },
           integrations: {
-            create: { githubId: id.toString() }
+            create: {
+              githubId: id.toString(),
+              githubAccessToken: accessTokenResponse?.access_token
+            }
           }
         }
       })

@@ -206,6 +206,7 @@ input EditUserInput {
 
 type Integration {
   ethAddress: String
+  githubAccessToken: String
   githubId: String
   id: ID!
   spotifyRefreshToken: String
