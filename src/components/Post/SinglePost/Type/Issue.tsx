@@ -63,7 +63,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
           <div className="flex space-x-1.5 overflow-hidden">
             {issue?.labels?.map((label: any) => (
               <div
-                className="rounded-full text-xs px-2 py-[1.5px]"
+                className="rounded-full text-xs font-mono font-bold px-2 py-[1.5px]"
                 key={label?.id}
                 style={{
                   backgroundColor: `#${label?.color}`,
