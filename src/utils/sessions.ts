@@ -55,7 +55,7 @@ export const sessionOptions: SessionOptions = {
 export async function createSession(
   request: IncomingMessage,
   user: User,
-  masquerading: boolean = false
+  masquerading = false
 ) {
   const session = await db.session.create({
     data: {
@@ -94,7 +94,7 @@ const sessionCache = new WeakMap<IncomingMessage, Session | null>()
 
 export async function resolveSession(
   { req, res }: Pick<GetServerSidePropsContext, 'req' | 'res'>,
-  checkOnboardStatus: boolean = false
+  checkOnboardStatus = false
 ) {
   if (sessionCache.has(req)) {
     return sessionCache.get(req)
