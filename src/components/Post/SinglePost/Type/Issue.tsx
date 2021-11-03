@@ -25,8 +25,9 @@ const Reacttion: React.FC<ReactionProps> = ({ emoji, count }) => {
   if (count < 1) return null
 
   return (
-    <div className="bg-gray-100 rounded-full px-3 py-1 border">
-      {emoji} {count}
+    <div className="bg-gray-100 rounded-full px-3 py-1 border flex items-center space-x-2">
+      <div>{emoji}</div>
+      <div>{count}</div>
     </div>
   )
 }
