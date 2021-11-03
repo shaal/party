@@ -41,7 +41,7 @@ const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
   )
   const rules = data?.community?.rules?.edges?.map((edge) => edge?.node)
 
-  const RulesCard = ({ children }: any) => {
+  const RulesCard: React.FC = ({ children }) => {
     return (
       <Card
         className={`mb-4 ${showCardAndHeading ? '' : 'border-0 !shadow-none'}`}

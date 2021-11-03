@@ -9,6 +9,7 @@ import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { User } from 'src/__generated__/schema.generated'
 
 import { MembersQuery } from './__generated__/list.generated'
 
@@ -109,10 +110,10 @@ const MembersList: React.FC = () => {
             icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          members?.map((user: any) => (
+          members?.map((user) => (
             <Card key={user?.id}>
               <CardBody>
-                <UserProfileLarge user={user} showFollow />
+                <UserProfileLarge user={user as User} showFollow />
               </CardBody>
             </Card>
           ))

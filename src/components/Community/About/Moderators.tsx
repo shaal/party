@@ -4,6 +4,7 @@ import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
 import { ModeratorsQuery } from './__generated__/Moderators.generated'
 
@@ -61,9 +62,9 @@ const ModeratorsList: React.FC = () => {
   return (
     <div className="space-y-5 py-5">
       <ErrorMessage title="Failed to load moderators" error={error} />
-      {moderators?.map((user: any) => (
+      {moderators?.map((user) => (
         <div key={user?.id}>
-          <UserProfileLarge user={user} showFollow />
+          <UserProfileLarge user={user as User} showFollow />
         </div>
       ))}
     </div>
