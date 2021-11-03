@@ -11,7 +11,7 @@ import { User } from 'src/__generated__/schema.generated'
 
 import Slug from '../Slug'
 
-const NextLink = ({ href, children, ...rest }: any) => (
+const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
   <Link href={href}>
     <a {...rest}>{children}</a>
   </Link>
@@ -62,7 +62,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <Menu.Item
                 as={NextLink}
                 href={`/u/${currentUser?.username}`}
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -78,7 +78,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <Menu.Item
                 as={NextLink}
                 href={`/u/${currentUser?.username}`}
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -93,7 +93,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <Menu.Item
                 as={NextLink}
                 href="/settings/profile"
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -108,7 +108,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <Menu.Item
                 as="a"
                 href="/api/logout"
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -147,7 +147,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   <Menu.Item
                     as="div"
                     onClick={toggleStaffMode}
-                    className={({ active }: any) =>
+                    className={({ active }: { active: boolean }) =>
                       clsx(
                         { 'bg-yellow-100 dark:bg-yellow-800': active },
                         'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'

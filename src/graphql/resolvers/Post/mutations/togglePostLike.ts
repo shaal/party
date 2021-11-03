@@ -1,5 +1,6 @@
 import { hasLiked } from '@graphql/resolvers/Like/queries/hasLiked'
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
+import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
@@ -11,7 +12,7 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
  * @returns a liked post
  */
 export const togglePostLike = async (
-  query: any,
+  query: Record<string, unknown>,
   userId: string,
   postId: string
 ) => {
@@ -36,11 +37,13 @@ export const togglePostLike = async (
     })
 
     if (like && userId !== post?.userId) {
-      createNotification(userId, post?.userId, like?.id, 'POST_LIKE')
+      createNotification(userId, post?.userId as string, like?.id, 'POST_LIKE')
     }
 
     return post
-  } catch (error: any) {
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+    }
   }
 }

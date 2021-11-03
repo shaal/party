@@ -8,6 +8,7 @@ import { ClipboardListIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
+import { Log } from '../../../../__generated__/schema.generated'
 import Sidebar from '../Sidebar'
 import { LogsSettingsQuery } from './__generated__/index.generated'
 import SingleLog from './SingleLog'
@@ -84,8 +85,8 @@ const LogsSettings: React.FC = () => {
         ) : (
           <Card className="mb-4">
             <CardBody className="space-y-4">
-              {logs?.map((log: any) => (
-                <SingleLog key={log?.id} log={log} />
+              {logs?.map((log) => (
+                <SingleLog key={log?.id} log={log as Log} />
               ))}
               {pageInfo?.hasNextPage && (
                 <span ref={observe} className="flex justify-center p-5">

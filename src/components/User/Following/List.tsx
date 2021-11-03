@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
+import { User } from '../../../__generated__/schema.generated'
 import { FollowingQuery } from './__generated__/List.generated'
 
 export const FOLLOWING_QUERY = gql`
@@ -109,10 +110,10 @@ const FollowingList: React.FC = () => {
             icon={<UsersIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          following?.map((user: any) => (
+          following?.map((user) => (
             <Card key={user?.id}>
               <CardBody>
-                <UserProfileLarge user={user} showFollow />
+                <UserProfileLarge user={user as User} showFollow />
               </CardBody>
             </Card>
           ))

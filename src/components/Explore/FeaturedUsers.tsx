@@ -7,6 +7,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { UsersIcon } from '@heroicons/react/outline'
 import { SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
 import { FeaturedUsersQuery } from './__generated__/FeaturedUsers.generated'
 
@@ -30,7 +31,7 @@ const FEATURED_USERS_QUERY = gql`
   }
 `
 
-const FeaturedUsersCard = ({ children }: any) => {
+const FeaturedUsersCard: React.FC = ({ children }) => {
   return (
     <div className="mb-4">
       <div className="flex items-center gap-2 mb-3 lg:mb-2 px-3 lg:px-0">
@@ -77,8 +78,8 @@ const FeaturedUsers: React.FC = () => {
             hideCard
           />
         )}
-        {users?.map((user: any) => (
-          <UserProfile key={user?.id} user={user} showFollow />
+        {users?.map((user) => (
+          <UserProfile key={user?.id} user={user as User} showFollow />
         ))}
       </div>
     </FeaturedUsersCard>

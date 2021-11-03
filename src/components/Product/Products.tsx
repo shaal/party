@@ -85,7 +85,7 @@ const Products: React.FC = () => {
         <Card>
           <CardBody className="space-y-6">
             <ErrorMessage title="Failed to load products" error={error} />
-            {products?.map((product: any) => (
+            {products?.map((product) => (
               <ProductProfileLarge
                 key={product?.id}
                 product={product as Product}

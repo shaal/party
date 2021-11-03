@@ -177,7 +177,9 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     alt={avatar}
                   />
                   <ChooseFile
-                    onChange={(evt: any) => handleUpload(evt, 'avatar')}
+                    onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                      handleUpload(evt, 'avatar')
+                    }
                   />
                   {currentUser?.integrations?.ethAddress && (
                     <NFTAvatars
@@ -202,7 +204,9 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     </div>
                   )}
                   <ChooseFile
-                    onChange={(evt: any) => handleUpload(evt, 'cover')}
+                    onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                      handleUpload(evt, 'cover')
+                    }
                   />
                 </div>
               </div>

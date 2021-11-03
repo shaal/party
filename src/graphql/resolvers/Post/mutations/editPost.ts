@@ -10,7 +10,7 @@ import { EditPostInput } from 'src/__generated__/schema.generated'
  * @returns a edited post
  */
 export const editPost = async (
-  query: any,
+  query: Record<string, unknown>,
   input: EditPostInput | null | undefined,
   session: Session | null | undefined
 ) => {

@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import Link from 'next/link'
-import { User } from 'src/__generated__/schema.generated'
+import { Product, User } from 'src/__generated__/schema.generated'
 
 import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
@@ -33,14 +33,14 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
   })
   const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
 
-  const Product = ({ product }: any) => {
+  const Product = ({ product }: { product: Product }) => {
     return (
       <Tooltip content={product?.name}>
         <Link href={`/products/${product?.slug}`}>
           <a href={`/products/${product?.slug}`}>
             <img
               className="h-9 w-9 rounded-lg"
-              src={imagekitURL(product?.avatar, 100, 100)}
+              src={imagekitURL(product?.avatar as string, 100, 100)}
               alt={`#${product?.slug}`}
             />
           </a>
@@ -65,8 +65,8 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
     <div className="space-y-2">
       {products?.length !== 0 && <div className="font-bold">Products</div>}
       <div className="flex flex-wrap gap-1.5 w-3/4">
-        {products?.map((product: any) => (
-          <Product product={product} key={product?.id} />
+        {products?.map((product) => (
+          <Product product={product as Product} key={product?.id} />
         ))}
       </div>
     </div>

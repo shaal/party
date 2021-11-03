@@ -10,7 +10,7 @@ import Redis from 'ioredis'
  * @returns the collection of posts for home page
  */
 export const homeFeed = async (
-  query: any,
+  query: Record<string, unknown>,
   type: string,
   session: Session | null | undefined
 ) => {

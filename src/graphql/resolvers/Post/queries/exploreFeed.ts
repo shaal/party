@@ -5,7 +5,7 @@ import { db } from '@utils/prisma'
  * @param query - Contains an include object to pre-load data needed to resolve nested parts.
  * @returns a posts for explore page
  */
-export const exploreFeed = async (query: any) => {
+export const exploreFeed = async (query: Record<string, unknown>) => {
   return await db.post.findMany({
     ...query,
     where: { user: { spammy: false }, hidden: false },

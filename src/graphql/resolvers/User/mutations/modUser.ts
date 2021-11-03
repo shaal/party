@@ -7,7 +7,10 @@ import { ModUserInput } from 'src/__generated__/schema.generated'
  * @param input - ModUserInput
  * @returns the moderated user
  */
-export const modUser = async (query: any, input: ModUserInput) => {
+export const modUser = async (
+  query: Record<string, unknown>,
+  input: ModUserInput
+) => {
   if (input.spammy) {
     await db.session.deleteMany({
       ...query,

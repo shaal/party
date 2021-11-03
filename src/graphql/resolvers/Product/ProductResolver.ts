@@ -1,4 +1,5 @@
 import { builder } from '@graphql/builder'
+import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
@@ -90,6 +91,7 @@ builder.mutationField('createProduct', (t) =>
   t.prismaField({
     type: 'Product',
     args: { input: t.arg({ type: CreateProductInput }) },
+    nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       return await createProduct(query, input, session)
     }
@@ -135,12 +137,14 @@ builder.mutationField('editProduct', (t) =>
             avatar: input.avatar
           }
         })
-      } catch (error: any) {
-        if (error.code === 'P2002') {
-          throw new Error('Product slug is already taken!')
-        }
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          if (error.code === 'P2002') {
+            throw new Error('Product slug is already taken!')
+          }
 
-        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+        }
       }
     }
   })

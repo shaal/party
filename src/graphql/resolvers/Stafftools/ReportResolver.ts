@@ -62,6 +62,7 @@ builder.mutationField('resolveReport', (t) =>
     type: Result,
     args: { input: t.arg({ type: ResolveReportInput }) },
     authScopes: { isStaff: true },
+    nullable: true,
     resolve: async (parent, { input }) => {
       return await resolveReport(input.id)
     }

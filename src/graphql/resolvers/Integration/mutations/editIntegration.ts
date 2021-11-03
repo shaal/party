@@ -9,7 +9,7 @@ import { EditIntegrationInput } from 'src/__generated__/schema.generated'
  * @returns updated integration
  */
 export const editIntegration = async (
-  query: any,
+  query: Record<string, unknown>,
   input: EditIntegrationInput,
   session: Session | null | undefined
 ) => {

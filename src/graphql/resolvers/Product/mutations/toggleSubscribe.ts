@@ -1,4 +1,5 @@
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
+import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
@@ -44,14 +45,16 @@ export const toggleSubscribe = async (
     if (currentUserId !== product?.ownerId) {
       createNotification(
         currentUserId,
-        product?.ownerId,
+        product?.ownerId as string,
         product?.id,
         'PRODUCT_SUBSCRIBE'
       )
     }
 
     return product
-  } catch (error: any) {
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+    }
   }
 }

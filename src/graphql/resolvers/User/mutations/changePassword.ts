@@ -39,7 +39,7 @@ export const changePassword = async (
       }
     }
   })
-  createLog(session!.userId, user?.id, 'PASSWORD_UPDATE')
+  createLog(session!.userId, user?.id as string, 'PASSWORD_UPDATE')
 
   // Logout everywhere
   await db.session.deleteMany({

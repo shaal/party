@@ -37,6 +37,14 @@ export const POST_POLL_QUERY = gql`
   }
 `
 
+interface PollAnswerType {
+  __typename?: 'PollAnswer'
+  id: string
+  title: string
+  hasAnswered: boolean
+  voters: { __typename?: 'PollAnswerVotersConnection'; totalCount: number }
+}
+
 interface Props {
   post: Post
 }
@@ -89,7 +97,7 @@ const PollType: React.FC<Props> = ({ post }) => {
           {loading ? (
             <div>Loading Poll...</div>
           ) : (
-            poll?.answers?.map((answer: any) => (
+            poll?.answers?.map((answer: PollAnswerType) => (
               <button
                 key={answer?.id}
                 type="button"

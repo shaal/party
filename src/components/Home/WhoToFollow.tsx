@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client'
+import { ApolloQueryResult, gql, useQuery } from '@apollo/client'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
@@ -8,6 +8,7 @@ import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
+import { User } from '../../__generated__/schema.generated'
 import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
 
 const WHO_TO_FOLLOW_QUERY = gql`
@@ -30,7 +31,12 @@ const WHO_TO_FOLLOW_QUERY = gql`
   }
 `
 
-const WhoToFollowCard = ({ children, refetch }: any) => {
+interface Props {
+  children: React.ReactNode
+  refetch?: () => Promise<ApolloQueryResult<any>>
+}
+
+const WhoToFollowCard: React.FC<Props> = ({ children, refetch }) => {
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-3 lg:mb-2 px-3 lg:px-0">
@@ -38,7 +44,7 @@ const WhoToFollowCard = ({ children, refetch }: any) => {
           <SparklesIcon className="h-4 w-4 text-yellow-500" />
           <div>Who to follow</div>
         </div>
-        <button onClick={() => refetch()}>
+        <button onClick={() => refetch && refetch()}>
           <RefreshIcon className="h-5 w-5" />
         </button>
       </div>
@@ -82,8 +88,8 @@ const WhoToFollow: React.FC = () => {
             hideCard
           />
         )}
-        {users?.map((user: any) => (
-          <UserProfile key={user?.id} user={user} showFollow />
+        {users?.map((user) => (
+          <UserProfile key={user?.id} user={user as User} showFollow />
         ))}
       </div>
     </WhoToFollowCard>

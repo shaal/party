@@ -7,6 +7,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { HashtagIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
 import { TopicFeedQuery } from './__generated__/Feed.generated'
@@ -84,8 +85,8 @@ const TopicFeed: React.FC<Props> = ({ topic }) => {
             icon={<HashtagIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
+          posts?.map((post) => (
+            <SinglePost key={post?.id} post={post as Post} showParent />
           ))
         )}
         {pageInfo?.hasNextPage && (

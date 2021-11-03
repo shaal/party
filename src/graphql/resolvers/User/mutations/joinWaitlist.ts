@@ -13,7 +13,10 @@ import { User } from '.prisma/client'
  * @param input - JoinWaitlistInput
  * @returns the user in the waitlist
  */
-export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
+export const joinWaitlist = async (
+  query: Record<string, unknown>,
+  input: JoinWaitlistInput
+) => {
   if (RESERVED_SLUGS.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }
@@ -46,6 +49,6 @@ export const joinWaitlist = async (query: any, input: JoinWaitlistInput) => {
         throw new Error('Email is already taken!')
     }
 
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
   }
 }

@@ -18,7 +18,7 @@ import { processMentions } from '../processMentions'
  * @returns a new reply
  */
 export const reply = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreatePostInput,
   session: Session | null | undefined,
   parentId: string | null | undefined
@@ -49,7 +49,12 @@ export const reply = async (
   }
 
   if (session!.userId !== parent?.userId) {
-    createNotification(session!.userId, parent?.userId, reply?.id, 'POST_REPLY')
+    createNotification(
+      session!.userId,
+      parent?.userId as string,
+      reply?.id,
+      'POST_REPLY'
+    )
   }
 
   return reply

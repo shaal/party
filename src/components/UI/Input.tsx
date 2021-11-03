@@ -3,9 +3,9 @@ import { ComponentProps, forwardRef } from 'react'
 
 import { FieldError } from './Form'
 
-interface Props extends ComponentProps<'input'> {
+interface Props extends Omit<ComponentProps<'input'>, 'prefix'> {
   label?: string
-  prefix?: any
+  prefix?: string | React.ReactNode
   className?: string
   error?: boolean
 }

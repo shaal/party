@@ -8,6 +8,7 @@ import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
 import { UserFeedQuery } from './__generated__/Feed.generated'
@@ -84,8 +85,8 @@ const UserFeed: React.FC = () => {
             icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
+          posts?.map((post) => (
+            <SinglePost key={post?.id} post={post as Post} showParent />
           ))
         )}
         {pageInfo?.hasNextPage && (

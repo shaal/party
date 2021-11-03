@@ -9,7 +9,7 @@ import { db } from '@utils/prisma'
  * @returns the notification belongs to the user
  */
 export const getNotifications = async (
-  query: any,
+  query: Record<string, unknown>,
   isRead: boolean,
   session: Session | null | undefined
 ) => {

@@ -9,6 +9,7 @@ import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { Topic } from 'src/__generated__/schema.generated'
 
 import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 
@@ -87,10 +88,10 @@ const Topics: React.FC = () => {
                 className="space-y-5 pr-1"
                 onClick={() => setShowSkip(false)}
               >
-                {topics?.map((topic: any) => (
+                {topics?.map((topic) => (
                   <TopicProfile
                     key={topic?.id}
-                    topic={topic}
+                    topic={topic as Topic}
                     showStar
                     showToast={false}
                   />

@@ -9,9 +9,9 @@ import { db } from '@utils/prisma'
  * @param type - Type of the notification
  */
 export const createNotification = (
-  dispatcherId: any,
-  receiverId: any,
-  entityId: any,
+  dispatcherId: string,
+  receiverId: string,
+  entityId: string,
   type: NotificationType
 ): void => {
   new Promise((resolve, reject) => {
