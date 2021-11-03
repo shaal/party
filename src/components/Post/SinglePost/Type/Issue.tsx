@@ -137,6 +137,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
           )}
           {issue?.reactions?.total_count > 0 && (
             <div className="space-x-2 pt-4 flex text-xs">
+              {/* TODO: Read +1 and -1 */}
               <Reacttion emoji="😄" count={issue?.reactions?.laugh} />
               <Reacttion emoji="🎉" count={issue?.reactions?.hooray} />
               <Reacttion emoji="😕" count={issue?.reactions?.confused} />
