@@ -53,22 +53,28 @@ const handler = async (
     const user = integration?.user
 
     if (user) {
-      if (!user?.inWaitlist) {
-        await db.user.update({
-          where: { email: githubEmail },
-          data: {
-            username: `github-${login}`,
-            profile: {
-              update: {
-                name: name ? name : login,
-                bio: bio,
-                github: login
-              }
+      await db.user.update({
+        where: { email: githubEmail },
+        data: {
+          profile: {
+            update: {
+              name: name ? name : login,
+              bio: bio,
+              github: login
             }
+          },
+          integrations: {
+            update: { githubAccessToken: accessTokenResponse?.access_token }
           }
-        })
+        }
+      })
+      if (user?.inWaitlist) {
+        return res.redirect('/waitlist')
+      } else {
         createLog(user?.id, user?.id, 'LOGIN')
         await createSession(req, user as any, false)
+
+        return res.redirect('/home')
       }
     } else {
       await db.user.create({
@@ -97,11 +103,9 @@ const handler = async (
           }
         }
       })
-    }
 
-    return res.redirect(
-      user ? (user?.inWaitlist ? '/waitlist' : '/home') : '/waitlist'
-    )
+      return res.redirect('/waitlist')
+    }
   } catch (error: any) {
     return IS_PRODUCTION
       ? res.redirect('/500')
