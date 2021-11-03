@@ -11,7 +11,7 @@ import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
  * @returns a liked post
  */
 export const togglePostLike = async (
-  query: any,
+  query: Record<string, unknown>,
   userId: string,
   postId: string
 ) => {

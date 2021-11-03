@@ -16,7 +16,7 @@ import { processMentions } from '../processMentions'
  * @returns a new task
  */
 export const task = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {

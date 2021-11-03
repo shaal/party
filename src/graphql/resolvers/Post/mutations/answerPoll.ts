@@ -11,7 +11,7 @@ import { hasVoted } from '../queries/hasVoted'
  * @returns the answered poll
  */
 export const answerPoll = async (
-  query: any,
+  query: Record<string, unknown>,
   userId: string,
   answerId: string
 ) => {

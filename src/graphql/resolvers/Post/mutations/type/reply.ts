@@ -18,7 +18,7 @@ import { processMentions } from '../processMentions'
  * @returns a new reply
  */
 export const reply = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreatePostInput,
   session: Session | null | undefined,
   parentId: string | null | undefined

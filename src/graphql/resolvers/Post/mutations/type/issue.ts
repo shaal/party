@@ -10,7 +10,7 @@ import { CreatePostInput } from 'src/__generated__/schema.generated'
  * @returns a new issue
  */
 export const issue = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {

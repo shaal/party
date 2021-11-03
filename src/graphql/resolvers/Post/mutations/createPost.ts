@@ -19,7 +19,7 @@ import { task } from './type/task'
  * @returns the new post
  */
 export const createPost = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {

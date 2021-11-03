@@ -10,7 +10,7 @@ import { MintNftInput } from 'src/__generated__/schema.generated'
  * @param session - Current user's session
  */
 export const mintNFT = async (
-  query: any,
+  query: Record<string, unknown>,
   input: MintNftInput | null | undefined,
   session: Session | null | undefined
 ) => {
