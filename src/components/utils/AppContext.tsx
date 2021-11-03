@@ -1,19 +1,22 @@
-import { createContext } from 'react'
+import { ApolloError } from '@apollo/client'
+import { createContext, Dispatch } from 'react'
+
+import { User } from '../../__generated__/schema.generated'
 
 export interface ContextType {
-  currentUser: any
+  currentUser: User | undefined
   currentUserLoading: boolean
-  currentUserError: any
-  staffMode: any
-  setStaffMode: any
+  currentUserError?: ApolloError
+  staffMode?: boolean
+  setStaffMode: Dispatch<boolean>
 }
 
 const AppContext = createContext<ContextType>({
-  currentUser: null,
+  currentUser: undefined,
   currentUserLoading: false,
-  currentUserError: null,
+  currentUserError: undefined,
   staffMode: false,
-  setStaffMode: null
+  setStaffMode: () => {}
 })
 
 export default AppContext
