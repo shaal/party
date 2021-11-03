@@ -70,23 +70,25 @@ const MorePosts: React.FC<Props> = ({ post }) => {
   return (
     <MorePostsCard title={post?.user?.profile?.name}>
       <ErrorMessage title="Failed to load more posts" error={error} />
-      {posts?.map((post: any) => (
-        <div key={post?.id} className="space-y-2">
-          <div>{post?.title}</div>
-          <div className="flex items-center space-x-1 text-sm">
-            <img
-              className="h-5 w-5 rounded-full"
-              src={imagekitURL(post?.user?.profile?.avatar, 50, 50)}
-              alt={`@${post?.user?.profile?.avatar}'`}
-            />
-            <Link href={`/u/${post?.user?.username}`}>
-              <a href={`/u/${post?.user?.username}`}>
-                {post?.user?.profile?.name}
-              </a>
-            </Link>
+      {Array.isArray(posts) &&
+        posts?.length > 0 &&
+        posts?.map((post) => (
+          <div key={post?.id} className="space-y-2">
+            <div>{post?.title}</div>
+            <div className="flex items-center space-x-1 text-sm">
+              <img
+                className="h-5 w-5 rounded-full"
+                src={imagekitURL(post?.user?.profile?.avatar as string, 50, 50)}
+                alt={`@${post?.user?.profile?.avatar}'`}
+              />
+              <Link href={`/u/${post?.user?.username}`}>
+                <a href={`/u/${post?.user?.username}`}>
+                  {post?.user?.profile?.name}
+                </a>
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </MorePostsCard>
   )
 }
