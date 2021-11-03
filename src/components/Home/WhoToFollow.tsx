@@ -1,4 +1,9 @@
-import { gql, useQuery } from '@apollo/client'
+import {
+  ApolloQueryResult,
+  gql,
+  OperationVariables,
+  useQuery
+} from '@apollo/client'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
@@ -30,7 +35,14 @@ const WHO_TO_FOLLOW_QUERY = gql`
   }
 `
 
-const WhoToFollowCard = ({ children, refetch }: any) => {
+interface Props {
+  children: React.ReactNode
+  refetch?: (
+    variables?: Partial<OperationVariables> | undefined
+  ) => Promise<ApolloQueryResult<any>>
+}
+
+const WhoToFollowCard: React.FC<Props> = ({ children, refetch }) => {
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-3 lg:mb-2 px-3 lg:px-0">
@@ -38,7 +50,7 @@ const WhoToFollowCard = ({ children, refetch }: any) => {
           <SparklesIcon className="h-4 w-4 text-yellow-500" />
           <div>Who to follow</div>
         </div>
-        <button onClick={() => refetch()}>
+        <button onClick={() => refetch && refetch()}>
           <RefreshIcon className="h-5 w-5" />
         </button>
       </div>
