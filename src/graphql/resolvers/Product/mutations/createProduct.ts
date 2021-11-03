@@ -12,7 +12,7 @@ import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
  * @returns a new product
  */
 export const createProduct = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreateProductInput,
   session: Session | null | undefined
 ) => {

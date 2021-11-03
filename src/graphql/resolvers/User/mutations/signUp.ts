@@ -14,7 +14,11 @@ import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
  * @param req - HTTP request
  * @returns a newly joined user
  */
-export const signUp = async (query: any, input: SignupInput, req: any) => {
+export const signUp = async (
+  query: Record<string, unknown>,
+  input: SignupInput,
+  req: any
+) => {
   if (RESERVED_SLUGS.includes(input.username)) {
     throw new Error(`Username "${input.username}" is reserved by Devparty.`)
   }

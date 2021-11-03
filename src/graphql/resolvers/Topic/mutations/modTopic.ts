@@ -10,7 +10,7 @@ import { ModTopicInput } from 'src/__generated__/schema.generated'
  * @returns the updated topic
  */
 export const modTopic = async (
-  query: any,
+  query: Record<string, unknown>,
   input: ModTopicInput | null | undefined,
   session: Session | null | undefined
 ) => {
