@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment, useContext } from 'react'
 
-const NextLink = ({ href, children, ...rest }: any) => (
+const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
   <Link href={href}>
     <a {...rest}>{children}</a>
   </Link>
@@ -44,7 +44,7 @@ const MoreNavItems: React.FC = () => {
               <Menu.Item
                 as={NextLink}
                 href="/communities"
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -60,7 +60,7 @@ const MoreNavItems: React.FC = () => {
                 <Menu.Item
                   as={NextLink}
                   href={`/u/${currentUser?.username}/bookmarks`}
-                  className={({ active }: any) =>
+                  className={({ active }: { active: boolean }) =>
                     clsx(
                       { 'bg-gray-100 dark:bg-gray-800': active },
                       'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
@@ -77,7 +77,7 @@ const MoreNavItems: React.FC = () => {
               <Menu.Item
                 as={NextLink}
                 href="https://tally.so/r/nPYB1m"
-                className={({ active }: any) =>
+                className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'

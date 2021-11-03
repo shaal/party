@@ -7,7 +7,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Product } from 'src/__generated__/schema.generated'
+import { Post, Product } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
 import { ProductFeedQuery } from './__generated__/Feed.generated'
@@ -86,8 +86,8 @@ const ProductFeed: React.FC<Props> = ({ product }) => {
             icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
+          posts?.map((post) => (
+            <SinglePost key={post?.id} post={post as Post} showParent />
           ))
         )}
         {pageInfo?.hasNextPage && (
