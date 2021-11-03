@@ -9,7 +9,7 @@ import { Session } from '.prisma/client'
  * @returns list of users to follow
  */
 export const getWhoToFollow = async (
-  query: any,
+  query: Record<string, unknown>,
   session: Session | null | undefined
 ) => {
   const following = await db.user.findFirst({

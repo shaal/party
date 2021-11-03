@@ -9,7 +9,7 @@ import { Session } from '.prisma/client'
  * @returns list of suggested users to follow
  */
 export const getSuggestedUsers = async (
-  query: any,
+  query: Record<string, unknown>,
   session: Session | null | undefined
 ) => {
   const topics = await db.user.findFirst({

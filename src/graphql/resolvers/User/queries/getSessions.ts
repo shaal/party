@@ -9,7 +9,7 @@ import { Session } from '.prisma/client'
  * @returns list of current user's sessions
  */
 export const getSessions = async (
-  query: any,
+  query: Record<string, unknown>,
   session: Session | null | undefined
 ) => {
   return await db.session.findMany({
