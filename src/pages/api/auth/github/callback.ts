@@ -53,21 +53,6 @@ const handler = async (
     const user = integration?.user
 
     if (user) {
-      await db.user.update({
-        where: { email: githubEmail },
-        data: {
-          profile: {
-            update: {
-              name: name ? name : login,
-              bio: bio,
-              github: login
-            }
-          },
-          integrations: {
-            update: { githubAccessToken: accessTokenResponse?.access_token }
-          }
-        }
-      })
       if (user?.inWaitlist) {
         return res.redirect('/waitlist')
       } else {
@@ -95,12 +80,7 @@ const handler = async (
               github: login
             }
           },
-          integrations: {
-            create: {
-              githubId: id.toString(),
-              githubAccessToken: accessTokenResponse?.access_token
-            }
-          }
+          integrations: { create: { githubId: id.toString() } }
         }
       })
 

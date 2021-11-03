@@ -46,7 +46,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
           id
           wakatimeAPIKey
           spotifyRefreshToken
-          githubAccessToken
         }
       }
     `,
@@ -102,25 +101,6 @@ const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
                 >
                   <Button className="w-full" variant="success" type="button">
                     Connect Spotify
-                  </Button>
-                </a>
-              )}
-              {integration?.githubAccessToken ? (
-                <Button
-                  variant="danger"
-                  type="button"
-                  onClick={() =>
-                    editIntegration({
-                      variables: { input: { githubAccessToken: null } }
-                    })
-                  }
-                >
-                  Disconnect GitHub
-                </Button>
-              ) : (
-                <a href="/api/auth/github">
-                  <Button className="w-full" variant="secondary" type="button">
-                    Connect GitHub
                   </Button>
                 </a>
               )}

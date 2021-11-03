@@ -33,19 +33,6 @@ builder.prismaObject('Integration', {
         return integration?.spotifyRefreshToken
       }
     }),
-    githubAccessToken: t.field({
-      type: 'String',
-      nullable: true,
-      resolve: async (parent, args, { session }) => {
-        if (!session || session.userId !== parent.userId) {
-          return null
-        }
-        const integration = await db.integration.findUnique({
-          where: { id: parent.id }
-        })
-        return integration?.githubAccessToken
-      }
-    }),
     githubId: t.exposeString('githubId', { nullable: true }),
     ethAddress: t.exposeString('ethAddress', { nullable: true }),
 
@@ -71,8 +58,7 @@ const EditIntegrationInput = builder.inputType('EditIntegrationInput', {
   fields: (t) => ({
     ethAddress: t.string({ required: false }),
     wakatimeAPIKey: t.string({ required: false }),
-    spotifyRefreshToken: t.string({ required: false }),
-    githubAccessToken: t.string({ required: false })
+    spotifyRefreshToken: t.string({ required: false })
   })
 })
 
