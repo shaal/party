@@ -60,13 +60,19 @@ body {
 }
 
 .prose li {
-  @apply m-1;
+  @apply !m-1;
 }
 
 .prose p {
-  @apply mb-1;
+  @apply !mb-1;
 }
 
-.prose h1 h2 h3 h4 h5 h6 {
-  @apply mt-3 mb-2;
+.prose h1,
+.prose h2 {
+  @apply text-2xl;
+  @apply !mt-5 !mb-3;
+}
+
+.prose h3 {
+  @apply !mt-3 !mb-2;
 }

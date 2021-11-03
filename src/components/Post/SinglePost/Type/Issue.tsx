@@ -1,8 +1,13 @@
 import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
+import { Tooltip } from '@components/UI/Tooltip'
 import { useIssue } from '@components/utils/hooks/useIssue'
-import { ExclamationCircleIcon } from '@heroicons/react/outline'
+import {
+  CheckCircleIcon,
+  ExclamationCircleIcon
+} from '@heroicons/react/outline'
+import { CheckCircleIcon as CheckCircleIconSolid } from '@heroicons/react/solid'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -30,13 +35,22 @@ const IssueType: React.FC<Props> = ({ post }) => {
     <div className="space-y-3 linkify">
       <div>
         <a
-          className="text-lg font-bold mb-1"
+          className="text-lg font-bold mb-1 flex items-center space-x-2"
           href={issue?.html_url}
           target="_blank"
           rel="noreferrer"
         >
-          {issue?.title}
-          <span className="text-gray-500 font-normal"> #{issue?.number}</span>
+          {issue?.state === 'open' ? (
+            <Tooltip content="Open">
+              <CheckCircleIcon className="h-5 w-5 text-green-500" />
+            </Tooltip>
+          ) : (
+            <Tooltip content="Closed">
+              <CheckCircleIconSolid className="h-5 w-5 text-brand-500" />
+            </Tooltip>
+          )}
+          <div>{issue?.title}</div>
+          <div className="text-gray-500 font-normal">#{issue?.number}</div>
         </a>
         {router.pathname === '/posts/[postId]' && (
           <div className="prose">
