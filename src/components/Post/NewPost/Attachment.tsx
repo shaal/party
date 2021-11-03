@@ -2,7 +2,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { PhotographIcon } from '@heroicons/react/outline'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 
 interface Props {
   attachments: string[]
@@ -12,7 +12,7 @@ interface Props {
 const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
   const [loading, setLoading] = useState<boolean>(false)
 
-  const handleAttachment = async (evt: ChangeEvent<HTMLInputElement>) => {
+  const handleAttachment = async (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault()
     setLoading(true)
 

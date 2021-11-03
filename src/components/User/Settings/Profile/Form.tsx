@@ -10,7 +10,7 @@ import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
@@ -177,7 +177,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     alt={avatar}
                   />
                   <ChooseFile
-                    onChange={(evt: ChangeEvent<HTMLInputElement>) =>
+                    onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
                       handleUpload(evt, 'avatar')
                     }
                   />
@@ -204,7 +204,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
                     </div>
                   )}
                   <ChooseFile
-                    onChange={(evt: ChangeEvent<HTMLInputElement>) =>
+                    onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
                       handleUpload(evt, 'cover')
                     }
                   />

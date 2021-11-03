@@ -53,7 +53,7 @@ const Search: React.FC = () => {
   const [searchTopics, { data: searchTopicsData }] =
     useLazyQuery<SearchTopicsQuery>(SEARCH_TOPICS_QUERY)
 
-  const handleSearch = (evt: any) => {
+  const handleSearch = (evt: React.ChangeEvent<HTMLInputElement>) => {
     let keyword = evt.target.value
     setSearchText(keyword)
     searchUsers({ variables: { keyword } })
