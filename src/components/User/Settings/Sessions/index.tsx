@@ -7,6 +7,7 @@ import { Spinner } from '@components/UI/Spinner'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
+import { Session } from '../../../../__generated__/schema.generated'
 import Sidebar from '../Sidebar'
 import { SessionsSettingsQuery } from './__generated__/index.generated'
 import SingleSession from './SingleSession'
@@ -80,8 +81,8 @@ const SessionsSettings: React.FC = () => {
         <Card className="mb-4">
           <CardBody className="space-y-4">
             <ErrorMessage title="Failed to load sessions" error={error} />
-            {sessions?.map((session: any) => (
-              <SingleSession key={session?.id} session={session} />
+            {sessions?.map((session) => (
+              <SingleSession key={session?.id} session={session as Session} />
             ))}
             {pageInfo?.hasNextPage && (
               <span ref={observe} className="flex justify-center p-5">

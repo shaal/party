@@ -1,7 +1,8 @@
 import { PhotographIcon } from '@heroicons/react/outline'
+import { ChangeEventHandler } from 'react'
 
 interface Props {
-  onChange: any
+  onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 const ChooseFile: React.FC<Props> = ({ onChange }) => {
