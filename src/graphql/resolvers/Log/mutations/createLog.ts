@@ -8,8 +8,8 @@ import { db } from '@utils/prisma'
  * @param action - Type of the action
  */
 export const createLog = (
-  userId: any,
-  entityId: any,
+  userId: string,
+  entityId: string,
   action: LogActionType
 ): void => {
   new Promise((resolve, reject) => {

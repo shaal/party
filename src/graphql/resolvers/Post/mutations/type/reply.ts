@@ -49,7 +49,12 @@ export const reply = async (
   }
 
   if (session!.userId !== parent?.userId) {
-    createNotification(session!.userId, parent?.userId, reply?.id, 'POST_REPLY')
+    createNotification(
+      session!.userId,
+      parent?.userId as string,
+      reply?.id,
+      'POST_REPLY'
+    )
   }
 
   return reply
