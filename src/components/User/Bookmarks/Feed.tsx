@@ -8,6 +8,7 @@ import { BookmarkIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { Post } from 'src/__generated__/schema.generated'
 
 import { BookmarkFeedQuery } from './__generated__/Feed.generated'
 
@@ -75,10 +76,10 @@ const BookmarkFeed: React.FC = () => {
             icon={<BookmarkIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          bookmarks?.map((bookmark: any) => (
+          bookmarks?.map((bookmark) => (
             <SinglePost
               key={bookmark?.post?.id}
-              post={bookmark?.post}
+              post={bookmark?.post as Post}
               showParent
             />
           ))
