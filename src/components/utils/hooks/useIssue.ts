@@ -14,12 +14,7 @@ export const useIssue = (
 
   const { data, error } = useSWR(
     `https://api.github.com/repos/${splitedURL[1]}/${splitedURL[2]}/issues/${splitedURL[4]}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false
-    }
+    fetcher
   )
 
   return {
