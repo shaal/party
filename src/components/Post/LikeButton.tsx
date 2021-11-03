@@ -9,7 +9,8 @@ import { Post } from 'src/__generated__/schema.generated'
 
 type Props = {
   entity: Post
-  handleLike: any
+  // eslint-disable-next-line no-unused-vars
+  handleLike: (post: Post) => void
   loading: boolean
 }
 
