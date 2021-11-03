@@ -14,6 +14,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { User } from 'src/__generated__/schema.generated'
 
 import { OnboardingUsersQuery } from './__generated__/Follow.generated'
 
@@ -101,10 +102,10 @@ const Follow: React.FC = () => {
                   className="space-y-5 pr-1"
                   onClick={() => setShowSkip(false)}
                 >
-                  {users?.map((user: any) => (
+                  {users?.map((user) => (
                     <UserProfileLarge
                       key={user?.id}
-                      user={user}
+                      user={user as User}
                       showFollow
                       showToast={false}
                     />
