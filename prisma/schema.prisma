@@ -398,6 +398,7 @@ model Integration {
   wakatimeAPIKey      String?
   spotifyRefreshToken String?
   githubId            String? @unique @db.VarChar(64)
+  githubAccessToken   String?
   ethAddress          String? @unique @db.VarChar(64)
   ethNonce            String? @db.VarChar(5)
 

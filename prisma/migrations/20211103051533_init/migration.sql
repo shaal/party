@@ -262,6 +262,7 @@ CREATE TABLE `integrations` (
     `wakatimeAPIKey` VARCHAR(191) NULL,
     `spotifyRefreshToken` VARCHAR(191) NULL,
     `githubId` VARCHAR(64) NULL,
+    `githubAccessToken` VARCHAR(191) NULL,
     `ethAddress` VARCHAR(64) NULL,
     `ethNonce` VARCHAR(5) NULL,
     `userId` VARCHAR(191) NOT NULL,
