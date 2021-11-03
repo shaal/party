@@ -63,25 +63,27 @@ const IssueType: React.FC<Props> = ({ post }) => {
             <Markdown options={{ wrapper: 'article' }}>{issue?.body}</Markdown>
           </div>
         )}
-        <div className="space-y-2 pt-3">
-          <div className="font-bold">Assignees</div>
-          <div className="flex space-x-1.5 overflow-hidden">
-            {issue?.assignees?.map((user: any) => (
-              <a
-                key={user?.id}
-                href={`https://github.com/${user?.login}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="rounded-full border h-7 w-7"
-                  src={imagekitURL(user?.avatar_url, 100, 100)}
-                  alt={`@${user?.login}`}
-                />
-              </a>
-            ))}
+        {issue?.assignees?.length > 0 && (
+          <div className="space-y-2 pt-3">
+            <div className="font-bold">Assignees</div>
+            <div className="flex space-x-1.5 overflow-hidden">
+              {issue?.assignees?.map((user: any) => (
+                <a
+                  key={user?.id}
+                  href={`https://github.com/${user?.login}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="rounded-full border h-7 w-7"
+                    src={imagekitURL(user?.avatar_url, 100, 100)}
+                    alt={`@${user?.login}`}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
