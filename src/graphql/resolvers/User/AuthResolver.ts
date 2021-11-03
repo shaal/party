@@ -1,4 +1,5 @@
 import { builder } from '@graphql/builder'
+import { Prisma } from '@prisma/client'
 import { authenticateUser } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
@@ -87,6 +88,7 @@ builder.mutationField('loginWithWallet', (t) =>
       unauthenticated: false
     },
     args: { input: t.arg({ type: LoginWithWalletInput }) },
+    nullable: true,
     resolve: async (_query, parent, { input }, { req }) => {
       try {
         const user = await authWithWallet(input.nonce, input.signature)
@@ -94,8 +96,10 @@ builder.mutationField('loginWithWallet', (t) =>
         await createSession(req, user, false)
 
         return user
-      } catch (error: any) {
-        throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+        }
       }
     }
   })

@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
@@ -38,7 +39,9 @@ export const toggleStar = async (currentUserId: string, topicId: string) => {
     })
 
     return topic
-  } catch (error: any) {
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+    }
   }
 }
