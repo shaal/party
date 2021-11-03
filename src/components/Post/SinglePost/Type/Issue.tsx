@@ -16,6 +16,21 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
 
+interface ReactionProps {
+  emoji: string
+  count: number
+}
+
+const Reacttion: React.FC<ReactionProps> = ({ emoji, count }) => {
+  if (count < 1) return null
+
+  return (
+    <div className="bg-gray-100 rounded-full px-3 py-1 border">
+      {emoji} {count}
+    </div>
+  )
+}
+
 interface Props {
   post: Post
 }
@@ -60,7 +75,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
           </a>
         </Link>
         {issue?.labels?.length > 0 && (
-          <div className="flex space-x-1.5 overflow-hidden">
+          <div className="flex flex-wrap gap-1.5 w-3/4 overflow-hidden pt-2">
             {issue?.labels?.map((label: any) => (
               <div
                 className="rounded-full text-xs font-mono font-bold px-2 py-[1.5px]"
@@ -82,27 +97,53 @@ const IssueType: React.FC<Props> = ({ post }) => {
             <Markdown options={{ wrapper: 'article' }}>{issue?.body}</Markdown>
           </div>
         )}
-        {issue?.assignees?.length > 0 && (
-          <div className="space-y-2 pt-3">
-            <div className="font-bold">Assignees</div>
-            <div className="flex space-x-1.5 overflow-hidden">
-              {issue?.assignees?.map((user: any) => (
+        <div>
+          {issue?.assignees?.length > 0 && (
+            <div className="space-y-2 pt-3">
+              <div className="font-bold">Assignees</div>
+              <div className="flex space-x-1.5 overflow-hidden">
+                {issue?.assignees?.map((user: any) => (
+                  <a
+                    key={user?.id}
+                    href={`https://github.com/${user?.login}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="rounded-full border h-7 w-7"
+                      src={imagekitURL(user?.avatar_url, 100, 100)}
+                      alt={`@${user?.login}`}
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+          {issue?.milestone && (
+            <div className="space-y-2 pt-3">
+              <div className="font-bold">Milestone</div>
+              <div className="flex space-x-1.5 overflow-hidden">
                 <a
-                  key={user?.id}
-                  href={`https://github.com/${user?.login}`}
+                  href={`https://github.com/${issue?.milestone?.html_url}`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <img
-                    className="rounded-full border h-7 w-7"
-                    src={imagekitURL(user?.avatar_url, 100, 100)}
-                    alt={`@${user?.login}`}
-                  />
+                  {issue?.milestone?.title}
                 </a>
-              ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+          {issue?.reactions?.total_count > 0 && (
+            <div className="space-x-2 pt-3 flex text-xs">
+              <Reacttion emoji="😄" count={issue?.reactions?.laugh} />
+              <Reacttion emoji="🎉" count={issue?.reactions?.hooray} />
+              <Reacttion emoji="😕" count={issue?.reactions?.confused} />
+              <Reacttion emoji="❤️" count={issue?.reactions?.heart} />
+              <Reacttion emoji="🚀" count={issue?.reactions?.rocket} />
+              <Reacttion emoji="👀" count={issue?.reactions?.eyes} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
