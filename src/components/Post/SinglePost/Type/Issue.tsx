@@ -7,7 +7,8 @@ import { useIssue } from '@components/utils/hooks/useIssue'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import {
   CheckCircleIcon,
-  ExclamationCircleIcon
+  ExclamationCircleIcon,
+  FlagIcon
 } from '@heroicons/react/outline'
 import { CheckCircleIcon as CheckCircleIconSolid } from '@heroicons/react/solid'
 import Markdown from 'markdown-to-jsx'
@@ -123,19 +124,19 @@ const IssueType: React.FC<Props> = ({ post }) => {
           {issue?.milestone && (
             <div className="space-y-2 pt-3">
               <div className="font-bold">Milestone</div>
-              <div className="flex space-x-1.5 overflow-hidden">
-                <a
-                  href={`https://github.com/${issue?.milestone?.html_url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {issue?.milestone?.title}
-                </a>
-              </div>
+              <a
+                className="flex items-center space-x-2"
+                href={`https://github.com/${issue?.milestone?.html_url}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FlagIcon className="h-4 w-4 text-gray-500" />
+                <div>{issue?.milestone?.title}</div>
+              </a>
             </div>
           )}
           {issue?.reactions?.total_count > 0 && (
-            <div className="space-x-2 pt-3 flex text-xs">
+            <div className="space-x-2 pt-4 flex text-xs">
               <Reacttion emoji="😄" count={issue?.reactions?.laugh} />
               <Reacttion emoji="🎉" count={issue?.reactions?.hooray} />
               <Reacttion emoji="😕" count={issue?.reactions?.confused} />
