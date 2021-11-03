@@ -12,7 +12,7 @@ import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
  * @returns a new community
  */
 export const createCommunity = async (
-  query: any,
+  query: Record<string, unknown>,
   input: CreateCommunityInput,
   session: Session | null | undefined
 ) => {
