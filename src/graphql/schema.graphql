@@ -278,26 +278,26 @@ type Mutation {
   createBadge(input: CreateBadgeInput!): Badge!
   createCommunity(input: CreateCommunityInput!): Community!
   createPost(input: CreatePostInput!): Post!
-  createProduct(input: CreateProductInput!): Product!
+  createProduct(input: CreateProductInput!): Product
   createReport(input: CreateReportInput!): Report!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
-  editNFTAvatar(input: EditNFTAvatarInput!): User!
+  editNFTAvatar(input: EditNFTAvatarInput!): User
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
   editSocial(input: EditSocialInput!): User!
   editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
-  login(input: LoginInput!): User!
-  loginWithWallet(input: LoginWithWalletInput!): User!
+  login(input: LoginInput!): User
+  loginWithWallet(input: LoginWithWalletInput!): User
   mint(input: MintNFTInput!): NFT!
   modTopic(input: ModTopicInput!): Topic
   modUser(input: ModUserInput!): User
   onboardUser(input: OnboardUserInput!): User
   readNotification(input: ReadNotificationInput!): Result!
   regenerateInvite: Invite!
-  resolveReport(input: ResolveReportInput!): Result!
+  resolveReport(input: ResolveReportInput!): Result
   revokeSession(input: RevokeSessionInput!): Result!
   signUp(input: SignupInput!): User!
   toggleBookmark(input: ToggleBookmarkInput!): Post
