@@ -11,12 +11,12 @@ import {
 } from 'react-hook-form'
 import { TypeOf, ZodSchema } from 'zod'
 
-interface UseZodFormProps<T extends ZodSchema<any>>
+interface UseZodFormProps<T extends ZodSchema<FieldValues>>
   extends UseFormProps<TypeOf<T>> {
   schema: T
 }
 
-export const useZodForm = <T extends ZodSchema<any>>({
+export const useZodForm = <T extends ZodSchema<FieldValues>>({
   schema,
   ...formConfig
 }: UseZodFormProps<T>) => {
@@ -43,7 +43,7 @@ export const FieldError: React.FC<FieldErrorProps> = ({ name }) => {
   )
 }
 
-interface Props<T extends FieldValues = any>
+interface Props<T extends FieldValues = Record<string, unknown>>
   extends Omit<ComponentProps<'form'>, 'onSubmit'> {
   form: UseFormReturn<T>
   onSubmit: SubmitHandler<T>
