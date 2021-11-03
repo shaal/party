@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
+import { getTextColor } from '@components/utils/getTextColor'
 
 interface Props {
   post: Post
@@ -58,6 +59,22 @@ const IssueType: React.FC<Props> = ({ post }) => {
             <div className="text-gray-500 font-normal">#{issue?.number}</div>
           </a>
         </Link>
+        {issue?.labels?.length > 0 && (
+          <div className="flex space-x-1.5 overflow-hidden">
+            {issue?.labels?.map((label: any) => (
+              <div
+                className="rounded-full text-xs px-2 py-[2px]"
+                key={label?.id}
+                style={{
+                  backgroundColor: `#${label?.color}`,
+                  color: getTextColor(`#${label?.color}`)
+                }}
+              >
+                {label?.name}
+              </div>
+            ))}
+          </div>
+        )}
         {isPostPage && (
           <div className="prose">
             <Markdown options={{ wrapper: 'article' }}>{issue?.body}</Markdown>
