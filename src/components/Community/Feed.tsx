@@ -7,7 +7,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Community } from 'src/__generated__/schema.generated'
+import { Community, Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
 import { CommunityFeedQuery } from './__generated__/Feed.generated'
@@ -86,8 +86,8 @@ const CommunityFeed: React.FC<Props> = ({ community }) => {
             icon={<CollectionIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          posts?.map((post: any) => (
-            <SinglePost key={post?.id} post={post} showParent />
+          posts?.map((post) => (
+            <SinglePost key={post?.id} post={post as Post} showParent />
           ))
         )}
         {pageInfo?.hasNextPage && (
