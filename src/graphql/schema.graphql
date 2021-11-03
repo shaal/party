@@ -155,6 +155,7 @@ input DeletePostInput {
 
 input EditIntegrationInput {
   ethAddress: String
+  githubAccessToken: String
   spotifyRefreshToken: String
   wakatimeAPIKey: String
 }

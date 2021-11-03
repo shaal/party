@@ -16,6 +16,7 @@ export const editIntegration = async (
   const data = {
     wakatimeAPIKey: input.wakatimeAPIKey,
     spotifyRefreshToken: input.spotifyRefreshToken,
+    githubAccessToken: input.githubAccessToken,
     ethAddress: input.ethAddress
   }
 
