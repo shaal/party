@@ -3,6 +3,7 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Modal } from '@components/UI/Modal'
 import { FingerPrintIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { Post } from 'src/__generated__/schema.generated'
 
 import Mint from './Mint'
@@ -25,7 +26,13 @@ const MintNFT: React.FC<Props> = ({ post }) => {
             </div>
             <Button
               icon={<FingerPrintIcon className="h-4 w-4" />}
-              onClick={() => setShowModal(!showModal)}
+              onClick={() => {
+                if (post?.type === 'POST') {
+                  setShowModal(!showModal)
+                } else {
+                  toast.error('Minting is available only for posts')
+                }
+              }}
             >
               Mint NFT
             </Button>
