@@ -2,6 +2,7 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { Tooltip } from '@components/UI/Tooltip'
+import { getTextColor } from '@components/utils/getTextColor'
 import { useIssue } from '@components/utils/hooks/useIssue'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import {
@@ -14,7 +15,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Post } from 'src/__generated__/schema.generated'
-import { getTextColor } from '@components/utils/getTextColor'
 
 interface Props {
   post: Post
@@ -63,11 +63,13 @@ const IssueType: React.FC<Props> = ({ post }) => {
           <div className="flex space-x-1.5 overflow-hidden">
             {issue?.labels?.map((label: any) => (
               <div
-                className="rounded-full text-xs px-2 py-[2px]"
+                className="rounded-full text-xs px-2 py-[1.5px]"
                 key={label?.id}
                 style={{
                   backgroundColor: `#${label?.color}`,
-                  color: getTextColor(`#${label?.color}`)
+                  color: getTextColor(`#${label?.color}`),
+                  border:
+                    label?.color === 'ffffff' ? '1px solid #D1D5DB' : 'none'
                 }}
               >
                 {label?.name}
