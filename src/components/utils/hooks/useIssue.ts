@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
  */
 export const useIssue = (
   url: string
-): { issue: any; slug: string; isLoading: boolean; isError: any } => {
+): { issue: any; isLoading: boolean; isError: any } => {
   const splitedURL = new URL(url).pathname.split('/')
 
   const { data, error } = useSWR(
@@ -24,7 +24,6 @@ export const useIssue = (
 
   return {
     issue: data,
-    slug: `${splitedURL[1]}/${splitedURL[2]}`,
     isLoading: !error && !data,
     isError: error || data?.message
   }

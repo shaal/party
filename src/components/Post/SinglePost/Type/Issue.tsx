@@ -37,7 +37,7 @@ interface Props {
 
 const IssueType: React.FC<Props> = ({ post }) => {
   const router = useRouter()
-  const { issue, slug, isLoading, isError } = useIssue(post?.body)
+  const { issue, isLoading, isError } = useIssue(post?.body)
 
   if (isLoading) return <div>Loading Issue...</div>
 
