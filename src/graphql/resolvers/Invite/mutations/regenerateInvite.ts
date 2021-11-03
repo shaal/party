@@ -9,7 +9,7 @@ import { md5 } from 'hash-wasm'
  * @returns updated invite data
  */
 export const regenerateInvite = async (
-  query: any,
+  query: Record<string, unknown>,
   session: Session | null | undefined
 ) => {
   const code = await (

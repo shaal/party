@@ -8,7 +8,7 @@ import { db } from '@utils/prisma'
  * @returns the logs for the current user
  */
 export const getLogs = async (
-  query: any,
+  query: Record<string, unknown>,
   session: Session | null | undefined
 ) => {
   return await db.log.findMany({
