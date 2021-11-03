@@ -2,22 +2,24 @@ import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { PhotographIcon } from '@heroicons/react/outline'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 interface Props {
-  attachments: any
-  setAttachments: any
+  attachments: string[]
+  setAttachments: React.Dispatch<any>
 }
 
 const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
   const [loading, setLoading] = useState<boolean>(false)
 
-  const handleAttachment = async (evt: any) => {
+  const handleAttachment = async (evt: ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault()
     setLoading(true)
 
     try {
-      const attachment = await uploadToIPFS(evt.target.files[0])
+      const attachment = await uploadToIPFS(
+        Array.isArray(evt.target.files) ? evt.target.files[0] : null
+      )
       setAttachments([...attachments, attachment])
     } finally {
       setLoading(false)
