@@ -3,6 +3,7 @@
   "editor.formatOnSave": true,
   "editor.fontSize": 16,
   "editor.lineHeight": 30,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,

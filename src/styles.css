@@ -58,3 +58,21 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.prose li {
+  @apply !m-1;
+}
+
+.prose p {
+  @apply !mb-1;
+}
+
+.prose h1,
+.prose h2 {
+  @apply text-2xl;
+  @apply !mt-5 !mb-3;
+}
+
+.prose h3 {
+  @apply !mt-3 !mb-2;
+}

@@ -4,12 +4,15 @@ import { Tab } from '@headlessui/react'
 import {
   ChartBarIcon,
   CheckCircleIcon,
+  ClipboardListIcon,
   CollectionIcon,
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
+
+import IssueType from './Type/Issue'
 
 const PostType = dynamic(() => import('./Type/Post'), {
   loading: () => <Loading />
@@ -92,6 +95,21 @@ const NewPost: React.FC = () => {
                 </button>
               )}
             </Tab>
+            <Tab as={Fragment}>
+              {({ selected }) => (
+                <button
+                  className={clsx(
+                    { 'text-brand-500': selected },
+                    { 'text-gray-400': !selected },
+                    'flex items-center gap-1.5 text-sm tab-focus-ring'
+                  )}
+                >
+                  <Tooltip content="GitHub Issue">
+                    <ClipboardListIcon className="h-5 w-5" />
+                  </Tooltip>
+                </button>
+              )}
+            </Tab>
           </Tab.List>
           <Tab.Panels className="mt-4">
             <Tab.Panel className="focus:outline-none">
@@ -105,6 +123,9 @@ const NewPost: React.FC = () => {
             </Tab.Panel>
             <Tab.Panel className="focus:outline-none">
               <PollType />
+            </Tab.Panel>
+            <Tab.Panel className="focus:outline-none">
+              <IssueType />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

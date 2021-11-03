@@ -160,7 +160,7 @@ const PollType: React.FC = () => {
         </Card>
       </div>
       <div className="flex items-center justify-between">
-        <div className="flex space-x-2">
+        <div className="!-mx-2">
           <SelectTarget setSelectedTarget={setSelectedTarget} />
         </div>
         <Button

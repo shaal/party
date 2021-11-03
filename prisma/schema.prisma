@@ -449,6 +449,7 @@ enum PostType {
   TASK
   QUESTION
   POLL
+  ISSUE
   REPLY
 }
 
