@@ -77,8 +77,8 @@ const Replies: React.FC<Props> = ({ post }) => {
             icon={<ReplyIcon className="h-8 w-8 text-brand-500" />}
           />
         ) : (
-          replies?.map((reply: any) => (
-            <SinglePost key={reply?.id} post={reply} />
+          replies?.map((reply) => (
+            <SinglePost key={reply?.id} post={reply as Post} />
           ))
         )}
         {pageInfo?.hasNextPage && (
