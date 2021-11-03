@@ -32,7 +32,7 @@ export async function unauthenticatedRoute(context: GetServerSidePropsContext) {
  */
 export async function authenticatedRoute(
   context: GetServerSidePropsContext,
-  checkOnboardStatus: boolean = false
+  checkOnboardStatus = false
 ): Promise<GetServerSidePropsResult<{}>> {
   const session = await resolveSession(context, checkOnboardStatus)
   const onboarded = session?.hasOwnProperty('user') && !session?.user?.onboarded
