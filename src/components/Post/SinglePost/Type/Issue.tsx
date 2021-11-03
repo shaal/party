@@ -5,9 +5,9 @@ import { Tooltip } from '@components/UI/Tooltip'
 import { useIssue } from '@components/utils/hooks/useIssue'
 import {
   CheckCircleIcon,
-  ExclamationCircleIcon,
-  XCircleIcon
+  ExclamationCircleIcon
 } from '@heroicons/react/outline'
+import { CheckCircleIcon as CheckCircleIconSolid } from '@heroicons/react/solid'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -46,7 +46,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
             </Tooltip>
           ) : (
             <Tooltip content="Closed">
-              <XCircleIcon className="h-5 w-5 text-brand-500" />
+              <CheckCircleIconSolid className="h-5 w-5 text-brand-500" />
             </Tooltip>
           )}
           <div>{issue?.title}</div>
