@@ -8,16 +8,16 @@ tasks:
       yarn install --frozen-lockfile --silent --network-timeout 100000
       cp .env.example .env
       gp await-port 3306
-      yarn prisma:migrate
-      yarn prisma:seed
-      yarn prepare
+      bun run prisma:migrate
+      bun run prisma:seed
+      bun run prepare
       gp sync-done setup
-    command: yarn codegen:graphql --watch
+    command: bun run codegen:graphql --watch
   - name: Dev Server
     init: gp sync-await setup
     command: |
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env
-      yarn dev
+      bun run dev
   - name: Bash
     init: gp sync-await setup
     command: |
