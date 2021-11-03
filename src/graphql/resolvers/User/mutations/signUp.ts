@@ -67,6 +67,6 @@ export const signUp = async (
         throw new Error('Email is already taken!')
     }
 
-    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error)
+    throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
   }
 }
