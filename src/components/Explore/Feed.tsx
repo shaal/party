@@ -5,6 +5,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
 import React from 'react'
 import useInView from 'react-cool-inview'
+import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
 import { ExploreFeedQuery } from './__generated__/Feed.generated'
@@ -57,8 +58,8 @@ const ExploreFeed: React.FC = () => {
     <div>
       <ErrorMessage title="Failed to load posts" error={error} />
       <div className="space-y-3">
-        {posts?.map((post: any) => (
-          <SinglePost key={post?.id} post={post} showParent />
+        {posts?.map((post) => (
+          <SinglePost key={post?.id} post={post as Post} showParent />
         ))}
         {pageInfo?.hasNextPage && (
           <span ref={observe} className="flex justify-center p-5">
