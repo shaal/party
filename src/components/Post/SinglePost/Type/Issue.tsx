@@ -4,6 +4,7 @@ import 'linkify-plugin-mention'
 import { Tooltip } from '@components/UI/Tooltip'
 import { getTextColor } from '@components/utils/getTextColor'
 import { useIssue } from '@components/utils/hooks/useIssue'
+import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import {
   CheckCircleIcon,
@@ -28,7 +29,7 @@ const Reacttion: React.FC<ReactionProps> = ({ emoji, count }) => {
   return (
     <div className="bg-gray-100 rounded-full px-3 py-1 border flex items-center space-x-2 cursor-default">
       <div>{emoji}</div>
-      <div>{count}</div>
+      <div>{humanize(count)}</div>
     </div>
   )
 }
