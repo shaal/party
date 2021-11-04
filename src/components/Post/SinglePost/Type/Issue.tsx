@@ -74,7 +74,22 @@ const IssueType: React.FC<Props> = ({ post }) => {
               </Tooltip>
             )}
             <div>{issue?.title}</div>
-            <div className="text-gray-500 font-normal">#{issue?.number}</div>
+            <div className="flex items-center space-x-1">
+              <div className="text-gray-500 font-normal">#{issue?.number}</div>
+              <Tooltip content={`@${issue?.user?.login}`}>
+                <a
+                  href={issue?.user?.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="h-5 w-5 rounded-full border"
+                    src={issue?.user?.avatar_url}
+                    alt={issue?.user?.login}
+                  />
+                </a>
+              </Tooltip>
+            </div>
           </a>
         </Link>
         {issue?.labels?.length > 0 && (
