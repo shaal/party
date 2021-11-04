@@ -16,11 +16,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       let cache: any = await redis.get(parsedUrl)
       cache = JSON.parse(cache)
-      let oembedData = {}
       if (cache) {
-        oembedData = cache
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(oembedData)
+        return res.status(200).json(cache)
       } else {
         const data = await unfurl(parsedUrl)
         redis.set(

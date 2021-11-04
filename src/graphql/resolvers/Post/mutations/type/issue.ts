@@ -14,7 +14,16 @@ export const issue = async (
   input: CreatePostInput,
   session: Session | null | undefined
 ) => {
-  // TODO: Check for valid issue url
+  const url = new URL(input.body)
+  const paths = url.pathname.split('/')
+  if (
+    url.host !== 'github.com' ||
+    paths[3] !== 'issues' ||
+    paths.length !== 5
+  ) {
+    throw new Error('Invalid issue URL')
+  }
+
   const issue = await db.post.create({
     ...query,
     data: {
