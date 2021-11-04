@@ -51,6 +51,11 @@ interface GraphQLRequest {
 
 const handler: NextApiHandler = async (req, res) => {
   const session = await resolveSession({ req, res })
+  const { warmup } = req.query
+
+  if (warmup) {
+    return res.status(200).json({ status: 'Warmed up!' })
+  }
 
   try {
     const request: GraphQLRequest = {
