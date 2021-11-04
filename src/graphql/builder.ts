@@ -28,16 +28,8 @@ export function createGraphQLContext(
   }
 }
 
-type DirectiveTypes = {
-  rateLimit: {
-    locations: 'FIELD_DEFINITION' | 'OBJECT'
-    args: { limit: number; duration: number }
-  }
-}
-
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes
-  Directives: DirectiveTypes
   DefaultInputFieldRequiredness: true
   Context: Context
   Scalars: {
@@ -76,16 +68,13 @@ export const builder = new SchemaBuilder<{
 
 builder.queryType({})
 builder.mutationType({
-  directives: {
-    rateLimit: { limit: 100, duration: 60 }
-  },
   authScopes: { user: true }
 })
 
 // Custom Scalar Types
 builder.scalarType('DateTime', {
-  serialize: (date) => date.toISOString(),
-  parseValue: (date) => {
+  serialize: (date: any) => date.toISOString(),
+  parseValue: (date: any) => {
     return new Date(date)
   }
 })
