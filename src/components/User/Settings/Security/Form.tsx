@@ -66,18 +66,21 @@ const ChangePasswordForm: React.FC = () => {
         label="Current Password"
         type="password"
         autoComplete="current-password"
+        placeholder="••••••••••"
         {...form.register('currentPassword')}
       />
       <Input
         label="New Password"
         type="password"
         autoComplete="new-password"
+        placeholder="••••••••••"
         {...form.register('newPassword')}
       />
       <Input
         label="Confirm New Password"
         type="password"
         autoComplete="new-password"
+        placeholder="••••••••••"
         {...form.register('confirmNewPassword')}
       />
       <div className="ml-auto">
