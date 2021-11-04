@@ -19,6 +19,12 @@ const handler = async (
   req: NextApiRequestWithSession,
   res: NextApiResponse
 ) => {
+  const { warmup } = req.query
+
+  if (warmup) {
+    return res.status(200).json({ status: 'Warmed up!' })
+  }
+
   try {
     const requestOptions = {
       method: 'POST',

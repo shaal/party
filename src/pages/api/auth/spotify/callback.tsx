@@ -6,6 +6,12 @@ import { BASE_URL, ERROR_MESSAGE } from 'src/constants'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
+  const { warmup } = req.query
+
+  if (warmup) {
+    return res.status(200).json({ status: 'Warmed up!' })
+  }
+
   if (!session) {
     return res.redirect('/login')
   }
