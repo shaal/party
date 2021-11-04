@@ -76,3 +76,7 @@ body {
 .prose h3 {
   @apply !mt-3 !mb-2;
 }
+
+.prose img {
+  @apply rounded-lg;
+}
