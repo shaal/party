@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const { expect } = require('@playwright/test')
 
 describe('Devparty NFT Contract', function () {
   it('should issue token (issueToken)', async function () {
@@ -12,6 +12,6 @@ describe('Devparty NFT Contract', function () {
       'https://bafybeiewuo3rq2glwgg7f2n743svfvgw5zaiyoxuwqqc54ogy5hobmln4i.ipfs.infura-ipfs.io/'
     )
 
-    expect(token.data.includes(signerAddress.toLowerCase())).true
+    expect(token.data.includes(signerAddress.toLowerCase())).toBe(true)
   })
 })
