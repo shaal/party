@@ -13,7 +13,7 @@ export const useIssue = (
   const splitedURL = new URL(url).pathname.split('/')
 
   const { data, error } = useSWR(
-    `https://api.github.com/repos/${splitedURL[1]}/${splitedURL[2]}/issues/${splitedURL[4]}`,
+    `/api/utils/getIssue?owner=${splitedURL[1]}&repo=${splitedURL[2]}&id=${splitedURL[4]}`,
     fetcher,
     {
       revalidateIfStale: false,
