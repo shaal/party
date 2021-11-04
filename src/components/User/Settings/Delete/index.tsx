@@ -2,40 +2,22 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { Spinner } from '@components/UI/Spinner'
-import AppContext from '@components/utils/AppContext'
 import { TrashIcon } from '@heroicons/react/outline'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { ERROR_MESSAGE } from 'src/constants'
 
 import Sidebar from '../Sidebar'
 
 const DeleteSettings: React.FC = () => {
-  const { currentUser } = useContext(AppContext)
   const [deleting, setDeleting] = useState<boolean>(false)
   const handleExport = () => {
-    setDeleting(true)
-    fetch('/api/export')
-      .then((response) => [response.status, response.blob()])
-      .then(async (result) => {
-        if (result[0] === 200) {
-          const blob = await result[1]
-          var url = window.URL.createObjectURL(blob)
-          var a = document.createElement('a')
-          a.href = url
-          a.download = `export-${currentUser?.id}.json`
-          document.body.appendChild(a)
-          a.click()
-          a.remove()
-        } else if (result[0] === 429) {
-          toast.error(
-            'You downloaded the export recently, Please try again after some days!'
-          )
-        } else {
-          toast.error(ERROR_MESSAGE)
-        }
-      })
-      .finally(() => setDeleting(false))
+    var confirm = prompt('Type (delete) to confirm')
+    if (confirm === 'delete') {
+      setDeleting(true)
+    } else {
+      toast.success('You cancelled the operation!')
+      setDeleting(false)
+    }
   }
 
   return (
