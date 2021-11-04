@@ -59,6 +59,16 @@ graphcdn:
   only:
     - main
 
+warmup:
+  script: 
+    - ./scripts/warmup.sh
+  only:
+    - schedules
+  rules:
+    - if: '$WARMUP == "true"'
+      when: never
+    when: always
+
 migrate:
   script:
     - npx prisma migrate reset --force
