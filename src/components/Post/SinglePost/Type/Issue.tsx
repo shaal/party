@@ -73,9 +73,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
                 <CheckCircleIconSolid className="h-5 w-5 text-brand-500" />
               </Tooltip>
             )}
-            <div>{issue?.title}</div>
             <div className="flex items-center space-x-1">
-              <div className="text-gray-500 font-normal">#{issue?.number}</div>
               <Tooltip content={`@${issue?.user?.login}`}>
                 <a
                   href={issue?.user?.html_url}
@@ -89,7 +87,9 @@ const IssueType: React.FC<Props> = ({ post }) => {
                   />
                 </a>
               </Tooltip>
+              <div>{issue?.title}</div>
             </div>
+            <div className="text-gray-500 font-normal">#{issue?.number}</div>
           </a>
         </Link>
         {issue?.labels?.length > 0 && (
