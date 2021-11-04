@@ -127,7 +127,7 @@ const IssueType: React.FC<Props> = ({ post }) => {
               <div className="font-bold">Milestone</div>
               <a
                 className="flex items-center space-x-2"
-                href={`https://github.com/${issue?.milestone?.html_url}`}
+                href={issue?.milestone?.html_url}
                 target="_blank"
                 rel="noreferrer"
               >
