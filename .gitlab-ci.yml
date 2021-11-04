@@ -59,12 +59,10 @@ graphcdn:
   only:
     - main
 
+# Enhance it only for schedules
 warmup:
   script:
     - ./scripts/warmup.sh
-  rules:
-    - if: '$WARMUP == "true"'
-      when: never
 
 migrate:
   script:
