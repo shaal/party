@@ -62,10 +62,8 @@ graphcdn:
 warmup:
   script:
     - ./scripts/warmup.sh
-  rules:
-    - if: '$WARMUP == "true"'
-      when: never
-    - when: always
+  only:
+    - schedules
 
 migrate:
   script:
