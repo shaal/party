@@ -7818,10 +7818,10 @@ graphql-depth-limit@^1.1.0:
   dependencies:
     arrify "^1.0.1"
 
-graphql-helix@1.8.4:
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/graphql-helix/-/graphql-helix-1.8.4.tgz#76d8df7f8580d8b679adb6274213aa954f17eba1"
-  integrity sha512-a+R5B8WfgEtWzgY1YL9/CkoSNqpa574cNPPo213rhXr8xYypFehwvqQIyIvZscRvK/mWz2g3LQLG1w7oFk15GQ==
+graphql-helix@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/graphql-helix/-/graphql-helix-1.9.1.tgz#7bbb0c78642604ef531649f14800154b83b1fb45"
+  integrity sha512-Of4iMFy+lesAF52RsgTlSUtgAlogWNQt8xp817fcgdJtGNO1bo4RPR4yXD5vZYHbw01Vm2fmaPOCUps5BJJSXw==
 
 graphql-request@^3.3.0:
   version "3.6.1"
