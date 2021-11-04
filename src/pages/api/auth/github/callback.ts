@@ -4,21 +4,12 @@ import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession, sessionOptions } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
+import { withIronSessionApiRoute } from 'iron-session/next'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { withIronSession } from 'next-iron-session'
 import { Octokit } from 'octokit'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
-import { Session } from '.prisma/client'
-
-interface NextApiRequestWithSession extends NextApiRequest {
-  session: Session
-}
-
-const handler = async (
-  req: NextApiRequestWithSession,
-  res: NextApiResponse
-) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { warmup } = req.query
 
   if (warmup) {
@@ -102,4 +93,4 @@ const handler = async (
   }
 }
 
-export default withIronSession(handler, sessionOptions)
+export default withIronSessionApiRoute(handler, sessionOptions)
