@@ -28,13 +28,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })
         redis.set(
           cacheKey,
-          JSON.stringify(issue),
+          JSON.stringify(issue.data),
           'EX',
           IS_PRODUCTION ? 864000 : 5
         )
 
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=864000')
-        return res.status(200).json(issue)
+        return res.status(200).json(issue.data)
       }
     } catch (error: any) {
       return res.status(500).send({
