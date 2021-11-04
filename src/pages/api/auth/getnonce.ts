@@ -2,7 +2,12 @@ import { db } from '@utils/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { address } = req.query
+  const { address, warmup } = req.query
+
+  if (warmup) {
+    return res.status(200).json({ status: 'Warmed up!' })
+  }
+
   if (address) {
     const user = await db.user.findFirst({
       where: { integrations: { ethAddress: address as string } }
