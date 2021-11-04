@@ -37,6 +37,12 @@ typecheck:
     - yarn generate
     - yarn typecheck
 
+test:
+  extends: .prepare
+  script:
+    - npx playwright install-deps
+    - npx playwright test
+
 hardhat-test:
   extends: .prepare
   script:
