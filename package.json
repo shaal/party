@@ -45,7 +45,7 @@
     "graphql": "16.0.1",
     "graphql-depth-limit": "^1.1.0",
     "graphql-helix": "1.9.1",
-    "hardhat": "^2.6.7",
+    "hardhat": "^2.6.8",
     "hash-wasm": "^4.9.0",
     "ioredis": "^4.28.0",
     "ipfs-http-client": "^53.0.1",
