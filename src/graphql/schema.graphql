@@ -280,6 +280,7 @@ type Mutation {
   createPost(input: CreatePostInput!): Post!
   createProduct(input: CreateProductInput!): Product
   createReport(input: CreateReportInput!): Report!
+  deleteAccount: Result!
   deletePost(input: DeletePostInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User

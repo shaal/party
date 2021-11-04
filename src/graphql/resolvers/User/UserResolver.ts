@@ -4,6 +4,8 @@ import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { createLog } from '../Log/mutations/createLog'
+import { Result } from '../ResultResolver'
+import { deleteAccount } from './mutations/deleteAccount'
 import { modUser } from './mutations/modUser'
 import { toggleFollow } from './mutations/toggleFollow'
 import { getFeaturedUsers } from './queries/getFeaturedUsers'
@@ -373,6 +375,15 @@ builder.mutationField('acceptCocAndTos', (t) =>
       } else {
         throw new Error('You must check all!')
       }
+    }
+  })
+)
+
+builder.mutationField('deleteAccount', (t) =>
+  t.field({
+    type: Result,
+    resolve: async (parent, args, { session }) => {
+      return await deleteAccount(session)
     }
   })
 )
