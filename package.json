@@ -78,7 +78,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.2",
     "@graphql-codegen/near-operation-file-preset": "^2.2.1",
-    "@graphql-codegen/typescript": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.3.1",
     "@graphql-codegen/typescript-operations": "^2.2.0",
     "@playwright/test": "^1.16.3",
     "@tailwindcss/aspect-ratio": "^0.3.0",
