@@ -152,6 +152,8 @@ test('flags should return boolean', async ({ request }) => {
           isStaff
           isVerified
           spammy
+          hasSpotifyIntegration
+          hasWakatimeIntegration
         }
       }`
     }
@@ -165,4 +167,6 @@ test('flags should return boolean', async ({ request }) => {
   expect(typeof user.isStaff).toBe('boolean')
   expect(typeof user.isVerified).toBe('boolean')
   expect(typeof user.spammy).toBe('boolean')
+  expect(typeof user.hasSpotifyIntegration).toBe('boolean')
+  expect(typeof user.hasWakatimeIntegration).toBe('boolean')
 })
