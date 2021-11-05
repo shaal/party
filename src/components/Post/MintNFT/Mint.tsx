@@ -21,7 +21,7 @@ import toast from 'react-hot-toast'
 import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
-import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
+import NFT from '../../../../data/abi.json'
 
 const client = create({
   host: 'ipfs.infura.io',
