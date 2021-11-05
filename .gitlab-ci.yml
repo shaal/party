@@ -37,11 +37,11 @@ typecheck:
     - yarn generate
     - yarn typecheck
 
-test:
-  extends: .prepare
-  image: mcr.microsoft.com/playwright:focal
-  script:
-    - npx playwright test
+# test:
+#   extends: .prepare
+#   image: mcr.microsoft.com/playwright:focal
+#   script:
+#     - npx playwright test
 
 hardhat-test:
   extends: .prepare
