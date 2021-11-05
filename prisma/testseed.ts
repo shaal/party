@@ -3,7 +3,6 @@ import 'tsconfig-paths/register'
 import { PrismaClient } from '@prisma/client'
 import faker from 'faker'
 
-const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
 async function main() {
