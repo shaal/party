@@ -1,18 +1,17 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
+import {
+  Product,
+  ToggleProductSubscribeMutation,
+  ToggleProductSubscribeMutationVariables
+} from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Product } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
-
-import {
-  ToggleProductSubscribeMutation,
-  ToggleProductSubscribeMutationVariables
-} from './__generated__/Subscribe.generated'
 
 interface Props {
   product: Product
@@ -28,9 +27,7 @@ const Subscribe: React.FC<Props> = ({ product, showText }) => {
     ToggleProductSubscribeMutationVariables
   >(
     gql`
-      mutation ToggleProductSubscribeMutation(
-        $input: ToggleProductSubscribeInput!
-      ) {
+      mutation ToggleProductSubscribe($input: ToggleProductSubscribeInput!) {
         toggleProductSubscribe(input: $input) {
           id
           slug

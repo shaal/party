@@ -3,17 +3,16 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
+import { Product, ProductQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { ProductQuery } from './__generated__/ViewProduct.generated'
 import Details from './Details'
 import ProductFeed from './Feed'
 
 export const PRODUCT_QUERY = gql`
-  query ProductQuery($slug: String!) {
+  query Product($slug: String!) {
     product(slug: $slug) {
       id
       name

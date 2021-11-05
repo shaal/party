@@ -5,16 +5,15 @@ import { Checkbox } from '@components/UI/Checkbox'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Spinner } from '@components/UI/Spinner'
 import AppContext from '@components/utils/AppContext'
+import {
+  AcceptCocAndTosMutation,
+  AcceptCocAndTosMutationVariables
+} from '@graphql/types.generated'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { boolean, object } from 'zod'
-
-import {
-  AcceptCocAndTosMutation,
-  AcceptCocAndTosMutationVariables
-} from './__generated__/index.generated'
 
 const acceptCOCAndTosSchema = object({
   coc: boolean(),
@@ -29,7 +28,7 @@ const Onboarding: React.FC = () => {
     AcceptCocAndTosMutationVariables
   >(
     gql`
-      mutation AcceptCOCAndTOSMutation($input: AcceptCOCAndTOSInput!) {
+      mutation AcceptCOCAndTOS($input: AcceptCOCAndTOSInput!) {
         acceptCocAndTos(input: $input) {
           id
         }

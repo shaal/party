@@ -2,15 +2,13 @@ import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { MorePostsByUserQuery, Post } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
-
-import { MorePostsByUserQuery } from './__generated__/MorePosts.generated'
 
 export const MORE_POSTS_BY_USER_QUERY = gql`
-  query MorePostsByUserQuery($userId: ID!, $type: String!) {
+  query MorePostsByUser($userId: ID!, $type: String!) {
     morePostsByUser(userId: $userId, type: $type) {
       edges {
         node {

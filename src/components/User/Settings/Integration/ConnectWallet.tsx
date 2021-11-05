@@ -2,16 +2,16 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
+import {
+  Integration,
+  WalletSettingsMutation,
+  WalletSettingsMutationVariables
+} from '@graphql/types.generated'
 import { ethers } from 'ethers'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Integration } from 'src/__generated__/schema.generated'
 
 import { INTEGRATION_SETTINGS_QUERY } from '.'
-import {
-  WalletSettingsMutation,
-  WalletSettingsMutationVariables
-} from './__generated__/ConnectWallet.generated'
 
 interface Props {
   integration: Integration
@@ -24,7 +24,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
     WalletSettingsMutationVariables
   >(
     gql`
-      mutation WalletSettingsMutation($input: EditIntegrationInput!) {
+      mutation WalletSettings($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
           ethAddress

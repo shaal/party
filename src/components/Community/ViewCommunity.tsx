@@ -8,18 +8,17 @@ import {
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
+import { Community, ViewCommunityQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Community } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { ViewCommunityQuery } from './__generated__/ViewCommunity.generated'
 import Details from './Details'
 import CommunityFeed from './Feed'
 import Rules from './Rules'
 
 export const VIEW_COMMUNITY_QUERY = gql`
-  query ViewCommunityQuery($slug: String!) {
+  query ViewCommunity($slug: String!) {
     community(slug: $slug) {
       id
       name

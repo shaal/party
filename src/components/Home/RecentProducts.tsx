@@ -3,14 +3,12 @@ import ProductProfile from '@components/shared/ProductProfile'
 import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { Product, RecentProductsQuery } from '@graphql/types.generated'
 import { CubeIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
-
-import { RecentProductsQuery } from './__generated__/RecentProducts.generated'
 
 export const RECENT_PRODUCTS_QUERY = gql`
-  query RecentProductsQuery {
+  query RecentProducts {
     products(first: 5) {
       edges {
         node {

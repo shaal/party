@@ -1,15 +1,14 @@
 import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  AvatarSettingsMutation,
+  AvatarSettingsMutationVariables
+} from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE, OPENSEA_API_URL } from 'src/constants'
 import useSWR from 'swr'
-
-import {
-  AvatarSettingsMutation,
-  AvatarSettingsMutationVariables
-} from './__generated__/Modal.generated'
 
 const fetcher = (url: string) =>
   fetch(url, {
@@ -34,7 +33,7 @@ const NFTAvatarsModal: React.FC<Props> = ({ ethAddress }) => {
     AvatarSettingsMutationVariables
   >(
     gql`
-      mutation AvatarSettingsMutation($input: EditNFTAvatarInput!) {
+      mutation AvatarSettings($input: EditNFTAvatarInput!) {
         editNFTAvatar(input: $input) {
           id
           username

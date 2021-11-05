@@ -3,16 +3,15 @@ import { Button } from '@components/UI/Button'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  ChangePasswordMutation,
+  ChangePasswordMutationVariables
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
-
-import {
-  ChangePasswordMutation,
-  ChangePasswordMutationVariables
-} from './__generated__/Form.generated'
 
 const changePasswordSchema = object({
   currentPassword: string().min(6, {
@@ -36,7 +35,7 @@ const ChangePasswordForm: React.FC = () => {
     ChangePasswordMutationVariables
   >(
     gql`
-      mutation ChangePasswordMutation($input: ChangePasswordInput!) {
+      mutation ChangePassword($input: ChangePasswordInput!) {
         changePassword(input: $input)
       }
     `,

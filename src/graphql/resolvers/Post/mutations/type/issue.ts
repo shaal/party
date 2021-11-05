@@ -1,6 +1,6 @@
+import { CreatePostInput } from '@graphql/types.generated'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { CreatePostInput } from 'src/__generated__/schema.generated'
 
 /**
  * Creates a new issue

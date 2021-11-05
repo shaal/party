@@ -5,17 +5,17 @@ import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/UI/Spinner'
 import { TaskCheckbox } from '@components/UI/TaskCheckbox'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
+import {
+  EditPostMutation,
+  EditPostMutationVariables,
+  Post
+} from '@graphql/types.generated'
 import Linkify from 'linkify-react'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { Post } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
 
 import Attachments from '../Attachments'
-import {
-  EditPostMutation,
-  EditPostMutationVariables
-} from './__generated__/Task.generated'
 
 interface Props {
   task: Post
@@ -27,7 +27,7 @@ const TaskType: React.FC<Props> = ({ task }) => {
     EditPostMutationVariables
   >(
     gql`
-      mutation EditPostMutation($input: EditPostInput!) {
+      mutation EditPost($input: EditPostInput!) {
         editPost(input: $input) {
           id
           body

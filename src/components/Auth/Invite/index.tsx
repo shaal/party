@@ -2,17 +2,17 @@ import { gql, useQuery } from '@apollo/client'
 import Hero from '@components/shared/Hero'
 import Slug from '@components/shared/Slug'
 import { humanize } from '@components/utils/humanize'
+import { GetInviteQuery } from '@graphql/types.generated'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { STATIC_ASSETS } from 'src/constants'
 
-import { GetInviteQuery } from './__generated__/index.generated'
 import SignupForm from './Form'
 
 export const GET_INVITE_QUERY = gql`
-  query GetInviteQuery($code: String!) {
+  query GetInvite($code: String!) {
     invite(code: $code) {
       user {
         id

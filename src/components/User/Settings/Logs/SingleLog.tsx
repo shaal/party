@@ -1,4 +1,5 @@
 import Slug from '@components/shared/Slug'
+import { Log } from '@graphql/types.generated'
 import {
   CogIcon,
   FingerPrintIcon,
@@ -6,7 +7,6 @@ import {
   LogoutIcon
 } from '@heroicons/react/outline'
 import React from 'react'
-import { Log } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 interface Props {

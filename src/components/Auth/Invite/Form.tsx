@@ -5,15 +5,15 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
+import {
+  SignupMutation,
+  SignupMutationVariables
+} from '@graphql/types.generated'
 import { UserAddIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 import { signUpSchema } from '../Signup/Form'
-import {
-  SignupMutation,
-  SignupMutationVariables
-} from './__generated__/Form.generated'
 
 const InviteSignupForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
@@ -23,7 +23,7 @@ const InviteSignupForm: React.FC = () => {
     SignupMutationVariables
   >(
     gql`
-      mutation SignupMutation($input: SignupInput!) {
+      mutation Signup($input: SignupInput!) {
         signUp(input: $input) {
           id
         }

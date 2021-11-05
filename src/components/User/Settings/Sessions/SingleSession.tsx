@@ -1,15 +1,15 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
+import {
+  RevokeSessionMutation,
+  RevokeSessionMutationVariables,
+  Session
+} from '@graphql/types.generated'
 import { TrashIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { Session } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
-import {
-  RevokeSessionMutation,
-  RevokeSessionMutationVariables
-} from './__generated__/SingleSession.generated'
 import { SESSION_SETTINGS_QUERY } from './index'
 
 interface Props {
@@ -22,7 +22,7 @@ const SingleSession: React.FC<Props> = ({ session }) => {
     RevokeSessionMutationVariables
   >(
     gql`
-      mutation RevokeSessionMutation($input: RevokeSessionInput!) {
+      mutation RevokeSession($input: RevokeSessionInput!) {
         revokeSession(input: $input)
       }
     `,

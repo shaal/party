@@ -8,6 +8,10 @@ import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import { Tooltip } from '@components/UI/Tooltip'
 import {
+  CreateQuestionMutation,
+  CreateQuestionMutationVariables
+} from '@graphql/types.generated'
+import {
   EyeIcon,
   EyeOffIcon,
   QuestionMarkCircleIcon
@@ -21,10 +25,6 @@ import { object, string } from 'zod'
 
 import Attachment from '../Attachment'
 import SelectTarget from '../SelectTarget'
-import {
-  CreateQuestionMutation,
-  CreateQuestionMutationVariables
-} from './__generated__/Question.generated'
 
 const newQuestionSchema = object({
   title: string()
@@ -48,7 +48,7 @@ const QuestionType: React.FC = () => {
     CreateQuestionMutationVariables
   >(
     gql`
-      mutation CreateQuestionMutation($input: CreatePostInput!) {
+      mutation CreateQuestion($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

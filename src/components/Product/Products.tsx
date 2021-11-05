@@ -7,19 +7,17 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Product, ProductsQuery } from '@graphql/types.generated'
 import { CubeIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Product } from 'src/__generated__/schema.generated'
-
-import { ProductsQuery } from './__generated__/Products.generated'
 
 const Footer = dynamic(() => import('@components/shared/Footer'))
 
 export const PRODUCTS_QUERY = gql`
-  query ProductsQuery($after: String) {
+  query Products($after: String) {
     products(first: 10, after: $after) {
       pageInfo {
         endCursor

@@ -2,18 +2,17 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import Slug from '@components/shared/Slug'
 import { Button } from '@components/UI/Button'
 import { Spinner } from '@components/UI/Spinner'
-import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
-import toast from 'react-hot-toast'
-import { BASE_URL, STATIC_ASSETS } from 'src/constants'
-
 import {
   InviteCodeQuery,
   RegenerateInviteMutation,
   RegenerateInviteMutationVariables
-} from './__generated__/InviteDetails.generated'
+} from '@graphql/types.generated'
+import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
+import toast from 'react-hot-toast'
+import { BASE_URL, STATIC_ASSETS } from 'src/constants'
 
 export const INVITE_CODE_QUERY = gql`
-  query InviteCodeQuery {
+  query InviteCode {
     me {
       id
       username
@@ -33,7 +32,7 @@ const InviteDetails: React.FC = () => {
     RegenerateInviteMutationVariables
   >(
     gql`
-      mutation RegenerateInviteMutation {
+      mutation RegenerateInvite {
         regenerateInvite {
           id
           code

@@ -5,16 +5,14 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { FollowersQuery, User } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { User } from '../../../__generated__/schema.generated'
-import { FollowersQuery } from './__generated__/List.generated'
-
 export const FOLLOWERS_QUERY = gql`
-  query FollowersQuery($after: String, $username: String!) {
+  query Followers($after: String, $username: String!) {
     user(username: $username) {
       followers(first: 10, after: $after) {
         totalCount

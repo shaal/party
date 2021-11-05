@@ -1,6 +1,6 @@
+import { Post } from '@graphql/types.generated'
 import Markdown from 'markdown-to-jsx'
 import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
 
 import Attachments from '../Attachments'
 

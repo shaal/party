@@ -1,9 +1,9 @@
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { Product } from '@graphql/types.generated'
 import { CubeIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'
-import { Product } from 'src/__generated__/schema.generated'
 
 interface Props {
   product: Product

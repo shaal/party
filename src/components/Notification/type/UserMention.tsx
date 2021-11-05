@@ -1,10 +1,10 @@
 import SinglePost from '@components/Post/SinglePost'
 import Slug from '@components/shared/Slug'
 import { Card, CardBody } from '@components/UI/Card'
+import { Notification, Post } from '@graphql/types.generated'
 import { AtSymbolIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { Notification, Post } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 import MarkAsRead from '../Read'

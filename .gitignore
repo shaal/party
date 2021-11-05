@@ -31,7 +31,6 @@ tsconfig.tsbuildinfo
 .env.test.local
 .env.production.local
 
-src/**/__generated__/**
 *.rdb
 prisma/giraphql-types.ts
 

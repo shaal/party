@@ -1,13 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import { PageLoading } from '@components/UI/PageLoading'
+import { GetTipsSettingsQuery, User } from '@graphql/types.generated'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
-import { TipsSettingsQuery } from './__generated__/index.generated'
 import TipsSettingsForm from './Form'
 
 export const TIPS_SETTINGS_QUERY = gql`
-  query TipsSettingsQuery {
+  query GetTipsSettings {
     me {
       id
       tip {
@@ -24,7 +23,7 @@ export const TIPS_SETTINGS_QUERY = gql`
 `
 
 const TipsSettings: React.FC = () => {
-  const { data, loading } = useQuery<TipsSettingsQuery>(TIPS_SETTINGS_QUERY)
+  const { data, loading } = useQuery<GetTipsSettingsQuery>(TIPS_SETTINGS_QUERY)
 
   if (loading) {
     return <PageLoading message="Loading settings" />

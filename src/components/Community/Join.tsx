@@ -1,18 +1,17 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
+import {
+  Community,
+  ToggleCommunityJoinMutation,
+  ToggleCommunityJoinMutationVariables
+} from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Community } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
-
-import {
-  ToggleCommunityJoinMutation,
-  ToggleCommunityJoinMutationVariables
-} from './__generated__/Join.generated'
 
 interface Props {
   community: Community
@@ -28,7 +27,7 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
     ToggleCommunityJoinMutationVariables
   >(
     gql`
-      mutation ToggleCommunityJoinMutation($input: ToggleCommunityJoinInput!) {
+      mutation ToggleCommunityJoin($input: ToggleCommunityJoinInput!) {
         toggleCommunityJoin(input: $input) {
           id
           slug

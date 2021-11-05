@@ -1,18 +1,16 @@
 import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
+import { User, UserTipsQuery } from '@graphql/types.generated'
 import { PencilIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { STATIC_ASSETS } from 'src/constants'
 
-import { UserTipsQuery } from './__generated__/TipsDetails.generated'
-
 const USER_TIPS_QUERY = gql`
-  query UserTipsQuery($username: String!) {
+  query UserTips($username: String!) {
     user(username: $username) {
       id
       tip {

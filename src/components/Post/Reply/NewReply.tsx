@@ -5,19 +5,19 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import {
+  NewReplyMutation,
+  NewReplyMutationVariables,
+  Post
+} from '@graphql/types.generated'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Post } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
 import { object, string } from 'zod'
 
 import Attachment from '../NewPost/Attachment'
 import Attachments from '../SinglePost/Attachments'
-import {
-  NewReplyMutation,
-  NewReplyMutationVariables
-} from './__generated__/NewReply.generated'
 import { REPLIES_QUERY } from './Replies'
 
 const newReplySchema = object({
@@ -37,7 +37,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
     NewReplyMutationVariables
   >(
     gql`
-      mutation NewReplyMutation($input: CreatePostInput!) {
+      mutation NewReply($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

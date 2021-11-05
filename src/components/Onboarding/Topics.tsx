@@ -5,16 +5,14 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
+import { OnboardingTopicsQuery, Topic } from '@graphql/types.generated'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { Topic } from 'src/__generated__/schema.generated'
-
-import { OnboardingTopicsQuery } from './__generated__/Topics.generated'
 
 export const ONBOARDING_TOPICS_QUERY = gql`
-  query OnboardingTopicsQuery($after: String) {
+  query OnboardingTopics($after: String) {
     featuredTopics(first: 50, after: $after) {
       edges {
         node {

@@ -8,6 +8,7 @@ import { Tooltip } from '@components/UI/Tooltip'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { Profile, User } from '@graphql/types.generated'
 import {
   ClockIcon,
   FireIcon,
@@ -20,7 +21,6 @@ import Linkify from 'linkify-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
-import { Profile, User } from 'src/__generated__/schema.generated'
 import { STATIC_ASSETS } from 'src/constants'
 import * as timeago from 'timeago.js'
 
