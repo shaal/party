@@ -55,6 +55,7 @@ test:
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
+    - yarn prisma:testseed
     - npx playwright test
 
 hardhat-test:
