@@ -77,6 +77,34 @@ test('user should have social profile', async ({ request }) => {
   expect(profile.website).toBe('https://yogi.codes')
 })
 
+test('user should have tips', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        user(username: "yoginth") {
+          tip {
+            bitcoin
+            buymeacoffee
+            cash
+            ethereum
+            github
+            paypal
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const tip = result.data.user.tip
+
+  expect(tip.bitcoin).toBe('3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy')
+  expect(tip.buymeacoffee).toBe('yoginth')
+  expect(tip.cash).toBe('yoginth')
+  expect(tip.ethereum).toBe('0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3')
+  expect(tip.github).toBe('yoginth')
+  expect(tip.paypal).toBe('yoginth')
+})
+
 test('connection should have count', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {

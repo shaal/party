@@ -54,6 +54,16 @@ async function main() {
   await db.user.update({
     where: { username: 'yoginth' },
     data: {
+      tip: {
+        create: {
+          bitcoin: '3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy',
+          ethereum: '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3',
+          buymeacoffee: 'yoginth',
+          github: 'yoginth',
+          cash: 'yoginth',
+          paypal: 'yoginth'
+        }
+      },
       profile: {
         update: {
           twitter: 'yogicodes',
