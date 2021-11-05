@@ -5,11 +5,10 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'yarn dev',
     port: 3000,
-    timeout: 120 * 1000,
+    timeout: 500 * 1000,
     reuseExistingServer: !process.env.CI
   },
-  use: {
-    baseURL: 'http://localhost:3000'
-  }
+  use: { baseURL: 'http://localhost:3000' }
 }
+
 export default config

@@ -7,6 +7,8 @@ tasks:
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
       cp .env.example .env
+      npx playwright install-deps
+      npx playwright install
       gp await-port 3306
       yarn prisma:migrate
       yarn prisma:seed
