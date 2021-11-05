@@ -71,6 +71,22 @@ test('post should have nft', async ({ request }) => {
   expect(post.nft.tokenId).toBe('1')
 })
 
+test('post should have oembed url', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
+          oembedUrl
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const post = result.data.post
+
+  expect(post.oembedUrl).toBe('https://devparty.io')
+})
+
 test('connection should have count', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {
