@@ -4,10 +4,17 @@ include:
 
 image: node:latest
 
+services:
+  - mysql:latest
+
 cache:
   paths:
     - node_modules/
     - .next/cache/
+
+variables:
+  MYSQL_DATABASE: "devparty"
+  MYSQL_ROOT_PASSWORD: "devparty"
 
 .prepare:
   before_script:
@@ -40,7 +47,11 @@ typecheck:
 test:
   extends: .prepare
   image: mcr.microsoft.com/playwright:focal
+  variables:
+    DATABASE_URL: "mysql://runner:devparty@localhost:3306/devparty"
   script:
+    - yarn prisma:migrate
+    - yarn prisma:seed
     - npx playwright test
 
 hardhat-test:
