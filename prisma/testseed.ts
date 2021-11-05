@@ -7,6 +7,7 @@ const hplipsum = require('hplipsum')
 const db = new PrismaClient()
 
 async function main() {
+  console.log('🌱 Seeding test post')
   await db.post.create({
     data: {
       id: '89bee9b8-a958-48de-8c9d-55e20b75ccf2',
@@ -44,6 +45,21 @@ async function main() {
               url: `https://placeimg.com/800/480/nature/${faker.datatype.uuid()}`
             }
           ]
+        }
+      }
+    }
+  })
+
+  console.log('🌱 Seeding test user')
+  await db.user.update({
+    where: { username: 'yoginth' },
+    data: {
+      profile: {
+        update: {
+          twitter: 'yogicodes',
+          github: 'yoginth',
+          discord: 'Yogi#1111',
+          website: 'https://yogi.codes'
         }
       }
     }

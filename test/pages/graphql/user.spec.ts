@@ -53,6 +53,30 @@ test('user should have profile', async ({ request }) => {
   expect(user.profile.name).toBe('Yoginth')
 })
 
+test('user should have social profile', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        user(username: "yoginth") {
+          profile {
+            twitter
+            github
+            discord
+            website
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const profile = result.data.user.profile
+
+  expect(profile.twitter).toBe('yogicodes')
+  expect(profile.github).toBe('yoginth')
+  expect(profile.discord).toBe('Yogi#1111')
+  expect(profile.website).toBe('https://yogi.codes')
+})
+
 test('connection should have count', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {
