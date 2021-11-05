@@ -54,15 +54,13 @@ test('post should have product', async ({ request }) => {
   expect(post.product.slug).toBe('devparty')
 })
 
-test('post should have product', async ({ request }) => {
+test('post should have type', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {
       query: `{
         post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
           id
-          product {
-            slug
-          }
+          type
         }
       }`
     }
@@ -70,7 +68,7 @@ test('post should have product', async ({ request }) => {
   const result = await response.json()
   const post = result.data.post
 
-  expect(post.product.slug).toBe('devparty')
+  expect(post.type).toBe('POST')
 })
 
 test('post done status shoud be true/false', async ({ request }) => {
