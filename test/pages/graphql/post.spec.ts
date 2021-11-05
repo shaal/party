@@ -35,6 +35,44 @@ test('post should have user', async ({ request }) => {
   expect(post.user.username).toBe('yoginth')
 })
 
+test('post should have product', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
+          id
+          product {
+            slug
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const post = result.data.post
+
+  expect(post.product.slug).toBe('devparty')
+})
+
+test('post should have product', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
+          id
+          product {
+            slug
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const post = result.data.post
+
+  expect(post.product.slug).toBe('devparty')
+})
+
 test('post done status shoud be true/false', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {
