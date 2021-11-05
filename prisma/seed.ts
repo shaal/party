@@ -5,7 +5,6 @@ import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '@utils/auth'
 import faker from 'faker'
 import { md5 } from 'hash-wasm'
-import { v4 as uuidv4 } from 'uuid'
 
 import { communityData, rulesData } from './seeds/communities'
 import { productData } from './seeds/products'
@@ -161,7 +160,10 @@ async function main() {
     const done = faker.datatype.boolean()
     const post = await db.post.create({
       data: {
-        id: i === 0 ? '89bee9b8-a958-48de-8c9d-55e20b75ccf2' : uuidv4(),
+        id:
+          i === 0
+            ? '89bee9b8-a958-48de-8c9d-55e20b75ccf2'
+            : faker.datatype.uuid(),
         body: body,
         done,
         type: done ? 'TASK' : 'POST',
