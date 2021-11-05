@@ -160,10 +160,6 @@ async function main() {
     const done = faker.datatype.boolean()
     const post = await db.post.create({
       data: {
-        id:
-          i === 0
-            ? '89bee9b8-a958-48de-8c9d-55e20b75ccf2'
-            : faker.datatype.uuid(),
         body: body,
         done,
         type: done ? 'TASK' : 'POST',
