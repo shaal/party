@@ -77,7 +77,7 @@ warmup:
 
 migrate:
   script:
-    - npx prisma migrate reset --force
+    - DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate reset --force
   when: manual
 
 # Remove after Devparty release
