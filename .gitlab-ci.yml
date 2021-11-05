@@ -2,7 +2,7 @@ include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/License-Scanning.gitlab-ci.yml
 
-image: node:latest
+image: node:16
 
 services:
   - mysql:latest
@@ -51,7 +51,7 @@ test:
   extends: .prepare
   image: mcr.microsoft.com/playwright:focal
   variables:
-    DATABASE_URL: "mysql://root:root@mysql:3306/devparty"
+    DATABASE_URL: 'mysql://root:root@mysql:3306/devparty'
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
