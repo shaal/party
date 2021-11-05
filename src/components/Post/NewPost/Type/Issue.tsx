@@ -5,6 +5,10 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  CreateIssueMutation,
+  CreateIssueMutationVariables
+} from '@graphql/types.generated'
 import { ClipboardListIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -12,10 +16,6 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import SelectTarget from '../SelectTarget'
-import {
-  CreateIssueMutation,
-  CreateIssueMutationVariables
-} from './__generated__/Issue.generated'
 
 const newIssueSchema = object({
   url: string().url({ message: '🐙 Invalid issue URL' })
@@ -33,7 +33,7 @@ const IssueType: React.FC = () => {
     CreateIssueMutationVariables
   >(
     gql`
-      mutation CreateIssueMutation($input: CreatePostInput!) {
+      mutation CreateIssue($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

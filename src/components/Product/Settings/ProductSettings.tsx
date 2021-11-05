@@ -10,17 +10,16 @@ import { Spinner } from '@components/UI/Spinner'
 import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { TextArea } from '@components/UI/TextArea'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
+import {
+  EditProductSettingsMutation,
+  EditProductSettingsMutationVariables,
+  Product
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Product } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
-
-import {
-  ProductSettingsMutation,
-  ProductSettingsMutationVariables
-} from './__generated__/ProductSettings.generated'
 
 const editProductSchema = object({
   slug: string()
@@ -44,11 +43,11 @@ const SUCCESS_MESSAGE = 'Product successfully updated!'
 const ProductSettings: React.FC<Props> = ({ product }) => {
   const [avatar, setAvatar] = useState<string>()
   const [editProduct, editProductResult] = useMutation<
-    ProductSettingsMutation,
-    ProductSettingsMutationVariables
+    EditProductSettingsMutation,
+    EditProductSettingsMutationVariables
   >(
     gql`
-      mutation ProductSettingsMutation($input: EditProductInput!) {
+      mutation EditProductSettings($input: EditProductInput!) {
         editProduct(input: $input) {
           id
           slug

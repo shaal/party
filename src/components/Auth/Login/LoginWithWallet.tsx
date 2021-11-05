@@ -2,15 +2,14 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
+import {
+  LoginWithWalletMutation,
+  LoginWithWalletMutationVariables
+} from '@graphql/types.generated'
 import { ethers } from 'ethers'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { PUBLIC_SIGNING_MESSAGE, STATIC_ASSETS } from 'src/constants'
-
-import {
-  LoginWithWalletMutation,
-  LoginWithWalletMutationVariables
-} from './__generated__/LoginWithWallet.generated'
 
 const LoginWithWallet: React.FC = () => {
   const authRedirect = useAuthRedirect()
@@ -20,7 +19,7 @@ const LoginWithWallet: React.FC = () => {
     LoginWithWalletMutationVariables
   >(
     gql`
-      mutation LoginWithWalletMutation($input: LoginWithWalletInput!) {
+      mutation LoginWithWallet($input: LoginWithWalletInput!) {
         loginWithWallet(input: $input) {
           id
         }

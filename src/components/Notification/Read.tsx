@@ -1,16 +1,16 @@
 import { gql, useMutation } from '@apollo/client'
 import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
+import {
+  Notification,
+  ReadNotificationMutation,
+  ReadNotificationMutationVariables
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { Notification } from 'src/__generated__/schema.generated'
 
 import { NOTIFICATIONS_QUERY } from '.'
-import {
-  ReadNotificationMutation,
-  ReadNotificationMutationVariables
-} from './__generated__/Read.generated'
 
 interface Props {
   notification: Notification
@@ -22,7 +22,7 @@ const MarkAsRead: React.FC<Props> = ({ notification }) => {
     ReadNotificationMutationVariables
   >(
     gql`
-      mutation ReadNotificationMutation($input: ReadNotificationInput!) {
+      mutation ReadNotification($input: ReadNotificationInput!) {
         readNotification(input: $input)
       }
     `,

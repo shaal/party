@@ -1,6 +1,6 @@
+import { Report } from '@graphql/types.generated'
 import { ExternalLinkIcon } from '@heroicons/react/outline'
 import React from 'react'
-import { Report } from 'src/__generated__/schema.generated'
 
 interface Props {
   report: Report

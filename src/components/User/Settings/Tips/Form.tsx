@@ -5,17 +5,17 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  EditTipsSettingsMutation,
+  EditTipsSettingsMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
-import {
-  TipsSettingsMutation,
-  TipsSettingsMutationVariables
-} from './__generated__/Form.generated'
 
 const editTipsSchema = object({
   cash: string()
@@ -48,11 +48,11 @@ const SUCCESS_MESSAGE = 'Tips successfully updated!'
 
 const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [editTips] = useMutation<
-    TipsSettingsMutation,
-    TipsSettingsMutationVariables
+    EditTipsSettingsMutation,
+    EditTipsSettingsMutationVariables
   >(
     gql`
-      mutation TipsSettingsMutation($input: EditTipsInput!) {
+      mutation EditTipsSettings($input: EditTipsInput!) {
         editTips(input: $input) {
           id
           cash

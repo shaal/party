@@ -9,6 +9,7 @@ import AppContext from '@components/utils/AppContext'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { Community } from '@graphql/types.generated'
 import {
   CalendarIcon,
   PencilIcon,
@@ -19,7 +20,6 @@ import Linkify from 'linkify-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { Community } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 import Join from './Join'

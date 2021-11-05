@@ -4,16 +4,15 @@ import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
+import { Session, SessionsSettingsQuery } from '@graphql/types.generated'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Session } from '../../../../__generated__/schema.generated'
 import Sidebar from '../Sidebar'
-import { SessionsSettingsQuery } from './__generated__/index.generated'
 import SingleSession from './SingleSession'
 
 export const SESSION_SETTINGS_QUERY = gql`
-  query SessionsSettingsQuery($after: String) {
+  query SessionsSettings($after: String) {
     sessions(first: 10, after: $after) {
       pageInfo {
         endCursor

@@ -1,8 +1,8 @@
 import { Card, CardBody } from '@components/UI/Card'
 import Follow from '@components/User/Follow'
 import AppContext from '@components/utils/AppContext'
+import { User } from '@graphql/types.generated'
 import React, { useContext } from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
 import UserProfile from './UserProfile'
 

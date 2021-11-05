@@ -6,6 +6,11 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
+import {
+  MintNftMutation,
+  MintNftMutationVariables,
+  Post
+} from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -13,15 +18,10 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Post } from 'src/__generated__/schema.generated'
 import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
-import NFT from '../../../../artifacts/contracts/NFT.sol/Devparty.json'
-import {
-  MintNftMutation,
-  MintNftMutationVariables
-} from './__generated__/Mint.generated'
+import NFT from '../../../../data/abi.json'
 
 const client = create({
   host: 'ipfs.infura.io',
@@ -53,7 +53,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
   const [mintedTokenId, setMintedTokenId] = useState<string>('')
   const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
     gql`
-      mutation MintNFTMutation($input: MintNFTInput!) {
+      mutation MintNFT($input: MintNFTInput!) {
         mint(input: $input) {
           id
           address

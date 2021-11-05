@@ -1,17 +1,16 @@
 import { gql, useQuery } from '@apollo/client'
+import { CurrentUserQuery, User } from '@graphql/types.generated'
 import Head from 'next/head'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 
-import { CurrentUserQuery } from './__generated__/SiteLayout.generated'
 import MobileFooter from './shared/MobileFooter'
 import Navbar from './shared/Navbar'
 import AppContext from './utils/AppContext'
 
 export const CURRENT_USER_QUERY = gql`
-  query CurrentUserQuery {
+  query CurrentUser {
     me {
       id
       username

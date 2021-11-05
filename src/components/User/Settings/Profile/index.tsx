@@ -1,13 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import { PageLoading } from '@components/UI/PageLoading'
+import { GetProfileSettingsQuery, User } from '@graphql/types.generated'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
-import { ProfileSettingsQuery } from './__generated__/index.generated'
 import ProfileSettingsForm from './Form'
 
 export const PROFILE_SETTINGS_QUERY = gql`
-  query ProfileSettingsQuery {
+  query GetProfileSettings {
     me {
       id
       username
@@ -29,7 +28,7 @@ export const PROFILE_SETTINGS_QUERY = gql`
 `
 
 const ProfileSettings: React.FC = () => {
-  const { data, loading } = useQuery<ProfileSettingsQuery>(
+  const { data, loading } = useQuery<GetProfileSettingsQuery>(
     PROFILE_SETTINGS_QUERY
   )
 

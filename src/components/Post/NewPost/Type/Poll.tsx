@@ -8,6 +8,10 @@ import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import { Tooltip } from '@components/UI/Tooltip'
 import {
+  CreatePollMutation,
+  CreatePollMutationVariables
+} from '@graphql/types.generated'
+import {
   ChartBarIcon,
   CheckCircleIcon,
   MinusCircleIcon,
@@ -19,10 +23,6 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import SelectTarget from '../SelectTarget'
-import {
-  CreatePollMutation,
-  CreatePollMutationVariables
-} from './__generated__/Poll.generated'
 
 const newPollSchema = object({
   body: string()
@@ -43,7 +43,7 @@ const PollType: React.FC = () => {
     CreatePollMutationVariables
   >(
     gql`
-      mutation CreatePollMutation($input: CreatePostInput!) {
+      mutation CreatePoll($input: CreatePostInput!) {
         createPost(input: $input) {
           id
         }

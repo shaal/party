@@ -1,4 +1,5 @@
 import AppContext from '@components/utils/AppContext'
+import { Post, User } from '@graphql/types.generated'
 import { Menu, Transition } from '@headlessui/react'
 import {
   CodeIcon,
@@ -7,7 +8,6 @@ import {
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
-import { Post, User } from 'src/__generated__/schema.generated'
 
 import Bookmark from './Bookmark'
 import Delete from './Delete'

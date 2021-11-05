@@ -1,9 +1,9 @@
 import Star from '@components/Topic/Star'
 import { humanize } from '@components/utils/humanize'
+import { Topic } from '@graphql/types.generated'
 import { CollectionIcon, StarIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { Topic } from 'src/__generated__/schema.generated'
 
 interface Props {
   topic: Topic

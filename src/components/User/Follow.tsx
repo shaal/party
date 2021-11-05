@@ -1,17 +1,16 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
+import {
+  ToggleFollowMutation,
+  ToggleFollowMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { UserAddIcon, UserRemoveIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
-
-import {
-  ToggleFollowMutation,
-  ToggleFollowMutationVariables
-} from './__generated__/Follow.generated'
 
 interface Props {
   user: User
@@ -28,7 +27,7 @@ const Follow: React.FC<Props> = ({ user, showText, showToast = true }) => {
     ToggleFollowMutationVariables
   >(
     gql`
-      mutation ToggleFollowMutation($input: ToggleFollowInput!) {
+      mutation ToggleFollow($input: ToggleFollowInput!) {
         toggleFollow(input: $input) {
           id
           username

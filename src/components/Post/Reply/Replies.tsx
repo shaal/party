@@ -3,16 +3,15 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Post, RepliesQuery } from '@graphql/types.generated'
 import { ReplyIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Post } from 'src/__generated__/schema.generated'
 
 import SinglePost, { PostFragment } from '../SinglePost'
-import { RepliesQuery } from './__generated__/Replies.generated'
 
 export const REPLIES_QUERY = gql`
-  query RepliesQuery($after: String, $id: ID!) {
+  query Replies($after: String, $id: ID!) {
     post(id: $id) {
       id
       replies(first: 10, after: $after) {

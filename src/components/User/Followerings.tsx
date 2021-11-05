@@ -1,7 +1,7 @@
 import { humanize } from '@components/utils/humanize'
+import { User } from '@graphql/types.generated'
 import Link from 'next/link'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
 interface Props {
   user: User

@@ -5,6 +5,10 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import {
+  CreatePostMutation,
+  CreatePostMutationVariables
+} from '@graphql/types.generated'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -13,10 +17,6 @@ import { object, string } from 'zod'
 
 import Attachment from '../Attachment'
 import SelectTarget from '../SelectTarget'
-import {
-  CreatePostMutation,
-  CreatePostMutationVariables
-} from './__generated__/Post.generated'
 
 const newPostSchema = object({
   body: string()
@@ -36,7 +36,7 @@ const PostType: React.FC = () => {
     CreatePostMutationVariables
   >(
     gql`
-      mutation CreatePostMutation($input: CreatePostInput!) {
+      mutation CreatePost($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

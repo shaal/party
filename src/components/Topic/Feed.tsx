@@ -4,16 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Post, TopicFeedQuery } from '@graphql/types.generated'
 import { HashtagIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { TopicFeedQuery } from './__generated__/Feed.generated'
-
 export const TOPIC_FEED_QUERY = gql`
-  query TopicFeedQuery($after: String, $name: String!) {
+  query TopicFeed($after: String, $name: String!) {
     topic(name: $name) {
       id
       posts(first: 10, after: $after) {

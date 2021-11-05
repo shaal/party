@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "prettier:check": "prettier --check \"./src/**/*.{ts,tsx}\"",
-    "generate": "prisma generate && yarn codegen && npx hardhat compile",
+    "generate": "prisma generate && yarn codegen",
     "prisma:migrate": "prisma migrate dev --preview-feature",
     "prisma:seed": "ts-node prisma/seed.ts",
     "prisma:testseed": "ts-node prisma/testseed.ts",
@@ -77,7 +77,6 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.2",
-    "@graphql-codegen/near-operation-file-preset": "^2.2.1",
     "@graphql-codegen/typescript": "^2.3.0",
     "@graphql-codegen/typescript-operations": "^2.2.0",
     "@playwright/test": "^1.16.3",

@@ -1,5 +1,5 @@
 import { Tooltip } from '@components/UI/Tooltip'
-import { Nft } from 'src/__generated__/schema.generated'
+import { Nft } from '@graphql/types.generated'
 import { IS_PRODUCTION, STATIC_ASSETS } from 'src/constants'
 
 interface Props {

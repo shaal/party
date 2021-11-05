@@ -1,14 +1,13 @@
 import { gql, useMutation } from '@apollo/client'
+import {
+  DeletePostMutation,
+  DeletePostMutationVariables,
+  Post
+} from '@graphql/types.generated'
 import { Menu } from '@headlessui/react'
 import { TrashIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
-
-import {
-  DeletePostMutation,
-  DeletePostMutationVariables
-} from './__generated__/Delete.generated'
 
 type Props = {
   post: Post
@@ -20,7 +19,7 @@ const Delete: React.FC<Props> = ({ post }) => {
     DeletePostMutationVariables
   >(
     gql`
-      mutation DeletePostMutation($input: DeletePostInput!) {
+      mutation DeletePost($input: DeletePostInput!) {
         deletePost(input: $input)
       }
     `,

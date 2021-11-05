@@ -1,6 +1,6 @@
+import { MintNftInput } from '@graphql/types.generated'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { MintNftInput } from 'src/__generated__/schema.generated'
 
 /**
  * Mint an NFT

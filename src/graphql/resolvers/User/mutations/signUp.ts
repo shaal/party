@@ -1,10 +1,10 @@
 import { createNotification } from '@graphql/resolvers/Notification/mutations/createNotification'
+import { SignupInput } from '@graphql/types.generated'
 import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { createSession } from '@utils/sessions'
 import { md5 } from 'hash-wasm'
-import { SignupInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 /**

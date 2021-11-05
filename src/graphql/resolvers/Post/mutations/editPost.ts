@@ -1,6 +1,6 @@
+import { EditPostInput } from '@graphql/types.generated'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { EditPostInput } from 'src/__generated__/schema.generated'
 
 /**
  * Edit the existing post

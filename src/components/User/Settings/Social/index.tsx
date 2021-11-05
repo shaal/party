@@ -1,13 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import { PageLoading } from '@components/UI/PageLoading'
+import { GetSocialSettingsQuery, User } from '@graphql/types.generated'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
-import { SocialSettingsQuery } from './__generated__/index.generated'
 import SocialSettingsForm from './Form'
 
 export const SOCIAL_SETTINGS_QUERY = gql`
-  query SocialSettingsQuery {
+  query GetSocialSettings {
     me {
       id
       profile {
@@ -22,7 +21,9 @@ export const SOCIAL_SETTINGS_QUERY = gql`
 `
 
 const SocialSettings: React.FC = () => {
-  const { data, loading } = useQuery<SocialSettingsQuery>(SOCIAL_SETTINGS_QUERY)
+  const { data, loading } = useQuery<GetSocialSettingsQuery>(
+    SOCIAL_SETTINGS_QUERY
+  )
 
   if (loading) {
     return <PageLoading message="Loading settings" />

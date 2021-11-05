@@ -1,14 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
 import { Tooltip } from '@components/UI/Tooltip'
+import { User, WakatimeIntegrationsQuery } from '@graphql/types.generated'
 import { ClockIcon } from '@heroicons/react/outline'
-import { User } from 'src/__generated__/schema.generated'
 import { STATIC_ASSETS } from 'src/constants'
 
-import { WakatimeIntegrationsQuery } from './__generated__/Wakatime.generated'
-
 const WAKATIME_INTEGRATIONS_QUERY = gql`
-  query WakatimeIntegrationsQuery($userId: ID!) {
+  query WakatimeIntegrations($userId: ID!) {
     wakatime(userId: $userId) {
       hours
     }

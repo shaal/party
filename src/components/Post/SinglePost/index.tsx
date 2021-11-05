@@ -5,19 +5,20 @@ import { Card, CardBody } from '@components/UI/Card'
 import { useOembed } from '@components/utils/hooks/useOembed'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import {
+  Post,
+  TogglePostLikeMutation,
+  TogglePostLikeMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { Post, User } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 import LikeButton from '../LikeButton'
-import {
-  TogglePostLikeMutation,
-  TogglePostLikeMutationVariables
-} from './__generated__/index.generated'
 import PostMenu from './Menu'
 import Oembed from './Oembed'
 import SelectedCommunity from './SelectedCommunity'
@@ -114,7 +115,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
     TogglePostLikeMutationVariables
   >(
     gql`
-      mutation TogglePostLikeMutation($input: TogglePostLikeInput!) {
+      mutation TogglePostLike($input: TogglePostLikeInput!) {
         togglePostLike(input: $input) {
           id
         }

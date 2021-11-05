@@ -4,16 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Community, CommunityFeedQuery, Post } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Community, Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { CommunityFeedQuery } from './__generated__/Feed.generated'
-
 const COMMUNITY_FEED_QUERY = gql`
-  query CommunityFeedQuery($after: String, $slug: String!) {
+  query CommunityFeed($after: String, $slug: String!) {
     community(slug: $slug) {
       id
       posts(first: 10, after: $after) {

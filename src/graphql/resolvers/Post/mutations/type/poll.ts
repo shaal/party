@@ -1,9 +1,9 @@
+import { CreatePostInput } from '@graphql/types.generated'
 import { getMentions } from '@graphql/utils/getMentions'
 import { getTopics } from '@graphql/utils/getTopics'
 import { parseTopics } from '@graphql/utils/parseTopics'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { CreatePostInput } from 'src/__generated__/schema.generated'
 
 import { processMentions } from '../processMentions'
 

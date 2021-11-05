@@ -1,5 +1,5 @@
+import { ModUserInput } from '@graphql/types.generated'
 import { db } from '@utils/prisma'
-import { ModUserInput } from 'src/__generated__/schema.generated'
 
 /**
  * Moderate the user

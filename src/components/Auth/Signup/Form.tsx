@@ -4,15 +4,14 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  JoinWaitlistFormMutation,
+  JoinWaitlistFormMutationVariables
+} from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
-
-import {
-  JoinWaitlistFormMutation,
-  JoinWaitlistFormMutationVariables
-} from './__generated__/Form.generated'
 
 export const signUpSchema = object({
   username: string()
@@ -32,7 +31,7 @@ const SignupForm: React.FC = () => {
     JoinWaitlistFormMutationVariables
   >(
     gql`
-      mutation JoinWaitlistFormMutation($input: JoinWaitlistInput!) {
+      mutation JoinWaitlistForm($input: JoinWaitlistInput!) {
         joinWaitlist(input: $input) {
           id
           inWaitlist

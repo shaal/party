@@ -1,13 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { Product, User, UserProductsQuery } from '@graphql/types.generated'
 import Link from 'next/link'
-import { Product, User } from 'src/__generated__/schema.generated'
-
-import { UserProductsQuery } from './__generated__/OwnedProducts.generated'
 
 export const USER_PRODUCTS_QUERY = gql`
-  query UserProductsQuery($username: String!) {
+  query UserProducts($username: String!) {
     user(username: $username) {
       ownedProducts {
         edges {

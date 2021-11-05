@@ -5,14 +5,13 @@ import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { GetExploreUserQuery } from '@graphql/types.generated'
 import { LoginIcon, UserAddIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
-import { GetExploreUserQuery } from './__generated__/Topics.generated'
-
 export const GET_EXPLORE_USER_QUERY = gql`
-  query GetExploreUserQuery {
+  query GetExploreUser {
     me {
       id
       username

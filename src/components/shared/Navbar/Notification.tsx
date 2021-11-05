@@ -1,12 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import { NotificationCountQuery } from '@graphql/types.generated'
 import { LightningBoltIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { NotificationCountQuery } from './__generated__/Notification.generated'
-
 const NOTIFICATION_COUNT_QUERY = gql`
-  query NotificationCountQuery {
+  query NotificationCount {
     me {
       notificationsCount
     }

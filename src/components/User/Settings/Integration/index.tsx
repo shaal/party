@@ -1,13 +1,15 @@
 import { gql, useQuery } from '@apollo/client'
 import { PageLoading } from '@components/UI/PageLoading'
+import {
+  GetIntegrationSettingsQuery,
+  Integration
+} from '@graphql/types.generated'
 import React from 'react'
-import { Integration } from 'src/__generated__/schema.generated'
 
-import { IntegrationSettingsQuery } from './__generated__/index.generated'
 import IntegrationSettingsForm from './Form'
 
 export const INTEGRATION_SETTINGS_QUERY = gql`
-  query IntegrationSettingsQuery {
+  query GetIntegrationSettings {
     integration {
       id
       wakatimeAPIKey
@@ -18,7 +20,7 @@ export const INTEGRATION_SETTINGS_QUERY = gql`
 `
 
 const IntegrationSettings: React.FC = () => {
-  const { data, loading } = useQuery<IntegrationSettingsQuery>(
+  const { data, loading } = useQuery<GetIntegrationSettingsQuery>(
     INTEGRATION_SETTINGS_QUERY
   )
 

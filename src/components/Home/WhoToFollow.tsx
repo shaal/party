@@ -4,15 +4,13 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { User, WhoToFollowQuery } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
-import { User } from '../../__generated__/schema.generated'
-import { WhoToFollowQuery } from './__generated__/WhoToFollow.generated'
-
 const WHO_TO_FOLLOW_QUERY = gql`
-  query WhoToFollowQuery {
+  query WhoToFollow {
     whoToFollow {
       edges {
         node {

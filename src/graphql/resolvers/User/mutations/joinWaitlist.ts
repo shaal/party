@@ -1,8 +1,8 @@
+import { JoinWaitlistInput } from '@graphql/types.generated'
 import { getRandomCover } from '@graphql/utils/getRandomCover'
 import { hashPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
-import { JoinWaitlistInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 import { User } from '.prisma/client'

@@ -9,6 +9,11 @@ import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import {
+  ResolveReportMutation,
+  ResolveReportMutationVariables,
+  StaffToolsReportsQuery
+} from '@graphql/types.generated'
+import {
   CheckCircleIcon,
   MailIcon,
   ShieldCheckIcon,
@@ -20,16 +25,11 @@ import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE } from 'src/constants'
 
-import {
-  ResolveReportMutation,
-  ResolveReportMutationVariables,
-  StaffToolsReportsQuery
-} from './__generated__/Reports.generated'
 import ReportEntity from './ReportEntity'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_REPORTS_QUERY = gql`
-  query StaffToolsReportsQuery($after: String) {
+  query StaffToolsReports($after: String) {
     reports(first: 10, after: $after) {
       pageInfo {
         endCursor
@@ -66,7 +66,7 @@ const StaffToolsReports: React.FC = () => {
     ResolveReportMutationVariables
   >(
     gql`
-      mutation ResolveReportMutation($input: ResolveReportInput!) {
+      mutation ResolveReport($input: ResolveReportInput!) {
         resolveReport(input: $input)
       }
     `,

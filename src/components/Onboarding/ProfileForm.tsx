@@ -4,16 +4,15 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import {
+  OnboardingProfileSettingsMutation,
+  OnboardingProfileSettingsMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
-
-import {
-  OnboardingProfileSettingsMutation,
-  OnboardingProfileSettingsMutationVariables
-} from './__generated__/ProfileForm.generated'
 
 const editProfileSchema = object({
   name: string()
@@ -38,7 +37,7 @@ const ProfileForm: React.FC<Props> = ({ currentUser, setShowSkip }) => {
     OnboardingProfileSettingsMutationVariables
   >(
     gql`
-      mutation OnboardingProfileSettingsMutation($input: EditUserInput!) {
+      mutation OnboardingProfileSettings($input: EditUserInput!) {
         editUser(input: $input) {
           id
           profile {

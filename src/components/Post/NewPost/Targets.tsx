@@ -1,13 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { Spinner } from '@components/UI/Spinner'
 import { humanize } from '@components/utils/humanize'
+import { Community, Product, SelectTargetQuery } from '@graphql/types.generated'
 import { GlobeIcon } from '@heroicons/react/outline'
-import { Community, Product } from 'src/__generated__/schema.generated'
-
-import { SelectTargetQuery } from './__generated__/Targets.generated'
 
 export const SELECT_TARGET_QUERY = gql`
-  query SelectTargetQuery {
+  query SelectTarget {
     me {
       ownedProducts {
         edges {

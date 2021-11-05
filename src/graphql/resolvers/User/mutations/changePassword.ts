@@ -1,9 +1,9 @@
 import { createLog } from '@graphql/resolvers/Log/mutations/createLog'
 import { Result } from '@graphql/resolvers/ResultResolver'
+import { ChangePasswordInput } from '@graphql/types.generated'
 import { Session } from '@prisma/client'
 import { hashPassword, verifyPassword } from '@utils/auth'
 import { db } from '@utils/prisma'
-import { ChangePasswordInput } from 'src/__generated__/schema.generated'
 
 /**
  * Change a user's password

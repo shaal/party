@@ -1,8 +1,8 @@
 import { Button } from '@components/UI/Button'
 import { Modal } from '@components/UI/Modal'
+import { Community, Product } from '@graphql/types.generated'
 import { GlobeIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
-import { Community, Product } from 'src/__generated__/schema.generated'
 
 import Targets from './Targets'
 

@@ -6,6 +6,10 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { TaskCheckbox } from '@components/UI/TaskCheckbox'
+import {
+  CreateTaskMutation,
+  CreateTaskMutationVariables
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -14,10 +18,6 @@ import { boolean, object, string } from 'zod'
 
 import Attachment from '../Attachment'
 import SelectTarget from '../SelectTarget'
-import {
-  CreateTaskMutation,
-  CreateTaskMutationVariables
-} from './__generated__/Task.generated'
 
 const newTaskSchema = object({
   body: string()
@@ -38,7 +38,7 @@ const TaskType: React.FC = () => {
     CreateTaskMutationVariables
   >(
     gql`
-      mutation CreateTaskMutation($input: CreatePostInput!) {
+      mutation CreateTask($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body

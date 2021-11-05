@@ -8,15 +8,14 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import {
+  CreateCommunityMutation,
+  CreateCommunityMutationVariables
+} from '@graphql/types.generated'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
-
-import {
-  CreateCommunityMutation,
-  CreateCommunityMutationVariables
-} from './__generated__/New.generated'
 
 const newCommunitySchema = object({
   name: string()
@@ -38,7 +37,7 @@ const NewCommunity: React.FC = () => {
     CreateCommunityMutationVariables
   >(
     gql`
-      mutation CreateCommunityMutation($input: CreateCommunityInput!) {
+      mutation CreateCommunity($input: CreateCommunityInput!) {
         createCommunity(input: $input) {
           id
           slug

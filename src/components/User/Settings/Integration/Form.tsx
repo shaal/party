@@ -5,19 +5,19 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  EditIntegrationSettingsMutation,
+  EditIntegrationSettingsMutationVariables,
+  Integration
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { Integration } from 'src/__generated__/schema.generated'
 import { BASE_URL } from 'src/constants'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
-import {
-  IntegrationSettingsMutation,
-  IntegrationSettingsMutationVariables
-} from './__generated__/Form.generated'
 
 const ConnectWallet = dynamic(() => import('./ConnectWallet'), {
   loading: () => <div className="shimmer w-full h-9 rounded-lg" />
@@ -37,11 +37,11 @@ const SUCCESS_MESSAGE = 'Integration settings successfully updated!'
 
 const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const [editIntegration] = useMutation<
-    IntegrationSettingsMutation,
-    IntegrationSettingsMutationVariables
+    EditIntegrationSettingsMutation,
+    EditIntegrationSettingsMutationVariables
   >(
     gql`
-      mutation IntegrationSettingsMutation($input: EditIntegrationInput!) {
+      mutation EditIntegrationSettings($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
           wakatimeAPIKey

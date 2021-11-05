@@ -7,13 +7,12 @@ import UserCard from '@components/shared/UserCard'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
+import { Post, PostQuery, User } from '@graphql/types.generated'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-import { Post, User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { PostQuery } from './__generated__/ViewPost.generated'
 import MorePosts from './MorePosts'
 import NewReply from './Reply/NewReply'
 import Replies from './Reply/Replies'
@@ -25,7 +24,7 @@ const MintNFT = dynamic(() => import('./MintNFT'), {
 })
 
 export const POST_QUERY = gql`
-  query PostQuery($id: ID!) {
+  query Post($id: ID!) {
     post(id: $id) {
       ...PostFragment
     }

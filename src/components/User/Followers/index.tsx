@@ -5,12 +5,11 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import Details from '@components/User/Details'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { User, ViewUserQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { ViewUserQuery } from '../__generated__/ViewUser.generated'
 import { VIEW_USER_QUERY } from '../ViewUser'
 import FollowersList from './List'
 

@@ -5,19 +5,18 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/UI/Card'
 import { humanize } from '@components/utils/humanize'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
-import Linkify from 'linkify-react'
-import React from 'react'
-import toast from 'react-hot-toast'
-import { Post } from 'src/__generated__/schema.generated'
-
 import {
   AnswerPollMutation,
   AnswerPollMutationVariables,
+  Post,
   PostPollQuery
-} from './__generated__/Poll.generated'
+} from '@graphql/types.generated'
+import Linkify from 'linkify-react'
+import React from 'react'
+import toast from 'react-hot-toast'
 
 export const POST_POLL_QUERY = gql`
-  query PostPollQuery($id: ID!) {
+  query PostPoll($id: ID!) {
     post(id: $id) {
       id
       poll {
@@ -55,7 +54,7 @@ const PollType: React.FC<Props> = ({ post }) => {
     AnswerPollMutationVariables
   >(
     gql`
-      mutation AnswerPollMutation($input: AnswerPollInput!) {
+      mutation AnswerPoll($input: AnswerPollInput!) {
         answerPoll(input: $input) {
           id
           title

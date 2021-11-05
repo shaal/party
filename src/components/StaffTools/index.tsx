@@ -3,6 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
+import { StaffToolsDashboardQuery } from '@graphql/types.generated'
 import {
   BellIcon,
   ChipIcon,
@@ -20,11 +21,10 @@ import {
 } from '@heroicons/react/outline'
 import React from 'react'
 
-import { StaffToolsDashboardQuery } from './__generated__/index.generated'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
-  query StaffToolsDashboardQuery {
+  query StaffToolsDashboard {
     stats {
       users
       products
