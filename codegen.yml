@@ -2,6 +2,10 @@ overwrite: true
 errorsOnly: true
 schema: src/graphql/schema.graphql
 documents: 'src/**/!(*.d).{ts,tsx}'
+hooks:
+  afterOneFileWrite:
+    - eslint --fix
+    - prettier --write
 generates:
   src/graphql/types.generated.ts:
     config:
