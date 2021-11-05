@@ -23,7 +23,7 @@ test('post should have user', async ({ request }) => {
         post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
           id
           user {
-            id
+            username
           }
         }
       }`
@@ -32,7 +32,7 @@ test('post should have user', async ({ request }) => {
   const result = await response.json()
   const post = result.data.post
 
-  expect(post.user.id.length).toBe(36)
+  expect(post.user.username).toBe('yoginth')
 })
 
 test('post done status shoud be true/false', async ({ request }) => {
@@ -47,9 +47,28 @@ test('post done status shoud be true/false', async ({ request }) => {
     }
   })
   const result = await response.json()
+
+  expect(result.data.post).toBeFalsy
+})
+
+test('post should have nft', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
+          nft {
+            address
+            tokenId
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
   const post = result.data.post
 
-  expect(typeof post.done).toBe('boolean')
+  expect(post.nft.address).toBe('0x3b3ee1931dc30c1957379fac9aba94d1c48a5405')
+  expect(post.nft.tokenId).toBe('1')
 })
 
 test('connection should have count', async ({ request }) => {
