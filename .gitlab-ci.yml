@@ -48,7 +48,7 @@ test:
   extends: .prepare
   image: mcr.microsoft.com/playwright:focal
   variables:
-    DATABASE_URL: "mysql://runner:devparty@localhost:3306/devparty"
+    DATABASE_URL: "mysql://runner:devparty@127.0.0.1:3306/devparty"
   script:
     - yarn prisma:migrate
     - yarn prisma:seed
