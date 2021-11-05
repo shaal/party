@@ -140,3 +140,19 @@ test('user should have followers and following', async ({ request }) => {
   expect(typeof user.followers.totalCount).toBe('number')
   expect(typeof user.following.totalCount).toBe('number')
 })
+
+test('hasFollowed should be boolean', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        user(username: "yoginth") {
+          hasFollowed
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const user = result.data.user
+
+  expect(typeof user.hasFollowed).toBe('boolean')
+})
