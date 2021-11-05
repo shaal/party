@@ -73,6 +73,9 @@ test('connection should have count', async ({ request }) => {
           following {
             totalCount
           }
+          bookmarks {
+            totalCount
+          }
         }
       }`
     }
@@ -85,6 +88,7 @@ test('connection should have count', async ({ request }) => {
   expect(typeof user.communities.totalCount).toBe('number')
   expect(typeof user.followers.totalCount).toBe('number')
   expect(typeof user.following.totalCount).toBe('number')
+  expect(typeof user.bookmarks.totalCount).toBe('number')
 })
 
 test('flags should return boolean', async ({ request }) => {
