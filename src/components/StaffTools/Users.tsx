@@ -8,21 +8,21 @@ import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { humanize } from '@components/utils/humanize'
+import {
+  OnboardUserMutation,
+  OnboardUserMutationVariables,
+  StaffToolsUsersQuery
+} from '@graphql/types.generated'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE, STATIC_ASSETS } from 'src/constants'
 import * as timeago from 'timeago.js'
 
-import {
-  OnboardUserMutation,
-  OnboardUserMutationVariables,
-  StaffToolsUsersQuery
-} from './__generated__/Users.generated'
 import Sidebar from './Sidebar'
 
 export const STAFF_TOOLS_USERS_QUERY = gql`
-  query StaffToolsUsersQuery($after: String) {
+  query StaffToolsUsers($after: String) {
     users(first: 5, after: $after) {
       pageInfo {
         endCursor
@@ -85,7 +85,7 @@ const StaffToolsUsers: React.FC = () => {
     OnboardUserMutationVariables
   >(
     gql`
-      mutation OnboardUserMutation($input: OnboardUserInput!) {
+      mutation OnboardUser($input: OnboardUserInput!) {
         onboardUser(input: $input) {
           id
           inWaitlist

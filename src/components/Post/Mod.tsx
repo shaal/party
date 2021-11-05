@@ -1,6 +1,6 @@
 import { Card, CardBody } from '@components/UI/Card'
+import { Post } from '@graphql/types.generated'
 import { HashtagIcon } from '@heroicons/react/outline'
-import { Post } from 'src/__generated__/schema.generated'
 
 interface Props {
   post: Post

@@ -6,18 +6,17 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { Topic, TopicQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-import { Topic } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { TopicQuery } from './__generated__/ViewTopic.generated'
 import TopicFeed from './Feed'
 import TopicMod from './Mod'
 import Star from './Star'
 
 export const TOPIC_QUERY = gql`
-  query TopicQuery($name: String!) {
+  query Topic($name: String!) {
     topic(name: $name) {
       id
       name

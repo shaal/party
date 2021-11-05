@@ -8,18 +8,18 @@ import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
+import {
+  ProfileSettingsMutation,
+  ProfileSettingsMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
-import {
-  ProfileSettingsMutation,
-  ProfileSettingsMutationVariables
-} from './__generated__/Form.generated'
 
 const NFTAvatars = dynamic(() => import('./NFTAvatars'))
 
@@ -55,7 +55,7 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
     ProfileSettingsMutationVariables
   >(
     gql`
-      mutation ProfileSettingsMutation($input: EditUserInput!) {
+      mutation ProfileSettings($input: EditUserInput!) {
         editUser(input: $input) {
           id
           username

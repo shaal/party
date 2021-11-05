@@ -1,10 +1,10 @@
 import ProductProfileLarge from '@components/shared/ProductProfileLarge'
 import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
+import { Notification, Product } from '@graphql/types.generated'
 import { PlusCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
-import { Notification, Product } from 'src/__generated__/schema.generated'
 import * as timeago from 'timeago.js'
 
 import MarkAsRead from '../Read'

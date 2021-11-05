@@ -1,7 +1,6 @@
 import { ApolloError } from '@apollo/client'
+import { User } from '@graphql/types.generated'
 import { createContext, Dispatch } from 'react'
-
-import { User } from '../../__generated__/schema.generated'
 
 export interface ContextType {
   currentUser: User | undefined

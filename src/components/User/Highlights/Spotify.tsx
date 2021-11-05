@@ -2,13 +2,11 @@ import { gql, useQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { User } from 'src/__generated__/schema.generated'
+import { SpotifyIntegrationsQuery, User } from '@graphql/types.generated'
 import { STATIC_ASSETS } from 'src/constants'
 
-import { SpotifyIntegrationsQuery } from './__generated__/Spotify.generated'
-
 const SPOTIFY_INTEGRATIONS_QUERY = gql`
-  query SpotifyIntegrationsQuery($userId: ID!) {
+  query SpotifyIntegrations($userId: ID!) {
     spotify(userId: $userId) {
       name
       isPlaying

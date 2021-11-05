@@ -5,16 +5,14 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { MembersQuery, User } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { User } from 'src/__generated__/schema.generated'
-
-import { MembersQuery } from './__generated__/list.generated'
 
 export const MEMBERS_QUERY = gql`
-  query MembersQuery($after: String, $slug: String!) {
+  query Members($after: String, $slug: String!) {
     community(slug: $slug) {
       members(first: 10, after: $after) {
         totalCount

@@ -2,14 +2,12 @@ import { gql, useQuery } from '@apollo/client'
 import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
 import UserProfileLarge from '@components/shared/UserProfileLarge'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { ModeratorsQuery, User } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
-
-import { ModeratorsQuery } from './__generated__/Moderators.generated'
 
 export const MODERATORS_QUERY = gql`
-  query ModeratorsQuery($after: String, $slug: String!) {
+  query Moderators($after: String, $slug: String!) {
     community(slug: $slug) {
       moderators(first: 10, after: $after) {
         totalCount

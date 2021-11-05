@@ -8,15 +8,14 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import {
+  CreateProductMutation,
+  CreateProductMutationVariables
+} from '@graphql/types.generated'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
-
-import {
-  CreateProductMutation,
-  CreateProductMutationVariables
-} from './__generated__/New.generated'
 
 const newProductSchema = object({
   name: string()
@@ -42,7 +41,7 @@ const NewProduct: React.FC = () => {
     CreateProductMutationVariables
   >(
     gql`
-      mutation CreateProductMutation($input: CreateProductInput!) {
+      mutation CreateProduct($input: CreateProductInput!) {
         createProduct(input: $input) {
           id
           slug

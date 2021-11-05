@@ -4,15 +4,13 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
+import { FeaturedUsersQuery, User } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { User } from 'src/__generated__/schema.generated'
-
-import { FeaturedUsersQuery } from './__generated__/FeaturedUsers.generated'
 
 const FEATURED_USERS_QUERY = gql`
-  query FeaturedUsersQuery {
+  query FeaturedUsers {
     featuredUsers {
       edges {
         node {

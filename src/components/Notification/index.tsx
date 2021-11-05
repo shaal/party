@@ -4,11 +4,11 @@ import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
+import { NotificationsQuery } from '@graphql/types.generated'
 import { BellIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
 
-import { NotificationsQuery } from './__generated__/index.generated'
 import NotificationType from './NotificationType'
 import PostLike from './type/PostLike'
 import PostReply from './type/PostReply'
@@ -17,7 +17,7 @@ import UserFollow from './type/UserFollow'
 import UserMention from './type/UserMention'
 
 export const NOTIFICATIONS_QUERY = gql`
-  query NotificationsQuery($after: String, $isRead: Boolean) {
+  query Notifications($after: String, $isRead: Boolean) {
     notifications(first: 5, after: $after, isRead: $isRead) {
       pageInfo {
         hasNextPage

@@ -4,17 +4,15 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Post, UserFeedQuery } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { UserFeedQuery } from './__generated__/Feed.generated'
-
 const USER_FEED_QUERY = gql`
-  query UserFeedQuery($after: String, $username: String!) {
+  query UserFeed($after: String, $username: String!) {
     user(username: $username) {
       id
       posts(first: 10, after: $after) {

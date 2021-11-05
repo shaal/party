@@ -1,9 +1,9 @@
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { Community } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'
-import { Community } from 'src/__generated__/schema.generated'
 
 interface Props {
   community: Community

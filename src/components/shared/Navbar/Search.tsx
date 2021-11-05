@@ -2,16 +2,13 @@ import { gql, useLazyQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
 import { Spinner } from '@components/UI/Spinner'
 import useOnClickOutside from '@components/utils/hooks/useOnClickOutside'
+import { SearchTopicsQuery, SearchUsersQuery } from '@graphql/types.generated'
 import React, { useRef, useState } from 'react'
 
 import UserProfile from '../UserProfile'
-import {
-  SearchTopicsQuery,
-  SearchUsersQuery
-} from './__generated__/Search.generated'
 
 const SEARCH_USERS_QUERY = gql`
-  query SearchUsersQuery($keyword: String!) {
+  query SearchUsers($keyword: String!) {
     searchUsers(first: 10, keyword: $keyword) {
       edges {
         node {
@@ -30,7 +27,7 @@ const SEARCH_USERS_QUERY = gql`
 `
 
 const SEARCH_TOPICS_QUERY = gql`
-  query SearchTopicsQuery($keyword: String!) {
+  query SearchTopics($keyword: String!) {
     searchTopics(first: 5, keyword: $keyword) {
       edges {
         node {

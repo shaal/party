@@ -1,7 +1,7 @@
+import { CreateCommunityInput } from '@graphql/types.generated'
 import { Session } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { md5 } from 'hash-wasm'
-import { CreateCommunityInput } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 /**

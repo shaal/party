@@ -5,16 +5,15 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
+import {
+  LoginFormMutation,
+  LoginFormMutationVariables
+} from '@graphql/types.generated'
 import { LogoutIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { object, string } from 'zod'
-
-import {
-  LoginFormMutation,
-  LoginFormMutationVariables
-} from './__generated__/Form.generated'
 
 const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
   loading: () => <div className="shimmer w-full h-10 rounded-lg" />
@@ -38,7 +37,7 @@ const LoginForm: React.FC = () => {
     LoginFormMutationVariables
   >(
     gql`
-      mutation LoginFormMutation($input: LoginInput!) {
+      mutation LoginForm($input: LoginInput!) {
         login(input: $input) {
           id
           inWaitlist

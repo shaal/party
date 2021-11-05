@@ -4,17 +4,16 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
+import { Log, LogsSettingsQuery } from '@graphql/types.generated'
 import { ClipboardListIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-import { Log } from '../../../../__generated__/schema.generated'
 import Sidebar from '../Sidebar'
-import { LogsSettingsQuery } from './__generated__/index.generated'
 import SingleLog from './SingleLog'
 
 export const LOGS_SETTINGS_QUERY = gql`
-  query LogsSettingsQuery($after: String) {
+  query LogsSettings($after: String) {
     logs(first: 10, after: $after) {
       pageInfo {
         endCursor

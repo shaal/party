@@ -1,5 +1,6 @@
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { User } from '@graphql/types.generated'
 import { Menu, Transition } from '@headlessui/react'
 import { CogIcon, LogoutIcon, UserIcon } from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
@@ -7,7 +8,6 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
 import Slug from '../Slug'
 

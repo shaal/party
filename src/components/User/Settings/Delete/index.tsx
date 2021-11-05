@@ -3,16 +3,16 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  DeleteAccountMutation,
+  DeleteAccountMutationVariables
+} from '@graphql/types.generated'
 import { TrashIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE } from 'src/constants'
 
 import Sidebar from '../Sidebar'
-import {
-  DeleteAccountMutation,
-  DeleteAccountMutationVariables
-} from './__generated__/index.generated'
 
 const DeleteSettings: React.FC = () => {
   const [deleting, setDeleting] = useState<boolean>(false)
@@ -21,7 +21,7 @@ const DeleteSettings: React.FC = () => {
     DeleteAccountMutationVariables
   >(
     gql`
-      mutation DeleteAccountMutation {
+      mutation DeleteAccount {
         deleteAccount
       }
     `,

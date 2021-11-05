@@ -1,17 +1,16 @@
 import { gql, useMutation } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
+import {
+  Post,
+  ToggleBookmarkMutation,
+  ToggleBookmarkMutationVariables
+} from '@graphql/types.generated'
 import { Menu } from '@headlessui/react'
 import { BookmarkIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import toast from 'react-hot-toast'
-import { Post } from 'src/__generated__/schema.generated'
-
-import {
-  ToggleBookmarkMutation,
-  ToggleBookmarkMutationVariables
-} from './__generated__/Bookmark.generated'
 
 interface Props {
   post: Post
@@ -25,7 +24,7 @@ const Bookmark: React.FC<Props> = ({ post }) => {
     ToggleBookmarkMutationVariables
   >(
     gql`
-      mutation ToggleBookmarkMutation($input: ToggleBookmarkInput!) {
+      mutation ToggleBookmark($input: ToggleBookmarkInput!) {
         toggleBookmark(input: $input) {
           id
           hasBookmarked

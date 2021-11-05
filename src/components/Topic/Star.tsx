@@ -1,19 +1,18 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
+import {
+  ToggleTopicStarMutation,
+  ToggleTopicStarMutationVariables,
+  Topic
+} from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/outline'
 import { StarIcon as StarIconSolid } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Topic } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
-
-import {
-  ToggleTopicStarMutation,
-  ToggleTopicStarMutationVariables
-} from './__generated__/Star.generated'
 
 interface Props {
   topic: Topic
@@ -30,7 +29,7 @@ const Star: React.FC<Props> = ({ topic, showText, showToast = true }) => {
     ToggleTopicStarMutationVariables
   >(
     gql`
-      mutation ToggleTopicStarMutation($input: ToggleTopicStarInput!) {
+      mutation ToggleTopicStar($input: ToggleTopicStarInput!) {
         toggleTopicStar(input: $input) {
           id
           name

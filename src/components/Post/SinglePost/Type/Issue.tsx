@@ -6,6 +6,7 @@ import { getTextColor } from '@components/utils/getTextColor'
 import { useIssue } from '@components/utils/hooks/useIssue'
 import { humanize } from '@components/utils/humanize'
 import { imagekitURL } from '@components/utils/imagekitURL'
+import { Post } from '@graphql/types.generated'
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -16,7 +17,6 @@ import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
 
 interface ReactionProps {
   emoji: string

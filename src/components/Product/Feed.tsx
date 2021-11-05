@@ -4,16 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { Post, Product, ProductFeedQuery } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Post, Product } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { ProductFeedQuery } from './__generated__/Feed.generated'
-
 const PRODUCT_FEED_QUERY = gql`
-  query ProductFeedQuery($after: String, $slug: String!) {
+  query ProductFeed($after: String, $slug: String!) {
     product(slug: $slug) {
       id
       posts(first: 10, after: $after) {

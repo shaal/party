@@ -1,15 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
 import { PageLoading } from '@components/UI/PageLoading'
 import AppContext from '@components/utils/AppContext'
+import { GetProductSettingsQuery, Product } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-import { Product } from 'src/__generated__/schema.generated'
 
-import { ProductSettingsQuery } from './__generated__/index.generated'
 import ProductSettings from './ProductSettings'
 
 export const PRODUCT_SETTINGS_QUERY = gql`
-  query ProductSettingsQuery($slug: String!) {
+  query GetProductSettings($slug: String!) {
     product(slug: $slug) {
       id
       slug
@@ -26,7 +25,7 @@ export const PRODUCT_SETTINGS_QUERY = gql`
 const Settings = () => {
   const router = useRouter()
   const { currentUser } = useContext(AppContext)
-  const { data, loading } = useQuery<ProductSettingsQuery>(
+  const { data, loading } = useQuery<GetProductSettingsQuery>(
     PRODUCT_SETTINGS_QUERY,
     {
       variables: { slug: router.query.slug },

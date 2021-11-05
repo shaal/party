@@ -3,16 +3,15 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { TextArea } from '@components/UI/TextArea'
-import { HashtagIcon } from '@heroicons/react/outline'
-import toast from 'react-hot-toast'
-import { Topic } from 'src/__generated__/schema.generated'
-import { ERROR_MESSAGE } from 'src/constants'
-import { boolean, object, string } from 'zod'
-
 import {
   ModTopicMutation,
-  ModTopicMutationVariables
-} from './__generated__/Mod.generated'
+  ModTopicMutationVariables,
+  Topic
+} from '@graphql/types.generated'
+import { HashtagIcon } from '@heroicons/react/outline'
+import toast from 'react-hot-toast'
+import { ERROR_MESSAGE } from 'src/constants'
+import { boolean, object, string } from 'zod'
 
 const modTopicSchema = object({
   description: string()
@@ -28,7 +27,7 @@ interface Props {
 const TopicMod: React.FC<Props> = ({ topic }) => {
   const [modTopic] = useMutation<ModTopicMutation, ModTopicMutationVariables>(
     gql`
-      mutation ModTopicMutation($input: ModTopicInput!) {
+      mutation ModTopic($input: ModTopicInput!) {
         modTopic(input: $input) {
           id
           description

@@ -2,9 +2,9 @@ import 'linkify-plugin-hashtag'
 import 'linkify-plugin-mention'
 
 import { linkifyOptions } from '@components/utils/linkifyOptions'
+import { Post } from '@graphql/types.generated'
 import Linkify from 'linkify-react'
 import React from 'react'
-import { Post } from 'src/__generated__/schema.generated'
 
 import Attachments from '../Attachments'
 

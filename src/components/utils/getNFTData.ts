@@ -1,4 +1,4 @@
-import { Post } from 'src/__generated__/schema.generated'
+import { Post } from '@graphql/types.generated'
 import { BASE_URL } from 'src/constants'
 
 const getNFTData = (nsfw: boolean, post: Post, nft: string) => {

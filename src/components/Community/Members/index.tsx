@@ -8,12 +8,11 @@ import {
 } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { PageLoading } from '@components/UI/PageLoading'
+import { Community, ViewCommunityQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Community } from 'src/__generated__/schema.generated'
 import Custom404 from 'src/pages/404'
 
-import { ViewCommunityQuery } from '../__generated__/ViewCommunity.generated'
 import Rules from '../Rules'
 import { VIEW_COMMUNITY_QUERY } from '../ViewCommunity'
 import MembersList from './list'

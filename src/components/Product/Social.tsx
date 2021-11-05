@@ -1,5 +1,5 @@
+import { Product } from '@graphql/types.generated'
 import { useTheme } from 'next-themes'
-import { Product } from 'src/__generated__/schema.generated'
 import { STATIC_ASSETS } from 'src/constants'
 
 interface Props {

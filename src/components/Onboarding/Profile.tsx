@@ -4,17 +4,16 @@ import { Card, CardBody } from '@components/UI/Card'
 import { ProgressBar } from '@components/UI/ProgressBar'
 import { Spinner } from '@components/UI/Spinner'
 import { PROFILE_SETTINGS_QUERY } from '@components/User/Settings/Profile'
-import { ProfileSettingsQuery } from '@components/User/Settings/Profile/__generated__/index.generated'
+import { GetProfileSettingsQuery, User } from '@graphql/types.generated'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { User } from 'src/__generated__/schema.generated'
 
 import ProfileForm from './ProfileForm'
 
 const Profile: React.FC = () => {
   const [showSkip, setShowSkip] = useState<boolean>(true)
-  const { data, loading } = useQuery<ProfileSettingsQuery>(
+  const { data, loading } = useQuery<GetProfileSettingsQuery>(
     PROFILE_SETTINGS_QUERY
   )
   const currentUser = data?.me

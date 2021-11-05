@@ -5,6 +5,11 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Modal } from '@components/UI/Modal'
 import {
+  ModUserMutation,
+  ModUserMutationVariables,
+  User
+} from '@graphql/types.generated'
+import {
   HashtagIcon,
   PencilIcon,
   ShieldCheckIcon,
@@ -12,14 +17,9 @@ import {
 } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { ERROR_MESSAGE } from 'src/constants'
 import { boolean, object } from 'zod'
 
-import {
-  ModUserMutation,
-  ModUserMutationVariables
-} from './__generated__/index.generated'
 import UpdateBadges from './UpdateBadges'
 
 const modUserSchema = object({
@@ -38,7 +38,7 @@ const UserMod: React.FC<Props> = ({ user }) => {
     useState<boolean>(false)
   const [modUser] = useMutation<ModUserMutation, ModUserMutationVariables>(
     gql`
-      mutation ModUserMutation($input: ModUserInput!) {
+      mutation ModUser($input: ModUserInput!) {
         modUser(input: $input) {
           id
           isVerified

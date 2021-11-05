@@ -7,6 +7,7 @@ tasks:
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
       cp .env.example .env
+      npx hardhat compile
       gp await-port 3306
       yarn prisma:migrate
       yarn prisma:seed

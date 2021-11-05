@@ -5,17 +5,17 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import {
+  EditSocialSettingsMutation,
+  EditSocialSettingsMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { User } from 'src/__generated__/schema.generated'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
-import {
-  SocialSettingsMutation,
-  SocialSettingsMutationVariables
-} from './__generated__/Form.generated'
 
 const editSocialSchema = object({
   twitter: string()
@@ -44,11 +44,11 @@ const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [editSocial] = useMutation<
-    SocialSettingsMutation,
-    SocialSettingsMutationVariables
+    EditSocialSettingsMutation,
+    EditSocialSettingsMutationVariables
   >(
     gql`
-      mutation SocialSettingsMutation($input: EditSocialInput!) {
+      mutation EditSocialSettings($input: EditSocialInput!) {
         editSocial(input: $input) {
           profile {
             id

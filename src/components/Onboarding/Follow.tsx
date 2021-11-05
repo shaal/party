@@ -6,6 +6,7 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
+import { OnboardingUsersQuery, User } from '@graphql/types.generated'
 import {
   ArrowCircleRightIcon,
   ArrowLeftIcon,
@@ -14,12 +15,9 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { User } from 'src/__generated__/schema.generated'
-
-import { OnboardingUsersQuery } from './__generated__/Follow.generated'
 
 export const ONBOARDING_USERS_QUERY = gql`
-  query OnboardingUsersQuery($after: String) {
+  query OnboardingUsers($after: String) {
     suggestedUsers(first: 30, after: $after) {
       edges {
         node {

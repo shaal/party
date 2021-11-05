@@ -3,15 +3,13 @@ import SinglePost, { PostFragment } from '@components/Post/SinglePost'
 import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
+import { ExploreFeedQuery, Post } from '@graphql/types.generated'
 import React from 'react'
 import useInView from 'react-cool-inview'
-import { Post } from 'src/__generated__/schema.generated'
 import { POLLING_INTERVAL } from 'src/constants'
 
-import { ExploreFeedQuery } from './__generated__/Feed.generated'
-
 export const EXPLORE_FEED_QUERY = gql`
-  query ExploreFeedQuery($after: String) {
+  query ExploreFeed($after: String) {
     posts: exploreFeed(first: 10, after: $after) {
       pageInfo {
         endCursor
