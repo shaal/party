@@ -51,3 +51,25 @@ test('post done status shoud be true/false', async ({ request }) => {
 
   expect(typeof post.done).toBe('boolean')
 })
+
+test('connection should have count', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        post(id: "89bee9b8-a958-48de-8c9d-55e20b75ccf2") {
+          likes {
+            totalCount
+          }
+          replies {
+            totalCount
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const post = result.data.user
+
+  expect(typeof post.likes.totalCount).toBe('number')
+  expect(typeof post.replies.totalCount).toBe('number')
+})
