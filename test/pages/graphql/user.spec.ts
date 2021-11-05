@@ -74,3 +74,25 @@ test('user should owned products', async ({ request }) => {
 
   expect(user.ownedProducts.edges.length).toBe(5)
 })
+
+test('user should owned communities', async ({ request }) => {
+  const response = await request.post('/api/graphql', {
+    data: {
+      query: `{
+        user(username: "yoginth") {
+          communities(first: 2) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+      }`
+    }
+  })
+  const result = await response.json()
+  const user = result.data.user
+
+  expect(user.communities.edges.length).toBe(2)
+})
