@@ -39,7 +39,7 @@ const editTipsSchema = object({
     .max(42, { message: 'Ethereum address should be within 42 characters' })
     .nullable(),
   solana: string()
-    .max(42, { message: 'Solana address should be within 42 characters' })
+    .max(44, { message: 'Solana address should be within 44 characters' })
     .nullable()
 })
 
