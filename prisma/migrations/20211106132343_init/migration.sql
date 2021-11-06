@@ -264,7 +264,7 @@ CREATE TABLE `integrations` (
     `spotifyRefreshToken` VARCHAR(191) NULL,
     `githubId` VARCHAR(64) NULL,
     `ethAddress` VARCHAR(64) NULL,
-    `ethNonce` VARCHAR(5) NULL,
+    `ethNonce` VARCHAR(6) NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `integrations_githubId_key`(`githubId`),

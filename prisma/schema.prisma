@@ -400,7 +400,7 @@ model Integration {
   spotifyRefreshToken String?
   githubId            String? @unique @db.VarChar(64)
   ethAddress          String? @unique @db.VarChar(64)
-  ethNonce            String? @db.VarChar(5)
+  ethNonce            String? @db.VarChar(6)
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -1,12 +1,11 @@
 import { db } from '@utils/prisma'
+import crypto from 'crypto'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { address, warmup } = req.query
 
-  if (warmup) {
-    return res.status(200).json({ status: 'Warmed up!' })
-  }
+  if (warmup) return res.status(200).json({ status: 'Warmed up!' })
 
   if (address) {
     const user = await db.user.findFirst({
@@ -19,9 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         message: 'This address is not associated with any user.'
       })
     }
-
-    const nonce = Math.floor(Math.random() * 90000) + 10000
-
+    const nonce = crypto.randomInt(111111, 999999)
     const updatedIntegration = await db.integration.update({
       where: { userId: user.id },
       data: { ethNonce: nonce.toString() }
