@@ -18,7 +18,7 @@ interface Props {
   showText: boolean
 }
 
-const Subscribe: React.FC<Props> = ({ community, showText }) => {
+const Join: React.FC<Props> = ({ community, showText }) => {
   const { currentUser } = useContext(AppContext)
   const router = useRouter()
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
@@ -93,4 +93,4 @@ const Subscribe: React.FC<Props> = ({ community, showText }) => {
   )
 }
 
-export default Subscribe
+export default Join

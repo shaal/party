@@ -22,6 +22,7 @@ import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import * as timeago from 'timeago.js'
 
+import Invite from './Invite'
 import Join from './Join'
 
 interface Props {
@@ -136,7 +137,8 @@ const Details: React.FC<Props> = ({ community }) => {
             </a>
           </Link>
         </div>
-        <div>
+        <div className="flex space-x-2">
+          <Invite community={community} />
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
