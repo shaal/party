@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test.skip('get single post', async ({ request }) => {
+test('get single post', async ({ request }) => {
   const response = await request.post('/api/graphql', {
     data: {
       query: `{

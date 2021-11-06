@@ -47,17 +47,17 @@ typecheck:
     - yarn generate
     - yarn typecheck
 
-test:
-  extends: .prepare
-  image: mcr.microsoft.com/playwright:focal
-  variables:
-    DATABASE_URL: 'mysql://root:root@mysql:3306/devparty'
-  script:
-    - yarn prisma:migrate
-    - yarn prisma:seed
-    - yarn prisma:testseed
-    - npx playwright test --list
-    - npx playwright test
+# test:
+#   extends: .prepare
+#   image: mcr.microsoft.com/playwright:focal
+#   variables:
+#     DATABASE_URL: 'mysql://root:root@mysql:3306/devparty'
+#   script:
+#     - yarn prisma:migrate
+#     - yarn prisma:seed
+#     - yarn prisma:testseed
+#     - npx playwright test --list
+#     - npx playwright test
 
 hardhat-test:
   extends: .prepare
