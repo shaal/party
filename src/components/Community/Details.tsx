@@ -138,7 +138,10 @@ const Details: React.FC<Props> = ({ community }) => {
           </Link>
         </div>
         <div className="flex space-x-2">
-          {community?.hasJoined && <Invite community={community} />}
+          {community?.hasJoined ||
+            (currentUser?.id === community?.owner?.id && (
+              <Invite community={community} />
+            ))}
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
