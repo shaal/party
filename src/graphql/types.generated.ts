@@ -4493,6 +4493,7 @@ export type UserTipsQuery = {
               buymeacoffee?: string | null | undefined
               bitcoin?: string | null | undefined
               ethereum?: string | null | undefined
+              solana?: string | null | undefined
               user: { __typename?: 'User'; id: string }
             }
           | null
