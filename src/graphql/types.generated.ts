@@ -259,6 +259,7 @@ export type EditTipsInput = {
   ethereum?: Maybe<Scalars['String']>
   github?: Maybe<Scalars['String']>
   paypal?: Maybe<Scalars['String']>
+  solana?: Maybe<Scalars['String']>
 }
 
 export type EditUserInput = {
@@ -1190,6 +1191,7 @@ export type Tip = {
   github?: Maybe<Scalars['String']>
   id: Scalars['ID']
   paypal?: Maybe<Scalars['String']>
+  solana?: Maybe<Scalars['String']>
   user: User
 }
 
@@ -4440,6 +4442,7 @@ export type EditTipsSettingsMutation = {
     buymeacoffee?: string | null | undefined
     bitcoin?: string | null | undefined
     ethereum?: string | null | undefined
+    solana?: string | null | undefined
   }
 }
 
@@ -4461,6 +4464,7 @@ export type GetTipsSettingsQuery = {
               buymeacoffee?: string | null | undefined
               bitcoin?: string | null | undefined
               ethereum?: string | null | undefined
+              solana?: string | null | undefined
             }
           | null
           | undefined
@@ -4489,6 +4493,7 @@ export type UserTipsQuery = {
               buymeacoffee?: string | null | undefined
               bitcoin?: string | null | undefined
               ethereum?: string | null | undefined
+              solana?: string | null | undefined
               user: { __typename?: 'User'; id: string }
             }
           | null

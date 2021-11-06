@@ -11,6 +11,7 @@ builder.prismaObject('Tip', {
     buymeacoffee: t.exposeString('buymeacoffee', { nullable: true }),
     bitcoin: t.exposeString('bitcoin', { nullable: true }),
     ethereum: t.exposeString('ethereum', { nullable: true }),
+    solana: t.exposeString('solana', { nullable: true }),
 
     // Relations
     user: t.relation('user')
@@ -24,7 +25,8 @@ const EditTipsInput = builder.inputType('EditTipsInput', {
     github: t.string({ required: false, validate: { maxLength: 50 } }),
     buymeacoffee: t.string({ required: false, validate: { maxLength: 50 } }),
     bitcoin: t.string({ required: false, validate: { maxLength: 50 } }),
-    ethereum: t.string({ required: false, validate: { maxLength: 50 } })
+    ethereum: t.string({ required: false, validate: { maxLength: 50 } }),
+    solana: t.string({ required: false, validate: { maxLength: 50 } })
   })
 })
 
@@ -39,7 +41,8 @@ builder.mutationField('editTips', (t) =>
         github: input.github,
         buymeacoffee: input.buymeacoffee,
         bitcoin: input.bitcoin,
-        ethereum: input.ethereum
+        ethereum: input.ethereum,
+        solana: input.solana
       }
 
       return await db.tip.upsert({

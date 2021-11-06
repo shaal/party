@@ -21,6 +21,7 @@ const USER_TIPS_QUERY = gql`
         buymeacoffee
         bitcoin
         ethereum
+        solana
         user {
           id
         }
@@ -132,6 +133,18 @@ const TipsDetails: React.FC<Props> = ({ user }) => {
             >
               <div className="cursor-pointer">
                 <SingleTip icon="ethereum" text="Ethereum" />
+              </div>
+            </CopyToClipboard>
+          )}
+          {tip?.solana && (
+            <CopyToClipboard
+              text={tip?.solana}
+              onCopy={() => {
+                toast.success('Solana address copied!')
+              }}
+            >
+              <div className="cursor-pointer">
+                <SingleTip icon="solana" text="Solana" />
               </div>
             </CopyToClipboard>
           )}

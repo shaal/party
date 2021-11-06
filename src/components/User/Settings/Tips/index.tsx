@@ -17,6 +17,7 @@ export const TIPS_SETTINGS_QUERY = gql`
         buymeacoffee
         bitcoin
         ethereum
+        solana
       }
     }
   }
