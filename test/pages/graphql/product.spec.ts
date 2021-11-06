@@ -1,11 +1,6 @@
 import { expect, test } from '@playwright/test'
 
 test('get single product', async ({ request }) => {
-  // GraphQL Warmup
-  await request.get('/api/graphql', {
-    params: { warmup: true }
-  })
-
   const response = await request.post('/api/graphql', {
     data: {
       query: `{
