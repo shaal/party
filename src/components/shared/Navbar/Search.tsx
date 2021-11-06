@@ -1,5 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
+import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import useOnClickOutside from '@components/utils/hooks/useOnClickOutside'
 import { SearchTopicsQuery, SearchUsersQuery } from '@graphql/types.generated'
@@ -7,7 +8,7 @@ import React, { useRef, useState } from 'react'
 
 import UserProfile from '../UserProfile'
 
-const SEARCH_USERS_QUERY = gql`
+export const SEARCH_USERS_QUERY = gql`
   query SearchUsers($keyword: String!) {
     searchUsers(first: 10, keyword: $keyword) {
       edges {
@@ -59,9 +60,7 @@ const Search: React.FC = () => {
 
   return (
     <>
-      <input
-        className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-brand-500 focus:ring-brand-400 outline-none rounded-lg shadow-sm w-full py-1.5"
-        type="text"
+      <Input
         placeholder="Search Devparty..."
         value={searchText}
         onChange={handleSearch}
