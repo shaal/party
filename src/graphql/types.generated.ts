@@ -3271,11 +3271,11 @@ export type CreateProductMutation = {
     | undefined
 }
 
-export type ProductsQueryVariables = Exact<{
+export type GetProductsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type ProductsQuery = {
+export type GetProductsQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
@@ -3401,11 +3401,11 @@ export type ToggleProductSubscribeMutation = {
     | undefined
 }
 
-export type ProductQueryVariables = Exact<{
+export type GetProductQueryVariables = Exact<{
   slug: Scalars['String']
 }>
 
-export type ProductQuery = {
+export type GetProductQuery = {
   __typename?: 'Query'
   product: {
     __typename?: 'Product'
