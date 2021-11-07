@@ -4662,9 +4662,9 @@ export type ViewUserQuery = {
     | undefined
 }
 
-export type InviteCodeQueryVariables = Exact<{ [key: string]: never }>
+export type GetInviteCodeQueryVariables = Exact<{ [key: string]: never }>
 
-export type InviteCodeQuery = {
+export type GetInviteCodeQuery = {
   __typename?: 'Query'
   me?:
     | {

@@ -3,7 +3,7 @@ import Slug from '@components/shared/Slug'
 import { Button } from '@components/UI/Button'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  InviteCodeQuery,
+  GetInviteCodeQuery,
   RegenerateInviteMutation,
   RegenerateInviteMutationVariables
 } from '@graphql/types.generated'
@@ -11,8 +11,8 @@ import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
 import { STATIC_ASSETS } from 'src/constants'
 
-export const INVITE_CODE_QUERY = gql`
-  query InviteCode {
+export const GET_INVITE_CODE_QUERY = gql`
+  query GetInviteCode {
     me {
       id
       username
@@ -27,7 +27,7 @@ export const INVITE_CODE_QUERY = gql`
 `
 
 const InviteDetails: React.FC = () => {
-  const { data, loading } = useQuery<InviteCodeQuery>(INVITE_CODE_QUERY)
+  const { data, loading } = useQuery<GetInviteCodeQuery>(GET_INVITE_CODE_QUERY)
   const [regenerateInvite] = useMutation<
     RegenerateInviteMutation,
     RegenerateInviteMutationVariables
@@ -42,7 +42,7 @@ const InviteDetails: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: INVITE_CODE_QUERY }],
+      refetchQueries: [{ query: GET_INVITE_CODE_QUERY }],
       onError(error) {
         toast.error(error.message)
       },
