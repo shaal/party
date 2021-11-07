@@ -2201,9 +2201,9 @@ export type GetRecentProductsQuery = {
   }
 }
 
-export type WhoToFollowQueryVariables = Exact<{ [key: string]: never }>
+export type GetWhoToFollowQueryVariables = Exact<{ [key: string]: never }>
 
-export type WhoToFollowQuery = {
+export type GetWhoToFollowQuery = {
   __typename?: 'Query'
   whoToFollow: {
     __typename?: 'QueryWhoToFollowConnection'
