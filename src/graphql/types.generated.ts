@@ -3042,11 +3042,11 @@ export type TogglePostLikeMutation = {
   togglePostLike?: { __typename?: 'Post'; id: string } | null | undefined
 }
 
-export type PostQueryVariables = Exact<{
+export type GetPostQueryVariables = Exact<{
   id: Scalars['ID']
 }>
 
-export type PostQuery = {
+export type GetPostQuery = {
   __typename?: 'Query'
   post: {
     __typename?: 'Post'
