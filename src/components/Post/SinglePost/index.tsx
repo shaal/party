@@ -164,7 +164,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             </Link>
           </div>
         )}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between">
           <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`}>
             <a href={`/posts/${post?.id}`} className="text-sm cursor-pointer">
