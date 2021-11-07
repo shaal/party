@@ -17,7 +17,10 @@ tasks:
       export BASE_URL=`gp url 3000`
       yarn dev
 
-  - command: scripts/welcome.sh
+  - name: Welcome
+    command: |
+      clear
+      scripts/welcome.sh
 
 ports:
   - port: 3000 # Web app
