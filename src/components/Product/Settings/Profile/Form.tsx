@@ -40,7 +40,7 @@ interface Props {
 
 const SUCCESS_MESSAGE = 'Product successfully updated!'
 
-const ProductSettings: React.FC<Props> = ({ product }) => {
+const ProductSettingsForm: React.FC<Props> = ({ product }) => {
   const [avatar, setAvatar] = useState<string>()
   const [editProduct, editProductResult] = useMutation<
     EditProductSettingsMutation,
@@ -176,4 +176,4 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default ProductSettings
+export default ProductSettingsForm

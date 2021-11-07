@@ -5,7 +5,7 @@ import { GetProductSettingsQuery, Product } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 
-import ProductSettings from './ProductSettings'
+import ProductSettingsForm from './Form'
 
 export const PRODUCT_SETTINGS_QUERY = gql`
   query GetProductSettings($slug: String!) {
@@ -22,7 +22,7 @@ export const PRODUCT_SETTINGS_QUERY = gql`
   }
 `
 
-const Settings = () => {
+const ProductSettings = () => {
   const router = useRouter()
   const { currentUser } = useContext(AppContext)
   const { data, loading } = useQuery<GetProductSettingsQuery>(
@@ -41,7 +41,7 @@ const Settings = () => {
   if (product?.owner?.id !== currentUser?.id)
     return window.location.replace('/home')
 
-  return <ProductSettings product={product as Product} />
+  return <ProductSettingsForm product={product as Product} />
 }
 
-export default Settings
+export default ProductSettings
