@@ -4,13 +4,13 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
-import { FeaturedUsersQuery, User } from '@graphql/types.generated'
+import { GetFeaturedUsersQuery, User } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
-const FEATURED_USERS_QUERY = gql`
-  query FeaturedUsers {
+const GET_FEATURED_USERS_QUERY = gql`
+  query GetFeaturedUsers {
     featuredUsers {
       edges {
         node {
@@ -44,8 +44,8 @@ const FeaturedUsersCard: React.FC = ({ children }) => {
 }
 
 const FeaturedUsers: React.FC = () => {
-  const { data, loading, error } = useQuery<FeaturedUsersQuery>(
-    FEATURED_USERS_QUERY,
+  const { data, loading, error } = useQuery<GetFeaturedUsersQuery>(
+    GET_FEATURED_USERS_QUERY,
     {
       notifyOnNetworkStatusChange: true
     }

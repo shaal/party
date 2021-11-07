@@ -7,7 +7,7 @@ import UserCard from '@components/shared/UserCard'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import AppContext from '@components/utils/AppContext'
-import { Post, PostQuery, User } from '@graphql/types.generated'
+import { GetPostQuery, Post, User } from '@graphql/types.generated'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
@@ -23,8 +23,8 @@ const MintNFT = dynamic(() => import('./MintNFT'), {
   loading: () => <div className="shimmer w-full h-15 rounded-lg" />
 })
 
-export const POST_QUERY = gql`
-  query Post($id: ID!) {
+export const GET_POST_QUERY = gql`
+  query GetPost($id: ID!) {
     post(id: $id) {
       ...PostFragment
     }
@@ -35,7 +35,7 @@ export const POST_QUERY = gql`
 const ViewPost: React.FC = () => {
   const router = useRouter()
   const { currentUser, staffMode } = useContext(AppContext)
-  const { data, loading, error } = useQuery<PostQuery>(POST_QUERY, {
+  const { data, loading, error } = useQuery<GetPostQuery>(GET_POST_QUERY, {
     variables: { id: router.query.postId },
     skip: !router.isReady
   })

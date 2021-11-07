@@ -9,9 +9,9 @@ import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { humanize } from '@components/utils/humanize'
 import {
+  GetStaffUsersQuery,
   OnboardUserMutation,
-  OnboardUserMutationVariables,
-  StaffToolsUsersQuery
+  OnboardUserMutationVariables
 } from '@graphql/types.generated'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -21,8 +21,8 @@ import * as timeago from 'timeago.js'
 
 import Sidebar from './Sidebar'
 
-export const STAFF_TOOLS_USERS_QUERY = gql`
-  query StaffToolsUsers($after: String) {
+export const GET_STAFF_USERS_QUERY = gql`
+  query GetStaffUsers($after: String) {
     users(first: 5, after: $after) {
       pageInfo {
         endCursor
@@ -68,8 +68,8 @@ export const STAFF_TOOLS_USERS_QUERY = gql`
 `
 
 const StaffToolsUsers: React.FC = () => {
-  const { data, loading, error, fetchMore } = useQuery<StaffToolsUsersQuery>(
-    STAFF_TOOLS_USERS_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetStaffUsersQuery>(
+    GET_STAFF_USERS_QUERY,
     {
       variables: {
         after: null

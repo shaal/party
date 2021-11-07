@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import {
-  NewReplyMutation,
-  NewReplyMutationVariables,
+  CreateReplyMutation,
+  CreateReplyMutationVariables,
   Post
 } from '@graphql/types.generated'
 import { ReplyIcon } from '@heroicons/react/outline'
@@ -18,9 +18,9 @@ import { object, string } from 'zod'
 
 import Attachment from '../NewPost/Attachment'
 import Attachments from '../SinglePost/Attachments'
-import { REPLIES_QUERY } from './Replies'
+import { GET_REPLIES_QUERY } from './Replies'
 
-const newReplySchema = object({
+const createReplySchema = object({
   body: string()
     .min(1, { message: '💬 Reply should not be empty' })
     .max(10000, { message: '💬 Reply should not exceed 10000 characters' })
@@ -32,12 +32,12 @@ interface Props {
 
 const NewReply: React.FC<Props> = ({ post }) => {
   const [attachments, setAttachments] = useState<string[]>([])
-  const [createPost, createPostResult] = useMutation<
-    NewReplyMutation,
-    NewReplyMutationVariables
+  const [createReply, createReplyResult] = useMutation<
+    CreateReplyMutation,
+    CreateReplyMutationVariables
   >(
     gql`
-      mutation NewReply($input: CreatePostInput!) {
+      mutation CreateReply($input: CreatePostInput!) {
         createPost(input: $input) {
           id
           body
@@ -47,7 +47,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
     {
       refetchQueries: [
         {
-          query: REPLIES_QUERY,
+          query: GET_REPLIES_QUERY,
           variables: { id: post?.id }
         }
       ],
@@ -63,7 +63,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
   )
 
   const form = useZodForm({
-    schema: newReplySchema
+    schema: createReplySchema
   })
 
   return (
@@ -73,7 +73,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
           form={form}
           className="space-y-1"
           onSubmit={({ body }) =>
-            createPost({
+            createReply({
               variables: {
                 input: {
                   parentId: post?.id,
@@ -88,7 +88,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
         >
           <ErrorMessage
             title="Failed to create reply"
-            error={createPostResult.error}
+            error={createReplyResult.error}
           />
           <TextArea {...form.register('body')} placeholder="Post your reply" />
           <div className="flex justify-between items-center">

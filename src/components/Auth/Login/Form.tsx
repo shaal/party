@@ -5,10 +5,7 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { useAuthRedirect } from '@components/utils/hooks/useAuthRedirect'
-import {
-  LoginFormMutation,
-  LoginFormMutationVariables
-} from '@graphql/types.generated'
+import { LoginMutation, LoginMutationVariables } from '@graphql/types.generated'
 import { LogoutIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -33,11 +30,11 @@ const LoginForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
   const router = useRouter()
   const [loginUser, loginResult] = useMutation<
-    LoginFormMutation,
-    LoginFormMutationVariables
+    LoginMutation,
+    LoginMutationVariables
   >(
     gql`
-      mutation LoginForm($input: LoginInput!) {
+      mutation Login($input: LoginInput!) {
         login(input: $input) {
           id
           inWaitlist

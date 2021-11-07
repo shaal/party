@@ -4,7 +4,7 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
-import { Log, LogsSettingsQuery } from '@graphql/types.generated'
+import { GetLogsQuery, Log } from '@graphql/types.generated'
 import { ClipboardListIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
@@ -12,8 +12,8 @@ import useInView from 'react-cool-inview'
 import Sidebar from '../Sidebar'
 import SingleLog from './SingleLog'
 
-export const LOGS_SETTINGS_QUERY = gql`
-  query LogsSettings($after: String) {
+export const GET_LOGS_QUERY = gql`
+  query GetLogs($after: String) {
     logs(first: 10, after: $after) {
       pageInfo {
         endCursor
@@ -40,12 +40,9 @@ export const LOGS_SETTINGS_QUERY = gql`
 `
 
 const LogsSettings: React.FC = () => {
-  const { data, loading, fetchMore } = useQuery<LogsSettingsQuery>(
-    LOGS_SETTINGS_QUERY,
-    {
-      variables: { after: null }
-    }
-  )
+  const { data, loading, fetchMore } = useQuery<GetLogsQuery>(GET_LOGS_QUERY, {
+    variables: { after: null }
+  })
   const logs = data?.logs?.edges?.map((edge) => edge?.node)
   const pageInfo = data?.logs?.pageInfo
 

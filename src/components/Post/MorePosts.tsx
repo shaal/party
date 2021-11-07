@@ -2,13 +2,13 @@ import { gql, useQuery } from '@apollo/client'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { MorePostsByUserQuery, Post } from '@graphql/types.generated'
+import { GetMorePostsByUserQuery, Post } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
-export const MORE_POSTS_BY_USER_QUERY = gql`
-  query MorePostsByUser($userId: ID!, $type: String!) {
+export const GET_MORE_POSTS_BY_USER_QUERY = gql`
+  query GetMorePostsByUser($userId: ID!, $type: String!) {
     morePostsByUser(userId: $userId, type: $type) {
       edges {
         node {
@@ -53,8 +53,8 @@ const MorePostsCard = ({
 }
 
 const MorePosts: React.FC<Props> = ({ post }) => {
-  const { data, error } = useQuery<MorePostsByUserQuery>(
-    MORE_POSTS_BY_USER_QUERY,
+  const { data, error } = useQuery<GetMorePostsByUserQuery>(
+    GET_MORE_POSTS_BY_USER_QUERY,
     {
       variables: {
         userId: post?.user?.id,

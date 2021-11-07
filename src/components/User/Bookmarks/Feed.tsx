@@ -4,14 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { BookmarkFeedQuery, Post } from '@graphql/types.generated'
+import { GetBookmarkFeedQuery, Post } from '@graphql/types.generated'
 import { BookmarkIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
-const BOOKMARK_FEED_QUERY = gql`
-  query BookmarkFeed($after: String) {
+const GET_BOOKMARK_FEED_QUERY = gql`
+  query GetBookmarkFeed($after: String) {
     me {
       id
       bookmarks(first: 10, after: $after) {
@@ -34,8 +34,8 @@ const BOOKMARK_FEED_QUERY = gql`
 `
 const BookmarkFeed: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error, fetchMore } = useQuery<BookmarkFeedQuery>(
-    BOOKMARK_FEED_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetBookmarkFeedQuery>(
+    GET_BOOKMARK_FEED_QUERY,
     {
       variables: { after: null },
       skip: !router.isReady

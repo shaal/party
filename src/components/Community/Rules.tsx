@@ -4,11 +4,11 @@ import 'linkify-plugin-mention'
 import { gql, useQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
-import { Community, CommunityRulesQuery } from '@graphql/types.generated'
+import { Community, GetCommunityRulesQuery } from '@graphql/types.generated'
 import { ScaleIcon } from '@heroicons/react/outline'
 
-export const COMMUNITY_RULES_QUERY = gql`
-  query CommunityRules($slug: String!) {
+export const GET_COMMUNITY_RULES_QUERY = gql`
+  query GetCommunityRules($slug: String!) {
     community(slug: $slug) {
       id
       rules {
@@ -30,8 +30,8 @@ interface Props {
 }
 
 const Rules: React.FC<Props> = ({ community, showCardAndHeading = true }) => {
-  const { data, loading } = useQuery<CommunityRulesQuery>(
-    COMMUNITY_RULES_QUERY,
+  const { data, loading } = useQuery<GetCommunityRulesQuery>(
+    GET_COMMUNITY_RULES_QUERY,
     {
       variables: { slug: community?.slug },
       skip: !community?.slug

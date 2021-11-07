@@ -8,9 +8,7 @@ const redis = new Redis(process.env.REDIS_URL)
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { owner, repo, id, warmup } = req.query
 
-  if (warmup) {
-    return res.status(200).json({ status: 'Warmed up!' })
-  }
+  if (warmup) return res.status(200).json({ status: 'Warmed up!' })
 
   if (owner && repo && id) {
     try {

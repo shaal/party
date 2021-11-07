@@ -3,12 +3,12 @@ import ProductProfile from '@components/shared/ProductProfile'
 import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
-import { Product, RecentProductsQuery } from '@graphql/types.generated'
+import { GetRecentProductsQuery, Product } from '@graphql/types.generated'
 import { CubeIcon } from '@heroicons/react/solid'
 import React from 'react'
 
-export const RECENT_PRODUCTS_QUERY = gql`
-  query RecentProducts {
+export const GET_RECENT_PRODUCTS_QUERY = gql`
+  query GetRecentProducts {
     products(first: 5) {
       edges {
         node {
@@ -37,8 +37,8 @@ const RecentProductsCard: React.FC = ({ children }) => {
 }
 
 const RecentProducts: React.FC = () => {
-  const { data, loading, error } = useQuery<RecentProductsQuery>(
-    RECENT_PRODUCTS_QUERY
+  const { data, loading, error } = useQuery<GetRecentProductsQuery>(
+    GET_RECENT_PRODUCTS_QUERY
   )
   const products = data?.products?.edges?.map((edge) => edge?.node)
 

@@ -9,9 +9,9 @@ import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import {
+  GetStaffReportsQuery,
   ResolveReportMutation,
-  ResolveReportMutationVariables,
-  StaffToolsReportsQuery
+  ResolveReportMutationVariables
 } from '@graphql/types.generated'
 import {
   CheckCircleIcon,
@@ -25,11 +25,12 @@ import useInView from 'react-cool-inview'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE } from 'src/constants'
 
+import { GET_STAFF_STATS_QUERY } from '.'
 import ReportEntity from './ReportEntity'
 import Sidebar from './Sidebar'
 
-export const STAFF_TOOLS_REPORTS_QUERY = gql`
-  query StaffToolsReports($after: String) {
+export const GET_STAFF_REPORTS_QUERY = gql`
+  query GetStaffReports($after: String) {
     reports(first: 10, after: $after) {
       pageInfo {
         endCursor
@@ -54,8 +55,8 @@ export const STAFF_TOOLS_REPORTS_QUERY = gql`
 `
 
 const StaffToolsReports: React.FC = () => {
-  const { data, loading, error, fetchMore } = useQuery<StaffToolsReportsQuery>(
-    STAFF_TOOLS_REPORTS_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetStaffReportsQuery>(
+    GET_STAFF_REPORTS_QUERY,
     { variables: { after: null } }
   )
   const reports = data?.reports?.edges?.map((edge) => edge?.node)
@@ -71,7 +72,7 @@ const StaffToolsReports: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: STAFF_TOOLS_REPORTS_QUERY }]
+      refetchQueries: [{ query: GET_STAFF_STATS_QUERY }]
     }
   )
 

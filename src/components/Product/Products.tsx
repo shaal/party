@@ -7,7 +7,7 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { Product, ProductsQuery } from '@graphql/types.generated'
+import { GetProductsQuery, Product } from '@graphql/types.generated'
 import { CubeIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -16,8 +16,8 @@ import useInView from 'react-cool-inview'
 
 const Footer = dynamic(() => import('@components/shared/Footer'))
 
-export const PRODUCTS_QUERY = gql`
-  query Products($after: String) {
+export const GET_PRODUCTS_QUERY = gql`
+  query GetProducts($after: String) {
     products(first: 10, after: $after) {
       pageInfo {
         endCursor
@@ -37,8 +37,8 @@ export const PRODUCTS_QUERY = gql`
 `
 
 const Products: React.FC = () => {
-  const { data, loading, error, fetchMore } = useQuery<ProductsQuery>(
-    PRODUCTS_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetProductsQuery>(
+    GET_PRODUCTS_QUERY,
     { variables: { after: null } }
   )
   const products = data?.products?.edges?.map((edge) => edge?.node)

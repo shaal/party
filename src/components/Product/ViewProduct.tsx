@@ -3,7 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
-import { Product, ProductQuery } from '@graphql/types.generated'
+import { GetProductQuery, Product } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
@@ -11,8 +11,8 @@ import Custom404 from 'src/pages/404'
 import Details from './Details'
 import ProductFeed from './Feed'
 
-export const PRODUCT_QUERY = gql`
-  query Product($slug: String!) {
+export const GET_PRODUCT_QUERY = gql`
+  query GetProduct($slug: String!) {
     product(slug: $slug) {
       id
       name
@@ -41,10 +41,13 @@ export const PRODUCT_QUERY = gql`
 
 const ViewProduct: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ProductQuery>(PRODUCT_QUERY, {
-    variables: { slug: router.query.slug },
-    skip: !router.isReady
-  })
+  const { data, loading, error } = useQuery<GetProductQuery>(
+    GET_PRODUCT_QUERY,
+    {
+      variables: { slug: router.query.slug },
+      skip: !router.isReady
+    }
+  )
   const product = data?.product
 
   if (!router.isReady || loading)

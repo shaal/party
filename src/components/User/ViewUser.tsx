@@ -4,7 +4,7 @@ import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { User, ViewUserQuery } from '@graphql/types.generated'
+import { GetUserQuery, User } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
@@ -54,8 +54,8 @@ export const UserFragment = gql`
   }
 `
 
-export const VIEW_USER_QUERY = gql`
-  query ViewUser($username: String!) {
+export const GET_USER_QUERY = gql`
+  query GetUser($username: String!) {
     user(username: $username) {
       ...UserFragment
     }
@@ -65,7 +65,7 @@ export const VIEW_USER_QUERY = gql`
 
 const ViewUser: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ViewUserQuery>(VIEW_USER_QUERY, {
+  const { data, loading, error } = useQuery<GetUserQuery>(GET_USER_QUERY, {
     variables: { username: router.query.username },
     skip: !router.isReady
   })

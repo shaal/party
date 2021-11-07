@@ -10,13 +10,13 @@ import PostShimmer from '@components/shared/Shimmer/PostShimmer'
 import UserProfileShimmer from '@components/shared/Shimmer/UserProfileShimmer'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
-import { CommunitiesQuery } from '@graphql/types.generated'
+import { GetCommunitiesQuery } from '@graphql/types.generated'
 import { CubeIcon, FireIcon, TrendingUpIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
-export const COMMUNITIES_QUERY = gql`
-  query Communities {
+export const GET_COMMUNITIES_QUERY = gql`
+  query GetCommunities {
     products {
       edges {
         node {
@@ -32,7 +32,7 @@ export const COMMUNITIES_QUERY = gql`
 `
 
 const Communities: React.FC = () => {
-  const { loading } = useQuery<CommunitiesQuery>(COMMUNITIES_QUERY)
+  const { loading } = useQuery<GetCommunitiesQuery>(GET_COMMUNITIES_QUERY)
 
   if (loading)
     return (

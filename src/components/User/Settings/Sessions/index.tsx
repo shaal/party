@@ -4,15 +4,15 @@ import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
-import { Session, SessionsSettingsQuery } from '@graphql/types.generated'
+import { GetSessionsQuery, Session } from '@graphql/types.generated'
 import React from 'react'
 import useInView from 'react-cool-inview'
 
 import Sidebar from '../Sidebar'
 import SingleSession from './SingleSession'
 
-export const SESSION_SETTINGS_QUERY = gql`
-  query SessionsSettings($after: String) {
+export const GET_SESSION_QUERY = gql`
+  query GetSessions($after: String) {
     sessions(first: 10, after: $after) {
       pageInfo {
         endCursor
@@ -43,8 +43,8 @@ export const SESSION_SETTINGS_QUERY = gql`
 `
 
 const SessionsSettings: React.FC = () => {
-  const { data, loading, error, fetchMore } = useQuery<SessionsSettingsQuery>(
-    SESSION_SETTINGS_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetSessionsQuery>(
+    GET_SESSION_QUERY,
     { variables: { after: null } }
   )
   const sessions = data?.sessions?.edges?.map((edge) => edge?.node)

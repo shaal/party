@@ -8,7 +8,7 @@ import {
 import DevpartySEO from '@components/shared/SEO'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
-import { Community, ViewCommunityQuery } from '@graphql/types.generated'
+import { Community, GetCommunityQuery } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
@@ -17,8 +17,8 @@ import Details from './Details'
 import CommunityFeed from './Feed'
 import Rules from './Rules'
 
-export const VIEW_COMMUNITY_QUERY = gql`
-  query ViewCommunity($slug: String!) {
+export const GET_COMMUNITY_QUERY = gql`
+  query GetCommunity($slug: String!) {
     community(slug: $slug) {
       id
       name
@@ -47,8 +47,8 @@ export const VIEW_COMMUNITY_QUERY = gql`
 
 const ViewCommunity: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ViewCommunityQuery>(
-    VIEW_COMMUNITY_QUERY,
+  const { data, loading, error } = useQuery<GetCommunityQuery>(
+    GET_COMMUNITY_QUERY,
     {
       variables: { slug: router.query.slug },
       skip: !router.isReady

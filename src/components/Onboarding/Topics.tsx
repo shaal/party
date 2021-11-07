@@ -5,14 +5,14 @@ import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
-import { OnboardingTopicsQuery, Topic } from '@graphql/types.generated'
+import { GetOnboardingTopicsQuery, Topic } from '@graphql/types.generated'
 import { ArrowCircleRightIcon, ArrowLeftIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-export const ONBOARDING_TOPICS_QUERY = gql`
-  query OnboardingTopics($after: String) {
+export const GET_ONBOARDING_TOPICS_QUERY = gql`
+  query GetOnboardingTopics($after: String) {
     featuredTopics(first: 50, after: $after) {
       edges {
         node {
@@ -33,8 +33,8 @@ export const ONBOARDING_TOPICS_QUERY = gql`
 const Topics: React.FC = () => {
   const router = useRouter()
   const [showSkip, setShowSkip] = useState<boolean>(true)
-  const { data, loading, error } = useQuery<OnboardingTopicsQuery>(
-    ONBOARDING_TOPICS_QUERY,
+  const { data, loading, error } = useQuery<GetOnboardingTopicsQuery>(
+    GET_ONBOARDING_TOPICS_QUERY,
     { variables: { after: null } }
   )
   const topics = data?.featuredTopics?.edges?.map((edge) => edge?.node)

@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditIntegrationSettingsMutation,
-  EditIntegrationSettingsMutationVariables,
+  EditIntegrationMutation,
+  EditIntegrationMutationVariables,
   Integration
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -37,11 +37,11 @@ const SUCCESS_MESSAGE = 'Integration settings successfully updated!'
 
 const IntegrationSettingsForm: React.FC<Props> = ({ integration }) => {
   const [editIntegration] = useMutation<
-    EditIntegrationSettingsMutation,
-    EditIntegrationSettingsMutationVariables
+    EditIntegrationMutation,
+    EditIntegrationMutationVariables
   >(
     gql`
-      mutation EditIntegrationSettings($input: EditIntegrationInput!) {
+      mutation EditIntegration($input: EditIntegrationInput!) {
         editIntegration(input: $input) {
           id
           wakatimeAPIKey

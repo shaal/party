@@ -4,13 +4,13 @@ import UserProfile from '@components/shared/UserProfile'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
-import { User, WhoToFollowQuery } from '@graphql/types.generated'
+import { GetWhoToFollowQuery, User } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { RefreshIcon, SparklesIcon } from '@heroicons/react/solid'
 import React from 'react'
 
-const WHO_TO_FOLLOW_QUERY = gql`
-  query WhoToFollow {
+const GET_WHO_TO_FOLLOW_QUERY = gql`
+  query GetWhoToFollow {
     whoToFollow {
       edges {
         node {
@@ -54,8 +54,8 @@ const WhoToFollowCard: React.FC<Props> = ({ children, refetch }) => {
 }
 
 const WhoToFollow: React.FC = () => {
-  const { data, loading, error, refetch } = useQuery<WhoToFollowQuery>(
-    WHO_TO_FOLLOW_QUERY,
+  const { data, loading, error, refetch } = useQuery<GetWhoToFollowQuery>(
+    GET_WHO_TO_FOLLOW_QUERY,
     {
       notifyOnNetworkStatusChange: true
     }

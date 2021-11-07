@@ -4,14 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { HomeFeedQuery, Post } from '@graphql/types.generated'
+import { GetHomeFeedQuery, Post } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import { POLLING_INTERVAL } from 'src/constants'
 
-export const HOME_FEED_QUERY = gql`
-  query HomeFeed($after: String, $type: String!) {
+export const GET_HOME_FEED_QUERY = gql`
+  query GetHomeFeed($after: String, $type: String!) {
     posts: homeFeed(first: 10, after: $after, type: $type) {
       pageInfo {
         endCursor
@@ -32,8 +32,8 @@ interface Props {
 }
 
 const HomeFeed: React.FC<Props> = ({ feedType }) => {
-  const { data, loading, error, fetchMore } = useQuery<HomeFeedQuery>(
-    HOME_FEED_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetHomeFeedQuery>(
+    GET_HOME_FEED_QUERY,
     {
       variables: {
         after: null,
