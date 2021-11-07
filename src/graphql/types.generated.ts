@@ -2732,11 +2732,11 @@ export type CreateTaskMutation = {
   createPost: { __typename?: 'Post'; id: string; body: string }
 }
 
-export type NewReplyMutationVariables = Exact<{
+export type CreateReplyMutationVariables = Exact<{
   input: CreatePostInput
 }>
 
-export type NewReplyMutation = {
+export type CreateReplyMutation = {
   __typename?: 'Mutation'
   createPost: { __typename?: 'Post'; id: string; body: string }
 }
