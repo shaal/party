@@ -42,8 +42,8 @@ const Details: React.FC<Props> = ({ product }) => {
           {currentUser?.id !== product?.owner?.id ? (
             <Subscribe product={product} showText />
           ) : (
-            <Link href={`/products/${product?.slug}/settings`}>
-              <a href={`/products/${product?.slug}/settings`}>
+            <Link href={`/products/${product?.slug}/settings/profile`}>
+              <a href={`/products/${product?.slug}/settings/profile`}>
                 <Button
                   size="md"
                   variant="success"
