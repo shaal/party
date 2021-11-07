@@ -4271,11 +4271,9 @@ export type EditIntegrationSettingsMutation = {
   }
 }
 
-export type GetIntegrationSettingsQueryVariables = Exact<{
-  [key: string]: never
-}>
+export type GetIntegrationQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetIntegrationSettingsQuery = {
+export type GetIntegrationQuery = {
   __typename?: 'Query'
   integration?:
     | {
@@ -4289,11 +4287,11 @@ export type GetIntegrationSettingsQuery = {
     | undefined
 }
 
-export type LogsSettingsQueryVariables = Exact<{
+export type GetLogsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type LogsSettingsQuery = {
+export type GetLogsQuery = {
   __typename?: 'Query'
   logs: {
     __typename?: 'QueryLogsConnection'

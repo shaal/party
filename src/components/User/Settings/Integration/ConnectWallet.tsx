@@ -11,7 +11,7 @@ import { ethers } from 'ethers'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { GET_INTEGRATION_SETTINGS_QUERY } from '.'
+import { GET_INTEGRATION_QUERY } from '.'
 
 interface Props {
   integration: Integration
@@ -32,7 +32,7 @@ const ConnectWallet: React.FC<Props> = ({ integration }) => {
       }
     `,
     {
-      refetchQueries: [{ query: GET_INTEGRATION_SETTINGS_QUERY }],
+      refetchQueries: [{ query: GET_INTEGRATION_QUERY }],
       onError() {
         setError(true)
       },
