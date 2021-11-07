@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditSocialSettingsMutation,
-  EditSocialSettingsMutationVariables,
+  EditSocialMutation,
+  EditSocialMutationVariables,
   User
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -44,11 +44,11 @@ const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [editSocial] = useMutation<
-    EditSocialSettingsMutation,
-    EditSocialSettingsMutationVariables
+    EditSocialMutation,
+    EditSocialMutationVariables
   >(
     gql`
-      mutation EditSocialSettings($input: EditSocialInput!) {
+      mutation EditSocial($input: EditSocialInput!) {
         editSocial(input: $input) {
           profile {
             id

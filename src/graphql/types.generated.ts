@@ -4257,11 +4257,11 @@ export type WalletSettingsMutation = {
   }
 }
 
-export type EditIntegrationSettingsMutationVariables = Exact<{
+export type EditIntegrationMutationVariables = Exact<{
   input: EditIntegrationInput
 }>
 
-export type EditIntegrationSettingsMutation = {
+export type EditIntegrationMutation = {
   __typename?: 'Mutation'
   editIntegration: {
     __typename?: 'Integration'
@@ -4323,11 +4323,11 @@ export type GetLogsQuery = {
   }
 }
 
-export type ProfileSettingsMutationVariables = Exact<{
+export type EditProfileMutationVariables = Exact<{
   input: EditUserInput
 }>
 
-export type ProfileSettingsMutation = {
+export type EditProfileMutation = {
   __typename?: 'Mutation'
   editUser: {
     __typename?: 'User'
@@ -4395,11 +4395,11 @@ export type GetProfileSettingsQuery = {
     | undefined
 }
 
-export type ChangePasswordMutationVariables = Exact<{
+export type EditPasswordMutationVariables = Exact<{
   input: ChangePasswordInput
 }>
 
-export type ChangePasswordMutation = {
+export type EditPasswordMutation = {
   __typename?: 'Mutation'
   changePassword: Result
 }
@@ -4460,11 +4460,11 @@ export type GetSessionsQuery = {
     | undefined
 }
 
-export type EditSocialSettingsMutationVariables = Exact<{
+export type EditSocialMutationVariables = Exact<{
   input: EditSocialInput
 }>
 
-export type EditSocialSettingsMutation = {
+export type EditSocialMutation = {
   __typename?: 'Mutation'
   editSocial: {
     __typename?: 'User'
@@ -4519,9 +4519,9 @@ export type EditTipsSettingsMutation = {
   }
 }
 
-export type GetTipsSettingsQueryVariables = Exact<{ [key: string]: never }>
+export type GetTipsQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetTipsSettingsQuery = {
+export type GetTipsQuery = {
   __typename?: 'Query'
   me?:
     | {
