@@ -6,7 +6,7 @@ const PostShimmer: React.FC = () => {
   return (
     <Card>
       <CardBody className="space-y-4">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between">
           <UserProfileShimmer />
           <div className="shimmer h-3 w-20 rounded-md" />
         </div>

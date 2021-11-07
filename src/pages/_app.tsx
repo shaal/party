@@ -24,6 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <SiteLayout>
           <NextNprogress
             color="#8B5CF6"
+            height={2}
             options={{ showSpinner: false }}
             showOnShallow
           />

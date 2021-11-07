@@ -11,11 +11,11 @@ import {
   CubeIcon,
   DatabaseIcon,
   ExternalLinkIcon,
-  FlagIcon,
   HashtagIcon,
   HeartIcon,
   IdentificationIcon,
   LoginIcon,
+  ShieldExclamationIcon,
   UserIcon,
   UsersIcon
 } from '@heroicons/react/outline'
@@ -116,7 +116,7 @@ const StaffToolsDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-1.5">
-                <FlagIcon className="h-4 w-4" />
+                <ShieldExclamationIcon className="h-4 w-4" />
                 <div>
                   <span className="font-bold">{stats?.reports}</span> Reports
                 </div>
