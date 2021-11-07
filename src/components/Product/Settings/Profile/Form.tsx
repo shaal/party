@@ -10,8 +10,8 @@ import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { TextArea } from '@components/UI/TextArea'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import {
-  EditProductSettingsMutation,
-  EditProductSettingsMutationVariables,
+  EditProductProfileSettingsMutation,
+  EditProductProfileSettingsMutationVariables,
   Product
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -44,12 +44,12 @@ const SUCCESS_MESSAGE = 'Product successfully updated!'
 const ProductSettingsForm: React.FC<Props> = ({ product }) => {
   const [avatar, setAvatar] = useState<string>()
   const [editProduct, editProductResult] = useMutation<
-    EditProductSettingsMutation,
-    EditProductSettingsMutationVariables
+    EditProductProfileSettingsMutation,
+    EditProductProfileSettingsMutationVariables
   >(
     gql`
-      mutation EditProductSettings($input: EditProductInput!) {
-        editProduct(input: $input) {
+      mutation EditProductProfileSettings($input: EditProductProfileInput!) {
+        editProductProfile(input: $input) {
           id
           slug
           name

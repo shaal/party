@@ -99,7 +99,7 @@ builder.mutationField('createProduct', (t) =>
   })
 )
 
-const EditProductInput = builder.inputType('EditProductInput', {
+const EditProductProfileInput = builder.inputType('EditProductProfileInput', {
   fields: (t) => ({
     id: t.id({ validate: { uuid: true } }),
     slug: t.string({
@@ -111,22 +111,15 @@ const EditProductInput = builder.inputType('EditProductInput', {
       validate: { minLength: 2, maxLength: 50 }
     }),
     description: t.string({ required: false, validate: { maxLength: 255 } }),
-    avatar: t.string({ required: false }),
-    website: t.string({
-      required: false,
-      validate: { maxLength: 100, url: true }
-    }),
-    twitter: t.string({ required: false, validate: { maxLength: 50 } }),
-    github: t.string({ required: false, validate: { maxLength: 50 } }),
-    discord: t.string({ required: false, validate: { maxLength: 50 } })
+    avatar: t.string({ required: false })
   })
 })
 
 // TODO: Split to function
-builder.mutationField('editProduct', (t) =>
+builder.mutationField('editProductProfile', (t) =>
   t.prismaField({
     type: 'Product',
-    args: { input: t.arg({ type: EditProductInput }) },
+    args: { input: t.arg({ type: EditProductProfileInput }) },
     authScopes: { user: true },
     nullable: true,
     resolve: async (query, parent, { input }) => {
