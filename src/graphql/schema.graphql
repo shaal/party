@@ -170,16 +170,12 @@ input EditPostInput {
   id: ID!
 }
 
-input EditProductInput {
+input EditProductProfileInput {
   avatar: String
   description: String
-  discord: String
-  github: String
   id: ID!
   name: String!
   slug: String!
-  twitter: String
-  website: String
 }
 
 input EditProductSocialInput {
@@ -298,7 +294,7 @@ type Mutation {
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User
   editPost(input: EditPostInput!): Post!
-  editProduct(input: EditProductInput!): Product
+  editProductProfile(input: EditProductProfileInput!): Product
   editProductSocial(input: EditProductSocialInput!): Product
   editSocial(input: EditSocialInput!): User!
   editTips(input: EditTipsInput!): Tip!

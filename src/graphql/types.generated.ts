@@ -237,16 +237,12 @@ export type EditPostInput = {
   id: Scalars['ID']
 }
 
-export type EditProductInput = {
+export type EditProductProfileInput = {
   avatar?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  discord?: Maybe<Scalars['String']>
-  github?: Maybe<Scalars['String']>
   id: Scalars['ID']
   name: Scalars['String']
   slug: Scalars['String']
-  twitter?: Maybe<Scalars['String']>
-  website?: Maybe<Scalars['String']>
 }
 
 export type EditProductSocialInput = {
@@ -370,7 +366,7 @@ export type Mutation = {
   editIntegration: Integration
   editNFTAvatar?: Maybe<User>
   editPost: Post
-  editProduct?: Maybe<Product>
+  editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
   editSocial: User
   editTips: Tip
@@ -447,8 +443,8 @@ export type MutationEditPostArgs = {
   input: EditPostInput
 }
 
-export type MutationEditProductArgs = {
-  input: EditProductInput
+export type MutationEditProductProfileArgs = {
+  input: EditProductProfileInput
 }
 
 export type MutationEditProductSocialArgs = {
@@ -3291,13 +3287,13 @@ export type ProductsQuery = {
   }
 }
 
-export type EditProductSettingsMutationVariables = Exact<{
-  input: EditProductInput
+export type EditProductProfileSettingsMutationVariables = Exact<{
+  input: EditProductProfileInput
 }>
 
-export type EditProductSettingsMutation = {
+export type EditProductProfileSettingsMutation = {
   __typename?: 'Mutation'
-  editProduct?:
+  editProductProfile?:
     | {
         __typename?: 'Product'
         id: string
