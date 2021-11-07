@@ -3453,11 +3453,11 @@ export type CurrentUserQuery = {
     | undefined
 }
 
-export type StaffToolsReportsQueryVariables = Exact<{
+export type GetStaffReportsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type StaffToolsReportsQuery = {
+export type GetStaffReportsQuery = {
   __typename?: 'Query'
   reports: {
     __typename?: 'QueryReportsConnection'
@@ -3493,11 +3493,11 @@ export type ResolveReportMutation = {
   resolveReport?: Result | null | undefined
 }
 
-export type StaffToolsUsersQueryVariables = Exact<{
+export type GetStaffUsersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type StaffToolsUsersQuery = {
+export type GetStaffUsersQuery = {
   __typename?: 'Query'
   users: {
     __typename?: 'QueryUsersConnection'
