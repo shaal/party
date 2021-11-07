@@ -88,6 +88,7 @@ export type Community = {
   createdAt: Scalars['DateTime']
   description?: Maybe<Scalars['String']>
   hasJoined: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   members: CommunityMembersConnection
   moderators: CommunityModeratorsConnection
@@ -297,6 +298,7 @@ export type Integration = {
 export type Invite = {
   __typename?: 'Invite'
   code?: Maybe<Scalars['String']>
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   usedTimes?: Maybe<Scalars['Int']>
   user: User
@@ -619,6 +621,7 @@ export type Post = {
   done: Scalars['Boolean']
   hasBookmarked: Scalars['Boolean']
   hasLiked: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   likes: PostLikesConnection
   nft?: Maybe<Nft>
@@ -681,6 +684,7 @@ export type Product = {
   discord?: Maybe<Scalars['String']>
   github?: Maybe<Scalars['String']>
   hasSubscribed: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   name: Scalars['String']
   owner: User
@@ -1246,6 +1250,7 @@ export type Topic = {
   description?: Maybe<Scalars['String']>
   featuredAt?: Maybe<Scalars['DateTime']>
   hasStarred: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   image?: Maybe<Scalars['String']>
   name: Scalars['String']
@@ -1306,6 +1311,7 @@ export type User = {
   hasFollowed: Scalars['Boolean']
   hasSpotifyIntegration: Scalars['Boolean']
   hasWakatimeIntegration: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   inWaitlist: Scalars['Boolean']
   integrations?: Maybe<Integration>
@@ -4670,6 +4676,7 @@ export type InviteCodeQuery = {
               __typename?: 'Invite'
               id: string
               code?: string | null | undefined
+              htmlUrl: string
               usedTimes?: number | null | undefined
             }
           | null

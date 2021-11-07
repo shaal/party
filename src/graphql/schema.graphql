@@ -55,6 +55,7 @@ type Community {
   createdAt: DateTime!
   description: String
   hasJoined: Boolean!
+  htmlUrl: String!
   id: ID!
   members(after: String, before: String, first: Int, last: Int): CommunityMembersConnection!
   moderators(after: String, before: String, first: Int, last: Int): CommunityModeratorsConnection!
@@ -228,6 +229,7 @@ type Integration {
 
 type Invite {
   code: String
+  htmlUrl: String!
   id: ID!
   usedTimes: Int
   user: User!
@@ -388,6 +390,7 @@ type Post {
   done: Boolean!
   hasBookmarked: Boolean!
   hasLiked: Boolean!
+  htmlUrl: String!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   nft: NFT
@@ -431,6 +434,7 @@ type Product {
   discord: String
   github: String
   hasSubscribed: Boolean!
+  htmlUrl: String!
   id: ID!
   name: String!
   owner: User!
@@ -783,6 +787,7 @@ type Topic {
   description: String
   featuredAt: DateTime
   hasStarred: Boolean!
+  htmlUrl: String!
   id: ID!
   image: String
   name: String!
@@ -824,6 +829,7 @@ type User {
   hasFollowed: Boolean!
   hasSpotifyIntegration: Boolean!
   hasWakatimeIntegration: Boolean!
+  htmlUrl: String!
   id: ID!
   inWaitlist: Boolean!
   integrations: Integration

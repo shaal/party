@@ -9,7 +9,7 @@ import {
 } from '@graphql/types.generated'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
 import toast from 'react-hot-toast'
-import { BASE_URL, STATIC_ASSETS } from 'src/constants'
+import { STATIC_ASSETS } from 'src/constants'
 
 export const INVITE_CODE_QUERY = gql`
   query InviteCode {
@@ -19,6 +19,7 @@ export const INVITE_CODE_QUERY = gql`
       invite {
         id
         code
+        htmlUrl
         usedTimes
       }
     }
@@ -85,9 +86,7 @@ const InviteDetails: React.FC = () => {
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Link</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-                <div>
-                  {BASE_URL}/invite/{user?.invite?.code}
-                </div>
+                <div>{user?.invite?.htmlUrl}</div>
                 <button onClick={() => regenerateInvite()}>
                   <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </button>
