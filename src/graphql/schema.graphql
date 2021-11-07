@@ -254,7 +254,7 @@ type Log {
 }
 
 input LoginInput {
-  email: String!
+  login: String!
   password: String!
 }
 

@@ -16,14 +16,14 @@ import React from 'react'
 import { object, string } from 'zod'
 
 const LoginWithWallet = dynamic(() => import('./LoginWithWallet'), {
-  loading: () => <div className="shimmer w-full h-10 rounded-lg" />
+  loading: () => <div className="w-full h-10 rounded-lg shimmer" />
 })
 const LoginWithGitHub = dynamic(() => import('./LoginWithGitHub'), {
-  loading: () => <div className="shimmer w-full h-10 rounded-lg" />
+  loading: () => <div className="w-full h-10 rounded-lg shimmer" />
 })
 
 const loginSchema = object({
-  email: string().email({ message: '📧 Invalid email' }),
+  login: string().min(3, { message: '👤 Invalid login' }),
   password: string().min(6, {
     message: '👀 Password should atleast have 6 characters'
   })
@@ -32,7 +32,7 @@ const loginSchema = object({
 const LoginForm: React.FC = () => {
   const authRedirect = useAuthRedirect()
   const router = useRouter()
-  const [login, loginResult] = useMutation<
+  const [loginUser, loginResult] = useMutation<
     LoginFormMutation,
     LoginFormMutationVariables
   >(
@@ -62,8 +62,8 @@ const LoginForm: React.FC = () => {
   return (
     <Form
       form={form}
-      onSubmit={({ email, password }) =>
-        login({ variables: { input: { email, password } } })
+      onSubmit={({ login, password }) =>
+        loginUser({ variables: { input: { login, password } } })
       }
     >
       <ErrorMessage
@@ -74,12 +74,11 @@ const LoginForm: React.FC = () => {
       <div className="space-y-4">
         <div>
           <Input
-            label="Email"
-            type="email"
-            autoComplete="email"
-            placeholder="me@example.com"
+            label="Username / Email"
+            type="text"
+            placeholder="Username or Email"
             autoFocus
-            {...form.register('email')}
+            {...form.register('login')}
           />
         </div>
         <div>
@@ -94,12 +93,12 @@ const LoginForm: React.FC = () => {
         <Button
           size="lg"
           type="submit"
-          className=" w-full justify-center"
+          className="justify-center w-full "
           icon={
             form.formState.isSubmitting ? (
               <Spinner size="xs" className="mr-1" />
             ) : (
-              <LogoutIcon className="h-5 w-5" />
+              <LogoutIcon className="w-5 h-5" />
             )
           }
         >

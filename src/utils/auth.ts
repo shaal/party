@@ -46,16 +46,14 @@ export function verifyPassword(
 
 /**
  * Authenticate the user by email and password
- * @param email - User's email
+ * @param login - User's email / username
  * @param password - User's password
  * @returns the authenticated user
  */
-export async function authenticateUser(email: string, password: string) {
+export async function authenticateUser(login: string, password: string) {
   const user = await db.user.findFirst({
     where: {
-      email: {
-        equals: email
-      }
+      OR: [{ username: login }, { email: login }]
     }
   })
 
