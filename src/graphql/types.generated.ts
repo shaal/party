@@ -3573,9 +3573,9 @@ export type OnboardUserMutation = {
     | undefined
 }
 
-export type StaffToolsDashboardQueryVariables = Exact<{ [key: string]: never }>
+export type GetStaffStatsQueryVariables = Exact<{ [key: string]: never }>
 
-export type StaffToolsDashboardQuery = {
+export type GetStaffStatsQuery = {
   __typename?: 'Query'
   stats?:
     | {
