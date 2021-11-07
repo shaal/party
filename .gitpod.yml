@@ -13,18 +13,10 @@ tasks:
       yarn prisma:seed
       yarn prisma:testseed
       yarn prepare
-      gp sync-done setup
-    command: yarn codegen:graphql --watch
-  - name: Dev Server
-    init: gp sync-await setup
     command: |
-      echo "BASE_URL=\"$(gp url 3000)\"" >> .env
+      yarn codegen:graphql --watch &
+      export BASE_URL=`gp url 3000`
       yarn dev
-  - name: Bash
-    init: gp sync-await setup
-    command: |
-      printf "Waiting for server to boot ⏰"
-      clear
 
 ports:
   - port: 3000 # Web app
