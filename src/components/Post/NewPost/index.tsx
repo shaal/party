@@ -9,6 +9,7 @@ import {
   QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import React, { Fragment } from 'react'
 
@@ -37,7 +38,8 @@ const NewPost: React.FC = () => {
           <Tab.List className="flex space-x-5">
             <Tab as={Fragment}>
               {({ selected }) => (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
@@ -47,12 +49,13 @@ const NewPost: React.FC = () => {
                   <Tooltip content="Post">
                     <CollectionIcon className="h-5 w-5" />
                   </Tooltip>
-                </button>
+                </motion.button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
@@ -62,12 +65,13 @@ const NewPost: React.FC = () => {
                   <Tooltip content="Task">
                     <CheckCircleIcon className="h-5 w-5" />
                   </Tooltip>
-                </button>
+                </motion.button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
@@ -77,12 +81,13 @@ const NewPost: React.FC = () => {
                   <Tooltip content="Question">
                     <QuestionMarkCircleIcon className="h-5 w-5" />
                   </Tooltip>
-                </button>
+                </motion.button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
@@ -92,12 +97,13 @@ const NewPost: React.FC = () => {
                   <Tooltip content="Poll">
                     <ChartBarIcon className="h-5 w-5" />
                   </Tooltip>
-                </button>
+                </motion.button>
               )}
             </Tab>
             <Tab as={Fragment}>
               {({ selected }) => (
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className={clsx(
                     { 'text-brand-500': selected },
                     { 'text-gray-400': !selected },
@@ -107,7 +113,7 @@ const NewPost: React.FC = () => {
                   <Tooltip content="GitHub Issue">
                     <ClipboardListIcon className="h-5 w-5" />
                   </Tooltip>
-                </button>
+                </motion.button>
               )}
             </Tab>
           </Tab.List>
