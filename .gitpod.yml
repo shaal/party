@@ -21,7 +21,7 @@ tasks:
 
 ports:
   - port: 3000 # Web app
-    onOpen: open-preview
+    onOpen: notify
     visibility: public
   - port: 6379 # Redis
     onOpen: ignore
