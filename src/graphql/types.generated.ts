@@ -4064,12 +4064,12 @@ export type UserFeedQuery = {
     | undefined
 }
 
-export type FollowersQueryVariables = Exact<{
+export type GetFollowersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type FollowersQuery = {
+export type GetFollowersQuery = {
   __typename?: 'Query'
   user?:
     | {
