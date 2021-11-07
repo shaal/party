@@ -4110,12 +4110,12 @@ export type GetFollowersQuery = {
     | undefined
 }
 
-export type FollowingQueryVariables = Exact<{
+export type GetFollowingQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type FollowingQuery = {
+export type GetFollowingQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4156,11 +4156,11 @@ export type FollowingQuery = {
     | undefined
 }
 
-export type SpotifyIntegrationsQueryVariables = Exact<{
+export type GetSpotifyQueryVariables = Exact<{
   userId: Scalars['ID']
 }>
 
-export type SpotifyIntegrationsQuery = {
+export type GetSpotifyQuery = {
   __typename?: 'Query'
   spotify?:
     | {
@@ -4175,11 +4175,11 @@ export type SpotifyIntegrationsQuery = {
     | undefined
 }
 
-export type WakatimeIntegrationsQueryVariables = Exact<{
+export type GetWakatimeQueryVariables = Exact<{
   userId: Scalars['ID']
 }>
 
-export type WakatimeIntegrationsQuery = {
+export type GetWakatimeQuery = {
   __typename?: 'Query'
   wakatime?:
     | { __typename?: 'Wakatime'; hours?: string | null | undefined }
