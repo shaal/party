@@ -18,7 +18,7 @@ import { object, string } from 'zod'
 
 import Attachment from '../NewPost/Attachment'
 import Attachments from '../SinglePost/Attachments'
-import { REPLIES_QUERY } from './Replies'
+import { GET_REPLIES_QUERY } from './Replies'
 
 const createReplySchema = object({
   body: string()
@@ -47,7 +47,7 @@ const NewReply: React.FC<Props> = ({ post }) => {
     {
       refetchQueries: [
         {
-          query: REPLIES_QUERY,
+          query: GET_REPLIES_QUERY,
           variables: { id: post?.id }
         }
       ],

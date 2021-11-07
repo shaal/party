@@ -2600,12 +2600,12 @@ export type MintNftMutation = {
   mint: { __typename?: 'NFT'; id: string; address: string; tokenId: string }
 }
 
-export type MorePostsByUserQueryVariables = Exact<{
+export type GetMorePostsByUserQueryVariables = Exact<{
   userId: Scalars['ID']
   type: Scalars['String']
 }>
 
-export type MorePostsByUserQuery = {
+export type GetMorePostsByUserQuery = {
   __typename?: 'Query'
   morePostsByUser: {
     __typename?: 'QueryMorePostsByUserConnection'
@@ -2741,12 +2741,12 @@ export type CreateReplyMutation = {
   createPost: { __typename?: 'Post'; id: string; body: string }
 }
 
-export type RepliesQueryVariables = Exact<{
+export type GetRepliesQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   id: Scalars['ID']
 }>
 
-export type RepliesQuery = {
+export type GetRepliesQuery = {
   __typename?: 'Query'
   post: {
     __typename?: 'Post'
