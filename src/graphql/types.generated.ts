@@ -1556,12 +1556,12 @@ export type JoinWaitlistFormMutation = {
   joinWaitlist: { __typename?: 'User'; id: string; inWaitlist: boolean }
 }
 
-export type ModeratorsQueryVariables = Exact<{
+export type GetModeratorsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type ModeratorsQuery = {
+export type GetModeratorsQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
