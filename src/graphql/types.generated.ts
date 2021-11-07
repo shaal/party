@@ -298,6 +298,7 @@ export type Integration = {
 export type Invite = {
   __typename?: 'Invite'
   code?: Maybe<Scalars['String']>
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   usedTimes?: Maybe<Scalars['Int']>
   user: User
@@ -620,6 +621,7 @@ export type Post = {
   done: Scalars['Boolean']
   hasBookmarked: Scalars['Boolean']
   hasLiked: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   likes: PostLikesConnection
   nft?: Maybe<Nft>
@@ -682,6 +684,7 @@ export type Product = {
   discord?: Maybe<Scalars['String']>
   github?: Maybe<Scalars['String']>
   hasSubscribed: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   name: Scalars['String']
   owner: User
@@ -4672,6 +4675,7 @@ export type InviteCodeQuery = {
               __typename?: 'Invite'
               id: string
               code?: string | null | undefined
+              htmlUrl: string
               usedTimes?: number | null | undefined
             }
           | null

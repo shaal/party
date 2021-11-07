@@ -390,6 +390,7 @@ type Post {
   done: Boolean!
   hasBookmarked: Boolean!
   hasLiked: Boolean!
+  htmlUrl: String!
   id: ID!
   likes(after: String, before: String, first: Int, last: Int): PostLikesConnection!
   nft: NFT
@@ -433,6 +434,7 @@ type Product {
   discord: String
   github: String
   hasSubscribed: Boolean!
+  htmlUrl: String!
   id: ID!
   name: String!
   owner: User!
