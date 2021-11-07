@@ -824,6 +824,7 @@ type User {
   hasFollowed: Boolean!
   hasSpotifyIntegration: Boolean!
   hasWakatimeIntegration: Boolean!
+  htmlUrl: String!
   id: ID!
   inWaitlist: Boolean!
   integrations: Integration

@@ -1306,6 +1306,7 @@ export type User = {
   hasFollowed: Scalars['Boolean']
   hasSpotifyIntegration: Scalars['Boolean']
   hasWakatimeIntegration: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   inWaitlist: Scalars['Boolean']
   integrations?: Maybe<Integration>
