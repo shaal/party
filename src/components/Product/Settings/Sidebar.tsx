@@ -1,4 +1,4 @@
-import { ShareIcon, UserIcon } from '@heroicons/react/outline'
+import { ExclamationIcon, ShareIcon, UserIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -30,18 +30,25 @@ const Sidebar: React.FC = () => {
   return (
     <div className="space-y-1.5 mb-4 px-3 sm:px-0">
       <Menu
-        current={router.pathname == '/settings/profile'}
+        current={router.pathname == '/products/[slug]/settings/profile'}
         url="/settings/profile"
       >
         <UserIcon className="h-4 w-4" />
         <div>Profile</div>
       </Menu>
       <Menu
-        current={router.pathname == '/settings/social'}
+        current={router.pathname == '/products/[slug]/settings/social'}
         url="/settings/social"
       >
         <ShareIcon className="h-4 w-4" />
         <div>Social</div>
+      </Menu>
+      <Menu
+        current={router.pathname == '/products/[slug]/settings/delete'}
+        url="/settings/delete"
+      >
+        <ExclamationIcon className="h-4 w-4 text-red-500" />
+        <div className="text-red-500">Danger Zone</div>
       </Menu>
     </div>
   )

@@ -1,6 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import SettingsHelper from '@components/shared/SettingsHelper'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
@@ -20,6 +19,8 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
+
+import Sidebar from '../Sidebar'
 
 const editProductSchema = object({
   slug: string()
@@ -91,10 +92,7 @@ const ProductSettingsForm: React.FC<Props> = ({ product }) => {
   return (
     <GridLayout>
       <GridItemFour>
-        <SettingsHelper
-          heading="Product settings"
-          description={'Update your product information and identities.'}
-        />
+        <Sidebar />
       </GridItemFour>
       <GridItemEight>
         <Card>
