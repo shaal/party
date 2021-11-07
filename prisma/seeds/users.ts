@@ -1,11 +1,19 @@
 export const userData = [
   {
+    email: 'admin@devparty.io',
+    username: 'admin',
+    name: 'Admin',
+    isStaff: true,
+    avatar: 'https://i.ibb.co/4N4WvKN/admin.png',
+    bio: 'Admin of this site 🛡'
+  },
+  {
     email: 'yoginth@hey.com',
     username: 'yoginth',
     name: 'Yoginth',
     isStaff: true,
     avatar: 'https://i.ibb.co/Kw0Jbzf/avatar.png',
-    bio: '요기 • Creator of @Taskord • Mod at @thepracticaldev • BTS Fanboi ⟬⟭ • he/him 🏳️‍🌈🌳',
+    bio: '요기 • Creator of Devparty • BTS Fanboi ⟬⟭ • he/him 🌳',
     ethAddress: '0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3'
   },
   {

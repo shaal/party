@@ -14,14 +14,14 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 const changePasswordSchema = object({
-  currentPassword: string().min(6, {
-    message: '👀 Password should atleast have 6 characters'
+  currentPassword: string().min(4, {
+    message: '👀 Password should atleast have 4 characters'
   }),
-  newPassword: string().min(6, {
-    message: '👀 Password should atleast have 6 characters'
+  newPassword: string().min(4, {
+    message: '👀 Password should atleast have 4 characters'
   }),
-  confirmNewPassword: string().min(6, {
-    message: '👀 Password should atleast have 6 characters'
+  confirmNewPassword: string().min(4, {
+    message: '👀 Password should atleast have 4 characters'
   })
 }).refine((data) => data.newPassword === data.confirmNewPassword, {
   message: '👀 Passwords do not match',
