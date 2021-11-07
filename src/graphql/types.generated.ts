@@ -3595,12 +3595,12 @@ export type GetStaffStatsQuery = {
     | undefined
 }
 
-export type TopicFeedQueryVariables = Exact<{
+export type GetTopicFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   name: Scalars['String']
 }>
 
-export type TopicFeedQuery = {
+export type GetTopicFeedQuery = {
   __typename?: 'Query'
   topic: {
     __typename?: 'Topic'
