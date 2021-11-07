@@ -3748,11 +3748,11 @@ export type ToggleTopicStarMutation = {
     | undefined
 }
 
-export type TopicQueryVariables = Exact<{
+export type GetTopicQueryVariables = Exact<{
   name: Scalars['String']
 }>
 
-export type TopicQuery = {
+export type GetTopicQuery = {
   __typename?: 'Query'
   topic: {
     __typename?: 'Topic'
