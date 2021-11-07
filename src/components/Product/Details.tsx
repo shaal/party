@@ -38,21 +38,23 @@ const Details: React.FC<Props> = ({ product }) => {
           </div>
           <div className="text-xl">{product?.slug}</div>
         </div>
-        {currentUser?.id !== product?.owner?.id ? (
-          <Subscribe product={product} showText />
-        ) : (
-          <Link href={`/products/${product?.slug}/settings`}>
-            <a href={`/products/${product?.slug}/settings`}>
-              <Button
-                size="md"
-                variant="success"
-                icon={<PencilIcon className="h-4 w-4" />}
-              >
-                Edit Product
-              </Button>
-            </a>
-          </Link>
-        )}
+        <div>
+          {currentUser?.id !== product?.owner?.id ? (
+            <Subscribe product={product} showText />
+          ) : (
+            <Link href={`/products/${product?.slug}/settings`}>
+              <a href={`/products/${product?.slug}/settings`}>
+                <Button
+                  size="md"
+                  variant="success"
+                  icon={<PencilIcon className="h-4 w-4" />}
+                >
+                  Edit Product
+                </Button>
+              </a>
+            </Link>
+          )}
+        </div>
         {product?.description && (
           <div className="linkify">
             <Linkify options={linkifyOptions}>{product?.description}</Linkify>
