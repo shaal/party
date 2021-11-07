@@ -2635,9 +2635,9 @@ export type MorePostsByUserQuery = {
   }
 }
 
-export type SelectTargetQueryVariables = Exact<{ [key: string]: never }>
+export type GetTargetsQueryVariables = Exact<{ [key: string]: never }>
 
-export type SelectTargetQuery = {
+export type GetTargetsQuery = {
   __typename?: 'Query'
   me?:
     | {
