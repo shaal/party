@@ -1599,9 +1599,9 @@ export type GetModeratorsQuery = {
   }
 }
 
-export type CommunitiesQueryVariables = Exact<{ [key: string]: never }>
+export type GetCommunitiesQueryVariables = Exact<{ [key: string]: never }>
 
-export type CommunitiesQuery = {
+export type GetCommunitiesQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
@@ -1623,12 +1623,12 @@ export type CommunitiesQuery = {
   }
 }
 
-export type CommunityFeedQueryVariables = Exact<{
+export type GetCommunityFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type CommunityFeedQuery = {
+export type GetCommunityFeedQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
