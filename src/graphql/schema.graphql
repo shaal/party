@@ -229,6 +229,7 @@ type Integration {
 
 type Invite {
   code: String
+  htmlUrl: String!
   id: ID!
   usedTimes: Int
   user: User!
