@@ -1844,11 +1844,11 @@ export type CommunityRulesQuery = {
   }
 }
 
-export type ViewCommunityQueryVariables = Exact<{
+export type GetCommunityQueryVariables = Exact<{
   slug: Scalars['String']
 }>
 
-export type ViewCommunityQuery = {
+export type GetCommunityQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
