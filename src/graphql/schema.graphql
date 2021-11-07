@@ -55,6 +55,7 @@ type Community {
   createdAt: DateTime!
   description: String
   hasJoined: Boolean!
+  htmlUrl: String!
   id: ID!
   members(after: String, before: String, first: Int, last: Int): CommunityMembersConnection!
   moderators(after: String, before: String, first: Int, last: Int): CommunityModeratorsConnection!

@@ -88,6 +88,7 @@ export type Community = {
   createdAt: Scalars['DateTime']
   description?: Maybe<Scalars['String']>
   hasJoined: Scalars['Boolean']
+  htmlUrl: Scalars['String']
   id: Scalars['ID']
   members: CommunityMembersConnection
   moderators: CommunityModeratorsConnection

@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { BASE_URL } from 'src/constants'
 
 import { regenerateInvite } from './mutations/regenerateInvite'
 
@@ -9,6 +10,12 @@ builder.prismaObject('Invite', {
     id: t.exposeID('id'),
     code: t.exposeString('code', { nullable: true }),
     usedTimes: t.exposeInt('usedTimes', { nullable: true }),
+    htmlUrl: t.field({
+      type: 'String',
+      resolve: (parent) => {
+        return `${BASE_URL}/invite/${parent?.code}`
+      }
+    }),
 
     // Relations
     user: t.relation('user')
