@@ -35,7 +35,7 @@ builder.queryField('me', (t) =>
 const LoginInput = builder.inputType('LoginInput', {
   fields: (t) => ({
     login: t.string({ validate: { minLength: 3 } }),
-    password: t.string({ validate: { minLength: 6 } })
+    password: t.string({ validate: { minLength: 4 } })
   })
 })
 
@@ -119,7 +119,7 @@ const JoinWaitlistInput = builder.inputType('JoinWaitlistInput', {
       }
     }),
     email: t.string({ validate: { email: true } }),
-    password: t.string({ validate: { minLength: 6 } })
+    password: t.string({ validate: { minLength: 4 } })
   })
 })
 
@@ -146,22 +146,9 @@ const SignupInput = builder.inputType('SignupInput', {
         maxLength: 30
       }
     }),
-    email: t.string({
-      validate: {
-        email: true
-      }
-    }),
-    password: t.string({
-      validate: {
-        minLength: 6
-      }
-    }),
-    invite: t.string({
-      validate: {
-        minLength: 1,
-        maxLength: 12
-      }
-    })
+    email: t.string({ validate: { email: true } }),
+    password: t.string({ validate: { minLength: 4 } }),
+    invite: t.string({ validate: { minLength: 1, maxLength: 12 } })
   })
 })
 
@@ -181,12 +168,8 @@ builder.mutationField('signUp', (t) =>
 
 const ChangePasswordInput = builder.inputType('ChangePasswordInput', {
   fields: (t) => ({
-    currentPassword: t.string({
-      validate: { minLength: 6 }
-    }),
-    newPassword: t.string({
-      validate: { minLength: 6 }
-    })
+    currentPassword: t.string({ validate: { minLength: 4 } }),
+    newPassword: t.string({ validate: { minLength: 4 } })
   })
 })
 
