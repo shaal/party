@@ -24,7 +24,7 @@ const LoginWithGitHub = dynamic(() => import('./LoginWithGitHub'), {
 
 const loginSchema = object({
   login: string().min(3, { message: '👤 Invalid login' }),
-  password: string().min(6, {
+  password: string().min(4, {
     message: '👀 Password should atleast have 6 characters'
   })
 })
