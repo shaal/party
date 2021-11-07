@@ -2,6 +2,7 @@ import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import { PhotographIcon } from '@heroicons/react/outline'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 interface Props {
@@ -28,7 +29,11 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
 
   return (
     <div className="flex items-center gap-2 text-sm">
-      <button type="button" className="tab-focus-ring">
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        type="button"
+        className="tab-focus-ring"
+      >
         <label className="flex items-center gap-1 cursor-pointer">
           {loading ? (
             <Spinner size="sm" />
@@ -45,7 +50,7 @@ const Attachment: React.FC<Props> = ({ attachments, setAttachments }) => {
             disabled={attachments.length >= 4}
           />
         </label>
-      </button>
+      </motion.button>
     </div>
   )
 }

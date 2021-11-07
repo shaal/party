@@ -12,6 +12,7 @@ import {
   User
 } from '@graphql/types.generated'
 import { ChatAlt2Icon } from '@heroicons/react/outline'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -184,22 +185,26 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           !isError && <Oembed url={post?.oembedUrl} oembed={oembed} />}
       </CardBody>
       <div className="flex px-3 py-1.5 space-x-4 border-t dark:border-gray-800">
-        <LikeButton entity={post} handleLike={handleLike} loading={false} />
-        <Link href={`/posts/${post?.id}`}>
-          <a
-            href={`/posts/${post?.id}`}
-            className="text-blue-500 hover:text-blue-400 flex items-center space-x-1"
-          >
-            <div className="hover:bg-blue-300 hover:bg-opacity-20 p-1.5 rounded-full">
-              <ChatAlt2Icon className="h-5 w-5" />
-            </div>
-            {(post?.replies?.totalCount as number) > 0 && (
-              <div className="text-xs">
-                {humanize(post?.replies?.totalCount)}
+        <motion.button whileTap={{ scale: 0.9 }}>
+          <LikeButton entity={post} handleLike={handleLike} loading={false} />
+        </motion.button>
+        <motion.button whileTap={{ scale: 0.9 }}>
+          <Link href={`/posts/${post?.id}`}>
+            <a
+              href={`/posts/${post?.id}`}
+              className="text-blue-500 hover:text-blue-400 flex items-center space-x-1"
+            >
+              <div className="hover:bg-blue-300 hover:bg-opacity-20 p-1.5 rounded-full">
+                <ChatAlt2Icon className="h-5 w-5" />
               </div>
-            )}
-          </a>
-        </Link>
+              {(post?.replies?.totalCount as number) > 0 && (
+                <div className="text-xs">
+                  {humanize(post?.replies?.totalCount)}
+                </div>
+              )}
+            </a>
+          </Link>
+        </motion.button>
         <PostMenu post={post} />
         {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm items-center gap-2 hidden sm:flex">
