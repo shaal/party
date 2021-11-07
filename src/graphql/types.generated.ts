@@ -2239,12 +2239,12 @@ export type ReadNotificationMutation = {
   readNotification: Result
 }
 
-export type NotificationsQueryVariables = Exact<{
+export type GetNotificationsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   isRead?: Maybe<Scalars['Boolean']>
 }>
 
-export type NotificationsQuery = {
+export type GetNotificationsQuery = {
   __typename?: 'Query'
   notifications: {
     __typename?: 'QueryNotificationsConnection'
@@ -2502,11 +2502,11 @@ export type NotificationsQuery = {
   }
 }
 
-export type OnboardingUsersQueryVariables = Exact<{
+export type GetOnboardingUsersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type OnboardingUsersQuery = {
+export type GetOnboardingUsersQuery = {
   __typename?: 'Query'
   suggestedUsers: {
     __typename?: 'QuerySuggestedUsersConnection'
@@ -2534,11 +2534,11 @@ export type OnboardingUsersQuery = {
   }
 }
 
-export type OnboardingProfileSettingsMutationVariables = Exact<{
+export type EditOnboardingProfileMutationVariables = Exact<{
   input: EditUserInput
 }>
 
-export type OnboardingProfileSettingsMutation = {
+export type EditOnboardingProfileMutation = {
   __typename?: 'Mutation'
   editUser: {
     __typename?: 'User'

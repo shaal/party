@@ -5,8 +5,8 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import {
-  OnboardingProfileSettingsMutation,
-  OnboardingProfileSettingsMutationVariables,
+  EditOnboardingProfileMutation,
+  EditOnboardingProfileMutationVariables,
   User
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -33,11 +33,11 @@ interface Props {
 
 const ProfileForm: React.FC<Props> = ({ currentUser, setShowSkip }) => {
   const [editUser] = useMutation<
-    OnboardingProfileSettingsMutation,
-    OnboardingProfileSettingsMutationVariables
+    EditOnboardingProfileMutation,
+    EditOnboardingProfileMutationVariables
   >(
     gql`
-      mutation OnboardingProfileSettings($input: EditUserInput!) {
+      mutation EditOnboardingProfile($input: EditUserInput!) {
         editUser(input: $input) {
           id
           profile {

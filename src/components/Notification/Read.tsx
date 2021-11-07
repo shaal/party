@@ -10,7 +10,7 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 
-import { NOTIFICATIONS_QUERY } from '.'
+import { GET_NOTIFICATIONS_QUERY } from '.'
 
 interface Props {
   notification: Notification
@@ -27,7 +27,7 @@ const MarkAsRead: React.FC<Props> = ({ notification }) => {
       }
     `,
     {
-      refetchQueries: [{ query: NOTIFICATIONS_QUERY }],
+      refetchQueries: [{ query: GET_NOTIFICATIONS_QUERY }],
       onCompleted() {
         toast.success('Notification marked as read!')
       }
