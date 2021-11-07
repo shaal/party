@@ -11,7 +11,7 @@ interface Props {
 
 const SelectedProduct: React.FC<Props> = ({ product }) => {
   return (
-    <div className="text-xs sm:text-sm flex items-center space-x-2 !ml-auto">
+    <div className="text-xs sm:text-sm flex items-center space-x-2">
       <Tooltip content="Product">
         <CubeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
       </Tooltip>

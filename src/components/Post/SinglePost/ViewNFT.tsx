@@ -8,7 +8,7 @@ interface Props {
 
 const ViewNFT: React.FC<Props> = ({ nft }) => {
   return (
-    <div className="!ml-auto flex items-center">
+    <div>
       <Tooltip content="View in Opensea">
         {/* TODO: Update URLs */}
         <a

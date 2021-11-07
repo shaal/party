@@ -232,9 +232,11 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             )}
           </div>
         )}
-        {post?.product && <SelectedProduct product={post?.product} />}
-        {post?.community && <SelectedCommunity community={post?.community} />}
-        {post?.nft && <ViewNFT nft={post?.nft} />}
+        <div className="!ml-auto flex items-center space-x-3">
+          {post?.product && <SelectedProduct product={post?.product} />}
+          {post?.community && <SelectedCommunity community={post?.community} />}
+          {post?.nft && <ViewNFT nft={post?.nft} />}
+        </div>
       </div>
     </Card>
   )
