@@ -4,6 +4,7 @@ import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
 import { createProduct } from './mutations/createProduct'
+import { editProductSocial } from './mutations/editProductSocial'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
 import { hasSubscribed } from './queries/hasSubscribed'
@@ -170,30 +171,14 @@ const EditProductSocialInput = builder.inputType('EditProductSocialInput', {
   })
 })
 
-// TODO: Split to function
 builder.mutationField('editProductSocial', (t) =>
   t.prismaField({
     type: 'Product',
     args: { input: t.arg({ type: EditProductSocialInput }) },
     authScopes: { user: true },
     nullable: true,
-    resolve: async (query, parent, { input }) => {
-      try {
-        return await db.product.update({
-          ...query,
-          where: { id: input?.id },
-          data: {
-            website: input.website,
-            twitter: input.twitter,
-            github: input.github,
-            discord: input.discord
-          }
-        })
-      } catch (error) {
-        if (error instanceof Prisma.PrismaClientKnownRequestError) {
-          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
-        }
-      }
+    resolve: async (query, parent, { input }, { session }) => {
+      return await editProductSocial(query, input, session)
     }
   })
 )
