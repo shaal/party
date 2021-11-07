@@ -1873,9 +1873,9 @@ export type GetCommunityQuery = {
   }
 }
 
-export type FeaturedUsersQueryVariables = Exact<{ [key: string]: never }>
+export type GetFeaturedUsersQueryVariables = Exact<{ [key: string]: never }>
 
-export type FeaturedUsersQuery = {
+export type GetFeaturedUsersQuery = {
   __typename?: 'Query'
   featuredUsers: {
     __typename?: 'QueryFeaturedUsersConnection'
@@ -1902,11 +1902,11 @@ export type FeaturedUsersQuery = {
   }
 }
 
-export type ExploreFeedQueryVariables = Exact<{
+export type GetExploreFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type ExploreFeedQuery = {
+export type GetExploreFeedQuery = {
   __typename?: 'Query'
   posts: {
     __typename?: 'QueryExploreFeedConnection'
