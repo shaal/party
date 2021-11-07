@@ -2552,11 +2552,11 @@ export type EditOnboardingProfileMutation = {
   }
 }
 
-export type OnboardingTopicsQueryVariables = Exact<{
+export type GetOnboardingTopicsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type OnboardingTopicsQuery = {
+export type GetOnboardingTopicsQuery = {
   __typename?: 'Query'
   featuredTopics: {
     __typename?: 'QueryFeaturedTopicsConnection'
