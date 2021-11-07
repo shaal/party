@@ -3309,6 +3309,46 @@ export type GetProductSettingsQuery = {
   }
 }
 
+export type EditSocialSettingsMutationVariables = Exact<{
+  input: EditSocialInput
+}>
+
+export type EditSocialSettingsMutation = {
+  __typename?: 'Mutation'
+  editSocial: {
+    __typename?: 'User'
+    profile: {
+      __typename?: 'Profile'
+      id: string
+      twitter?: string | null | undefined
+      github?: string | null | undefined
+      website?: string | null | undefined
+      discord?: string | null | undefined
+    }
+  }
+}
+
+export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
+
+export type GetSocialSettingsQuery = {
+  __typename?: 'Query'
+  me?:
+    | {
+        __typename?: 'User'
+        id: string
+        profile: {
+          __typename?: 'Profile'
+          id: string
+          website?: string | null | undefined
+          twitter?: string | null | undefined
+          github?: string | null | undefined
+          discord?: string | null | undefined
+        }
+      }
+    | null
+    | undefined
+}
+
 export type ToggleProductSubscribeMutationVariables = Exact<{
   input: ToggleProductSubscribeInput
 }>
@@ -4382,46 +4422,6 @@ export type SessionsSettingsQuery = {
           | null
           | undefined
         >
-      }
-    | null
-    | undefined
-}
-
-export type EditSocialSettingsMutationVariables = Exact<{
-  input: EditSocialInput
-}>
-
-export type EditSocialSettingsMutation = {
-  __typename?: 'Mutation'
-  editSocial: {
-    __typename?: 'User'
-    profile: {
-      __typename?: 'Profile'
-      id: string
-      twitter?: string | null | undefined
-      github?: string | null | undefined
-      website?: string | null | undefined
-      discord?: string | null | undefined
-    }
-  }
-}
-
-export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetSocialSettingsQuery = {
-  __typename?: 'Query'
-  me?:
-    | {
-        __typename?: 'User'
-        id: string
-        profile: {
-          __typename?: 'Profile'
-          id: string
-          website?: string | null | undefined
-          twitter?: string | null | undefined
-          github?: string | null | undefined
-          discord?: string | null | undefined
-        }
       }
     | null
     | undefined
