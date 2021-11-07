@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { BASE_URL } from 'src/constants'
 
 import { createCommunity } from './mutations/createCommunity'
 import { toggleJoin } from './mutations/toggleJoin'
@@ -18,6 +19,12 @@ builder.prismaObject('Community', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await hasJoined(session?.userId as string, parent.id)
+      }
+    }),
+    htmlUrl: t.field({
+      type: 'String',
+      resolve: (parent) => {
+        return `${BASE_URL}/communities/${parent?.slug}`
       }
     }),
 

@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { BASE_URL } from 'src/constants'
 
 import { modTopic } from './mutations/modTopic'
 import { toggleStar } from './mutations/toggleStar'
@@ -21,6 +22,12 @@ builder.prismaObject('Topic', {
       }
     }),
     postsCount: t.relationCount('posts'),
+    htmlUrl: t.field({
+      type: 'String',
+      resolve: (parent) => {
+        return `${BASE_URL}/topics/${parent?.name}`
+      }
+    }),
 
     // Timestamps
     featuredAt: t.expose('featuredAt', { type: 'DateTime', nullable: true }),

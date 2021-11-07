@@ -1,5 +1,6 @@
 import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
+import { BASE_URL } from 'src/constants'
 
 import { hasBookmarked } from '../Bookmark/queries/hasBookmarked'
 import { hasLiked } from '../Like/queries/hasLiked'
@@ -44,6 +45,12 @@ builder.prismaObject('Post', {
         } catch {
           return null
         }
+      }
+    }),
+    htmlUrl: t.field({
+      type: 'String',
+      resolve: (parent) => {
+        return `${BASE_URL}/posts/${parent?.id}`
       }
     }),
 

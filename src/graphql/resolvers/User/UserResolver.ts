@@ -1,7 +1,7 @@
 import { builder } from '@graphql/builder'
 import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
-import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
+import { BASE_URL, ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 
 import { createLog } from '../Log/mutations/createLog'
 import { Result } from '../ResultResolver'
@@ -40,6 +40,12 @@ builder.prismaObject('User', {
       resolve: async (parent, args, { session }) => {
         if (!session) return false
         return await isFollowing(session?.userId as string, parent.id)
+      }
+    }),
+    htmlUrl: t.field({
+      type: 'String',
+      resolve: (parent) => {
+        return `${BASE_URL}/u/${parent?.username}`
       }
     }),
 
