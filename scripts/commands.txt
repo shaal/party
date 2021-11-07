@@ -1,4 +1,6 @@
-Command : yarn start 
-Description : # Start Everything
-Command : yarn dev 
-Description : # Start Everything
+Command : yarn lint
+Description : # Check for linting errors
+Command : yarn typecheck
+Description : # Check for type errors
+Command : yarn test
+Description : # Test Everything
