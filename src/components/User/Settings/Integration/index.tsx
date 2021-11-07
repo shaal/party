@@ -8,7 +8,7 @@ import React from 'react'
 
 import IntegrationSettingsForm from './Form'
 
-export const INTEGRATION_SETTINGS_QUERY = gql`
+export const GET_INTEGRATION_SETTINGS_QUERY = gql`
   query GetIntegrationSettings {
     integration {
       id
@@ -21,7 +21,7 @@ export const INTEGRATION_SETTINGS_QUERY = gql`
 
 const IntegrationSettings: React.FC = () => {
   const { data, loading } = useQuery<GetIntegrationSettingsQuery>(
-    INTEGRATION_SETTINGS_QUERY
+    GET_INTEGRATION_SETTINGS_QUERY
   )
 
   if (loading) {
