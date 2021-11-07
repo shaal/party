@@ -5,7 +5,13 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
+
 URL=$(eval "eval gp url 3000")
 
-echo "👋 ${GREEN}Welcome to Devparty${NC}\n"
+echo "👋 ${GREEN}${BOLD}Welcome to Devparty${NORMAL}${NC}\n"
+echo "💻 ${BOLD}Commands:${NORMAL}\n"
+awk -F':' '{printf "%s%s", $2, (/^Description/)?"\n":"\t\t"}' ./scripts/commands.txt
+echo ""
 echo "Visit: ${BLUE}${URL}${NC}"
