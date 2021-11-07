@@ -8,9 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await resolveSession({ req, res })
   const { warmup } = req.query
 
-  if (warmup) {
-    return res.status(200).json({ status: 'Warmed up!' })
-  }
+  if (warmup) return res.status(200).json({ status: 'Warmed up!' })
 
   if (!session) {
     return res.redirect('/login')

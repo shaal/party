@@ -8,7 +8,7 @@ import Custom404 from 'src/pages/404'
 
 import ProductSettingsForm from './Form'
 
-export const PRODUCT_SETTINGS_QUERY = gql`
+export const GET_PRODUCT_SETTINGS_QUERY = gql`
   query GetProductSettings($slug: String!) {
     product(slug: $slug) {
       id
@@ -27,7 +27,7 @@ const ProductSettings: React.FC = () => {
   const router = useRouter()
   const { currentUser } = useContext(AppContext)
   const { data, loading } = useQuery<GetProductSettingsQuery>(
-    PRODUCT_SETTINGS_QUERY,
+    GET_PRODUCT_SETTINGS_QUERY,
     {
       variables: { slug: router.query.slug },
       skip: !router.isReady

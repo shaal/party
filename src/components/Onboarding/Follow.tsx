@@ -6,7 +6,7 @@ import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { ProgressBar } from '@components/UI/ProgressBar'
-import { OnboardingUsersQuery, User } from '@graphql/types.generated'
+import { GetOnboardingUsersQuery, User } from '@graphql/types.generated'
 import {
   ArrowCircleRightIcon,
   ArrowLeftIcon,
@@ -16,8 +16,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-export const ONBOARDING_USERS_QUERY = gql`
-  query OnboardingUsers($after: String) {
+export const GET_ONBOARDING_USERS_QUERY = gql`
+  query GetOnboardingUsers($after: String) {
     suggestedUsers(first: 30, after: $after) {
       edges {
         node {
@@ -40,8 +40,8 @@ export const ONBOARDING_USERS_QUERY = gql`
 const Follow: React.FC = () => {
   const router = useRouter()
   const [showSkip, setShowSkip] = useState<boolean>(true)
-  const { data, loading, error } = useQuery<OnboardingUsersQuery>(
-    ONBOARDING_USERS_QUERY,
+  const { data, loading, error } = useQuery<GetOnboardingUsersQuery>(
+    GET_ONBOARDING_USERS_QUERY,
     { variables: { after: null } }
   )
   const users = data?.suggestedUsers?.edges?.map((edge) => edge?.node)

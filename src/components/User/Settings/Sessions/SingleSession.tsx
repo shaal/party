@@ -10,7 +10,7 @@ import React from 'react'
 import toast from 'react-hot-toast'
 import * as timeago from 'timeago.js'
 
-import { SESSION_SETTINGS_QUERY } from './index'
+import { GET_SESSION_QUERY } from './index'
 
 interface Props {
   session: Session
@@ -27,7 +27,7 @@ const SingleSession: React.FC<Props> = ({ session }) => {
       }
     `,
     {
-      refetchQueries: [{ query: SESSION_SETTINGS_QUERY }],
+      refetchQueries: [{ query: GET_SESSION_QUERY }],
       onCompleted() {
         toast.success('Session revoked successfully!')
       }

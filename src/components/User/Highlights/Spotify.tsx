@@ -2,11 +2,11 @@ import { gql, useQuery } from '@apollo/client'
 import { Card } from '@components/UI/Card'
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { SpotifyIntegrationsQuery, User } from '@graphql/types.generated'
+import { GetSpotifyQuery, User } from '@graphql/types.generated'
 import { STATIC_ASSETS } from 'src/constants'
 
-const SPOTIFY_INTEGRATIONS_QUERY = gql`
-  query SpotifyIntegrations($userId: ID!) {
+const GET_SPOTIFY_QUERY = gql`
+  query GetSpotify($userId: ID!) {
     spotify(userId: $userId) {
       name
       isPlaying
@@ -22,16 +22,11 @@ interface Props {
 }
 
 const Spotify: React.FC<Props> = ({ user }) => {
-  const { data } = useQuery<SpotifyIntegrationsQuery>(
-    SPOTIFY_INTEGRATIONS_QUERY,
-    {
-      variables: {
-        userId: user?.id
-      },
-      skip: !user?.id,
-      pollInterval: 10000
-    }
-  )
+  const { data } = useQuery<GetSpotifyQuery>(GET_SPOTIFY_QUERY, {
+    variables: { userId: user?.id },
+    skip: !user?.id,
+    pollInterval: 10000
+  })
   const spotify = data?.spotify
 
   return (

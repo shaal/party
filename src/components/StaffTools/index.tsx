@@ -3,7 +3,7 @@ import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
-import { StaffToolsDashboardQuery } from '@graphql/types.generated'
+import { GetStaffStatsQuery } from '@graphql/types.generated'
 import {
   BellIcon,
   ChipIcon,
@@ -23,8 +23,8 @@ import React from 'react'
 
 import Sidebar from './Sidebar'
 
-export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
-  query StaffToolsDashboard {
+export const GET_STAFF_STATS_QUERY = gql`
+  query GetStaffStats {
     stats {
       users
       products
@@ -41,8 +41,8 @@ export const STAFF_TOOLS_DASHBOARD_QUERY = gql`
 `
 
 const StaffToolsDashboard: React.FC = () => {
-  const { data, loading, error } = useQuery<StaffToolsDashboardQuery>(
-    STAFF_TOOLS_DASHBOARD_QUERY
+  const { data, loading, error } = useQuery<GetStaffStatsQuery>(
+    GET_STAFF_STATS_QUERY
   )
   const stats = data?.stats
 

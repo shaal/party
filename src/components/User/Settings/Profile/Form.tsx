@@ -9,8 +9,8 @@ import { TextArea } from '@components/UI/TextArea'
 import ChooseFile from '@components/User/ChooseFile'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import {
-  ProfileSettingsMutation,
-  ProfileSettingsMutationVariables,
+  EditProfileMutation,
+  EditProfileMutationVariables,
   User
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -51,11 +51,11 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [avatar, setAvatar] = useState<string>()
   const [cover, setCover] = useState<string>()
   const [editUser] = useMutation<
-    ProfileSettingsMutation,
-    ProfileSettingsMutationVariables
+    EditProfileMutation,
+    EditProfileMutationVariables
   >(
     gql`
-      mutation ProfileSettings($input: EditUserInput!) {
+      mutation EditProfile($input: EditUserInput!) {
         editUser(input: $input) {
           id
           username

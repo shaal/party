@@ -4,7 +4,7 @@ import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
-import { NotificationsQuery } from '@graphql/types.generated'
+import { GetNotificationsQuery } from '@graphql/types.generated'
 import { BellIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import useInView from 'react-cool-inview'
@@ -16,8 +16,8 @@ import ProductSubscribe from './type/ProductSubscribe'
 import UserFollow from './type/UserFollow'
 import UserMention from './type/UserMention'
 
-export const NOTIFICATIONS_QUERY = gql`
-  query Notifications($after: String, $isRead: Boolean) {
+export const GET_NOTIFICATIONS_QUERY = gql`
+  query GetNotifications($after: String, $isRead: Boolean) {
     notifications(first: 5, after: $after, isRead: $isRead) {
       pageInfo {
         hasNextPage
@@ -67,8 +67,8 @@ export const NOTIFICATIONS_QUERY = gql`
 
 const Notifications: React.FC = () => {
   const [isRead, setIsRead] = useState<boolean>(false)
-  const { data, loading, error, fetchMore } = useQuery<NotificationsQuery>(
-    NOTIFICATIONS_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetNotificationsQuery>(
+    GET_NOTIFICATIONS_QUERY,
     { variables: { after: null, isRead } }
   )
   const notifications = data?.notifications?.edges?.map((edge) => edge?.node)

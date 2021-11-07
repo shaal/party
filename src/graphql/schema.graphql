@@ -191,13 +191,6 @@ input EditProductSocialInput {
   website: String
 }
 
-input EditSocialInput {
-  discord: String
-  github: String
-  twitter: String
-  website: String
-}
-
 input EditTipsInput {
   bitcoin: String
   buymeacoffee: String
@@ -216,6 +209,13 @@ input EditUserInput {
   location: String
   name: String!
   username: String!
+}
+
+input EditUserSocialInput {
+  discord: String
+  github: String
+  twitter: String
+  website: String
 }
 
 type Integration {
@@ -303,9 +303,9 @@ type Mutation {
   editPost(input: EditPostInput!): Post!
   editProductProfile(input: EditProductProfileInput!): Product
   editProductSocial(input: EditProductSocialInput!): Product
-  editSocial(input: EditSocialInput!): User!
   editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!
+  editUserSocial(input: EditUserSocialInput!): User!
   joinWaitlist(input: JoinWaitlistInput!): User!
   login(input: LoginInput!): User
   loginWithWallet(input: LoginWithWalletInput!): User

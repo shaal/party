@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditTipsSettingsMutation,
-  EditTipsSettingsMutationVariables,
+  EditTipsMutation,
+  EditTipsMutationVariables,
   User
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -50,12 +50,9 @@ interface Props {
 const SUCCESS_MESSAGE = 'Tips successfully updated!'
 
 const TipsSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editTips] = useMutation<
-    EditTipsSettingsMutation,
-    EditTipsSettingsMutationVariables
-  >(
+  const [editTips] = useMutation<EditTipsMutation, EditTipsMutationVariables>(
     gql`
-      mutation EditTipsSettings($input: EditTipsInput!) {
+      mutation EditTips($input: EditTipsInput!) {
         editTips(input: $input) {
           id
           cash

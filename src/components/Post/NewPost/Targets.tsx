@@ -1,11 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { Spinner } from '@components/UI/Spinner'
 import { humanize } from '@components/utils/humanize'
-import { Community, Product, SelectTargetQuery } from '@graphql/types.generated'
+import { Community, GetTargetsQuery, Product } from '@graphql/types.generated'
 import { GlobeIcon } from '@heroicons/react/outline'
 
-export const SELECT_TARGET_QUERY = gql`
-  query SelectTarget {
+export const GET_TARGETS_QUERY = gql`
+  query GetTargets {
     me {
       ownedProducts {
         edges {
@@ -46,7 +46,7 @@ const Targets: React.FC<Props> = ({
   setSelected,
   setShowModal
 }) => {
-  const { data, loading } = useQuery<SelectTargetQuery>(SELECT_TARGET_QUERY)
+  const { data, loading } = useQuery<GetTargetsQuery>(GET_TARGETS_QUERY)
 
   const products = data?.me?.ownedProducts?.edges?.map((edge) => edge?.node)
   const communities = data?.me?.communities?.edges?.map((edge) => edge?.node)

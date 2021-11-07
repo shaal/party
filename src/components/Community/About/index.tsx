@@ -10,7 +10,7 @@ import DevpartySEO from '@components/shared/SEO'
 import Slug from '@components/shared/Slug'
 import { Card } from '@components/UI/Card'
 import { PageLoading } from '@components/UI/PageLoading'
-import { Community, ViewCommunityQuery } from '@graphql/types.generated'
+import { Community, GetCommunityQuery } from '@graphql/types.generated'
 import { CalendarIcon, GlobeIcon, UsersIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -19,20 +19,15 @@ import Custom404 from 'src/pages/404'
 import * as timeago from 'timeago.js'
 
 import Rules from '../Rules'
-import { VIEW_COMMUNITY_QUERY } from '../ViewCommunity'
+import { GET_COMMUNITY_QUERY } from '../ViewCommunity'
 import ModeratorsList from './Moderators'
-
-export const COMMUNITY_ABOUT_QUERY = VIEW_COMMUNITY_QUERY
 
 const About: React.FC = () => {
   const router = useRouter()
-  const { data, loading } = useQuery<ViewCommunityQuery>(
-    COMMUNITY_ABOUT_QUERY,
-    {
-      variables: { slug: router.query.slug },
-      skip: !router.isReady
-    }
-  )
+  const { data, loading } = useQuery<GetCommunityQuery>(GET_COMMUNITY_QUERY, {
+    variables: { slug: router.query.slug },
+    skip: !router.isReady
+  })
   const community = data?.community
 
   if (!router.isReady || loading) return <PageLoading message="Loading about" />

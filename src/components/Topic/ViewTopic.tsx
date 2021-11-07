@@ -6,7 +6,7 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { Topic, TopicQuery } from '@graphql/types.generated'
+import { GetTopicQuery, Topic } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import Custom404 from 'src/pages/404'
@@ -15,8 +15,8 @@ import TopicFeed from './Feed'
 import TopicMod from './Mod'
 import Star from './Star'
 
-export const TOPIC_QUERY = gql`
-  query Topic($name: String!) {
+export const GET_TOPIC_QUERY = gql`
+  query GetTopic($name: String!) {
     topic(name: $name) {
       id
       name
@@ -32,7 +32,7 @@ export const TOPIC_QUERY = gql`
 const ViewTopic: React.FC = () => {
   const { currentUser, staffMode } = useContext(AppContext)
   const router = useRouter()
-  const { data, loading, error } = useQuery<TopicQuery>(TOPIC_QUERY, {
+  const { data, loading, error } = useQuery<GetTopicQuery>(GET_TOPIC_QUERY, {
     variables: { name: router.query.topic },
     skip: !router.isReady
   })

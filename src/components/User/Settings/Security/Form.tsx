@@ -4,8 +4,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  ChangePasswordMutation,
-  ChangePasswordMutationVariables
+  EditPasswordMutation,
+  EditPasswordMutationVariables
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -31,11 +31,11 @@ const changePasswordSchema = object({
 const ChangePasswordForm: React.FC = () => {
   const router = useRouter()
   const [changePassword] = useMutation<
-    ChangePasswordMutation,
-    ChangePasswordMutationVariables
+    EditPasswordMutation,
+    EditPasswordMutationVariables
   >(
     gql`
-      mutation ChangePassword($input: ChangePasswordInput!) {
+      mutation EditPassword($input: ChangePasswordInput!) {
         changePassword(input: $input)
       }
     `,

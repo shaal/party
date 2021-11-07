@@ -2,6 +2,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
+import { PageLoading } from '@components/UI/PageLoading'
 import { Spinner } from '@components/UI/Spinner'
 import AppContext from '@components/utils/AppContext'
 import {
@@ -14,8 +15,9 @@ import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import { ERROR_MESSAGE } from 'src/constants'
+import Custom404 from 'src/pages/404'
 
-import { PRODUCT_SETTINGS_QUERY } from '../Profile'
+import { GET_PRODUCT_SETTINGS_QUERY } from '../Profile'
 import Sidebar from '../Sidebar'
 
 const DeleteSettings: React.FC = () => {
@@ -23,7 +25,7 @@ const DeleteSettings: React.FC = () => {
   const { currentUser } = useContext(AppContext)
   const [deleting, setDeleting] = useState<boolean>(false)
   const { data, loading } = useQuery<GetProductSettingsQuery>(
-    PRODUCT_SETTINGS_QUERY,
+    GET_PRODUCT_SETTINGS_QUERY,
     {
       variables: { slug: router.query.slug },
       skip: !router.isReady
@@ -59,6 +61,12 @@ const DeleteSettings: React.FC = () => {
       setDeleting(false)
     }
   }
+
+  if (loading) {
+    return <PageLoading message="Loading settings" />
+  }
+
+  if (product?.owner?.id !== currentUser?.id) return <Custom404 />
 
   return (
     <GridLayout>

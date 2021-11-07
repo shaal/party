@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
-import { User, UserBadgesQuery } from '@graphql/types.generated'
+import { GetUserBadgesQuery, User } from '@graphql/types.generated'
 
-export const USER_BADGES_QUERY = gql`
-  query UserBadges($username: String!) {
+export const GET_USER_BADGES_QUERY = gql`
+  query GetUserBadges($username: String!) {
     user(username: $username) {
       id
       badges {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const Badges: React.FC<Props> = ({ user }) => {
-  const { loading } = useQuery<UserBadgesQuery>(USER_BADGES_QUERY, {
+  const { loading } = useQuery<GetUserBadgesQuery>(GET_USER_BADGES_QUERY, {
     variables: { username: user?.username },
     skip: !user?.username
   })

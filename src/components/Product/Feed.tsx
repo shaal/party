@@ -4,14 +4,14 @@ import PostsShimmer from '@components/shared/Shimmer/PostsShimmer'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { Post, Product, ProductFeedQuery } from '@graphql/types.generated'
+import { GetProductFeedQuery, Post, Product } from '@graphql/types.generated'
 import { CollectionIcon } from '@heroicons/react/outline'
 import React from 'react'
 import useInView from 'react-cool-inview'
 import { POLLING_INTERVAL } from 'src/constants'
 
-const PRODUCT_FEED_QUERY = gql`
-  query ProductFeed($after: String, $slug: String!) {
+const GET_PRODUCT_FEED_QUERY = gql`
+  query GetProductFeed($after: String, $slug: String!) {
     product(slug: $slug) {
       id
       posts(first: 10, after: $after) {
@@ -35,8 +35,8 @@ interface Props {
 }
 
 const ProductFeed: React.FC<Props> = ({ product }) => {
-  const { data, loading, error, fetchMore } = useQuery<ProductFeedQuery>(
-    PRODUCT_FEED_QUERY,
+  const { data, loading, error, fetchMore } = useQuery<GetProductFeedQuery>(
+    GET_PRODUCT_FEED_QUERY,
     {
       variables: {
         after: null,

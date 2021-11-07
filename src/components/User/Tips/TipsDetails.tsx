@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import AppContext from '@components/utils/AppContext'
-import { User, UserTipsQuery } from '@graphql/types.generated'
+import { GetUserTipsQuery, User } from '@graphql/types.generated'
 import { PencilIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -9,8 +9,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
 import { STATIC_ASSETS } from 'src/constants'
 
-const USER_TIPS_QUERY = gql`
-  query UserTips($username: String!) {
+const GET_USER_TIPS_QUERY = gql`
+  query GetUserTips($username: String!) {
     user(username: $username) {
       id
       tip {
@@ -62,7 +62,7 @@ interface Props {
 
 const TipsDetails: React.FC<Props> = ({ user }) => {
   const { currentUser } = useContext(AppContext)
-  const { data, loading } = useQuery<UserTipsQuery>(USER_TIPS_QUERY, {
+  const { data, loading } = useQuery<GetUserTipsQuery>(GET_USER_TIPS_QUERY, {
     variables: { username: user?.username },
     skip: !user?.username
   })

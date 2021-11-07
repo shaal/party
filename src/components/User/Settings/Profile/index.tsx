@@ -5,7 +5,7 @@ import React from 'react'
 
 import ProfileSettingsForm from './Form'
 
-export const PROFILE_SETTINGS_QUERY = gql`
+export const GET_PROFILE_SETTINGS_QUERY = gql`
   query GetProfileSettings {
     me {
       id
@@ -29,7 +29,7 @@ export const PROFILE_SETTINGS_QUERY = gql`
 
 const ProfileSettings: React.FC = () => {
   const { data, loading } = useQuery<GetProfileSettingsQuery>(
-    PROFILE_SETTINGS_QUERY
+    GET_PROFILE_SETTINGS_QUERY
   )
 
   if (loading) {

@@ -258,13 +258,6 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
-export type EditSocialInput = {
-  discord?: Maybe<Scalars['String']>
-  github?: Maybe<Scalars['String']>
-  twitter?: Maybe<Scalars['String']>
-  website?: Maybe<Scalars['String']>
-}
-
 export type EditTipsInput = {
   bitcoin?: Maybe<Scalars['String']>
   buymeacoffee?: Maybe<Scalars['String']>
@@ -283,6 +276,13 @@ export type EditUserInput = {
   location?: Maybe<Scalars['String']>
   name: Scalars['String']
   username: Scalars['String']
+}
+
+export type EditUserSocialInput = {
+  discord?: Maybe<Scalars['String']>
+  github?: Maybe<Scalars['String']>
+  twitter?: Maybe<Scalars['String']>
+  website?: Maybe<Scalars['String']>
 }
 
 export type Integration = {
@@ -375,9 +375,9 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
-  editSocial: User
   editTips: Tip
   editUser: User
+  editUserSocial: User
   joinWaitlist: User
   login?: Maybe<User>
   loginWithWallet?: Maybe<User>
@@ -462,16 +462,16 @@ export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
 }
 
-export type MutationEditSocialArgs = {
-  input: EditSocialInput
-}
-
 export type MutationEditTipsArgs = {
   input: EditTipsInput
 }
 
 export type MutationEditUserArgs = {
   input: EditUserInput
+}
+
+export type MutationEditUserSocialArgs = {
+  input: EditUserSocialInput
 }
 
 export type MutationJoinWaitlistArgs = {
@@ -1526,11 +1526,11 @@ export type GetInviteQuery = {
   waitlistCount: { __typename?: 'WaitlistCount'; count: number }
 }
 
-export type LoginFormMutationVariables = Exact<{
+export type LoginMutationVariables = Exact<{
   input: LoginInput
 }>
 
-export type LoginFormMutation = {
+export type LoginMutation = {
   __typename?: 'Mutation'
   login?:
     | { __typename?: 'User'; id: string; inWaitlist: boolean }
@@ -1556,12 +1556,12 @@ export type JoinWaitlistFormMutation = {
   joinWaitlist: { __typename?: 'User'; id: string; inWaitlist: boolean }
 }
 
-export type ModeratorsQueryVariables = Exact<{
+export type GetModeratorsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type ModeratorsQuery = {
+export type GetModeratorsQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
@@ -1599,9 +1599,9 @@ export type ModeratorsQuery = {
   }
 }
 
-export type CommunitiesQueryVariables = Exact<{ [key: string]: never }>
+export type GetCommunitiesQueryVariables = Exact<{ [key: string]: never }>
 
-export type CommunitiesQuery = {
+export type GetCommunitiesQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
@@ -1623,12 +1623,12 @@ export type CommunitiesQuery = {
   }
 }
 
-export type CommunityFeedQueryVariables = Exact<{
+export type GetCommunityFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type CommunityFeedQuery = {
+export type GetCommunityFeedQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
@@ -1816,11 +1816,11 @@ export type CreateCommunityMutation = {
   }
 }
 
-export type CommunityRulesQueryVariables = Exact<{
+export type GetCommunityRulesQueryVariables = Exact<{
   slug: Scalars['String']
 }>
 
-export type CommunityRulesQuery = {
+export type GetCommunityRulesQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
@@ -1844,11 +1844,11 @@ export type CommunityRulesQuery = {
   }
 }
 
-export type ViewCommunityQueryVariables = Exact<{
+export type GetCommunityQueryVariables = Exact<{
   slug: Scalars['String']
 }>
 
-export type ViewCommunityQuery = {
+export type GetCommunityQuery = {
   __typename?: 'Query'
   community: {
     __typename?: 'Community'
@@ -1873,9 +1873,9 @@ export type ViewCommunityQuery = {
   }
 }
 
-export type FeaturedUsersQueryVariables = Exact<{ [key: string]: never }>
+export type GetFeaturedUsersQueryVariables = Exact<{ [key: string]: never }>
 
-export type FeaturedUsersQuery = {
+export type GetFeaturedUsersQuery = {
   __typename?: 'Query'
   featuredUsers: {
     __typename?: 'QueryFeaturedUsersConnection'
@@ -1902,11 +1902,11 @@ export type FeaturedUsersQuery = {
   }
 }
 
-export type ExploreFeedQueryVariables = Exact<{
+export type GetExploreFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type ExploreFeedQuery = {
+export type GetExploreFeedQuery = {
   __typename?: 'Query'
   posts: {
     __typename?: 'QueryExploreFeedConnection'
@@ -2058,12 +2058,12 @@ export type GetExploreUserQuery = {
     | undefined
 }
 
-export type HomeFeedQueryVariables = Exact<{
+export type GetHomeFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   type: Scalars['String']
 }>
 
-export type HomeFeedQuery = {
+export type GetHomeFeedQuery = {
   __typename?: 'Query'
   posts: {
     __typename?: 'QueryHomeFeedConnection'
@@ -2178,9 +2178,9 @@ export type HomeFeedQuery = {
   }
 }
 
-export type RecentProductsQueryVariables = Exact<{ [key: string]: never }>
+export type GetRecentProductsQueryVariables = Exact<{ [key: string]: never }>
 
-export type RecentProductsQuery = {
+export type GetRecentProductsQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
@@ -2201,9 +2201,9 @@ export type RecentProductsQuery = {
   }
 }
 
-export type WhoToFollowQueryVariables = Exact<{ [key: string]: never }>
+export type GetWhoToFollowQueryVariables = Exact<{ [key: string]: never }>
 
-export type WhoToFollowQuery = {
+export type GetWhoToFollowQuery = {
   __typename?: 'Query'
   whoToFollow: {
     __typename?: 'QueryWhoToFollowConnection'
@@ -2239,12 +2239,12 @@ export type ReadNotificationMutation = {
   readNotification: Result
 }
 
-export type NotificationsQueryVariables = Exact<{
+export type GetNotificationsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   isRead?: Maybe<Scalars['Boolean']>
 }>
 
-export type NotificationsQuery = {
+export type GetNotificationsQuery = {
   __typename?: 'Query'
   notifications: {
     __typename?: 'QueryNotificationsConnection'
@@ -2502,11 +2502,11 @@ export type NotificationsQuery = {
   }
 }
 
-export type OnboardingUsersQueryVariables = Exact<{
+export type GetOnboardingUsersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type OnboardingUsersQuery = {
+export type GetOnboardingUsersQuery = {
   __typename?: 'Query'
   suggestedUsers: {
     __typename?: 'QuerySuggestedUsersConnection'
@@ -2534,11 +2534,11 @@ export type OnboardingUsersQuery = {
   }
 }
 
-export type OnboardingProfileSettingsMutationVariables = Exact<{
+export type EditOnboardingProfileMutationVariables = Exact<{
   input: EditUserInput
 }>
 
-export type OnboardingProfileSettingsMutation = {
+export type EditOnboardingProfileMutation = {
   __typename?: 'Mutation'
   editUser: {
     __typename?: 'User'
@@ -2552,11 +2552,11 @@ export type OnboardingProfileSettingsMutation = {
   }
 }
 
-export type OnboardingTopicsQueryVariables = Exact<{
+export type GetOnboardingTopicsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type OnboardingTopicsQuery = {
+export type GetOnboardingTopicsQuery = {
   __typename?: 'Query'
   featuredTopics: {
     __typename?: 'QueryFeaturedTopicsConnection'
@@ -2600,12 +2600,12 @@ export type MintNftMutation = {
   mint: { __typename?: 'NFT'; id: string; address: string; tokenId: string }
 }
 
-export type MorePostsByUserQueryVariables = Exact<{
+export type GetMorePostsByUserQueryVariables = Exact<{
   userId: Scalars['ID']
   type: Scalars['String']
 }>
 
-export type MorePostsByUserQuery = {
+export type GetMorePostsByUserQuery = {
   __typename?: 'Query'
   morePostsByUser: {
     __typename?: 'QueryMorePostsByUserConnection'
@@ -2635,9 +2635,9 @@ export type MorePostsByUserQuery = {
   }
 }
 
-export type SelectTargetQueryVariables = Exact<{ [key: string]: never }>
+export type GetTargetsQueryVariables = Exact<{ [key: string]: never }>
 
-export type SelectTargetQuery = {
+export type GetTargetsQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -2732,21 +2732,21 @@ export type CreateTaskMutation = {
   createPost: { __typename?: 'Post'; id: string; body: string }
 }
 
-export type NewReplyMutationVariables = Exact<{
+export type CreateReplyMutationVariables = Exact<{
   input: CreatePostInput
 }>
 
-export type NewReplyMutation = {
+export type CreateReplyMutation = {
   __typename?: 'Mutation'
   createPost: { __typename?: 'Post'; id: string; body: string }
 }
 
-export type RepliesQueryVariables = Exact<{
+export type GetRepliesQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   id: Scalars['ID']
 }>
 
-export type RepliesQuery = {
+export type GetRepliesQuery = {
   __typename?: 'Query'
   post: {
     __typename?: 'Post'
@@ -3042,11 +3042,11 @@ export type TogglePostLikeMutation = {
   togglePostLike?: { __typename?: 'Post'; id: string } | null | undefined
 }
 
-export type PostQueryVariables = Exact<{
+export type GetPostQueryVariables = Exact<{
   id: Scalars['ID']
 }>
 
-export type PostQuery = {
+export type GetPostQuery = {
   __typename?: 'Query'
   post: {
     __typename?: 'Post'
@@ -3130,12 +3130,12 @@ export type PostQuery = {
   }
 }
 
-export type ProductFeedQueryVariables = Exact<{
+export type GetProductFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type ProductFeedQuery = {
+export type GetProductFeedQuery = {
   __typename?: 'Query'
   product: {
     __typename?: 'Product'
@@ -3271,11 +3271,11 @@ export type CreateProductMutation = {
     | undefined
 }
 
-export type ProductsQueryVariables = Exact<{
+export type GetProductsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type ProductsQuery = {
+export type GetProductsQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
@@ -3311,11 +3311,11 @@ export type DeleteProductMutation = {
   deleteProduct: Result
 }
 
-export type EditProductProfileSettingsMutationVariables = Exact<{
+export type EditProductProfileMutationVariables = Exact<{
   input: EditProductProfileInput
 }>
 
-export type EditProductProfileSettingsMutation = {
+export type EditProductProfileMutation = {
   __typename?: 'Mutation'
   editProductProfile?:
     | {
@@ -3346,11 +3346,11 @@ export type GetProductSettingsQuery = {
   }
 }
 
-export type EditProductSocialSettingsMutationVariables = Exact<{
+export type EditProductSocialMutationVariables = Exact<{
   input: EditProductSocialInput
 }>
 
-export type EditProductSocialSettingsMutation = {
+export type EditProductSocialMutation = {
   __typename?: 'Mutation'
   editProductSocial?:
     | {
@@ -3401,11 +3401,11 @@ export type ToggleProductSubscribeMutation = {
     | undefined
 }
 
-export type ProductQueryVariables = Exact<{
+export type GetProductQueryVariables = Exact<{
   slug: Scalars['String']
 }>
 
-export type ProductQuery = {
+export type GetProductQuery = {
   __typename?: 'Query'
   product: {
     __typename?: 'Product'
@@ -3453,11 +3453,11 @@ export type CurrentUserQuery = {
     | undefined
 }
 
-export type StaffToolsReportsQueryVariables = Exact<{
+export type GetStaffReportsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type StaffToolsReportsQuery = {
+export type GetStaffReportsQuery = {
   __typename?: 'Query'
   reports: {
     __typename?: 'QueryReportsConnection'
@@ -3493,11 +3493,11 @@ export type ResolveReportMutation = {
   resolveReport?: Result | null | undefined
 }
 
-export type StaffToolsUsersQueryVariables = Exact<{
+export type GetStaffUsersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type StaffToolsUsersQuery = {
+export type GetStaffUsersQuery = {
   __typename?: 'Query'
   users: {
     __typename?: 'QueryUsersConnection'
@@ -3573,9 +3573,9 @@ export type OnboardUserMutation = {
     | undefined
 }
 
-export type StaffToolsDashboardQueryVariables = Exact<{ [key: string]: never }>
+export type GetStaffStatsQueryVariables = Exact<{ [key: string]: never }>
 
-export type StaffToolsDashboardQuery = {
+export type GetStaffStatsQuery = {
   __typename?: 'Query'
   stats?:
     | {
@@ -3595,12 +3595,12 @@ export type StaffToolsDashboardQuery = {
     | undefined
 }
 
-export type TopicFeedQueryVariables = Exact<{
+export type GetTopicFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   name: Scalars['String']
 }>
 
-export type TopicFeedQuery = {
+export type GetTopicFeedQuery = {
   __typename?: 'Query'
   topic: {
     __typename?: 'Topic'
@@ -3748,11 +3748,11 @@ export type ToggleTopicStarMutation = {
     | undefined
 }
 
-export type TopicQueryVariables = Exact<{
+export type GetTopicQueryVariables = Exact<{
   name: Scalars['String']
 }>
 
-export type TopicQuery = {
+export type GetTopicQuery = {
   __typename?: 'Query'
   topic: {
     __typename?: 'Topic'
@@ -3766,11 +3766,11 @@ export type TopicQuery = {
   }
 }
 
-export type UserBadgesQueryVariables = Exact<{
+export type GetUserBadgesQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserBadgesQuery = {
+export type GetUserBadgesQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -3798,11 +3798,11 @@ export type UserBadgesQuery = {
     | undefined
 }
 
-export type BookmarkFeedQueryVariables = Exact<{
+export type GetBookmarkFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type BookmarkFeedQuery = {
+export type GetBookmarkFeedQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -3932,12 +3932,12 @@ export type BookmarkFeedQuery = {
     | undefined
 }
 
-export type UserFeedQueryVariables = Exact<{
+export type GetUserFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type UserFeedQuery = {
+export type GetUserFeedQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4064,12 +4064,12 @@ export type UserFeedQuery = {
     | undefined
 }
 
-export type FollowersQueryVariables = Exact<{
+export type GetFollowersQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type FollowersQuery = {
+export type GetFollowersQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4110,12 +4110,12 @@ export type FollowersQuery = {
     | undefined
 }
 
-export type FollowingQueryVariables = Exact<{
+export type GetFollowingQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type FollowingQuery = {
+export type GetFollowingQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4156,11 +4156,11 @@ export type FollowingQuery = {
     | undefined
 }
 
-export type SpotifyIntegrationsQueryVariables = Exact<{
+export type GetSpotifyQueryVariables = Exact<{
   userId: Scalars['ID']
 }>
 
-export type SpotifyIntegrationsQuery = {
+export type GetSpotifyQuery = {
   __typename?: 'Query'
   spotify?:
     | {
@@ -4175,11 +4175,11 @@ export type SpotifyIntegrationsQuery = {
     | undefined
 }
 
-export type WakatimeIntegrationsQueryVariables = Exact<{
+export type GetWakatimeQueryVariables = Exact<{
   userId: Scalars['ID']
 }>
 
-export type WakatimeIntegrationsQuery = {
+export type GetWakatimeQuery = {
   __typename?: 'Query'
   wakatime?:
     | { __typename?: 'Wakatime'; hours?: string | null | undefined }
@@ -4206,11 +4206,11 @@ export type ModUserMutation = {
     | undefined
 }
 
-export type UserProductsQueryVariables = Exact<{
+export type GetUserProductsQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserProductsQuery = {
+export type GetUserProductsQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4257,11 +4257,11 @@ export type WalletSettingsMutation = {
   }
 }
 
-export type EditIntegrationSettingsMutationVariables = Exact<{
+export type EditIntegrationMutationVariables = Exact<{
   input: EditIntegrationInput
 }>
 
-export type EditIntegrationSettingsMutation = {
+export type EditIntegrationMutation = {
   __typename?: 'Mutation'
   editIntegration: {
     __typename?: 'Integration'
@@ -4271,11 +4271,9 @@ export type EditIntegrationSettingsMutation = {
   }
 }
 
-export type GetIntegrationSettingsQueryVariables = Exact<{
-  [key: string]: never
-}>
+export type GetIntegrationQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetIntegrationSettingsQuery = {
+export type GetIntegrationQuery = {
   __typename?: 'Query'
   integration?:
     | {
@@ -4289,11 +4287,11 @@ export type GetIntegrationSettingsQuery = {
     | undefined
 }
 
-export type LogsSettingsQueryVariables = Exact<{
+export type GetLogsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type LogsSettingsQuery = {
+export type GetLogsQuery = {
   __typename?: 'Query'
   logs: {
     __typename?: 'QueryLogsConnection'
@@ -4325,11 +4323,11 @@ export type LogsSettingsQuery = {
   }
 }
 
-export type ProfileSettingsMutationVariables = Exact<{
+export type EditProfileMutationVariables = Exact<{
   input: EditUserInput
 }>
 
-export type ProfileSettingsMutation = {
+export type EditProfileMutation = {
   __typename?: 'Mutation'
   editUser: {
     __typename?: 'User'
@@ -4397,11 +4395,11 @@ export type GetProfileSettingsQuery = {
     | undefined
 }
 
-export type ChangePasswordMutationVariables = Exact<{
+export type EditPasswordMutationVariables = Exact<{
   input: ChangePasswordInput
 }>
 
-export type ChangePasswordMutation = {
+export type EditPasswordMutation = {
   __typename?: 'Mutation'
   changePassword: Result
 }
@@ -4415,11 +4413,11 @@ export type RevokeSessionMutation = {
   revokeSession: Result
 }
 
-export type SessionsSettingsQueryVariables = Exact<{
+export type GetSessionsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type SessionsSettingsQuery = {
+export type GetSessionsQuery = {
   __typename?: 'Query'
   sessions?:
     | {
@@ -4462,13 +4460,13 @@ export type SessionsSettingsQuery = {
     | undefined
 }
 
-export type EditSocialSettingsMutationVariables = Exact<{
-  input: EditSocialInput
+export type EditUserSocialMutationVariables = Exact<{
+  input: EditUserSocialInput
 }>
 
-export type EditSocialSettingsMutation = {
+export type EditUserSocialMutation = {
   __typename?: 'Mutation'
-  editSocial: {
+  editUserSocial: {
     __typename?: 'User'
     profile: {
       __typename?: 'Profile'
@@ -4481,9 +4479,9 @@ export type EditSocialSettingsMutation = {
   }
 }
 
-export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
+export type GetSocialQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetSocialSettingsQuery = {
+export type GetSocialQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -4502,11 +4500,11 @@ export type GetSocialSettingsQuery = {
     | undefined
 }
 
-export type EditTipsSettingsMutationVariables = Exact<{
+export type EditTipsMutationVariables = Exact<{
   input: EditTipsInput
 }>
 
-export type EditTipsSettingsMutation = {
+export type EditTipsMutation = {
   __typename?: 'Mutation'
   editTips: {
     __typename?: 'Tip'
@@ -4521,9 +4519,9 @@ export type EditTipsSettingsMutation = {
   }
 }
 
-export type GetTipsSettingsQueryVariables = Exact<{ [key: string]: never }>
+export type GetTipsQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetTipsSettingsQuery = {
+export type GetTipsQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -4548,11 +4546,11 @@ export type GetTipsSettingsQuery = {
     | undefined
 }
 
-export type UserTipsQueryVariables = Exact<{
+export type GetUserTipsQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserTipsQuery = {
+export type GetUserTipsQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4612,11 +4610,11 @@ export type UserFragmentFragment = {
   tip?: { __typename?: 'Tip'; id: string } | null | undefined
 }
 
-export type ViewUserQueryVariables = Exact<{
+export type GetUserQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type ViewUserQuery = {
+export type GetUserQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4662,9 +4660,9 @@ export type ViewUserQuery = {
     | undefined
 }
 
-export type InviteCodeQueryVariables = Exact<{ [key: string]: never }>
+export type GetInviteCodeQueryVariables = Exact<{ [key: string]: never }>
 
-export type InviteCodeQuery = {
+export type GetInviteCodeQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -4698,9 +4696,9 @@ export type RegenerateInviteMutation = {
   }
 }
 
-export type NotificationCountQueryVariables = Exact<{ [key: string]: never }>
+export type GetNotificationCountQueryVariables = Exact<{ [key: string]: never }>
 
-export type NotificationCountQuery = {
+export type GetNotificationCountQuery = {
   __typename?: 'Query'
   me?: { __typename?: 'User'; notificationsCount: number } | null | undefined
 }
