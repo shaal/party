@@ -4413,11 +4413,11 @@ export type RevokeSessionMutation = {
   revokeSession: Result
 }
 
-export type SessionsSettingsQueryVariables = Exact<{
+export type GetSessionsQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type SessionsSettingsQuery = {
+export type GetSessionsQuery = {
   __typename?: 'Query'
   sessions?:
     | {
@@ -4479,9 +4479,9 @@ export type EditSocialSettingsMutation = {
   }
 }
 
-export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
+export type GetSocialQueryVariables = Exact<{ [key: string]: never }>
 
-export type GetSocialSettingsQuery = {
+export type GetSocialQuery = {
   __typename?: 'Query'
   me?:
     | {
