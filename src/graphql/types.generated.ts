@@ -2058,12 +2058,12 @@ export type GetExploreUserQuery = {
     | undefined
 }
 
-export type HomeFeedQueryVariables = Exact<{
+export type GetHomeFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   type: Scalars['String']
 }>
 
-export type HomeFeedQuery = {
+export type GetHomeFeedQuery = {
   __typename?: 'Query'
   posts: {
     __typename?: 'QueryHomeFeedConnection'
