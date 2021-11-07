@@ -4,7 +4,6 @@ import { Post } from '@graphql/types.generated'
 import { Switch } from '@headlessui/react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
-import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
 
@@ -39,25 +38,21 @@ const LikeButton: React.FC<Props> = ({ entity, handleLike, loading }) => {
   }
 
   return (
-    <motion.button whileTap={{ scale: 0.9 }}>
-      <div className="text-pink-500 hover:text-pink-400 flex items-center space-x-1">
-        <Switch
-          checked={entity?.hasLiked}
-          onChange={toggleLike}
-          className="hover:bg-pink-300 hover:bg-opacity-20 p-1.5 rounded-full"
-          disabled={loading}
-        >
-          {isLiked ? (
-            <HeartIconSolid className="h-5 w-5" />
-          ) : (
-            <HeartIcon className="h-5 w-5" />
-          )}
-        </Switch>
-        {likesCount > 0 && (
-          <div className="text-xs">{humanize(likesCount)}</div>
+    <div className="text-pink-500 hover:text-pink-400 flex items-center space-x-1">
+      <Switch
+        checked={entity?.hasLiked}
+        onChange={toggleLike}
+        className="hover:bg-pink-300 hover:bg-opacity-20 p-1.5 rounded-full"
+        disabled={loading}
+      >
+        {isLiked ? (
+          <HeartIconSolid className="h-5 w-5" />
+        ) : (
+          <HeartIcon className="h-5 w-5" />
         )}
-      </div>
-    </motion.button>
+      </Switch>
+      {likesCount > 0 && <div className="text-xs">{humanize(likesCount)}</div>}
+    </div>
   )
 }
 
