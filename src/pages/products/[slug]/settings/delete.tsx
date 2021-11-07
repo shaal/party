@@ -1,7 +1,7 @@
-import Settings from '@components/Product/Settings'
+import DeleteSettings from '@components/Product/Settings/Delete'
 import { authenticatedRoute } from '@utils/redirects'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute
 
-export default Settings
+export default DeleteSettings

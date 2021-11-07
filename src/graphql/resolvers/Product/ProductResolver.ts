@@ -3,7 +3,10 @@ import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
+import { Result } from '../ResultResolver'
 import { createProduct } from './mutations/createProduct'
+import { deleteProduct } from './mutations/deleteProduct'
+import { editProductSocial } from './mutations/editProductSocial'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
 import { hasSubscribed } from './queries/hasSubscribed'
@@ -98,7 +101,7 @@ builder.mutationField('createProduct', (t) =>
   })
 )
 
-const EditProductInput = builder.inputType('EditProductInput', {
+const EditProductProfileInput = builder.inputType('EditProductProfileInput', {
   fields: (t) => ({
     id: t.id({ validate: { uuid: true } }),
     slug: t.string({
@@ -115,10 +118,10 @@ const EditProductInput = builder.inputType('EditProductInput', {
 })
 
 // TODO: Split to function
-builder.mutationField('editProduct', (t) =>
+builder.mutationField('editProductProfile', (t) =>
   t.prismaField({
     type: 'Product',
-    args: { input: t.arg({ type: EditProductInput }) },
+    args: { input: t.arg({ type: EditProductProfileInput }) },
     authScopes: { user: true },
     nullable: true,
     resolve: async (query, parent, { input }) => {
@@ -150,6 +153,31 @@ builder.mutationField('editProduct', (t) =>
   })
 )
 
+const EditProductSocialInput = builder.inputType('EditProductSocialInput', {
+  fields: (t) => ({
+    id: t.id({ validate: { uuid: true } }),
+    website: t.string({
+      required: false,
+      validate: { maxLength: 100, url: true }
+    }),
+    twitter: t.string({ required: false, validate: { maxLength: 50 } }),
+    github: t.string({ required: false, validate: { maxLength: 50 } }),
+    discord: t.string({ required: false, validate: { maxLength: 50 } })
+  })
+})
+
+builder.mutationField('editProductSocial', (t) =>
+  t.prismaField({
+    type: 'Product',
+    args: { input: t.arg({ type: EditProductSocialInput }) },
+    authScopes: { user: true },
+    nullable: true,
+    resolve: async (query, parent, { input }, { session }) => {
+      return await editProductSocial(query, input, session)
+    }
+  })
+)
+
 const ToggleProductSubscribeInput = builder.inputType(
   'ToggleProductSubscribeInput',
   {
@@ -166,6 +194,22 @@ builder.mutationField('toggleProductSubscribe', (t) =>
     nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       return await toggleSubscribe(session?.userId as string, input.id)
+    }
+  })
+)
+
+const DeleteProductInput = builder.inputType('DeleteProductInput', {
+  fields: (t) => ({
+    id: t.id({ validate: { uuid: true } })
+  })
+})
+
+builder.mutationField('deleteProduct', (t) =>
+  t.field({
+    type: Result,
+    args: { input: t.arg({ type: DeleteProductInput }) },
+    resolve: async (parent, { input }, { session }) => {
+      return await deleteProduct(input, session)
     }
   })
 )
