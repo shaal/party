@@ -3296,6 +3296,15 @@ export type ProductsQuery = {
   }
 }
 
+export type DeleteProductMutationVariables = Exact<{
+  input: DeleteProductInput
+}>
+
+export type DeleteProductMutation = {
+  __typename?: 'Mutation'
+  deleteProduct: Result
+}
+
 export type EditProductProfileSettingsMutationVariables = Exact<{
   input: EditProductProfileInput
 }>
