@@ -3932,12 +3932,12 @@ export type GetBookmarkFeedQuery = {
     | undefined
 }
 
-export type UserFeedQueryVariables = Exact<{
+export type GetUserFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
 }>
 
-export type UserFeedQuery = {
+export type GetUserFeedQuery = {
   __typename?: 'Query'
   user?:
     | {

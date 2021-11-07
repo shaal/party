@@ -1,11 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
 import { Tooltip } from '@components/UI/Tooltip'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { Product, User, UserProductsQuery } from '@graphql/types.generated'
+import { GetUserProductsQuery, Product, User } from '@graphql/types.generated'
 import Link from 'next/link'
 
-export const USER_PRODUCTS_QUERY = gql`
-  query UserProducts($username: String!) {
+export const GET_USER_PRODUCTS_QUERY = gql`
+  query GetUserProducts($username: String!) {
     user(username: $username) {
       ownedProducts {
         edges {
@@ -26,9 +26,10 @@ interface Props {
 }
 
 const OwnedProducts: React.FC<Props> = ({ user }) => {
-  const { data, loading } = useQuery<UserProductsQuery>(USER_PRODUCTS_QUERY, {
-    variables: { username: user?.username }
-  })
+  const { data, loading } = useQuery<GetUserProductsQuery>(
+    GET_USER_PRODUCTS_QUERY,
+    { variables: { username: user?.username } }
+  )
   const products = data?.user?.ownedProducts?.edges?.map((edge) => edge?.node)
 
   const Product = ({ product }: { product: Product }) => {
