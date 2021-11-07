@@ -325,7 +325,7 @@ export type Log = {
 }
 
 export type LoginInput = {
-  email: Scalars['String']
+  login: Scalars['String']
   password: Scalars['String']
 }
 

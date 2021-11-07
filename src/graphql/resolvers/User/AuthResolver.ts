@@ -34,7 +34,7 @@ builder.queryField('me', (t) =>
 
 const LoginInput = builder.inputType('LoginInput', {
   fields: (t) => ({
-    email: t.string({ validate: { email: true } }),
+    login: t.string({ validate: { minLength: 3 } }),
     password: t.string({ validate: { minLength: 6 } })
   })
 })
@@ -50,7 +50,7 @@ builder.mutationField('login', (t) =>
     nullable: true,
     resolve: async (_query, parent, { input }, { req }) => {
       try {
-        const user = await authenticateUser(input.email, input.password)
+        const user = await authenticateUser(input.login, input.password)
         if (user.inWaitlist) {
           // Don't allow users in waitlist
           return user
