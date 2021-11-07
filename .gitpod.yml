@@ -7,7 +7,6 @@ tasks:
     init: |
       yarn install --frozen-lockfile --silent --network-timeout 100000
       cp .env.example .env
-      npx hardhat compile
       gp await-port 3306
       yarn prisma:migrate
       yarn prisma:seed
@@ -17,6 +16,8 @@ tasks:
       yarn codegen:graphql --watch &
       export BASE_URL=`gp url 3000`
       yarn dev
+
+  - command: scripts/welcome.sh
 
 ports:
   - port: 3000 # Web app
