@@ -3766,11 +3766,11 @@ export type GetTopicQuery = {
   }
 }
 
-export type UserBadgesQueryVariables = Exact<{
+export type GetUserBadgesQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserBadgesQuery = {
+export type GetUserBadgesQuery = {
   __typename?: 'Query'
   user?:
     | {
