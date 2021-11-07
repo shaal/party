@@ -4698,9 +4698,9 @@ export type RegenerateInviteMutation = {
   }
 }
 
-export type NotificationCountQueryVariables = Exact<{ [key: string]: never }>
+export type GetNotificationCountQueryVariables = Exact<{ [key: string]: never }>
 
-export type NotificationCountQuery = {
+export type GetNotificationCountQuery = {
   __typename?: 'Query'
   me?: { __typename?: 'User'; notificationsCount: number } | null | undefined
 }
