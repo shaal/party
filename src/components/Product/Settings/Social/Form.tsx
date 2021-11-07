@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditProductSocialSettingsMutation,
-  EditProductSocialSettingsMutationVariables,
+  EditProductSocialMutation,
+  EditProductSocialMutationVariables,
   Product
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -44,11 +44,11 @@ const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const SocialSettingsForm: React.FC<Props> = ({ product }) => {
   const [editProductSocial] = useMutation<
-    EditProductSocialSettingsMutation,
-    EditProductSocialSettingsMutationVariables
+    EditProductSocialMutation,
+    EditProductSocialMutationVariables
   >(
     gql`
-      mutation EditProductSocialSettings($input: EditProductSocialInput!) {
+      mutation EditProductSocial($input: EditProductSocialInput!) {
         editProductSocial(input: $input) {
           id
           twitter

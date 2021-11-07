@@ -3311,11 +3311,11 @@ export type DeleteProductMutation = {
   deleteProduct: Result
 }
 
-export type EditProductProfileSettingsMutationVariables = Exact<{
+export type EditProductProfileMutationVariables = Exact<{
   input: EditProductProfileInput
 }>
 
-export type EditProductProfileSettingsMutation = {
+export type EditProductProfileMutation = {
   __typename?: 'Mutation'
   editProductProfile?:
     | {
@@ -3346,11 +3346,11 @@ export type GetProductSettingsQuery = {
   }
 }
 
-export type EditProductSocialSettingsMutationVariables = Exact<{
+export type EditProductSocialMutationVariables = Exact<{
   input: EditProductSocialInput
 }>
 
-export type EditProductSocialSettingsMutation = {
+export type EditProductSocialMutation = {
   __typename?: 'Mutation'
   editProductSocial?:
     | {
@@ -4500,11 +4500,11 @@ export type GetSocialQuery = {
     | undefined
 }
 
-export type EditTipsSettingsMutationVariables = Exact<{
+export type EditTipsMutationVariables = Exact<{
   input: EditTipsInput
 }>
 
-export type EditTipsSettingsMutation = {
+export type EditTipsMutation = {
   __typename?: 'Mutation'
   editTips: {
     __typename?: 'Tip'
@@ -4546,11 +4546,11 @@ export type GetTipsQuery = {
     | undefined
 }
 
-export type UserTipsQueryVariables = Exact<{
+export type GetUserTipsQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserTipsQuery = {
+export type GetUserTipsQuery = {
   __typename?: 'Query'
   user?:
     | {
