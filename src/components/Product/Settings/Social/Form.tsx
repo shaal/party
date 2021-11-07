@@ -17,7 +17,7 @@ import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
 
-const editSocialSchema = object({
+const editProductSocialSchema = object({
   twitter: string()
     .max(50, { message: '👤 Username should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Twitter username' })
@@ -69,7 +69,7 @@ const SocialSettingsForm: React.FC<Props> = ({ product }) => {
   )
 
   const form = useZodForm({
-    schema: editSocialSchema,
+    schema: editProductSocialSchema,
     defaultValues: {
       twitter: product.twitter as string,
       github: product.github as string,

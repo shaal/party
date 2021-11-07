@@ -258,13 +258,6 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
-export type EditSocialInput = {
-  discord?: Maybe<Scalars['String']>
-  github?: Maybe<Scalars['String']>
-  twitter?: Maybe<Scalars['String']>
-  website?: Maybe<Scalars['String']>
-}
-
 export type EditTipsInput = {
   bitcoin?: Maybe<Scalars['String']>
   buymeacoffee?: Maybe<Scalars['String']>
@@ -283,6 +276,13 @@ export type EditUserInput = {
   location?: Maybe<Scalars['String']>
   name: Scalars['String']
   username: Scalars['String']
+}
+
+export type EditUserSocialInput = {
+  discord?: Maybe<Scalars['String']>
+  github?: Maybe<Scalars['String']>
+  twitter?: Maybe<Scalars['String']>
+  website?: Maybe<Scalars['String']>
 }
 
 export type Integration = {
@@ -375,9 +375,9 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
-  editSocial: User
   editTips: Tip
   editUser: User
+  editUserSocial: User
   joinWaitlist: User
   login?: Maybe<User>
   loginWithWallet?: Maybe<User>
@@ -462,16 +462,16 @@ export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
 }
 
-export type MutationEditSocialArgs = {
-  input: EditSocialInput
-}
-
 export type MutationEditTipsArgs = {
   input: EditTipsInput
 }
 
 export type MutationEditUserArgs = {
   input: EditUserInput
+}
+
+export type MutationEditUserSocialArgs = {
+  input: EditUserSocialInput
 }
 
 export type MutationJoinWaitlistArgs = {
@@ -4206,11 +4206,11 @@ export type ModUserMutation = {
     | undefined
 }
 
-export type UserProductsQueryVariables = Exact<{
+export type GetUserProductsQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type UserProductsQuery = {
+export type GetUserProductsQuery = {
   __typename?: 'Query'
   user?:
     | {
@@ -4460,13 +4460,13 @@ export type GetSessionsQuery = {
     | undefined
 }
 
-export type EditSocialMutationVariables = Exact<{
-  input: EditSocialInput
+export type EditUserSocialMutationVariables = Exact<{
+  input: EditUserSocialInput
 }>
 
-export type EditSocialMutation = {
+export type EditUserSocialMutation = {
   __typename?: 'Mutation'
-  editSocial: {
+  editUserSocial: {
     __typename?: 'User'
     profile: {
       __typename?: 'Profile'

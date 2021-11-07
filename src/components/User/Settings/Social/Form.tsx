@@ -6,8 +6,8 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditSocialMutation,
-  EditSocialMutationVariables,
+  EditUserSocialMutation,
+  EditUserSocialMutationVariables,
   User
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -17,7 +17,7 @@ import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
 
-const editSocialSchema = object({
+const editUserSocialSchema = object({
   twitter: string()
     .max(50, { message: '👤 Username should be within 50 characters' })
     .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Twitter username' })
@@ -43,13 +43,13 @@ interface Props {
 const SUCCESS_MESSAGE = 'Social successfully updated!'
 
 const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editSocial] = useMutation<
-    EditSocialMutation,
-    EditSocialMutationVariables
+  const [editUserSocial] = useMutation<
+    EditUserSocialMutation,
+    EditUserSocialMutationVariables
   >(
     gql`
-      mutation EditSocial($input: EditSocialInput!) {
-        editSocial(input: $input) {
+      mutation EditUserSocial($input: EditUserSocialInput!) {
+        editUserSocial(input: $input) {
           profile {
             id
             twitter
@@ -71,7 +71,7 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   )
 
   const form = useZodForm({
-    schema: editSocialSchema,
+    schema: editUserSocialSchema,
     defaultValues: {
       twitter: currentUser.profile.twitter as string,
       github: currentUser.profile.github as string,
@@ -92,7 +92,7 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
               form={form}
               className="space-y-4"
               onSubmit={({ twitter, github, website, discord }) =>
-                editSocial({
+                editUserSocial({
                   variables: {
                     input: { website, twitter, github, discord }
                   }
