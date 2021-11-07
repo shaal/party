@@ -2178,9 +2178,9 @@ export type GetHomeFeedQuery = {
   }
 }
 
-export type RecentProductsQueryVariables = Exact<{ [key: string]: never }>
+export type GetRecentProductsQueryVariables = Exact<{ [key: string]: never }>
 
-export type RecentProductsQuery = {
+export type GetRecentProductsQuery = {
   __typename?: 'Query'
   products: {
     __typename?: 'QueryProductsConnection'
