@@ -1526,11 +1526,11 @@ export type GetInviteQuery = {
   waitlistCount: { __typename?: 'WaitlistCount'; count: number }
 }
 
-export type LoginFormMutationVariables = Exact<{
+export type LoginMutationVariables = Exact<{
   input: LoginInput
 }>
 
-export type LoginFormMutation = {
+export type LoginMutation = {
   __typename?: 'Mutation'
   login?:
     | { __typename?: 'User'; id: string; inWaitlist: boolean }
