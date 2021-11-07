@@ -3798,11 +3798,11 @@ export type UserBadgesQuery = {
     | undefined
 }
 
-export type BookmarkFeedQueryVariables = Exact<{
+export type GetBookmarkFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
 }>
 
-export type BookmarkFeedQuery = {
+export type GetBookmarkFeedQuery = {
   __typename?: 'Query'
   me?:
     | {
@@ -4612,11 +4612,11 @@ export type UserFragmentFragment = {
   tip?: { __typename?: 'Tip'; id: string } | null | undefined
 }
 
-export type ViewUserQueryVariables = Exact<{
+export type GetUserQueryVariables = Exact<{
   username: Scalars['String']
 }>
 
-export type ViewUserQuery = {
+export type GetUserQuery = {
   __typename?: 'Query'
   user?:
     | {

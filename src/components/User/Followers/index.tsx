@@ -5,27 +5,20 @@ import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import Details from '@components/User/Details'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { User, ViewUserQuery } from '@graphql/types.generated'
+import { GetUserQuery, User } from '@graphql/types.generated'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
 
-import { VIEW_USER_QUERY } from '../ViewUser'
+import { GET_USER_QUERY } from '../ViewUser'
 import FollowersList from './List'
-
-export const USER_FOLLOWERS_QUERY = VIEW_USER_QUERY
 
 const Followers: React.FC = () => {
   const router = useRouter()
-  const { data, loading, error } = useQuery<ViewUserQuery>(
-    USER_FOLLOWERS_QUERY,
-    {
-      variables: {
-        username: router.query.username
-      },
-      skip: !router.isReady
-    }
-  )
+  const { data, loading, error } = useQuery<GetUserQuery>(GET_USER_QUERY, {
+    variables: { username: router.query.username },
+    skip: !router.isReady
+  })
   const user = data?.user
 
   if (!router.isReady || loading)
