@@ -205,9 +205,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             </a>
           </Link>
         </motion.button>
-        <motion.button whileTap={{ scale: 0.9 }}>
-          <PostMenu post={post} />
-        </motion.button>
+        <PostMenu post={post} />
         {(post?.likes?.totalCount as number) > 0 && (
           <div className="text-gray-600 dark:text-gray-400 text-sm items-center gap-2 hidden sm:flex">
             <div>Liked by</div>
