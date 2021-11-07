@@ -153,6 +153,10 @@ input DeletePostInput {
   id: ID!
 }
 
+input DeleteProductInput {
+  id: ID!
+}
+
 input EditIntegrationInput {
   ethAddress: String
   spotifyRefreshToken: String
@@ -291,6 +295,7 @@ type Mutation {
   createReport(input: CreateReportInput!): Report!
   deleteAccount: Result!
   deletePost(input: DeletePostInput!): Result!
+  deleteProduct(input: DeleteProductInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User
   editPost(input: EditPostInput!): Post!

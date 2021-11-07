@@ -220,6 +220,10 @@ export type DeletePostInput = {
   id: Scalars['ID']
 }
 
+export type DeleteProductInput = {
+  id: Scalars['ID']
+}
+
 export type EditIntegrationInput = {
   ethAddress?: Maybe<Scalars['String']>
   spotifyRefreshToken?: Maybe<Scalars['String']>
@@ -363,6 +367,7 @@ export type Mutation = {
   createReport: Report
   deleteAccount: Result
   deletePost: Result
+  deleteProduct: Result
   editIntegration: Integration
   editNFTAvatar?: Maybe<User>
   editPost: Post
@@ -429,6 +434,10 @@ export type MutationCreateReportArgs = {
 
 export type MutationDeletePostArgs = {
   input: DeletePostInput
+}
+
+export type MutationDeleteProductArgs = {
+  input: DeleteProductInput
 }
 
 export type MutationEditIntegrationArgs = {
