@@ -1,6 +1,6 @@
 import {
   ChartSquareBarIcon,
-  FlagIcon,
+  ShieldExclamationIcon,
   UsersIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
         current={router.pathname == '/stafftools/reports'}
         url="/stafftools/reports"
       >
-        <FlagIcon className="h-4 w-4" />
+        <ShieldExclamationIcon className="h-4 w-4" />
         <div>Reports</div>
       </Menu>
     </div>

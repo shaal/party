@@ -164,7 +164,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             </Link>
           </div>
         )}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between">
           <UserProfile user={post?.user as User} />
           <Link href={`/posts/${post?.id}`}>
             <a href={`/posts/${post?.id}`} className="text-sm cursor-pointer">
@@ -183,7 +183,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           !isLoading &&
           !isError && <Oembed url={post?.oembedUrl} oembed={oembed} />}
       </CardBody>
-      <div className="flex px-3 py-1.5 space-x-5 border-t dark:border-gray-800">
+      <div className="flex px-3 py-1.5 space-x-4 border-t dark:border-gray-800">
         <LikeButton entity={post} handleLike={handleLike} loading={false} />
         <Link href={`/posts/${post?.id}`}>
           <a

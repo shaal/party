@@ -51,7 +51,7 @@ The party hub for developers
 ## ✨ Feature Highlights
 
 - 👤 **Users:** Community of developers who ships or creates constantly.
-- 📦 **Products:** Ship your products to Devparty and make regular updates about the product.
+- 🚀 **Products:** Ship your products to Devparty and make regular updates about the product.
 - 📜 **Posts:** Post what's happening in your desk or in your life and even post the desk pics.
 - ✅ **Tasks:** All tasks are public and added to your profile.
 - ❓ **Questions:** Get your questions answered and use this feature as discussion too.

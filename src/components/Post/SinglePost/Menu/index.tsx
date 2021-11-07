@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import {
   CodeIcon,
   DotsHorizontalIcon,
-  FlagIcon
+  ShieldExclamationIcon
 } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { Fragment, useContext } from 'react'
@@ -72,7 +72,7 @@ const PostMenu: React.FC<Props> = ({ post }) => {
                   }
                 >
                   <div className="flex items-center space-x-2">
-                    <FlagIcon className="h-4 w-4" />
+                    <ShieldExclamationIcon className="h-4 w-4" />
                     <div>Report Post</div>
                   </div>
                 </Menu.Item>

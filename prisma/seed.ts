@@ -99,12 +99,12 @@ async function main() {
   for (let i = 0; i < 20; i++) {
     const slug =
       `${faker.name.firstName()}${faker.name.lastName()}`.toLocaleLowerCase()
-    console.log(`🌱 Seeding fake product - ${slug} 📦`)
+    console.log(`🌱 Seeding fake product - ${slug} 🚀`)
     await db.product.create({
       data: {
         slug,
         name: faker.company.companyName(),
-        avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=📦`,
+        avatar: `https://avatar.tobi.sh/${await md5(slug)}.svg?text=🚀`,
         description: faker.lorem.sentence(10),
         owner: {
           connect: {
@@ -118,7 +118,7 @@ async function main() {
 
   // Product
   for (const product of productData) {
-    console.log(`🌱 Seeding real product - ${product.slug} 📦`)
+    console.log(`🌱 Seeding real product - ${product.slug} 🚀`)
     await db.product.create({
       data: {
         name: product.name,
