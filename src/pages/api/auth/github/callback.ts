@@ -21,9 +21,7 @@ const handler = async (
 ) => {
   const { warmup } = req.query
 
-  if (warmup) {
-    return res.status(200).json({ status: 'Warmed up!' })
-  }
+  if (warmup) return res.status(200).json({ status: 'Warmed up!' })
 
   try {
     const requestOptions = {
