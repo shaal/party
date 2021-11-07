@@ -153,6 +153,10 @@ input DeletePostInput {
   id: ID!
 }
 
+input DeleteProductInput {
+  id: ID!
+}
+
 input EditIntegrationInput {
   ethAddress: String
   spotifyRefreshToken: String
@@ -170,12 +174,20 @@ input EditPostInput {
   id: ID!
 }
 
-input EditProductInput {
+input EditProductProfileInput {
   avatar: String
   description: String
   id: ID!
   name: String!
   slug: String!
+}
+
+input EditProductSocialInput {
+  discord: String
+  github: String
+  id: ID!
+  twitter: String
+  website: String
 }
 
 input EditSocialInput {
@@ -283,10 +295,12 @@ type Mutation {
   createReport(input: CreateReportInput!): Report!
   deleteAccount: Result!
   deletePost(input: DeletePostInput!): Result!
+  deleteProduct(input: DeleteProductInput!): Result!
   editIntegration(input: EditIntegrationInput!): Integration!
   editNFTAvatar(input: EditNFTAvatarInput!): User
   editPost(input: EditPostInput!): Post!
-  editProduct(input: EditProductInput!): Product
+  editProductProfile(input: EditProductProfileInput!): Product
+  editProductSocial(input: EditProductSocialInput!): Product
   editSocial(input: EditSocialInput!): User!
   editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!

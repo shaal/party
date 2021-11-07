@@ -1,6 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
-import SettingsHelper from '@components/shared/SettingsHelper'
 import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
@@ -11,8 +10,8 @@ import { SuccessMessage } from '@components/UI/SuccessMessage'
 import { TextArea } from '@components/UI/TextArea'
 import { uploadToIPFS } from '@components/utils/uploadToIPFS'
 import {
-  EditProductSettingsMutation,
-  EditProductSettingsMutationVariables,
+  EditProductProfileSettingsMutation,
+  EditProductProfileSettingsMutationVariables,
   Product
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
@@ -20,6 +19,8 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
+
+import Sidebar from '../Sidebar'
 
 const editProductSchema = object({
   slug: string()
@@ -40,15 +41,15 @@ interface Props {
 
 const SUCCESS_MESSAGE = 'Product successfully updated!'
 
-const ProductSettings: React.FC<Props> = ({ product }) => {
+const ProductSettingsForm: React.FC<Props> = ({ product }) => {
   const [avatar, setAvatar] = useState<string>()
   const [editProduct, editProductResult] = useMutation<
-    EditProductSettingsMutation,
-    EditProductSettingsMutationVariables
+    EditProductProfileSettingsMutation,
+    EditProductProfileSettingsMutationVariables
   >(
     gql`
-      mutation EditProductSettings($input: EditProductInput!) {
-        editProduct(input: $input) {
+      mutation EditProductProfileSettings($input: EditProductProfileInput!) {
+        editProductProfile(input: $input) {
           id
           slug
           name
@@ -91,10 +92,7 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
   return (
     <GridLayout>
       <GridItemFour>
-        <SettingsHelper
-          heading="Product settings"
-          description={'Update your product information and identities.'}
-        />
+        <Sidebar slug={product?.slug as string} />
       </GridItemFour>
       <GridItemEight>
         <Card>
@@ -176,4 +174,4 @@ const ProductSettings: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default ProductSettings
+export default ProductSettingsForm

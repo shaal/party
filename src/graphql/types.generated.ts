@@ -220,6 +220,10 @@ export type DeletePostInput = {
   id: Scalars['ID']
 }
 
+export type DeleteProductInput = {
+  id: Scalars['ID']
+}
+
 export type EditIntegrationInput = {
   ethAddress?: Maybe<Scalars['String']>
   spotifyRefreshToken?: Maybe<Scalars['String']>
@@ -237,12 +241,20 @@ export type EditPostInput = {
   id: Scalars['ID']
 }
 
-export type EditProductInput = {
+export type EditProductProfileInput = {
   avatar?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   id: Scalars['ID']
   name: Scalars['String']
   slug: Scalars['String']
+}
+
+export type EditProductSocialInput = {
+  discord?: Maybe<Scalars['String']>
+  github?: Maybe<Scalars['String']>
+  id: Scalars['ID']
+  twitter?: Maybe<Scalars['String']>
+  website?: Maybe<Scalars['String']>
 }
 
 export type EditSocialInput = {
@@ -355,10 +367,12 @@ export type Mutation = {
   createReport: Report
   deleteAccount: Result
   deletePost: Result
+  deleteProduct: Result
   editIntegration: Integration
   editNFTAvatar?: Maybe<User>
   editPost: Post
-  editProduct?: Maybe<Product>
+  editProductProfile?: Maybe<Product>
+  editProductSocial?: Maybe<Product>
   editSocial: User
   editTips: Tip
   editUser: User
@@ -422,6 +436,10 @@ export type MutationDeletePostArgs = {
   input: DeletePostInput
 }
 
+export type MutationDeleteProductArgs = {
+  input: DeleteProductInput
+}
+
 export type MutationEditIntegrationArgs = {
   input: EditIntegrationInput
 }
@@ -434,8 +452,12 @@ export type MutationEditPostArgs = {
   input: EditPostInput
 }
 
-export type MutationEditProductArgs = {
-  input: EditProductInput
+export type MutationEditProductProfileArgs = {
+  input: EditProductProfileInput
+}
+
+export type MutationEditProductSocialArgs = {
+  input: EditProductSocialInput
 }
 
 export type MutationEditSocialArgs = {
@@ -3274,13 +3296,22 @@ export type ProductsQuery = {
   }
 }
 
-export type EditProductSettingsMutationVariables = Exact<{
-  input: EditProductInput
+export type DeleteProductMutationVariables = Exact<{
+  input: DeleteProductInput
 }>
 
-export type EditProductSettingsMutation = {
+export type DeleteProductMutation = {
   __typename?: 'Mutation'
-  editProduct?:
+  deleteProduct: Result
+}
+
+export type EditProductProfileSettingsMutationVariables = Exact<{
+  input: EditProductProfileInput
+}>
+
+export type EditProductProfileSettingsMutation = {
+  __typename?: 'Mutation'
+  editProductProfile?:
     | {
         __typename?: 'Product'
         id: string
@@ -3305,6 +3336,44 @@ export type GetProductSettingsQuery = {
     name: string
     description?: string | null | undefined
     avatar?: string | null | undefined
+    owner: { __typename?: 'User'; id: string }
+  }
+}
+
+export type EditProductSocialSettingsMutationVariables = Exact<{
+  input: EditProductSocialInput
+}>
+
+export type EditProductSocialSettingsMutation = {
+  __typename?: 'Mutation'
+  editProductSocial?:
+    | {
+        __typename?: 'Product'
+        id: string
+        twitter?: string | null | undefined
+        github?: string | null | undefined
+        website?: string | null | undefined
+        discord?: string | null | undefined
+      }
+    | null
+    | undefined
+}
+
+export type GetProductSocialSettingsQueryVariables = Exact<{
+  slug: Scalars['String']
+}>
+
+export type GetProductSocialSettingsQuery = {
+  __typename?: 'Query'
+  product: {
+    __typename?: 'Product'
+    id: string
+    slug: string
+    website?: string | null | undefined
+    producthunt?: string | null | undefined
+    discord?: string | null | undefined
+    github?: string | null | undefined
+    twitter?: string | null | undefined
     owner: { __typename?: 'User'; id: string }
   }
 }

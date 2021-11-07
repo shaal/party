@@ -140,8 +140,8 @@ const Details: React.FC<Props> = ({ community }) => {
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
-            <Link href={`/communities/${community?.slug}/settings`}>
-              <a href={`/communities/${community?.slug}/settings`}>
+            <Link href={`/communities/${community?.slug}/settings/profile`}>
+              <a href={`/communities/${community?.slug}/settings/profile`}>
                 <Button
                   size="md"
                   variant="success"
