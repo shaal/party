@@ -3,7 +3,9 @@ import { Prisma } from '@prisma/client'
 import { db } from '@utils/prisma'
 import { ERROR_MESSAGE, IS_PRODUCTION, RESERVED_SLUGS } from 'src/constants'
 
+import { Result } from '../ResultResolver'
 import { createProduct } from './mutations/createProduct'
+import { deleteProduct } from './mutations/deleteProduct'
 import { editProductSocial } from './mutations/editProductSocial'
 import { toggleSubscribe } from './mutations/toggleSubscribe'
 import { getProducts } from './queries/getProducts'
@@ -192,6 +194,22 @@ builder.mutationField('toggleProductSubscribe', (t) =>
     nullable: true,
     resolve: async (query, parent, { input }, { session }) => {
       return await toggleSubscribe(session?.userId as string, input.id)
+    }
+  })
+)
+
+const DeleteProductInput = builder.inputType('DeleteProductInput', {
+  fields: (t) => ({
+    id: t.id({ validate: { uuid: true } })
+  })
+})
+
+builder.mutationField('deleteProduct', (t) =>
+  t.field({
+    type: Result,
+    args: { input: t.arg({ type: DeleteProductInput }) },
+    resolve: async (parent, { input }, { session }) => {
+      return await deleteProduct(input, session)
     }
   })
 )
