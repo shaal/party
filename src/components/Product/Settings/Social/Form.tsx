@@ -6,9 +6,9 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import {
-  EditSocialSettingsMutation,
-  EditSocialSettingsMutationVariables,
-  User
+  EditProductSocialSettingsMutation,
+  EditProductSocialSettingsMutationVariables,
+  Product
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
@@ -31,32 +31,30 @@ const editSocialSchema = object({
     .url({ message: '🔗 Invalid URL' })
     .nullable(),
   discord: string()
-    .max(50, { message: '👤 Username should be within 50 characters' })
-    .regex(/^[a-z0-9_\.]+$/, { message: '👤 Invalid Discord username' })
+    .max(100, { message: '👤 Username should be within 50 characters' })
+    .url({ message: '👤 Invalid Discord url' })
     .nullable()
 })
 
 interface Props {
-  currentUser: User
+  product: Product
 }
 
 const SUCCESS_MESSAGE = 'Social successfully updated!'
 
-const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
-  const [editSocial] = useMutation<
-    EditSocialSettingsMutation,
-    EditSocialSettingsMutationVariables
+const SocialSettingsForm: React.FC<Props> = ({ product }) => {
+  const [editProductSocial] = useMutation<
+    EditProductSocialSettingsMutation,
+    EditProductSocialSettingsMutationVariables
   >(
     gql`
-      mutation EditSocialSettings($input: EditSocialInput!) {
-        editSocial(input: $input) {
-          profile {
-            id
-            twitter
-            github
-            website
-            discord
-          }
+      mutation EditProductSocialSettings($input: EditProductSocialInput!) {
+        editProductSocial(input: $input) {
+          id
+          twitter
+          github
+          website
+          discord
         }
       }
     `,
@@ -73,17 +71,17 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editSocialSchema,
     defaultValues: {
-      twitter: currentUser.profile.twitter as string,
-      github: currentUser.profile.github as string,
-      website: currentUser.profile.website as string,
-      discord: currentUser.profile.discord as string
+      twitter: product.twitter as string,
+      github: product.github as string,
+      website: product.website as string,
+      discord: product.discord as string
     }
   })
 
   return (
     <GridLayout>
       <GridItemFour>
-        <Sidebar />
+        <Sidebar slug={product?.slug as string} />
       </GridItemFour>
       <GridItemEight>
         <Card>
@@ -92,9 +90,15 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
               form={form}
               className="space-y-4"
               onSubmit={({ twitter, github, website, discord }) =>
-                editSocial({
+                editProductSocial({
                   variables: {
-                    input: { website, twitter, github, discord }
+                    input: {
+                      id: product?.id,
+                      website: website as string,
+                      twitter: twitter as string,
+                      github: github as string,
+                      discord: discord as string
+                    }
                   }
                 })
               }
@@ -102,27 +106,27 @@ const SocialSettingsForm: React.FC<Props> = ({ currentUser }) => {
               <Input
                 label="Twitter"
                 type="text"
-                placeholder="johndoe"
+                placeholder="minecraft"
                 prefix="https://twitter.com/"
                 {...form.register('twitter')}
               />
               <Input
                 label="GitHub"
                 type="text"
-                placeholder="johndoe"
+                placeholder="minecraft"
                 prefix="https://github.com/"
                 {...form.register('github')}
               />
               <Input
                 label="Website"
                 type="text"
-                placeholder="https://johndoe.com"
+                placeholder="https://minecraft.com"
                 {...form.register('website')}
               />
               <Input
                 label="Discord"
                 type="text"
-                placeholder="Johndoe#1998"
+                placeholder="https://discord.gg/minecraft"
                 {...form.register('discord')}
               />
               <div className="ml-auto pt-3">

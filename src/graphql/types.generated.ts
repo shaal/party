@@ -240,9 +240,21 @@ export type EditPostInput = {
 export type EditProductInput = {
   avatar?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
+  discord?: Maybe<Scalars['String']>
+  github?: Maybe<Scalars['String']>
   id: Scalars['ID']
   name: Scalars['String']
   slug: Scalars['String']
+  twitter?: Maybe<Scalars['String']>
+  website?: Maybe<Scalars['String']>
+}
+
+export type EditProductSocialInput = {
+  discord?: Maybe<Scalars['String']>
+  github?: Maybe<Scalars['String']>
+  id: Scalars['ID']
+  twitter?: Maybe<Scalars['String']>
+  website?: Maybe<Scalars['String']>
 }
 
 export type EditSocialInput = {
@@ -359,6 +371,7 @@ export type Mutation = {
   editNFTAvatar?: Maybe<User>
   editPost: Post
   editProduct?: Maybe<Product>
+  editProductSocial?: Maybe<Product>
   editSocial: User
   editTips: Tip
   editUser: User
@@ -436,6 +449,10 @@ export type MutationEditPostArgs = {
 
 export type MutationEditProductArgs = {
   input: EditProductInput
+}
+
+export type MutationEditProductSocialArgs = {
+  input: EditProductSocialInput
 }
 
 export type MutationEditSocialArgs = {
@@ -3309,44 +3326,42 @@ export type GetProductSettingsQuery = {
   }
 }
 
-export type EditSocialSettingsMutationVariables = Exact<{
-  input: EditSocialInput
+export type EditProductSocialSettingsMutationVariables = Exact<{
+  input: EditProductSocialInput
 }>
 
-export type EditSocialSettingsMutation = {
+export type EditProductSocialSettingsMutation = {
   __typename?: 'Mutation'
-  editSocial: {
-    __typename?: 'User'
-    profile: {
-      __typename?: 'Profile'
-      id: string
-      twitter?: string | null | undefined
-      github?: string | null | undefined
-      website?: string | null | undefined
-      discord?: string | null | undefined
-    }
-  }
-}
-
-export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetSocialSettingsQuery = {
-  __typename?: 'Query'
-  me?:
+  editProductSocial?:
     | {
-        __typename?: 'User'
+        __typename?: 'Product'
         id: string
-        profile: {
-          __typename?: 'Profile'
-          id: string
-          website?: string | null | undefined
-          twitter?: string | null | undefined
-          github?: string | null | undefined
-          discord?: string | null | undefined
-        }
+        twitter?: string | null | undefined
+        github?: string | null | undefined
+        website?: string | null | undefined
+        discord?: string | null | undefined
       }
     | null
     | undefined
+}
+
+export type GetProductSocialSettingsQueryVariables = Exact<{
+  slug: Scalars['String']
+}>
+
+export type GetProductSocialSettingsQuery = {
+  __typename?: 'Query'
+  product: {
+    __typename?: 'Product'
+    id: string
+    slug: string
+    website?: string | null | undefined
+    producthunt?: string | null | undefined
+    discord?: string | null | undefined
+    github?: string | null | undefined
+    twitter?: string | null | undefined
+    owner: { __typename?: 'User'; id: string }
+  }
 }
 
 export type ToggleProductSubscribeMutationVariables = Exact<{
@@ -4422,6 +4437,46 @@ export type SessionsSettingsQuery = {
           | null
           | undefined
         >
+      }
+    | null
+    | undefined
+}
+
+export type EditSocialSettingsMutationVariables = Exact<{
+  input: EditSocialInput
+}>
+
+export type EditSocialSettingsMutation = {
+  __typename?: 'Mutation'
+  editSocial: {
+    __typename?: 'User'
+    profile: {
+      __typename?: 'Profile'
+      id: string
+      twitter?: string | null | undefined
+      github?: string | null | undefined
+      website?: string | null | undefined
+      discord?: string | null | undefined
+    }
+  }
+}
+
+export type GetSocialSettingsQueryVariables = Exact<{ [key: string]: never }>
+
+export type GetSocialSettingsQuery = {
+  __typename?: 'Query'
+  me?:
+    | {
+        __typename?: 'User'
+        id: string
+        profile: {
+          __typename?: 'Profile'
+          id: string
+          website?: string | null | undefined
+          twitter?: string | null | undefined
+          github?: string | null | undefined
+          discord?: string | null | undefined
+        }
       }
     | null
     | undefined

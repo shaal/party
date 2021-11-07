@@ -92,7 +92,7 @@ const ProductSettingsForm: React.FC<Props> = ({ product }) => {
   return (
     <GridLayout>
       <GridItemFour>
-        <Sidebar />
+        <Sidebar slug={product?.slug as string} />
       </GridItemFour>
       <GridItemEight>
         <Card>

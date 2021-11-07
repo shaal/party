@@ -24,28 +24,32 @@ const Menu: React.FC<MenuProps> = ({ children, current, url }) => (
   </Link>
 )
 
-const Sidebar: React.FC = () => {
+interface Props {
+  slug: string
+}
+
+const Sidebar: React.FC<Props> = ({ slug }) => {
   const router = useRouter()
 
   return (
     <div className="space-y-1.5 mb-4 px-3 sm:px-0">
       <Menu
         current={router.pathname == '/products/[slug]/settings/profile'}
-        url="/settings/profile"
+        url={`/products/${slug}/settings/profile`}
       >
         <UserIcon className="h-4 w-4" />
         <div>Profile</div>
       </Menu>
       <Menu
         current={router.pathname == '/products/[slug]/settings/social'}
-        url="/settings/social"
+        url={`/products/${slug}/settings/social`}
       >
         <ShareIcon className="h-4 w-4" />
         <div>Social</div>
       </Menu>
       <Menu
         current={router.pathname == '/products/[slug]/settings/delete'}
-        url="/settings/delete"
+        url={`/products/${slug}/settings/delete`}
       >
         <ExclamationIcon className="h-4 w-4 text-red-500" />
         <div className="text-red-500">Danger Zone</div>

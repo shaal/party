@@ -173,9 +173,21 @@ input EditPostInput {
 input EditProductInput {
   avatar: String
   description: String
+  discord: String
+  github: String
   id: ID!
   name: String!
   slug: String!
+  twitter: String
+  website: String
+}
+
+input EditProductSocialInput {
+  discord: String
+  github: String
+  id: ID!
+  twitter: String
+  website: String
 }
 
 input EditSocialInput {
@@ -287,6 +299,7 @@ type Mutation {
   editNFTAvatar(input: EditNFTAvatarInput!): User
   editPost(input: EditPostInput!): Post!
   editProduct(input: EditProductInput!): Product
+  editProductSocial(input: EditProductSocialInput!): Product
   editSocial(input: EditSocialInput!): User!
   editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!

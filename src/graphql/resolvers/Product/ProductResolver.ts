@@ -110,7 +110,14 @@ const EditProductInput = builder.inputType('EditProductInput', {
       validate: { minLength: 2, maxLength: 50 }
     }),
     description: t.string({ required: false, validate: { maxLength: 255 } }),
-    avatar: t.string({ required: false })
+    avatar: t.string({ required: false }),
+    website: t.string({
+      required: false,
+      validate: { maxLength: 100, url: true }
+    }),
+    twitter: t.string({ required: false, validate: { maxLength: 50 } }),
+    github: t.string({ required: false, validate: { maxLength: 50 } }),
+    discord: t.string({ required: false, validate: { maxLength: 50 } })
   })
 })
 
@@ -143,6 +150,47 @@ builder.mutationField('editProduct', (t) =>
             throw new Error('Product slug is already taken!')
           }
 
+          throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
+        }
+      }
+    }
+  })
+)
+
+const EditProductSocialInput = builder.inputType('EditProductSocialInput', {
+  fields: (t) => ({
+    id: t.id({ validate: { uuid: true } }),
+    website: t.string({
+      required: false,
+      validate: { maxLength: 100, url: true }
+    }),
+    twitter: t.string({ required: false, validate: { maxLength: 50 } }),
+    github: t.string({ required: false, validate: { maxLength: 50 } }),
+    discord: t.string({ required: false, validate: { maxLength: 50 } })
+  })
+})
+
+// TODO: Split to function
+builder.mutationField('editProductSocial', (t) =>
+  t.prismaField({
+    type: 'Product',
+    args: { input: t.arg({ type: EditProductSocialInput }) },
+    authScopes: { user: true },
+    nullable: true,
+    resolve: async (query, parent, { input }) => {
+      try {
+        return await db.product.update({
+          ...query,
+          where: { id: input?.id },
+          data: {
+            website: input.website,
+            twitter: input.twitter,
+            github: input.github,
+            discord: input.discord
+          }
+        })
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
           throw new Error(IS_PRODUCTION ? ERROR_MESSAGE : error.message)
         }
       }
