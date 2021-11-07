@@ -3130,12 +3130,12 @@ export type GetPostQuery = {
   }
 }
 
-export type ProductFeedQueryVariables = Exact<{
+export type GetProductFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   slug: Scalars['String']
 }>
 
-export type ProductFeedQuery = {
+export type GetProductFeedQuery = {
   __typename?: 'Query'
   product: {
     __typename?: 'Product'
