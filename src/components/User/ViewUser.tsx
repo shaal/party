@@ -99,7 +99,7 @@ const ViewUser: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           <Details user={user as User} />
         </GridItemFour>
-        <GridItemEight className="space-y-3">
+        <GridItemEight className="space-y-5">
           <PageType user={user as User} />
           <UserFeed />
         </GridItemEight>

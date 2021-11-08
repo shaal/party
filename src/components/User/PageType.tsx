@@ -40,7 +40,7 @@ const PageType: React.FC<Props> = ({ user }) => {
   const { currentUser } = useContext(AppContext)
 
   return (
-    <div className="flex gap-3 px-2 sm:px-0 mt-0 sm:-mt-4">
+    <div className="flex gap-3 px-2 sm:px-0 mt-0 sm:-mt-2">
       <Tab
         current={router.pathname == '/u/[username]'}
         url={`/u/${user?.username}`}
