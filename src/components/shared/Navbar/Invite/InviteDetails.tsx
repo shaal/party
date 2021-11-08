@@ -103,7 +103,7 @@ const InviteDetails: React.FC = () => {
               <div className="text-sm font-bold">Your Invite Code</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
                 <CopyToClipboard
-                  text={user?.invite?.code}
+                  text={user?.invite?.code as string}
                   onCopy={() => {
                     toast.success('Invite code copied!')
                   }}
