@@ -32,7 +32,6 @@ tsconfig.tsbuildinfo
 .env.production.local
 
 *.rdb
-prisma/giraphql-types.ts
 
 # Next PWA
 public/workbox*
