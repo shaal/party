@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import ProductProfileLarge from '@components/shared/ProductProfileLarge'
-import ProductProfileShimmer from '@components/shared/Shimmer/ProductProfileShimmer'
+import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
@@ -34,7 +34,7 @@ export const GET_ALL_USER_PRODUCTS_QUERY = gql`
   }
 `
 
-const ProductsList: React.FC = () => {
+const CommunitiesList: React.FC = () => {
   const router = useRouter()
   const { data, loading, error, fetchMore } = useQuery<GetAllUserProductsQuery>(
     GET_ALL_USER_PRODUCTS_QUERY,
@@ -71,17 +71,17 @@ const ProductsList: React.FC = () => {
       <div className="space-y-3">
         <Card>
           <CardBody>
-            <ProductProfileShimmer />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <ProductProfileShimmer />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
         <Card>
           <CardBody>
-            <ProductProfileShimmer />
+            <UserProfileLargeShimmer showFollow />
           </CardBody>
         </Card>
       </div>
@@ -120,4 +120,4 @@ const ProductsList: React.FC = () => {
   )
 }
 
-export default ProductsList
+export default CommunitiesList
