@@ -3,17 +3,18 @@ image:
 
 tasks:
   - name: Setup
-    before: |
-      redis-server &
-      gp sync-done redis
+    before: redis-server &
     init: scripts/gp-init.sh
     command: |
       yarn codegen:graphql --watch &
-      gp sync-done codegen
       export BASE_URL=`gp url 3000`
       yarn dev
 
-  - command: scripts/gp-welcome.sh
+  - command: |
+      clear
+      echo "Waiting for server to start 🕒"
+      gp await-port 3000
+      scripts/gp-welcome.sh
 
 ports:
   - port: 3000 # Web app
