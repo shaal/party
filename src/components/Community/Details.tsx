@@ -78,7 +78,7 @@ const Details: React.FC<Props> = ({ community }) => {
                       src={community?.owner?.profile?.avatar}
                       alt={`@${community?.owner?.username}'s username'`}
                     />
-                    <Link href={`/u/${community?.owner?.username}`}>
+                    <Link href={`/u/${community?.owner?.username}`} passHref>
                       <a href={`/u/${community?.owner?.username}`}>
                         <Slug slug={community?.owner?.username} prefix="@" />
                       </a>
@@ -102,7 +102,7 @@ const Details: React.FC<Props> = ({ community }) => {
       <div className="border-t" />
       <div className="flex items-center justify-between py-4 px-5">
         <div className="flex items-center space-x-3">
-          <Link href={`/communities/${community?.slug}`}>
+          <Link href={`/communities/${community?.slug}`} passHref>
             <a href={`/communities/${community?.slug}`}>
               <Button
                 variant="secondary"
@@ -113,7 +113,7 @@ const Details: React.FC<Props> = ({ community }) => {
               </Button>
             </a>
           </Link>
-          <Link href={`/communities/${community?.slug}/members`}>
+          <Link href={`/communities/${community?.slug}/members`} passHref>
             <a href={`/communities/${community?.slug}/members`}>
               <Button
                 variant="secondary"
@@ -124,7 +124,7 @@ const Details: React.FC<Props> = ({ community }) => {
               </Button>
             </a>
           </Link>
-          <Link href={`/communities/${community?.slug}/about`}>
+          <Link href={`/communities/${community?.slug}/about`} passHref>
             <a href={`/communities/${community?.slug}/about`}>
               <Button
                 variant="secondary"
@@ -140,7 +140,10 @@ const Details: React.FC<Props> = ({ community }) => {
           {currentUser?.id !== community?.owner?.id ? (
             <Join community={community} showText />
           ) : (
-            <Link href={`/communities/${community?.slug}/settings/profile`}>
+            <Link
+              href={`/communities/${community?.slug}/settings/profile`}
+              passHref
+            >
               <a href={`/communities/${community?.slug}/settings/profile`}>
                 <Button
                   size="md"

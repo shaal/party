@@ -25,7 +25,7 @@ const Login: React.FC = () => {
               <div className="font-extrabold text-4xl">Login</div>
               <div className="linkify">
                 New to Devparty?{' '}
-                <Link href="/signup">
+                <Link href="/signup" passHref>
                   <a className="font-bold">Sign up for an account</a>
                 </Link>
               </div>

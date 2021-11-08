@@ -92,7 +92,7 @@ const Topics: React.FC = () => {
                         <div>#</div>
                       </div>
                     )}
-                    <Link href={`/topics/${topic?.node?.name}`}>
+                    <Link href={`/topics/${topic?.node?.name}`} passHref>
                       <a href={`/topics/${topic?.node?.name}`}>
                         {topic?.node?.name}
                       </a>
@@ -108,14 +108,14 @@ const Topics: React.FC = () => {
           <CardBody className="space-y-3">
             <div>Join Devparty today!</div>
             <div className="flex space-x-1.5">
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <a href="/login">
                   <Button icon={<LoginIcon className="h-4 w-4" />}>
                     Login
                   </Button>
                 </a>
               </Link>
-              <Link href="/signup">
+              <Link href="/signup" passHref>
                 <a href="/signup">
                   <Button
                     variant="success"

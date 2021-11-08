@@ -4237,6 +4237,45 @@ export type GetUserProductsQuery = {
     | undefined
 }
 
+export type GetAllUserProductsQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>
+  username: Scalars['String']
+}>
+
+export type GetAllUserProductsQuery = {
+  __typename?: 'Query'
+  user?:
+    | {
+        __typename?: 'User'
+        ownedProducts: {
+          __typename?: 'UserOwnedProductsConnection'
+          totalCount: number
+          pageInfo: {
+            __typename?: 'PageInfo'
+            endCursor?: string | null | undefined
+            hasNextPage: boolean
+          }
+          edges: Array<
+            | {
+                __typename?: 'UserOwnedProductsConnectionEdge'
+                node: {
+                  __typename?: 'Product'
+                  id: string
+                  slug: string
+                  name: string
+                  description?: string | null | undefined
+                  avatar?: string | null | undefined
+                }
+              }
+            | null
+            | undefined
+          >
+        }
+      }
+    | null
+    | undefined
+}
+
 export type DeleteAccountMutationVariables = Exact<{ [key: string]: never }>
 
 export type DeleteAccountMutation = {
