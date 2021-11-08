@@ -12,7 +12,7 @@ interface Props {
 const CommunityProfileLarge: React.FC<Props> = ({ community }) => {
   return (
     <div className="flex justify-between items-center">
-      <div className="flex space-x-3 items-center">
+      <div className="flex space-x-4 items-center">
         <img
           src={imagekitURL(community?.avatar as string, 100, 100)}
           className="h-16 w-16 rounded-lg bg-gray-200"
