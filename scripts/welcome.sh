@@ -15,7 +15,7 @@ URL=$(eval "eval gp url 3000")
 echo "\n👋 ${GREEN}${BOLD}Welcome to Devparty${NORMAL}${NC}\n"
 echo "💻 ${BOLD}Commands:${NORMAL}\n"
 awk -F':' '{printf "%s%s", $2, (/^Description/)?"\n":"\t\t"}' ./scripts/commands.txt
-echo "\nDevelopment admin username: ${CYAN}${BOLD}admin${NORMAL}${NC}"
-echo "Development admin password: ${CYAN}${BOLD}admin${NORMAL}${NC}\n"
+echo "\nAdmin username: ${CYAN}${BOLD}admin${NORMAL}${NC}"
+echo "Admin password: ${CYAN}${BOLD}admin${NORMAL}${NC}\n"
 echo "Visit: ${BLUE}${URL}${NC}\n"
 echo "${PURPLE}${BOLD}Happy coding${NORMAL}${NC} 😍\n"
