@@ -11,6 +11,7 @@ import Custom404 from 'src/pages/404'
 
 import Details from './Details'
 import UserFeed from './Feed'
+import PageType from './PageType'
 
 export const UserFragment = gql`
   fragment UserFragment on User {
@@ -100,6 +101,7 @@ const ViewUser: React.FC = () => {
         </GridItemFour>
         <GridItemEight>
           <div className="space-y-3">
+            <PageType user={user as User} />
             <UserFeed />
           </div>
         </GridItemEight>
