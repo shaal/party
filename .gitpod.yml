@@ -9,10 +9,9 @@ tasks:
     init: scripts/gp-init.sh
     command: |
       yarn codegen:graphql --watch &
-      export BASE_URL=`gp url 3000`
       gp sync-done codegen
-      yarn dev &
-      gp sync-done dev
+      export BASE_URL=`gp url 3000`
+      yarn dev
 
   - command: scripts/gp-welcome.sh
 

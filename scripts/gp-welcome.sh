@@ -48,11 +48,14 @@ if [ "$(eval "gp sync-await codegen")" == "codegen done" ]; then
     echo -e "${GREEN}${BOLD}✅  GraphQL Codegen server started${NORMAL}${NC}"
 fi
 
-if [ "$(eval "gp sync-await dev")" == "dev done" ]; then
+if [ "$(eval "gp await-port 3000")" == "Awaiting port 3000... ok" ]; then
     echo -e "${GREEN}${BOLD}✅  Development server started${NORMAL}${NC}"
 fi
 
 URL=$(eval "eval gp url 3000")
+
+curl -s "$URL/api/graphql?warmup=true" > /dev/null
+echo -e "${GREEN}${BOLD}✅  GraphQL Server warmed up${NORMAL}${NC}"
 
 echo -e "\n👋 ${GREEN}${BOLD}Welcome to Devparty${NORMAL}${NC}\n"
 echo -e "💻 ${BOLD}Commands:${NORMAL}\n"
