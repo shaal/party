@@ -42,7 +42,7 @@ const Details: React.FC<Props> = ({ product }) => {
           {currentUser?.id !== product?.owner?.id ? (
             <Subscribe product={product} showText />
           ) : (
-            <Link href={`/products/${product?.slug}/settings/profile`}>
+            <Link href={`/products/${product?.slug}/settings/profile`} passHref>
               <a href={`/products/${product?.slug}/settings/profile`}>
                 <Button
                   size="md"

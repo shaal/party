@@ -15,7 +15,7 @@ const SelectedCommunity: React.FC<Props> = ({ community }) => {
       <Tooltip content="Community">
         <UsersIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
       </Tooltip>
-      <Link href={`/communities/${community?.slug}`}>
+      <Link href={`/communities/${community?.slug}`} passHref>
         <a
           href={`/communities/${community?.slug}`}
           className="flex items-center space-x-1 cursor-pointer"

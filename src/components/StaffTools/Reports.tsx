@@ -120,7 +120,7 @@ const StaffToolsReports: React.FC = () => {
                         <Tooltip content="Reported by">
                           <UserIcon className="h-5 w-5 text-gray-500" />
                         </Tooltip>
-                        <Link href={`/u/${report?.user?.username}`}>
+                        <Link href={`/u/${report?.user?.username}`} passHref>
                           <a href={`/u/${report?.user?.username}`}>
                             <Slug slug={report?.user?.username} prefix="@" />
                           </a>

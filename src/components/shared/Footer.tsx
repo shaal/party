@@ -23,13 +23,19 @@ const Footer: React.FC = () => {
         © Devparty
       </span>
       <span className="pr-3">
-        <Link href="/about">About</Link>
+        <Link href="/about" passHref>
+          About
+        </Link>
       </span>
       <span className="pr-3">
-        <Link href="/terms">Terms</Link>
+        <Link href="/terms" passHref>
+          Terms
+        </Link>
       </span>
       <span className="pr-3">
-        <Link href="/privacy">Privacy</Link>
+        <Link href="/privacy" passHref>
+          Privacy
+        </Link>
       </span>
       <a
         className="pr-3"
@@ -40,7 +46,9 @@ const Footer: React.FC = () => {
         Status
       </a>
       <span className="pr-3">
-        <Link href="/thanks">Thanks</Link>
+        <Link href="/thanks" passHref>
+          Thanks
+        </Link>
       </span>
       <a
         className="pr-3"

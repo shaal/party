@@ -57,7 +57,10 @@ const IssueType: React.FC<Props> = ({ post }) => {
   return (
     <div className="space-y-3 linkify">
       <div>
-        <Link href={isPostPage ? issue?.html_url : `/posts/${post?.id}`}>
+        <Link
+          href={isPostPage ? issue?.html_url : `/posts/${post?.id}`}
+          passHref
+        >
           <a
             className="text-lg font-bold mb-1 flex items-center space-x-2"
             href={isPostPage ? issue?.html_url : `/posts/${post?.id}`}

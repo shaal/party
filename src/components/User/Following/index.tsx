@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
 
+import PageType from '../PageType'
 import { GET_USER_QUERY } from '../ViewUser'
 import FollowingList from './List'
 
@@ -49,7 +50,8 @@ const Following: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           <Details user={user as User} />
         </GridItemFour>
-        <GridItemEight>
+        <GridItemEight className="space-y-5">
+          <PageType user={user as User} />
           <FollowingList />
         </GridItemEight>
       </GridLayout>

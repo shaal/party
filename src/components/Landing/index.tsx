@@ -25,7 +25,7 @@ const Landing: React.FC = () => {
               Join Devparty today.
             </div>
             <div className="space-x-4 flex">
-              <Link href="/signup">
+              <Link href="/signup" passHref>
                 <a href="/signup">
                   <Button
                     size="lg"
@@ -39,7 +39,7 @@ const Landing: React.FC = () => {
             </div>
             <div className="linkify">
               Already have an account?{' '}
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <a href="/login" className="font-bold">
                   Log in
                 </a>

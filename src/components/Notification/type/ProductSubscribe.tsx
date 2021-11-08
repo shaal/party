@@ -32,7 +32,7 @@ const ProductSubscribe: React.FC<Props> = ({ notification }) => {
           </div>
           <div className="linkify">
             subscribed to your{' '}
-            <Link href={`/products/${notification?.product?.slug}`}>
+            <Link href={`/products/${notification?.product?.slug}`} passHref>
               <a href={`/products/${notification?.product?.slug}`}>product</a>
             </Link>
           </div>

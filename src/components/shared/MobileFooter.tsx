@@ -22,7 +22,7 @@ const MobileFooter: React.FC = () => {
   return (
     <div className="block sm:hidden">
       <div className="mobile-footer bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 backdrop-filter backdrop-blur-lg backdrop-saturate-150 border-gray-200 dark:border-gray-700 border-t bottom-0 fixed w-full z-10 flex items-center justify-between px-5">
-        <Link href={currentUser ? '/home' : '/'}>
+        <Link href={currentUser ? '/home' : '/'} passHref>
           <a
             href={currentUser ? '/home' : '/'}
             className="text-[0.7rem] py-1.5"
@@ -40,7 +40,7 @@ const MobileFooter: React.FC = () => {
             )}
           </a>
         </Link>
-        <Link href="/notifications">
+        <Link href="/notifications" passHref>
           <a href="/notifications" className="text-[0.7rem] py-1.5">
             {router.pathname == '/notifications' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
@@ -55,7 +55,7 @@ const MobileFooter: React.FC = () => {
             )}
           </a>
         </Link>
-        <Link href="/explore">
+        <Link href="/explore" passHref>
           <a href="/explore" className="text-[0.7rem] py-1.5">
             {router.pathname == '/explore' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">
@@ -70,7 +70,7 @@ const MobileFooter: React.FC = () => {
             )}
           </a>
         </Link>
-        <Link href="/communities">
+        <Link href="/communities" passHref>
           <a href="/communities" className="text-[0.7rem] py-1.5">
             {router.pathname == '/communities' ? (
               <div className="text-brand-500 font-bold space-y-[0.3rem]">

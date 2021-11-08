@@ -16,7 +16,7 @@ export default function Custom404() {
       <div className="py-10 text-center">
         <h1 className="text-3xl mb-4 font-bold">Oops, Lost‽</h1>
         <div className="mb-4">This page could not be found.</div>
-        <Link href="/home">
+        <Link href="/home" passHref>
           <a href="/home">
             <Button
               className="flex item-center mx-auto"

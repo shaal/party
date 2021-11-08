@@ -12,9 +12,9 @@ import Custom404 from 'src/pages/404'
 
 import PageType from '../PageType'
 import { GET_USER_QUERY } from '../ViewUser'
-import FollowersList from './List'
+import CommunitiesList from './List'
 
-const Followers: React.FC = () => {
+const Communities: React.FC = () => {
   const router = useRouter()
   const { data, loading, error } = useQuery<GetUserQuery>(GET_USER_QUERY, {
     variables: { username: router.query.username },
@@ -23,14 +23,14 @@ const Followers: React.FC = () => {
   const user = data?.user
 
   if (!router.isReady || loading)
-    return <PageLoading message="Loading followers" />
+    return <PageLoading message="Loading communities" />
 
   if (!user) return <Custom404 />
 
   return (
     <>
       <DevpartySEO
-        title={`${user?.username} (${user?.profile?.name}) / Followers · Devparty`}
+        title={`${user?.username} (${user?.profile?.name}) / Products · Devparty`}
         description={user?.profile?.bio as string}
         image={user?.profile?.avatar as string}
         path={`/u/${user?.username}`}
@@ -52,11 +52,11 @@ const Followers: React.FC = () => {
         </GridItemFour>
         <GridItemEight className="space-y-5">
           <PageType user={user as User} />
-          <FollowersList />
+          <CommunitiesList />
         </GridItemEight>
       </GridLayout>
     </>
   )
 }
 
-export default Followers
+export default Communities

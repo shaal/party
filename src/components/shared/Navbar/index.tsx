@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
 
   const NavItem = ({ url, name, current }: NavItemProps) => {
     return (
-      <Link href={url}>
+      <Link href={url} passHref>
         <a
           href={url}
           className={clsx('px-3 py-1 rounded-md font-black cursor-pointer', {
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
         <div className="relative flex items-center justify-between h-14 sm:h-16">
           <div className="flex-1 flex items-center justify-start">
             <div className="flex-shrink-0 flex items-center space-x-3">
-              <Link href={currentUser ? '/home' : '/'}>
+              <Link href={currentUser ? '/home' : '/'} passHref>
                 <a href={currentUser ? '/home' : '/'}>
                   <img
                     className="block h-8 sm:h-9 w-auto cursor-pointer"
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
             ) : (
               <div className="space-x-4 flex">
                 <div className="hidden sm:block">
-                  <Link href="/signup">
+                  <Link href="/signup" passHref>
                     <a href="/signup">
                       <Button size="lg" variant="primary">
                         Signup
@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link href="/login">
+                  <Link href="/login" passHref>
                     <a href="/login">
                       <Button size="lg" variant="success">
                         Login

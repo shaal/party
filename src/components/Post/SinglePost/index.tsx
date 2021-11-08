@@ -150,7 +150,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           )}
         {post?.parent && showParent && (
           <div className="text-sm flex space-x-1">
-            <Link href={`/posts/${post?.parent?.id}`}>
+            <Link href={`/posts/${post?.parent?.id}`} passHref>
               <a
                 href={`/posts/${post?.parent?.id}`}
                 className="text-gray-500 dark:text-gray-400"
@@ -158,7 +158,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                 Replying to
               </a>
             </Link>
-            <Link href={`/u/${post?.parent?.user?.username}`}>
+            <Link href={`/u/${post?.parent?.user?.username}`} passHref>
               <a href={`/u/${post?.parent?.user?.username}`}>
                 <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
               </a>
@@ -167,7 +167,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
         )}
         <div className="flex justify-between">
           <UserProfile user={post?.user as User} />
-          <Link href={`/posts/${post?.id}`}>
+          <Link href={`/posts/${post?.id}`} passHref>
             <a href={`/posts/${post?.id}`} className="text-sm cursor-pointer">
               {timeago.format(post?.createdAt)}
             </a>
@@ -189,7 +189,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
           <LikeButton entity={post} handleLike={handleLike} loading={false} />
         </motion.button>
         <motion.button whileTap={{ scale: 0.9 }}>
-          <Link href={`/posts/${post?.id}`}>
+          <Link href={`/posts/${post?.id}`} passHref>
             <a
               href={`/posts/${post?.id}`}
               className="text-blue-500 hover:text-blue-400 flex items-center space-x-1"
@@ -214,6 +214,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
                 <Link
                   key={like?.node?.user?.id}
                   href={`/u/${like?.node?.user?.username}`}
+                  passHref
                 >
                   <a href={`/u/${like?.node?.user?.username}`}>
                     <img
