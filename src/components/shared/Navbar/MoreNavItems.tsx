@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Fragment, useContext } from 'react'
 
 const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <a {...rest}>{children}</a>
   </Link>
 )

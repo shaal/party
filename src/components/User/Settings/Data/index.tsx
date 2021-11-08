@@ -63,7 +63,7 @@ const DataSettings: React.FC = () => {
             <p>
               If you have any questions about the personal data contained in
               your downloadable file, please{' '}
-              <Link href="/contact">
+              <Link href="/contact" passHref>
                 <a href="/contact">contact us</a>
               </Link>
               .

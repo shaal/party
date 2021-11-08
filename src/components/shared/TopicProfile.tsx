@@ -21,7 +21,7 @@ const TopicProfile: React.FC<Props> = ({
       <div className="space-y-2">
         <div>
           <div className="flex items-center space-x-1.5">
-            <Link href={`/topics/${topic?.name}`}>
+            <Link href={`/topics/${topic?.name}`} passHref>
               <a
                 href={`/topics/${topic?.name}`}
                 className="font-bold cursor-pointer flex items-center space-x-1"

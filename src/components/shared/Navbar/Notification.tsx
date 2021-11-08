@@ -19,7 +19,7 @@ const Notification: React.FC = () => {
   )
 
   return (
-    <Link href="/notifications">
+    <Link href="/notifications" passHref>
       <a className="flex items-start">
         <LightningBoltIcon className="h-6 w-6" />
         {(data?.me?.notificationsCount as number) > 0 && (

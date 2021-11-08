@@ -33,7 +33,7 @@ const UserProfileLarge: React.FC<Props> = ({
         <div className="space-y-2">
           <div>
             <div className="flex items-center gap-1.5">
-              <Link href={`/u/${user?.username}`}>
+              <Link href={`/u/${user?.username}`} passHref>
                 <a
                   href={`/u/${user?.username}`}
                   className="font-bold cursor-pointer flex items-center space-x-1"

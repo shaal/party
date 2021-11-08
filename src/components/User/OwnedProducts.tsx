@@ -35,7 +35,7 @@ const OwnedProducts: React.FC<Props> = ({ user }) => {
   const Product = ({ product }: { product: Product }) => {
     return (
       <Tooltip content={product?.name}>
-        <Link href={`/products/${product?.slug}`}>
+        <Link href={`/products/${product?.slug}`} passHref>
           <a href={`/products/${product?.slug}`}>
             <img
               className="h-9 w-9 rounded-lg"
