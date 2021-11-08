@@ -22,7 +22,7 @@ const Tab: React.FC<TabProps> = ({ children, current, url }) => (
     <a
       href={url}
       className={clsx(
-        'flex items-center space-x-2 rounded-lg px-3 py-1 text-gray-500 hover:bg-purple-100 hover:text-purple-500 dark:hover:bg-opacity-20 hover:bg-opacity-100 text-sm',
+        'flex items-center space-x-2 rounded-lg px-3 py-1 text-gray-500 hover:bg-purple-100 hover:text-purple-500 dark:hover:bg-opacity-20 hover:bg-opacity-100',
         { 'bg-brand-100 text-brand-500 font-bold': current }
       )}
     >
