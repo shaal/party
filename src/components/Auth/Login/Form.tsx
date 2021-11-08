@@ -71,9 +71,9 @@ const LoginForm: React.FC = () => {
       <div className="space-y-4">
         <div>
           <Input
-            label="Username / Email"
+            label="Username or email"
             type="text"
-            placeholder="Username or Email"
+            placeholder="johndoe"
             autoFocus
             {...form.register('login')}
           />
