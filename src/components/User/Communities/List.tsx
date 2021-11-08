@@ -1,10 +1,11 @@
 import { gql, useQuery } from '@apollo/client'
+import CommunityProfileLarge from '@components/shared/CommunityProfileLarge'
 import UserProfileLargeShimmer from '@components/shared/Shimmer/UserProfileLargeShimmer'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Spinner } from '@components/UI/Spinner'
-import { GetAllUserCommunitiesQuery } from '@graphql/types.generated'
+import { Community, GetAllUserCommunitiesQuery } from '@graphql/types.generated'
 import { UsersIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -101,7 +102,9 @@ const CommunitiesList: React.FC = () => {
         ) : (
           communities?.map((community) => (
             <Card key={community?.id}>
-              <CardBody>{community?.name}</CardBody>
+              <CardBody>
+                <CommunityProfileLarge community={community as Community} />
+              </CardBody>
             </Card>
           ))
         )}
