@@ -11,7 +11,7 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ children, current, url }) => (
-  <Link href={url}>
+  <Link href={url} passHref>
     <a
       href={url}
       className={clsx(

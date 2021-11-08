@@ -71,7 +71,7 @@ const About: React.FC = () => {
                       <div>
                         Created {timeago.format(community?.createdAt)} by
                       </div>
-                      <Link href={`/u/${community?.owner?.username}`}>
+                      <Link href={`/u/${community?.owner?.username}`} passHref>
                         <a href={`/u/${community?.owner?.username}`}>
                           <Slug slug={community?.owner?.username} prefix="@" />
                         </a>
@@ -90,7 +90,7 @@ const About: React.FC = () => {
                   <div className="text-sm text-gray-500 linkify">
                     These are set and enforced by Community admins and are in
                     addition to{' '}
-                    <Link href="/terms">
+                    <Link href="/terms" passHref>
                       <a href="/terms">Devparty's rules</a>
                     </Link>
                     .

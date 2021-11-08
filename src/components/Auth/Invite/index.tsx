@@ -57,7 +57,7 @@ const InviteSignup: React.FC = () => {
               ) : (
                 !error && (
                   <div className="text-xl space-y-2">
-                    <Link href={`/u/${invite?.user?.username}`}>
+                    <Link href={`/u/${invite?.user?.username}`} passHref>
                       <a className="font-bold">
                         <Slug slug={invite?.user?.username} prefix="@" />{' '}
                         invited you to the party
@@ -74,7 +74,7 @@ const InviteSignup: React.FC = () => {
               )}
               <div className="linkify">
                 Already have an account?{' '}
-                <Link href="/login">
+                <Link href="/login" passHref>
                   <a className="font-bold">Login now</a>
                 </Link>
               </div>

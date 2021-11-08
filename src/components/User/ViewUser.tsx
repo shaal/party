@@ -11,6 +11,7 @@ import Custom404 from 'src/pages/404'
 
 import Details from './Details'
 import UserFeed from './Feed'
+import PageType from './PageType'
 
 export const UserFragment = gql`
   fragment UserFragment on User {
@@ -98,10 +99,9 @@ const ViewUser: React.FC = () => {
           <ErrorMessage title="Failed to load post" error={error} />
           <Details user={user as User} />
         </GridItemFour>
-        <GridItemEight>
-          <div className="space-y-3">
-            <UserFeed />
-          </div>
+        <GridItemEight className="space-y-5">
+          <PageType user={user as User} />
+          <UserFeed />
         </GridItemEight>
       </GridLayout>
     </>

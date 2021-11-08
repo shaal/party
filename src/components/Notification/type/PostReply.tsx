@@ -24,7 +24,7 @@ const PostReply: React.FC<Props> = ({ notification }) => {
               <Slug slug={notification?.dispatcher?.username} prefix="@" />
             </div>
             <div>replied to your</div>
-            <Link href={`/posts/${notification?.post?.id}`}>
+            <Link href={`/posts/${notification?.post?.id}`} passHref>
               <a href={`/posts/${notification?.post?.id}`}>post</a>
             </Link>
           </div>

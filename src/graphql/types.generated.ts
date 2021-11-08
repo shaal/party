@@ -3932,6 +3932,45 @@ export type GetBookmarkFeedQuery = {
     | undefined
 }
 
+export type GetAllUserCommunitiesQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>
+  username: Scalars['String']
+}>
+
+export type GetAllUserCommunitiesQuery = {
+  __typename?: 'Query'
+  user?:
+    | {
+        __typename?: 'User'
+        communities: {
+          __typename?: 'UserCommunitiesConnection'
+          totalCount: number
+          pageInfo: {
+            __typename?: 'PageInfo'
+            endCursor?: string | null | undefined
+            hasNextPage: boolean
+          }
+          edges: Array<
+            | {
+                __typename?: 'UserCommunitiesConnectionEdge'
+                node: {
+                  __typename?: 'Community'
+                  id: string
+                  slug: string
+                  name: string
+                  description?: string | null | undefined
+                  avatar?: string | null | undefined
+                }
+              }
+            | null
+            | undefined
+          >
+        }
+      }
+    | null
+    | undefined
+}
+
 export type GetUserFeedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>
   username: Scalars['String']
@@ -4225,6 +4264,45 @@ export type GetUserProductsQuery = {
                   id: string
                   slug: string
                   name: string
+                  avatar?: string | null | undefined
+                }
+              }
+            | null
+            | undefined
+          >
+        }
+      }
+    | null
+    | undefined
+}
+
+export type GetAllUserProductsQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>
+  username: Scalars['String']
+}>
+
+export type GetAllUserProductsQuery = {
+  __typename?: 'Query'
+  user?:
+    | {
+        __typename?: 'User'
+        ownedProducts: {
+          __typename?: 'UserOwnedProductsConnection'
+          totalCount: number
+          pageInfo: {
+            __typename?: 'PageInfo'
+            endCursor?: string | null | undefined
+            hasNextPage: boolean
+          }
+          edges: Array<
+            | {
+                __typename?: 'UserOwnedProductsConnectionEdge'
+                node: {
+                  __typename?: 'Product'
+                  id: string
+                  slug: string
+                  name: string
+                  description?: string | null | undefined
                   avatar?: string | null | undefined
                 }
               }

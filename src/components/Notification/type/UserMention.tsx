@@ -24,7 +24,7 @@ const UserMention: React.FC<Props> = ({ notification }) => {
               <Slug slug={notification?.dispatcher?.username} prefix="@" />
             </div>
             <div>mentioned you in the</div>
-            <Link href={`/posts/${notification?.post?.id}`}>
+            <Link href={`/posts/${notification?.post?.id}`} passHref>
               <a href={`/posts/${notification?.post?.id}`}>post</a>
             </Link>
           </div>

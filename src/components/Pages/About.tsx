@@ -121,7 +121,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="md:mt-10 mt-6">
                   <Button size="lg" variant="primary">
-                    <Link href="/signup">
+                    <Link href="/signup" passHref>
                       <a className="flex items-center space-x-1.5">
                         <ArrowCircleRightIcon className="h-5 w-5" />
                         <div>Get started</div>

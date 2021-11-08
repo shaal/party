@@ -42,7 +42,7 @@ const StaffBar: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/stafftools">
+        <Link href="/stafftools" passHref>
           <a title="Staff panel">
             <ShieldCheckIcon className="h-4 w-4" />
           </a>

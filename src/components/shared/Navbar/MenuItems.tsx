@@ -12,7 +12,7 @@ import { Fragment, useContext } from 'react'
 import Slug from '../Slug'
 
 const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <a {...rest}>{children}</a>
   </Link>
 )

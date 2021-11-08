@@ -152,7 +152,9 @@ const ProductSettingsForm: React.FC<Props> = ({ product }) => {
                 </div>
               </div>
               <div className="flex items-center justify-between pt-3">
-                <Link href="/settings/password">Change password?</Link>
+                <Link href="/settings/password" passHref>
+                  Change password?
+                </Link>
                 <Button
                   type="submit"
                   icon={
