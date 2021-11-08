@@ -15,7 +15,7 @@ const SelectedProduct: React.FC<Props> = ({ product }) => {
       <Tooltip content="Product">
         <CubeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
       </Tooltip>
-      <Link href={`/products/${product?.slug}`}>
+      <Link href={`/products/${product?.slug}`} passHref>
         <a
           href={`/products/${product?.slug}`}
           className="flex items-center space-x-1 cursor-pointer"
