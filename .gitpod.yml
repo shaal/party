@@ -3,25 +3,18 @@ image:
 
 tasks:
   - name: Setup
-    before: redis-server &
-    init: |
-      yarn install --frozen-lockfile --silent --network-timeout 100000
-      cp .env.example .env
-      gp await-port 3306
-      yarn prisma:migrate
-      yarn prisma:seed
-      yarn prisma:testseed
-      yarn prepare
+    before: |
+      redis-server &
+      gp sync-done redis
+    init: scripts/gp-init.sh
     command: |
       yarn codegen:graphql --watch &
       export BASE_URL=`gp url 3000`
+      gp sync-done codegen
       yarn dev
+      gp sync-done dev
 
-  - command: |
-      clear
-      echo "Waiting for server to start 🕒"
-      gp await-port 3000
-      scripts/welcome.sh
+  - command: scripts/gp-welcome.sh
 
 ports:
   - port: 3000 # Web app
