@@ -8,6 +8,7 @@ import {
   RegenerateInviteMutationVariables
 } from '@graphql/types.generated'
 import { CursorClickIcon, RefreshIcon } from '@heroicons/react/outline'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
 import { STATIC_ASSETS } from 'src/constants'
 
@@ -42,7 +43,6 @@ const InviteDetails: React.FC = () => {
       }
     `,
     {
-      refetchQueries: [{ query: GET_INVITE_CODE_QUERY }],
       onError(error) {
         toast.error(error.message)
       },
@@ -86,7 +86,14 @@ const InviteDetails: React.FC = () => {
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Link</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-                <div className="truncate">{user?.invite?.htmlUrl}</div>
+                <CopyToClipboard
+                  text={user?.invite?.htmlUrl}
+                  onCopy={() => {
+                    toast.success('Invite url copied!')
+                  }}
+                >
+                  <div className="truncate">{user?.invite?.htmlUrl}</div>
+                </CopyToClipboard>
                 <button className="ml-3" onClick={() => regenerateInvite()}>
                   <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </button>
@@ -95,7 +102,14 @@ const InviteDetails: React.FC = () => {
             <div className="mt-4 space-y-1.5">
               <div className="text-sm font-bold">Your Invite Code</div>
               <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 px-2 py-1.5 rounded-lg border select-all">
-                <div>{user?.invite?.code}</div>
+                <CopyToClipboard
+                  text={user?.invite?.code}
+                  onCopy={() => {
+                    toast.success('Invite code copied!')
+                  }}
+                >
+                  <div>{user?.invite?.code}</div>
+                </CopyToClipboard>
                 <button className="ml-3" onClick={() => regenerateInvite()}>
                   <RefreshIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
                 </button>
