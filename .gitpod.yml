@@ -11,7 +11,7 @@ tasks:
       yarn codegen:graphql --watch &
       export BASE_URL=`gp url 3000`
       gp sync-done codegen
-      yarn dev
+      yarn dev &
       gp sync-done dev
 
   - command: scripts/gp-welcome.sh

@@ -10,10 +10,14 @@ NC='\033[0m'
 BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 
-echo -e "\n${GREEN}${BOLD}✅  Workspace is ready for Devparty development${NORMAL}${NC}"
+clear
+
+echo -e "\n${GREEN}${BOLD}✅  VS Code is ready${NORMAL}${NC}"
 
 if [ "$(eval "gp sync-await yarn")" == "yarn done" ]; then
     echo -e "${GREEN}${BOLD}✅  Installed yarn dependencies${NORMAL}${NC}"
+else
+    echo "Hello"
 fi
 
 if [ "$(eval "gp sync-await env")" == "env done" ]; then
