@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Custom404 from 'src/pages/404'
 
+import PageType from '../PageType'
 import { GET_USER_QUERY } from '../ViewUser'
 import BookmarkFeed from './Feed'
 
@@ -50,6 +51,7 @@ const Bookmarks: React.FC = () => {
           <Details user={user as User} />
         </GridItemFour>
         <GridItemEight>
+          <PageType user={user as User} />
           <BookmarkFeed />
         </GridItemEight>
       </GridLayout>
