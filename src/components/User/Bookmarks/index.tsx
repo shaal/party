@@ -50,7 +50,7 @@ const Bookmarks: React.FC = () => {
           <ErrorMessage title="Failed to load bookmarks" error={error} />
           <Details user={user as User} />
         </GridItemFour>
-        <GridItemEight>
+        <GridItemEight className="space-y-3">
           <PageType user={user as User} />
           <BookmarkFeed />
         </GridItemEight>
