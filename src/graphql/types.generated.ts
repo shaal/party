@@ -4685,6 +4685,10 @@ export type UserFragmentFragment = {
     github?: string | null | undefined
     discord?: string | null | undefined
   }
+  integrations?:
+    | { __typename?: 'Integration'; ethAddress?: string | null | undefined }
+    | null
+    | undefined
   tip?: { __typename?: 'Tip'; id: string } | null | undefined
 }
 
@@ -4732,6 +4736,13 @@ export type GetUserQuery = {
           github?: string | null | undefined
           discord?: string | null | undefined
         }
+        integrations?:
+          | {
+              __typename?: 'Integration'
+              ethAddress?: string | null | undefined
+            }
+          | null
+          | undefined
         tip?: { __typename?: 'Tip'; id: string } | null | undefined
       }
     | null
