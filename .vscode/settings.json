@@ -1,8 +1,8 @@
 {
   "workbench.iconTheme": "material-icon-theme",
   "editor.formatOnSave": true,
-  "editor.fontSize": 16,
-  "editor.lineHeight": 30,
+  "editor.fontSize": 17,
+  "editor.lineHeight": 32,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "git.autofetch": true,
   "git.confirmSync": false,
