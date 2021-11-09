@@ -98,8 +98,12 @@ const Details: React.FC<Props> = ({ user }) => {
                   toast.success('ENS name copied!')
                 }}
               >
-                <div className="bg-white shadown-sm rounded-full border text-xs px-3 py-0.5 w-max cursor-pointer">
-                  {ensName}
+                <div className="flex items-center space-x-1.5 bg-white shadown-sm rounded-full border text-xs px-3 py-0.5 w-max cursor-pointer">
+                  <img
+                    className="h-3 w-3"
+                    src="https://assets.devparty.io/images/brands/ens.svg"
+                  />
+                  <div>{ensName}</div>
                 </div>
               </CopyToClipboard>
             )}
