@@ -2781,10 +2781,10 @@
   resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.3.0.tgz#f779ab3f07cac848fb844122d6662ba6560010b8"
   integrity sha512-DMgWskNJR6FNPLbQ8Xoq/PKV/9DfNKh5dvKB+SM8x7lVl4+pnxlZ3Ns4+yGmurA/ze708HrnCG1tXk85HolJmw==
 
-"@tailwindcss/forms@^0.4.0-alpha.1":
-  version "0.4.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.4.0-alpha.1.tgz#73314c656639e5f515976d6c1ec8bef9db05ff02"
-  integrity sha512-pmIYjFXHxbj4eh3VI+IVK6GUj7Acv0zzE3l7Hmy/2KRPMiAySqD/glitd0Kd+JFY7xXAKygsRPzHC0SWxVm63A==
+"@tailwindcss/forms@^0.4.0-alpha.2":
+  version "0.4.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.4.0-alpha.2.tgz#2c7bc5052de5f6226b5c242147e3a8a84c9aa147"
+  integrity sha512-bpo7CkwffVgMZLDMATLZgIcLZZ5PUNwR+nzrJLTbXCG90XReubO8I21HMSQt7Eq2uM9k6+FheZStWKtE4L5N4Q==
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
