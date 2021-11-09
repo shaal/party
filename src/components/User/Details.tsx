@@ -6,6 +6,7 @@ import { Button } from '@components/UI/Button'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Tooltip } from '@components/UI/Tooltip'
 import AppContext from '@components/utils/AppContext'
+import { useENS } from '@components/utils/hooks/useENS'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import { linkifyOptions } from '@components/utils/linkifyOptions'
 import { Profile, User } from '@graphql/types.generated'
@@ -21,6 +22,8 @@ import Linkify from 'linkify-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useContext } from 'react'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import toast from 'react-hot-toast'
 import { STATIC_ASSETS } from 'src/constants'
 import * as timeago from 'timeago.js'
 
@@ -32,6 +35,7 @@ import Wakatime from './Highlights/Wakatime'
 import OwnedProducts from './OwnedProducts'
 import Social from './Social'
 import Tips from './Tips'
+
 const UserMod = dynamic(() => import('./Mod'))
 
 interface Props {
@@ -40,6 +44,7 @@ interface Props {
 
 const Details: React.FC<Props> = ({ user }) => {
   const { currentUser, currentUserLoading, staffMode } = useContext(AppContext)
+  const { name: ensName } = useENS(user)
 
   return (
     <div className="mb-4">
@@ -87,6 +92,18 @@ const Details: React.FC<Props> = ({ user }) => {
               </span>
             )}
           </div>
+          {ensName && (
+            <CopyToClipboard
+              text={ensName}
+              onCopy={() => {
+                toast.success('ENS name copied!')
+              }}
+            >
+              <div className="mt-2 bg-white shadown-sm rounded-full border text-sm px-3 py-1 w-max">
+                {ensName}
+              </div>
+            </CopyToClipboard>
+          )}
         </div>
         <Followerings user={user} />
         {currentUserLoading ? (
