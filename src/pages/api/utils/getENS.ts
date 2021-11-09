@@ -19,7 +19,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).json(cache)
       } else {
         const response = await fetch(
-          `https://api.thegraph.com/subgraphs/name/ensdomains/ensrinkeby`,
+          `https://api.thegraph.com/subgraphs/name/ensdomains/${
+            IS_PRODUCTION ? 'ens' : 'ensrinkeby'
+          }`,
           {
             body: JSON.stringify({
               operationName: 'getNamesFromSubgraph',
