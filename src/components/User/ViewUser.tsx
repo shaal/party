@@ -49,6 +49,9 @@ export const UserFragment = gql`
       github
       discord
     }
+    integrations {
+      ethAddress
+    }
     tip {
       id
     }
