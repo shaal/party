@@ -91,19 +91,19 @@ const Details: React.FC<Props> = ({ user }) => {
                 Follows you
               </span>
             )}
+            {ensName && (
+              <CopyToClipboard
+                text={ensName}
+                onCopy={() => {
+                  toast.success('ENS name copied!')
+                }}
+              >
+                <div className="bg-white shadown-sm rounded-full border text-xs px-3 py-0.5 w-max cursor-pointer">
+                  {ensName}
+                </div>
+              </CopyToClipboard>
+            )}
           </div>
-          {ensName && (
-            <CopyToClipboard
-              text={ensName}
-              onCopy={() => {
-                toast.success('ENS name copied!')
-              }}
-            >
-              <div className="mt-2 bg-white shadown-sm rounded-full border text-sm px-3 py-1 w-max">
-                {ensName}
-              </div>
-            </CopyToClipboard>
-          )}
         </div>
         <Followerings user={user} />
         {currentUserLoading ? (
