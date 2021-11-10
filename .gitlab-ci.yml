@@ -38,7 +38,9 @@ danger:
     - npx danger ci
   only:
     - merge_requests
-  when: never
+  except:
+    variables:
+      - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "main"
 
 lint:
   stage: test
