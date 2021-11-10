@@ -35,10 +35,10 @@ stages:
 danger:
   stage: danger
   script:
-    - printenv
     - npx danger ci
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  only:
+    - merge_requests
+  when: never
 
 lint:
   stage: test
