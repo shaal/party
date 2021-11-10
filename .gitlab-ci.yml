@@ -19,36 +19,48 @@ variables:
   MYSQL_DATABASE: devparty
   DB_HOST: mysql
 
-.prepare:
-  before_script:
-    - node -v
-    - yarn -v
-    - cp .env.example .env
-    - yarn install --frozen-lockfile --silent
+stages:
+  - danger
+  - test
+  - deploy
+  - clean
+
+before_script:
+  - node -v
+  - yarn -v
+  - cp .env.example .env
+  - yarn install --frozen-lockfile --silent
+
+danger:
+  stage: danger
+  before_script: []
+  script: npx danger ci
+  only:
+    - merge_requests
 
 lint:
-  extends: .prepare
+  stage: test
   script:
     - yarn lint
 
 prettier:
-  extends: .prepare
+  stage: test
   script:
     - yarn prettier:check
 
 generate:
-  extends: .prepare
+  stage: test
   script:
     - yarn generate
 
 typecheck:
-  extends: .prepare
+  stage: test
   script:
     - yarn generate
     - yarn typecheck
 
 # test:
-#   extends: .prepare
+#   stage: test
 #   image: mcr.microsoft.com/playwright:focal
 #   variables:
 #     DATABASE_URL: 'mysql://root:root@mysql:3306/devparty'
@@ -60,16 +72,18 @@ typecheck:
 #     - npx playwright test
 
 hardhat-test:
-  extends: .prepare
+  stage: test
   script:
     - npx hardhat test
 
 build:
-  extends: .prepare
+  stage: test
   script:
     - yarn build
 
 graphcdn:
+  stage: deploy
+  before_script: []
   script:
     - npx graphcdn push
   only:
@@ -77,17 +91,21 @@ graphcdn:
 
 # Enhance it only for schedules
 warmup:
+  stage: deploy
+  before_script: []
   script:
     - ./scripts/warmup.sh
 
 migrate:
+  stage: deploy
+  before_script: []
   script:
     - DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate reset --force
   when: manual
 
 # Remove after Devparty release
 seed:
-  extends: .prepare
+  stage: deploy
   script:
     - DATABASE_URL=$PROD_DATABASE_URL yarn prisma:seed
   only:
@@ -95,6 +113,7 @@ seed:
   when: manual
 
 housekeeping:
+  stage: clean
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
