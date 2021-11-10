@@ -19,6 +19,12 @@ variables:
   MYSQL_DATABASE: devparty
   DB_HOST: mysql
 
+stages:
+  - danger
+  - test
+  - deploy
+  - clean
+
 .prepare:
   before_script:
     - node -v
@@ -26,28 +32,37 @@ variables:
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
 
+danger:
+  stage: danger
+  script: npx danger ci
+
 lint:
+  stage: test
   extends: .prepare
   script:
     - yarn lint
 
 prettier:
+  stage: test
   extends: .prepare
   script:
     - yarn prettier:check
 
 generate:
+  stage: test
   extends: .prepare
   script:
     - yarn generate
 
 typecheck:
+  stage: test
   extends: .prepare
   script:
     - yarn generate
     - yarn typecheck
 
 # test:
+#   stage: test
 #   extends: .prepare
 #   image: mcr.microsoft.com/playwright:focal
 #   variables:
@@ -60,16 +75,19 @@ typecheck:
 #     - npx playwright test
 
 hardhat-test:
+  stage: test
   extends: .prepare
   script:
     - npx hardhat test
 
 build:
+  stage: test
   extends: .prepare
   script:
     - yarn build
 
 graphcdn:
+  stage: deploy
   script:
     - npx graphcdn push
   only:
@@ -77,19 +95,19 @@ graphcdn:
 
 # Enhance it only for schedules
 warmup:
+  stage: deploy
   script:
     - ./scripts/warmup.sh
 
 migrate:
+  stage: deploy
   script:
     - DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate reset --force
   when: manual
 
-danger:
-  script: npx danger ci
-
 # Remove after Devparty release
 seed:
+  stage: deploy
   extends: .prepare
   script:
     - DATABASE_URL=$PROD_DATABASE_URL yarn prisma:seed
@@ -98,6 +116,7 @@ seed:
   when: manual
 
 housekeeping:
+  stage: clean
   before_script: []
   script:
     - curl --request POST --header "PRIVATE-TOKEN:$ACCESS_TOKEN" https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/housekeeping
