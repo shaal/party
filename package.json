@@ -95,6 +95,7 @@
     "@types/spotify-web-api-node": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "autoprefixer": "^10.3.7",
+    "danger": "^10.7.1",
     "eslint": "7.32.0",
     "eslint-config-next": "^12.0.3",
     "eslint-plugin-prettier": "^4.0.0",

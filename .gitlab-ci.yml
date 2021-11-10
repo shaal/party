@@ -26,6 +26,10 @@ variables:
     - cp .env.example .env
     - yarn install --frozen-lockfile --silent
 
+danger:
+  script:
+    - yarn danger ci
+
 lint:
   extends: .prepare
   script:
