@@ -28,7 +28,7 @@ variables:
 
 danger:
   script:
-    - yarn danger ci
+    - npx danger ci
 
 lint:
   extends: .prepare
