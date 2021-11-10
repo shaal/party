@@ -29,7 +29,7 @@ variables:
 danger:
   script:
     - npx danger ci
-  only: [merge_requests]
+  except: [/^main/]
 
 lint:
   extends: .prepare
