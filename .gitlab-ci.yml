@@ -25,45 +25,40 @@ stages:
   - deploy
   - clean
 
-.prepare:
-  before_script:
-    - node -v
-    - yarn -v
-    - cp .env.example .env
-    - yarn install --frozen-lockfile --silent
+before_script:
+  - node -v
+  - yarn -v
+  - cp .env.example .env
+  - yarn install --frozen-lockfile --silent
 
 danger:
   stage: danger
+  before_script: []
   script: npx danger ci
 
 lint:
   stage: test
-  extends: .prepare
   script:
     - yarn lint
 
 prettier:
   stage: test
-  extends: .prepare
   script:
     - yarn prettier:check
 
 generate:
   stage: test
-  extends: .prepare
   script:
     - yarn generate
 
 typecheck:
   stage: test
-  extends: .prepare
   script:
     - yarn generate
     - yarn typecheck
 
 # test:
 #   stage: test
-#   extends: .prepare
 #   image: mcr.microsoft.com/playwright:focal
 #   variables:
 #     DATABASE_URL: 'mysql://root:root@mysql:3306/devparty'
@@ -76,18 +71,17 @@ typecheck:
 
 hardhat-test:
   stage: test
-  extends: .prepare
   script:
     - npx hardhat test
 
 build:
   stage: test
-  extends: .prepare
   script:
     - yarn build
 
 graphcdn:
   stage: deploy
+  before_script: []
   script:
     - npx graphcdn push
   only:
@@ -96,11 +90,13 @@ graphcdn:
 # Enhance it only for schedules
 warmup:
   stage: deploy
+  before_script: []
   script:
     - ./scripts/warmup.sh
 
 migrate:
   stage: deploy
+  before_script: []
   script:
     - DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate reset --force
   when: manual
@@ -108,7 +104,6 @@ migrate:
 # Remove after Devparty release
 seed:
   stage: deploy
-  extends: .prepare
   script:
     - DATABASE_URL=$PROD_DATABASE_URL yarn prisma:seed
   only:
