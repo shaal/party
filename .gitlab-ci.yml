@@ -34,10 +34,12 @@ stages:
 
 danger:
   stage: danger
+  variables:
+    CI_MERGE_REQUEST_IID: $CI_MERGE_REQUEST_IID
+    CI_MERGE_REQUEST_IID: $CI_MERGE_REQUEST_IID
   script:
+    - printenv
     - npx danger ci
-  only:
-    - branches
 
 lint:
   stage: test
