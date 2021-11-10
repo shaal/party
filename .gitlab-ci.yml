@@ -35,8 +35,7 @@ danger:
   stage: danger
   before_script: []
   script: npx danger ci
-  rules:
-    - if: $CI_MERGE_REQUEST_IID
+  only: [merge_requests]
 
 lint:
   stage: test
