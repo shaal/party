@@ -28,10 +28,7 @@ variables:
 
 danger:
   script:
-    - printenv
     - npx danger ci
-  only:
-    - merge_requests
 
 lint:
   extends: .prepare
