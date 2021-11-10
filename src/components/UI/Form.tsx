@@ -1,4 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod'
+import { zodResolver } from '@hookform/resolvers/zod/dist/zod'
 import React, { ComponentProps } from 'react'
 import {
   FieldValues,
