@@ -19,11 +19,6 @@ variables:
   MYSQL_DATABASE: devparty
   DB_HOST: mysql
 
-.only-default: &only-default
-  only:
-    - branches
-    - merge_requests
-
 stages:
   - danger
   - test
@@ -45,25 +40,21 @@ danger:
 
 lint:
   stage: test
-  <<: *only-default
   script:
     - yarn lint
 
 prettier:
   stage: test
-  <<: *only-default
   script:
     - yarn prettier:check
 
 generate:
   stage: test
-  <<: *only-default
   script:
     - yarn generate
 
 typecheck:
   stage: test
-  <<: *only-default
   script:
     - yarn generate
     - yarn typecheck
@@ -82,13 +73,11 @@ typecheck:
 
 hardhat-test:
   stage: test
-  <<: *only-default
   script:
     - npx hardhat test
 
 build:
   stage: test
-  <<: *only-default
   script:
     - yarn build
 
@@ -111,7 +100,6 @@ warmup:
 
 migrate:
   stage: deploy
-  <<: *only-default
   before_script: []
   script:
     - DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate reset --force
