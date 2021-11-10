@@ -27,9 +27,7 @@ variables:
     - yarn install --frozen-lockfile --silent
 
 danger:
-  script:
-    - npx danger ci
-  except: [/^main/]
+  script: npx danger ci
 
 lint:
   extends: .prepare
