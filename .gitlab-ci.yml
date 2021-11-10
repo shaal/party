@@ -34,7 +34,9 @@ before_script:
 danger:
   stage: danger
   before_script: []
-  script: npx danger ci
+  script:
+    - printenv
+    - npx danger ci
 
 lint:
   stage: test
