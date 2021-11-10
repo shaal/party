@@ -35,6 +35,8 @@ danger:
   stage: danger
   before_script: []
   script: npx danger ci
+  only:
+    - merge_requests
 
 lint:
   stage: test
