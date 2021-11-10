@@ -1,7 +1,10 @@
 import { Post } from '@graphql/types.generated'
 import { BASE_URL } from 'src/constants'
 
-const getNFTData = (nsfw: boolean, post: Post, nft: string) => {
+const getNFTData = (nsfw: boolean, post: Post, nft: string): {description: string;
+image: string;
+attributes: any;
+}  => {
   const attributes: any = [
     {
       trait_type: 'User',

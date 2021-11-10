@@ -8,7 +8,8 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json())
  * @param url - GitHub issue URL
  * @returns a issue data from GitHub
  */
-export const useENS = (user: User) => {
+export const useENS = (user: User): {name: any;
+}  => {
   const { data } = useSWR(
     `/api/utils/getENS?address=${user?.integrations?.ethAddress}`,
     fetcher,
