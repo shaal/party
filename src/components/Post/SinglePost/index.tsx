@@ -160,7 +160,7 @@ const SinglePost: React.FC<Props> = ({ post, showParent = false }) => {
             </Link>
             <Link href={`/u/${post?.parent?.user?.username}`} passHref>
               <a href={`/u/${post?.parent?.user?.username}`}>
-                <Slug slug={post?.parent?.user?.username} prefix="@"></Slug>
+                <Slug slug={post?.parent?.user?.username} prefix="@" />
               </a>
             </Link>
           </div>
