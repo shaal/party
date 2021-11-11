@@ -1,4 +1,5 @@
 import { builder } from '@graphql/builder'
+import { db } from '@utils/prisma'
 
 builder.prismaObject('Status', {
   findUnique: (status) => ({ id: status.id }),
@@ -12,34 +13,25 @@ builder.prismaObject('Status', {
   })
 })
 
-const EditTipsInput = builder.inputType('EditTipsInput', {
+const EditStatusInput = builder.inputType('EditStatusInput', {
   fields: (t) => ({
-    cash: t.string({ required: false, validate: { maxLength: 50 } }),
-    paypal: t.string({ required: false, validate: { maxLength: 50 } }),
-    github: t.string({ required: false, validate: { maxLength: 50 } }),
-    buymeacoffee: t.string({ required: false, validate: { maxLength: 50 } }),
-    bitcoin: t.string({ required: false, validate: { maxLength: 50 } }),
-    ethereum: t.string({ required: false, validate: { maxLength: 50 } }),
-    solana: t.string({ required: false, validate: { maxLength: 50 } })
+    emoji: t.string({ validate: { maxLength: 50 } }),
+    text: t.string({ validate: { maxLength: 50 } })
   })
 })
 
-builder.mutationField('editTips', (t) =>
+// TODO: Split to function
+builder.mutationField('editStatus', (t) =>
   t.prismaField({
-    type: 'Tip',
-    args: { input: t.arg({ type: EditTipsInput }) },
+    type: 'Status',
+    args: { input: t.arg({ type: EditStatusInput }) },
     resolve: async (query, parent, { input }, { session }) => {
       const data = {
-        cash: input.cash,
-        paypal: input.paypal,
-        github: input.github,
-        buymeacoffee: input.buymeacoffee,
-        bitcoin: input.bitcoin,
-        ethereum: input.ethereum,
-        solana: input.solana
+        emoji: input.emoji,
+        text: input.text
       }
 
-      return await db.tip.upsert({
+      return await db.status.upsert({
         ...query,
         where: { userId: session!.userId },
         update: data,
