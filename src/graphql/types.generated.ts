@@ -258,6 +258,11 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
+export type EditStatusInput = {
+  emoji: Scalars['String']
+  text: Scalars['String']
+}
+
 export type EditTipsInput = {
   bitcoin?: Maybe<Scalars['String']>
   buymeacoffee?: Maybe<Scalars['String']>
@@ -375,6 +380,7 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
+  editStatus: Status
   editTips: Tip
   editUser: User
   editUserSocial: User
@@ -460,6 +466,10 @@ export type MutationEditProductProfileArgs = {
 
 export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
+}
+
+export type MutationEditStatusArgs = {
+  input: EditStatusInput
 }
 
 export type MutationEditTipsArgs = {
@@ -1208,6 +1218,13 @@ export type Stats = {
   users: Scalars['Int']
 }
 
+export type Status = {
+  __typename?: 'Status'
+  emoji: Scalars['String']
+  text: Scalars['String']
+  user: User
+}
+
 export type Tip = {
   __typename?: 'Tip'
   bitcoin?: Maybe<Scalars['String']>
@@ -1325,6 +1342,7 @@ export type User = {
   posts: UserPostsConnection
   profile: Profile
   spammy: Scalars['Boolean']
+  status?: Maybe<Status>
   tip?: Maybe<Tip>
   topics: UserTopicsConnection
   updatedAt: Scalars['DateTime']
@@ -4441,6 +4459,15 @@ export type AvatarSettingsMutation = {
     | undefined
 }
 
+export type EditStatusMutationVariables = Exact<{
+  input: EditStatusInput
+}>
+
+export type EditStatusMutation = {
+  __typename?: 'Mutation'
+  editStatus: { __typename?: 'Status'; emoji: string; text: string }
+}
+
 export type GetProfileSettingsQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetProfileSettingsQuery = {
@@ -4461,6 +4488,10 @@ export type GetProfileSettingsQuery = {
           cover: string
           coverBg: string
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         integrations?:
           | {
               __typename?: 'Integration'

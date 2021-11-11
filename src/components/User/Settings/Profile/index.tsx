@@ -21,7 +21,6 @@ export const GET_PROFILE_SETTINGS_QUERY = gql`
         coverBg
       }
       status {
-        id
         emoji
         text
       }

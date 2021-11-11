@@ -4,9 +4,8 @@ import { db } from '@utils/prisma'
 builder.prismaObject('Status', {
   findUnique: (status) => ({ id: status.id }),
   fields: (t) => ({
-    id: t.exposeID('id'),
-    cash: t.exposeString('emoji'),
-    paypal: t.exposeString('text'),
+    emoji: t.exposeString('emoji'),
+    text: t.exposeString('text'),
 
     // Relations
     user: t.relation('user')

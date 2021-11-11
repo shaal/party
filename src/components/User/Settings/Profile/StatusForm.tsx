@@ -4,7 +4,11 @@ import { Card, CardBody } from '@components/UI/Card'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
-import { User } from '@graphql/types.generated'
+import {
+  EditStatusMutation,
+  EditStatusMutationVariables,
+  User
+} from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
@@ -25,13 +29,12 @@ const SUCCESS_MESSAGE = 'Status successfully updated!'
 
 const StatusSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const [editStatus] = useMutation<
-    EditStatusInputMutation,
-    EditStatusInputMutationVariables
+    EditStatusMutation,
+    EditStatusMutationVariables
   >(
     gql`
       mutation EditStatus($input: EditStatusInput!) {
         editStatus(input: $input) {
-          id
           emoji
           text
         }
@@ -50,8 +53,8 @@ const StatusSettingsForm: React.FC<Props> = ({ currentUser }) => {
   const form = useZodForm({
     schema: editStatusSchema,
     defaultValues: {
-      emoji: currentUser?.profile?.emoji,
-      text: currentUser?.profile?.text
+      emoji: currentUser?.status?.emoji,
+      text: currentUser?.status?.text
     }
   })
 
