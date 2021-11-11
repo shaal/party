@@ -105,9 +105,9 @@ model Profile {
 }
 
 model Status {
-  id    String  @id @default(uuid())
-  emoji String?
-  text  String? @db.VarChar(64)
+  id    String @id @default(uuid())
+  emoji String
+  text  String @db.VarChar(64)
 
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

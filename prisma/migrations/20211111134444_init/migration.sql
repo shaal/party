@@ -55,8 +55,8 @@ CREATE TABLE `profiles` (
 -- CreateTable
 CREATE TABLE `status` (
     `id` VARCHAR(191) NOT NULL,
-    `emoji` VARCHAR(191) NULL,
-    `text` VARCHAR(64) NULL,
+    `emoji` VARCHAR(191) NOT NULL,
+    `text` VARCHAR(64) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `status_userId_key`(`userId`),
