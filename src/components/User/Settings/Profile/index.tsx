@@ -20,6 +20,11 @@ export const GET_PROFILE_SETTINGS_QUERY = gql`
         cover
         coverBg
       }
+      status {
+        id
+        emoji
+        text
+      }
       integrations {
         ethAddress
       }
@@ -36,7 +41,11 @@ const ProfileSettings: React.FC = () => {
     return <PageLoading message="Loading settings" />
   }
 
-  return <ProfileSettingsForm currentUser={data?.me as User} />
+  return (
+    <>
+      <ProfileSettingsForm currentUser={data?.me as User} />
+    </>
+  )
 }
 
 export default ProfileSettings
