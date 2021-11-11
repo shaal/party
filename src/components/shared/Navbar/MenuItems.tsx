@@ -81,6 +81,22 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                 className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
+                    'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer border dark:border-gray-700'
+                  )
+                }
+              >
+                <div className="flex items-center space-x-1.5">
+                  <div>❤️</div>
+                  <div>Love filip</div>
+                </div>
+              </Menu.Item>
+              <div className="border-b dark:border-gray-800" />
+              <Menu.Item
+                as={NextLink}
+                href={`/u/${currentUser?.username}`}
+                className={({ active }: { active: boolean }) =>
+                  clsx(
+                    { 'bg-gray-100 dark:bg-gray-800': active },
                     'block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer'
                   )
                 }
