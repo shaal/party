@@ -20,7 +20,6 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 import Sidebar from '../Sidebar'
-import StatusSettingsForm from './StatusForm'
 
 const NFTAvatars = dynamic(() => import('./NFTAvatars'))
 
@@ -229,7 +228,6 @@ const ProfileSettingsForm: React.FC<Props> = ({ currentUser }) => {
             </Form>
           </CardBody>
         </Card>
-        <StatusSettingsForm currentUser={currentUser} />
       </GridItemEight>
     </GridLayout>
   )

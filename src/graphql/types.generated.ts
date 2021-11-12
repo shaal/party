@@ -3466,6 +3466,10 @@ export type CurrentUserQuery = {
         spammy: boolean
         masquerading?: boolean | null | undefined
         profile: { __typename?: 'Profile'; id: string; avatar: string }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
       }
     | null
     | undefined
@@ -4459,15 +4463,6 @@ export type AvatarSettingsMutation = {
     | undefined
 }
 
-export type EditStatusMutationVariables = Exact<{
-  input: EditStatusInput
-}>
-
-export type EditStatusMutation = {
-  __typename?: 'Mutation'
-  editStatus: { __typename?: 'Status'; emoji: string; text: string }
-}
-
 export type GetProfileSettingsQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetProfileSettingsQuery = {
@@ -4816,22 +4811,6 @@ export type RegenerateInviteMutation = {
   }
 }
 
-export type GetStatusQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetStatusQuery = {
-  __typename?: 'Query'
-  me?:
-    | {
-        __typename?: 'User'
-        status?:
-          | { __typename?: 'Status'; emoji: string; text: string }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-}
-
 export type GetNotificationCountQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetNotificationCountQuery = {
@@ -4886,4 +4865,13 @@ export type SearchTopicsQuery = {
       | undefined
     >
   }
+}
+
+export type EditStatusMutationVariables = Exact<{
+  input: EditStatusInput
+}>
+
+export type EditStatusMutation = {
+  __typename?: 'Mutation'
+  editStatus: { __typename?: 'Status'; emoji: string; text: string }
 }

@@ -1,7 +1,6 @@
-import { gql, useQuery } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { GetStatusQuery, User } from '@graphql/types.generated'
+import { User } from '@graphql/types.generated'
 import { Menu, Transition } from '@headlessui/react'
 import {
   CogIcon,
@@ -17,17 +16,6 @@ import { Fragment, useContext } from 'react'
 
 import Slug from '../Slug'
 
-const GET_STATUS_QUERY = gql`
-  query GetStatus {
-    me {
-      status {
-        emoji
-        text
-      }
-    }
-  }
-`
-
 const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
   <Link href={href} passHref>
     <a {...rest}>{children}</a>
@@ -42,8 +30,7 @@ interface Props {
 const MenuItems: React.FC<Props> = ({ currentUser, setShowStatusModal }) => {
   const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
-  const { data } = useQuery<GetStatusQuery>(GET_STATUS_QUERY)
-  const status = data?.me?.status
+  const status = currentUser?.status
 
   const toggleStaffMode = () => {
     localStorage.setItem('staffMode', String(!staffMode))
