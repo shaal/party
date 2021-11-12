@@ -295,6 +295,7 @@ type Mutation {
   answerPoll(input: AnswerPollInput!): PollAnswer
   attachBadge(input: AttachBadgeToUserInput!): User!
   changePassword(input: ChangePasswordInput!): Result!
+  clearStatus: Result!
   createBadge(input: CreateBadgeInput!): Badge!
   createCommunity(input: CreateCommunityInput!): Community!
   createPost(input: CreatePostInput!): Post!

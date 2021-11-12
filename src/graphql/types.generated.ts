@@ -367,6 +367,7 @@ export type Mutation = {
   answerPoll?: Maybe<PollAnswer>
   attachBadge: User
   changePassword: Result
+  clearStatus: Result
   createBadge: Badge
   createCommunity: Community
   createPost: Post
@@ -4874,4 +4875,11 @@ export type EditStatusMutationVariables = Exact<{
 export type EditStatusMutation = {
   __typename?: 'Mutation'
   editStatus: { __typename?: 'Status'; emoji: string; text: string }
+}
+
+export type ClearStatusMutationVariables = Exact<{ [key: string]: never }>
+
+export type ClearStatusMutation = {
+  __typename?: 'Mutation'
+  clearStatus: Result
 }

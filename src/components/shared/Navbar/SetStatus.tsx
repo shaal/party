@@ -6,6 +6,8 @@ import { Input } from '@components/UI/Input'
 import { Modal } from '@components/UI/Modal'
 import AppContext from '@components/utils/AppContext'
 import {
+  ClearStatusMutation,
+  ClearStatusMutationVariables,
   EditStatusMutation,
   EditStatusMutationVariables
 } from '@graphql/types.generated'
@@ -54,6 +56,27 @@ const SetStatus: React.FC<Props> = ({
     }
   )
 
+  const [clearStatus] = useMutation<
+    ClearStatusMutation,
+    ClearStatusMutationVariables
+  >(
+    gql`
+      mutation ClearStatus {
+        clearStatus
+      }
+    `,
+    {
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+      onError(error) {
+        toast.error(error.message)
+      },
+      onCompleted() {
+        form.reset()
+        toast.success('Status cleared successfully!')
+      }
+    }
+  )
+
   const form = useZodForm({
     schema: editStatusSchema,
     defaultValues: {
@@ -87,7 +110,12 @@ const SetStatus: React.FC<Props> = ({
           />
         </div>
         <div className="px-5 py-3.5 flex space-x-3 border-t">
-          <Button variant="secondary" className="w-full">
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-full"
+            onClick={() => clearStatus()}
+          >
             Clear status
           </Button>
           <Button variant="success" className="w-full">
