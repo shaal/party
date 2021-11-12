@@ -13,9 +13,10 @@ import {
   EditStatusMutation,
   EditStatusMutationVariables
 } from '@graphql/types.generated'
+import { EmojiHappyIcon } from '@heroicons/react/outline'
 import { Picker } from 'emoji-mart'
 import { useTheme } from 'next-themes'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
@@ -37,6 +38,7 @@ const SetStatus: React.FC<Props> = ({
   const { resolvedTheme } = useTheme()
   const { currentUser } = useContext(AppContext)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+  const [selectedEmoji, setSelectedEmoji] = useState<string | undefined>()
   const [editStatus] = useMutation<
     EditStatusMutation,
     EditStatusMutationVariables
@@ -77,15 +79,19 @@ const SetStatus: React.FC<Props> = ({
       },
       onCompleted() {
         form.reset()
+        setSelectedEmoji(undefined)
         toast.success('Status cleared successfully!')
       }
     }
   )
 
+  useEffect(() => {
+    if (currentUser?.status?.emoji) setSelectedEmoji(currentUser?.status?.emoji)
+  }, [currentUser])
+
   const form = useZodForm({
     schema: editStatusSchema,
     defaultValues: {
-      //   emoji: currentUser?.status?.emoji,
       text: currentUser?.status?.text
     }
   })
@@ -93,21 +99,23 @@ const SetStatus: React.FC<Props> = ({
   return (
     <Modal
       title="Edit status"
-      show={true}
+      show={showStatusModal}
       onClose={() => setShowStatusModal(!showStatusModal)}
     >
       <Form
         form={form}
         className="space-y-4"
-        onSubmit={({ text }) =>
+        onSubmit={({ text }) => {
+          if (!selectedEmoji) return toast.error('Please select the emoji!')
+          if (!form.watch('text')) return toast.error('Please type the status!')
           editStatus({
             variables: {
-              input: { emoji: '👼', text }
+              input: { emoji: selectedEmoji as string, text }
             }
           })
-        }
+        }}
       >
-        <div className="px-5 py-3.5 text-center">
+        <div className="px-5 py-3.5">
           <Input
             placeholder="What's poppin?"
             prefix={
@@ -115,7 +123,11 @@ const SetStatus: React.FC<Props> = ({
                 type="button"
                 onClick={() => setShowEmojiPicker(!showEmojiPicker)}
               >
-                👴
+                {selectedEmoji ? (
+                  selectedEmoji
+                ) : (
+                  <EmojiHappyIcon className="h-5 w-5" />
+                )}
               </button>
             }
             {...form.register('text')}
@@ -127,7 +139,10 @@ const SetStatus: React.FC<Props> = ({
           >
             <Picker
               style={{ width: 'auto', border: 'none' }}
-              onClick={(emoji) => console.log(emoji)}
+              onClick={(emoji: any) => {
+                setSelectedEmoji(emoji.native)
+                setShowEmojiPicker(false)
+              }}
               theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
               showPreview={false}
               showSkinTones={false}
