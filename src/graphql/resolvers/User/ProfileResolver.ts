@@ -15,13 +15,13 @@ builder.prismaObject('Profile', {
     nftSource: t.exposeString('nftSource', { nullable: true }),
     cover: t.exposeString('cover'),
     coverBg: t.exposeString('coverBg'),
+    readme: t.exposeString('readme', { nullable: true }),
     hasReadme: t.field({
       type: 'Boolean',
       resolve: async (parent) => {
         return await hasReadme(parent.userId)
       }
     }),
-    readme: t.exposeString('readme', { nullable: true }),
 
     // Social
     website: t.exposeString('website', { nullable: true }),

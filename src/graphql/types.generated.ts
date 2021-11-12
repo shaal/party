@@ -4811,6 +4811,7 @@ export type UserFragmentFragment = {
     twitter?: string | null | undefined
     github?: string | null | undefined
     discord?: string | null | undefined
+    hasReadme: boolean
   }
   status?:
     | { __typename?: 'Status'; emoji: string; text: string }
@@ -4866,6 +4867,7 @@ export type GetUserQuery = {
           twitter?: string | null | undefined
           github?: string | null | undefined
           discord?: string | null | undefined
+          hasReadme: boolean
         }
         status?:
           | { __typename?: 'Status'; emoji: string; text: string }
