@@ -191,6 +191,10 @@ input EditProductSocialInput {
   website: String
 }
 
+input EditProfileReadmeInput {
+  readme: String!
+}
+
 input EditStatusInput {
   emoji: String!
   text: String!
@@ -309,6 +313,7 @@ type Mutation {
   editPost(input: EditPostInput!): Post!
   editProductProfile(input: EditProductProfileInput!): Product
   editProductSocial(input: EditProductSocialInput!): Product
+  editProfileReadme(input: EditProfileReadmeInput!): User!
   editStatus(input: EditStatusInput!): Status!
   editTips(input: EditTipsInput!): Tip!
   editUser(input: EditUserInput!): User!

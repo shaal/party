@@ -36,10 +36,12 @@ const EditUserSocialInput = builder.inputType('EditUserSocialInput', {
   })
 })
 
+// TODO: Split to function
 builder.mutationField('editUserSocial', (t) =>
   t.prismaField({
     type: 'User',
     args: { input: t.arg({ type: EditUserSocialInput }) },
+    authScopes: { user: true },
     resolve: async (query, parent, { input }, { session }) => {
       const user = await db.user.update({
         ...query,
@@ -60,6 +62,28 @@ builder.mutationField('editUserSocial', (t) =>
       createLog(session!.userId, user?.id, 'SETTINGS_UPDATE')
 
       return user
+    }
+  })
+)
+
+const EditProfileReadmeInput = builder.inputType('EditProfileReadmeInput', {
+  fields: (t) => ({
+    readme: t.string()
+  })
+})
+
+// TODO: Split to function
+builder.mutationField('editProfileReadme', (t) =>
+  t.prismaField({
+    type: 'User',
+    args: { input: t.arg({ type: EditProfileReadmeInput }) },
+    authScopes: { user: true },
+    resolve: async (query, parent, { input }, { session }) => {
+      return await db.user.update({
+        ...query,
+        where: { id: session!.userId },
+        data: { profile: { update: { readme: input.readme } } }
+      })
     }
   })
 )

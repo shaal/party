@@ -258,6 +258,10 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
+export type EditProfileReadmeInput = {
+  readme: Scalars['String']
+}
+
 export type EditStatusInput = {
   emoji: Scalars['String']
   text: Scalars['String']
@@ -381,6 +385,7 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
+  editProfileReadme: User
   editStatus: Status
   editTips: Tip
   editUser: User
@@ -467,6 +472,10 @@ export type MutationEditProductProfileArgs = {
 
 export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
+}
+
+export type MutationEditProfileReadmeArgs = {
+  input: EditProfileReadmeInput
 }
 
 export type MutationEditStatusArgs = {
