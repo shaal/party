@@ -6,7 +6,7 @@ interface CardProps extends ComponentProps<'div'> {
   forceRounded?: boolean
 }
 
-export const Card = forwardRef<HTMLElement, CardProps>(function Card({
+export const Card = forwardRef<HTMLDivElement, CardProps>(function Card({
   children,
   forceRounded = false,
   className = '',
@@ -31,7 +31,7 @@ interface CardBodyProps {
   className?: string
 }
 
-export const CardBody = forwardRef<HTMLElement, CardBodyProps>(
+export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
   function CardBody({ children, className = '', ...props }) {
     return (
       <div className={`p-5 ${className}`} {...props}>
