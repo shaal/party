@@ -487,6 +487,7 @@ type Profile {
   location: String
   name: String!
   nftSource: String
+  readme: String
   twitter: String
   website: String
 }

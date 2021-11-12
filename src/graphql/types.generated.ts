@@ -760,6 +760,7 @@ export type Profile = {
   location?: Maybe<Scalars['String']>
   name: Scalars['String']
   nftSource?: Maybe<Scalars['String']>
+  readme?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
   website?: Maybe<Scalars['String']>
 }
