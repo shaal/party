@@ -48,7 +48,6 @@ export const UserFragment = gql`
       twitter
       github
       discord
-      hasReadme
     }
     status {
       emoji

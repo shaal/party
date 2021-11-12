@@ -100,21 +100,19 @@ const PageType: React.FC<Props> = ({ user }) => {
           </div>
         </Tab>
       )}
-      {user?.profile?.hasReadme && (
-        <Tab
-          current={router.pathname == '/u/[username]/readme'}
-          url={`/u/${user?.username}/readme`}
+      <Tab
+        current={router.pathname == '/u/[username]/readme'}
+        url={`/u/${user?.username}/readme`}
+      >
+        <DocumentTextIcon className="h-4 w-4" />
+        <div
+          className={
+            router.pathname == '/u/[username]/readme' ? '' : `hidden sm:block`
+          }
         >
-          <DocumentTextIcon className="h-4 w-4" />
-          <div
-            className={
-              router.pathname == '/u/[username]/readme' ? '' : `hidden sm:block`
-            }
-          >
-            Readme
-          </div>
-        </Tab>
-      )}
+          Readme
+        </div>
+      </Tab>
     </div>
   )
 }
