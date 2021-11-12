@@ -53,6 +53,17 @@ CREATE TABLE `profiles` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `status` (
+    `id` VARCHAR(191) NOT NULL,
+    `emoji` VARCHAR(191) NOT NULL,
+    `text` VARCHAR(64) NOT NULL,
+    `userId` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `status_userId_key`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `invites` (
     `id` VARCHAR(191) NOT NULL,
     `code` VARCHAR(191) NULL,

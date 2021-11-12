@@ -258,6 +258,11 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
+export type EditStatusInput = {
+  emoji: Scalars['String']
+  text: Scalars['String']
+}
+
 export type EditTipsInput = {
   bitcoin?: Maybe<Scalars['String']>
   buymeacoffee?: Maybe<Scalars['String']>
@@ -362,6 +367,7 @@ export type Mutation = {
   answerPoll?: Maybe<PollAnswer>
   attachBadge: User
   changePassword: Result
+  clearStatus: Result
   createBadge: Badge
   createCommunity: Community
   createPost: Post
@@ -375,6 +381,7 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
+  editStatus: Status
   editTips: Tip
   editUser: User
   editUserSocial: User
@@ -460,6 +467,10 @@ export type MutationEditProductProfileArgs = {
 
 export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
+}
+
+export type MutationEditStatusArgs = {
+  input: EditStatusInput
 }
 
 export type MutationEditTipsArgs = {
@@ -1208,6 +1219,13 @@ export type Stats = {
   users: Scalars['Int']
 }
 
+export type Status = {
+  __typename?: 'Status'
+  emoji: Scalars['String']
+  text: Scalars['String']
+  user: User
+}
+
 export type Tip = {
   __typename?: 'Tip'
   bitcoin?: Maybe<Scalars['String']>
@@ -1325,6 +1343,7 @@ export type User = {
   posts: UserPostsConnection
   profile: Profile
   spammy: Scalars['Boolean']
+  status?: Maybe<Status>
   tip?: Maybe<Tip>
   topics: UserTopicsConnection
   updatedAt: Scalars['DateTime']
@@ -1590,6 +1609,10 @@ export type GetModeratorsQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
           }
         | null
@@ -1708,6 +1731,10 @@ export type GetCommunityFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -1793,6 +1820,10 @@ export type MembersQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
           }
         | null
@@ -1894,6 +1925,10 @@ export type GetFeaturedUsersQuery = {
               avatar: string
               name: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -1983,6 +2018,10 @@ export type GetExploreFeedQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
             product?:
               | {
@@ -2030,12 +2069,17 @@ export type GetExploreUserQuery = {
         __typename?: 'User'
         id: string
         username: string
+        isVerified: boolean
         profile: {
           __typename?: 'Profile'
           id: string
           name: string
           avatar: string
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         topics: {
           __typename?: 'UserTopicsConnection'
           totalCount: number
@@ -2140,6 +2184,10 @@ export type GetHomeFeedQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
             product?:
               | {
@@ -2222,6 +2270,10 @@ export type GetWhoToFollowQuery = {
               avatar: string
               name: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -2346,6 +2398,10 @@ export type GetNotificationsQuery = {
                         avatar: string
                         bio?: string | null | undefined
                       }
+                      status?:
+                        | { __typename?: 'Status'; emoji: string; text: string }
+                        | null
+                        | undefined
                     }
                     product?:
                       | {
@@ -2450,6 +2506,10 @@ export type GetNotificationsQuery = {
                       avatar: string
                       bio?: string | null | undefined
                     }
+                    status?:
+                      | { __typename?: 'Status'; emoji: string; text: string }
+                      | null
+                      | undefined
                   }
                   product?:
                     | {
@@ -2526,6 +2586,10 @@ export type GetOnboardingUsersQuery = {
               avatar: string
               bio?: string | null | undefined
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -2826,6 +2890,10 @@ export type GetRepliesQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3006,6 +3074,10 @@ export type PostFragmentFragment = {
       avatar: string
       bio?: string | null | undefined
     }
+    status?:
+      | { __typename?: 'Status'; emoji: string; text: string }
+      | null
+      | undefined
   }
   product?:
     | {
@@ -3102,6 +3174,10 @@ export type GetPostQuery = {
         avatar: string
         bio?: string | null | undefined
       }
+      status?:
+        | { __typename?: 'Status'; emoji: string; text: string }
+        | null
+        | undefined
     }
     product?:
       | {
@@ -3215,6 +3291,10 @@ export type GetProductFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3431,6 +3511,10 @@ export type GetProductQuery = {
         avatar: string
         bio?: string | null | undefined
       }
+      status?:
+        | { __typename?: 'Status'; emoji: string; text: string }
+        | null
+        | undefined
     }
   }
 }
@@ -3448,6 +3532,10 @@ export type CurrentUserQuery = {
         spammy: boolean
         masquerading?: boolean | null | undefined
         profile: { __typename?: 'Profile'; id: string; avatar: string }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
       }
     | null
     | undefined
@@ -3545,6 +3633,10 @@ export type GetStaffUsersQuery = {
               bio?: string | null | undefined
               avatar: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
             integrations?:
               | {
                   __typename?: 'Integration'
@@ -3680,6 +3772,10 @@ export type GetTopicFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3890,6 +3986,10 @@ export type GetBookmarkFeedQuery = {
                         avatar: string
                         bio?: string | null | undefined
                       }
+                      status?:
+                        | { __typename?: 'Status'; emoji: string; text: string }
+                        | null
+                        | undefined
                     }
                     product?:
                       | {
@@ -4062,6 +4162,10 @@ export type GetUserFeedQuery = {
                       avatar: string
                       bio?: string | null | undefined
                     }
+                    status?:
+                      | { __typename?: 'Status'; emoji: string; text: string }
+                      | null
+                      | undefined
                   }
                   product?:
                     | {
@@ -4138,6 +4242,10 @@ export type GetFollowersQuery = {
                     avatar: string
                     bio?: string | null | undefined
                   }
+                  status?:
+                    | { __typename?: 'Status'; emoji: string; text: string }
+                    | null
+                    | undefined
                 }
               }
             | null
@@ -4184,6 +4292,10 @@ export type GetFollowingQuery = {
                     avatar: string
                     bio?: string | null | undefined
                   }
+                  status?:
+                    | { __typename?: 'Status'; emoji: string; text: string }
+                    | null
+                    | undefined
                 }
               }
             | null
@@ -4461,6 +4573,10 @@ export type GetProfileSettingsQuery = {
           cover: string
           coverBg: string
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         integrations?:
           | {
               __typename?: 'Integration'
@@ -4685,6 +4801,10 @@ export type UserFragmentFragment = {
     github?: string | null | undefined
     discord?: string | null | undefined
   }
+  status?:
+    | { __typename?: 'Status'; emoji: string; text: string }
+    | null
+    | undefined
   integrations?:
     | { __typename?: 'Integration'; ethAddress?: string | null | undefined }
     | null
@@ -4736,6 +4856,10 @@ export type GetUserQuery = {
           github?: string | null | undefined
           discord?: string | null | undefined
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         integrations?:
           | {
               __typename?: 'Integration'
@@ -4814,6 +4938,10 @@ export type SearchUsersQuery = {
               name: string
               avatar: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -4839,4 +4967,20 @@ export type SearchTopicsQuery = {
       | undefined
     >
   }
+}
+
+export type EditStatusMutationVariables = Exact<{
+  input: EditStatusInput
+}>
+
+export type EditStatusMutation = {
+  __typename?: 'Mutation'
+  editStatus: { __typename?: 'Status'; emoji: string; text: string }
+}
+
+export type ClearStatusMutationVariables = Exact<{ [key: string]: never }>
+
+export type ClearStatusMutation = {
+  __typename?: 'Mutation'
+  clearStatus: Result
 }
