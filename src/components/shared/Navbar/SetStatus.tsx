@@ -14,6 +14,7 @@ import {
   EditStatusMutationVariables
 } from '@graphql/types.generated'
 import { Picker } from 'emoji-mart'
+import { useTheme } from 'next-themes'
 import { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
@@ -34,6 +35,7 @@ const SetStatus: React.FC<Props> = ({
   showStatusModal,
   setShowStatusModal
 }) => {
+  const { resolvedTheme } = useTheme()
   const { currentUser } = useContext(AppContext)
   const [displayEmojiPicker, setDisplayEmojiPicker] = useState(false)
   const [editStatus] = useMutation<
@@ -112,7 +114,6 @@ const SetStatus: React.FC<Props> = ({
             prefix={
               <button
                 type="button"
-                className="emoji-btn"
                 onClick={() => setDisplayEmojiPicker(!displayEmojiPicker)}
               >
                 👴
@@ -128,6 +129,12 @@ const SetStatus: React.FC<Props> = ({
             <Picker
               style={{ width: 'auto', border: 'none' }}
               onClick={(emoji) => console.log(emoji)}
+              theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+              showPreview={false}
+              showSkinTones={false}
+              emojiSize={20}
+              color="#8b5cf6"
+              native
             />
           </Modal>
         </div>
