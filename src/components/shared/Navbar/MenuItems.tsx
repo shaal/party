@@ -1,8 +1,14 @@
+import { gql, useQuery } from '@apollo/client'
 import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
-import { User } from '@graphql/types.generated'
+import { GetStatusQuery, User } from '@graphql/types.generated'
 import { Menu, Transition } from '@headlessui/react'
-import { CogIcon, LogoutIcon, UserIcon } from '@heroicons/react/outline'
+import {
+  CogIcon,
+  EmojiHappyIcon,
+  LogoutIcon,
+  UserIcon
+} from '@heroicons/react/outline'
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -10,6 +16,17 @@ import { useTheme } from 'next-themes'
 import { Fragment, useContext } from 'react'
 
 import Slug from '../Slug'
+
+const GET_STATUS_QUERY = gql`
+  query GetStatus {
+    me {
+      status {
+        emoji
+        text
+      }
+    }
+  }
+`
 
 const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
   <Link href={href} passHref>
@@ -24,6 +41,8 @@ interface Props {
 const MenuItems: React.FC<Props> = ({ currentUser }) => {
   const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
+  const { data, loading } = useQuery<GetStatusQuery>(GET_STATUS_QUERY)
+  const status = data?.me?.status
 
   const toggleStaffMode = () => {
     localStorage.setItem('staffMode', String(!staffMode))
@@ -77,7 +96,7 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               <div className="border-b dark:border-gray-800" />
               <Menu.Item
                 as={NextLink}
-                href={`/u/${currentUser?.username}`}
+                href={`/settings/profile`}
                 className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
@@ -85,10 +104,19 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
                   )
                 }
               >
-                <div className="flex items-center space-x-1.5">
-                  <div>❤️</div>
-                  <div>Love filip</div>
-                </div>
+                {status?.emoji ? (
+                  <div className="flex items-center space-x-1.5">
+                    <div>{status?.emoji}</div>
+                    <div className="truncate" title={status?.text}>
+                      {status?.text}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-1.5 text-gray-500">
+                    <EmojiHappyIcon className="h-4 w-4" />
+                    <div>Set status</div>
+                  </div>
+                )}
               </Menu.Item>
               <div className="border-b dark:border-gray-800" />
               <Menu.Item

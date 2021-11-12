@@ -4816,6 +4816,22 @@ export type RegenerateInviteMutation = {
   }
 }
 
+export type GetStatusQueryVariables = Exact<{ [key: string]: never }>
+
+export type GetStatusQuery = {
+  __typename?: 'Query'
+  me?:
+    | {
+        __typename?: 'User'
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+}
+
 export type GetNotificationCountQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetNotificationCountQuery = {
