@@ -46,6 +46,7 @@ CREATE TABLE `profiles` (
     `discord` VARCHAR(32) NULL,
     `github` VARCHAR(32) NULL,
     `twitter` VARCHAR(32) NULL,
+    `readme` TEXT NULL,
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `profiles_userId_key`(`userId`),
