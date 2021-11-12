@@ -16,7 +16,7 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 const editStatusSchema = object({
-  emoji: string(),
+  // emoji: string(),
   text: string().max(50, {
     message: '💝 Status text should not exceed 50 characters'
   })
@@ -80,7 +80,7 @@ const SetStatus: React.FC<Props> = ({
   const form = useZodForm({
     schema: editStatusSchema,
     defaultValues: {
-      emoji: currentUser?.status?.emoji,
+      //   emoji: currentUser?.status?.emoji,
       text: currentUser?.status?.text
     }
   })
@@ -94,10 +94,10 @@ const SetStatus: React.FC<Props> = ({
       <Form
         form={form}
         className="space-y-4"
-        onSubmit={({ emoji, text }) =>
+        onSubmit={({ text }) =>
           editStatus({
             variables: {
-              input: { emoji, text }
+              input: { emoji: '👼', text }
             }
           })
         }
