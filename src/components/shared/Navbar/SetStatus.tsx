@@ -20,7 +20,6 @@ import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
 const editStatusSchema = object({
-  // emoji: string(),
   text: string().max(50, {
     message: '💝 Status text should not exceed 50 characters'
   })
@@ -37,7 +36,7 @@ const SetStatus: React.FC<Props> = ({
 }) => {
   const { resolvedTheme } = useTheme()
   const { currentUser } = useContext(AppContext)
-  const [displayEmojiPicker, setDisplayEmojiPicker] = useState(false)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [editStatus] = useMutation<
     EditStatusMutation,
     EditStatusMutationVariables
@@ -114,7 +113,7 @@ const SetStatus: React.FC<Props> = ({
             prefix={
               <button
                 type="button"
-                onClick={() => setDisplayEmojiPicker(!displayEmojiPicker)}
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
               >
                 👴
               </button>
@@ -123,8 +122,8 @@ const SetStatus: React.FC<Props> = ({
           />
           <Modal
             title="Select emoji"
-            show={displayEmojiPicker}
-            onClose={() => setDisplayEmojiPicker(!displayEmojiPicker)}
+            show={showEmojiPicker}
+            onClose={() => setShowEmojiPicker(!showEmojiPicker)}
           >
             <Picker
               style={{ width: 'auto', border: 'none' }}
