@@ -89,3 +89,9 @@ body {
 .emoji-mart-category-list {
   @apply !mb-3;
 }
+
+.emoji-mart-anchor,
+.emoji-mart-anchor-selected {
+  display: flex !important;
+  justify-content: center;
+}
