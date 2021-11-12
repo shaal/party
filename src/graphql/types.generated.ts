@@ -1727,6 +1727,10 @@ export type GetCommunityFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -2002,6 +2006,10 @@ export type GetExploreFeedQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
             product?:
               | {
@@ -2159,6 +2167,10 @@ export type GetHomeFeedQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
             product?:
               | {
@@ -2365,6 +2377,10 @@ export type GetNotificationsQuery = {
                         avatar: string
                         bio?: string | null | undefined
                       }
+                      status?:
+                        | { __typename?: 'Status'; emoji: string; text: string }
+                        | null
+                        | undefined
                     }
                     product?:
                       | {
@@ -2469,6 +2485,10 @@ export type GetNotificationsQuery = {
                       avatar: string
                       bio?: string | null | undefined
                     }
+                    status?:
+                      | { __typename?: 'Status'; emoji: string; text: string }
+                      | null
+                      | undefined
                   }
                   product?:
                     | {
@@ -2845,6 +2865,10 @@ export type GetRepliesQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3025,6 +3049,10 @@ export type PostFragmentFragment = {
       avatar: string
       bio?: string | null | undefined
     }
+    status?:
+      | { __typename?: 'Status'; emoji: string; text: string }
+      | null
+      | undefined
   }
   product?:
     | {
@@ -3121,6 +3149,10 @@ export type GetPostQuery = {
         avatar: string
         bio?: string | null | undefined
       }
+      status?:
+        | { __typename?: 'Status'; emoji: string; text: string }
+        | null
+        | undefined
     }
     product?:
       | {
@@ -3234,6 +3266,10 @@ export type GetProductFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3703,6 +3739,10 @@ export type GetTopicFeedQuery = {
                   avatar: string
                   bio?: string | null | undefined
                 }
+                status?:
+                  | { __typename?: 'Status'; emoji: string; text: string }
+                  | null
+                  | undefined
               }
               product?:
                 | {
@@ -3913,6 +3953,10 @@ export type GetBookmarkFeedQuery = {
                         avatar: string
                         bio?: string | null | undefined
                       }
+                      status?:
+                        | { __typename?: 'Status'; emoji: string; text: string }
+                        | null
+                        | undefined
                     }
                     product?:
                       | {
@@ -4085,6 +4129,10 @@ export type GetUserFeedQuery = {
                       avatar: string
                       bio?: string | null | undefined
                     }
+                    status?:
+                      | { __typename?: 'Status'; emoji: string; text: string }
+                      | null
+                      | undefined
                   }
                   product?:
                     | {
