@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
 import { Card, CardBody } from '@components/UI/Card'
+import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import Details from '@components/User/Details'
@@ -11,6 +12,7 @@ import {
   GetUserQuery,
   User
 } from '@graphql/types.generated'
+import { DocumentTextIcon } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -86,7 +88,16 @@ const Readme: React.FC = () => {
                   </Markdown>
                 </div>
               ) : (
-                <div>No README</div>
+                <EmptyState
+                  message={
+                    <div>
+                      <span className="font-bold mr-1">@{user.username}</span>
+                      <span>has no README!</span>
+                    </div>
+                  }
+                  icon={<DocumentTextIcon className="h-8 w-8 text-brand-500" />}
+                  hideCard
+                />
               )}
             </CardBody>
           </Card>
