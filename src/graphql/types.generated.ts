@@ -4438,6 +4438,21 @@ export type GetAllUserProductsQuery = {
     | undefined
 }
 
+export type GetProfileReadmeQueryVariables = Exact<{
+  username: Scalars['String']
+}>
+
+export type GetProfileReadmeQuery = {
+  __typename?: 'Query'
+  user?:
+    | {
+        __typename?: 'User'
+        profile: { __typename?: 'Profile'; readme?: string | null | undefined }
+      }
+    | null
+    | undefined
+}
+
 export type DeleteAccountMutationVariables = Exact<{ [key: string]: never }>
 
 export type DeleteAccountMutation = {
