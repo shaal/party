@@ -1,11 +1,13 @@
 import { gql, useQuery } from '@apollo/client'
 import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
 import DevpartySEO from '@components/shared/SEO'
+import { Button } from '@components/UI/Button'
 import { Card, CardBody } from '@components/UI/Card'
 import { EmptyState } from '@components/UI/EmptyState'
 import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { PageLoading } from '@components/UI/PageLoading'
 import Details from '@components/User/Details'
+import AppContext from '@components/utils/AppContext'
 import { imagekitURL } from '@components/utils/imagekitURL'
 import {
   GetProfileReadmeQuery,
@@ -14,8 +16,9 @@ import {
 } from '@graphql/types.generated'
 import { DocumentTextIcon } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useContext } from 'react'
 import Custom404 from 'src/pages/404'
 
 import PageType from '../PageType'
@@ -33,18 +36,16 @@ export const GET_PROFILE_README_QUERY = gql`
 
 const Readme: React.FC = () => {
   const router = useRouter()
+  const { currentUser } = useContext(AppContext)
   const { data, loading, error } = useQuery<GetUserQuery>(GET_USER_QUERY, {
     variables: { username: router.query.username },
     skip: !router.isReady
   })
-  const {
-    data: readmeData,
-    loading: readmeLoading,
-    error: readmeError
-  } = useQuery<GetProfileReadmeQuery>(GET_PROFILE_README_QUERY, {
-    variables: { username: router.query.username },
-    skip: !router.isReady
-  })
+  const { data: readmeData, loading: readmeLoading } =
+    useQuery<GetProfileReadmeQuery>(GET_PROFILE_README_QUERY, {
+      variables: { username: router.query.username },
+      skip: !router.isReady
+    })
   const user = data?.user
 
   if (!router.isReady || loading)
@@ -90,9 +91,18 @@ const Readme: React.FC = () => {
               ) : (
                 <EmptyState
                   message={
-                    <div>
+                    <div className="text-center">
                       <span className="font-bold mr-1">@{user.username}</span>
                       <span>has no README!</span>
+                      {user?.id === currentUser?.id && (
+                        <div className="mt-4">
+                          <Link href="/settings/readme" passHref>
+                            <a href="/settings/readme">
+                              <Button>Add README</Button>
+                            </a>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   }
                   icon={<DocumentTextIcon className="h-8 w-8 text-brand-500" />}
