@@ -6,7 +6,7 @@ interface CardProps extends ComponentProps<'div'> {
   forceRounded?: boolean
 }
 
-export const Card = forwardRef<HTMLInputElement, CardProps>(function Card({
+export const Card = forwardRef<HTMLElement, CardProps>(function Card({
   children,
   forceRounded = false,
   className = '',
@@ -30,9 +30,13 @@ interface CardBodyProps {
   children: React.ReactNode
   className?: string
 }
-export const CardBody: React.FC<CardBodyProps> = ({
-  children,
-  className = ''
-}) => {
-  return <div className={`p-5 ${className}`}>{children}</div>
-}
+
+export const CardBody = forwardRef<HTMLElement, CardBodyProps>(
+  function CardBody({ children, className = '', ...props }) {
+    return (
+      <div className={`p-5 ${className}`} {...props}>
+        {children}
+      </div>
+    )
+  }
+)
