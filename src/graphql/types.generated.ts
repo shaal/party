@@ -3633,6 +3633,10 @@ export type GetStaffUsersQuery = {
               bio?: string | null | undefined
               avatar: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
             integrations?:
               | {
                   __typename?: 'Integration'
@@ -4789,6 +4793,10 @@ export type UserFragmentFragment = {
     github?: string | null | undefined
     discord?: string | null | undefined
   }
+  status?:
+    | { __typename?: 'Status'; emoji: string; text: string }
+    | null
+    | undefined
   integrations?:
     | { __typename?: 'Integration'; ethAddress?: string | null | undefined }
     | null
@@ -4840,6 +4848,10 @@ export type GetUserQuery = {
           github?: string | null | undefined
           discord?: string | null | undefined
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         integrations?:
           | {
               __typename?: 'Integration'
@@ -4918,6 +4930,10 @@ export type SearchUsersQuery = {
               name: string
               avatar: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
