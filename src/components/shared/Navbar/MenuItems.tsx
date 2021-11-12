@@ -36,12 +36,13 @@ const NextLink = ({ href, children, ...rest }: Record<string, any>) => (
 
 interface Props {
   currentUser: User
+  setShowStatusModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MenuItems: React.FC<Props> = ({ currentUser }) => {
+const MenuItems: React.FC<Props> = ({ currentUser, setShowStatusModal }) => {
   const { theme, setTheme } = useTheme()
   const { staffMode, setStaffMode } = useContext(AppContext)
-  const { data, loading } = useQuery<GetStatusQuery>(GET_STATUS_QUERY)
+  const { data } = useQuery<GetStatusQuery>(GET_STATUS_QUERY)
   const status = data?.me?.status
 
   const toggleStaffMode = () => {
@@ -95,8 +96,8 @@ const MenuItems: React.FC<Props> = ({ currentUser }) => {
               </Menu.Item>
               <div className="border-b dark:border-gray-800" />
               <Menu.Item
-                as={NextLink}
-                href={`/settings/profile`}
+                as={'button'}
+                onClick={() => setShowStatusModal(true)}
                 className={({ active }: { active: boolean }) =>
                   clsx(
                     { 'bg-gray-100 dark:bg-gray-800': active },
