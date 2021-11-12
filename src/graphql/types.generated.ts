@@ -1609,6 +1609,10 @@ export type GetModeratorsQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
           }
         | null
@@ -1816,6 +1820,10 @@ export type MembersQuery = {
                 avatar: string
                 bio?: string | null | undefined
               }
+              status?:
+                | { __typename?: 'Status'; emoji: string; text: string }
+                | null
+                | undefined
             }
           }
         | null
@@ -1917,6 +1925,10 @@ export type GetFeaturedUsersQuery = {
               avatar: string
               name: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -2057,12 +2069,17 @@ export type GetExploreUserQuery = {
         __typename?: 'User'
         id: string
         username: string
+        isVerified: boolean
         profile: {
           __typename?: 'Profile'
           id: string
           name: string
           avatar: string
         }
+        status?:
+          | { __typename?: 'Status'; emoji: string; text: string }
+          | null
+          | undefined
         topics: {
           __typename?: 'UserTopicsConnection'
           totalCount: number
@@ -2253,6 +2270,10 @@ export type GetWhoToFollowQuery = {
               avatar: string
               name: string
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
