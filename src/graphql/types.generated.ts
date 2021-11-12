@@ -2586,6 +2586,10 @@ export type GetOnboardingUsersQuery = {
               avatar: string
               bio?: string | null | undefined
             }
+            status?:
+              | { __typename?: 'Status'; emoji: string; text: string }
+              | null
+              | undefined
           }
         }
       | null
@@ -3507,6 +3511,10 @@ export type GetProductQuery = {
         avatar: string
         bio?: string | null | undefined
       }
+      status?:
+        | { __typename?: 'Status'; emoji: string; text: string }
+        | null
+        | undefined
     }
   }
 }
