@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { CURRENT_USER_QUERY } from '@components/SiteLayout'
 import { Button } from '@components/UI/Button'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
@@ -42,6 +43,7 @@ const SetStatus: React.FC<Props> = ({
       }
     `,
     {
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
       onError(error) {
         toast.error(error.message)
       },
