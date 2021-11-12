@@ -488,6 +488,7 @@ type Profile {
   coverBg: String!
   discord: String
   github: String
+  hasReadme: Boolean!
   id: ID!
   location: String
   name: String!

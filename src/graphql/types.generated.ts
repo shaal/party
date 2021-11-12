@@ -765,6 +765,7 @@ export type Profile = {
   coverBg: Scalars['String']
   discord?: Maybe<Scalars['String']>
   github?: Maybe<Scalars['String']>
+  hasReadme: Scalars['Boolean']
   id: Scalars['ID']
   location?: Maybe<Scalars['String']>
   name: Scalars['String']
