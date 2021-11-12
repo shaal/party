@@ -25,7 +25,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "cypress/integration/pages/landing.spec.js",
     "test/contract-test.js"
   ],
   "exclude": ["node_modules", "**/schema.generated"]
