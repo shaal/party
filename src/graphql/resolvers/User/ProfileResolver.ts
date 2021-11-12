@@ -2,6 +2,7 @@ import { builder } from '@graphql/builder'
 import { db } from '@utils/prisma'
 
 import { createLog } from '../Log/mutations/createLog'
+import { hasReadme } from './queries/hasReadme'
 
 builder.prismaObject('Profile', {
   findUnique: (profile) => ({ id: profile.id }),
@@ -14,6 +15,12 @@ builder.prismaObject('Profile', {
     nftSource: t.exposeString('nftSource', { nullable: true }),
     cover: t.exposeString('cover'),
     coverBg: t.exposeString('coverBg'),
+    hasReadme: t.field({
+      type: 'Boolean',
+      resolve: async (parent) => {
+        return await hasReadme(parent.userId)
+      }
+    }),
     readme: t.exposeString('readme', { nullable: true }),
 
     // Social
