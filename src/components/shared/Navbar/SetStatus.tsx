@@ -1,3 +1,5 @@
+import 'emoji-mart/css/emoji-mart.css'
+
 import { gql, useMutation } from '@apollo/client'
 import { CURRENT_USER_QUERY } from '@components/SiteLayout'
 import { Button } from '@components/UI/Button'
@@ -11,7 +13,8 @@ import {
   EditStatusMutation,
   EditStatusMutationVariables
 } from '@graphql/types.generated'
-import { useContext } from 'react'
+import { Picker } from 'emoji-mart'
+import { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
@@ -32,6 +35,7 @@ const SetStatus: React.FC<Props> = ({
   setShowStatusModal
 }) => {
   const { currentUser } = useContext(AppContext)
+  const [displayEmojiPicker, setDisplayEmojiPicker] = useState(false)
   const [editStatus] = useMutation<
     EditStatusMutation,
     EditStatusMutationVariables
@@ -87,9 +91,9 @@ const SetStatus: React.FC<Props> = ({
 
   return (
     <Modal
-      onClose={() => setShowStatusModal(!showStatusModal)}
       title="Edit status"
-      show={showStatusModal}
+      show={true}
+      onClose={() => setShowStatusModal(!showStatusModal)}
     >
       <Form
         form={form}
@@ -105,9 +109,27 @@ const SetStatus: React.FC<Props> = ({
         <div className="px-5 py-3.5 text-center">
           <Input
             placeholder="What's poppin?"
-            prefix="🥰"
+            prefix={
+              <button
+                type="button"
+                className="emoji-btn"
+                onClick={() => setDisplayEmojiPicker(!displayEmojiPicker)}
+              >
+                👴
+              </button>
+            }
             {...form.register('text')}
           />
+          <Modal
+            title="Select emoji"
+            show={displayEmojiPicker}
+            onClose={() => setDisplayEmojiPicker(!displayEmojiPicker)}
+          >
+            <Picker
+              style={{ width: 'auto', border: 'none' }}
+              onClick={(emoji) => console.log(emoji)}
+            />
+          </Modal>
         </div>
         <div className="px-5 py-3.5 flex space-x-3 border-t">
           <Button
