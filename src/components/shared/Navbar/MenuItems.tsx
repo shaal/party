@@ -96,7 +96,7 @@ const MenuItems: React.FC<Props> = ({ currentUser, setShowStatusModal }) => {
               </Menu.Item>
               <div className="border-b dark:border-gray-800" />
               <Menu.Item
-                as={'button'}
+                as={'div'}
                 onClick={() => setShowStatusModal(true)}
                 className={({ active }: { active: boolean }) =>
                   clsx(

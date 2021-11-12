@@ -12,7 +12,7 @@ const SetStatus: React.FC<Props> = ({
   return (
     <Modal
       onClose={() => setShowStatusModal(!showStatusModal)}
-      title="Your Invite Code"
+      title="Edit status"
       show={showStatusModal}
     >
       WIP
