@@ -2,14 +2,18 @@ import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Modal } from '@components/UI/Modal'
+import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
 import {
   EditProfileReadmeMutation,
   EditProfileReadmeMutationVariables
 } from '@graphql/types.generated'
+import { CheckCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
+
+import { GET_PROFILE_README_QUERY } from '.'
 
 const editReadmeSchema = object({
   readme: string()
@@ -40,6 +44,7 @@ const EditReadme: React.FC<Props> = ({
       }
     `,
     {
+      refetchQueries: [{ query: GET_PROFILE_README_QUERY }],
       onError(error) {
         toast.error(error.message)
       },
@@ -64,18 +69,30 @@ const EditReadme: React.FC<Props> = ({
     >
       <Form
         form={form}
-        className="px-5 py-3.5"
         onSubmit={({ readme }) => {
           editProfileReadme({
             variables: { input: { readme } }
           })
         }}
       >
-        <TextArea rows="4" {...form.register('readme')} />
+        <div className="px-5 py-3.5">
+          <TextArea rows={17} {...form.register('readme')} />
+        </div>
+        <div className="px-5 py-3.5 flex space-x-3 border-t">
+          <Button
+            className="ml-auto"
+            icon={
+              form.formState.isSubmitting ? (
+                <Spinner size="xs" />
+              ) : (
+                <CheckCircleIcon className="h-4 w-4" />
+              )
+            }
+          >
+            Save
+          </Button>
+        </div>
       </Form>
-      <div className="px-5 py-3.5 flex space-x-3 border-t">
-        <Button>Save</Button>
-      </div>
     </Modal>
   )
 }
