@@ -4074,6 +4074,7 @@ export type GetAllUserCommunitiesQuery = {
                   name: string
                   description?: string | null | undefined
                   avatar?: string | null | undefined
+                  hasJoined: boolean
                 }
               }
             | null
