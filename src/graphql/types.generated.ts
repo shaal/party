@@ -2252,6 +2252,7 @@ export type GetRecentProductsQuery = {
             name: string
             slug: string
             avatar?: string | null | undefined
+            hasSubscribed: boolean
           }
         }
       | null
