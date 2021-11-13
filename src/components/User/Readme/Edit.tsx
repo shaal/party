@@ -71,10 +71,10 @@ const EditReadme: React.FC<Props> = ({
           })
         }}
       >
-        <TextArea {...form.register('readme')} />
+        <TextArea rows="4" {...form.register('readme')} />
       </Form>
       <div className="px-5 py-3.5 flex space-x-3 border-t">
-        <Button variant="success">Save</Button>
+        <Button>Save</Button>
       </div>
     </Modal>
   )
