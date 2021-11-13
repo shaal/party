@@ -4,12 +4,13 @@ import { Form, useZodForm } from '@components/UI/Form'
 import { Modal } from '@components/UI/Modal'
 import { Spinner } from '@components/UI/Spinner'
 import { TextArea } from '@components/UI/TextArea'
+import AppContext from '@components/utils/AppContext'
 import {
   EditProfileReadmeMutation,
   EditProfileReadmeMutationVariables
 } from '@graphql/types.generated'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { object, string } from 'zod'
 
@@ -30,6 +31,7 @@ const EditReadme: React.FC<Props> = ({
   showReadmeModal,
   setShowReadmeModal
 }) => {
+  const { currentUser } = useContext(AppContext)
   const [editProfileReadme] = useMutation<
     EditProfileReadmeMutation,
     EditProfileReadmeMutationVariables
@@ -44,7 +46,12 @@ const EditReadme: React.FC<Props> = ({
       }
     `,
     {
-      refetchQueries: [{ query: GET_PROFILE_README_QUERY }],
+      refetchQueries: [
+        {
+          query: GET_PROFILE_README_QUERY,
+          variables: { username: currentUser?.username }
+        }
+      ],
       onError(error) {
         toast.error(error.message)
       },
