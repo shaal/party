@@ -258,6 +258,10 @@ export type EditProductSocialInput = {
   website?: Maybe<Scalars['String']>
 }
 
+export type EditProfileReadmeInput = {
+  readme: Scalars['String']
+}
+
 export type EditStatusInput = {
   emoji: Scalars['String']
   text: Scalars['String']
@@ -381,6 +385,7 @@ export type Mutation = {
   editPost: Post
   editProductProfile?: Maybe<Product>
   editProductSocial?: Maybe<Product>
+  editProfileReadme: User
   editStatus: Status
   editTips: Tip
   editUser: User
@@ -467,6 +472,10 @@ export type MutationEditProductProfileArgs = {
 
 export type MutationEditProductSocialArgs = {
   input: EditProductSocialInput
+}
+
+export type MutationEditProfileReadmeArgs = {
+  input: EditProfileReadmeInput
 }
 
 export type MutationEditStatusArgs = {
@@ -756,10 +765,12 @@ export type Profile = {
   coverBg: Scalars['String']
   discord?: Maybe<Scalars['String']>
   github?: Maybe<Scalars['String']>
+  hasReadme: Scalars['Boolean']
   id: Scalars['ID']
   location?: Maybe<Scalars['String']>
   name: Scalars['String']
   nftSource?: Maybe<Scalars['String']>
+  readme?: Maybe<Scalars['String']>
   twitter?: Maybe<Scalars['String']>
   website?: Maybe<Scalars['String']>
 }
@@ -4422,6 +4433,33 @@ export type GetAllUserProductsQuery = {
             | undefined
           >
         }
+      }
+    | null
+    | undefined
+}
+
+export type EditProfileReadmeMutationVariables = Exact<{
+  input: EditProfileReadmeInput
+}>
+
+export type EditProfileReadmeMutation = {
+  __typename?: 'Mutation'
+  editProfileReadme: {
+    __typename?: 'User'
+    profile: { __typename?: 'Profile'; readme?: string | null | undefined }
+  }
+}
+
+export type GetProfileReadmeQueryVariables = Exact<{
+  username: Scalars['String']
+}>
+
+export type GetProfileReadmeQuery = {
+  __typename?: 'Query'
+  user?:
+    | {
+        __typename?: 'User'
+        profile: { __typename?: 'Profile'; readme?: string | null | undefined }
       }
     | null
     | undefined
