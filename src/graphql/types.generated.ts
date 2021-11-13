@@ -2563,6 +2563,7 @@ export type GetNotificationsQuery = {
                   name: string
                   description?: string | null | undefined
                   avatar?: string | null | undefined
+                  hasSubscribed: boolean
                 }
               | null
               | undefined
@@ -3386,6 +3387,7 @@ export type GetProductsQuery = {
             slug: string
             avatar?: string | null | undefined
             description?: string | null | undefined
+            hasSubscribed: boolean
           }
         }
       | null
@@ -4428,6 +4430,7 @@ export type GetAllUserProductsQuery = {
                   name: string
                   description?: string | null | undefined
                   avatar?: string | null | undefined
+                  hasSubscribed: boolean
                 }
               }
             | null
