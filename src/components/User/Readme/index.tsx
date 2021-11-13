@@ -16,13 +16,13 @@ import {
 } from '@graphql/types.generated'
 import { DocumentTextIcon } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Custom404 from 'src/pages/404'
 
 import PageType from '../PageType'
 import { GET_USER_QUERY } from '../ViewUser'
+import EditReadme from './Edit'
 
 export const GET_PROFILE_README_QUERY = gql`
   query GetProfileReadme($username: String!) {
@@ -37,6 +37,7 @@ export const GET_PROFILE_README_QUERY = gql`
 const Readme: React.FC = () => {
   const router = useRouter()
   const { currentUser } = useContext(AppContext)
+  const [showReadmeModal, setShowReadmeModal] = useState<boolean>(false)
   const { data, loading, error } = useQuery<GetUserQuery>(GET_USER_QUERY, {
     variables: { username: router.query.username },
     skip: !router.isReady
@@ -96,11 +97,16 @@ const Readme: React.FC = () => {
                       <span>has no README!</span>
                       {user?.id === currentUser?.id && (
                         <div className="mt-4">
-                          <Link href="/settings/readme" passHref>
-                            <a href="/settings/readme">
-                              <Button>Add README</Button>
-                            </a>
-                          </Link>
+                          <Button
+                            onClick={() => setShowReadmeModal(!showReadmeModal)}
+                          >
+                            Add README
+                          </Button>
+                          <EditReadme
+                            readme={readmeData?.user?.profile?.readme as string}
+                            showReadmeModal={showReadmeModal}
+                            setShowReadmeModal={setShowReadmeModal}
+                          />
                         </div>
                       )}
                     </div>
