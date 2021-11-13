@@ -91,20 +91,14 @@ const Readme: React.FC = () => {
                     </Markdown>
                   </div>
                   {user?.id === currentUser?.id && (
-                    <div className="mt-5">
-                      <Button
-                        size="sm"
-                        icon={<PencilIcon className="h-4 w-4" />}
-                        onClick={() => setShowReadmeModal(!showReadmeModal)}
-                      >
-                        Edit README
-                      </Button>
-                      <EditReadme
-                        readme={readmeData?.user?.profile?.readme as string}
-                        showReadmeModal={showReadmeModal}
-                        setShowReadmeModal={setShowReadmeModal}
-                      />
-                    </div>
+                    <Button
+                      className="mt-5"
+                      size="sm"
+                      icon={<PencilIcon className="h-4 w-4" />}
+                      onClick={() => setShowReadmeModal(!showReadmeModal)}
+                    >
+                      Edit README
+                    </Button>
                   )}
                 </div>
               ) : (
@@ -126,6 +120,13 @@ const Readme: React.FC = () => {
                   }
                   icon={<DocumentTextIcon className="h-8 w-8 text-brand-500" />}
                   hideCard
+                />
+              )}
+              {user?.id === currentUser?.id && (
+                <EditReadme
+                  readme={readmeData?.user?.profile?.readme as string}
+                  showReadmeModal={showReadmeModal}
+                  setShowReadmeModal={setShowReadmeModal}
                 />
               )}
             </CardBody>
