@@ -14,7 +14,7 @@ import {
   GetUserQuery,
   User
 } from '@graphql/types.generated'
-import { DocumentTextIcon } from '@heroicons/react/outline'
+import { DocumentTextIcon, PencilIcon } from '@heroicons/react/outline'
 import Markdown from 'markdown-to-jsx'
 import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
@@ -84,10 +84,28 @@ const Readme: React.FC = () => {
               {readmeLoading ? (
                 <div className="shimmer h-10 w-full rounded-lg" />
               ) : readmeData?.user?.profile?.readme ? (
-                <div className="prose">
-                  <Markdown options={{ wrapper: 'article' }}>
-                    {readmeData?.user?.profile?.readme}
-                  </Markdown>
+                <div>
+                  <div className="prose">
+                    <Markdown options={{ wrapper: 'article' }}>
+                      {readmeData?.user?.profile?.readme}
+                    </Markdown>
+                  </div>
+                  {user?.id === currentUser?.id && (
+                    <div className="mt-5">
+                      <Button
+                        size="sm"
+                        icon={<PencilIcon className="h-4 w-4" />}
+                        onClick={() => setShowReadmeModal(!showReadmeModal)}
+                      >
+                        Edit README
+                      </Button>
+                      <EditReadme
+                        readme={readmeData?.user?.profile?.readme as string}
+                        showReadmeModal={showReadmeModal}
+                        setShowReadmeModal={setShowReadmeModal}
+                      />
+                    </div>
+                  )}
                 </div>
               ) : (
                 <EmptyState
@@ -102,11 +120,6 @@ const Readme: React.FC = () => {
                           >
                             Add README
                           </Button>
-                          <EditReadme
-                            readme={readmeData?.user?.profile?.readme as string}
-                            showReadmeModal={showReadmeModal}
-                            setShowReadmeModal={setShowReadmeModal}
-                          />
                         </div>
                       )}
                     </div>
