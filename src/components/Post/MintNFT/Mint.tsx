@@ -149,7 +149,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       setShowMint(false)
     } catch {
       setIsMinting(false)
-      toast.error('Transaction has been cancelled!')
+      setError('Transaction has been cancelled!')
     }
   }
 
