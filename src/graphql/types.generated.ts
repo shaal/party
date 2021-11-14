@@ -347,6 +347,7 @@ export type LoginWithWalletInput = {
 
 export type MintNftInput = {
   address: Scalars['String']
+  network: Scalars['String']
   postId: Scalars['ID']
   tokenId: Scalars['String']
 }
@@ -566,6 +567,7 @@ export type Nft = {
   __typename?: 'NFT'
   address: Scalars['String']
   id: Scalars['ID']
+  network: Scalars['String']
   tokenId: Scalars['String']
 }
 

@@ -130,7 +130,8 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
           input: {
             postId: post?.id,
             address: transaction.to,
-            tokenId: event.args[3].toString()
+            tokenId: event.args[3].toString(),
+            network
           }
         }
       })
