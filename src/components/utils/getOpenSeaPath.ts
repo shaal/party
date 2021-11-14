@@ -1,11 +1,11 @@
 /**
- * Get opensea url
+ * Get opensea path
  * @param network - Current network
  * @param contract - Contract address of the minted NFT
  * @param token - Token ID of the minted NFT
- * @returns the contract address
+ * @returns the opensea path
  */
-export const getOpenSeaURL = (
+export const getOpenSeaPath = (
   network: string,
   contract: string,
   token: string

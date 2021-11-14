@@ -6,7 +6,7 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { getContractAddress } from '@components/utils/getContractAddress'
 import getNFTData from '@components/utils/getNFTData'
-import { getOpenSeaURL } from '@components/utils/getOpenSeaURL'
+import { getOpenSeaPath } from '@components/utils/getOpenSeaPath'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import {
   MintNftMutation,
@@ -121,7 +121,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       setOpenseaURL(
         `https://${
           IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
-        }/${getOpenSeaURL(network, transaction.to, event.args[3].toString())}`
+        }/${getOpenSeaPath(network, transaction.to, event.args[3].toString())}`
       )
 
       // Add transaction to the DB
