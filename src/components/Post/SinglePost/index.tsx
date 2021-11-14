@@ -103,6 +103,7 @@ export const PostFragment = gql`
       id
       address
       tokenId
+      network
     }
   }
 `
