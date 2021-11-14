@@ -123,8 +123,8 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
         form.watch('quantity'),
         url
       )
-      const finishedTransaction = await transaction.wait()
-      let event = finishedTransaction.events[0]
+      const tx = await transaction.wait()
+      let event = tx.events[0]
 
       setOpenseaURL(
         `https://${
