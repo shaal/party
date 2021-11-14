@@ -233,7 +233,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
               <Checkbox id="acceptRights" {...form.register('accept')} />
               <label htmlFor="acceptRights">
                 I have the rights to publish this artwork, and understand it
-                will be minted on the <b>Polygon</b> network.
+                will be minted on the decentralized network.
               </label>
             </div>
             {error && (
