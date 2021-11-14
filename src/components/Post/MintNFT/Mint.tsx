@@ -48,9 +48,6 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
   const [nsfw, setNsfw] = useState<boolean>(false)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [openseaURL, setOpenseaURL] = useState<string>()
-  const [mintingStatus, setMintingStatus] = useState<
-    'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
-  >('NOT_STARTED')
   const [mintingStatusText, setMintingStatusText] = useState<string>('')
   const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
     gql`
@@ -74,7 +71,10 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
 
   const mintToken = async () => {
     try {
-      setMintingStatus('IN_PROGRESS')
+      // Connect to Wallet
+      const web3Modal = getWeb3Modal()
+      const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
+
       setIsMinting(true)
       setMintingStatusText('Converting your post as an art')
       const { cid } = await client.add(
@@ -92,8 +92,6 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       const url = `https://ipfs.infura.io/ipfs/${path}`
 
       // Get signature from the user
-      const web3Modal = getWeb3Modal()
-      const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
       const { name: network } = await web3.getNetwork()
       const expectedNetwork = IS_PRODUCTION
@@ -139,19 +137,18 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       })
 
       toast.success('Minting has been successfully completed!')
-      setMintingStatus('COMPLETED')
+      setMintingStatusText('Minting Completed!')
       setShowMint(false)
     } catch (error) {
       console.log(error)
       setIsMinting(false)
-      setMintingStatus('ERRORED')
       toast.error('Transaction has been cancelled!')
     }
   }
 
   return (
     <div className="space-y-3">
-      {mintingStatus === 'COMPLETED' ? (
+      {mintingStatusText === 'Minting Completed!' ? (
         <div className="p-5 font-bold text-center space-y-4">
           <div className="space-y-2">
             <div className="text-3xl">🎉</div>
