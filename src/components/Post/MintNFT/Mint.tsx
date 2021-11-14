@@ -18,7 +18,7 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION, POLYGON_MUMBAI_CONTRACT_ADDRESS } from 'src/constants'
+import { IS_PRODUCTION, MUMBAI_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../data/abi.json'
@@ -110,7 +110,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
 
       // Mint the Item
       const contract = new ethers.Contract(
-        POLYGON_MUMBAI_CONTRACT_ADDRESS as string,
+        MUMBAI_CONTRACT_ADDRESS as string,
         NFT.abi,
         signer
       )

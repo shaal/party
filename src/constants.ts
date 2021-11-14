@@ -29,8 +29,7 @@ export const OPENSEA_API_URL = `https://${
 }.opensea.io/api/v1`
 
 // NFT
-export const POLYGON_MUMBAI_CONTRACT_ADDRESS =
-  process.env.POLYGON_MUMBAI_CONTRACT_ADDRESS
+export const MUMBAI_CONTRACT_ADDRESS = process.env.MUMBAI_CONTRACT_ADDRESS
 
 // Misc
 export const GRAPHCDN_ENABLED =
