@@ -2670,6 +2670,15 @@ export type AcceptCocAndTosMutation = {
   acceptCocAndTos: { __typename?: 'User'; id: string }
 }
 
+export type MintNftMutationVariables = Exact<{
+  input: MintNftInput
+}>
+
+export type MintNftMutation = {
+  __typename?: 'Mutation'
+  mint: { __typename?: 'NFT'; id: string; address: string; tokenId: string }
+}
+
 export type GetMorePostsByUserQueryVariables = Exact<{
   userId: Scalars['ID']
   type: Scalars['String']

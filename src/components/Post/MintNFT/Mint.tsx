@@ -1,6 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import { Button } from '@components/UI/Button'
 import { Checkbox } from '@components/UI/Checkbox'
+import { ErrorMessage } from '@components/UI/ErrorMessage'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
@@ -20,7 +21,7 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION } from 'src/constants'
+import { ERROR_MESSAGE, IS_PRODUCTION } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../data/abi.json'
@@ -48,6 +49,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
   const [nsfw, setNsfw] = useState<boolean>(false)
   const [isMinting, setIsMinting] = useState<boolean>(false)
   const [openseaURL, setOpenseaURL] = useState<string>()
+  const [error, setError] = useState<string | undefined>()
   const [mintingStatus, setMintingStatus] = useState<string>('')
   const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
     gql`
@@ -85,7 +87,13 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
 
       if (!expectedNetwork.includes(network)) {
         setIsMinting(false)
-        return toast.error('You are in wrong network!')
+        return IS_PRODUCTION
+          ? setError(
+              'You are in wrong network only Mainet and Polygon matic are allowed!'
+            )
+          : setError(
+              'You are in wrong network only Rinkeby and Polygon mumbai are allowed!'
+            )
       }
 
       setMintingStatus('Converting your post as an art')
@@ -154,7 +162,6 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
             <div>Your NFT has been successfully minted!</div>
           </div>
           <div>
-            {/* TODO: Update URLs */}
             <a href={openseaURL} target="_blank" rel="noreferrer">
               <Button
                 className="mx-auto"
@@ -229,6 +236,12 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
                 will be minted on the <b>Polygon</b> network.
               </label>
             </div>
+            {error && (
+              <ErrorMessage
+                title={ERROR_MESSAGE}
+                error={{ name: error, message: error }}
+              />
+            )}
           </div>
           <div className="flex items-center justify-between p-5 border-t dark:border-gray-800">
             <a
