@@ -276,6 +276,7 @@ input LoginWithWalletInput {
 
 input MintNFTInput {
   address: String!
+  network: String!
   postId: ID!
   tokenId: String!
 }
@@ -341,6 +342,7 @@ type Mutation {
 type NFT {
   address: String!
   id: ID!
+  network: String!
   tokenId: String!
 }
 

@@ -347,6 +347,7 @@ export type LoginWithWalletInput = {
 
 export type MintNftInput = {
   address: Scalars['String']
+  network: Scalars['String']
   postId: Scalars['ID']
   tokenId: Scalars['String']
 }
@@ -566,6 +567,7 @@ export type Nft = {
   __typename?: 'NFT'
   address: Scalars['String']
   id: Scalars['ID']
+  network: Scalars['String']
   tokenId: Scalars['String']
 }
 
@@ -1773,6 +1775,7 @@ export type GetCommunityFeedQuery = {
                     id: string
                     address: string
                     tokenId: string
+                    network: string
                   }
                 | null
                 | undefined
@@ -2060,6 +2063,7 @@ export type GetExploreFeedQuery = {
                   id: string
                   address: string
                   tokenId: string
+                  network: string
                 }
               | null
               | undefined
@@ -2226,6 +2230,7 @@ export type GetHomeFeedQuery = {
                   id: string
                   address: string
                   tokenId: string
+                  network: string
                 }
               | null
               | undefined
@@ -2441,6 +2446,7 @@ export type GetNotificationsQuery = {
                           id: string
                           address: string
                           tokenId: string
+                          network: string
                         }
                       | null
                       | undefined
@@ -2549,6 +2555,7 @@ export type GetNotificationsQuery = {
                         id: string
                         address: string
                         tokenId: string
+                        network: string
                       }
                     | null
                     | undefined
@@ -2934,6 +2941,7 @@ export type GetRepliesQuery = {
                     id: string
                     address: string
                     tokenId: string
+                    network: string
                   }
                 | null
                 | undefined
@@ -3113,7 +3121,13 @@ export type PostFragmentFragment = {
     | null
     | undefined
   nft?:
-    | { __typename?: 'NFT'; id: string; address: string; tokenId: string }
+    | {
+        __typename?: 'NFT'
+        id: string
+        address: string
+        tokenId: string
+        network: string
+      }
     | null
     | undefined
 }
@@ -3213,7 +3227,13 @@ export type GetPostQuery = {
       | null
       | undefined
     nft?:
-      | { __typename?: 'NFT'; id: string; address: string; tokenId: string }
+      | {
+          __typename?: 'NFT'
+          id: string
+          address: string
+          tokenId: string
+          network: string
+        }
       | null
       | undefined
   }
@@ -3335,6 +3355,7 @@ export type GetProductFeedQuery = {
                     id: string
                     address: string
                     tokenId: string
+                    network: string
                   }
                 | null
                 | undefined
@@ -3817,6 +3838,7 @@ export type GetTopicFeedQuery = {
                     id: string
                     address: string
                     tokenId: string
+                    network: string
                   }
                 | null
                 | undefined
@@ -4031,6 +4053,7 @@ export type GetBookmarkFeedQuery = {
                           id: string
                           address: string
                           tokenId: string
+                          network: string
                         }
                       | null
                       | undefined
@@ -4208,6 +4231,7 @@ export type GetUserFeedQuery = {
                         id: string
                         address: string
                         tokenId: string
+                        network: string
                       }
                     | null
                     | undefined
