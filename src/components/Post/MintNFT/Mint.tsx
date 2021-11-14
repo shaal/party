@@ -96,9 +96,11 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
       const { name: network } = await web3.getNetwork()
-      const expectedNetworkNames = ['rinkeby', 'maticmum']
+      const expectedNetwork = IS_PRODUCTION
+        ? ['homestead', 'matic']
+        : ['rinkeby', 'maticmum']
 
-      if (!expectedNetworkNames.includes(network)) {
+      if (!expectedNetwork.includes(network)) {
         setIsMinting(false)
         return toast.error('You are in wrong network!')
       }
