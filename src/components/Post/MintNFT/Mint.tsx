@@ -18,7 +18,13 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION, MUMBAI_CONTRACT_ADDRESS } from 'src/constants'
+import {
+  IS_PRODUCTION,
+  MAINET_CONTRACT_ADDRESS,
+  MATIC_CONTRACT_ADDRESS,
+  MUMBAI_CONTRACT_ADDRESS,
+  RINKEBY_CONTRACT_ADDRESS
+} from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../data/abi.json'
@@ -45,12 +51,11 @@ interface Props {
 const Mint: React.FC<Props> = ({ post, setShowMint }) => {
   const [nsfw, setNsfw] = useState<boolean>(false)
   const [isMinting, setIsMinting] = useState<boolean>(false)
+  const [openseaURL, setOpenseaURL] = useState<string>()
   const [mintingStatus, setMintingStatus] = useState<
     'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERRORED'
   >('NOT_STARTED')
   const [mintingStatusText, setMintingStatusText] = useState<string>('')
-  const [mintedAddress, setMintedAddress] = useState<string>('')
-  const [mintedTokenId, setMintedTokenId] = useState<string>('')
   const [mintNFT] = useMutation<MintNftMutation, MintNftMutationVariables>(
     gql`
       mutation MintNFT($input: MintNFTInput!) {
@@ -60,13 +65,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
           tokenId
         }
       }
-    `,
-    {
-      onCompleted(data) {
-        setMintedAddress(data?.mint?.address)
-        setMintedTokenId(data?.mint?.tokenId)
-      }
-    }
+    `
   )
 
   const form = useZodForm({
@@ -76,6 +75,30 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       quantity: '1'
     }
   })
+
+  const getOpenSeaURL = (network: string, contract: string, token: string) => {
+    if (network === 'homestead') {
+      return `assets/${contract}/${token}`
+    } else if (network === 'rinkeby') {
+      return `assets/rinkeby/${contract}/${token}`
+    } else if (network === 'matic') {
+      return `assets/matic/${contract}/${token}`
+    } else if (network === 'maticmum') {
+      return `assets/mumbai/${contract}/${token}`
+    }
+  }
+
+  const getContractAddress = (network: string) => {
+    if (network === 'homestead') {
+      return MAINET_CONTRACT_ADDRESS
+    } else if (network === 'rinkeby') {
+      return RINKEBY_CONTRACT_ADDRESS
+    } else if (network === 'matic') {
+      return MATIC_CONTRACT_ADDRESS
+    } else if (network === 'maticmum') {
+      return MUMBAI_CONTRACT_ADDRESS
+    }
+  }
 
   const mintToken = async () => {
     try {
@@ -100,17 +123,17 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       const web3Modal = getWeb3Modal()
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
-      const { name: currentNetworkName } = await web3.getNetwork()
-      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'maticmum'
+      const { name: network } = await web3.getNetwork()
+      const expectedNetworkNames = ['rinkeby', 'maticmum']
 
-      if (currentNetworkName !== expectedNetworkName) {
+      if (!expectedNetworkNames.includes(network)) {
         setIsMinting(false)
         return toast.error('You are in wrong network!')
       }
 
       // Mint the Item
       const contract = new ethers.Contract(
-        MUMBAI_CONTRACT_ADDRESS as string,
+        getContractAddress(network) as string,
         NFT.abi,
         signer
       )
@@ -122,6 +145,12 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       )
       const finishedTransaction = await transaction.wait()
       let event = finishedTransaction.events[0]
+
+      setOpenseaURL(
+        `https://${
+          IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
+        }/${getOpenSeaURL(network, transaction.to, event.args[3].toString())}`
+      )
 
       // Add transaction to the DB
       mintNFT({
@@ -155,15 +184,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
           </div>
           <div>
             {/* TODO: Update URLs */}
-            <a
-              href={`https://${
-                IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
-              }/assets/${
-                IS_PRODUCTION ? 'matic' : 'mumbai'
-              }/${mintedAddress}/${mintedTokenId}`}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={openseaURL} target="_blank" rel="noreferrer">
               <Button
                 className="mx-auto"
                 icon={<ArrowRightIcon className="h-5 w-5" />}

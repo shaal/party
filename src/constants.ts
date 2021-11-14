@@ -29,6 +29,9 @@ export const OPENSEA_API_URL = `https://${
 }.opensea.io/api/v1`
 
 // NFT
+export const MAINET_CONTRACT_ADDRESS = process.env.MAINET_CONTRACT_ADDRESS
+export const RINKEBY_CONTRACT_ADDRESS = process.env.RINKEBY_CONTRACT_ADDRESS
+export const MATIC_CONTRACT_ADDRESS = process.env.MATIC_CONTRACT_ADDRESS
 export const MUMBAI_CONTRACT_ADDRESS = process.env.MUMBAI_CONTRACT_ADDRESS
 
 // Misc
