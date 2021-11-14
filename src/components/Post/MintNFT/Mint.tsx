@@ -18,7 +18,7 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { IS_PRODUCTION, NFT_CONTRACT_ADDRESS } from 'src/constants'
+import { IS_PRODUCTION, POLYGON_MUMBAI_CONTRACT_ADDRESS } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../data/abi.json'
@@ -101,8 +101,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       const web3 = new ethers.providers.Web3Provider(await web3Modal.connect())
       const signer = await web3.getSigner()
       const { name: currentNetworkName } = await web3.getNetwork()
-      // TODO: Change to maticmum
-      const expectedNetworkName = IS_PRODUCTION ? 'maticmum' : 'maticmum'
+      const expectedNetworkName = IS_PRODUCTION ? 'matic' : 'maticmum'
 
       if (currentNetworkName !== expectedNetworkName) {
         setIsMinting(false)
@@ -111,7 +110,7 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
 
       // Mint the Item
       const contract = new ethers.Contract(
-        NFT_CONTRACT_ADDRESS as string,
+        POLYGON_MUMBAI_CONTRACT_ADDRESS as string,
         NFT.abi,
         signer
       )
@@ -158,9 +157,9 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
             {/* TODO: Update URLs */}
             <a
               href={`https://${
-                IS_PRODUCTION ? 'testnets.opensea.io' : 'testnets.opensea.io'
+                IS_PRODUCTION ? 'opensea.io' : 'testnets.opensea.io'
               }/assets/${
-                IS_PRODUCTION ? 'mumbai' : 'mumbai'
+                IS_PRODUCTION ? 'matic' : 'mumbai'
               }/${mintedAddress}/${mintedTokenId}`}
               target="_blank"
               rel="noreferrer"
