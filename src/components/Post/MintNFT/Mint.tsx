@@ -4,6 +4,7 @@ import { Checkbox } from '@components/UI/Checkbox'
 import { Form, useZodForm } from '@components/UI/Form'
 import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
+import { getContractAddress } from '@components/utils/getContractAddress'
 import getNFTData from '@components/utils/getNFTData'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import {
@@ -18,13 +19,7 @@ import { ethers } from 'ethers'
 import { create, urlSource } from 'ipfs-http-client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import {
-  IS_PRODUCTION,
-  MAINET_CONTRACT_ADDRESS,
-  MATIC_CONTRACT_ADDRESS,
-  MUMBAI_CONTRACT_ADDRESS,
-  RINKEBY_CONTRACT_ADDRESS
-} from 'src/constants'
+import { IS_PRODUCTION } from 'src/constants'
 import { boolean, object, string } from 'zod'
 
 import NFT from '../../../../data/abi.json'
@@ -85,18 +80,6 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       return `assets/matic/${contract}/${token}`
     } else if (network === 'maticmum') {
       return `assets/mumbai/${contract}/${token}`
-    }
-  }
-
-  const getContractAddress = (network: string) => {
-    if (network === 'homestead') {
-      return MAINET_CONTRACT_ADDRESS
-    } else if (network === 'rinkeby') {
-      return RINKEBY_CONTRACT_ADDRESS
-    } else if (network === 'matic') {
-      return MATIC_CONTRACT_ADDRESS
-    } else if (network === 'maticmum') {
-      return MUMBAI_CONTRACT_ADDRESS
     }
   }
 
