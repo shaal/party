@@ -6,6 +6,7 @@ import { Input } from '@components/UI/Input'
 import { Spinner } from '@components/UI/Spinner'
 import { getContractAddress } from '@components/utils/getContractAddress'
 import getNFTData from '@components/utils/getNFTData'
+import { getOpenSeaURL } from '@components/utils/getOpenSeaURL'
 import getWeb3Modal from '@components/utils/getWeb3Modal'
 import {
   MintNftMutation,
@@ -70,18 +71,6 @@ const Mint: React.FC<Props> = ({ post, setShowMint }) => {
       quantity: '1'
     }
   })
-
-  const getOpenSeaURL = (network: string, contract: string, token: string) => {
-    if (network === 'homestead') {
-      return `assets/${contract}/${token}`
-    } else if (network === 'rinkeby') {
-      return `assets/rinkeby/${contract}/${token}`
-    } else if (network === 'matic') {
-      return `assets/matic/${contract}/${token}`
-    } else if (network === 'maticmum') {
-      return `assets/mumbai/${contract}/${token}`
-    }
-  }
 
   const mintToken = async () => {
     try {
