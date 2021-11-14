@@ -202,6 +202,7 @@ model NFT {
   id      String @id @default(uuid())
   tokenId String
   address String
+  network String
 
   // Relations
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)

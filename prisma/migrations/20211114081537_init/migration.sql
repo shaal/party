@@ -125,6 +125,7 @@ CREATE TABLE `nfts` (
     `id` VARCHAR(191) NOT NULL,
     `tokenId` VARCHAR(191) NOT NULL,
     `address` VARCHAR(191) NOT NULL,
+    `network` VARCHAR(191) NOT NULL,
     `postId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `nfts_postId_key`(`postId`),
